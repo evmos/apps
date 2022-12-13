@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: "GreyCliff";
+    src: url("../public/fonts/GreycliffCF-ExtraBold.otf");
+  }

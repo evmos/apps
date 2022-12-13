@@ -9,7 +9,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundImage: { stars: url("/stars.svg") },
+      colors: {
+        pearl: "#faf1e4",
+        whiteOpacity: "rgba(255, 255, 255, 0.1)",
+      },
     },
   },
   plugins: [],

@@ -2,12 +2,15 @@ name: 'CodeQL'
 
 on:
   push:
-    branches: [main]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [main]
-  schedule:
-    - cron: '42 19 * * 6'
+    # Action not enabled until we have the security addon on the tharsis org, without that the ci will always fail
+    branches: [nowhere]
+  # push:
+  #   branches: [main]
+  # pull_request:
+  #   # The branches below must be a subset of the branches above
+  #   branches: [main]
+  # schedule:
+  #   - cron: '42 19 * * 6'
 
 jobs:
   analyze:

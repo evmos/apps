@@ -1,5 +1,6 @@
 import { ethToEvmos } from "@evmos/address-converter";
 import { generateEndpointAccount } from "@evmos/provider";
+import { fetchWithTimeout } from "./fetch";
 
 export async function queryPubKey(evmosEndpoint: string, address: string) {
   let converted = address;
@@ -14,7 +15,7 @@ export async function queryPubKey(evmosEndpoint: string, address: string) {
 
   let resp: any;
   try {
-    const addr = await fetch(
+    const addr = await fetchWithTimeout(
       `${evmosEndpoint}${generateEndpointAccount(converted)}`,
       get
     );

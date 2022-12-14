@@ -6,15 +6,17 @@ import ContentModalConnect from "./ContentModalConnect";
 import Modal from "../Modal";
 
 // Images
-const WalletIcon = dynamic(() => import("../images/icons/WalletIcon"));
-const MetamaskIcon = dynamic(() => import("../images/icons/MetamaskIcon"));
-const KeplrIcon = dynamic(() => import("../images/icons/KeplrIcon"));
+const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
+const MetamaskIcon = dynamic(
+  () => import("../common/images/icons/MetamaskIcon")
+);
+const KeplrIcon = dynamic(() => import("../common/images/icons/KeplrIcon"));
 const WalletConnectIcon = dynamic(
-  () => import("../images/icons/WalletConnectIcon")
+  () => import("../common/images/icons/WalletConnectIcon")
 );
 
 // Components
-const Button = dynamic(() => import("../Button"));
+const Button = dynamic(() => import("../common/Button"));
 
 const ButtonWalletConnection = () => {
   const address = "evmos1c8wgcmqde5jzymrjrflpp8j20ss000c00zd0ak";

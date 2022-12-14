@@ -3,7 +3,7 @@ import { useCallback, useState } from "react";
 import { truncateAddress } from "../../internal/wallet/style/format";
 import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";
-import Modal from "../Modal";
+import Modal from "../common/Modal";
 
 // Images
 const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));

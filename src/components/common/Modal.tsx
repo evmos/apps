@@ -1,5 +1,5 @@
-import useEventListener from "../hooks/useEventListener";
-import CloseIcon from "./common/images/icons/CloseIcon";
+import useEventListener from "../../hooks/useEventListener";
+import CloseIcon from "./images/icons/CloseIcon";
 
 const Modal = ({
   title,

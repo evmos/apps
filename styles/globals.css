@@ -7,8 +7,29 @@
     src: url("../public/fonts/GreycliffCF-ExtraBold.otf");
   }
 
+  @font-face {
+    font-family: "IBM";
+    src: url("../public/fonts/IBMPlexSans-Bold.ttf");
+  }
+
 @layer components {
   .disabled {
      @apply pointer-events-none select-none opacity-50 cursor-not-allowed;
     }
+
+
+  td {
+     @apply p-5 bg-darkGray2 border-b-2 border-b-black
+  }
+  tbody:first-of-type tr:first-child td {
+    @apply first:rounded-bl-none first:border-l-darkGray2 first:rounded-l-3xl 
+    last:rounded-br-none last:border-r-darkGray2 last:rounded-r-3xl
+
+  }
+
+  tbody:last-of-type tr:last-child td {
+    @apply first:rounded-tl-none first:border-l-darkGray2 first:rounded-l-3xl 
+    last:rounded-tr-none last:border-r-darkGray2 last:rounded-r-3xl
+
+  }
 }

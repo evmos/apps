@@ -1,4 +1,5 @@
 import Head from "next/head";
+import AssetsTable from "../src/components/asset/AssetsTable";
 import Container from "../src/components/Container";
 import Header from "../src/components/Header";
 
@@ -13,7 +14,12 @@ export default function Home() {
 
       <main>
         <Container>
-          <Header />
+          <>
+            <Header />
+            <div className="container mx-auto">
+              <AssetsTable />
+            </div>
+          </>
         </Container>
       </main>
 

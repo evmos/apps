@@ -6,3 +6,9 @@
     font-family: "GreyCliff";
     src: url("../public/fonts/GreycliffCF-ExtraBold.otf");
   }
+
+@layer components {
+  .disabled {
+     @apply pointer-events-none select-none opacity-50 cursor-not-allowed;
+    }
+}

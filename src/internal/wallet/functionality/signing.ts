@@ -18,7 +18,7 @@ import {
   generatePostBodyBroadcast,
 } from "@evmos/provider";
 
-export interface TxGeneratedByBackend {
+export declare type TxGeneratedByBackend = {
   signDirect: {
     body: string;
     authInfo: string;
@@ -32,7 +32,7 @@ export interface TxGeneratedByBackend {
   eipToSign: string;
   accountNumber: string;
   chainId: string;
-}
+};
 
 export async function createEIP712Transaction(
   chain: Chain,

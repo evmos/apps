@@ -4,6 +4,8 @@ import { truncateAddress } from "../../internal/wallet/style/format";
 import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";
 import Modal from "../common/Modal";
+import { useWalletContext } from "./WalletContext";
+import { Metamask } from "../../internal/wallet/functionality/metamask/metamask";
 
 // Images
 const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
@@ -26,11 +28,14 @@ const ButtonWalletConnection = () => {
   const close = useCallback(() => setShow(false), []);
   const open = useCallback(() => setShow(true), []);
 
-  return (
-    // <div className="flex items-center space-x-3">
-    //   <KeplrIcon />
-    //   <span className="text-lg font-bold">{truncatedAddress}</span>
-    // </div>
+  const { value, setValue } = useWalletContext();
+
+  return value.active == true ? (
+    <div className="flex items-center space-x-3">
+      <KeplrIcon />
+      <span className="text-lg font-bold">{truncatedAddress}</span>
+    </div>
+  ) : (
     <div>
       <Button onClick={open}>
         <div className="flex items-center space-x-2">
@@ -38,6 +43,7 @@ const ButtonWalletConnection = () => {
           <span>Connect wallet</span>
         </div>
       </Button>
+
       <Modal title="Connect Wallet" show={show} onClose={close}>
         <div className="flex flex-col space-y-3">
           <ButtonWallet onClick={() => {}} disabled>
@@ -47,7 +53,17 @@ const ButtonWalletConnection = () => {
               </>
             </ContentModalConnect>
           </ButtonWallet>
-          <ButtonWallet onClick={() => {}}>
+          <ButtonWallet
+            onClick={async () => {
+              if (value.active) {
+                value.disconnect();
+              }
+              let wallet = new Metamask();
+              if (await wallet.connect()) {
+                setValue(wallet);
+              }
+            }}
+          >
             <ContentModalConnect>
               <>
                 <MetamaskIcon /> <span>MetaMask</span>

@@ -1,4 +1,4 @@
-const ButtonTertiary = ({
+const ButtonWallet = ({
   children,
   onClick,
   disabled,
@@ -19,4 +19,4 @@ const ButtonTertiary = ({
   );
 };
 
-export default ButtonTertiary;
+export default ButtonWallet;

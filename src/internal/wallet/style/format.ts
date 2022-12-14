@@ -1,6 +1,6 @@
 export function truncateAddress(address?: string) {
     if (!address || address.length < 11) {
-      return '';
+      return address;
     }
   
     // Hex Address

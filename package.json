@@ -17,7 +17,9 @@
   },
   "dependencies": {
     "@evmos/address-converter": "^0.1.9",
+    "@evmos/proto": "^0.1.26",
     "@evmos/provider": "^0.2.8",
+    "@evmos/transactions": "^0.2.12",
     "@hanchon/signature-to-pubkey": "^1.0.1",
     "@types/node": "18.11.14",
     "@types/react": "18.0.26",

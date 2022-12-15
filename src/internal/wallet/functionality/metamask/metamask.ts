@@ -47,8 +47,10 @@ export class Metamask implements WalletExtension {
     if (addresses.length > 0 && addresses[0]) {
       this.addressEthFormat = addresses[0];
       this.addressCosmosFormat = ethToEvmos(addresses[0]);
+      this.evmosPubkey = await this.generatePubKey(this.addressCosmosFormat);
+    } else {
+      this.reset();
     }
-    this.evmosPubkey = await this.generatePubKey(this.addressCosmosFormat);
   }
 
   async connect() {

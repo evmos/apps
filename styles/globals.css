@@ -5,13 +5,44 @@
 @font-face {
     font-family: "GreyCliff";
     src: url("../public/fonts/GreycliffCF-ExtraBold.otf");
+    font-weight: 800;
   }
 
   @font-face {
-    font-family: "IBM";
-    src: url("../public/fonts/IBMPlexSans-Bold.ttf");
+    font-family: "GreyCliff";
+    src: url("../public/fonts/GreycliffCF-Regular.otf");
+    font-weight:400
   }
 
+  @font-face {
+    font-family: "GreyCliff";
+    src: url("../public/fonts/GreycliffCF-Light.otf");
+    font-weight: 300;
+  }
+
+  @font-face {
+    font-family: "GreyCliff";
+    src: url("../public/fonts/GreycliffCF-Bold.otf");
+    font-weight: 600;
+
+  }
+  @font-face {
+    font-family: "IBM";
+    src: url("../public/fonts/IBMPlexSans-Bold.ttf");
+    font-weight: 600;
+  }
+  @font-face {
+    font-family: "IBM";
+    src: url("../public/fonts/IBMPlexSans-Regular.ttf");
+    font-weight: 400;
+
+  }
+  @font-face {
+    font-family: "IBM";
+    src: url("../public/fonts/IBMPlexSans-SemiBold.ttf");
+    font-weight: 500;
+
+  }
 @layer components {
   .disabled {
      @apply pointer-events-none select-none opacity-50 cursor-not-allowed;
@@ -32,4 +63,16 @@
     last:rounded-tr-none last:border-r-darkGray2 last:rounded-r-3xl
 
   }
+
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 }

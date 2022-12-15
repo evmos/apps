@@ -10,7 +10,7 @@ const GetButtonAddress = ({
   return (
     <button
       onClick={onClick}
-      className={`hover:bg-grayOpacity border border-darkPearl px-4 py-1 rounded capitalize ${
+      className={`hover:bg-grayOpacity border border-darkPearl px-4 py-1 rounded capitalize font-bold ${
         disabled ? "disabled" : ""
       }`}
     >

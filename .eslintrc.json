@@ -1,3 +1,18 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "jest/globals": true
+  },
+  "globals": { "React": true, "JSX": true },
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals"
+  ],
+  "plugins": ["jest", "@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
+  }
 }

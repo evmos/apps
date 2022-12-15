@@ -34,7 +34,13 @@ const Convert = ({
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5">
         <ToContainer token={token} />
       </div>
-      <ConfirmButton onClick={() => {}} text={title} />
+      <ConfirmButton
+        onClick={() => {
+          // TODO: implement function
+          throw "Not implemented!";
+        }}
+        text={title}
+      />
     </div>
   );
 };

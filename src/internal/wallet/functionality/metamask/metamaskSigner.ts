@@ -42,7 +42,7 @@ export async function signEvmosjsTxWithMetamask(
       message: "",
       transaction: transaction,
     };
-  } catch (e: any) {
+  } catch (e) {
     // TODO: send custom responses for each of the knonw cases
     return {
       result: false,
@@ -75,7 +75,7 @@ export async function signBackendTxWithMetamask(
       message: "",
       signature: signature,
     };
-  } catch (e: any) {
+  } catch (e) {
     // TODO: send custom responses for each of the knonw cases
     return {
       result: false,

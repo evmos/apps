@@ -39,7 +39,13 @@ export const EmptyWalletContext: WalletExtension = {
 const WalletContextObject = createContext<{
   value: WalletExtension;
   setValue: Dispatch<SetStateAction<WalletExtension>>;
-}>({ value: EmptyWalletContext, setValue: () => {} });
+}>({
+  value: EmptyWalletContext,
+  setValue: () => {
+    // TODO: implement function
+    throw "Not implemented!";
+  },
+});
 
 export function WalletContext({ children }: { children: JSX.Element }) {
   const [wallet, setWallet] = useState<WalletExtension>(EmptyWalletContext);

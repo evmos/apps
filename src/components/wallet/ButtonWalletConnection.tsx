@@ -47,7 +47,13 @@ const ButtonWalletConnection = () => {
 
       <Modal title="Connect Wallet" show={show} onClose={close}>
         <div className="flex flex-col space-y-3">
-          <ButtonWallet onClick={() => {}} disabled>
+          <ButtonWallet
+            onClick={() => {
+              // TODO: implement function
+              throw "Not implemented!";
+            }}
+            disabled
+          >
             <ContentModalConnect>
               <>
                 <KeplrIcon /> <span>Keplr</span>
@@ -59,7 +65,7 @@ const ButtonWalletConnection = () => {
               if (value.active) {
                 value.disconnect();
               }
-              let wallet = new Metamask();
+              const wallet = new Metamask();
               const connected = await wallet.connect();
               if (connected.result === true) {
                 setValue(wallet);
@@ -73,7 +79,12 @@ const ButtonWalletConnection = () => {
               </>
             </ContentModalConnect>
           </ButtonWallet>
-          <ButtonWallet onClick={() => {}}>
+          <ButtonWallet
+            onClick={() => {
+              // TODO: implement function
+              throw "Not implemented!";
+            }}
+          >
             <ContentModalConnect>
               <>
                 <WalletConnectIcon /> <span>Wallet Connect</span>

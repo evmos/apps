@@ -6,7 +6,6 @@ type WalletIconProps = React.SVGAttributes<SVGElement> & {
 };
 
 const WalletIcon: React.FC<WalletIconProps> = ({
-  children,
   width = "24",
   height = "24",
   color = "currentColor",

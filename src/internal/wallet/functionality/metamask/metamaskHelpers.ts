@@ -9,6 +9,7 @@ import {
 
 import type { Maybe } from "@metamask/providers/dist/utils";
 import { signatureToPubkey } from "@hanchon/signature-to-pubkey";
+import { evmosToEth } from "@evmos/address-converter";
 
 export async function switchEthereumChain(ethChainId: string) {
   if (!window.ethereum) return false;
@@ -111,6 +112,9 @@ export async function getWallet() {
 export async function generatePubkeyFromSignature(wallet: string) {
   if (!window.ethereum) return undefined;
   try {
+    if (wallet.startsWith("evmos1")) {
+      wallet = evmosToEth(wallet);
+    }
     // Make the user sign the generate_pubkey message
     const signature = await window.ethereum.request({
       method: "personal_sign",

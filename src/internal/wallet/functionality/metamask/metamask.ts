@@ -71,6 +71,11 @@ export class Metamask implements WalletExtension {
 
     // Set the wallet and get the pubkey
     const wallet = await getWallet();
+    if (wallet === undefined) {
+      this.reset();
+      return false;
+    }
+
     await this._connectHandler([wallet]);
     if (this.evmosPubkey === undefined) {
       this.reset();

@@ -1,5 +1,14 @@
 import { ethToEvmos } from "@evmos/address-converter";
 import { Maybe } from "@metamask/providers/dist/utils";
+import {
+  METAMASK_ERRORS,
+  METAMASK_SUCCESS_MESSAGES,
+  ResultMessage,
+} from "../errors";
+import {
+  RemoveProviderFromLocalStorage,
+  SaveProviderToLocalStorate,
+} from "../localstorage";
 import { EVMOS_GRPC_URL } from "../networkConfig";
 import { queryPubKey } from "../pubkey";
 import { METAMASK_KEY, WalletExtension } from "../wallet";
@@ -28,6 +37,8 @@ export class Metamask implements WalletExtension {
   disconnect() {
     this.reset();
     unsubscribeToEvents();
+    RemoveProviderFromLocalStorage();
+    return { result: true, message: METAMASK_SUCCESS_MESSAGES.Disconnected };
   }
 
   reset() {
@@ -53,17 +64,23 @@ export class Metamask implements WalletExtension {
     }
   }
 
-  async connect() {
+  async connect(): Promise<ResultMessage> {
     // Make sure that we are on the evmos chain
     if ((await changeNetworkToEvmosMainnet()) == false) {
       this.reset();
-      return false;
+      return {
+        result: false,
+        message: METAMASK_ERRORS.ChangeNetwork,
+      };
     }
 
     // If the user switchs networks, suggest the evmos chain again
     if ((await subscribeToChainChanged()) == false) {
       this.reset();
-      return false;
+      return {
+        result: false,
+        message: METAMASK_ERRORS.SubscribeChangeNetwork,
+      };
     }
 
     // Handle wallet changes
@@ -71,14 +88,29 @@ export class Metamask implements WalletExtension {
 
     // Set the wallet and get the pubkey
     const wallet = await getWallet();
+    if (wallet === undefined) {
+      this.reset();
+      return {
+        result: false,
+        message: METAMASK_ERRORS.GetWallet,
+      };
+    }
+
     await this._connectHandler([wallet]);
     if (this.evmosPubkey === undefined) {
       this.reset();
-      return false;
+      return {
+        result: false,
+        message: METAMASK_ERRORS.PubkeyError,
+      };
     }
 
     this.active = true;
-    return true;
+    SaveProviderToLocalStorate(METAMASK_KEY);
+    return {
+      result: true,
+      message: METAMASK_SUCCESS_MESSAGES.Connected,
+    };
   }
 
   async generatePubKey(account: string) {

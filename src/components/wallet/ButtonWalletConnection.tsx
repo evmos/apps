@@ -60,9 +60,11 @@ const ButtonWalletConnection = () => {
                 value.disconnect();
               }
               let wallet = new Metamask();
-              if (await wallet.connect()) {
+              const connected = await wallet.connect();
+              if (connected.result === true) {
                 setValue(wallet);
               }
+              alert(connected.message);
             }}
           >
             <ContentModalConnect>

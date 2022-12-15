@@ -1,34 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Assets Page
 
-## Getting Started
+This repo contains the front-end for the assets page: [https://assets.evmos.org/](https://assets.evmos.org/).
 
-First, run the development server:
+## Requirements
 
-```bash
-npm run dev
-# or
-yarn dev
+- Node v18.12.0+
+
+## Current implementation
+
+It uses the [dashboard-backend](https://github.com/tharsis/dashboard-backend) to fetch the information and to create the transactions.
+
+The wallet extensions code is inside the `wallet` folders in `src/internal` and `src/components`, after releasing the v1 of the assets page, the wallet code must be moved to the `react-components` repo created in the `evmos` org in github.
+
+## Run
+
+```sh
+git clone https://github.com/tharsis/assetsPage
+cd assetsPage
+yarn install
+yarn run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Configuration
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+The endpoints used by default are currently stored in `src/internal/wallet/functionality/networkConfig.ts`
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+It's using the default values that should work for most of the cases, but most of the methods that consume the endpoints can overwrite the configuration with optional parameters.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Tests
 
-## Learn More
+The tests can be run using:
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```sh
+yarn run test
+```

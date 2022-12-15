@@ -75,4 +75,64 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.animation {
+  animation-duration: 10s;
+  animation-name: slidein;
+  animation-fill-mode:forwards;
 }
+
+@keyframes slidein {
+
+  0% {
+    margin-left: -500px;
+  }
+  8.33%, 25% {
+    margin-left: 0px;
+  }
+  33.33%, 50% {
+    margin-left: 0px;
+  }
+  58.33%, 75% {
+    margin-left: 0px;
+  }
+  83.33%, 100% {
+    margin-left: -500px;
+  }
+
+}
+.loader {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 4px solid #FFF;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-left: 4px solid #ff7700;
+  border-bottom: 4px solid transparent;
+  animation: rotation 0.5s linear infinite reverse;
+}
+
+  @keyframes rotation {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+  } 
+
+}
+

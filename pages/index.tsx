@@ -2,6 +2,7 @@ import Head from "next/head";
 import AssetsTable from "../src/components/asset/AssetsTable";
 import Container from "../src/components/Container";
 import Header from "../src/components/Header";
+import Snackbar from "../src/components/notification/Snackbar";
 import { WalletContext } from "../src/components/wallet/WalletContext";
 
 export default function Home() {
@@ -20,6 +21,14 @@ export default function Home() {
               <Header />
               <div className="container mx-auto">
                 <AssetsTable />
+                <div className="flex flex-col fixed left-6 bottom-6 z-[100] space-y-5">
+                  {/* TODO: delete the snackbar in the list, not only apply hidden prop */}
+                  {/* estado si esta mostrando o no. antes de agregar una asnackbar nueva,
+                  borro todos las nacksbars que esten en hidden. */}
+                  <Snackbar type="success" text="Text" subtext="subtext" />
+                  <Snackbar type="error" text="Text" subtext="subtext" />
+                  <Snackbar type="default" text="Text" subtext="subtext" />
+                </div>
               </div>
             </>
           </Container>

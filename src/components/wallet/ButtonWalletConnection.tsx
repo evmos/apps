@@ -6,6 +6,7 @@ import ContentModalConnect from "./ContentModalConnect";
 import Modal from "../common/Modal";
 import { useWalletContext } from "./WalletContext";
 import { Metamask } from "../../internal/wallet/functionality/metamask/metamask";
+import { METAMASK_KEY } from "../../internal/wallet/functionality/wallet";
 
 // Images
 const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
@@ -21,8 +22,6 @@ const WalletConnectIcon = dynamic(
 const Button = dynamic(() => import("../common/Button"));
 
 const ButtonWalletConnection = () => {
-  const address = "evmos1c8wgcmqde5jzymrjrflpp8j20ss000c00zd0ak";
-  const truncatedAddress = truncateAddress(address);
   const [show, setShow] = useState(false);
 
   const close = useCallback(() => setShow(false), []);
@@ -32,8 +31,10 @@ const ButtonWalletConnection = () => {
 
   return value.active == true ? (
     <div className="flex items-center space-x-3">
-      <KeplrIcon />
-      <span className="text-lg font-bold">{truncatedAddress}</span>
+      {value.extensionName === METAMASK_KEY ? <MetamaskIcon /> : <KeplrIcon />}
+      <span className="text-lg font-bold">
+        {truncateAddress(value.addressEthFormat)}
+      </span>
     </div>
   ) : (
     <div>

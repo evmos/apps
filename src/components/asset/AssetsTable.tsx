@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import Button from "../common/Button";
 import KeplrIcon from "../common/images/icons/KeplrIcon";
 import MetamaskIcon from "../common/images/icons/MetamaskIcon";
+import WalletConnectIcon from "../common/images/icons/WalletConnectIcon";
 import Modal from "../common/Modal";
 import ContentModalAssets from "./ContentModalAssets";
 
@@ -25,8 +26,8 @@ const arrayBalance = [
     erc20BalanceDescription: 2,
   },
   {
-    icon: <KeplrIcon />,
-    token: "gWeth",
+    icon: <WalletConnectIcon />,
+    token: "gUSDC",
     description: "Wrapped Ether via Gravity Bridge",
     ibcBalance: 1,
     ibcBalanceDescription: 1,
@@ -51,6 +52,13 @@ const AssetsTable = () => {
         </tr>
       </thead>
       <tbody className="">
+        <Modal title={`Deposit`} show={show} onClose={close}>
+          <ContentModalAssets
+            token="token"
+            address="evmos1c8wgcmqde5jzymrjrflpp8j20ss000c00zd0ak"
+            amount={5}
+          />
+        </Modal>
         {arrayBalance.map((item, index) => {
           return (
             <tr className="" key={index}>
@@ -89,17 +97,6 @@ const AssetsTable = () => {
                   <Button onClick={open}>
                     <span>Deposit</span>
                   </Button>{" "}
-                  <Modal
-                    title={`Deposit ${item.token}`}
-                    show={show}
-                    onClose={close}
-                  >
-                    <ContentModalAssets
-                      token={item.token}
-                      address="evmos1c8wgcmqde5jzymrjrflpp8j20ss000c00zd0ak"
-                      amount={5}
-                    />
-                  </Modal>
                   <Button onClick={() => {}}>
                     <span>Withdraw</span>
                   </Button>{" "}

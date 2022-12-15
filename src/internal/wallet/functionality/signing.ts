@@ -34,6 +34,11 @@ export declare type TxGeneratedByBackend = {
   chainId: string;
 };
 
+export declare type RawTx = {
+  message: protoTxNamespace.txn.TxRaw;
+  path: string;
+};
+
 export async function createEIP712Transaction(
   chain: Chain,
   sender: Sender,

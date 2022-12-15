@@ -1,4 +1,5 @@
 import { ethToEvmos } from "@evmos/address-converter";
+import { Sender, TxGenerated } from "@evmos/transactions";
 import { Maybe } from "@metamask/providers/dist/utils";
 import {
   METAMASK_ERRORS,
@@ -11,6 +12,7 @@ import {
 } from "../localstorage";
 import { EVMOS_GRPC_URL } from "../networkConfig";
 import { queryPubKey } from "../pubkey";
+import { RawTx, TxGeneratedByBackend } from "../signing";
 import { METAMASK_KEY, WalletExtension } from "../wallet";
 import {
   changeNetworkToEvmosMainnet,
@@ -20,6 +22,10 @@ import {
   subscribeToChainChanged,
   unsubscribeToEvents,
 } from "./metamaskHelpers";
+import {
+  signBackendTxWithMetamask,
+  signEvmosjsTxWithMetamask,
+} from "./metamaskSigner";
 
 export class Metamask implements WalletExtension {
   active = false;
@@ -119,5 +125,17 @@ export class Metamask implements WalletExtension {
       pubkey = await generatePubkeyFromSignature(account);
     }
     return pubkey;
+  }
+
+  // Signatures
+  signEvmosjsTx(sender: Sender, tx: TxGenerated): Promise<RawTx | undefined> {
+    return signEvmosjsTxWithMetamask(sender, tx);
+  }
+
+  signBackendTx(
+    sender: string,
+    tx: TxGeneratedByBackend
+  ): Promise<string | undefined> {
+    return signBackendTxWithMetamask(sender, tx);
   }
 }

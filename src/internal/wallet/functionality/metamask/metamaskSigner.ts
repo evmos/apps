@@ -1,7 +1,23 @@
 import { evmosToEth } from "@evmos/address-converter";
 import { Sender, TxGenerated } from "@evmos/transactions";
 import { EVMOS_CHAIN } from "../networkConfig";
-import { createEIP712Transaction, TxGeneratedByBackend } from "../signing";
+import {
+  createEIP712Transaction,
+  RawTx,
+  TxGeneratedByBackend,
+} from "../signing";
+
+export declare type EvmosjsTxSignatureResponse = {
+  result: boolean;
+  message: string;
+  transaction: RawTx | undefined;
+};
+
+export declare type BackendTxSignatureResponse = {
+  result: boolean;
+  message: string;
+  signature: string | undefined;
+};
 
 export async function signEvmosjsTxWithMetamask(
   sender: Sender,
@@ -21,9 +37,18 @@ export async function signEvmosjsTxWithMetamask(
       signature,
       tx
     );
-    return transaction;
+    return {
+      result: true,
+      message: "",
+      transaction: transaction,
+    };
   } catch (e: any) {
-    return undefined;
+    // TODO: send custom responses for each of the knonw cases
+    return {
+      result: false,
+      message: `Error signing the tx: ${e}`,
+      transaction: undefined,
+    };
   }
 }
 
@@ -45,8 +70,17 @@ export async function signBackendTxWithMetamask(
       params: [ethWallet, JSON.stringify(eipToSignUTF8)],
     })) as string;
 
-    return signature;
+    return {
+      result: true,
+      message: "",
+      signature: signature,
+    };
   } catch (e: any) {
-    return undefined;
+    // TODO: send custom responses for each of the knonw cases
+    return {
+      result: false,
+      message: `Error signing the tx: ${e}`,
+      singature: undefined,
+    };
   }
 }

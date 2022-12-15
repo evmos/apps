@@ -54,7 +54,7 @@ const Withdraw = ({
         </div>
       </div>
 
-      <ConfirmButton text={title} />
+      <ConfirmButton text={title} onClick={() => {}} />
     </div>
   );
 };

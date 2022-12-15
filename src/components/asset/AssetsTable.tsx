@@ -3,10 +3,7 @@ import Button from "../common/Button";
 import KeplrIcon from "../common/images/icons/KeplrIcon";
 import MetamaskIcon from "../common/images/icons/MetamaskIcon";
 import WalletConnectIcon from "../common/images/icons/WalletConnectIcon";
-import Modal from "../common/Modal";
-import Convert from "./modals/Convert";
-import Deposit from "./modals/Deposit";
-import Withdraw from "./modals/Withdraw";
+import ModalAsset from "./modals/ModalAsset";
 
 const arrayBalance = [
   {
@@ -46,11 +43,13 @@ const DataModal = {
   network: "",
 };
 
-const ModalsTypes = {
-  WITHDRAW: "WITHDRAW",
-  DEPOSIT: "DEPOSIT",
-  CONVERT: "CONVERT",
-} as const;
+export declare type DataModalType = {
+  token: string;
+  address: string;
+  amount: number;
+  title: string;
+  network: string;
+};
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -155,41 +154,7 @@ const AssetsTable = () => {
           })}
         </tbody>
       </table>
-      <Modal
-        title={`${modalValues.title} ${modalValues.token}`}
-        show={show}
-        onClose={close}
-      >
-        <>
-          {modalValues.title.toUpperCase() === ModalsTypes.DEPOSIT && (
-            <Deposit
-              token={modalValues.token}
-              address={modalValues.address}
-              amount={modalValues.amount}
-              title={modalValues.title}
-              network={modalValues.network}
-            />
-          )}
-          {modalValues.title.toUpperCase() === ModalsTypes.WITHDRAW && (
-            <Withdraw
-              token={modalValues.token}
-              address={modalValues.address}
-              amount={modalValues.amount}
-              title={modalValues.title}
-              network={modalValues.network}
-            />
-          )}
-          {modalValues.title.toUpperCase() === ModalsTypes.CONVERT && (
-            <Convert
-              token={modalValues.token}
-              address={modalValues.address}
-              amount={modalValues.amount}
-              title={modalValues.title}
-              network={modalValues.network}
-            />
-          )}
-        </>
-      </Modal>
+      <ModalAsset show={show} modalValues={modalValues} close={close} />
     </>
   );
 };

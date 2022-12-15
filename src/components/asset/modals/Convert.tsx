@@ -30,14 +30,11 @@ const Convert = ({
           {getReservedForFee(amount, token, network)}
         </div>
       </div>
-
       <Arrow />
-
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5">
         <ToContainer token={token} />
       </div>
-
-      <ConfirmButton text={title} />
+      <ConfirmButton onClick={() => {}} text={title} />
     </div>
   );
 };

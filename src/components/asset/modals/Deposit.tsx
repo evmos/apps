@@ -48,8 +48,7 @@ const Deposit = ({
           </GetButtonAddress>
         </div>
       </div>
-
-      <ConfirmButton text={title} />
+      <ConfirmButton text={title} onClick={() => {}} />
     </div>
   );
 };

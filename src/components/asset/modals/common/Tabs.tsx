@@ -16,7 +16,6 @@ const Tabs = () => {
         }}
       >
         <span>ERC-20</span>
-
         <span className="font-normal text-xs">0.001</span>
       </button>
       <button

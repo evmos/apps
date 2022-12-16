@@ -1,15 +1,10 @@
-import { ResultMessage } from "./errors";
-
 export const METAMASK_KEY = "metamask";
 
-export interface WalletExtension {
+export type WalletExtension = {
   active: boolean;
   extensionName: string;
-  addressEthFormat: string;
-  addressCosmosFormat: string;
-  evmosPubkey: string | undefined;
-  cosmosPubkey: string | undefined;
-  connect: () => Promise<ResultMessage>;
-  disconnect: () => ResultMessage;
-  // TODO: add signing method
-}
+  evmosAddressEthFormat: string;
+  evmosAddressCosmosFormat: string;
+  evmosPubkey: string | null;
+  osmosisPubkey: string | null;
+};

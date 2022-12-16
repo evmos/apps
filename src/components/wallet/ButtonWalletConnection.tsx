@@ -4,9 +4,10 @@ import { truncateAddress } from "../../internal/wallet/style/format";
 import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";
 import Modal from "../common/Modal";
-import { useWalletContext } from "./WalletContext";
-import { Metamask } from "../../internal/wallet/functionality/metamask/metamask";
 import { METAMASK_KEY } from "../../internal/wallet/functionality/wallet";
+import { useSelector } from "react-redux";
+import { store, StoreType } from "../../redux/Store";
+import { Metamask } from "../../internal/wallet/functionality/metamask/metamask";
 
 // Images
 const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
@@ -27,13 +28,13 @@ const ButtonWalletConnection = () => {
   const close = useCallback(() => setShow(false), []);
   const open = useCallback(() => setShow(true), []);
 
-  const { value, setValue } = useWalletContext();
+  const value = useSelector((state: StoreType) => state.wallet.value);
 
   return value.active == true ? (
     <div className="flex items-center space-x-3">
       {value.extensionName === METAMASK_KEY ? <MetamaskIcon /> : <KeplrIcon />}
       <span className="text-lg font-bold">
-        {truncateAddress(value.addressEthFormat)}
+        {truncateAddress(value.evmosAddressEthFormat)}
       </span>
     </div>
   ) : (
@@ -47,7 +48,13 @@ const ButtonWalletConnection = () => {
 
       <Modal title="Connect Wallet" show={show} onClose={close}>
         <div className="flex flex-col space-y-3">
-          <ButtonWallet onClick={() => {}} disabled>
+          <ButtonWallet
+            onClick={() => {
+              // TODO: implement function
+              throw "Not implemented!";
+            }}
+            disabled
+          >
             <ContentModalConnect>
               <>
                 <KeplrIcon /> <span>Keplr</span>
@@ -56,14 +63,11 @@ const ButtonWalletConnection = () => {
           </ButtonWallet>
           <ButtonWallet
             onClick={async () => {
-              if (value.active) {
-                value.disconnect();
-              }
-              let wallet = new Metamask();
-              const connected = await wallet.connect();
-              if (connected.result === true) {
-                setValue(wallet);
-              }
+              // if (value.active) {
+              //   value.disconnect();
+              // }
+              const metamask = new Metamask(store);
+              const connected = await metamask.connect();
               alert(connected.message);
             }}
           >
@@ -73,7 +77,12 @@ const ButtonWalletConnection = () => {
               </>
             </ContentModalConnect>
           </ButtonWallet>
-          <ButtonWallet onClick={() => {}}>
+          <ButtonWallet
+            onClick={() => {
+              // TODO: implement function
+              throw "Not implemented!";
+            }}
+          >
             <ContentModalConnect>
               <>
                 <WalletConnectIcon /> <span>Wallet Connect</span>

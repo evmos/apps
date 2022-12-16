@@ -3,10 +3,8 @@ type DownArrowHollowIcon = React.SVGAttributes<SVGElement> & {
 };
 
 const DownArrowHollowIcon: React.FC<DownArrowHollowIcon> = ({
-  children,
   width = "52",
   height = "52",
-  color = "currentColor",
   ...restProps
 }) => {
   return (

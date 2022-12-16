@@ -3,7 +3,6 @@ type MetamaskIconProps = React.SVGAttributes<SVGElement> & {
 };
 
 const MetamaskIcon: React.FC<MetamaskIconProps> = ({
-  children,
   width = "38",
   height = "38",
   ...restProps

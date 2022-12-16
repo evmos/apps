@@ -3,7 +3,6 @@ type CloseIconProps = React.SVGAttributes<SVGElement> & {
 };
 
 const CloseIcon: React.FC<CloseIconProps> = ({
-  children,
   width = "37",
   height = "37",
   color = "currentColor",

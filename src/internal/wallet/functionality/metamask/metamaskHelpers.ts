@@ -5,11 +5,13 @@ import {
   EVMOS_COSMOS_EXPLORER,
   EVMOS_RPC_URL,
   EVMOS_SYMBOL,
+  EVMOS_GRPC_URL,
 } from "../networkConfig";
 
 import type { Maybe } from "@metamask/providers/dist/utils";
 import { signatureToPubkey } from "@hanchon/signature-to-pubkey";
 import { evmosToEth } from "@evmos/address-converter";
+import { queryPubKey } from "../pubkey";
 
 export async function switchEthereumChain(ethChainId: string) {
   if (!window.ethereum) return false;
@@ -54,11 +56,12 @@ export async function changeNetworkToEvmosMainnet(): Promise<boolean> {
   }
 }
 
-export async function subscribeToAccountChange(
+export function subscribeToAccountChange(
   handler: (a: Maybe<string[]>) => void
-): Promise<boolean> {
+): boolean {
   if (!window.ethereum) return false;
   try {
+    window.ethereum.removeAllListeners("accountsChanged");
     // It expect unknown instead of string
     // @ts-expect-error type error
     window.ethereum.on("accountsChanged", handler);
@@ -68,7 +71,7 @@ export async function subscribeToAccountChange(
   }
 }
 
-export async function unsubscribeToEvents() {
+export function unsubscribeToEvents() {
   if (!window.ethereum) return;
   try {
     window.ethereum.removeAllListeners("accountsChanged");
@@ -79,9 +82,10 @@ export async function unsubscribeToEvents() {
   }
 }
 
-export async function subscribeToChainChanged(): Promise<boolean> {
+export function subscribeToChainChanged(): boolean {
   if (!window.ethereum) return false;
   try {
+    window.ethereum.removeAllListeners("chainChanged");
     window.ethereum.on("chainChanged", async () => {
       await switchEthereumChain(EVMOS_ETH_CHAIN_ID);
     });
@@ -92,7 +96,7 @@ export async function subscribeToChainChanged(): Promise<boolean> {
 }
 
 export async function getWallet() {
-  if (!window.ethereum) return undefined;
+  if (!window.ethereum) return null;
   try {
     const accounts = await window.ethereum.request({
       method: "eth_requestAccounts",
@@ -104,13 +108,14 @@ export async function getWallet() {
         return (accounts as string[])[0];
       }
     }
+    return null;
   } catch (e) {
-    return undefined;
+    return null;
   }
 }
 
 export async function generatePubkeyFromSignature(wallet: string) {
-  if (!window.ethereum) return undefined;
+  if (!window.ethereum) return null;
   try {
     if (wallet.startsWith("evmos1")) {
       wallet = evmosToEth(wallet);
@@ -132,7 +137,18 @@ export async function generatePubkeyFromSignature(wallet: string) {
       return signatureToPubkey(signature as string, message);
     }
   } catch (e) {
-    return undefined;
+    return null;
   }
-  return undefined;
+  return null;
+}
+
+export async function generatePubKey(
+  account: string,
+  evmosGRPCUrl = EVMOS_GRPC_URL
+) {
+  let pubkey = await queryPubKey(evmosGRPCUrl, account);
+  if (pubkey === null) {
+    pubkey = await generatePubkeyFromSignature(account);
+  }
+  return pubkey;
 }

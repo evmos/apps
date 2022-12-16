@@ -124,8 +124,7 @@ input[type=number] {
   border-bottom: 4px solid transparent;
   animation: rotation 0.5s linear infinite reverse;
 }
-
-  @keyframes rotation {
+@keyframes rotation {
   0% {
       transform: rotate(0deg);
   }
@@ -133,6 +132,4 @@ input[type=number] {
       transform: rotate(360deg);
   }
   } 
-
 }
-

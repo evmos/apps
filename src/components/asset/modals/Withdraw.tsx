@@ -1,7 +1,6 @@
 import { getReservedForFee } from "../../../internal/asset/style/format";
 import KeplrIcon from "../../common/images/icons/KeplrIcon";
 import MetamaskIcon from "../../common/images/icons/MetamaskIcon";
-import { useSnackbarContext } from "../../notification/SnackbarContext";
 import ConfirmButton from "../ConfirmButton";
 import GetButtonAddress from "../GetAddressButton";
 import Arrow from "./common/Arrow";
@@ -21,8 +20,6 @@ const Withdraw = ({
   title: string;
   network: string;
 }) => {
-  const { value, setValue } = useSnackbarContext();
-
   return (
     <div className="text-darkGray3">
       <p className="text-sm max-w-[500px] pb-3 italic">
@@ -42,13 +39,23 @@ const Withdraw = ({
         <ToContainer token={token} />
 
         <div className="flex items-center space-x-5">
-          <GetButtonAddress onClick={() => {}}>
+          <GetButtonAddress
+            onClick={() => {
+              // TODO: implement function
+              throw "Not implemented!";
+            }}
+          >
             <div className="flex items-center space-x-3">
               <MetamaskIcon width={25} height={25} />
               <span className="uppercase">Get Address</span>
             </div>
           </GetButtonAddress>
-          <GetButtonAddress onClick={() => {}}>
+          <GetButtonAddress
+            onClick={() => {
+              // TODO: implement function
+              throw "Not implemented!";
+            }}
+          >
             <div className="flex items-center space-x-3">
               <KeplrIcon width={25} height={25} />
               <span className="uppercase">Get Address</span>
@@ -60,15 +67,8 @@ const Withdraw = ({
       <ConfirmButton
         text={title}
         onClick={() => {
-          setValue(
-            value.concat([
-              {
-                type: "success",
-                text: "text1",
-                subtext: "subtext1",
-              },
-            ])
-          );
+          // TODO: implement function
+          throw "Not implemented!";
         }}
       />
     </div>

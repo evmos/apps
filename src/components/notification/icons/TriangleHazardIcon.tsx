@@ -3,7 +3,6 @@ type TriangleHazardIconProps = React.SVGAttributes<SVGElement> & {
 };
 
 const TriangleHazardIcon: React.FC<TriangleHazardIconProps> = ({
-  children,
   width = "18",
   height = "18",
   color = "currentColor",

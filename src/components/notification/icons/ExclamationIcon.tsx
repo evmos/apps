@@ -3,7 +3,6 @@ type ExclamationIconProps = React.SVGAttributes<SVGElement> & {
 };
 
 const ExclamationIcon: React.FC<ExclamationIconProps> = ({
-  children,
   width = "18",
   height = "18",
   color = "currentColor",

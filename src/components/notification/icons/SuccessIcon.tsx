@@ -3,7 +3,6 @@ type SuccessIconProps = React.SVGAttributes<SVGElement> & {
 };
 
 const SuccessIcon: React.FC<SuccessIconProps> = ({
-  children,
   width = "18",
   height = "18",
   color = "currentColor",

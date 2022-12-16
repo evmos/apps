@@ -21,7 +21,12 @@ export const EmptySnackbarContext: Snackbar = {
 const SnackbarContextObject = createContext<{
   value: Snackbar[];
   setValue: Dispatch<SetStateAction<Snackbar[]>>;
-}>({ value: [], setValue: () => {} });
+}>({
+  value: [],
+  setValue: () => {
+    throw "unimplemented";
+  },
+});
 
 export function SnackbarContext({ children }: { children: JSX.Element }) {
   const [snackbar, setSnackbar] = useState<Snackbar[]>([]);

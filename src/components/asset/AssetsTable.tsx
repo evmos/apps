@@ -1,39 +1,9 @@
+import { useQuery } from "@tanstack/react-query";
 import { useCallback, useState } from "react";
+import { getAssetsForAddress } from "../../internal/asset/functionality/fetch";
 import Button from "../common/Button";
-import KeplrIcon from "../common/images/icons/KeplrIcon";
-import MetamaskIcon from "../common/images/icons/MetamaskIcon";
-import WalletConnectIcon from "../common/images/icons/WalletConnectIcon";
+import MessageTable from "./MessageTable";
 import ModalAsset from "./modals/ModalAsset";
-
-const arrayBalance = [
-  {
-    icon: <MetamaskIcon />,
-    token: "EVMOS",
-    description: "EVMOS",
-    ibcBalance: 0,
-    ibcBalanceDescription: 0,
-    erc20Balance: 0,
-    erc20BalanceDescription: 0,
-  },
-  {
-    icon: <KeplrIcon />,
-    token: "gWeth",
-    description: "Wrapped Ether via Gravity Bridge",
-    ibcBalance: 1,
-    ibcBalanceDescription: 1,
-    erc20Balance: 2,
-    erc20BalanceDescription: 2,
-  },
-  {
-    icon: <WalletConnectIcon />,
-    token: "gUSDC",
-    description: "Wrapped Ether via Gravity Bridge",
-    ibcBalance: 1,
-    ibcBalanceDescription: 1,
-    erc20Balance: 2,
-    erc20BalanceDescription: 2,
-  },
-];
 
 const DataModal = {
   token: "",
@@ -43,7 +13,7 @@ const DataModal = {
   network: "",
 };
 
-export declare type DataModalType = {
+export type DataModalType = {
   token: string;
   address: string;
   amount: number;
@@ -51,12 +21,30 @@ export declare type DataModalType = {
   network: string;
 };
 
+export type BalanceType = {
+  name: string;
+  cosmosBalance: string;
+  decimals: number;
+  description: string;
+  erc20Balance: string;
+  symbol: string;
+  tokenName: string;
+};
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
 
   const close = useCallback(() => setShow(false), []);
 
   const [modalValues, setModalValues] = useState(DataModal);
+
+  // for testing
+  let address = "evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65";
+  let hexAddress = "0xaF3219826Cb708463B3AA3B73c6640A21497AE49";
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["assets", address, hexAddress],
+    queryFn: () => getAssetsForAddress(address, hexAddress),
+  });
 
   return (
     <>
@@ -70,25 +58,44 @@ const AssetsTable = () => {
           </tr>
         </thead>
         <tbody className="">
-          {arrayBalance.map((item, index) => {
+          {isLoading && (
+            <MessageTable>
+              <>
+                <span className="loader"></span>
+                <p>Loading...</p>
+              </>
+            </MessageTable>
+          )}
+
+          {error && (
+            <MessageTable>
+              <>
+                {/* add exclamation icon */}
+                <p>Request failed</p>
+              </>
+            </MessageTable>
+          )}
+          {data?.balance.map((item: BalanceType, index: number) => {
             return (
               <tr className="" key={index}>
                 <td>
                   <div className="flex items-center space-x-5">
-                    {item.icon}
+                    {/*TODO: add {item.icon} */}
                     <div className="flex flex-col items-start ">
-                      <span className="font-bold">{item.token}</span>
+                      <span className="font-bold">{item.symbol}</span>
                       <span className="text-sm text-darkGray5">
-                        {item.description}
+                        {item.name}
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
                   <div className="flex flex-col items-start uppercase">
-                    <span className="font-bold">{item.ibcBalance}</span>
+                    <span className="font-bold">
+                      {Number(item.cosmosBalance) / item.decimals}
+                    </span>
                     <span className="text-sm text-darkGray5">
-                      ${item.ibcBalanceDescription}
+                      {/*TODO: calculate value */}${item.cosmosBalance}
                     </span>
                   </div>
                 </td>
@@ -96,10 +103,10 @@ const AssetsTable = () => {
                   <div className="flex flex-col items-start uppercase">
                     <span className="font-bold">
                       {item.erc20Balance}{" "}
-                      {item.token.toUpperCase() === "EVMOS" ? "WEVMOS" : ""}
+                      {item.symbol.toUpperCase() === "EVMOS" ? "WEVMOS" : ""}
                     </span>
                     <span className="text-sm text-darkGray5">
-                      ${item.erc20BalanceDescription}
+                      {/*TODO: calculate value */}${item.erc20Balance}
                     </span>
                   </div>
                 </td>
@@ -109,9 +116,9 @@ const AssetsTable = () => {
                       onClick={() => {
                         setShow(true);
                         setModalValues({
-                          token: item.token,
+                          token: item.symbol,
                           address: "address",
-                          amount: item.ibcBalance,
+                          amount: Number(item.cosmosBalance),
                           title: "Deposit",
                           network: "EVMOS",
                         });
@@ -123,9 +130,9 @@ const AssetsTable = () => {
                       onClick={() => {
                         setShow(true);
                         setModalValues({
-                          token: item.token,
+                          token: item.symbol,
                           address: "address",
-                          amount: item.ibcBalance,
+                          amount: Number(item.cosmosBalance),
                           title: "Withdraw",
                           network: "EVMOS",
                         });
@@ -137,9 +144,9 @@ const AssetsTable = () => {
                       onClick={() => {
                         setShow(true);
                         setModalValues({
-                          token: item.token,
+                          token: item.symbol,
                           address: "address",
-                          amount: item.ibcBalance,
+                          amount: Number(item.cosmosBalance),
                           title: "Convert",
                           network: "EVMOS",
                         });

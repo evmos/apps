@@ -1,6 +1,7 @@
 import { getReservedForFee } from "../../../internal/asset/style/format";
 import KeplrIcon from "../../common/images/icons/KeplrIcon";
 import MetamaskIcon from "../../common/images/icons/MetamaskIcon";
+import { useSnackbarContext } from "../../notification/SnackbarContext";
 import ConfirmButton from "../ConfirmButton";
 import GetButtonAddress from "../GetAddressButton";
 import Arrow from "./common/Arrow";
@@ -20,6 +21,8 @@ const Withdraw = ({
   title: string;
   network: string;
 }) => {
+  const { value, setValue } = useSnackbarContext();
+
   return (
     <div className="text-darkGray3">
       <p className="text-sm max-w-[500px] pb-3 italic">
@@ -54,7 +57,20 @@ const Withdraw = ({
         </div>
       </div>
 
-      <ConfirmButton text={title} onClick={() => {}} />
+      <ConfirmButton
+        text={title}
+        onClick={() => {
+          setValue(
+            value.concat([
+              {
+                type: "success",
+                text: "text1",
+                subtext: "subtext1",
+              },
+            ])
+          );
+        }}
+      />
     </div>
   );
 };

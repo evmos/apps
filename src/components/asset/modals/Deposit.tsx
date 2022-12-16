@@ -1,8 +1,7 @@
 import { getReservedForFee } from "../../../internal/asset/style/format";
-import { truncateAddress } from "../../../internal/wallet/style/format";
-import DownArrowHollowIcon from "../../common/images/icons/DownArrowHollowIcon";
 import KeplrIcon from "../../common/images/icons/KeplrIcon";
 import MetamaskIcon from "../../common/images/icons/MetamaskIcon";
+import { useSnackbarContext } from "../../notification/SnackbarContext";
 import ConfirmButton from "../ConfirmButton";
 import GetButtonAddress from "../GetAddressButton";
 import Arrow from "./common/Arrow";
@@ -22,6 +21,8 @@ const Deposit = ({
   title: string;
   network: string;
 }) => {
+  const { value, setValue } = useSnackbarContext();
+
   return (
     <div className="text-darkGray3">
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
@@ -48,7 +49,20 @@ const Deposit = ({
           </GetButtonAddress>
         </div>
       </div>
-      <ConfirmButton text={title} onClick={() => {}} />
+      <ConfirmButton
+        text={title}
+        onClick={() => {
+          setValue(
+            value.concat([
+              {
+                type: "error",
+                text: "text",
+                subtext: "subtext",
+              },
+            ])
+          );
+        }}
+      />
     </div>
   );
 };

@@ -77,7 +77,7 @@ input[type=number] {
 }
 
 .animation {
-  animation-duration: 10s;
+  animation-duration: 5s;
   animation-name: slidein;
   animation-fill-mode:forwards;
 }

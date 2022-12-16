@@ -3,18 +3,21 @@ import CloseIcon from "../common/images/icons/CloseIcon";
 import ExclamationIcon from "./icons/ExclamationIcon";
 import SuccessIcon from "./icons/SuccessIcon";
 import TriangleHazardIcon from "./icons/TriangleHazardIcon";
+import { useSnackbarContext } from "./SnackbarContext";
 
 const Snackbar = ({
   type,
   text,
   subtext,
+  id,
 }: {
   type: string;
   text: string;
   subtext: string;
+  id: number;
 }) => {
   const [isDisplayed, setIsDisplayed] = useState(true);
-
+  const { value, setValue } = useSnackbarContext();
   let icon;
   if (type === "default") {
     icon = <ExclamationIcon />;
@@ -27,7 +30,17 @@ const Snackbar = ({
     subtext && type !== "default" ? "text-white" : "text-darkGray3";
 
   return (
-    <div className={`${!isDisplayed && "hidden"} relative animation`}>
+    <div
+      // TODO: delete the correct snackbar
+      onAnimationEnd={() => {
+        if (value.length === 1) {
+          setValue(value);
+        } else {
+          setValue(value.splice(id, 1));
+        }
+      }}
+      className={`${!isDisplayed && "hidden"} relative animation`}
+    >
       <div
         className={`
         ${type === "success" && "text-white bg-green"} 

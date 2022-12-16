@@ -39,7 +39,7 @@ export declare type RawTx = {
   path: string;
 };
 
-export async function createEIP712Transaction(
+export function createEIP712Transaction(
   chain: Chain,
   sender: Sender,
   signature: string,
@@ -55,6 +55,11 @@ export async function createEIP712Transaction(
     extension
   );
 }
+
+type BroadcastToBackendResponse = {
+  error: string;
+  tx_hash: string;
+};
 
 export async function broadcastEvmosjsSignedTxToBackend(
   rawTx: {
@@ -79,7 +84,7 @@ export async function broadcastEvmosjsSignedTxToBackend(
       `${endpoint}/broadcast`,
       postOptions
     );
-    const response = await broadcastPost.json();
+    const response = (await broadcastPost.json()) as BroadcastToBackendResponse;
 
     if (response.error) {
       return Promise.reject({
@@ -94,14 +99,24 @@ export async function broadcastEvmosjsSignedTxToBackend(
       message: `Transaction successful!`,
       txhash: response.tx_hash,
     };
-  } catch (e: any) {
+  } catch (e) {
     return Promise.reject({
       error: true,
+      // Disabled until catching all the possible errors
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
     });
   }
 }
+
+type BroadcastToGRPCResponse = {
+  tx_response: {
+    code: number;
+    raw_log: string;
+    txhash: string;
+  };
+};
 
 export async function broadcastEvmosjsSignedTxToGRPC(
   rawTx: {
@@ -121,7 +136,7 @@ export async function broadcastEvmosjsSignedTxToGRPC(
       `${grpcEndpoint}${generateEndpointBroadcast()}`,
       postOptions
     );
-    const response = await broadcastPost.json();
+    const response = (await broadcastPost.json()) as BroadcastToGRPCResponse;
 
     // Error
     if (response.tx_response.code !== 0) {
@@ -141,6 +156,8 @@ export async function broadcastEvmosjsSignedTxToGRPC(
   } catch (e) {
     return Promise.reject({
       error: true,
+      // Disabled until catching all the possible errors
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
     });
@@ -151,8 +168,8 @@ export async function broadcastEip712ToBackend(
   chainId: number,
   feePayer: string,
   feePayerSig: string,
-  body: any,
-  authInfo: any,
+  body: string,
+  authInfo: string,
   endpoint: string = EVMOS_BACKEND
 ) {
   try {
@@ -173,7 +190,7 @@ export async function broadcastEip712ToBackend(
       }
     );
 
-    const response = await postBroadcast.json();
+    const response = (await postBroadcast.json()) as BroadcastToBackendResponse;
     if (response.error) {
       return Promise.reject({
         error: true,
@@ -190,6 +207,8 @@ export async function broadcastEip712ToBackend(
   } catch (e) {
     return Promise.reject({
       error: true,
+      // Disabled until catching all the possible errors
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
     });

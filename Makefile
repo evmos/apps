@@ -1,4 +1,4 @@
-.PHONY: backend
+.PHONY: assetsPage
 
 lint:
 	@yarn lintunix

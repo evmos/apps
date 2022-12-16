@@ -1,6 +1,11 @@
 import { ethToEvmos } from "@evmos/address-converter";
-import { Sender, TxGenerated } from "@evmos/transactions";
 import { Maybe } from "@metamask/providers/dist/utils";
+import {
+  ReduxWalletStore,
+  resetWallet,
+  setWallet,
+} from "../../../../components/wallet/redux/WalletSlice";
+import { store } from "../../../../redux/Store";
 import {
   METAMASK_ERRORS,
   METAMASK_SUCCESS_MESSAGES,
@@ -12,32 +17,33 @@ import {
 } from "../localstorage";
 import { EVMOS_GRPC_URL } from "../networkConfig";
 import { queryPubKey } from "../pubkey";
-import { RawTx, TxGeneratedByBackend } from "../signing";
-import { METAMASK_KEY, WalletExtension } from "../wallet";
+import { METAMASK_KEY } from "../wallet";
 import {
   changeNetworkToEvmosMainnet,
+  generatePubKey,
   generatePubkeyFromSignature,
   getWallet,
   subscribeToAccountChange,
   subscribeToChainChanged,
   unsubscribeToEvents,
 } from "./metamaskHelpers";
-import {
-  signBackendTxWithMetamask,
-  signEvmosjsTxWithMetamask,
-} from "./metamaskSigner";
 
-export class Metamask implements WalletExtension {
+export class Metamask {
   active = false;
   extensionName = METAMASK_KEY;
   addressCosmosFormat = "";
   addressEthFormat = "";
-  evmosPubkey: string | undefined = undefined;
-  cosmosPubkey: string | undefined = undefined;
+  evmosPubkey: string | null = null;
+  cosmosPubkey: string | null = null;
   grpcEndpoint = EVMOS_GRPC_URL;
+  reduxStore: ReduxWalletStore;
 
-  constructor(grpcEndpoint: string = EVMOS_GRPC_URL) {
+  constructor(
+    reduxStore: ReduxWalletStore,
+    grpcEndpoint: string = EVMOS_GRPC_URL
+  ) {
     this.grpcEndpoint = grpcEndpoint;
+    this.reduxStore = reduxStore;
   }
 
   disconnect() {
@@ -52,11 +58,13 @@ export class Metamask implements WalletExtension {
     this.extensionName = METAMASK_KEY;
     this.addressCosmosFormat = "";
     this.addressEthFormat = "";
-    this.evmosPubkey = undefined;
-    this.cosmosPubkey = undefined;
+    this.evmosPubkey = null;
+    this.cosmosPubkey = null;
+    store.dispatch(resetWallet());
+    RemoveProviderFromLocalStorage();
   }
 
-  async _connectHandler(addresses: Maybe<string[]>) {
+  async connectHandler(addresses: Maybe<string[]>) {
     if (addresses === undefined || addresses === null) {
       this.reset();
       return;
@@ -64,13 +72,29 @@ export class Metamask implements WalletExtension {
     if (addresses.length > 0 && addresses[0]) {
       this.addressEthFormat = addresses[0];
       this.addressCosmosFormat = ethToEvmos(addresses[0]);
-      this.evmosPubkey = await this.generatePubKey(this.addressCosmosFormat);
-    } else {
-      this.reset();
+      this.evmosPubkey = await generatePubKey(this.addressCosmosFormat);
+      // TODO: if the user did not sign the pubkey, pop up a message
+      if (this.evmosPubkey !== null) {
+        this.active = true;
+        store.dispatch(
+          setWallet({
+            active: this.active,
+            extensionName: METAMASK_KEY,
+            evmosAddressEthFormat: this.addressEthFormat,
+            evmosAddressCosmosFormat: this.addressCosmosFormat,
+            evmosPubkey: this.evmosPubkey,
+            osmosisPubkey: null,
+          })
+        );
+        SaveProviderToLocalStorate(METAMASK_KEY);
+        return;
+      }
     }
+    this.reset();
   }
 
   async connect(): Promise<ResultMessage> {
+    // TODO: call disconnect from the previous connected extension (if different from us)
     // Make sure that we are on the evmos chain
     if ((await changeNetworkToEvmosMainnet()) == false) {
       this.reset();
@@ -81,7 +105,7 @@ export class Metamask implements WalletExtension {
     }
 
     // If the user switchs networks, suggest the evmos chain again
-    if ((await subscribeToChainChanged()) == false) {
+    if (subscribeToChainChanged() === false) {
       this.reset();
       return {
         result: false,
@@ -90,11 +114,15 @@ export class Metamask implements WalletExtension {
     }
 
     // Handle wallet changes
-    subscribeToAccountChange(this._connectHandler);
+    subscribeToAccountChange(async (addresses: Maybe<string[]>) => {
+      await this.connectHandler(addresses);
+      this.active = true;
+      SaveProviderToLocalStorate(METAMASK_KEY);
+    });
 
     // Set the wallet and get the pubkey
     const wallet = await getWallet();
-    if (wallet === undefined) {
+    if (wallet === null) {
       this.reset();
       return {
         result: false,
@@ -102,8 +130,8 @@ export class Metamask implements WalletExtension {
       };
     }
 
-    await this._connectHandler([wallet]);
-    if (this.evmosPubkey === undefined) {
+    await this.connectHandler([wallet]);
+    if (this.evmosPubkey === null) {
       this.reset();
       return {
         result: false,
@@ -111,8 +139,6 @@ export class Metamask implements WalletExtension {
       };
     }
 
-    this.active = true;
-    SaveProviderToLocalStorate(METAMASK_KEY);
     return {
       result: true,
       message: METAMASK_SUCCESS_MESSAGES.Connected,
@@ -125,17 +151,5 @@ export class Metamask implements WalletExtension {
       pubkey = await generatePubkeyFromSignature(account);
     }
     return pubkey;
-  }
-
-  // Signatures
-  signEvmosjsTx(sender: Sender, tx: TxGenerated): Promise<RawTx | undefined> {
-    return signEvmosjsTxWithMetamask(sender, tx);
-  }
-
-  signBackendTx(
-    sender: string,
-    tx: TxGeneratedByBackend
-  ): Promise<string | undefined> {
-    return signBackendTxWithMetamask(sender, tx);
   }
 }

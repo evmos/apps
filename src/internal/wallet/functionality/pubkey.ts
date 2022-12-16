@@ -2,6 +2,24 @@ import { ethToEvmos } from "@evmos/address-converter";
 import { generateEndpointAccount } from "@evmos/provider";
 import { fetchWithTimeout } from "./fetch";
 
+declare type EndpointAccountResponse = {
+  code?: number;
+  account?: {
+    base_vesting_account?: {
+      base_account: {
+        pub_key?: {
+          key?: string;
+        };
+      };
+    };
+    base_account?: {
+      pub_key?: {
+        key?: string;
+      };
+    };
+  };
+};
+
 export async function queryPubKey(evmosEndpoint: string, address: string) {
   let converted = address;
   if (converted.startsWith("0x")) {
@@ -13,37 +31,36 @@ export async function queryPubKey(evmosEndpoint: string, address: string) {
     headers: { "Content-Type": "application/json" },
   };
 
-  let resp: any;
   try {
     const addr = await fetchWithTimeout(
       `${evmosEndpoint}${generateEndpointAccount(converted)}`,
       get
     );
     // If error 400 wallet doesn't exists
-    resp = await addr.json();
+    const resp = (await addr.json()) as EndpointAccountResponse;
     if (resp.code) {
-      return undefined;
+      return null;
     }
-  } catch (e) {
-    return undefined;
-  }
 
-  let base = null;
-  if ("account" in resp) {
-    if ("base_vesting_account" in resp.account) {
-      base = resp.account.base_vesting_account.base_account;
-    } else {
-      base = resp.account.base_account;
-    }
-  }
-
-  if (base != null) {
-    if ("pub_key" in base) {
-      if (base.pub_key !== null) {
-        return base.pub_key.key as string;
+    let base = null;
+    if (resp.account) {
+      if (resp.account.base_vesting_account) {
+        base = resp.account.base_vesting_account.base_account;
+      } else if (resp.account.base_account) {
+        base = resp.account.base_account;
       }
     }
+
+    if (base != null) {
+      if (base.pub_key) {
+        if (base.pub_key !== null) {
+          return base.pub_key.key as string;
+        }
+      }
+    }
+  } catch (e) {
+    return null;
   }
 
-  return undefined;
+  return null;
 }

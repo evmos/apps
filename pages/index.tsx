@@ -2,11 +2,12 @@ import Head from "next/head";
 import AssetsTable from "../src/components/asset/AssetsTable";
 import Container from "../src/components/Container";
 import Header from "../src/components/Header";
-import { WalletContext } from "../src/components/wallet/WalletContext";
+import { Provider } from "react-redux";
+import { store } from "../src/redux/Store";
 
 export default function Home() {
   return (
-    <WalletContext>
+    <Provider store={store}>
       <>
         <Head>
           <title>Assets Page</title>
@@ -37,6 +38,6 @@ export default function Home() {
         </a>
       </footer> */}
       </>
-    </WalletContext>
+    </Provider>
   );
 }

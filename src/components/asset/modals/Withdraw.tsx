@@ -39,13 +39,23 @@ const Withdraw = ({
         <ToContainer token={token} />
 
         <div className="flex items-center space-x-5">
-          <GetButtonAddress onClick={() => {}}>
+          <GetButtonAddress
+            onClick={() => {
+              // TODO: implement function
+              throw "Not implemented!";
+            }}
+          >
             <div className="flex items-center space-x-3">
               <MetamaskIcon width={25} height={25} />
               <span className="uppercase">Get Address</span>
             </div>
           </GetButtonAddress>
-          <GetButtonAddress onClick={() => {}}>
+          <GetButtonAddress
+            onClick={() => {
+              // TODO: implement function
+              throw "Not implemented!";
+            }}
+          >
             <div className="flex items-center space-x-3">
               <KeplrIcon width={25} height={25} />
               <span className="uppercase">Get Address</span>
@@ -54,7 +64,13 @@ const Withdraw = ({
         </div>
       </div>
 
-      <ConfirmButton text={title} onClick={() => {}} />
+      <ConfirmButton
+        text={title}
+        onClick={() => {
+          // TODO: implement function
+          throw "Not implemented!";
+        }}
+      />
     </div>
   );
 };

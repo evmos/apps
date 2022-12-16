@@ -6,6 +6,7 @@ declare global {
     ethereum?: MetaMaskInpageProvider;
   }
 
+  // eslint-disable-next-line no-unused-vars
   interface Window extends KeplrWindow, MMWindow {
     // TODO: define cosmostation and coinbase extensions
     cosmostation: object;

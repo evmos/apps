@@ -3,13 +3,14 @@ import Head from "next/head";
 import AssetsTable from "../src/components/asset/AssetsTable";
 import Container from "../src/components/Container";
 import Header from "../src/components/Header";
-import { WalletContext } from "../src/components/wallet/WalletContext";
+import { Provider } from "react-redux";
+import { store } from "../src/redux/Store";
 
 export default function Home() {
   // Create a client
   const queryClient = new QueryClient();
   return (
-    <WalletContext>
+    <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <>
           <Head>
@@ -28,8 +29,20 @@ export default function Home() {
               </>
             </Container>
           </main>
+          {/* <footer className={styles.footer}>
+        <a
+          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <span className={styles.logo}>
+            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
+          </span>
+        </a>
+      </footer> */}
         </>
       </QueryClientProvider>
-    </WalletContext>
+    </Provider>
   );
 }

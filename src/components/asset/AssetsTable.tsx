@@ -21,7 +21,7 @@ export type DataModalType = {
   network: string;
 };
 
-export type BalanceType = {
+export type DataBalance = {
   name: string;
   cosmosBalance: string;
   decimals: number;
@@ -29,6 +29,10 @@ export type BalanceType = {
   erc20Balance: string;
   symbol: string;
   tokenName: string;
+};
+
+export type BalanceType = {
+  balance: DataBalance[];
 };
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -38,10 +42,10 @@ const AssetsTable = () => {
   const [modalValues, setModalValues] = useState(DataModal);
 
   // for testing
-  let address = "evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65";
-  let hexAddress = "0xaF3219826Cb708463B3AA3B73c6640A21497AE49";
+  const address = "evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65";
+  const hexAddress = "0xaF3219826Cb708463B3AA3B73c6640A21497AE49";
 
-  const { data, error, isLoading } = useQuery({
+  const { data, error, isLoading } = useQuery<BalanceType, Error>({
     queryKey: ["assets", address, hexAddress],
     queryFn: () => getAssetsForAddress(address, hexAddress),
   });
@@ -75,7 +79,7 @@ const AssetsTable = () => {
               </>
             </MessageTable>
           )}
-          {data?.balance.map((item: BalanceType, index: number) => {
+          {data?.balance.map((item: DataBalance, index: number) => {
             return (
               <tr className="" key={index}>
                 <td>

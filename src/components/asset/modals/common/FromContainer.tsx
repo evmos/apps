@@ -12,7 +12,7 @@ const FromContainer = ({
 }) => {
   return (
     <>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between sm:items-center flex-col sm:flex-row">
         <div className="flex items-center space-x-10">
           <span className="font-bold">FROM</span>
           <div className="flex items-center space-x-3">

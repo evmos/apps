@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { getAssetsForAddress } from "../../internal/asset/functionality/fetch";
 import {
   convertFromAtto,
@@ -11,6 +11,7 @@ import ModalAsset from "./modals/ModalAsset";
 import { BigNumber } from "ethers";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../redux/Store";
+import Switch from "../common/Switch";
 
 const DataModal = {
   token: "",
@@ -55,10 +56,8 @@ const AssetsTable = () => {
   const [hexAddress, setHexAddress] = useState("");
 
   useEffect(() => {
-    if (value.active) {
-      setAddress(value.evmosAddressCosmosFormat);
-      setHexAddress(value.evmosAddressEthFormat);
-    }
+    setAddress(value.evmosAddressCosmosFormat);
+    setHexAddress(value.evmosAddressEthFormat);
   }, [value]);
 
   const { data, error, isLoading } = useQuery<BalanceType, Error>({
@@ -66,8 +65,22 @@ const AssetsTable = () => {
     queryFn: () => getAssetsForAddress(address, hexAddress),
   });
 
+  const [hideZeroBalance, setHideBalance] = useState(false);
+
+  const tableData = useMemo(() => {
+    return data?.balance.filter((asset) =>
+      hideZeroBalance
+        ? asset.erc20Balance !== "0" || asset.cosmosBalance !== "0"
+        : asset
+    );
+  }, [data, hideZeroBalance]);
+
   return (
     <>
+      <Switch
+        onChange={() => setHideBalance(!hideZeroBalance)}
+        checked={hideZeroBalance}
+      />
       <table className="text-white w-full font-[IBM]">
         <thead className="uppercase ">
           <tr>
@@ -95,7 +108,16 @@ const AssetsTable = () => {
               </>
             </MessageTable>
           )}
-          {data?.balance.map((item: DataBalance, index: number) => {
+
+          {tableData?.length === 0 && (
+            <MessageTable>
+              <>
+                {/* add exclamation icon */}
+                <p>All your tokens have 0 balance. </p>
+              </>
+            </MessageTable>
+          )}
+          {tableData?.map((item: DataBalance, index: number) => {
             const coinCosmosBalance = BigNumber.from(
               item?.cosmosBalance || "0"
             );

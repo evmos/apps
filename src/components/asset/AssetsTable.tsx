@@ -11,7 +11,7 @@ import ModalAsset from "./modals/ModalAsset";
 import { BigNumber } from "ethers";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../redux/Store";
-import Switch from "../common/Switch";
+import Switch from "./Switch";
 
 const DataModal = {
   token: "",
@@ -113,7 +113,7 @@ const AssetsTable = () => {
             <MessageTable>
               <>
                 {/* add exclamation icon */}
-                <p>All your tokens have 0 balance. </p>
+                <p>No results </p>
               </>
             </MessageTable>
           )}

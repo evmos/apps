@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import CloseIcon from "../common/images/icons/CloseIcon";
 import ExclamationIcon from "./icons/ExclamationIcon";
 import SuccessIcon from "./icons/SuccessIcon";
 import TriangleHazardIcon from "./icons/TriangleHazardIcon";
-import { useSnackbarContext } from "./SnackbarContext";
+import { removeSnackbar } from "./redux/notificationSlice";
 
 const Snackbar = ({
   type,
@@ -17,7 +18,8 @@ const Snackbar = ({
   id: number;
 }) => {
   const [isDisplayed, setIsDisplayed] = useState(true);
-  const { value, setValue } = useSnackbarContext();
+  const dispatch = useDispatch();
+
   let icon;
   if (type === "default") {
     icon = <ExclamationIcon />;
@@ -31,20 +33,17 @@ const Snackbar = ({
 
   return (
     <div
-      // TODO: delete the correct snackbar
       onAnimationEnd={() => {
-        if (value.length === 1) {
-          setValue(value);
-        } else {
-          setValue(value.splice(id, 1));
-        }
+        // remove me from state
+        dispatch(removeSnackbar({ id }));
       }}
-      className={`${!isDisplayed ? "hidden" : ""} relative animation`}
+      className={`${!isDisplayed ? "hidden" : ""} relative animation z-100`}
+      key={id}
     >
       <div
         className={`
-        ${type === "success" ? "text-white bg-green" : ""} 
-        ${type === "error" ? "text-white bg-red" : ""} 
+        ${type === "success" ? "text-white bg-green" : ""}
+        ${type === "error" ? "text-white bg-red" : ""}
         ${type === "default" ? "bg-darkPearl text-darkGray2" : ""}
         inline-flex relative p-2 min-w-[280px] max-w-[360px] overflow-hidden rounded-lg shadow-[0px 4px 8px rgba(0, 0, 0, 0.5)] pointer-events-auto`}
       >

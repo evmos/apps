@@ -35,7 +35,7 @@ const Withdraw = ({
       </div>
       <Arrow />
 
-      <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5">
+      <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
         <ToContainer token={token} />
 
         <div className="flex items-center space-x-5">

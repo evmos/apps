@@ -1,9 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getAssetsForAddress } from "../../internal/asset/functionality/fetch";
+import {
+  convertFromAtto,
+  formatNumber,
+} from "../../internal/asset/style/format";
 import Button from "../common/Button";
 import MessageTable from "./MessageTable";
 import ModalAsset from "./modals/ModalAsset";
+import { BigNumber } from "ethers";
+import { useSelector } from "react-redux";
+import { StoreType } from "../../redux/Store";
 
 const DataModal = {
   token: "",
@@ -24,7 +31,7 @@ export type DataModalType = {
 export type DataBalance = {
   name: string;
   cosmosBalance: string;
-  decimals: number;
+  decimals: string;
   description: string;
   erc20Balance: string;
   symbol: string;
@@ -41,9 +48,18 @@ const AssetsTable = () => {
 
   const [modalValues, setModalValues] = useState(DataModal);
 
+  const value = useSelector((state: StoreType) => state.wallet.value);
+
   // for testing
-  const address = "evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65";
-  const hexAddress = "0xaF3219826Cb708463B3AA3B73c6640A21497AE49";
+  const [address, setAddress] = useState("");
+  const [hexAddress, setHexAddress] = useState("");
+
+  useEffect(() => {
+    if (value.active) {
+      setAddress(value.evmosAddressCosmosFormat);
+      setHexAddress(value.evmosAddressEthFormat);
+    }
+  }, [value]);
 
   const { data, error, isLoading } = useQuery<BalanceType, Error>({
     queryKey: ["assets", address, hexAddress],
@@ -80,6 +96,17 @@ const AssetsTable = () => {
             </MessageTable>
           )}
           {data?.balance.map((item: DataBalance, index: number) => {
+            const coinCosmosBalance = BigNumber.from(
+              item?.cosmosBalance || "0"
+            );
+            const convertCosmosBalance = String(
+              convertFromAtto(coinCosmosBalance, item.decimals)
+            );
+
+            const coinERC20Balance = BigNumber.from(item.erc20Balance || "0");
+            const convertERC20Balance = String(
+              convertFromAtto(coinERC20Balance, item.decimals)
+            );
             return (
               <tr className="" key={index}>
                 <td>
@@ -96,21 +123,32 @@ const AssetsTable = () => {
                 <td>
                   <div className="flex flex-col items-start uppercase">
                     <span className="font-bold">
-                      {Number(item.cosmosBalance) / item.decimals}
+                      {/* wallet ? : "0" */}
+                      {formatNumber(
+                        convertCosmosBalance,
+                        undefined,
+                        "standard"
+                      )}
                     </span>
                     <span className="text-sm text-darkGray5">
-                      {/*TODO: calculate value */}${item.cosmosBalance}
+                      {/*TODO: get value from backend  */}$
+                      {/* wallet ? : "0" */}
+                      {formatNumber(Number(convertCosmosBalance))}
                     </span>
                   </div>
                 </td>
                 <td>
                   <div className="flex flex-col items-start uppercase">
                     <span className="font-bold">
-                      {item.erc20Balance}{" "}
-                      {item.symbol.toUpperCase() === "EVMOS" ? "WEVMOS" : ""}
+                      {/* wallet ? : "0" */}
+
+                      {formatNumber(convertERC20Balance, undefined, "standard")}
+                      {item.symbol.toUpperCase() === "EVMOS" ? " WEVMOS" : ""}
                     </span>
                     <span className="text-sm text-darkGray5">
-                      {/*TODO: calculate value */}${item.erc20Balance}
+                      {/*TODO: get value from backend  */}$
+                      {/* wallet ? : "0" */}
+                      {formatNumber(Number(convertERC20Balance))}
                     </span>
                   </div>
                 </td>
@@ -121,7 +159,7 @@ const AssetsTable = () => {
                         setShow(true);
                         setModalValues({
                           token: item.symbol,
-                          address: "address",
+                          address: address,
                           amount: Number(item.cosmosBalance),
                           title: "Deposit",
                           network: "EVMOS",
@@ -135,7 +173,7 @@ const AssetsTable = () => {
                         setShow(true);
                         setModalValues({
                           token: item.symbol,
-                          address: "address",
+                          address: address,
                           amount: Number(item.cosmosBalance),
                           title: "Withdraw",
                           network: "EVMOS",
@@ -149,7 +187,7 @@ const AssetsTable = () => {
                         setShow(true);
                         setModalValues({
                           token: item.symbol,
-                          address: "address",
+                          address: address,
                           amount: Number(item.cosmosBalance),
                           title: "Convert",
                           network: "EVMOS",

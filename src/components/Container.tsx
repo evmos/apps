@@ -7,7 +7,8 @@ const Container = ({ children }: { children: JSX.Element }) => {
 
   return (
     <div className="bg-black grid min-h-screen grid-template-32">
-      <div className='w-full h-full bg-[url("/stars.svg")] bg-repeat bg-cover bg-center px-14 font-[GreyCliff]'>
+      <div className='w-full h-full bg-[url("/stars.svg")] bg-repeat bg-auto bg-center px-14 font-[GreyCliff] overflow-auto'>
+        {/* TODO: This is just a testing button, remove it and set the snackbars based on events */}
         <button
           onClick={() => {
             dispatch(

@@ -31,12 +31,12 @@ const ButtonWalletConnection = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
 
   return value.active == true ? (
-    <div className="flex items-center space-x-3">
+    <button className="flex items-center space-x-3 justify-center">
       {value.extensionName === METAMASK_KEY ? <MetamaskIcon /> : <KeplrIcon />}
       <span className="text-lg font-bold">
         {truncateAddress(value.evmosAddressEthFormat)}
       </span>
-    </div>
+    </button>
   ) : (
     <div>
       <Button onClick={open}>

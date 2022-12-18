@@ -8,7 +8,7 @@ const Button = ({
   return (
     <button
       onClick={onClick}
-      className="text-pearl uppercase text-xs font-bold hover:bg-whiteOpacity border border-pearl px-4 py-3 rounded"
+      className="w-full flex justify-center text-pearl uppercase text-xs font-bold hover:bg-whiteOpacity border border-pearl px-4 py-3 rounded"
     >
       {children}
     </button>

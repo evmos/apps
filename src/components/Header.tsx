@@ -6,7 +6,7 @@ const Logo = dynamic(() => import("./common/images/Logo"));
 
 const Header = () => {
   return (
-    <div className="h-32 text-white flex items-center justify-between">
+    <div className="md:h-32 mb-3 text-white flex flex-col md:flex-row md:items-center md:justify-between ">
       <div className="flex items-center">
         <Link href={"/"} className="pb-[0.35rem] pr-14">
           <Logo width={150} />

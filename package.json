@@ -17,6 +17,7 @@
     ]
   },
   "dependencies": {
+    "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",
     "@evmos/proto": "^0.1.26",
     "@evmos/provider": "^0.2.8",
@@ -29,6 +30,7 @@
     "@types/react-dom": "18.0.9",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
+    "ethers": "^5.7.2",
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",

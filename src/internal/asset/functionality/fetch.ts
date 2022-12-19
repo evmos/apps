@@ -10,6 +10,11 @@ export const getAssetsForAddress = async (
   address: string,
   hexAddress: string
 ) => {
+  // If not wallet selected return everything empty
+  if (address === "" || hex === "") {
+    return getAssets();
+  }
+
   const res = await fetch(
     `${EVMOS_BACKEND}/ERC20ModuleBalance/${address}/${hexAddress}`
   );

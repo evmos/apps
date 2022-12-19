@@ -76,6 +76,31 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.animation {
+  animation-duration: 10s;
+  animation-name: slidein;
+  animation-fill-mode:forwards;
+}
+
+@keyframes slidein {
+
+  0% {
+    margin-left: -500px;
+  }
+  8.33%, 25% {
+    margin-left: 0px;
+  }
+  33.33%, 50% {
+    margin-left: 0px;
+  }
+  58.33%, 75% {
+    margin-left: 0px;
+  }
+  83.33%, 100% {
+    margin-left: -500px;
+  }
+
+}
 .loader {
   width: 20px;
   height: 20px;

@@ -29,7 +29,7 @@ const Deposit = ({
         </div>
       </div>
       <Arrow />
-      <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5">
+      <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
         <ToContainer token={token} />
         <div className="flex sm:items-center sm:space-x-5 flex-col sm:flex-row space-y-4 sm:space-y-0 w-fit">
           <GetButtonAddress

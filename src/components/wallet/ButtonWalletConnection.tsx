@@ -5,9 +5,13 @@ import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";
 import Modal from "../common/Modal";
 import { METAMASK_KEY } from "../../internal/wallet/functionality/wallet";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { store, StoreType } from "../../redux/Store";
 import { Metamask } from "../../internal/wallet/functionality/metamask/metamask";
+import { unsubscribeToEvents } from "../../internal/wallet/functionality/metamask/metamaskHelpers";
+import { resetWallet } from "./redux/WalletSlice";
+import { Keplr } from "../../internal/wallet/functionality/keplr/keplr";
+import { unsubscribeToKeplrEvents } from "../../internal/wallet/functionality/keplr/keplrHelpers";
 
 // Images
 const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
@@ -29,6 +33,7 @@ const ButtonWalletConnection = () => {
   const open = useCallback(() => setShow(true), []);
 
   const value = useSelector((state: StoreType) => state.wallet.value);
+  const dispatch = useDispatch();
 
   return value.active == true ? (
     <button className="flex items-center space-x-3 justify-center">
@@ -49,11 +54,16 @@ const ButtonWalletConnection = () => {
       <Modal title="Connect Wallet" show={show} onClose={close}>
         <div className="flex flex-col space-y-3">
           <ButtonWallet
-            onClick={() => {
-              // TODO: implement function
-              throw "Not implemented!";
+            onClick={async () => {
+              if (value.active) {
+                unsubscribeToEvents();
+                unsubscribeToKeplrEvents();
+                dispatch(resetWallet());
+              }
+              const keplr = new Keplr(store);
+              const connected = await keplr.connect();
+              alert(connected.message);
             }}
-            disabled
           >
             <ContentModalConnect>
               <>
@@ -63,9 +73,11 @@ const ButtonWalletConnection = () => {
           </ButtonWallet>
           <ButtonWallet
             onClick={async () => {
-              // if (value.active) {
-              //   value.disconnect();
-              // }
+              if (value.active) {
+                unsubscribeToEvents();
+                unsubscribeToKeplrEvents();
+                dispatch(resetWallet());
+              }
               const metamask = new Metamask(store);
               const connected = await metamask.connect();
               alert(connected.message);

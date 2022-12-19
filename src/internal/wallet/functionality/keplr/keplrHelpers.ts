@@ -1,19 +1,23 @@
-// window?.addEventListener('keplr_keystorechange', onAccountChange);
-export function unsubscribeToKeplrEvents(handler: () => Promise<void>) {
+export function unsubscribeToKeplrEvents() {
   if (!window.keplr) return;
   try {
-    window.removeEventListener("keplr_keystorechange", handler);
+    window.dispatchEvent(new Event("cleanUpEvents"));
     return;
   } catch (e) {
     return;
   }
 }
 
-export function subscribeToKeplrEvents(handler: () => Promise<void>) {
+export function subscribeToKeplrEvents(handler: () => Promise<boolean>) {
   if (!window.keplr) return;
   try {
-    window.removeEventListener("keplr_keystorechange", handler);
-    window.addEventListener("keplr_keystorechange", handler);
+    const handlerInternal = async () => {
+      await handler();
+      window.addEventListener("cleanUpEvents", () => {
+        window.removeEventListener("keplr_keystorechange", handlerInternal);
+      });
+    };
+    window.addEventListener("keplr_keystorechange", handlerInternal);
     return;
   } catch (e) {
     return;

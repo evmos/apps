@@ -41,8 +41,7 @@ export class Keplr {
 
   disconnect() {
     this.reset();
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    unsubscribeToKeplrEvents(this.connectHandler);
+    unsubscribeToKeplrEvents();
     RemoveProviderFromLocalStorage();
     return { result: true, message: KEPLR_SUCCESS_MESSAGES.Disconnected };
   }
@@ -111,22 +110,26 @@ export class Keplr {
     } catch (error) {
       // The error message is hardcoded on keplr's side
       if (
-        (error as { message: string })?.message !==
+        (error as { message: string })?.message ===
         "Please initialize ethereum app on ledger first"
       ) {
         // Init ethereum app first
+        alert("Please initialize ethereum app on ledger first");
       }
+      // TODO: catch wallet not unlocked
+      // TODO: catch wallet not allowed to connect to evmos/osmosis
       this.reset();
       return false;
     }
   }
 
   async connect(): Promise<ResultMessage> {
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    subscribeToKeplrEvents(this.connectHandler);
+    subscribeToKeplrEvents(async () => {
+      return await this.connectHandler();
+    });
 
-    const error = await this.connectHandler();
-    if (error) {
+    const ok = await this.connectHandler();
+    if (!ok) {
       this.reset();
       return {
         result: false,

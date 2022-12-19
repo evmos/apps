@@ -8,10 +8,8 @@ import { METAMASK_KEY } from "../../internal/wallet/functionality/wallet";
 import { useDispatch, useSelector } from "react-redux";
 import { store, StoreType } from "../../redux/Store";
 import { Metamask } from "../../internal/wallet/functionality/metamask/metamask";
-import { unsubscribeToEvents } from "../../internal/wallet/functionality/metamask/metamaskHelpers";
-import { resetWallet } from "./redux/WalletSlice";
 import { Keplr } from "../../internal/wallet/functionality/keplr/keplr";
-import { unsubscribeToKeplrEvents } from "../../internal/wallet/functionality/keplr/keplrHelpers";
+import { disconnectWallets } from "../../internal/wallet/functionality/disconnect";
 
 // Images
 const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
@@ -55,11 +53,7 @@ const ButtonWalletConnection = () => {
         <div className="flex flex-col space-y-3">
           <ButtonWallet
             onClick={async () => {
-              if (value.active) {
-                unsubscribeToEvents();
-                unsubscribeToKeplrEvents();
-                dispatch(resetWallet());
-              }
+              disconnectWallets(dispatch);
               const keplr = new Keplr(store);
               const connected = await keplr.connect();
               alert(connected.message);
@@ -73,11 +67,7 @@ const ButtonWalletConnection = () => {
           </ButtonWallet>
           <ButtonWallet
             onClick={async () => {
-              if (value.active) {
-                unsubscribeToEvents();
-                unsubscribeToKeplrEvents();
-                dispatch(resetWallet());
-              }
+              disconnectWallets(dispatch);
               const metamask = new Metamask(store);
               const connected = await metamask.connect();
               alert(connected.message);

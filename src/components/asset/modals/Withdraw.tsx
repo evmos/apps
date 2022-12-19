@@ -43,7 +43,7 @@ const Withdraw = ({
   network: string;
   imgFrom: string;
   imgTo: string;
-  pubkey: string;
+  pubkey: string | null;
 }) => {
   return (
     <div className="text-darkGray3">

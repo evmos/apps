@@ -61,11 +61,11 @@ const ModalAsset = ({
             amount={modalValues.amount}
             title={modalValues.title}
             network={modalValues.network}
-            fee="0.02"
+            fee={modalValues.fee}
             feeDenom="EVMOS"
             imgFrom={`/tokens/evmos.png`}
             imgTo={`/tokens/${modalValues.token.toLowerCase()}.png`}
-            decimals="18"
+            decimals={modalValues.decimals}
             pubkey={modalValues.pubkey}
           />
         )}

@@ -11,11 +11,10 @@ const Tabs = ({
   decimals,
 }: {
   cosmosBalance: BigNumber;
-  erc20Balance?: BigNumber;
+  erc20Balance: BigNumber;
   decimals: number;
 }) => {
   const [selected, setSelected] = useState(false);
-  console.log(erc20Balance);
   return (
     <div className="flex items-center w-full border border-darkGray1 bg-pearl justify-center rounded font-bold font-[IBM] ">
       <button

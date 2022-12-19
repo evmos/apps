@@ -1,12 +1,12 @@
 import { BigNumber } from "ethers";
-import { getReservedForFee } from "../../../internal/asset/style/format";
-import KeplrIcon from "../../common/images/icons/KeplrIcon";
-import MetamaskIcon from "../../common/images/icons/MetamaskIcon";
-import ConfirmButton from "../ConfirmButton";
-import GetButtonAddress from "../GetAddressButton";
-import Arrow from "./common/Arrow";
-import FromContainer from "./common/FromContainer";
-import ToContainer from "./common/ToContainer";
+import { getReservedForFeeText } from "../../../../internal/asset/style/format";
+import ConfirmButton from "../../../common/ConfirmButton";
+import KeplrIcon from "../../../common/images/icons/KeplrIcon";
+import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
+import GetButtonAddress from "../../utils/GetAddressButton";
+import Arrow from "../common/Arrow";
+import FromContainer from "../common/FromContainer";
+import ToContainer from "../common/ToContainer";
 
 const Deposit = ({
   token,
@@ -46,7 +46,7 @@ const Deposit = ({
           feeDenom={feeDenom}
         />
         <div className="text-xs font-bold opacity-80">
-          {getReservedForFee(fee, feeDenom, network)}
+          {getReservedForFeeText(fee, feeDenom, network)}
         </div>
       </div>
       <Arrow />

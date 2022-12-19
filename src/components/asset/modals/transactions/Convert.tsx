@@ -1,10 +1,10 @@
 import { BigNumber } from "ethers";
-import { getReservedForFee } from "../../../internal/asset/style/format";
-import ConfirmButton from "../ConfirmButton";
-import Arrow from "./common/Arrow";
-import FromContainer from "./common/FromContainer";
-import Tabs from "./common/Tabs";
-import ToContainer from "./common/ToContainer";
+import { getReservedForFeeText } from "../../../../internal/asset/style/format";
+import ConfirmButton from "../../../common/ConfirmButton";
+import Arrow from "../common/Arrow";
+import FromContainer from "../common/FromContainer";
+import Tabs from "../common/Tabs";
+import ToContainer from "../common/ToContainer";
 
 const Convert = ({
   token,
@@ -31,9 +31,6 @@ const Convert = ({
   decimals: number;
   erc20Balance: BigNumber;
 }) => {
-  console.log("erc20Balance");
-
-  console.log(erc20Balance);
   return (
     <div className="text-darkGray3">
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
@@ -56,7 +53,7 @@ const Convert = ({
           />
         </div>
         <div className="text-xs font-bold opacity-80">
-          {getReservedForFee(fee, feeDenom, network)}
+          {getReservedForFeeText(fee, feeDenom, network)}
         </div>
       </div>
       <Arrow />

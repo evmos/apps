@@ -1,12 +1,12 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Head from "next/head";
-import AssetsTable from "../src/components/asset/AssetsTable";
 import Container from "../src/components/Container";
 import Header from "../src/components/Header";
 import { Provider } from "react-redux";
 import { store } from "../src/redux/Store";
 import TermOfServices from "../src/components/termsOfServices/TermOfServices";
 import Snackbars from "../src/components/notification/Snackbars";
+import AssetsTable from "../src/components/asset/table/AssetsTable";
 
 export default function Home() {
   // Create a client

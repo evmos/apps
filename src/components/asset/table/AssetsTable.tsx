@@ -1,76 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { getAssetsForAddress } from "../../internal/asset/functionality/fetch";
-
-import Button from "../common/Button";
 import MessageTable from "./MessageTable";
-import ModalAsset from "./modals/ModalAsset";
 import { useSelector } from "react-redux";
-import { StoreType } from "../../redux/Store";
-import Switch from "./Switch";
 import Image from "next/image";
-import {
-  convertFromAtto,
-  formatNumber,
-} from "../../internal/asset/style/format";
 import { BigNumber } from "ethers";
-
-const DataModal = {
-  token: "",
-  address: "",
-  amount: BigNumber.from("0"),
-  title: "",
-  network: "",
-  decimals: 1,
-  fee: BigNumber.from("0"),
-  feeDenom: "",
-  pubkey: "",
-  erc20Balance: BigNumber.from("0"),
-};
-
-export type DataModalType = {
-  token: string;
-  address: string;
-  amount: BigNumber;
-  title: string;
-  network: string;
-  decimals: number;
-  fee: BigNumber;
-  feeDenom: string;
-  pubkey: string | null;
-  erc20Balance: BigNumber;
-};
-
-export type DataBalance = {
-  name: string;
-  cosmosBalance: BigNumber;
-  decimals: number;
-  description: string;
-  erc20Balance: BigNumber;
-  symbol: string;
-  tokenName: string;
-};
-
-export type DataQuery = {
-  name: string;
-  cosmosBalance: string;
-  decimals: string;
-  description: string;
-  erc20Balance: string;
-  symbol: string;
-  tokenName: string;
-};
-
-export type BalanceType = {
-  balance: DataQuery[];
-};
+import { DataModal, EmptyDataModal } from "../modals/types";
+import { StoreType } from "../../../redux/Store";
+import { ERC20BalanceResponse, TableData } from "./types";
+import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
+import Switch from "../utils/Switch";
+import { convertAndFormat } from "../../../internal/asset/style/format";
+import Button from "../../common/Button";
+import ModalAsset from "../modals/ModalAsset";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
 
   const close = useCallback(() => setShow(false), []);
 
-  const [modalValues, setModalValues] = useState<DataModalType>(DataModal);
+  const [modalValues, setModalValues] = useState<DataModal>(EmptyDataModal);
 
   const value = useSelector((state: StoreType) => state.wallet.value);
 
@@ -83,17 +31,15 @@ const AssetsTable = () => {
     setHexAddress(value.evmosAddressEthFormat);
   }, [value]);
 
-  const { data, error, isLoading } = useQuery<BalanceType, Error>({
+  const { data, error, isLoading } = useQuery<ERC20BalanceResponse, Error>({
     queryKey: ["assets", address, hexAddress],
     queryFn: () => getAssetsForAddress(address, hexAddress),
   });
 
   const [hideZeroBalance, setHideBalance] = useState(false);
 
-  // console.log(qwe);
-
-  const newData = useMemo<DataBalance[]>(() => {
-    const temp: DataBalance[] = [];
+  const newData = useMemo<TableData[]>(() => {
+    const temp: TableData[] = [];
     data?.balance.map((item) => {
       temp.push({
         name: item.name,
@@ -109,12 +55,16 @@ const AssetsTable = () => {
   }, [data]);
 
   const tableData = useMemo(() => {
-    return newData?.filter((asset) =>
-      hideZeroBalance
-        ? asset.erc20Balance.eq(BigNumber.from("0")) ||
-          asset.cosmosBalance.eq(BigNumber.from("0"))
-        : asset
-    );
+    return newData?.filter((asset) => {
+      if (
+        hideZeroBalance === true &&
+        asset.erc20Balance.eq(BigNumber.from("0")) &&
+        asset.cosmosBalance.eq(BigNumber.from("0"))
+      ) {
+        return false;
+      }
+      return true;
+    });
   }, [newData, hideZeroBalance]);
 
   return (
@@ -159,7 +109,7 @@ const AssetsTable = () => {
               </>
             </MessageTable>
           )}
-          {tableData?.map((item: DataBalance, index: number) => {
+          {tableData?.map((item: TableData, index: number) => {
             return (
               <tr className="" key={index}>
                 <td>
@@ -181,35 +131,23 @@ const AssetsTable = () => {
                 <td>
                   <div className="flex flex-col items-start uppercase">
                     <span className="font-bold">
-                      {/* wallet ? : "0" */}
-                      {formatNumber(
-                        convertFromAtto(item.cosmosBalance, item.decimals)
-                      )}
+                      {convertAndFormat(item.cosmosBalance, item.decimals)}
                     </span>
                     <span className="text-sm text-darkGray5">
                       {/*TODO: get value from backend  */}$
-                      {/* wallet ? : "0" */}
-                      {formatNumber(
-                        convertFromAtto(item.cosmosBalance, item.decimals)
-                      )}
+                      {convertAndFormat(item.cosmosBalance, item.decimals)}
                     </span>
                   </div>
                 </td>
                 <td>
                   <div className="flex flex-col items-start uppercase">
                     <span className="font-bold">
-                      {/* wallet ? : "0" */}
-                      {formatNumber(
-                        convertFromAtto(item.erc20Balance, item.decimals)
-                      )}
+                      {convertAndFormat(item.erc20Balance, item.decimals)}
                       {item.symbol.toUpperCase() === "EVMOS" ? " WEVMOS" : ""}
                     </span>
                     <span className="text-sm text-darkGray5">
-                      {/*TODO: get value from backend  */}$
-                      {/* wallet ? : "0" */}
-                      {formatNumber(
-                        convertFromAtto(item.erc20Balance, item.decimals)
-                      )}
+                      {/*TODO: get value from backend  */}
+                      {convertAndFormat(item.erc20Balance, item.decimals)}
                     </span>
                   </div>
                 </td>

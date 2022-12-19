@@ -1,26 +1,9 @@
 import Modal from "../../common/Modal";
-import { DataModalType } from "../AssetsTable";
-import Convert from "./Convert";
-import Deposit from "./Deposit";
-import Withdraw from "./Withdraw";
-
-const ModalsTypes = {
-  WITHDRAW: "WITHDRAW",
-  DEPOSIT: "DEPOSIT",
-  CONVERT: "CONVERT",
-} as const;
-
-// type ModalType = {
-//   token: string;
-//   tokenTo: string;
-//   address: string;
-//   amount: string;
-//   title: string;
-//   network: string;
-//   imgFrom: string;
-//   imgTo: string;
-//   pubkey: string;
-// };
+import { ModalsTypes } from "./constants";
+import Convert from "./transactions/Convert";
+import Deposit from "./transactions/Deposit";
+import Withdraw from "./transactions/Withdraw";
+import { DataModal } from "./types";
 
 const ModalAsset = ({
   show,
@@ -28,7 +11,7 @@ const ModalAsset = ({
   close,
 }: {
   show: boolean;
-  modalValues: DataModalType;
+  modalValues: DataModal;
   close: () => void;
 }) => {
   return (
@@ -82,17 +65,6 @@ const ModalAsset = ({
             feeDenom={modalValues.feeDenom}
             decimals={modalValues.decimals}
             erc20Balance={modalValues.erc20Balance}
-
-            // token: string;
-            // address: string;
-            // amount: BigNumber;
-            // title: string;
-            // network: string;
-            // decimals: number;
-            // fee: BigNumber;
-            // feeDenom: string;
-            // pubkey: string | null;
-            // erc20Balance: BigNumber;
           />
         )}
       </>

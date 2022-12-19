@@ -1,4 +1,4 @@
-import ConfirmButton from "../asset/ConfirmButton";
+import ConfirmButton from "../common/ConfirmButton";
 import { useRef, useState } from "react";
 import ModalTOS from "./Modal";
 import LinkButton from "./LinkButton";

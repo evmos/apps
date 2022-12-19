@@ -1,6 +1,6 @@
 import { BigNumber, utils } from "ethers";
 
-export function getReservedForFee(
+export function getReservedForFeeText(
   amount: BigNumber,
   token: string,
   network: string
@@ -53,4 +53,8 @@ export function formatNumber(
     maximumFractionDigits: 6,
     ...options,
   }).format(valueAsNumber);
+}
+
+export function convertAndFormat(value: BigNumber, exponent = 18) {
+  return formatNumber(convertFromAtto(value, exponent));
 }

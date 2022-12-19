@@ -1,3 +1,4 @@
+import { BigNumber } from "ethers";
 import { getReservedForFee } from "../../../internal/asset/style/format";
 import KeplrIcon from "../../common/images/icons/KeplrIcon";
 import MetamaskIcon from "../../common/images/icons/MetamaskIcon";
@@ -7,18 +8,42 @@ import Arrow from "./common/Arrow";
 import FromContainer from "./common/FromContainer";
 import ToContainer from "./common/ToContainer";
 
+export interface IBCChainParams {
+  sender: string;
+  receiver: string;
+  amount: string;
+  srcChain: string;
+  dstChain: string;
+  token: string;
+  gas?: number;
+}
+
 const Withdraw = ({
   token,
+  tokenTo,
   address,
   amount,
+  decimals,
+  fee,
+  feeDenom,
   title,
   network,
+  imgFrom,
+  imgTo,
 }: {
   token: string;
+  tokenTo: string;
   address: string;
-  amount: number;
+  // receiver: string;
+  amount: BigNumber;
+  decimals: number;
+  fee: BigNumber;
+  feeDenom: string;
   title: string;
   network: string;
+  imgFrom: string;
+  imgTo: string;
+  pubkey: string;
 }) => {
   return (
     <div className="text-darkGray3">
@@ -27,16 +52,24 @@ const Withdraw = ({
         must be converted back to IBC coins before being transferable to other
         IBC chains
       </p>
-      <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
-        <FromContainer token={token} address={address} amount={amount} />
+      <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
+        <FromContainer
+          token={token}
+          address={address}
+          amount={amount}
+          fee={fee}
+          decimals={decimals}
+          feeDenom={feeDenom}
+          img={imgFrom}
+        />
         <div className="text-xs font-bold opacity-80">
-          {getReservedForFee(amount, token, network)}{" "}
+          {getReservedForFee(fee, feeDenom, network)}
         </div>
       </div>
       <Arrow />
 
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
-        <ToContainer token={token} />
+        <ToContainer token={tokenTo} img={imgTo} />
 
         <div className="flex items-center space-x-5">
           <GetButtonAddress
@@ -67,8 +100,7 @@ const Withdraw = ({
       <ConfirmButton
         text={title}
         onClick={() => {
-          // TODO: implement function
-          throw "Not implemented!";
+          throw "not implemented";
         }}
       />
     </div>

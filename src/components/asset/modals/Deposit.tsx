@@ -1,3 +1,4 @@
+import { BigNumber } from "ethers";
 import { getReservedForFee } from "../../../internal/asset/style/format";
 import KeplrIcon from "../../common/images/icons/KeplrIcon";
 import MetamaskIcon from "../../common/images/icons/MetamaskIcon";
@@ -9,28 +10,48 @@ import ToContainer from "./common/ToContainer";
 
 const Deposit = ({
   token,
+  tokenTo,
   address,
   amount,
   title,
   network,
+  imgFrom,
+  imgTo,
+  fee,
+  feeDenom,
+  decimals,
 }: {
   token: string;
+  tokenTo: string;
   address: string;
-  amount: number;
+  amount: BigNumber;
   title: string;
   network: string;
+  imgFrom: string;
+  imgTo: string;
+  fee: string;
+  feeDenom: string;
+  decimals: string;
 }) => {
   return (
     <div className="text-darkGray3">
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
-        <FromContainer token={token} address={address} amount={amount} />
+        <FromContainer
+          token={token}
+          address={address}
+          amount={amount}
+          img={imgFrom}
+          fee={fee}
+          decimals={decimals}
+          feeDenom={feeDenom}
+        />
         <div className="text-xs font-bold opacity-80">
-          {getReservedForFee(amount, token, network)}{" "}
+          {getReservedForFee(fee, feeDenom, network)}
         </div>
       </div>
       <Arrow />
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
-        <ToContainer token={token} />
+        <ToContainer token={tokenTo} img={imgTo} />
         <div className="flex sm:items-center sm:space-x-5 flex-col sm:flex-row space-y-4 sm:space-y-0 w-fit">
           <GetButtonAddress
             onClick={() => {

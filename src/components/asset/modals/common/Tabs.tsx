@@ -1,8 +1,21 @@
+import { BigNumber } from "ethers";
 import { useState } from "react";
+import {
+  convertFromAtto,
+  formatNumber,
+} from "../../../../internal/asset/style/format";
 
-const Tabs = () => {
+const Tabs = ({
+  cosmosBalance,
+  erc20Balance,
+  decimals,
+}: {
+  cosmosBalance: BigNumber;
+  erc20Balance?: BigNumber;
+  decimals: number;
+}) => {
   const [selected, setSelected] = useState(false);
-
+  console.log(erc20Balance);
   return (
     <div className="flex items-center w-full border border-darkGray1 bg-pearl justify-center rounded font-bold font-[IBM] ">
       <button
@@ -16,7 +29,10 @@ const Tabs = () => {
         }}
       >
         <span>ERC-20</span>
-        <span className="font-normal text-xs">0.001</span>
+        <span className="font-normal text-xs">
+          {" "}
+          {formatNumber(convertFromAtto(erc20Balance, decimals))}
+        </span>
       </button>
       <button
         className={`${
@@ -29,7 +45,10 @@ const Tabs = () => {
         }}
       >
         <span>IBC</span>
-        <span className="font-normal text-xs">0.0002</span>
+        <span className="font-normal text-xs">
+          {/* {cosmosBalance} */}
+          {formatNumber(convertFromAtto(cosmosBalance, decimals))}
+        </span>
       </button>
     </div>
   );

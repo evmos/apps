@@ -1,3 +1,4 @@
+import { BigNumber } from "ethers";
 import { getReservedForFee } from "../../../internal/asset/style/format";
 import ConfirmButton from "../ConfirmButton";
 import Arrow from "./common/Arrow";
@@ -11,28 +12,56 @@ const Convert = ({
   amount,
   title,
   network,
+  imgFrom,
+  imgTo,
+  fee,
+  feeDenom,
+  decimals,
+  erc20Balance,
 }: {
   token: string;
   address: string;
-  amount: number;
+  amount: BigNumber;
   title: string;
   network: string;
+  imgFrom: string;
+  imgTo: string;
+  fee: BigNumber;
+  feeDenom: string;
+  decimals: number;
+  erc20Balance: BigNumber;
 }) => {
+  console.log("erc20Balance");
+
+  console.log(erc20Balance);
   return (
     <div className="text-darkGray3">
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
-        <FromContainer token={token} address={address} amount={amount} />
+        <FromContainer
+          token={token}
+          address={address}
+          amount={amount}
+          img={imgFrom}
+          text="IBC Coin"
+          fee={fee}
+          feeDenom={feeDenom}
+          decimals={decimals}
+        />
         <div>
           <span className="font-bold">Select balance:</span>
-          <Tabs />
+          <Tabs
+            cosmosBalance={amount}
+            decimals={decimals}
+            erc20Balance={erc20Balance}
+          />
         </div>
         <div className="text-xs font-bold opacity-80">
-          {getReservedForFee(amount, token, network)}
+          {getReservedForFee(fee, feeDenom, network)}
         </div>
       </div>
       <Arrow />
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
-        <ToContainer token={token} />
+        <ToContainer token={token} img={imgTo} text="ERC-20" />
       </div>
       <ConfirmButton
         onClick={() => {

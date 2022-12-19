@@ -1,20 +1,26 @@
-import { BigNumberish, utils } from "ethers";
+import { BigNumber, utils } from "ethers";
 
 export function getReservedForFee(
-  amount: number,
+  amount: BigNumber,
   token: string,
   network: string
 ) {
-  return `${amount} ${token} is reserved for transaction fees on the ${network} network.`;
+  return `${amount.toString()} ${token} is reserved for transaction fees on the ${network} network.`;
 }
 
-export function convertFromAtto(
-  value: BigNumberish | undefined,
-  exponent = "18"
-) {
+export function safeSubstraction(amount: BigNumber, fee: BigNumber) {
+  const substraction = amount.sub(fee);
+  if (substraction.lte(0)) {
+    return BigNumber.from(0);
+  }
+  return substraction;
+}
+
+// mando bignumber y me devuelve string
+export function convertFromAtto(value: BigNumber, exponent = 18) {
   // Convert to string and truncate past decimal
   // for appropriate conversion
-  if (!value) return 0;
+  if (!value) return "0";
   let valueAsString = value.toString();
 
   if (typeof value === "number") {
@@ -23,7 +29,7 @@ export function convertFromAtto(
       useGrouping: false,
     });
   }
-  return Number(utils.formatUnits(valueAsString.split(".")[0], exponent));
+  return utils.formatUnits(valueAsString.split(".")[0], exponent);
 }
 
 export function formatNumber(
@@ -44,7 +50,7 @@ export function formatNumber(
   return new Intl.NumberFormat("en-US", {
     notation: notation,
     compactDisplay: "short",
-    maximumFractionDigits: 4,
+    maximumFractionDigits: 6,
     ...options,
   }).format(valueAsNumber);
 }

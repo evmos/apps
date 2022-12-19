@@ -6,7 +6,7 @@ import LinkButton from "./LinkButton";
 const TermOfServices = () => {
   // event load,por defecto en falso
   // gel item false / undefined
-  const [show, setShow] = useState<boolean>(true);
+  const [show, setShow] = useState<boolean>(false);
 
   const acceptTOS = () => {
     localStorage.setItem("evmos-TOS", "true");

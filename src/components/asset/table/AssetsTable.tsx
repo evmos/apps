@@ -73,7 +73,7 @@ const AssetsTable = () => {
         onChange={() => setHideBalance(!hideZeroBalance)}
         checked={hideZeroBalance}
       />
-      <div className="mt-10 overflow-y-auto  max-h-[70vh]">
+      <div className="mt-10 overflow-y-auto max-h-full md:max-h-[70vh]">
         <table className="text-white w-full font-[IBM]">
           <thead className="uppercase ">
             <tr>

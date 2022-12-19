@@ -1,15 +1,22 @@
 import dynamic from "next/dynamic";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { truncateAddress } from "../../internal/wallet/style/format";
 import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";
 import Modal from "../common/Modal";
-import { METAMASK_KEY } from "../../internal/wallet/functionality/wallet";
+import {
+  KEPLR_KEY,
+  METAMASK_KEY,
+} from "../../internal/wallet/functionality/wallet";
 import { useDispatch, useSelector } from "react-redux";
 import { store, StoreType } from "../../redux/Store";
 import { Metamask } from "../../internal/wallet/functionality/metamask/metamask";
 import { Keplr } from "../../internal/wallet/functionality/keplr/keplr";
 import { disconnectWallets } from "../../internal/wallet/functionality/disconnect";
+import {
+  GetProviderFromLocalStorage,
+  RemoveProviderFromLocalStorage,
+} from "../../internal/wallet/functionality/localstorage";
 
 // Images
 const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
@@ -32,6 +39,39 @@ const ButtonWalletConnection = () => {
 
   const value = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
+
+  // Restore wallet connection on first load if exists
+  const firstUpdate = useRef(true);
+
+  useEffect(() => {
+    // Execute the hook only once
+    if (firstUpdate.current === false) {
+      return;
+    }
+
+    // Read the localstorage info to reload the provider
+    async function ReloadProvider() {
+      const provider = GetProviderFromLocalStorage();
+      if (provider === METAMASK_KEY) {
+        const wallet = new Metamask(store);
+        await wallet.connect();
+      } else if (provider === KEPLR_KEY) {
+        const wallet = new Keplr(store);
+        await wallet.connect();
+      } else {
+        // Invalid provider is set, remove it
+        RemoveProviderFromLocalStorage();
+      }
+    }
+
+    // Execute the async function
+    // Can not await inside a useEffect
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    ReloadProvider();
+
+    // Mark the ref as already executed
+    firstUpdate.current = false;
+  });
 
   return value.active == true ? (
     <button className="flex items-center space-x-3 justify-center">

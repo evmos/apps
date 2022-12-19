@@ -95,8 +95,7 @@ const ButtonWalletConnection = () => {
             onClick={async () => {
               disconnectWallets(dispatch);
               const keplr = new Keplr(store);
-              const connected = await keplr.connect();
-              alert(connected.message);
+              await keplr.connect();
             }}
           >
             <ContentModalConnect>
@@ -109,8 +108,7 @@ const ButtonWalletConnection = () => {
             onClick={async () => {
               disconnectWallets(dispatch);
               const metamask = new Metamask(store);
-              const connected = await metamask.connect();
-              alert(connected.message);
+              await metamask.connect();
             }}
           >
             <ContentModalConnect>

@@ -5,7 +5,13 @@ import {
   setWallet,
 } from "../../../../components/wallet/redux/WalletSlice";
 import { store } from "../../../../redux/Store";
-import { KEPLR_ERRORS, KEPLR_SUCCESS_MESSAGES, ResultMessage } from "../errors";
+import { truncateAddress } from "../../style/format";
+import {
+  KEPLR_ERRORS,
+  KEPLR_NOTIFICATIONS,
+  KEPLR_SUCCESS_MESSAGES,
+  ResultMessage,
+} from "../errors";
 import {
   RemoveProviderFromLocalStorage,
   SaveProviderToLocalStorate,
@@ -15,6 +21,7 @@ import {
   EVMOS_GRPC_URL,
   OSMOSIS_CHAIN_ID,
 } from "../networkConfig";
+import { NotifyError, NotifySuccess } from "../notifications";
 import { KEPLR_KEY } from "../wallet";
 import {
   subscribeToKeplrEvents,
@@ -30,13 +37,16 @@ export class Keplr {
   cosmosPubkey: string | null = null;
   grpcEndpoint = EVMOS_GRPC_URL;
   reduxStore: ReduxWalletStore;
+  notificationsEnabled: boolean;
 
   constructor(
     reduxStore: ReduxWalletStore,
+    notificationsEnabled = true,
     grpcEndpoint: string = EVMOS_GRPC_URL
   ) {
     this.grpcEndpoint = grpcEndpoint;
     this.reduxStore = reduxStore;
+    this.notificationsEnabled = notificationsEnabled;
   }
 
   disconnect() {
@@ -61,6 +71,12 @@ export class Keplr {
     if (!window.keplr) {
       this.reset();
       // ExtensionNotFound
+      NotifyError(
+        KEPLR_NOTIFICATIONS.ErrorTitle,
+        KEPLR_NOTIFICATIONS.ExtensionNotFoundSubtext,
+        this.reduxStore,
+        this.notificationsEnabled
+      );
       return false;
     }
 
@@ -106,6 +122,12 @@ export class Keplr {
         })
       );
       SaveProviderToLocalStorate(KEPLR_KEY);
+      NotifySuccess(
+        KEPLR_NOTIFICATIONS.SuccessTitle,
+        `Connected with wallet ${truncateAddress(accountsEvmos[0].address)}`,
+        this.reduxStore,
+        this.notificationsEnabled
+      );
       return true;
     } catch (error) {
       // The error message is hardcoded on keplr's side
@@ -114,7 +136,12 @@ export class Keplr {
         "Please initialize ethereum app on ledger first"
       ) {
         // Init ethereum app first
-        alert("Please initialize ethereum app on ledger first");
+        NotifyError(
+          KEPLR_NOTIFICATIONS.ErrorTitle,
+          KEPLR_NOTIFICATIONS.LedgerNotInitSubtext,
+          this.reduxStore,
+          this.notificationsEnabled
+        );
       }
       // TODO: catch wallet not unlocked
       // TODO: catch wallet not allowed to connect to evmos/osmosis

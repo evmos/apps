@@ -1,4 +1,8 @@
 export function truncateAddress(address?: string) {
+  if (!address) {
+    return "";
+  }
+
   if (!address || address.length < 11) {
     return address;
   }

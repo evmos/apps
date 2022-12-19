@@ -1,4 +1,5 @@
 export const METAMASK_KEY = "metamask";
+export const KEPLR_KEY = "keplr";
 
 export type WalletExtension = {
   active: boolean;

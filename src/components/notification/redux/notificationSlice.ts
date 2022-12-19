@@ -61,3 +61,4 @@ export const getAllSnackbars = (state: StoreType) => {
 };
 
 export const NotificacionReducer = notificationSlice.reducer;
+export type NotificationType = typeof notificationSlice;

@@ -6,8 +6,10 @@ import {
   setWallet,
 } from "../../../../components/wallet/redux/WalletSlice";
 import { store } from "../../../../redux/Store";
+import { truncateAddress } from "../../style/format";
 import {
   METAMASK_ERRORS,
+  METAMASK_NOTIFICATIONS,
   METAMASK_SUCCESS_MESSAGES,
   ResultMessage,
 } from "../errors";
@@ -16,6 +18,7 @@ import {
   SaveProviderToLocalStorate,
 } from "../localstorage";
 import { EVMOS_GRPC_URL } from "../networkConfig";
+import { NotifyError, NotifySuccess } from "../notifications";
 import { queryPubKey } from "../pubkey";
 import { METAMASK_KEY } from "../wallet";
 import {
@@ -37,13 +40,16 @@ export class Metamask {
   cosmosPubkey: string | null = null;
   grpcEndpoint = EVMOS_GRPC_URL;
   reduxStore: ReduxWalletStore;
+  notificationsEnabled: boolean;
 
   constructor(
     reduxStore: ReduxWalletStore,
+    notificationsEnabled = true,
     grpcEndpoint: string = EVMOS_GRPC_URL
   ) {
     this.grpcEndpoint = grpcEndpoint;
     this.reduxStore = reduxStore;
+    this.notificationsEnabled = notificationsEnabled;
   }
 
   disconnect() {
@@ -74,21 +80,38 @@ export class Metamask {
       this.addressCosmosFormat = ethToEvmos(addresses[0]);
       this.evmosPubkey = await generatePubKey(this.addressCosmosFormat);
       // TODO: if the user did not sign the pubkey, pop up a message
-      if (this.evmosPubkey !== null) {
-        this.active = true;
-        store.dispatch(
-          setWallet({
-            active: this.active,
-            extensionName: METAMASK_KEY,
-            evmosAddressEthFormat: this.addressEthFormat,
-            evmosAddressCosmosFormat: this.addressCosmosFormat,
-            evmosPubkey: this.evmosPubkey,
-            osmosisPubkey: null,
-          })
+      if (this.evmosPubkey === null) {
+        NotifyError(
+          METAMASK_NOTIFICATIONS.ErrorTitle,
+          METAMASK_NOTIFICATIONS.PubkeySubtext,
+          store,
+          this.notificationsEnabled
         );
-        SaveProviderToLocalStorate(METAMASK_KEY);
+        this.reset();
         return;
       }
+
+      this.active = true;
+      store.dispatch(
+        setWallet({
+          active: this.active,
+          extensionName: METAMASK_KEY,
+          evmosAddressEthFormat: this.addressEthFormat,
+          evmosAddressCosmosFormat: this.addressCosmosFormat,
+          evmosPubkey: this.evmosPubkey,
+          osmosisPubkey: null,
+        })
+      );
+
+      NotifySuccess(
+        METAMASK_NOTIFICATIONS.SuccessTitle,
+        `Connected with wallet ${truncateAddress(this.addressEthFormat)}`,
+        store,
+        this.notificationsEnabled
+      );
+
+      SaveProviderToLocalStorate(METAMASK_KEY);
+      return;
     }
     this.reset();
   }
@@ -98,6 +121,14 @@ export class Metamask {
     // Make sure that we are on the evmos chain
     if ((await changeNetworkToEvmosMainnet()) == false) {
       this.reset();
+
+      NotifyError(
+        METAMASK_NOTIFICATIONS.ErrorTitle,
+        METAMASK_NOTIFICATIONS.PubkeySubtext,
+        store,
+        this.notificationsEnabled
+      );
+
       return {
         result: false,
         message: METAMASK_ERRORS.ChangeNetwork,
@@ -124,6 +155,14 @@ export class Metamask {
     const wallet = await getWallet();
     if (wallet === null) {
       this.reset();
+
+      NotifyError(
+        METAMASK_NOTIFICATIONS.ErrorTitle,
+        METAMASK_NOTIFICATIONS.AddressSubtext,
+        store,
+        this.notificationsEnabled
+      );
+
       return {
         result: false,
         message: METAMASK_ERRORS.GetWallet,
@@ -133,6 +172,7 @@ export class Metamask {
     await this.connectHandler([wallet]);
     if (this.evmosPubkey === null) {
       this.reset();
+      // NOTE: the snackbar is displayed by the handler, so it can be displayed also when changing wallets
       return {
         result: false,
         message: METAMASK_ERRORS.PubkeyError,

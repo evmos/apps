@@ -1,5 +1,5 @@
 import ConfirmButton from "../common/ConfirmButton";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ModalTOS from "./Modal";
 import LinkButton from "./LinkButton";
 
@@ -7,11 +7,18 @@ const TermOfServices = () => {
   // event load,por defecto en falso
   // gel item false / undefined
   const [show, setShow] = useState<boolean>(false);
+  useEffect(() => {
+    // Execute the hook only once
+    if (localStorage.getItem("evmos-TOS") === null) {
+      setShow(true);
+    }
+  }, []);
 
   const acceptTOS = () => {
     localStorage.setItem("evmos-TOS", "true");
     setShow(false);
   };
+
   const [isDisabled, setIsDisabled] = useState(true);
   const termsRef = useRef<HTMLDivElement>(null);
 

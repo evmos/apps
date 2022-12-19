@@ -29,9 +29,9 @@ const Deposit = ({
   network: string;
   imgFrom: string;
   imgTo: string;
-  fee: string;
+  fee: BigNumber;
   feeDenom: string;
-  decimals: string;
+  decimals: number;
 }) => {
   return (
     <div className="text-darkGray3">

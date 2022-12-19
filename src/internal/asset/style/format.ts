@@ -16,7 +16,6 @@ export function safeSubstraction(amount: BigNumber, fee: BigNumber) {
   return substraction;
 }
 
-// mando bignumber y me devuelve string
 export function convertFromAtto(value: BigNumber, exponent = 18) {
   // Convert to string and truncate past decimal
   // for appropriate conversion

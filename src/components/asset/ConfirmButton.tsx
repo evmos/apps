@@ -5,7 +5,7 @@ const ConfirmButton = ({
 }: {
   text: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-  disabled: boolean;
+  disabled?: boolean;
 }) => {
   return (
     <button

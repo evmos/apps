@@ -48,9 +48,9 @@ const ModalAsset = ({
             network={modalValues.network}
             imgFrom={`/tokens/${modalValues.token.toLowerCase()}.png`}
             imgTo={`/tokens/evmos.png`}
-            fee="0.02"
+            fee={modalValues.fee}
             feeDenom="EVMOS"
-            decimals="18"
+            decimals={modalValues.decimals}
           />
         )}
         {modalValues.title.toUpperCase() === ModalsTypes.WITHDRAW && (

@@ -1,4 +1,3 @@
-import { BigNumber } from "ethers";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import ConfirmButton from "../../../common/ConfirmButton";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
@@ -7,51 +6,28 @@ import GetButtonAddress from "../../utils/GetAddressButton";
 import Arrow from "../common/Arrow";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
+import { ModalProps } from "./types";
 
-const Deposit = ({
-  token,
-  tokenTo,
-  address,
-  amount,
-  title,
-  network,
-  imgFrom,
-  imgTo,
-  fee,
-  feeDenom,
-  decimals,
-}: {
-  token: string;
-  tokenTo: string;
-  address: string;
-  amount: BigNumber;
-  title: string;
-  network: string;
-  imgFrom: string;
-  imgTo: string;
-  fee: BigNumber;
-  feeDenom: string;
-  decimals: number;
-}) => {
+const Deposit = ({ values }: ModalProps) => {
   return (
     <div className="text-darkGray3">
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
         <FromContainer
-          token={token}
-          address={address}
-          amount={amount}
-          img={imgFrom}
-          fee={fee}
-          decimals={decimals}
-          feeDenom={feeDenom}
+          token={values.token}
+          address={values.address}
+          amount={values.amount}
+          img={values.imgFrom}
+          fee={values.fee}
+          decimals={values.decimals}
+          feeDenom={values.feeDenom}
         />
         <div className="text-xs font-bold opacity-80">
-          {getReservedForFeeText(fee, feeDenom, network)}
+          {getReservedForFeeText(values.fee, values.feeDenom, values.network)}
         </div>
       </div>
       <Arrow />
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
-        <ToContainer token={tokenTo} img={imgTo} />
+        <ToContainer token={values.tokenTo} img={values.imgTo} />
         <div className="flex sm:items-center sm:space-x-5 flex-col sm:flex-row space-y-4 sm:space-y-0 w-fit">
           <GetButtonAddress
             onClick={() => {
@@ -78,7 +54,7 @@ const Deposit = ({
         </div>
       </div>
       <ConfirmButton
-        text={title}
+        text={values.title}
         onClick={() => {
           // TODO: implement function
           throw "Not implemented!";

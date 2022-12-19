@@ -1,4 +1,3 @@
-import { BigNumber } from "ethers";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import ConfirmButton from "../../../common/ConfirmButton";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
@@ -7,6 +6,7 @@ import GetButtonAddress from "../../utils/GetAddressButton";
 import Arrow from "../common/Arrow";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
+import { ModalProps } from "./types";
 
 export interface IBCChainParams {
   sender: string;
@@ -18,33 +18,7 @@ export interface IBCChainParams {
   gas?: number;
 }
 
-const Withdraw = ({
-  token,
-  tokenTo,
-  address,
-  amount,
-  decimals,
-  fee,
-  feeDenom,
-  title,
-  network,
-  imgFrom,
-  imgTo,
-}: {
-  token: string;
-  tokenTo: string;
-  address: string;
-  // receiver: string;
-  amount: BigNumber;
-  decimals: number;
-  fee: BigNumber;
-  feeDenom: string;
-  title: string;
-  network: string;
-  imgFrom: string;
-  imgTo: string;
-  pubkey: string | null;
-}) => {
+const Withdraw = ({ values }: ModalProps) => {
   return (
     <div className="text-darkGray3">
       <p className="text-sm max-w-[500px] pb-3 italic">
@@ -54,22 +28,22 @@ const Withdraw = ({
       </p>
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
         <FromContainer
-          token={token}
-          address={address}
-          amount={amount}
-          fee={fee}
-          decimals={decimals}
-          feeDenom={feeDenom}
-          img={imgFrom}
+          token={values.token}
+          address={values.address}
+          amount={values.amount}
+          fee={values.fee}
+          decimals={values.decimals}
+          feeDenom={values.feeDenom}
+          img={values.imgFrom}
         />
         <div className="text-xs font-bold opacity-80">
-          {getReservedForFeeText(fee, feeDenom, network)}
+          {getReservedForFeeText(values.fee, values.feeDenom, values.network)}
         </div>
       </div>
       <Arrow />
 
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
-        <ToContainer token={tokenTo} img={imgTo} />
+        <ToContainer token={values.tokenTo} img={values.imgTo} />
 
         <div className="flex items-center space-x-5">
           <GetButtonAddress
@@ -98,7 +72,7 @@ const Withdraw = ({
       </div>
 
       <ConfirmButton
-        text={title}
+        text={values.title}
         onClick={() => {
           throw "not implemented";
         }}

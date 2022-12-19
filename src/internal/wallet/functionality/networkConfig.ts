@@ -12,3 +12,5 @@ export const EVMOS_CHAIN = {
 
 export const EVMOS_NETWORK_FOR_BACKEND = "EVMOS";
 export const EVMOS_BACKEND = "https://goapi.evmos.org";
+
+export const OSMOSIS_CHAIN_ID = "osmosis-1";

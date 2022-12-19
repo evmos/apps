@@ -1,15 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { NotificacionReducer } from "../components/notification/redux/notificationSlice";
 import { WalletReducer } from "../components/wallet/redux/WalletSlice";
-import { WalletExtension } from "../internal/wallet/functionality/wallet";
 
 export const store = configureStore({
   reducer: {
     wallet: WalletReducer,
+    snackbar: NotificacionReducer,
   },
 });
 
-export declare type StoreType = {
-  wallet: {
-    value: WalletExtension;
-  };
-};
+export type StoreType = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

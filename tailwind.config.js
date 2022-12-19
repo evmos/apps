@@ -19,6 +19,7 @@ module.exports = {
         darkGray5: "#918378",
         skinTan: "#F5E8D4",
         red: "#ed4e33",
+        green: "#97ad11",
         whiteOpacity: "rgba(255, 255, 255, 0.1)",
         blackOpacity: "rgba(0, 0, 0, 0.6)",
         grayOpacity: "rgba(0, 0, 0, 0.05)",

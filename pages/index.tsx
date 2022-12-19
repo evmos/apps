@@ -6,6 +6,7 @@ import Header from "../src/components/Header";
 import { Provider } from "react-redux";
 import { store } from "../src/redux/Store";
 import TermOfServices from "../src/components/termsOfServices/TermOfServices";
+import Snackbars from "../src/components/notification/Snackbars";
 
 export default function Home() {
   // Create a client
@@ -24,6 +25,7 @@ export default function Home() {
             <TermOfServices />
             <Container>
               <>
+                <Snackbars />
                 <Header />
                 <div className="container mx-auto overflow-auto ">
                   <AssetsTable />

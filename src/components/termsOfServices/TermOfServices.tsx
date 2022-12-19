@@ -1,70 +1,39 @@
-// import Modal, { ModalProps } from "@/components/shared/Modal";
-// import Button, { LinkButton } from "../shared/Button";
-// import css from "./index.module.css";
-// import { useRef, useState } from "react";
-// import useTranslation from "next-translate/useTranslation";
+import ConfirmButton from "../asset/ConfirmButton";
+import { useRef, useState } from "react";
+import ModalTOS from "./Modal";
+import LinkButton from "./LinkButton";
 
-import Modal from "./common/Modal";
-import ConfirmButton from "./asset/ConfirmButton";
-import GetButtonAddress from "./asset/GetAddressButton";
-
-// // Hooks
-// import useLocalStorage from "@/hooks/useLocalStorage";
-// import { useSnackbar } from "@/components/shared/Snackbar";
-
-// export type TermsOfServiceModalProps = Omit<ModalProps, "title"> & {};
-
-// export const TermsOfServiceModal: React.FC<TermsOfServiceModalProps> = ({
-//   onClose,
-//   ...modalProps
-// }) => {
-//   const [isDisabled, setIsDisabled] = useState(true);
-//   const termsRef = useRef<HTMLDivElement>(null);
-//   const [agreement, setAgreement] = useLocalStorage<boolean>(
-//     "evmos-TOS",
-//     false
-//   );
-//   const { addSnackbar } = useSnackbar();
-//   const { t } = useTranslation();
-
-//   const acceptTOS = () => {
-//     setAgreement(true);
-//     onClose();
-//   };
-
-//   const onScroll = () => {
-//     if (termsRef.current) {
-//       const { scrollTop, scrollHeight, clientHeight } = termsRef.current;
-//       // The scroll approximation is so close that 3 pixels difference should account all zoom ranges.
-//       const scrollHeightFewerThree = scrollHeight - 3;
-//       if (scrollTop + clientHeight >= scrollHeightFewerThree) {
-//         setIsDisabled(false);
-//       }
-//     }
-//   };
 const TermOfServices = () => {
+  // event load,por defecto en falso
+  // gel item false / undefined
+  const [show, setShow] = useState<boolean>(true);
+
+  const acceptTOS = () => {
+    localStorage.setItem("evmos-TOS", "true");
+    setShow(false);
+  };
+  const [isDisabled, setIsDisabled] = useState(true);
+  const termsRef = useRef<HTMLDivElement>(null);
+
+  const onScroll = () => {
+    if (termsRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = termsRef.current;
+      // The scroll approximation is so close that 3 pixels difference should account all zoom ranges.
+      const scrollHeightFewerThree = scrollHeight - 3;
+      if (scrollTop + clientHeight >= scrollHeightFewerThree) {
+        setIsDisabled(false);
+      }
+    }
+  };
+
   return (
-    <Modal
-      title="Evmos Terms of Services"
-      show={true}
-      onClose={() => {
-        console.log("asd");
-      }}
-      //   {...modalProps}
-      //   hideCloseIcon={true}
-      //   blurBackground={true}
-      //   onClose={() => {
-      //     if (!agreement) {
-      //       addSnackbar({
-      //         type: "error",
-      //         text: t("errors:agreement.text"),
-      //       });
-      //     }
-      //   }}
-    >
+    <ModalTOS title="Evmos Terms of Services" show={show}>
       <div className="space-y-3">
-        <div className="overflow-y-auto h-80 w-full border border-darkGray5 p-4 font-[IBM] space-y-3">
-          {/* ref={termsRef} onScroll={onScroll} */}
+        <div
+          className="overflow-y-auto h-80 w-full border border-darkGray5 p-4 font-[IBM] space-y-3"
+          ref={termsRef}
+          onScroll={onScroll}
+        >
           <p>
             <i>Last Updated: April 12th, 2022</i>
           </p>
@@ -987,33 +956,17 @@ const TermOfServices = () => {
           </b>
           <div className="inline-flex space-x-7">
             <ConfirmButton
-              onClick={() => {
-                // TODO: implement function
-                throw "Not implemented!";
-              }}
-              text="accept & continue"
+              onClick={acceptTOS}
+              text="accept"
+              disabled={isDisabled}
             />
-            {/* disabled={isDisabled} onClick={acceptTOS} */}
-
-            <GetButtonAddress
-              onClick={() => {
-                // TODO: implement function
-                throw "Not implemented!";
-              }}
-            >
+            <LinkButton href="https://www.evmos.org">
               <div className="uppercase">Decline</div>
-            </GetButtonAddress>
+            </LinkButton>
           </div>
-          {/* <LinkButton
-        size={"small"}
-        href="https://www.evmos.org"
-        className={css.declineButton}
-      >
-        Decline
-      </LinkButton> */}
         </div>
       </div>
-    </Modal>
+    </ModalTOS>
   );
 };
 export default TermOfServices;

@@ -5,7 +5,7 @@ import Container from "../src/components/Container";
 import Header from "../src/components/Header";
 import { Provider } from "react-redux";
 import { store } from "../src/redux/Store";
-import TermOfServices from "../src/components/TermOfServices";
+import TermOfServices from "../src/components/termsOfServices/TermOfServices";
 
 export default function Home() {
   // Create a client
@@ -21,12 +21,12 @@ export default function Home() {
           </Head>
 
           <main>
+            <TermOfServices />
             <Container>
               <>
                 <Header />
                 <div className="container mx-auto overflow-auto ">
                   <AssetsTable />
-                  <TermOfServices />
                 </div>
               </>
             </Container>

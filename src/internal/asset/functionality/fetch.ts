@@ -11,7 +11,7 @@ export const getAssetsForAddress = async (
   hexAddress: string
 ) => {
   // If not wallet selected return everything empty
-  if (address === "" || hex === "") {
+  if (address === "" || hexAddress === "") {
     return getAssets();
   }
 

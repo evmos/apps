@@ -73,6 +73,7 @@ const ModalAsset = ({
               feeDenom: modalValues.feeDenom,
               decimals: modalValues.decimals,
               erc20Balance: modalValues.erc20Balance,
+              feeBalance: modalValues.feeBalance,
             }}
           />
         )}

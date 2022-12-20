@@ -17,4 +17,5 @@ export type ModalValues = {
   feeDenom: string;
   decimals: number;
   erc20Balance: BigNumber;
+  feeBalance: BigNumber;
 };

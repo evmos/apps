@@ -42,8 +42,9 @@ const AssetsTable = () => {
 
   const [hideZeroBalance, setHideBalance] = useState(false);
 
-  const newData = useMemo<TableData[]>(() => {
-    const temp: TableData[] = [];
+  const newData = useMemo<TableData>(() => {
+    const temp: TableData = { table: [], feeBalance: BigNumber.from(0) };
+
     data?.balance.map((item) => {
       let external = null;
       if (
@@ -52,7 +53,10 @@ const AssetsTable = () => {
       ) {
         external = item.handledByExternalUI[0];
       }
-      temp.push({
+      if (item.tokenName.toUpperCase() === "EVMOS") {
+        temp.feeBalance = BigNumber.from(item.cosmosBalance);
+      }
+      temp.table.push({
         name: item.name,
         cosmosBalance: BigNumber.from(item.cosmosBalance),
         decimals: parseInt(item.decimals, 10),
@@ -70,7 +74,7 @@ const AssetsTable = () => {
   }, [data]);
 
   const tableData = useMemo(() => {
-    return newData?.filter((asset) => {
+    return newData?.table.filter((asset) => {
       if (
         hideZeroBalance === true &&
         asset.erc20Balance.eq(BigNumber.from("0")) &&
@@ -120,12 +124,11 @@ const AssetsTable = () => {
             {!isLoading && !error && tableData?.length === 0 && (
               <MessageTable>
                 <>
-                  {/* add exclamation icon */}
                   <p>No results </p>
                 </>
               </MessageTable>
             )}
-            {tableData?.map((item: TableData, index: number) => {
+            {tableData?.map((item, index: number) => {
               return (
                 <tr
                   className={`${
@@ -208,6 +211,7 @@ const AssetsTable = () => {
                               pubkey: value.evmosPubkey,
                               fee: BigNumber.from("1"),
                               erc20Balance: item.erc20Balance,
+                              feeBalance: BigNumber.from("1"),
                             });
                           }}
                         >
@@ -246,6 +250,7 @@ const AssetsTable = () => {
                               network: "EVMOS",
                               pubkey: value.evmosPubkey,
                               erc20Balance: item.erc20Balance,
+                              feeBalance: BigNumber.from("1"),
                             });
                           }}
                         >
@@ -284,6 +289,7 @@ const AssetsTable = () => {
                               pubkey: value.evmosPubkey,
                               fee: BigNumber.from("1"),
                               erc20Balance: item.erc20Balance,
+                              feeBalance: newData.feeBalance,
                             });
                           }}
                         >

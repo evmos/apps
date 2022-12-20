@@ -11,6 +11,7 @@ export const EmptyDataModal = {
   feeDenom: "",
   pubkey: "",
   erc20Balance: BigNumber.from("0"),
+  feeBalance: BigNumber.from("0"),
 };
 
 export type DataModal = {
@@ -24,4 +25,5 @@ export type DataModal = {
   feeDenom: string;
   pubkey: string | null;
   erc20Balance: BigNumber;
+  feeBalance: BigNumber;
 };

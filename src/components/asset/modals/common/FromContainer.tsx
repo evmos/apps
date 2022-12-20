@@ -70,6 +70,7 @@ const FromContainer = ({
         <span className="opacity-80">{token}</span>
         <button
           onClick={() => {
+            // not totally working. check
             if (token.toUpperCase() === feeDenom.toUpperCase()) {
               setInputValue(NumericOnly(convertFromAtto(amount, decimals)));
             } else {
@@ -93,11 +94,6 @@ const FromContainer = ({
         <p className="text-red text-xs italic pl-2">Insufficient funds.</p>
       )} */}
       <div>
-        <div>
-          {BigNumber.from(14).gt(BigNumber.from(amount)) && <div>qwe</div>}
-        </div>
-        <div>{convertFromAtto(amount, decimals)}</div>
-        <div>{parseFloat(convertFromAtto(amount, decimals))}</div>
         <span className="font-bold">Balance: </span>
         {formatNumber(convertFromAtto(amount, decimals))} {token}
       </div>

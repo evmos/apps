@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import {
   convertFromAtto,
   formatNumber,
@@ -9,12 +9,15 @@ const Tabs = ({
   cosmosBalance,
   erc20Balance,
   decimals,
+  selected,
+  setSelected,
 }: {
   cosmosBalance: BigNumber;
   erc20Balance: BigNumber;
   decimals: number;
+  selected: boolean;
+  setSelected: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [selected, setSelected] = useState(false);
   return (
     <div className="flex items-center w-full border border-darkGray1 bg-pearl justify-center rounded font-bold font-[IBM] ">
       <button
@@ -45,7 +48,6 @@ const Tabs = ({
       >
         <span>IBC</span>
         <span className="font-normal text-xs">
-          {/* {cosmosBalance} */}
           {formatNumber(convertFromAtto(cosmosBalance, decimals))}
         </span>
       </button>

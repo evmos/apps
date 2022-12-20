@@ -11,6 +11,7 @@ export type TableData = {
   chainId: string;
   chainIdentifier: string;
   handledByExternalUI: null | { handlingAction: string; url: string };
+  coingeckoPrice: number;
 };
 
 export type ERC20Element = {
@@ -25,7 +26,7 @@ export type ERC20Element = {
   chainIdentifier: string;
   // Currently only axelar assets are external actions
   handledByExternalUI: null | { handlingAction: string; url: string }[];
-  // The price is missing from the current pr
+  coingeckoPrice: string;
 };
 
 export type ERC20BalanceResponse = {

@@ -9,7 +9,10 @@ import { StoreType } from "../../../redux/Store";
 import { ERC20BalanceResponse, TableData } from "./types";
 import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
 import Switch from "../utils/Switch";
-import { convertAndFormat } from "../../../internal/asset/style/format";
+import {
+  amountToDolars,
+  convertAndFormat,
+} from "../../../internal/asset/style/format";
 import Button from "../../common/Button";
 import ModalAsset from "../modals/ModalAsset";
 import ExternalLinkIcon from "../../common/images/icons/ExternalLink";
@@ -60,6 +63,7 @@ const AssetsTable = () => {
         chainId: item.chainId,
         chainIdentifier: item.chainIdentifier,
         handledByExternalUI: external,
+        coingeckoPrice: Number(item.coingeckoPrice),
       });
     });
     return temp;
@@ -151,8 +155,11 @@ const AssetsTable = () => {
                         {convertAndFormat(item.cosmosBalance, item.decimals)}
                       </span>
                       <span className="text-sm text-darkGray5">
-                        {/*TODO: get value from backend  */}$
-                        {convertAndFormat(item.cosmosBalance, item.decimals)}
+                        {amountToDolars(
+                          item.cosmosBalance,
+                          item.decimals,
+                          item.coingeckoPrice
+                        )}
                       </span>
                     </div>
                   </td>
@@ -163,8 +170,11 @@ const AssetsTable = () => {
                         {item.symbol.toUpperCase() === "EVMOS" ? " WEVMOS" : ""}
                       </span>
                       <span className="text-sm text-darkGray5">
-                        {/*TODO: get value from backend  */}
-                        {convertAndFormat(item.erc20Balance, item.decimals)}
+                        {amountToDolars(
+                          item.erc20Balance,
+                          item.decimals,
+                          item.coingeckoPrice
+                        )}
                       </span>
                     </div>
                   </td>

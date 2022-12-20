@@ -57,3 +57,13 @@ export function formatNumber(
 export function convertAndFormat(value: BigNumber, exponent = 18) {
   return formatNumber(convertFromAtto(value, exponent));
 }
+
+export function amountToDolars(
+  value: BigNumber,
+  decimals: number,
+  coingeckoPrice: number
+) {
+  return (
+    Number(formatNumber(convertFromAtto(value, decimals))) * coingeckoPrice
+  ).toFixed(2);
+}

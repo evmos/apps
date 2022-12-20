@@ -12,7 +12,7 @@ const ModalTOS = ({
   }
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-blackOpacity">
+    <div className="fixed inset-0 flex items-center justify-center bg-blackOpacity z-50">
       <div
         onClick={(e) => {
           e.stopPropagation();

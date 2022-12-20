@@ -8,6 +8,10 @@ export type TableData = {
   erc20Balance: BigNumber;
   symbol: string;
   tokenName: string;
+  chainId: string;
+  chainIdentifier: string;
+  handledByExternalUI: null | { handlingAction: string; url: string };
+  coingeckoPrice: number;
 };
 
 export type ERC20Element = {
@@ -18,6 +22,11 @@ export type ERC20Element = {
   erc20Balance: string;
   symbol: string;
   tokenName: string;
+  chainId: string;
+  chainIdentifier: string;
+  // Currently only axelar assets are external actions
+  handledByExternalUI: null | { handlingAction: string; url: string }[];
+  coingeckoPrice: string;
 };
 
 export type ERC20BalanceResponse = {

@@ -12,6 +12,7 @@ import Switch from "../utils/Switch";
 import { convertAndFormat } from "../../../internal/asset/style/format";
 import Button from "../../common/Button";
 import ModalAsset from "../modals/ModalAsset";
+import ExternalLinkIcon from "../../common/images/icons/ExternalLink";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -169,63 +170,120 @@ const AssetsTable = () => {
                   </td>
                   <td>
                     <div className="space-x-3 flex justify-center">
-                      <Button
-                        onClick={() => {
-                          setShow(true);
-                          setModalValues({
-                            token: item.symbol,
-                            address: address,
-                            amount: item.cosmosBalance,
-                            title: "Deposit",
-                            network: "EVMOS",
-                            decimals: item?.decimals,
-                            feeDenom: "aevmos",
-                            pubkey: value.evmosPubkey,
-                            fee: BigNumber.from("1"),
-                            erc20Balance: item.erc20Balance,
-                          });
-                        }}
-                      >
-                        <span>Deposit</span>
-                      </Button>{" "}
-                      <Button
-                        onClick={() => {
-                          setShow(true);
-                          setModalValues({
-                            token: item.symbol,
-                            address: address,
-                            amount: item?.cosmosBalance,
-                            decimals: item?.decimals,
-                            fee: BigNumber.from("1"),
-                            feeDenom: "aevmos",
-                            title: "Withdraw",
-                            network: "EVMOS",
-                            pubkey: value.evmosPubkey,
-                            erc20Balance: item.erc20Balance,
-                          });
-                        }}
-                      >
-                        <span>Withdraw</span>
-                      </Button>
-                      <Button
-                        onClick={() => {
-                          setShow(true);
-                          setModalValues({
-                            token: item.symbol,
-                            address: address,
-                            amount: item.cosmosBalance,
-                            decimals: item?.decimals,
-                            feeDenom: "aevmos",
-                            title: "Convert",
-                            network: "EVMOS",
-                            pubkey: value.evmosPubkey,
-                            fee: BigNumber.from("1"),
-                            erc20Balance: item.erc20Balance,
-                          });
-                        }}
-                      >
-                        <span>Convert</span>
-                      </Button>
+                      {item.handledByExternalUI !== null ? (
+                        <Button
+                          onClick={() => {
+                            if (item.handledByExternalUI !== null) {
+                              console.log(item.handledByExternalUI.url);
+                            }
+                          }}
+                        >
+                          <div className="flex flex-row items-center">
+                            <span className="px-2">Deposit</span>
+                            <ExternalLinkIcon width={18} height={18} />
+                          </div>
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() => {
+                            setShow(true);
+                            setModalValues({
+                              token: item.symbol,
+                              address: address,
+                              amount: item.cosmosBalance,
+                              title: "Deposit",
+                              network: "EVMOS",
+                              decimals: item?.decimals,
+                              feeDenom: "aevmos",
+                              pubkey: value.evmosPubkey,
+                              fee: BigNumber.from("1"),
+                              erc20Balance: item.erc20Balance,
+                            });
+                          }}
+                        >
+                          <div className="flex flex-row items-center">
+                            <div className="min-w-[9px] min-h-[9px]" />
+                            <span className="px-2">Deposit</span>
+                            <div className="min-w-[9px] min-h-[9px]" />
+                          </div>
+                        </Button>
+                      )}
+                      {item.handledByExternalUI !== null ? (
+                        <Button
+                          onClick={() => {
+                            if (item.handledByExternalUI !== null) {
+                              console.log(item.handledByExternalUI.url);
+                            }
+                          }}
+                        >
+                          <div className="flex flex-row items-center">
+                            <span className="px-2">Withdraw</span>
+                            <ExternalLinkIcon width={18} height={18} />
+                          </div>
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() => {
+                            setShow(true);
+                            setModalValues({
+                              token: item.symbol,
+                              address: address,
+                              amount: item?.cosmosBalance,
+                              decimals: item?.decimals,
+                              fee: BigNumber.from("1"),
+                              feeDenom: "aevmos",
+                              title: "Withdraw",
+                              network: "EVMOS",
+                              pubkey: value.evmosPubkey,
+                              erc20Balance: item.erc20Balance,
+                            });
+                          }}
+                        >
+                          <div className="flex flex-row items-center">
+                            <div className="min-w-[9px] min-h-[9px]" />
+                            <span className="px-2">Withdram</span>
+                            <div className="min-w-[9px] min-h-[9px]" />
+                          </div>
+                        </Button>
+                      )}
+                      {item.handledByExternalUI !== null ? (
+                        <Button
+                          onClick={() => {
+                            if (item.handledByExternalUI !== null) {
+                              console.log(item.handledByExternalUI.url);
+                            }
+                          }}
+                        >
+                          <div className="flex flex-row items-center">
+                            <span className="px-2">Withdraw</span>
+                            <ExternalLinkIcon width={18} height={18} />
+                          </div>
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={() => {
+                            setShow(true);
+                            setModalValues({
+                              token: item.symbol,
+                              address: address,
+                              amount: item.cosmosBalance,
+                              decimals: item?.decimals,
+                              feeDenom: "aevmos",
+                              title: "Convert",
+                              network: "EVMOS",
+                              pubkey: value.evmosPubkey,
+                              fee: BigNumber.from("1"),
+                              erc20Balance: item.erc20Balance,
+                            });
+                          }}
+                        >
+                          <div className="flex flex-row items-center">
+                            <div className="min-w-[9px] min-h-[9px]" />
+                            <span className="px-2">Convert</span>
+                            <div className="min-w-[9px] min-h-[9px]" />
+                          </div>
+                        </Button>
+                      )}
                     </div>
                   </td>
                 </tr>

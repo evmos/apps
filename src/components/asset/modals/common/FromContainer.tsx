@@ -1,12 +1,24 @@
 import { BigNumber } from "ethers";
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import {
   convertFromAtto,
   formatNumber,
   safeSubstraction,
 } from "../../../../internal/asset/style/format";
 import { truncateAddress } from "../../../../internal/wallet/style/format";
+
+const NumericOnly = (value: string) => {
+  //angka only
+  const reg = /^[0-9.]+$/;
+  const preval = value;
+  if (value === "" || reg.test(value)) {
+    return value;
+  } else {
+    value = preval.substring(0, preval.length - 1);
+    return value;
+  }
+};
 
 const FromContainer = ({
   token,
@@ -17,6 +29,8 @@ const FromContainer = ({
   feeDenom,
   img,
   text,
+  value,
+  setInputValue,
 }: {
   token: string;
   address: string;
@@ -26,8 +40,9 @@ const FromContainer = ({
   feeDenom: string;
   img: string;
   text?: string;
+  value: string;
+  setInputValue: Dispatch<SetStateAction<string>>;
 }) => {
-  const [inputValue, setInputValue] = useState("");
   return (
     <>
       <div className="flex justify-between sm:items-center flex-col sm:flex-row">
@@ -45,23 +60,22 @@ const FromContainer = ({
       <div className="pr-5 pl-2 flex items-center space-x-3 bg-white hover:border-black focus-visible:border-black focus-within:border-black border border-darkGray5 rounded-lg">
         <input
           className="w-full p-3 border-none hover:border-none focus-visible:outline-none"
-          type="number"
-          value={inputValue}
+          type="text"
+          value={value}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            setInputValue(e.target.value);
-            // chequear tmb el amount - fee?
+            setInputValue(NumericOnly(e.target.value));
+            // TODO: should we use safeSubstraction here too?
           }}
         />
         <span className="opacity-80">{token}</span>
         <button
           onClick={() => {
-            // throw "not implemented"
             if (token.toUpperCase() === feeDenom.toUpperCase()) {
-              setInputValue(formatNumber(convertFromAtto(amount, decimals)));
+              setInputValue(NumericOnly(convertFromAtto(amount, decimals)));
             } else {
-              // ponerlo en la misma unidad
+              // TODO: same unit
               const val = safeSubstraction(amount, fee);
-              setInputValue(val.toString());
+              setInputValue(NumericOnly(convertFromAtto(val, decimals)));
             }
           }}
           className="border border-black rounded-lg px-2 py-1 opacity-80 font-bold text-black"
@@ -69,12 +83,21 @@ const FromContainer = ({
           MAX
         </button>
       </div>
-      {inputValue === "0" && (
+      {value === "0" && (
         <p className="text-red text-xs italic pl-2">
           Amount to transfer can not be 0.
         </p>
       )}
+
+      {/* {value !== "" && BigNumber.from(value).gt(BigNumber.from(amount)) && (
+        <p className="text-red text-xs italic pl-2">Insufficient funds.</p>
+      )} */}
       <div>
+        <div>
+          {BigNumber.from(14).gt(BigNumber.from(amount)) && <div>qwe</div>}
+        </div>
+        <div>{convertFromAtto(amount, decimals)}</div>
+        <div>{parseFloat(convertFromAtto(amount, decimals))}</div>
         <span className="font-bold">Balance: </span>
         {formatNumber(convertFromAtto(amount, decimals))} {token}
       </div>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import ConfirmButton from "../../../common/ConfirmButton";
 import Arrow from "../common/Arrow";
@@ -7,6 +8,8 @@ import ToContainer from "../common/ToContainer";
 import { ModalProps } from "./types";
 
 const Convert = ({ values }: ModalProps) => {
+  const [inputValue, setInputValue] = useState("");
+
   return (
     <div className="text-darkGray3">
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
@@ -19,6 +22,8 @@ const Convert = ({ values }: ModalProps) => {
           fee={values.fee}
           feeDenom={values.feeDenom}
           decimals={values.decimals}
+          value={inputValue}
+          setInputValue={setInputValue}
         />
         <div>
           <span className="font-bold">Select balance:</span>

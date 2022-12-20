@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import ConfirmButton from "../../../common/ConfirmButton";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
@@ -19,6 +20,7 @@ export interface IBCChainParams {
 }
 
 const Withdraw = ({ values }: ModalProps) => {
+  const [inputValue, setInputValue] = useState("");
   return (
     <div className="text-darkGray3">
       <p className="text-sm max-w-[500px] pb-3 italic">
@@ -35,6 +37,8 @@ const Withdraw = ({ values }: ModalProps) => {
           decimals={values.decimals}
           feeDenom={values.feeDenom}
           img={values.imgFrom}
+          value={inputValue}
+          setInputValue={setInputValue}
         />
         <div className="text-xs font-bold opacity-80">
           {getReservedForFeeText(values.fee, values.feeDenom, values.network)}

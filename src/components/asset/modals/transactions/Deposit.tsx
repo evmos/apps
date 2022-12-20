@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import ConfirmButton from "../../../common/ConfirmButton";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
@@ -9,6 +10,8 @@ import ToContainer from "../common/ToContainer";
 import { ModalProps } from "./types";
 
 const Deposit = ({ values }: ModalProps) => {
+  const [inputValue, setInputValue] = useState("");
+
   return (
     <div className="text-darkGray3">
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
@@ -20,6 +23,8 @@ const Deposit = ({ values }: ModalProps) => {
           fee={values.fee}
           decimals={values.decimals}
           feeDenom={values.feeDenom}
+          value={inputValue}
+          setInputValue={setInputValue}
         />
         <div className="text-xs font-bold opacity-80">
           {getReservedForFeeText(values.fee, values.feeDenom, values.network)}

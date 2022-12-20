@@ -17,6 +17,7 @@ import {
   GetProviderFromLocalStorage,
   RemoveProviderFromLocalStorage,
 } from "../../internal/wallet/functionality/localstorage";
+import ViewExplorer from "../common/ViewExplorer";
 
 // Images
 const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
@@ -73,17 +74,56 @@ const ButtonWalletConnection = () => {
     firstUpdate.current = false;
   });
 
-  return value.active == true ? (
-    <button className="flex items-center space-x-3 justify-center">
-      {value.extensionName === METAMASK_KEY ? <MetamaskIcon /> : <KeplrIcon />}
-      <span className="text-lg font-bold">
-        {truncateAddress(value.evmosAddressEthFormat)}
-      </span>
-    </button>
+  return value.active === true ? (
+    <>
+      <button
+        className="flex items-center space-x-3 justify-center"
+        onClick={open}
+      >
+        {value.extensionName === METAMASK_KEY ? (
+          <MetamaskIcon />
+        ) : (
+          <KeplrIcon />
+        )}
+        <span className="text-lg font-bold">
+          {truncateAddress(value.evmosAddressEthFormat)}
+        </span>
+      </button>
+
+      <Modal title="Wallet" show={show} onClose={close}>
+        <div className="space-y-5">
+          <div className="flex items-center space-x-5">
+            {value.extensionName === METAMASK_KEY ? (
+              <MetamaskIcon />
+            ) : (
+              <KeplrIcon />
+            )}
+            <div className="flex flex-col font-bold ">
+              <p>{truncateAddress(value.evmosAddressCosmosFormat)}</p>
+              <p>{truncateAddress(value.evmosAddressEthFormat)}</p>
+            </div>
+            <ViewExplorer
+              explorerTxUrl="https://www.mintscan.io/evmos/account"
+              txHash={value.evmosAddressEthFormat}
+            />
+          </div>
+
+          <button
+            className="w-full rounded font-bold uppercase border border-darkPearl hover:bg-grayOpacity p-3 mt-3"
+            onClick={() => {
+              disconnectWallets(dispatch);
+              setShow(false);
+            }}
+          >
+            disconnect
+          </button>
+        </div>
+      </Modal>
+    </>
   ) : (
-    <div>
+    <div className="flex justify-center">
       <Button onClick={open}>
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 ">
           <WalletIcon />
           <span>Connect wallet</span>
         </div>
@@ -96,6 +136,7 @@ const ButtonWalletConnection = () => {
               disconnectWallets(dispatch);
               const keplr = new Keplr(store);
               await keplr.connect();
+              setShow(false);
             }}
           >
             <ContentModalConnect>
@@ -109,6 +150,7 @@ const ButtonWalletConnection = () => {
               disconnectWallets(dispatch);
               const metamask = new Metamask(store);
               await metamask.connect();
+              setShow(false);
             }}
           >
             <ContentModalConnect>

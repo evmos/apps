@@ -7,6 +7,7 @@ import { store } from "../src/redux/Store";
 import TermOfServices from "../src/components/termsOfServices/TermOfServices";
 import Snackbars from "../src/components/notification/Snackbars";
 import AssetsTable from "../src/components/asset/table/AssetsTable";
+import Footer from "../src/components/footer/Footer";
 
 export default function Home() {
   // Create a client
@@ -27,24 +28,13 @@ export default function Home() {
               <>
                 <Snackbars />
                 <Header />
-                <div className="container mx-auto overflow-auto ">
+                <div className="container mx-auto overflow-auto mb-auto">
                   <AssetsTable />
                 </div>
+                <Footer />
               </>
             </Container>
           </main>
-          {/* <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer> */}
         </>
       </QueryClientProvider>
     </Provider>

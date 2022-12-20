@@ -251,7 +251,7 @@ const AssetsTable = () => {
                         >
                           <div className="flex flex-row items-center">
                             <div className="min-w-[9px] min-h-[9px]" />
-                            <span className="px-2">Withdram</span>
+                            <span className="px-2">Withdraw</span>
                             <div className="min-w-[9px] min-h-[9px]" />
                           </div>
                         </Button>

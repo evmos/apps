@@ -1,16 +1,21 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
 import Head from "next/head";
-import Container from "../src/components/Container";
-import Header from "../src/components/Header";
 import { Provider } from "react-redux";
-import { store } from "../src/redux/Store";
-import TermOfServices from "../src/components/termsOfServices/TermOfServices";
-import Snackbars from "../src/components/notification/Snackbars";
 import AssetsTable from "../src/components/asset/table/AssetsTable";
-import Footer from "../src/components/footer/Footer";
+import Container from "../src/components/Container";
+import { store } from "../src/redux/Store";
+
+const Header = dynamic(() => import("../src/components/Header"));
+const TermOfServices = dynamic(
+  () => import("../src/components/termsOfServices/TermOfServices")
+);
+const Snackbars = dynamic(
+  () => import("../src/components/notification/Snackbars")
+);
+const Footer = dynamic(() => import("../src/components/footer/Footer"));
 
 export default function Home() {
-  // Create a client
   const queryClient = new QueryClient();
   return (
     <Provider store={store}>

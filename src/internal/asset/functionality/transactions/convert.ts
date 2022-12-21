@@ -5,52 +5,7 @@ import {
 import { BigNumber, utils } from "ethers";
 import { signBackendTx } from "../../../wallet/functionality/signing/genericSigner";
 import { broadcastEip712ToBackend } from "../../../wallet/functionality/signing";
-
-interface LegacyAmino {
-  body: string;
-  authInfo: string;
-  signBytes: string;
-}
-
-interface SignDirect {
-  body: string;
-  authInfo: string;
-  signBytes: string;
-}
-export interface IBCTransferResponse {
-  eipToSign: string;
-  legacyAmino: LegacyAmino;
-  signDirect: SignDirect;
-  accountNumber: string;
-  chainId: string;
-  explorerTxUrl: string;
-}
-
-export interface Transaction {
-  pubKey: string | null;
-  sender: string;
-  //   gas?: number | string;
-}
-
-export interface ConvertMsg {
-  sender: string;
-  receiver: string;
-  amount: string;
-  srcChain: string;
-  token: string;
-}
-
-interface TxConvert {
-  transaction: Transaction;
-  message: ConvertMsg;
-}
-export interface ErrorTx {
-  error: string;
-}
-
-// function isErrorTx(object: any): object is ErrorTx {
-//   return "error" in object;
-// }
+import { TxConvert, IBCTransferResponse, ConvertMsg, ErrorTx } from "./types";
 
 async function convertCoin(
   transactionBody: TxConvert
@@ -61,7 +16,6 @@ async function convertCoin(
     headers: { "Content-Type": "application/json" },
   });
   const data = (await post.json()) as IBCTransferResponse;
-  console.log(data);
   return data;
 }
 
@@ -78,22 +32,36 @@ async function convertERC20(
 }
 
 export async function executeConvert(
-  pubkey: string | null,
+  pubkey: string,
   address: string,
   params: ConvertMsg,
   isConvertCoin: boolean,
   feeBalance: BigNumber,
   extension: string
 ) {
-  const txBody = {
+  const txBodyConvertCoin = {
     transaction: {
       pubKey: pubkey,
       sender: address,
     },
     message: {
       srcChain: params.srcChain.toUpperCase(),
-      sender: params.sender,
-      receiver: params.receiver,
+      sender: params.addressCosmos,
+      receiver: params.addressEth,
+      amount: params.amount,
+      token: params.token,
+    },
+  };
+
+  const txBodyConvertERC20 = {
+    transaction: {
+      pubKey: pubkey,
+      sender: address,
+    },
+    message: {
+      srcChain: params.srcChain.toUpperCase(),
+      sender: params.addressEth,
+      receiver: params.addressCosmos,
       amount: params.amount,
       token: params.token,
     },
@@ -101,21 +69,18 @@ export async function executeConvert(
   let tx: IBCTransferResponse | ErrorTx;
 
   if (feeBalance.lt(BigNumber.from("30000000000000000"))) {
-    console.log("fee");
     return;
   }
 
   if (utils.parseEther(params.amount).lte(BigNumber.from("0"))) {
-    console.log("0");
-
     return;
   }
 
-  //   si el valor es mayor que el amount, return
+  //  TODO: if value is bigger than amount, return error
   if (!isConvertCoin) {
-    tx = await convertCoin(txBody);
+    tx = await convertCoin(txBodyConvertCoin);
   } else {
-    tx = await convertERC20(txBody);
+    tx = await convertERC20(txBodyConvertERC20);
   }
   const sign = await signBackendTx(address, tx, extension);
   if (sign.signature !== null) {
@@ -128,6 +93,7 @@ export async function executeConvert(
     );
     console.log(broadEip712);
   }
+  // TODO: show right notifications
   // if (isErrorTx(tx)) {
   //   return { executed: false, msg: tx.error, explorerTxUrl: "" };
   // }

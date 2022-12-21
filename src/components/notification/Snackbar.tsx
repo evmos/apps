@@ -34,7 +34,7 @@ const Snackbar = ({
         // remove me from state
         dispatch(removeSnackbar({ id }));
       }}
-      className="relative animation z-100"
+      className="relative animation z-[9999]"
       key={id}
     >
       <div

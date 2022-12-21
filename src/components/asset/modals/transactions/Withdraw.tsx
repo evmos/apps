@@ -1,7 +1,7 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { parseUnits } from "@ethersproject/units";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { executeIBC } from "../../../../internal/asset/functionality/transactions/ibcTransfer";
 import { IBCChainParams } from "../../../../internal/asset/functionality/transactions/types";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
@@ -9,16 +9,22 @@ import { StoreType } from "../../../../redux/Store";
 import ConfirmButton from "../../../common/ConfirmButton";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
 import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
+import { addSnackbar } from "../../../notification/redux/notificationSlice";
 import Arrow from "../common/Arrow";
+import ErrorMessage from "../common/ErrorMessage";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
 import { ModalProps } from "./types";
 
 const Withdraw = ({ values }: ModalProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
+  const [confirmClicked, setConfirmClicked] = useState(false);
 
   const [inputValue, setInputValue] = useState("");
   const [addressTo, setAddressTo] = useState("");
+
+  const dispatch = useDispatch();
+
   return (
     <div className="text-darkGray3">
       <p className="text-sm max-w-[500px] pb-3 italic">
@@ -38,6 +44,8 @@ const Withdraw = ({ values }: ModalProps) => {
           value={inputValue}
           setInputValue={setInputValue}
           tokenTo={values.tokenTo}
+          feeBalance={values.feeBalance}
+          confirmClicked={confirmClicked}
         />
         <div className="text-xs font-bold opacity-80">
           {getReservedForFeeText(values.fee, values.feeDenom, values.network)}
@@ -57,10 +65,13 @@ const Withdraw = ({ values }: ModalProps) => {
               }}
             />
           </div>
-          <span className="italic text-sm">
+          {confirmClicked && addressTo === "" && (
+            <ErrorMessage text="Address can not be empty" />
+          )}
+          <h6 className="italic text-sm">
             IMPORTANT: Transferring to an incorrect address will result in loss
             of funds.
-          </span>
+          </h6>
           <div className="flex items-center space-x-5 w-full justify-end">
             <span className="uppercase font-bold">Autofill</span>
             <MetamaskIcon width={25} height={25} />
@@ -70,29 +81,79 @@ const Withdraw = ({ values }: ModalProps) => {
       </div>
 
       <ConfirmButton
-        text={values.title}
         onClick={async () => {
+          setConfirmClicked(true);
+          if (wallet.evmosPubkey === null) {
+            dispatch(
+              addSnackbar({
+                id: 0,
+                text: "Wallet not connected",
+                subtext:
+                  "Can not create a transaction without a wallet connected!",
+                type: "error",
+              })
+            );
+            // TODO: close modal
+            return;
+          }
+
+          if (
+            inputValue === undefined ||
+            inputValue === null ||
+            inputValue === "" ||
+            addressTo === undefined ||
+            addressTo === null ||
+            addressTo === ""
+          ) {
+            // TODO: Add this validation to the input onchange
+
+            return;
+          }
+
+          let amount = "";
+          try {
+            amount = parseUnits(
+              inputValue,
+              BigNumber.from(values.decimals)
+            ).toString();
+          } catch (e) {
+            dispatch(
+              addSnackbar({
+                id: 0,
+                text: "Wrong params",
+                subtext: "Amount can only be a positive number",
+                type: "error",
+              })
+            );
+            // TODO: close modal
+            return;
+          }
           const params: IBCChainParams = {
             sender: values.address,
             receiver: addressTo,
-            amount: parseUnits(
-              inputValue,
-              BigNumber.from(values.decimals)
-            ).toString(),
+            amount,
             srcChain: "EVMOS",
             dstChain: values.networkTo,
             token: values.tokenTo,
           };
-          if (wallet.evmosPubkey !== null) {
-            // TODO: show message that evmosPubkey is null
-            await executeIBC(
-              wallet.evmosPubkey,
-              wallet.evmosAddressCosmosFormat,
-              wallet.extensionName,
-              params
-            );
-          }
+          const res = await executeIBC(
+            wallet.evmosPubkey,
+            wallet.evmosAddressCosmosFormat,
+            params,
+            values.feeBalance,
+            wallet.extensionName
+          );
+
+          dispatch(
+            addSnackbar({
+              id: 0,
+              text: res.title,
+              subtext: res.message,
+              type: res.error === true ? "error" : "success",
+            })
+          );
         }}
+        text={values.title}
       />
     </div>
   );

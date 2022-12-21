@@ -104,7 +104,10 @@ const AssetsTable = () => {
 
           {!isLoading && !error && tableData?.length > 0 && (
             <Content
-              tableData={normalizedAssetsData}
+              tableData={{
+                table: tableData,
+                feeBalance: normalizedAssetsData.feeBalance,
+              }}
               setShow={setShow}
               setModalValues={setModalValues}
             />

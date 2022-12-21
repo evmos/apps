@@ -1,4 +1,4 @@
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { Dispatch, SetStateAction } from "react";
 import {
   convertFromAtto,

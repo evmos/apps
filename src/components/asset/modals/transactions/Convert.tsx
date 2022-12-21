@@ -8,10 +8,12 @@ import FromContainer from "../common/FromContainer";
 import Tabs from "../common/Tabs";
 import ToContainer from "../common/ToContainer";
 import { ModalProps } from "./types";
-import { utils, BigNumber } from "ethers";
+import { parseUnits } from "@ethersproject/units";
+import { BigNumber } from "@ethersproject/bignumber";
 import { ConvertMsg } from "../../../../internal/asset/functionality/transactions/types";
 import { executeConvert } from "../../../../internal/asset/functionality/transactions/convert";
 import { addSnackbar } from "../../../notification/redux/notificationSlice";
+import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 
 const Convert = ({ values }: ModalProps) => {
   const [inputValue, setInputValue] = useState("");
@@ -23,7 +25,7 @@ const Convert = ({ values }: ModalProps) => {
 
   const [convertClicked, setConvertClicked] = useState(false);
 
-  const [amountMax, setAmountMax] = useState(BigNumber.from("0"));
+  const [amountMax, setAmountMax] = useState(BIG_ZERO);
   useEffect(() => {
     if (!selectedERC20) {
       setAmountMax(values.amount);
@@ -97,9 +99,10 @@ const Convert = ({ values }: ModalProps) => {
 
           let amount = "";
           try {
-            amount = utils
-              .parseUnits(inputValue, BigNumber.from(values.decimals))
-              .toString();
+            amount = parseUnits(
+              inputValue,
+              BigNumber.from(values.decimals)
+            ).toString();
           } catch (e) {
             dispatch(
               addSnackbar({

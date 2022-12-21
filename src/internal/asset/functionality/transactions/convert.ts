@@ -2,10 +2,12 @@ import {
   EVMOS_BACKEND,
   EVMOS_CHAIN,
 } from "../../../wallet/functionality/networkConfig";
-import { BigNumber, utils } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
+import { parseEther } from "@ethersproject/units";
 import { signBackendTx } from "../../../wallet/functionality/signing/genericSigner";
 import { broadcastEip712ToBackend } from "../../../wallet/functionality/signing";
 import { IBCTransferResponse, ConvertMsg } from "./types";
+import { BIG_ZERO } from "../../../common/math/Bignumbers";
 
 const feeAmountForConvert = BigNumber.from("30000000000000000");
 
@@ -119,7 +121,7 @@ export async function executeConvert(
     };
   }
 
-  if (utils.parseEther(params.amount).lte(BigNumber.from("0"))) {
+  if (parseEther(params.amount).lte(BIG_ZERO)) {
     return {
       error: true,
       message: "Amount to send must be bigger than 0",

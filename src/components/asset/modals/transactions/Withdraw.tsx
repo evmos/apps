@@ -1,4 +1,5 @@
-import { BigNumber, utils } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
+import { parseUnits } from "@ethersproject/units";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { executeIBC } from "../../../../internal/asset/functionality/transactions/ibcTransfer";
@@ -111,9 +112,10 @@ const Withdraw = ({ values }: ModalProps) => {
 
           let amount = "";
           try {
-            amount = utils
-              .parseUnits(inputValue, BigNumber.from(values.decimals))
-              .toString();
+            amount = parseUnits(
+              inputValue,
+              BigNumber.from(values.decimals)
+            ).toString();
           } catch (e) {
             dispatch(
               addSnackbar({

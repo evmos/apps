@@ -38,6 +38,7 @@ const ModalAsset = ({
               decimals: modalValues.decimals,
               erc20Balance: BigNumber.from("0"),
               feeBalance: modalValues.feeBalance,
+              networkTo: modalValues.networkTo,
             }}
           />
         )}
@@ -57,6 +58,7 @@ const ModalAsset = ({
               decimals: modalValues.decimals,
               erc20Balance: BigNumber.from("0"),
               feeBalance: modalValues.feeBalance,
+              networkTo: modalValues.networkTo,
             }}
           />
         )}
@@ -76,6 +78,7 @@ const ModalAsset = ({
               decimals: modalValues.decimals,
               erc20Balance: modalValues.erc20Balance,
               feeBalance: modalValues.feeBalance,
+              networkTo: modalValues.networkTo,
             }}
           />
         )}

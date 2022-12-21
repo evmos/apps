@@ -17,6 +17,7 @@ import Button from "../../common/Button";
 import ModalAsset from "../modals/ModalAsset";
 import ExternalLinkIcon from "../../common/images/icons/ExternalLink";
 import Link from "next/link";
+import { METAMASK_KEY } from "../../../internal/wallet/functionality/wallet";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -204,6 +205,7 @@ const AssetsTable = () => {
                         </Button>
                       ) : (
                         <Button
+                          disabled={value.extensionName === METAMASK_KEY}
                           onClick={() => {
                             setShow(true);
                             setModalValues({
@@ -218,6 +220,7 @@ const AssetsTable = () => {
                               fee: BigNumber.from("1"),
                               erc20Balance: item.erc20Balance,
                               feeBalance: BigNumber.from("1"),
+                              networkTo: item.chainIdentifier,
                             });
                           }}
                         >
@@ -262,6 +265,7 @@ const AssetsTable = () => {
                               pubkey: value.evmosPubkey,
                               erc20Balance: item.erc20Balance,
                               feeBalance: BigNumber.from("1"),
+                              networkTo: item.chainIdentifier,
                             });
                           }}
                         >
@@ -287,6 +291,7 @@ const AssetsTable = () => {
                             fee: BigNumber.from("1"),
                             erc20Balance: item.erc20Balance,
                             feeBalance: newData.feeBalance,
+                            networkTo: item.chainIdentifier,
                           });
                         }}
                       >

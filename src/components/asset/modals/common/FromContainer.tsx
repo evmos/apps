@@ -30,6 +30,7 @@ const FromContainer = ({
   img,
   text,
   value,
+  tokenTo,
   setInputValue,
 }: {
   token: string;
@@ -41,6 +42,7 @@ const FromContainer = ({
   img: string;
   text?: string;
   value: string;
+  tokenTo?: string;
   setInputValue: Dispatch<SetStateAction<string>>;
 }) => {
   return (
@@ -67,10 +69,10 @@ const FromContainer = ({
             // TODO: should we use safeSubstraction here too?
           }}
         />
-        <span className="opacity-80">{token}</span>
+        <span className="opacity-80">{tokenTo}</span>
         <button
           onClick={() => {
-            // not totally working. check
+            // TODO: not totally working. check
             if (token.toUpperCase() !== feeDenom.toUpperCase()) {
               setInputValue(NumericOnly(convertFromAtto(amount, decimals)));
             } else {

@@ -18,4 +18,5 @@ export type ModalValues = {
   decimals: number;
   erc20Balance: BigNumber;
   feeBalance: BigNumber;
+  networkTo: string;
 };

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
 
 const ToContainer = ({
   token,
@@ -19,10 +18,6 @@ const ToContainer = ({
           <span className="font-bold">{text ? text : token}</span>
         </div>
       </div>
-      <button className="text-xs py-1 font-bold flex items-center border border-red text-darkGray4 bg-pearl rounded-md px-3 space-x-2">
-        <MetamaskIcon width={15} height={15} />
-        <span className="uppercase ">add {token}</span>
-      </button>
     </>
   );
 };

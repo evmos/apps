@@ -46,3 +46,27 @@ export interface TxConvert {
 export interface ErrorTx {
   error: string;
 }
+
+export interface IBCChainParams {
+  sender: string;
+  receiver: string;
+  amount: string;
+  srcChain: string;
+  dstChain: string;
+  token: string;
+  gas?: number;
+}
+
+interface MessageIBC {
+  srcChain: string;
+  dstChain: string;
+  sender: string;
+  receiver: string;
+  amount: string;
+  token: string;
+}
+
+export interface TransactionBody {
+  transaction: Transaction;
+  message: MessageIBC;
+}

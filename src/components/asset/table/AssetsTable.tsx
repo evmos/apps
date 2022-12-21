@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import MessageTable from "./MessageTable";
 import { useSelector } from "react-redux";
 import Image from "next/image";
@@ -28,18 +28,17 @@ const AssetsTable = () => {
 
   const value = useSelector((state: StoreType) => state.wallet.value);
 
-  // for testing
-  const [address, setAddress] = useState("");
-  const [hexAddress, setHexAddress] = useState("");
-
-  useEffect(() => {
-    setAddress(value.evmosAddressCosmosFormat);
-    setHexAddress(value.evmosAddressEthFormat);
-  }, [value]);
-
   const { data, error, isLoading } = useQuery<ERC20BalanceResponse, Error>({
-    queryKey: ["assets", address, hexAddress],
-    queryFn: () => getAssetsForAddress(address, hexAddress),
+    queryKey: [
+      "assets",
+      value.evmosAddressCosmosFormat,
+      value.evmosAddressEthFormat,
+    ],
+    queryFn: () =>
+      getAssetsForAddress(
+        value.evmosAddressCosmosFormat,
+        value.evmosAddressEthFormat
+      ),
   });
 
   const [hideZeroBalance, setHideBalance] = useState(false);
@@ -210,7 +209,7 @@ const AssetsTable = () => {
                             setShow(true);
                             setModalValues({
                               token: item.symbol,
-                              address: address,
+                              address: value.evmosAddressCosmosFormat,
                               amount: item.cosmosBalance,
                               title: "Deposit",
                               network: "EVMOS",
@@ -255,7 +254,7 @@ const AssetsTable = () => {
                             setShow(true);
                             setModalValues({
                               token: item.symbol,
-                              address: address,
+                              address: value.evmosAddressCosmosFormat,
                               amount: item?.cosmosBalance,
                               decimals: item?.decimals,
                               fee: BigNumber.from("1"),
@@ -281,7 +280,7 @@ const AssetsTable = () => {
                           setShow(true);
                           setModalValues({
                             token: item.symbol,
-                            address: address,
+                            address: value.evmosAddressCosmosFormat,
                             amount: item.cosmosBalance,
                             decimals: item?.decimals,
                             feeDenom: "aevmos",

@@ -144,13 +144,6 @@ export class Metamask {
       };
     }
 
-    // Handle wallet changes
-    subscribeToAccountChange(async (addresses: Maybe<string[]>) => {
-      await this.connectHandler(addresses);
-      this.active = true;
-      SaveProviderToLocalStorate(METAMASK_KEY);
-    });
-
     // Set the wallet and get the pubkey
     const wallet = await getWallet();
     if (wallet === null) {
@@ -178,6 +171,13 @@ export class Metamask {
         message: METAMASK_ERRORS.PubkeyError,
       };
     }
+
+    // Handle wallet changes
+    subscribeToAccountChange(async (addresses: Maybe<string[]>) => {
+      await this.connectHandler(addresses);
+      this.active = true;
+      SaveProviderToLocalStorate(METAMASK_KEY);
+    });
 
     return {
       result: true,

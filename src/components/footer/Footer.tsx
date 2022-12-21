@@ -1,10 +1,12 @@
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { CURRENT_COMMIT_HASH } from "./constants";
-import CommonWealthIcon from "./icons/CommonWealth";
-import DiscordIcon from "./icons/Discord";
-import GithubIcon from "./icons/GitHub";
-import TelegramIcon from "./icons/Telegram";
-import TwitterIcon from "./icons/Twitter";
+
+const TwitterIcon = dynamic(() => import("./icons/Twitter"));
+const TelegramIcon = dynamic(() => import("./icons/Telegram"));
+const GithubIcon = dynamic(() => import("./icons/GitHub"));
+const DiscordIcon = dynamic(() => import("./icons/Discord"));
+const CommonWealthIcon = dynamic(() => import("./icons/CommonWealth"));
 
 const Footer = () => {
   return (

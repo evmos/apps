@@ -1,7 +1,9 @@
+import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../redux/Store";
 import { getAllSnackbars } from "./redux/notificationSlice";
-import Snackbar from "./Snackbar";
+
+const Snackbar = dynamic(() => import("./Snackbar"));
 
 export default function Snackbars() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));

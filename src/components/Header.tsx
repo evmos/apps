@@ -1,8 +1,10 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import ButtonWalletConnection from "./wallet/ButtonWalletConnection";
 
 const Logo = dynamic(() => import("./common/images/Logo"));
+const ButtonWalletConnection = dynamic(
+  () => import("./wallet/ButtonWalletConnection")
+);
 
 const Header = () => {
   return (

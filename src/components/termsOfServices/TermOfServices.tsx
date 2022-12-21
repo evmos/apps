@@ -1,7 +1,9 @@
-import ConfirmButton from "../common/ConfirmButton";
 import { useEffect, useRef, useState } from "react";
-import ModalTOS from "./Modal";
-import LinkButton from "./LinkButton";
+import dynamic from "next/dynamic";
+
+const LinkButton = dynamic(() => import("./LinkButton"));
+const ModalTOS = dynamic(() => import("./Modal"));
+const ConfirmButton = dynamic(() => import("../common/ConfirmButton"));
 
 const TermOfServices = () => {
   // event load,por defecto en falso

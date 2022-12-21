@@ -1,6 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import MessageTable from "./MessageTable";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import { BigNumber } from "ethers";
@@ -8,16 +7,21 @@ import { DataModal, EmptyDataModal } from "../modals/types";
 import { StoreType } from "../../../redux/Store";
 import { ERC20BalanceResponse, TableData } from "./types";
 import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
-import Switch from "../utils/Switch";
 import {
   amountToDolars,
   convertAndFormat,
 } from "../../../internal/asset/style/format";
-import Button from "../../common/Button";
-import ModalAsset from "../modals/ModalAsset";
-import ExternalLinkIcon from "../../common/images/icons/ExternalLink";
 import Link from "next/link";
 import { METAMASK_KEY } from "../../../internal/wallet/functionality/wallet";
+import dynamic from "next/dynamic";
+
+const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
+const MessageTable = dynamic(() => import("./MessageTable"));
+const Switch = dynamic(() => import("../utils/Switch"));
+const Button = dynamic(() => import("../../common/Button"));
+const ExternalLinkIcon = dynamic(
+  () => import("../../common/images/icons/ExternalLink")
+);
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);

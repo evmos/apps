@@ -16,6 +16,7 @@ const Footer = () => {
           target="_blank"
           rel="noreferrer"
           href="https://github.com/tharsis/evmos"
+          aria-label="github evmos"
         >
           <GithubIcon />
         </Link>
@@ -23,6 +24,7 @@ const Footer = () => {
           target="_blank"
           rel="noreferrer"
           href="https://twitter.com/evmosorg"
+          aria-label="twitter evmos"
         >
           <TwitterIcon />
         </Link>
@@ -30,16 +32,23 @@ const Footer = () => {
           target="_blank"
           rel="noreferrer"
           href="https://discord.com/invite/evmos"
+          aria-label="discord evmos"
         >
           <DiscordIcon />
         </Link>
-        <Link target="_blank" rel="noreferrer" href="https://t.me/EvmosOrg">
+        <Link
+          target="_blank"
+          rel="noreferrer"
+          href="https://t.me/EvmosOrg"
+          aria-label="discord telegram"
+        >
           <TelegramIcon />
         </Link>
         <Link
           target="_blank"
           rel="noreferrer"
           href="https://commonwealth.im/evmos"
+          aria-label="commonwealth evmos"
         >
           <CommonWealthIcon />
         </Link>
@@ -51,6 +60,7 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
             href="https://evmos.notion.site/Terms-of-Service-2a064953c56741a79331f7f767e3634d"
+            aria-label="terms of services"
           >
             Terms of Service
           </Link>
@@ -60,6 +70,7 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
             href="https://evmos.notion.site/PRIVACY-NOTICE-1e9a3346e3d343eb9fd3e61527d28d62"
+            aria-label="privacy policy"
           >
             Privacy Policy
           </Link>

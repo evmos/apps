@@ -112,7 +112,7 @@ const AssetsTable = () => {
               </MessageTable>
             )}
 
-            {error && (
+            {error && !isLoading && tableData?.length === 0 && (
               <MessageTable>
                 <>
                   {/* add exclamation icon */}

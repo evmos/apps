@@ -6,8 +6,6 @@ const ModalTOS = dynamic(() => import("./Modal"));
 const ConfirmButton = dynamic(() => import("../common/ConfirmButton"));
 
 const TermOfServices = () => {
-  // event load,por defecto en falso
-  // gel item false / undefined
   const [show, setShow] = useState<boolean>(false);
   useEffect(() => {
     // Execute the hook only once

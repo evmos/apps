@@ -1,9 +1,6 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { truncateAddress } from "../../internal/wallet/style/format";
-import ButtonWallet from "./ButtonWallet";
-import ContentModalConnect from "./ContentModalConnect";
-import Modal from "../common/Modal";
 import {
   KEPLR_KEY,
   METAMASK_KEY,
@@ -17,9 +14,11 @@ import {
   GetProviderFromLocalStorage,
   RemoveProviderFromLocalStorage,
 } from "../../internal/wallet/functionality/localstorage";
-import ViewExplorer from "../common/ViewExplorer";
 
-// Images
+const ButtonWallet = dynamic(() => import("./ButtonWallet"));
+const ContentModalConnect = dynamic(() => import("./ContentModalConnect"));
+const Modal = dynamic(() => import("../common/Modal"));
+const ViewExplorer = dynamic(() => import("../common/ViewExplorer"));
 const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
 const MetamaskIcon = dynamic(
   () => import("../common/images/icons/MetamaskIcon")

@@ -264,7 +264,7 @@ const AssetsTable = () => {
                               network: "EVMOS",
                               pubkey: value.evmosPubkey,
                               erc20Balance: item.erc20Balance,
-                              feeBalance: BigNumber.from("1"),
+                              feeBalance: newData.feeBalance,
                               networkTo: item.chainIdentifier,
                             });
                           }}

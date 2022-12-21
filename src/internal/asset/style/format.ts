@@ -67,3 +67,16 @@ export function amountToDolars(
     Number(formatNumber(convertFromAtto(value, decimals))) * coingeckoPrice
   ).toFixed(2);
 }
+
+export function truncateNumber(number: string) {
+  const index = number.indexOf(".");
+  if (index !== undefined) {
+    let end = index + 6;
+    if (end > number.length) {
+      end = number.length;
+    }
+    return parseFloat(number.substring(0, end));
+  } else {
+    return parseFloat(number);
+  }
+}

@@ -5,8 +5,10 @@ import {
   convertFromAtto,
   formatNumber,
   safeSubstraction,
+  truncateNumber,
 } from "../../../../internal/asset/style/format";
 import { truncateAddress } from "../../../../internal/wallet/style/format";
+import ErrorMessage from "./ErrorMessage";
 
 const NumericOnly = (value: string) => {
   //angka only
@@ -32,6 +34,8 @@ const FromContainer = ({
   value,
   tokenTo,
   setInputValue,
+  feeBalance,
+  confirmClicked,
 }: {
   token: string;
   address: string;
@@ -44,6 +48,8 @@ const FromContainer = ({
   value: string;
   tokenTo?: string;
   setInputValue: Dispatch<SetStateAction<string>>;
+  feeBalance: BigNumber;
+  confirmClicked?: boolean;
 }) => {
   return (
     <>
@@ -86,18 +92,24 @@ const FromContainer = ({
           MAX
         </button>
       </div>
-      {value === "0" && (
-        <p className="text-red text-xs italic pl-2">
-          Amount to transfer can not be 0.
-        </p>
+
+      {value === "0" && <ErrorMessage text="Amount to transfer can not be 0" />}
+
+      {confirmClicked && value === "" && (
+        <ErrorMessage text="Amount can not be empty" />
       )}
 
-      {/* {value !== "" && BigNumber.from(value).gt(BigNumber.from(amount)) && (
-        <p className="text-red text-xs italic pl-2">Insufficient funds.</p>
-      )} */}
+      {truncateNumber(value) >
+        truncateNumber(NumericOnly(convertFromAtto(amount, decimals))) && (
+        <ErrorMessage text="Amount is bigger that the actual balance" />
+      )}
       <div>
         <span className="font-bold">Balance: </span>
-        {formatNumber(convertFromAtto(amount, decimals))} {token}
+        {formatNumber(convertFromAtto(amount, decimals))} {tokenTo}
+      </div>
+      <div>
+        <span className="font-bold">Fee denom ({feeDenom}) Balance: </span>
+        {formatNumber(convertFromAtto(feeBalance))} {feeDenom}
       </div>
     </>
   );

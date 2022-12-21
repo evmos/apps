@@ -48,6 +48,7 @@ const Convert = ({ values }: ModalProps) => {
           decimals={values.decimals}
           value={inputValue}
           setInputValue={setInputValue}
+          feeBalance={values.feeBalance}
         />
         <div>
           <span className="font-bold">Select balance:</span>

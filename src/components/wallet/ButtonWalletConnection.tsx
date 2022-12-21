@@ -14,19 +14,14 @@ import {
   GetProviderFromLocalStorage,
   RemoveProviderFromLocalStorage,
 } from "../../internal/wallet/functionality/localstorage";
-
-const ButtonWallet = dynamic(() => import("./ButtonWallet"));
-const ContentModalConnect = dynamic(() => import("./ContentModalConnect"));
-const Modal = dynamic(() => import("../common/Modal"));
-const ViewExplorer = dynamic(() => import("../common/ViewExplorer"));
-const WalletIcon = dynamic(() => import("../common/images/icons/WalletIcon"));
-const MetamaskIcon = dynamic(
-  () => import("../common/images/icons/MetamaskIcon")
-);
-const KeplrIcon = dynamic(() => import("../common/images/icons/KeplrIcon"));
-const WalletConnectIcon = dynamic(
-  () => import("../common/images/icons/WalletConnectIcon")
-);
+import MetamaskIcon from "../common/images/icons/MetamaskIcon";
+import KeplrIcon from "../common/images/icons/KeplrIcon";
+import Modal from "../common/Modal";
+import ViewExplorer from "../common/ViewExplorer";
+import WalletIcon from "../common/images/icons/WalletIcon";
+import ButtonWallet from "./ButtonWallet";
+import ContentModalConnect from "./ContentModalConnect";
+import WalletConnectIcon from "../common/images/icons/WalletConnectIcon";
 
 // Components
 const Button = dynamic(() => import("../common/Button"));

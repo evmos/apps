@@ -16,16 +16,16 @@ const Convert = ({ values }: ModalProps) => {
   const [inputValue, setInputValue] = useState("");
 
   const wallet = useSelector((state: StoreType) => state.wallet.value);
-  const [selected, setSelected] = useState(false);
+  const [selectedERC20, setSelectedERC20] = useState(false);
 
   const [amountMax, setAmountMax] = useState(BigNumber.from("0"));
   useEffect(() => {
-    if (!selected) {
+    if (!selectedERC20) {
       setAmountMax(values.amount);
     } else {
       setAmountMax(values.erc20Balance);
     }
-  }, [selected, values]);
+  }, [selectedERC20, values]);
   return (
     <div className="text-darkGray3">
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
@@ -47,8 +47,8 @@ const Convert = ({ values }: ModalProps) => {
             cosmosBalance={values.amount}
             decimals={values.decimals}
             erc20Balance={values.erc20Balance}
-            selected={selected}
-            setSelected={setSelected}
+            selectedERC20={selectedERC20}
+            setSelectedERC20={setSelectedERC20}
           />
         </div>
         <div className="text-xs font-bold opacity-80">
@@ -75,7 +75,7 @@ const Convert = ({ values }: ModalProps) => {
               wallet.evmosPubkey,
               wallet.evmosAddressCosmosFormat,
               params,
-              selected,
+              selectedERC20,
               values.feeBalance,
               wallet.extensionName
             );

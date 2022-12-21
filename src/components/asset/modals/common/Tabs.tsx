@@ -9,24 +9,24 @@ const Tabs = ({
   cosmosBalance,
   erc20Balance,
   decimals,
-  selected,
-  setSelected,
+  selectedERC20,
+  setSelectedERC20,
 }: {
   cosmosBalance: BigNumber;
   erc20Balance: BigNumber;
   decimals: number;
-  selected: boolean;
-  setSelected: Dispatch<SetStateAction<boolean>>;
+  selectedERC20: boolean;
+  setSelectedERC20: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
     <div className="flex items-center w-full border border-darkGray1 bg-pearl justify-center rounded font-bold font-[IBM] ">
       <button
         className={`${
-          selected ? "text-pearl bg-darkGray1 " : "text-darkGray1"
+          selectedERC20 ? "text-pearl bg-darkGray1 " : "text-darkGray1"
         }border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col`}
         onClick={() => {
-          if (!selected) {
-            setSelected(!selected);
+          if (!selectedERC20) {
+            setSelectedERC20(!selectedERC20);
           }
         }}
       >
@@ -38,11 +38,11 @@ const Tabs = ({
       </button>
       <button
         className={`${
-          selected ? "text-darkGray1" : "text-pearl bg-darkGray1 "
+          selectedERC20 ? "text-darkGray1" : "text-pearl bg-darkGray1 "
         }border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col`}
         onClick={() => {
-          if (selected) {
-            setSelected(!selected);
+          if (selectedERC20) {
+            setSelectedERC20(!selectedERC20);
           }
         }}
       >

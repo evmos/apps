@@ -42,7 +42,7 @@ const FromContainer = ({
   img: string;
   text?: string;
   value: string;
-  tokenTo: string;
+  tokenTo?: string;
   setInputValue: Dispatch<SetStateAction<string>>;
 }) => {
   return (

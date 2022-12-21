@@ -1,12 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import MessageTable from "./MessageTable";
 import { useSelector } from "react-redux";
 import Image from "next/image";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { DataModal, EmptyDataModal } from "../modals/types";
 import { StoreType } from "../../../redux/Store";
-import { ERC20BalanceResponse, TableData } from "./types";
+import { ERC20BalanceResponse } from "./types";
 import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
 import Switch from "../utils/Switch";
 import {
@@ -18,11 +18,14 @@ import ModalAsset from "../modals/ModalAsset";
 import ExternalLinkIcon from "../../common/images/icons/ExternalLink";
 import Link from "next/link";
 import { METAMASK_KEY } from "../../../internal/wallet/functionality/wallet";
+import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
+import {
+  normalizeAssetsData,
+  TableData,
+} from "../../../internal/asset/functionality/table/normalizeData";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
-
-  const close = useCallback(() => setShow(false), []);
 
   const [modalValues, setModalValues] = useState<DataModal>(EmptyDataModal);
 
@@ -43,49 +46,22 @@ const AssetsTable = () => {
 
   const [hideZeroBalance, setHideBalance] = useState(false);
 
-  const newData = useMemo<TableData>(() => {
-    const temp: TableData = { table: [], feeBalance: BigNumber.from(0) };
-
-    data?.balance.map((item) => {
-      let external = null;
-      if (
-        item.handledByExternalUI !== null &&
-        item.handledByExternalUI.length > 0
-      ) {
-        external = item.handledByExternalUI[0];
-      }
-      if (item.tokenName.toUpperCase() === "EVMOS") {
-        temp.feeBalance = BigNumber.from(item.cosmosBalance);
-      }
-      temp.table.push({
-        name: item.name,
-        cosmosBalance: BigNumber.from(item.cosmosBalance),
-        decimals: parseInt(item.decimals, 10),
-        description: item.description,
-        erc20Balance: BigNumber.from(item.erc20Balance),
-        symbol: item.symbol,
-        tokenName: item.tokenName,
-        chainId: item.chainId,
-        chainIdentifier: item.chainIdentifier,
-        handledByExternalUI: external,
-        coingeckoPrice: Number(item.coingeckoPrice),
-      });
-    });
-    return temp;
+  const normalizedAssetsData = useMemo<TableData>(() => {
+    return normalizeAssetsData(data);
   }, [data]);
 
   const tableData = useMemo(() => {
-    return newData?.table.filter((asset) => {
+    return normalizedAssetsData?.table.filter((asset) => {
       if (
         hideZeroBalance === true &&
-        asset.erc20Balance.eq(BigNumber.from("0")) &&
-        asset.cosmosBalance.eq(BigNumber.from("0"))
+        asset.erc20Balance.eq(BIG_ZERO) &&
+        asset.cosmosBalance.eq(BIG_ZERO)
       ) {
         return false;
       }
       return true;
     });
-  }, [newData, hideZeroBalance]);
+  }, [normalizedAssetsData, hideZeroBalance]);
 
   return (
     <>
@@ -116,7 +92,7 @@ const AssetsTable = () => {
             {error && !isLoading && tableData?.length === 0 && (
               <MessageTable>
                 <>
-                  {/* add exclamation icon */}
+                  {/* TODO: add exclamation icon */}
                   <p>Request failed</p>
                 </>
               </MessageTable>
@@ -289,7 +265,7 @@ const AssetsTable = () => {
                             pubkey: value.evmosPubkey,
                             fee: BigNumber.from("1"),
                             erc20Balance: item.erc20Balance,
-                            feeBalance: newData.feeBalance,
+                            feeBalance: normalizedAssetsData.feeBalance,
                             networkTo: item.chainIdentifier,
                           });
                         }}
@@ -308,7 +284,13 @@ const AssetsTable = () => {
           </tbody>
         </table>
       </div>
-      <ModalAsset show={show} modalValues={modalValues} close={close} />
+      <ModalAsset
+        show={show}
+        modalValues={modalValues}
+        close={() => {
+          setShow(false);
+        }}
+      />
     </>
   );
 };

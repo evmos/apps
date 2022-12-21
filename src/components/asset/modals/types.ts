@@ -1,17 +1,18 @@
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
+import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 
 export const EmptyDataModal = {
   token: "",
   address: "",
-  amount: BigNumber.from("0"),
+  amount: BIG_ZERO,
   title: "",
   network: "",
   decimals: 1,
-  fee: BigNumber.from("0"),
+  fee: BIG_ZERO,
   feeDenom: "",
   pubkey: "",
-  erc20Balance: BigNumber.from("0"),
-  feeBalance: BigNumber.from("0"),
+  erc20Balance: BIG_ZERO,
+  feeBalance: BIG_ZERO,
   networkTo: "",
 };
 

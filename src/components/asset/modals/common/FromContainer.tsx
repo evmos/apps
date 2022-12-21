@@ -1,4 +1,4 @@
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import Image from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import {

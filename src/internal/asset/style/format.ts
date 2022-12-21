@@ -1,4 +1,6 @@
-import { BigNumber, utils } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
+import { formatUnits } from "@ethersproject/units";
+import { BIG_ZERO } from "../../common/math/Bignumbers";
 
 export function getReservedForFeeText(
   amount: BigNumber,
@@ -11,7 +13,7 @@ export function getReservedForFeeText(
 export function safeSubstraction(amount: BigNumber, fee: BigNumber) {
   const substraction = amount.sub(fee);
   if (substraction.lte(0)) {
-    return BigNumber.from(0);
+    return BIG_ZERO;
   }
   return substraction;
 }
@@ -28,7 +30,7 @@ export function convertFromAtto(value: BigNumber, exponent = 18) {
       useGrouping: false,
     });
   }
-  return utils.formatUnits(valueAsString.split(".")[0], exponent);
+  return formatUnits(valueAsString.split(".")[0], exponent);
 }
 
 export function formatNumber(

@@ -1,4 +1,5 @@
-import { BigNumber, utils } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
+import { parseUnits } from "@ethersproject/units";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { executeIBC } from "../../../../internal/asset/functionality/transactions/ibcTransfer";
@@ -74,9 +75,10 @@ const Withdraw = ({ values }: ModalProps) => {
           const params: IBCChainParams = {
             sender: values.address,
             receiver: addressTo,
-            amount: utils
-              .parseUnits(inputValue, BigNumber.from(values.decimals))
-              .toString(),
+            amount: parseUnits(
+              inputValue,
+              BigNumber.from(values.decimals)
+            ).toString(),
             srcChain: "EVMOS",
             dstChain: values.networkTo,
             token: values.tokenTo,

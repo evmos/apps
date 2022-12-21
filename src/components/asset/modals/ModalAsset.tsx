@@ -1,4 +1,4 @@
-import { BigNumber } from "ethers";
+import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import Modal from "../../common/Modal";
 import { ModalsTypes } from "./constants";
 import Convert from "./transactions/Convert";
@@ -36,7 +36,7 @@ const ModalAsset = ({
               fee: modalValues.fee,
               feeDenom: "EVMOS",
               decimals: modalValues.decimals,
-              erc20Balance: BigNumber.from("0"),
+              erc20Balance: BIG_ZERO,
               feeBalance: modalValues.feeBalance,
               networkTo: modalValues.networkTo,
             }}
@@ -56,7 +56,7 @@ const ModalAsset = ({
               imgFrom: `/tokens/evmos.png`,
               imgTo: `/tokens/${modalValues.token.toLowerCase()}.png`,
               decimals: modalValues.decimals,
-              erc20Balance: BigNumber.from("0"),
+              erc20Balance: BIG_ZERO,
               feeBalance: modalValues.feeBalance,
               networkTo: modalValues.networkTo,
             }}

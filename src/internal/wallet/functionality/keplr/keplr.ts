@@ -21,7 +21,10 @@ import {
   EVMOS_GRPC_URL,
   OSMOSIS_CHAIN_ID,
 } from "../networkConfig";
-import { NotifyError, NotifySuccess } from "../notifications";
+import {
+  NotifyError,
+  NotifySuccess,
+} from "../../../common/notifications/notifications";
 import { KEPLR_KEY } from "../wallet";
 import {
   subscribeToKeplrEvents,

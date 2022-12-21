@@ -5,30 +5,102 @@ import {
 import { BigNumber, utils } from "ethers";
 import { signBackendTx } from "../../../wallet/functionality/signing/genericSigner";
 import { broadcastEip712ToBackend } from "../../../wallet/functionality/signing";
-import { TxConvert, IBCTransferResponse, ConvertMsg, ErrorTx } from "./types";
+import { IBCTransferResponse, ConvertMsg } from "./types";
 
-async function convertCoin(
-  transactionBody: TxConvert
-): Promise<IBCTransferResponse> {
-  const post = await fetch(`${EVMOS_BACKEND}/convertCoin`, {
-    method: "post",
-    body: JSON.stringify(transactionBody),
-    headers: { "Content-Type": "application/json" },
-  });
-  const data = (await post.json()) as IBCTransferResponse;
-  return data;
+const feeAmountForConvert = BigNumber.from("30000000000000000");
+
+async function convertCoinBackendCall(
+  pubkey: string,
+  address: string,
+  params: ConvertMsg
+): Promise<{
+  error: boolean;
+  message: string;
+  data: IBCTransferResponse | null;
+}> {
+  try {
+    const post = await fetch(`${EVMOS_BACKEND}/convertCoin`, {
+      method: "post",
+      body: JSON.stringify({
+        transaction: {
+          pubKey: pubkey,
+          sender: address,
+        },
+        message: {
+          srcChain: params.srcChain.toUpperCase(),
+          sender: params.addressCosmos,
+          receiver: params.addressEth,
+          amount: params.amount,
+          token: params.token,
+        },
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = (await post.json()) as IBCTransferResponse;
+    if ("error" in data) {
+      // TODO: add sentry call here!
+      return {
+        error: true,
+        message: "Error generating the transaction, please try again later",
+        data: null,
+      };
+    }
+    return { error: false, message: "", data: data };
+  } catch (e) {
+    // TODO: add sentry call here!
+    return {
+      error: true,
+      message: "Error generating the transaction, please try again later",
+      data: null,
+    };
+  }
 }
 
-async function convertERC20(
-  transactionBody: TxConvert
-): Promise<IBCTransferResponse> {
-  const post = await fetch(`${EVMOS_BACKEND}/convertERC20`, {
-    method: "post",
-    body: JSON.stringify(transactionBody),
-    headers: { "Content-Type": "application/json" },
-  });
-  const data = (await post.json()) as IBCTransferResponse;
-  return data;
+async function convertERC20BackendCall(
+  pubkey: string,
+  address: string,
+  params: ConvertMsg
+): Promise<{
+  error: boolean;
+  message: string;
+  data: IBCTransferResponse | null;
+}> {
+  try {
+    const post = await fetch(`${EVMOS_BACKEND}/convertERC20`, {
+      method: "post",
+      body: JSON.stringify({
+        transaction: {
+          pubKey: pubkey,
+          sender: address,
+        },
+        message: {
+          srcChain: params.srcChain.toUpperCase(),
+          sender: params.addressEth,
+          receiver: params.addressCosmos,
+          amount: params.amount,
+          token: params.token,
+        },
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = (await post.json()) as IBCTransferResponse;
+    if ("error" in data) {
+      // TODO: add sentry call here!
+      return {
+        error: true,
+        message: "Error generating the transaction, please try again later",
+        data: null,
+      };
+    }
+    return { error: false, message: "", data };
+  } catch (e) {
+    // TODO: add sentry call here!
+    return {
+      error: true,
+      message: "Error generating the transaction, please try again later",
+      data: null,
+    };
+  }
 }
 
 export async function executeConvert(
@@ -39,62 +111,60 @@ export async function executeConvert(
   feeBalance: BigNumber,
   extension: string
 ) {
-  const txBodyConvertCoin = {
-    transaction: {
-      pubKey: pubkey,
-      sender: address,
-    },
-    message: {
-      srcChain: params.srcChain.toUpperCase(),
-      sender: params.addressCosmos,
-      receiver: params.addressEth,
-      amount: params.amount,
-      token: params.token,
-    },
-  };
-
-  const txBodyConvertERC20 = {
-    transaction: {
-      pubKey: pubkey,
-      sender: address,
-    },
-    message: {
-      srcChain: params.srcChain.toUpperCase(),
-      sender: params.addressEth,
-      receiver: params.addressCosmos,
-      amount: params.amount,
-      token: params.token,
-    },
-  };
-  let tx: IBCTransferResponse | ErrorTx;
-
-  if (feeBalance.lt(BigNumber.from("30000000000000000"))) {
-    return;
+  if (feeBalance.lt(feeAmountForConvert)) {
+    return {
+      error: true,
+      message: "Insuficient EVMOS balance to pay the fee",
+      title: "Wrong params",
+    };
   }
 
   if (utils.parseEther(params.amount).lte(BigNumber.from("0"))) {
-    return;
+    return {
+      error: true,
+      message: "Amount to send must be bigger than 0",
+      title: "Wrong params",
+    };
   }
 
   //  TODO: if value is bigger than amount, return error
+  let tx;
   if (!isConvertCoin) {
-    tx = await convertCoin(txBodyConvertCoin);
+    tx = await convertCoinBackendCall(pubkey, address, params);
   } else {
-    tx = await convertERC20(txBodyConvertERC20);
+    tx = await convertERC20BackendCall(pubkey, address, params);
   }
-  const sign = await signBackendTx(address, tx, extension);
-  if (sign.signature !== null) {
-    const broadEip712 = await broadcastEip712ToBackend(
-      EVMOS_CHAIN.chainId,
-      address,
-      sign.signature,
-      tx.legacyAmino.body,
-      tx.legacyAmino.authInfo
-    );
-    console.log(broadEip712);
+
+  if (tx.error === true || tx.data === null) {
+    // Error generating the transaction
+    return { error: true, message: tx.message, title: "Error generating tx" };
   }
-  // TODO: show right notifications
-  // if (isErrorTx(tx)) {
-  //   return { executed: false, msg: tx.error, explorerTxUrl: "" };
-  // }
+
+  const sign = await signBackendTx(address, tx.data, extension);
+  if (sign.result === false || sign.signature === null) {
+    return { error: true, message: sign.message, title: "Error signing tx" };
+  }
+
+  const broadcastResponse = await broadcastEip712ToBackend(
+    EVMOS_CHAIN.chainId,
+    address,
+    sign.signature,
+    tx.data.legacyAmino.body,
+    tx.data.legacyAmino.authInfo
+  );
+
+  if (broadcastResponse.error === true) {
+    // TODO: add sentry call here!
+    return {
+      error: true,
+      message: broadcastResponse.message,
+      title: "Error broadcasting tx",
+    };
+  }
+
+  return {
+    error: true,
+    message: `Transaction submit with hash: ${broadcastResponse.txhash}`,
+    title: "Error broadcasting tx",
+  };
 }

@@ -18,7 +18,10 @@ import {
   SaveProviderToLocalStorate,
 } from "../localstorage";
 import { EVMOS_GRPC_URL } from "../networkConfig";
-import { NotifyError, NotifySuccess } from "../notifications";
+import {
+  NotifyError,
+  NotifySuccess,
+} from "../../../common/notifications/notifications";
 import { queryPubKey } from "../pubkey";
 import { METAMASK_KEY } from "../wallet";
 import {

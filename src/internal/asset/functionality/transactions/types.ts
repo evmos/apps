@@ -43,6 +43,3 @@ export interface TxConvert {
   transaction: Transaction;
   message: Message;
 }
-export interface ErrorTx {
-  error: string;
-}

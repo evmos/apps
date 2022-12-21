@@ -16,6 +16,7 @@ import {
 import Button from "../../common/Button";
 import ModalAsset from "../modals/ModalAsset";
 import ExternalLinkIcon from "../../common/images/icons/ExternalLink";
+import Link from "next/link";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -186,14 +187,19 @@ const AssetsTable = () => {
                       {item.handledByExternalUI !== null ? (
                         <Button
                           onClick={() => {
-                            if (item.handledByExternalUI !== null) {
-                              console.log(item.handledByExternalUI.url);
-                            }
+                            // noop, redirect handled by the Link element
                           }}
                         >
-                          <div className="flex flex-row items-center">
-                            <span className="px-2">Deposit</span>
-                            <ExternalLinkIcon width={18} height={18} />
+                          <div>
+                            <Link
+                              target="_blank"
+                              rel="noreferrer"
+                              href={item.handledByExternalUI.url}
+                              className="flex flex-row items-center"
+                            >
+                              <span className="px-2">Deposit</span>
+                              <ExternalLinkIcon width={18} height={18} />
+                            </Link>
                           </div>
                         </Button>
                       ) : (
@@ -225,14 +231,19 @@ const AssetsTable = () => {
                       {item.handledByExternalUI !== null ? (
                         <Button
                           onClick={() => {
-                            if (item.handledByExternalUI !== null) {
-                              console.log(item.handledByExternalUI.url);
-                            }
+                            // noop, redirect handled by the Link element
                           }}
                         >
-                          <div className="flex flex-row items-center">
-                            <span className="px-2">Withdraw</span>
-                            <ExternalLinkIcon width={18} height={18} />
+                          <div>
+                            <Link
+                              target="_blank"
+                              rel="noreferrer"
+                              href={item.handledByExternalUI.url}
+                              className="flex flex-row items-center"
+                            >
+                              <span className="px-2">Withdraw</span>
+                              <ExternalLinkIcon width={18} height={18} />
+                            </Link>
                           </div>
                         </Button>
                       ) : (
@@ -261,45 +272,30 @@ const AssetsTable = () => {
                           </div>
                         </Button>
                       )}
-                      {item.handledByExternalUI !== null ? (
-                        <Button
-                          onClick={() => {
-                            if (item.handledByExternalUI !== null) {
-                              console.log(item.handledByExternalUI.url);
-                            }
-                          }}
-                        >
-                          <div className="flex flex-row items-center">
-                            <span className="px-2">Withdraw</span>
-                            <ExternalLinkIcon width={18} height={18} />
-                          </div>
-                        </Button>
-                      ) : (
-                        <Button
-                          onClick={() => {
-                            setShow(true);
-                            setModalValues({
-                              token: item.symbol,
-                              address: address,
-                              amount: item.cosmosBalance,
-                              decimals: item?.decimals,
-                              feeDenom: "aevmos",
-                              title: "Convert",
-                              network: "EVMOS",
-                              pubkey: value.evmosPubkey,
-                              fee: BigNumber.from("1"),
-                              erc20Balance: item.erc20Balance,
-                              feeBalance: newData.feeBalance,
-                            });
-                          }}
-                        >
-                          <div className="flex flex-row items-center">
-                            <div className="min-w-[9px] min-h-[9px]" />
-                            <span className="px-2">Convert</span>
-                            <div className="min-w-[9px] min-h-[9px]" />
-                          </div>
-                        </Button>
-                      )}
+                      <Button
+                        onClick={() => {
+                          setShow(true);
+                          setModalValues({
+                            token: item.symbol,
+                            address: address,
+                            amount: item.cosmosBalance,
+                            decimals: item?.decimals,
+                            feeDenom: "aevmos",
+                            title: "Convert",
+                            network: "EVMOS",
+                            pubkey: value.evmosPubkey,
+                            fee: BigNumber.from("1"),
+                            erc20Balance: item.erc20Balance,
+                            feeBalance: newData.feeBalance,
+                          });
+                        }}
+                      >
+                        <div className="flex flex-row items-center">
+                          <div className="min-w-[9px] min-h-[9px]" />
+                          <span className="px-2">Convert</span>
+                          <div className="min-w-[9px] min-h-[9px]" />
+                        </div>
+                      </Button>
                     </div>
                   </td>
                 </tr>

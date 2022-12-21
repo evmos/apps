@@ -67,7 +67,6 @@ const Convert = ({ values }: ModalProps) => {
           await executeConvert(
             wallet.evmosPubkey,
             wallet.evmosAddressCosmosFormat,
-            wallet.evmosAddressEthFormat,
             params,
             selected,
             values.feeBalance,

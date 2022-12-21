@@ -37,6 +37,7 @@ const ModalAsset = ({
               feeDenom: "EVMOS",
               decimals: modalValues.decimals,
               erc20Balance: BigNumber.from("0"),
+              feeBalance: modalValues.feeBalance,
             }}
           />
         )}
@@ -55,6 +56,7 @@ const ModalAsset = ({
               imgTo: `/tokens/${modalValues.token.toLowerCase()}.png`,
               decimals: modalValues.decimals,
               erc20Balance: BigNumber.from("0"),
+              feeBalance: modalValues.feeBalance,
             }}
           />
         )}

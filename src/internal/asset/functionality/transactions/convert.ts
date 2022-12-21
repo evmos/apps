@@ -80,7 +80,6 @@ async function convertERC20(
 export async function executeConvert(
   pubkey: string | null,
   address: string,
-  addressEth: string,
   params: ConvertMsg,
   isConvertCoin: boolean,
   feeBalance: BigNumber,
@@ -114,32 +113,22 @@ export async function executeConvert(
 
   //   si el valor es mayor que el amount, return
   if (!isConvertCoin) {
-    console.log("entre a convert coin");
     tx = await convertCoin(txBody);
   } else {
-    console.log("entre a convert erc20");
-
     tx = await convertERC20(txBody);
   }
-  const qwe = await signBackendTx(address, tx, extension);
-  console.log(qwe);
-  if (qwe.signature !== null) {
-    await broadcastEip712ToBackend(
+  const sign = await signBackendTx(address, tx, extension);
+  if (sign.signature !== null) {
+    const broadEip712 = await broadcastEip712ToBackend(
       EVMOS_CHAIN.chainId,
       address,
-      qwe.signature,
+      sign.signature,
       tx.legacyAmino.body,
       tx.legacyAmino.authInfo
     );
+    console.log(broadEip712);
   }
   // if (isErrorTx(tx)) {
   //   return { executed: false, msg: tx.error, explorerTxUrl: "" };
   // }
-
-  // return await signAndBroadcast(
-  //   activeWallet,
-  //   tx,
-  //   activeWallet?.evmosAddress,
-  //   "EVMOS"
-  // );
 }

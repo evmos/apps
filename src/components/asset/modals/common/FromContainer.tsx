@@ -71,7 +71,7 @@ const FromContainer = ({
         <button
           onClick={() => {
             // not totally working. check
-            if (token.toUpperCase() === feeDenom.toUpperCase()) {
+            if (token.toUpperCase() !== feeDenom.toUpperCase()) {
               setInputValue(NumericOnly(convertFromAtto(amount, decimals)));
             } else {
               // TODO: same unit

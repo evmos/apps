@@ -154,8 +154,6 @@ function cosmosChainIdToEth(chainId: string) {
   const end = chainId.indexOf("-");
   if (start !== undefined && end !== undefined) {
     try {
-      console.log(start);
-      console.log(end);
       return parseInt(chainId.substring(start + 1, end), 10);
     } catch (e) {
       return -1;

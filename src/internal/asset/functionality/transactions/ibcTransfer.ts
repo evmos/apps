@@ -81,7 +81,6 @@ export async function executeIBC(
 
   //  TODO: if value is bigger than amount, return error
   const tx = await ibcTransferBackendCall(pubkey, address, params);
-  console.log(tx);
   if (tx.error === true || tx.data === null) {
     // Error generating the transaction
     return { error: true, message: tx.message, title: "Error generating tx" };

@@ -56,6 +56,7 @@ const ContentCard = ({
                     {convertAndFormat(item.cosmosBalance, item.decimals)}
                   </p>
                   <p>
+                    $
                     {amountToDolars(
                       item.cosmosBalance,
                       item.decimals,
@@ -71,7 +72,7 @@ const ContentCard = ({
                     {convertAndFormat(item.erc20Balance, item.decimals)}
                   </p>
                   <p>
-                    {" "}
+                    $
                     {amountToDolars(
                       item.erc20Balance,
                       item.decimals,

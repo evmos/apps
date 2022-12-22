@@ -12,7 +12,8 @@ import dynamic from "next/dynamic";
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
 const MessageTable = dynamic(() => import("./MessageTable"));
 const Switch = dynamic(() => import("../utils/Switch"));
-const Content = dynamic(() => import("./Content"));
+// const Content = dynamic(() => import("./Content"));
+const ContentCard = dynamic(() => import("../../card/Content"));
 
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
@@ -64,17 +65,16 @@ const AssetsTable = () => {
         onChange={() => setHideBalance(!hideZeroBalance)}
         checked={hideZeroBalance}
       />
-      <div className="mt-10 overflow-y-auto max-h-full md:max-h-[70vh] xl:scrollbar-hide">
+      <div className="mt-5 overflow-y-auto max-h-[60vh] md:max-h-[65vh] xl:scrollbar-hide">
         <table className="text-white w-full font-[IBM]">
           <thead className="uppercase ">
-            <tr>
+            {/* <tr>
               <th className="text-left px-8 py-4 min-w-[350px]">Asset</th>
               <th className="text-left min-w-[200px]">IBC Balance</th>
               <th className="text-left min-w-[200px]">ERC-20 Balance</th>
               <th>Actions</th>
-            </tr>
+            </tr> */}
           </thead>
-          {/* <tbody className=""> */}
           <tbody>
             {isLoading && (
               <MessageTable>
@@ -89,7 +89,6 @@ const AssetsTable = () => {
           {error && !isLoading && tableData?.length === 0 && (
             <tbody>
               <MessageTable>
-                {/* TODO: add exclamation icon */}
                 <p>Request failed</p>
               </MessageTable>
             </tbody>
@@ -103,7 +102,12 @@ const AssetsTable = () => {
           )}
 
           {!isLoading && !error && tableData?.length > 0 && (
-            <Content
+            // <Content
+            //   tableData={normalizedAssetsData}
+            //   setShow={setShow}
+            //   setModalValues={setModalValues}
+            // />
+            <ContentCard
               tableData={normalizedAssetsData}
               setShow={setShow}
               setModalValues={setModalValues}

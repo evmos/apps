@@ -31,7 +31,7 @@ export async function getKeplrAddressByChain(chainId: string) {
     const accounts = await offlineSigner.getAccounts();
     if (!accounts || accounts.length === 0) {
       // Could not get accounts information
-      return false;
+      return null;
     }
     return accounts[0].address;
   } catch (e) {

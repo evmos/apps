@@ -14,6 +14,7 @@ export const EmptyDataModal = {
   erc20Balance: BIG_ZERO,
   feeBalance: BIG_ZERO,
   networkTo: "",
+  chainId: "",
 };
 
 export type DataModal = {
@@ -29,4 +30,5 @@ export type DataModal = {
   erc20Balance: BigNumber;
   feeBalance: BigNumber;
   networkTo: string;
+  chainId: string;
 };

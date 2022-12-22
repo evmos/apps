@@ -119,6 +119,7 @@ const Content = ({
                         erc20Balance: item.erc20Balance,
                         feeBalance: BigNumber.from("1"),
                         networkTo: item.chainIdentifier,
+                        chainId: item.chainId,
                       });
                     }}
                   >
@@ -164,6 +165,7 @@ const Content = ({
                         erc20Balance: item.erc20Balance,
                         feeBalance: tableData.feeBalance,
                         networkTo: item.chainIdentifier,
+                        chainId: item.chainId,
                       });
                     }}
                   >
@@ -190,6 +192,7 @@ const Content = ({
                       erc20Balance: item.erc20Balance,
                       feeBalance: tableData.feeBalance,
                       networkTo: item.chainIdentifier,
+                      chainId: item.chainId,
                     });
                   }}
                 >

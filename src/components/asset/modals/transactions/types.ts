@@ -19,4 +19,5 @@ export type ModalValues = {
   erc20Balance: BigNumber;
   feeBalance: BigNumber;
   networkTo: string;
+  chainId: string;
 };

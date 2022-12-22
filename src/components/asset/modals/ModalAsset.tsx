@@ -39,6 +39,7 @@ const ModalAsset = ({
               erc20Balance: BIG_ZERO,
               feeBalance: modalValues.feeBalance,
               networkTo: modalValues.networkTo,
+              chainId: modalValues.chainId,
             }}
           />
         )}
@@ -59,6 +60,7 @@ const ModalAsset = ({
               erc20Balance: BIG_ZERO,
               feeBalance: modalValues.feeBalance,
               networkTo: modalValues.networkTo,
+              chainId: modalValues.chainId,
             }}
           />
         )}
@@ -79,6 +81,7 @@ const ModalAsset = ({
               erc20Balance: modalValues.erc20Balance,
               feeBalance: modalValues.feeBalance,
               networkTo: modalValues.networkTo,
+              chainId: modalValues.chainId,
             }}
           />
         )}

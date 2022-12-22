@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { executeIBC } from "../../../../internal/asset/functionality/transactions/ibcTransfer";
 import { IBCChainParams } from "../../../../internal/asset/functionality/transactions/types";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
+import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
 import { StoreType } from "../../../../redux/Store";
 import ConfirmButton from "../../../common/ConfirmButton";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
@@ -77,8 +78,23 @@ const Withdraw = ({ values }: ModalProps) => {
               width={25}
               height={25}
               className="cursor-pointer"
-              onClick={() => {
-                setAddressTo("");
+              onClick={async () => {
+                const keplrAddress = await getKeplrAddressByChain(
+                  values.chainId
+                );
+                if (keplrAddress !== null) {
+                  setAddressTo(keplrAddress);
+                } else {
+                  dispatch(
+                    addSnackbar({
+                      id: 0,
+                      text: "Could not get information from Keplr",
+                      subtext:
+                        "Please unlock the extension and allow the app to access your wallet address",
+                      type: "error",
+                    })
+                  );
+                }
               }}
             />
           </div>

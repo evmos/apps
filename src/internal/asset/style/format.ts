@@ -84,3 +84,8 @@ export function truncateNumber(number: string) {
     return parseFloat(number);
   }
 }
+
+export function createBigNumber(value: string) {
+  // TODO: check if string has only numbers
+  return BigNumber.from(value);
+}

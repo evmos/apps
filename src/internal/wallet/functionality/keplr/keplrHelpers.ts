@@ -23,3 +23,18 @@ export function subscribeToKeplrEvents(handler: () => Promise<boolean>) {
     return;
   }
 }
+
+export async function getKeplrAddressByChain(chainId: string) {
+  if (!window.keplr) return null;
+  try {
+    const offlineSigner = window.keplr.getOfflineSigner(chainId);
+    const accounts = await offlineSigner.getAccounts();
+    if (!accounts || accounts.length === 0) {
+      // Could not get accounts information
+      return false;
+    }
+    return accounts[0].address;
+  } catch (e) {
+    return null;
+  }
+}

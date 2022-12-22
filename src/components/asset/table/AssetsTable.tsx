@@ -93,7 +93,10 @@ const AssetsTable = () => {
       <div className="mt-5 overflow-y-auto max-h-[57vh] lg:max-h-[65vh] xl:scrollbar-hide text-white font-[IBM] w-full">
         {!isLoading && !error && tableData?.length > 0 && showMobile && (
           <ContentCard
-            tableData={normalizedAssetsData}
+            tableData={{
+              table: tableData,
+              feeBalance: normalizedAssetsData.feeBalance,
+            }}
             setShow={setShow}
             setModalValues={setModalValues}
           />

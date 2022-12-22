@@ -21,6 +21,7 @@ import {
   TableData,
 } from "../../../internal/asset/functionality/table/normalizeData";
 import { useRouter } from "next/router";
+import HeadTable from "./HeadTable";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -98,11 +99,11 @@ const AssetsTable = () => {
           />
         )}
         <table className="w-full">
+          {tableData?.length === 0 && !showMobile && <HeadTable />}
           <tbody>
             {isLoading && (
               <MessageTable>
                 <>
-                  {" "}
                   <span className="loader"></span>
                   <p>Loading...</p>
                 </>
@@ -126,15 +127,7 @@ const AssetsTable = () => {
         </table>
         {!isLoading && !error && tableData?.length > 0 && !showMobile && (
           <table className="w-full">
-            <thead className="uppercase ">
-              <tr>
-                <th className="text-left px-8 py-4 min-w-[350px]">Asset</th>
-                <th className="text-left min-w-[200px]">IBC Balance</th>
-                <th className="text-left min-w-[200px]">ERC-20 Balance</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-
+            <HeadTable />
             <Content
               tableData={{
                 table: tableData,

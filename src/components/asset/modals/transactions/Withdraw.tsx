@@ -82,9 +82,7 @@ const Withdraw = ({ values }: ModalProps) => {
                 const keplrAddress = await getKeplrAddressByChain(
                   values.chainId
                 );
-                if (keplrAddress !== null) {
-                  setAddressTo(keplrAddress);
-                } else {
+                if (keplrAddress === null) {
                   dispatch(
                     addSnackbar({
                       id: 0,
@@ -94,7 +92,9 @@ const Withdraw = ({ values }: ModalProps) => {
                       type: "error",
                     })
                   );
+                  return;
                 }
+                setAddressTo(keplrAddress);
               }}
             />
           </div>

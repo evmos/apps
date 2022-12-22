@@ -9,7 +9,7 @@ const CommonWealthIcon = dynamic(() => import("./icons/CommonWealth"));
 
 const Footer = () => {
   return (
-    <footer className=" mb-10 flex lg:justify-between text-pearl w-full mt-10 flex-col items-center space-y-2">
+    <footer className=" mb-10 flex xl:justify-between text-pearl w-full mt-10 flex-col items-center space-y-2">
       <div className="flex items-center space-x-5">
         <Link
           target="_blank"

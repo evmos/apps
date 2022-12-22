@@ -29,11 +29,14 @@ const ContentCard = ({
   const value = useSelector((state: StoreType) => state.wallet.value);
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 w-fit mx-auto">
       {tableData?.table.map((item, index: number) => {
         return (
-          <div className="p-5 bg-darkGray2 rounded-lg space-y-3" key={index}>
-            <div className="flex items-center space-x-5">
+          <div
+            className="p-5 bg-darkGray2 rounded-lg space-y-3 w-[350px] sm:w-[450px] md:w-[600px]"
+            key={index}
+          >
+            <div className="flex items-center space-x-5 ">
               <Image
                 src={`/tokens/${item.symbol.toLocaleLowerCase()}.png`}
                 alt={item.symbol}

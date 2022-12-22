@@ -8,10 +8,10 @@ const ButtonWalletConnection = dynamic(
 
 const Header = () => {
   return (
-    <div className="md:h-32 mb-3 text-white flex flex-col md:flex-row md:items-center md:justify-between">
-      <div className="flex items-center justify-between md:justify-start">
-        <Link href={"/"} className="md:pr-14" aria-label="home">
-          <Logo className="w-32 md:w-36 h-20" />
+    <div className="xl:h-32 mb-3 text-white flex flex-col xl:flex-row xl:items-center xl:justify-between mx-5 xl:mx-0">
+      <div className="flex items-center justify-between xl:justify-start">
+        <Link href={"/"} className="xl:pr-14" aria-label="home">
+          <Logo className="w-32 xl:w-36 h-20" />
         </Link>
         <p className="text-xl font-bold">Assets</p>
       </div>

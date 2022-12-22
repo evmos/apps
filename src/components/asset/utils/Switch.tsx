@@ -6,7 +6,7 @@ const Switch = ({
   onChange: React.ChangeEventHandler<HTMLInputElement>;
 }) => {
   return (
-    <div className="flex justify-center md:justify-end mt-3 md:mt-0">
+    <div className="flex justify-center xl:justify-end mt-3 xl:mt-0">
       <label className="inline-flex relative items-center cursor-pointer">
         <input
           type="checkbox"

@@ -61,14 +61,14 @@ type BroadcastToBackendResponse = {
   tx_hash: string;
 };
 
-export async function broadcastEvmosjsSignedTxToBackend(
+export async function broadcastSignedTxToBackend(
   rawTx: {
     message: protoTxNamespace.txn.TxRaw;
     path: string;
   },
-  sender: Sender,
-  endpoint: string = EVMOS_BACKEND,
-  network: string = EVMOS_NETWORK_FOR_BACKEND
+  sender: string,
+  network: string = EVMOS_NETWORK_FOR_BACKEND,
+  endpoint: string = EVMOS_BACKEND
 ) {
   try {
     const postOptions = {
@@ -76,9 +76,7 @@ export async function broadcastEvmosjsSignedTxToBackend(
       headers: { "Content-Type": "application/json" },
       body: `{ "txBytes": [${rawTx.message
         .serializeBinary()
-        .toString()}], "sender": "${
-        sender.accountAddress
-      }", "network": "${network}" }`,
+        .toString()}], "sender": "${sender}", "network": "${network}" }`,
     };
     const broadcastPost = await fetchWithTimeout(
       `${endpoint}/broadcast`,
@@ -118,7 +116,7 @@ type BroadcastToGRPCResponse = {
   };
 };
 
-export async function broadcastEvmosjsSignedTxToGRPC(
+export async function broadcastSignedTxToGRPC(
   rawTx: {
     message: protoTxNamespace.txn.TxRaw;
     path: string;
@@ -164,7 +162,7 @@ export async function broadcastEvmosjsSignedTxToGRPC(
   }
 }
 
-export async function broadcastEip712ToBackend(
+export async function broadcastEip712BackendTxToBackend(
   chainId: number,
   feePayer: string,
   feePayerSig: string,

@@ -75,7 +75,7 @@ export class Signer {
         body: tx.legacyAmino.body,
         auth: tx.legacyAmino.authInfo,
       };
-      this.currentExtension === METAMASK_KEY;
+      this.currentExtension = METAMASK_KEY;
       return {
         result: res.result,
         message: res.message,
@@ -91,7 +91,7 @@ export class Signer {
         };
       }
       this.keplrBackendData = { tx: res.transaction, sender, network };
-      this.currentExtension === KEPLR_KEY;
+      this.currentExtension = KEPLR_KEY;
       return {
         result: res.result,
         message: res.message,

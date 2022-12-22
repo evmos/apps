@@ -42,7 +42,7 @@ const Snackbar = ({
         ${type === "success" ? "text-white bg-green" : ""}
         ${type === "error" ? "text-white bg-red" : ""}
         ${type === "default" ? "bg-darkPearl text-darkGray2" : ""}
-        inline-flex  p-2 min-w-[280px] max-w-[360px] overflow-hidden rounded-lg shadow-[0px 4px 8px rgba(0, 0, 0, 0.5)] pointer-events-auto`}
+        inline-flex  p-2 min-w-[280px] max-w-[360px] overflow-hidden rounded-lg shadow-[0px 4px 8px rgba(0, 0, 0, 0.5)] pointer-events-auto break-all`}
       >
         <div className="space-x-2 flex-auto p-2 self-center w-full">
           <div className="flex font-bold items-center w-full">

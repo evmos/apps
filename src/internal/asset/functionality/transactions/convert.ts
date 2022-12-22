@@ -165,8 +165,8 @@ export async function executeConvert(
   }
 
   return {
-    error: true,
+    error: false,
     message: `Transaction submit with hash: ${broadcastResponse.txhash}`,
-    title: "Error broadcasting tx",
+    title: "Successfully broadcasted",
   };
 }

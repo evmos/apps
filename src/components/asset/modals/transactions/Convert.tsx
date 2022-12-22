@@ -112,6 +112,7 @@ const Convert = ({ values }: ModalProps) => {
                 type: "error",
               })
             );
+            // TODO: 0.0000001 too many decimals, now appears the positive number error
             // TODO: close modal
             return;
           }

@@ -8,7 +8,6 @@ import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import { StoreType } from "../../../../redux/Store";
 import ConfirmButton from "../../../common/ConfirmButton";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
-import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
 import { addSnackbar } from "../../../notification/redux/notificationSlice";
 import Arrow from "../common/Arrow";
 import ErrorMessage from "../common/ErrorMessage";
@@ -74,8 +73,14 @@ const Withdraw = ({ values }: ModalProps) => {
           </h6>
           <div className="flex items-center space-x-5 w-full justify-end">
             <span className="uppercase font-bold">Autofill</span>
-            <MetamaskIcon width={25} height={25} />
-            <KeplrIcon width={25} height={25} />
+            <KeplrIcon
+              width={25}
+              height={25}
+              className="cursor-pointer"
+              onClick={() => {
+                setAddressTo("");
+              }}
+            />
           </div>
         </div>
       </div>

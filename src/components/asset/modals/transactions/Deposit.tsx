@@ -26,6 +26,7 @@ const Deposit = ({ values }: ModalProps) => {
           value={inputValue}
           setInputValue={setInputValue}
           feeBalance={values.feeBalance}
+          tokenTo={values.tokenTo}
         />
         <div className="text-xs font-bold opacity-80">
           {getReservedForFeeText(values.fee, values.feeDenom, values.network)}

@@ -93,7 +93,9 @@ const FromContainer = ({
         </button>
       </div>
 
-      {value === "0" && <ErrorMessage text="Amount to transfer can not be 0" />}
+      {truncateNumber(value) === 0 && (
+        <ErrorMessage text="Amount to transfer can not be 0" />
+      )}
 
       {confirmClicked && value === "" && (
         <ErrorMessage text="Amount can not be empty" />

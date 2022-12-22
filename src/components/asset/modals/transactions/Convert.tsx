@@ -23,7 +23,7 @@ const Convert = ({ values }: ModalProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const [selectedERC20, setSelectedERC20] = useState(false);
 
-  const [convertClicked, setConvertClicked] = useState(false);
+  const [confirmClicked, setConfirmClicked] = useState(false);
 
   const [amountMax, setAmountMax] = useState(BIG_ZERO);
   useEffect(() => {
@@ -37,8 +37,6 @@ const Convert = ({ values }: ModalProps) => {
   return (
     <div className="text-darkGray3">
       <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
-        {/* TODO:style this error */}
-        {convertClicked && inputValue === "" && <span>Error</span>}
         <FromContainer
           token={values.token}
           address={values.address}
@@ -51,6 +49,8 @@ const Convert = ({ values }: ModalProps) => {
           value={inputValue}
           setInputValue={setInputValue}
           feeBalance={values.feeBalance}
+          confirmClicked={confirmClicked}
+          tokenTo={values.tokenTo}
         />
         <div>
           <span className="font-bold">Select balance:</span>
@@ -72,7 +72,7 @@ const Convert = ({ values }: ModalProps) => {
       </div>
       <ConfirmButton
         onClick={async () => {
-          setConvertClicked(true);
+          setConfirmClicked(true);
           if (wallet.evmosPubkey === null) {
             dispatch(
               addSnackbar({

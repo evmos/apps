@@ -2,20 +2,22 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { ERC20BalanceResponse } from "../../../../components/asset/table/types";
 import { BIG_ZERO } from "../../../common/math/Bignumbers";
 
+export type TableDataElement = {
+  name: string;
+  cosmosBalance: BigNumber;
+  decimals: number;
+  description: string;
+  erc20Balance: BigNumber;
+  symbol: string;
+  tokenName: string;
+  chainId: string;
+  chainIdentifier: string;
+  handledByExternalUI: null | { handlingAction: string; url: string };
+  coingeckoPrice: number;
+};
+
 export type TableData = {
-  table: {
-    name: string;
-    cosmosBalance: BigNumber;
-    decimals: number;
-    description: string;
-    erc20Balance: BigNumber;
-    symbol: string;
-    tokenName: string;
-    chainId: string;
-    chainIdentifier: string;
-    handledByExternalUI: null | { handlingAction: string; url: string };
-    coingeckoPrice: number;
-  }[];
+  table: TableDataElement[];
   feeBalance: BigNumber;
 };
 

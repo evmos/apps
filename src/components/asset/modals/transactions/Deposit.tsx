@@ -1,20 +1,19 @@
-import { useState } from "react";
-import { getReservedForFeeText } from "../../../../internal/asset/style/format";
-import ConfirmButton from "../../../common/ConfirmButton";
-import KeplrIcon from "../../../common/images/icons/KeplrIcon";
-import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
-import GetButtonAddress from "../../utils/GetAddressButton";
-import Arrow from "../common/Arrow";
-import FromContainer from "../common/FromContainer";
-import ToContainer from "../common/ToContainer";
-import { ModalProps } from "./types";
+// import { useState } from "react";
+// import { getReservedForFeeText } from "../../../../internal/asset/style/format";
+// import ConfirmButton from "../../../common/ConfirmButton";
+// import KeplrIcon from "../../../common/images/icons/KeplrIcon";
+// import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
+// import GetButtonAddress from "../../utils/GetAddressButton";
+// import Arrow from "../common/Arrow";
+// import FromContainer from "../common/FromContainer";
+// import ToContainer from "../common/ToContainer";
 
-const Deposit = ({ values }: ModalProps) => {
-  const [inputValue, setInputValue] = useState("");
+const Deposit = () => {
+  // const [inputValue, setInputValue] = useState("");
 
   return (
     <div className="text-darkGray3">
-      <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
+      {/* <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
         <FromContainer
           token={values.token}
           address={values.address}
@@ -66,7 +65,7 @@ const Deposit = ({ values }: ModalProps) => {
           // TODO: implement function
           throw "Not implemented!";
         }}
-      />
+      /> */}
     </div>
   );
 };

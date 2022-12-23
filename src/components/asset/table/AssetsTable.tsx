@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
-
-import { DataModal, EmptyDataModal } from "../modals/types";
 import { StoreType } from "../../../redux/Store";
 import { ERC20BalanceResponse } from "./types";
 import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
@@ -26,10 +24,10 @@ import HeadTable from "./HeadTable";
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
 
-  const [modalValues, setModalValues] = useState<DataModal>(EmptyDataModal);
   const [showMobile, setShowMobile] = useState(false);
 
   const value = useSelector((state: StoreType) => state.wallet.value);
+  const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
 
   const { data, error, isLoading } = useQuery<ERC20BalanceResponse, Error>({
     queryKey: [
@@ -98,7 +96,7 @@ const AssetsTable = () => {
               feeBalance: normalizedAssetsData.feeBalance,
             }}
             setShow={setShow}
-            setModalValues={setModalValues}
+            setModalContent={setModalContent}
           />
         )}
         <table className="w-full">
@@ -137,14 +135,14 @@ const AssetsTable = () => {
                 feeBalance: normalizedAssetsData.feeBalance,
               }}
               setShow={setShow}
-              setModalValues={setModalValues}
+              setModalContent={setModalContent}
             />
           </table>
         )}
       </div>
       <ModalAsset
         show={show}
-        modalValues={modalValues}
+        modalContent={modalContent}
         close={() => {
           setShow(false);
         }}

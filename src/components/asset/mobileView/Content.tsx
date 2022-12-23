@@ -6,25 +6,25 @@ import {
   convertAndFormat,
 } from "../../../internal/asset/style/format";
 import { METAMASK_KEY } from "../../../internal/wallet/functionality/wallet";
-import { DataModal } from "../modals/types";
 const Button = dynamic(() => import("../../common/Button"));
 const ExternalLinkIcon = dynamic(
   () => import("../../common/images/icons/ExternalLink")
 );
 import { TableData } from "../../../internal/asset/functionality/table/normalizeData";
 import Image from "next/image";
-import { BigNumber } from "ethers";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../../redux/Store";
+import Convert from "../modals/transactions/Convert";
+import Withdraw from "../modals/transactions/Withdraw";
 
 const ContentCard = ({
   tableData,
   setShow,
-  setModalValues,
+  setModalContent,
 }: {
   tableData: TableData;
   setShow: Dispatch<SetStateAction<boolean>>;
-  setModalValues: Dispatch<SetStateAction<DataModal>>;
+  setModalContent: Dispatch<SetStateAction<JSX.Element>>;
 }) => {
   const value = useSelector((state: StoreType) => state.wallet.value);
 
@@ -107,21 +107,6 @@ const ContentCard = ({
                   disabled={value.extensionName === METAMASK_KEY}
                   onClick={() => {
                     setShow(true);
-                    setModalValues({
-                      token: item.symbol,
-                      address: value.evmosAddressCosmosFormat,
-                      amount: item.cosmosBalance,
-                      title: "Deposit",
-                      network: "EVMOS",
-                      decimals: item?.decimals,
-                      feeDenom: "aevmos",
-                      pubkey: value.evmosPubkey,
-                      fee: BigNumber.from("1"),
-                      erc20Balance: item.erc20Balance,
-                      feeBalance: BigNumber.from("1"),
-                      networkTo: item.chainIdentifier,
-                      chainId: item.chainId,
-                    });
                   }}
                 >
                   <div className="flex flex-row items-center">
@@ -153,21 +138,13 @@ const ContentCard = ({
                 <Button
                   onClick={() => {
                     setShow(true);
-                    setModalValues({
-                      token: item.symbol,
-                      address: value.evmosAddressCosmosFormat,
-                      amount: item?.cosmosBalance,
-                      decimals: item?.decimals,
-                      fee: BigNumber.from("1"),
-                      feeDenom: "aevmos",
-                      title: "Withdraw",
-                      network: "EVMOS",
-                      pubkey: value.evmosPubkey,
-                      erc20Balance: item.erc20Balance,
-                      feeBalance: tableData.feeBalance,
-                      networkTo: item.chainIdentifier,
-                      chainId: item.chainId,
-                    });
+                    setModalContent(
+                      <Withdraw
+                        item={item}
+                        feeBalance={tableData.feeBalance}
+                        address={value.evmosAddressCosmosFormat}
+                      />
+                    );
                   }}
                 >
                   <div className="flex flex-row items-center">
@@ -180,21 +157,13 @@ const ContentCard = ({
               <Button
                 onClick={() => {
                   setShow(true);
-                  setModalValues({
-                    token: item.symbol,
-                    address: value.evmosAddressCosmosFormat,
-                    amount: item.cosmosBalance,
-                    decimals: item?.decimals,
-                    feeDenom: "aevmos",
-                    title: "Convert",
-                    network: "EVMOS",
-                    pubkey: value.evmosPubkey,
-                    fee: BigNumber.from("1"),
-                    erc20Balance: item.erc20Balance,
-                    feeBalance: tableData.feeBalance,
-                    networkTo: item.chainIdentifier,
-                    chainId: item.chainId,
-                  });
+                  setModalContent(
+                    <Convert
+                      item={item}
+                      feeBalance={tableData.feeBalance}
+                      address={value.evmosAddressCosmosFormat}
+                    />
+                  );
                 }}
               >
                 <div className="flex flex-row items-center">

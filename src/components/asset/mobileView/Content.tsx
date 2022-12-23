@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { StoreType } from "../../../redux/Store";
 import Convert from "../modals/transactions/Convert";
 import Withdraw from "../modals/transactions/Withdraw";
+import Deposit from "../modals/transactions/Deposit";
 
 const ContentCard = ({
   tableData,
@@ -107,6 +108,13 @@ const ContentCard = ({
                   disabled={value.extensionName === METAMASK_KEY}
                   onClick={() => {
                     setShow(true);
+                    setModalContent(
+                      <Deposit
+                        item={item}
+                        feeBalance={tableData.feeBalance}
+                        address={value.evmosAddressCosmosFormat}
+                      />
+                    );
                   }}
                 >
                   <div className="flex flex-row items-center">

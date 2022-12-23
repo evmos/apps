@@ -85,11 +85,11 @@ export async function broadcastSignedTxToBackend(
     const response = (await broadcastPost.json()) as BroadcastToBackendResponse;
 
     if (response.error) {
-      return Promise.reject({
+      return {
         error: true,
         message: `Transaction Failed ${response.error}`,
         txhash: `0x0`,
-      });
+      };
     }
 
     return {
@@ -98,13 +98,13 @@ export async function broadcastSignedTxToBackend(
       txhash: response.tx_hash,
     };
   } catch (e) {
-    return Promise.reject({
+    return {
       error: true,
       // Disabled until catching all the possible errors
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
-    });
+    };
   }
 }
 

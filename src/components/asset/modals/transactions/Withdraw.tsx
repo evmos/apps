@@ -3,7 +3,7 @@ import { parseUnits } from "@ethersproject/units";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import { executeIBC } from "../../../../internal/asset/functionality/transactions/ibcTransfer";
+import { executeWithdraw } from "../../../../internal/asset/functionality/transactions/withdraw";
 import { IBCChainParams } from "../../../../internal/asset/functionality/transactions/types";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
@@ -180,7 +180,7 @@ const Withdraw = ({
               dstChain: item.chainIdentifier,
               token: item.symbol,
             };
-            const res = await executeIBC(
+            const res = await executeWithdraw(
               wallet.evmosPubkey,
               wallet.evmosAddressCosmosFormat,
               params,

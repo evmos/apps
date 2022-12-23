@@ -20,3 +20,26 @@ export const getAssetsForAddress = async (
   );
   return res.json() as Promise<ERC20BalanceResponse>;
 };
+
+export type BalanceResponse = {
+  balance: {
+    amount: string;
+    denom: string;
+  };
+};
+
+export const getBalance = async (
+  address: string,
+  network: string,
+  token: string
+) => {
+  // If not wallet selected return everything empty
+  if (address === "" || network === "" || token === "") {
+    return Promise.resolve({ balance: { amount: 0, denom: "" } });
+  }
+
+  const res = await fetch(
+    `${EVMOS_BACKEND}/BalanceByNetworkAndDenom/${network}/${token}/${address}`
+  );
+  return res.json() as Promise<BalanceResponse>;
+};

@@ -13,7 +13,7 @@ const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
 const MessageTable = dynamic(() => import("./MessageTable"));
 const Switch = dynamic(() => import("../utils/Switch"));
 const Content = dynamic(() => import("./Content"));
-const ContentCard = dynamic(() => import("../../card/Content"));
+const ContentCard = dynamic(() => import("../mobileView/Content"));
 
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {

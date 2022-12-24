@@ -9,6 +9,7 @@ import {
 import { truncateAddress } from "../../../../internal/wallet/style/format";
 import ErrorMessage from "./ErrorMessage";
 import { BigNumber } from "ethers";
+import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 
 const NumericOnly = (value: string) => {
   const reg = /^[0-9.]+$/;
@@ -118,10 +119,14 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
         {formatNumber(convertFromAtto(balance.amount, balance.decimals))}{" "}
         {style.tokenTo}
       </div>
-      <div>
-        <span className="font-bold">Fee denom ({fee.feeDenom}) Balance: </span>
-        {formatNumber(convertFromAtto(fee.feeBalance))} {fee.feeDenom}
-      </div>
+      {!fee.fee.eq(BIG_ZERO) && (
+        <div>
+          <span className="font-bold">
+            Fee denom ({fee.feeDenom}) Balance:{" "}
+          </span>
+          {formatNumber(convertFromAtto(fee.feeBalance))} {fee.feeDenom}
+        </div>
+      )}
     </>
   );
 };

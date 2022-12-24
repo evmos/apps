@@ -30,7 +30,6 @@ export async function ibcTransferBackendCall(
       headers: { "Content-Type": "application/json" },
     });
     const data = (await post.json()) as IBCTransferResponse;
-    console.log(data);
     if ("error" in data) {
       // TODO: add sentry call here!
       return {

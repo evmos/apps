@@ -113,6 +113,7 @@ const ContentCard = ({
                         item={item}
                         feeBalance={tableData.feeBalance}
                         address={value.evmosAddressCosmosFormat}
+                        setShow={setShow}
                       />
                     );
                   }}
@@ -151,6 +152,7 @@ const ContentCard = ({
                         item={item}
                         feeBalance={tableData.feeBalance}
                         address={value.evmosAddressCosmosFormat}
+                        setShow={setShow}
                       />
                     );
                   }}
@@ -170,6 +172,7 @@ const ContentCard = ({
                       item={item}
                       feeBalance={tableData.feeBalance}
                       address={value.evmosAddressCosmosFormat}
+                      setShow={setShow}
                     />
                   );
                 }}

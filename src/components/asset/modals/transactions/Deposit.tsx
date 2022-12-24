@@ -1,6 +1,6 @@
 import { BigNumber } from "ethers";
 import { parseUnits } from "ethers/lib/utils";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { IBCChainParams } from "../../../../internal/asset/functionality/transactions/types";
@@ -17,15 +17,21 @@ import { executeDeposit } from "../../../../internal/asset/functionality/transac
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
 import { getBalance } from "../../../../internal/asset/functionality/fetch";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
+import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
+import { getWallet } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import { ethToEvmos } from "@evmos/address-converter";
+import { EVMOS_CHAIN } from "../../../../internal/wallet/functionality/networkConfig";
 
 const Deposit = ({
   item,
   feeBalance,
   address,
+  setShow,
 }: {
   item: TableDataElement;
   feeBalance: BigNumber;
   address: string;
+  setShow: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [confirmClicked, setConfirmClicked] = useState(false);
@@ -34,17 +40,25 @@ const Deposit = ({
 
   const dispatch = useDispatch();
 
-  const fee = BigNumber.from("4600000000000000");
-  const feeDenom = "EVMOS";
+  const feeDenom = "";
   const [balance, setBalance] = useState(BIG_ZERO);
   const [walletToUse, setWalletToUse] = useState("");
-
+  const [disabled, setDisabled] = useState(false);
   useEffect(() => {
     async function getData() {
       const wallet = await getKeplrAddressByChain(item.chainId);
       if (wallet === null) {
+        dispatch(
+          addSnackbar({
+            id: 0,
+            text: "Could not get information from Keplr",
+            subtext:
+              "Please unlock the extension and allow the app to access your wallet address",
+            type: "error",
+          })
+        );
+        setShow(false);
         return;
-        // TODO: mostrar snackbar y cerrar modal
       }
       setWalletToUse(wallet);
       const balance = await getBalance(
@@ -52,11 +66,27 @@ const Deposit = ({
         item.chainIdentifier.toUpperCase(),
         item.symbol
       );
-      setBalance(BigNumber.from(balance.balance ? balance.balance.amount : 0));
+
+      if (balance.error === true || balance.data === null) {
+        dispatch(
+          addSnackbar({
+            id: 0,
+            text: "Error getting balance from external chain",
+            subtext: "",
+            type: "error",
+          })
+        );
+        setShow(false);
+        return;
+      }
+
+      setBalance(
+        BigNumber.from(balance.data.balance ? balance.data.balance.amount : 0)
+      );
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     getData();
-  }, [address, item]);
+  }, [address, item, dispatch, setShow]);
 
   return (
     <>
@@ -67,7 +97,7 @@ const Deposit = ({
           <FromContainer
             fee={{
               // modificar fee
-              fee,
+              fee: BIG_ZERO,
               feeDenom,
               feeBalance: feeBalance,
               feeDecimals: 18,
@@ -112,30 +142,53 @@ const Deposit = ({
                 width={25}
                 height={25}
                 className="cursor-pointer"
-                // TODO: add metamask too
-                // onClick={async () => {
-                //   const keplrAddress = await getKeplrAddressByChain(
-                //     item.chainId
-                //   );
-                //   if (keplrAddress === null) {
-                //     dispatch(
-                //       addSnackbar({
-                //         id: 0,
-                //         text: "Could not get information from Keplr",
-                //         subtext:
-                //           "Please unlock the extension and allow the app to access your wallet address",
-                //         type: "error",
-                //       })
-                //     );
-                //     return;
-                //   }
-                //   setAddressTo(keplrAddress);
-                // }}
+                onClick={async () => {
+                  const wallet = await getKeplrAddressByChain(
+                    EVMOS_CHAIN.cosmosChainId
+                  );
+                  if (wallet === null) {
+                    dispatch(
+                      addSnackbar({
+                        id: 0,
+                        text: "Could not get information from Keplr",
+                        subtext:
+                          "Please unlock the extension and allow the app to access your wallet address",
+                        type: "error",
+                      })
+                    );
+                    setShow(false);
+                    return;
+                  }
+                  setAddressTo(wallet);
+                }}
+              />
+              <MetamaskIcon
+                width={25}
+                height={25}
+                className="cursor-pointer"
+                onClick={async () => {
+                  const address = await getWallet();
+                  if (address === null) {
+                    dispatch(
+                      addSnackbar({
+                        id: 0,
+                        text: "Could not get information from Metamask",
+                        subtext:
+                          "Please unlock the extension and allow the app to access your wallet address",
+                        type: "error",
+                      })
+                    );
+                    setShow(false);
+                    return;
+                  }
+                  setAddressTo(address);
+                }}
               />
             </div>
           </div>
         </div>
         <ConfirmButton
+          disabled={disabled}
           onClick={async () => {
             setConfirmClicked(true);
             if (wallet.osmosisPubkey === null) {
@@ -148,7 +201,7 @@ const Deposit = ({
                   type: "error",
                 })
               );
-              // TODO: close modal
+              setShow(false);
               return;
             }
 
@@ -180,22 +233,27 @@ const Deposit = ({
                   type: "error",
                 })
               );
-              // TODO: close modal
+              setShow(false);
               return;
             }
             const keplrAddress = await getKeplrAddressByChain(item.chainId);
             if (keplrAddress === null) {
               return;
             }
+
+            let addressEvmos = addressTo;
+            if (addressTo.startsWith("0x")) {
+              addressEvmos = ethToEvmos(addressTo);
+            }
             const params: IBCChainParams = {
               sender: keplrAddress,
-              receiver: addressTo,
+              receiver: addressEvmos,
               amount,
               srcChain: item.chainIdentifier,
               dstChain: "EVMOS",
               token: item.symbol,
             };
-
+            setDisabled(true);
             const res = await executeDeposit(
               wallet.osmosisPubkey,
               keplrAddress,
@@ -212,6 +270,7 @@ const Deposit = ({
                 type: res.error === true ? "error" : "success",
               })
             );
+            setShow(false);
           }}
           text="Deposit"
         />

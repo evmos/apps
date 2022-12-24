@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import { StoreType } from "../../../../redux/Store";
@@ -19,10 +19,12 @@ const Convert = ({
   item,
   feeBalance,
   address,
+  setShow,
 }: {
   item: TableDataElement;
   feeBalance: BigNumber;
   address: string;
+  setShow: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [inputValue, setInputValue] = useState("");
 
@@ -30,6 +32,7 @@ const Convert = ({
 
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const [selectedERC20, setSelectedERC20] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const [confirmClicked, setConfirmClicked] = useState(false);
 
@@ -107,6 +110,7 @@ const Convert = ({
           />
         </div>
         <ConfirmButton
+          disabled={disabled}
           onClick={async () => {
             setConfirmClicked(true);
             if (wallet.evmosPubkey === null) {
@@ -119,7 +123,7 @@ const Convert = ({
                   type: "error",
                 })
               );
-              // TODO: close modal
+              setShow(false);
               return;
             }
 
@@ -149,7 +153,7 @@ const Convert = ({
                 })
               );
               // TODO: 0.0000001 too many decimals, now appears the positive number error
-              // TODO: close modal
+              setShow(false);
               return;
             }
             const params: ConvertMsg = {
@@ -159,6 +163,7 @@ const Convert = ({
               addressCosmos: wallet.evmosAddressCosmosFormat,
               srcChain: "EVMOS",
             };
+            setDisabled(true);
             const res = await executeConvert(
               wallet.evmosPubkey,
               wallet.evmosAddressCosmosFormat,
@@ -176,6 +181,7 @@ const Convert = ({
                 type: res.error === true ? "error" : "success",
               })
             );
+            setShow(false);
           }}
           text="Convert"
         />

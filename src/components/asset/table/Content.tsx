@@ -112,6 +112,7 @@ const Content = ({
                           item={item}
                           feeBalance={tableData.feeBalance}
                           address={value.evmosAddressCosmosFormat}
+                          setShow={setShow}
                         />
                       );
                     }}
@@ -150,6 +151,7 @@ const Content = ({
                           item={item}
                           feeBalance={tableData.feeBalance}
                           address={value.evmosAddressCosmosFormat}
+                          setShow={setShow}
                         />
                       );
                     }}
@@ -169,6 +171,7 @@ const Content = ({
                         item={item}
                         feeBalance={tableData.feeBalance}
                         address={value.evmosAddressCosmosFormat}
+                        setShow={setShow}
                       />
                     );
                   }}

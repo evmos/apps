@@ -35,11 +35,33 @@ export const getBalance = async (
 ) => {
   // If not wallet selected return everything empty
   if (address === "" || network === "" || token === "") {
-    return Promise.resolve({ balance: { amount: 0, denom: "" } });
+    return {
+      error: false,
+      message: "",
+      data: { balance: { amount: 0, denom: "" } },
+    };
   }
 
-  const res = await fetch(
-    `${EVMOS_BACKEND}/BalanceByNetworkAndDenom/${network}/${token}/${address}`
-  );
-  return res.json() as Promise<BalanceResponse>;
+  try {
+    const res = await fetch(
+      `${EVMOS_BACKEND}/BalanceByNetworkAndDenom/${network}/${token}/${address}`
+    );
+    const data = (await res.json()) as BalanceResponse;
+    if ("error" in data) {
+      // TODO: add sentry call here!
+      return {
+        error: true,
+        message: "Error getting balance, please try again later",
+        data: null,
+      };
+    }
+    return { error: false, message: "", data: data };
+  } catch (e) {
+    // TODO: add sentry call here!
+    return {
+      error: true,
+      message: "Error getting balance, please try again later",
+      data: null,
+    };
+  }
 };

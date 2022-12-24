@@ -1,6 +1,6 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { parseUnits } from "@ethersproject/units";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { executeWithdraw } from "../../../../internal/asset/functionality/transactions/withdraw";
@@ -21,16 +21,19 @@ const Withdraw = ({
   item,
   feeBalance,
   address,
+  setShow,
 }: {
   item: TableDataElement;
   feeBalance: BigNumber;
   address: string;
+  setShow: Dispatch<SetStateAction<boolean>>;
 }) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const [confirmClicked, setConfirmClicked] = useState(false);
 
   const [inputValue, setInputValue] = useState("");
   const [addressTo, setAddressTo] = useState("");
+  const [disabled, setDisabled] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -125,6 +128,7 @@ const Withdraw = ({
         </div>
 
         <ConfirmButton
+          disabled={disabled}
           onClick={async () => {
             setConfirmClicked(true);
             if (wallet.evmosPubkey === null) {
@@ -137,7 +141,7 @@ const Withdraw = ({
                   type: "error",
                 })
               );
-              // TODO: close modal
+              setShow(false);
               return;
             }
 
@@ -169,7 +173,7 @@ const Withdraw = ({
                   type: "error",
                 })
               );
-              // TODO: close modal
+              setShow(false);
               return;
             }
             const params: IBCChainParams = {
@@ -180,6 +184,7 @@ const Withdraw = ({
               dstChain: item.chainIdentifier,
               token: item.symbol,
             };
+            setDisabled(true);
             const res = await executeWithdraw(
               wallet.evmosPubkey,
               wallet.evmosAddressCosmosFormat,
@@ -196,6 +201,7 @@ const Withdraw = ({
                 type: res.error === true ? "error" : "success",
               })
             );
+            setShow(false);
           }}
           text="Withdraw"
         />

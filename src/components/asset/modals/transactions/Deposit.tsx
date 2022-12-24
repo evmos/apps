@@ -36,7 +36,6 @@ const Deposit = ({
 
   const fee = BigNumber.from("4600000000000000");
   const feeDenom = "EVMOS";
-  // TODO: generate address here using as refresh condition the user current connected wallet
   const [balance, setBalance] = useState(BIG_ZERO);
   const [walletToUse, setWalletToUse] = useState("");
 

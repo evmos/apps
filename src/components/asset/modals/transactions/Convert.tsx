@@ -1,10 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getReservedForFeeText,
-  snackbarExecutedTx,
-  snackbarWaitingBroadcast,
-} from "../../../../internal/asset/style/format";
+import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import { StoreType } from "../../../../redux/Store";
 import ConfirmButton from "../../../common/ConfirmButton";
 import Arrow from "../common/Arrow";
@@ -18,8 +14,6 @@ import { executeConvert } from "../../../../internal/asset/functionality/transac
 import { addSnackbar } from "../../../notification/redux/notificationSlice";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { ModalTitle } from "../../../common/Modal";
-import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
-import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 
 const Convert = ({
   item,
@@ -187,12 +181,6 @@ const Convert = ({
                 type: res.error === true ? "error" : "success",
               })
             );
-
-            // check if tx is executed
-            if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
-              dispatch(snackbarWaitingBroadcast());
-              dispatch(await snackbarExecutedTx(res.message, EVMOS_SYMBOL));
-            }
 
             setShow(false);
           }}

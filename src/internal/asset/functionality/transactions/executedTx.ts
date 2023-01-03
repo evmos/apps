@@ -1,11 +1,16 @@
+import { fetchWithTimeout } from "../../../wallet/functionality/fetch";
 import { EVMOS_BACKEND } from "../../../wallet/functionality/networkConfig";
 import { EXECUTED_NOTIFICATIONS } from "./errors";
 import { executedTx } from "./types";
 
 export async function checkIBCState(txHash: string, network: string) {
   try {
-    const res = await fetch(
-      `${EVMOS_BACKEND}/isIBCExecuted/${txHash}/${network}`
+    const res = await fetchWithTimeout(
+      `${EVMOS_BACKEND}/isIBCExecuted/${txHash}/${network}`,
+      {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+      }
     );
     const data = (await res.json()) as executedTx;
     if (data.executed) {

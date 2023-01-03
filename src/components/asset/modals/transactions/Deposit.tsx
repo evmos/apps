@@ -40,7 +40,6 @@ const Deposit = ({
 
   const dispatch = useDispatch();
 
-  const feeDenom = "";
   const [balance, setBalance] = useState(BIG_ZERO);
   const [walletToUse, setWalletToUse] = useState("");
   const [disabled, setDisabled] = useState(false);
@@ -93,14 +92,13 @@ const Deposit = ({
       <ModalTitle title={`Deposit ${item.symbol}`} />
       <div className="text-darkGray3">
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
-          {/* TODO: borrar fee denom de deposit */}
           <FromContainer
             fee={{
               // modificar fee
-              fee: BIG_ZERO,
-              feeDenom,
+              fee: BigNumber.from("5000"),
+              feeDenom: item.symbol,
               feeBalance: feeBalance,
-              feeDecimals: 18,
+              feeDecimals: item.decimals,
             }}
             balance={{
               denom: item.symbol,

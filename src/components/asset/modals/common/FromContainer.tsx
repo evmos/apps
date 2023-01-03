@@ -1,7 +1,8 @@
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import {
   convertFromAtto,
+  createBigNumber,
   formatNumber,
   safeSubstraction,
   truncateNumber,
@@ -9,7 +10,6 @@ import {
 import { truncateAddress } from "../../../../internal/wallet/style/format";
 import ErrorMessage from "./ErrorMessage";
 import { BigNumber } from "ethers";
-import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 
 const NumericOnly = (value: string) => {
   const reg = /^[0-9.]+$/;
@@ -56,6 +56,8 @@ type FromProps = {
 };
 
 const FromContainer = ({ fee, balance, input, style }: FromProps) => {
+  const feeDeposit = "5000";
+  const [maxClicked, setMaxClicked] = useState(false);
   return (
     <>
       <div className="flex justify-between sm:items-center flex-col sm:flex-row">
@@ -83,13 +85,12 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
         <span className="opacity-80">{style.tokenTo}</span>
         <button
           onClick={() => {
-            // TODO: not totally working. check
             if (style.tokenTo?.toUpperCase() !== fee.feeDenom.toUpperCase()) {
               input.setInputValue(
                 NumericOnly(convertFromAtto(balance.amount, balance.decimals))
               );
             } else {
-              // TODO: same unit
+              setMaxClicked(true);
               const val = safeSubstraction(balance.amount, fee.fee);
               input.setInputValue(
                 NumericOnly(convertFromAtto(val, balance.decimals))
@@ -119,12 +120,17 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
         {formatNumber(convertFromAtto(balance.amount, balance.decimals))}{" "}
         {style.tokenTo}
       </div>
-      {!fee.fee.eq(BIG_ZERO) && (
+      {!fee.fee.eq(createBigNumber(feeDeposit)) && (
         <div>
           <span className="font-bold">
             Fee denom ({fee.feeDenom}) Balance:{" "}
           </span>
           {formatNumber(convertFromAtto(fee.feeBalance))} {fee.feeDenom}
+        </div>
+      )}
+      {fee.fee.eq(createBigNumber(feeDeposit)) && maxClicked && (
+        <div className="text-xs font-bold opacity-80">
+          {`Clicking on max reserves ${feeDeposit} * 10^-${fee.feeDecimals} ${fee.feeDenom} for transaction fees.`}
         </div>
       )}
     </>

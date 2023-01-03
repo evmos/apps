@@ -134,10 +134,10 @@ const ButtonWalletConnection = () => {
           <div className="flex flex-col space-y-3">
             <ButtonWallet
               onClick={async () => {
+                setShow(false);
                 disconnectWallets(dispatch);
                 const keplr = new Keplr(store);
                 await keplr.connect();
-                setShow(false);
               }}
             >
               <ContentModalConnect>
@@ -148,10 +148,10 @@ const ButtonWalletConnection = () => {
             </ButtonWallet>
             <ButtonWallet
               onClick={async () => {
+                setShow(false);
                 disconnectWallets(dispatch);
                 const metamask = new Metamask(store);
                 await metamask.connect();
-                setShow(false);
               }}
             >
               <ContentModalConnect>

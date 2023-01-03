@@ -14,6 +14,10 @@ import { executeConvert } from "../../../../internal/asset/functionality/transac
 import { addSnackbar } from "../../../notification/redux/notificationSlice";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { ModalTitle } from "../../../common/Modal";
+import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
+import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
+import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
+import { useContract } from "./contracts/useContract";
 
 const Convert = ({
   item,
@@ -40,6 +44,7 @@ const Convert = ({
     amount: item.cosmosBalance,
     from: "IBC Coin",
     to: "ERC-20",
+    token: "EVMOS",
   });
 
   useEffect(() => {
@@ -48,15 +53,21 @@ const Convert = ({
         amount: item.cosmosBalance,
         from: "IBC Coin",
         to: "ERC-20",
+        token: "EVMOS",
       });
     } else {
       setTypeSelected({
         amount: item.erc20Balance,
         from: "ERC-20",
         to: "IBC Coin",
+        token: "WEVMOS",
       });
     }
   }, [selectedERC20, item]);
+
+  const WEVMOS = WEVMOS_CONTRACT_ADDRESS;
+
+  const WEVMOSContract = useContract<WEVMOS>(WEVMOS, WETH_ABI);
 
   return (
     <>
@@ -77,7 +88,8 @@ const Convert = ({
             }}
             input={{ value: inputValue, setInputValue, confirmClicked }}
             style={{
-              tokenTo: item.symbol,
+              tokenTo:
+                item.symbol === "EVMOS" ? typeSelected.token : item.symbol,
               address,
               img: `/tokens/${item.symbol.toLowerCase()}.png`,
               text: typeSelected.from,
@@ -156,32 +168,43 @@ const Convert = ({
               setShow(false);
               return;
             }
-            const params: ConvertMsg = {
-              token: item.symbol,
-              amount,
-              addressEth: wallet.evmosAddressEthFormat,
-              addressCosmos: wallet.evmosAddressCosmosFormat,
-              srcChain: "EVMOS",
-            };
-            setDisabled(true);
-            const res = await executeConvert(
-              wallet.evmosPubkey,
-              wallet.evmosAddressCosmosFormat,
-              params,
-              selectedERC20,
-              feeBalance,
-              wallet.extensionName
-            );
+            if (item.symbol !== "EVMOS") {
+              const params: ConvertMsg = {
+                token: item.symbol,
+                amount,
+                addressEth: wallet.evmosAddressEthFormat,
+                addressCosmos: wallet.evmosAddressCosmosFormat,
+                srcChain: "EVMOS",
+              };
+              setDisabled(true);
+              const res = await executeConvert(
+                wallet.evmosPubkey,
+                wallet.evmosAddressCosmosFormat,
+                params,
+                selectedERC20,
+                feeBalance,
+                wallet.extensionName
+              );
 
-            dispatch(
-              addSnackbar({
-                id: 0,
-                text: res.title,
-                subtext: res.message,
-                type: res.error === true ? "error" : "success",
-              })
-            );
-
+              dispatch(
+                addSnackbar({
+                  id: 0,
+                  text: res.title,
+                  subtext: res.message,
+                  type: res.error === true ? "error" : "success",
+                })
+              );
+            } else {
+              if (selectedERC20) {
+                await WEVMOSContract.withdraw(amount);
+                // TODO: add snackbar
+              } else {
+                await WEVMOSContract.deposit({
+                  value: amount,
+                });
+                // TODO: add snackbar
+              }
+            }
             setShow(false);
           }}
           text="Convert"

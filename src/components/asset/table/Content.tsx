@@ -17,6 +17,7 @@ import { StoreType } from "../../../redux/Store";
 import Convert from "../modals/transactions/Convert";
 import Withdraw from "../modals/transactions/Withdraw";
 import Deposit from "../modals/transactions/Deposit";
+import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 
 const Content = ({
   tableData,
@@ -104,7 +105,10 @@ const Content = ({
                   </Button>
                 ) : (
                   <Button
-                    disabled={value.extensionName === METAMASK_KEY}
+                    disabled={
+                      value.extensionName === METAMASK_KEY ||
+                      item.symbol === EVMOS_SYMBOL
+                    }
                     onClick={() => {
                       setShow(true);
                       setModalContent(
@@ -144,6 +148,7 @@ const Content = ({
                   </Button>
                 ) : (
                   <Button
+                    disabled={item.symbol === EVMOS_SYMBOL}
                     onClick={() => {
                       setShow(true);
                       setModalContent(

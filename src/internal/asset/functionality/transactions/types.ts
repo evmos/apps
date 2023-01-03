@@ -68,3 +68,8 @@ export interface TransactionBody {
   transaction: Transaction;
   message: MessageIBC;
 }
+
+export interface executedTx {
+  executed: boolean;
+  msg: string;
+}

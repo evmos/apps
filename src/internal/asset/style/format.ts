@@ -1,6 +1,9 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { formatUnits } from "@ethersproject/units";
+import { addSnackbar } from "../../../components/notification/redux/notificationSlice";
 import { BIG_ZERO } from "../../common/math/Bignumbers";
+import { EXECUTED_NOTIFICATIONS } from "../functionality/transactions/errors";
+import { checkIBCExecutionStatus } from "../functionality/transactions/executedTx";
 
 export function getReservedForFeeText(
   amount: BigNumber,
@@ -88,4 +91,40 @@ export function truncateNumber(number: string) {
 export function createBigNumber(value: string) {
   // TODO: check if string has only numbers
   return BigNumber.from(value);
+}
+
+export function getLastWord(value: string) {
+  const lastWord = value.split(" ").pop();
+  if (lastWord === undefined) {
+    return "";
+  }
+  return lastWord;
+}
+
+export function snackbarWaitingBroadcast() {
+  return addSnackbar({
+    id: 0,
+    text: EXECUTED_NOTIFICATIONS.WaitingTitle,
+    subtext: "",
+    type: "default",
+  });
+}
+
+export async function snackbarExecutedTx(message: string, chain: string) {
+  const hash = getLastWord(message);
+  if (hash === "") {
+    return addSnackbar({
+      id: 0,
+      text: EXECUTED_NOTIFICATIONS.ErrorTitle,
+      subtext: "Tx hash is incorrect",
+      type: "error",
+    });
+  }
+  const executed = await checkIBCExecutionStatus(hash, chain);
+  return addSnackbar({
+    id: 0,
+    text: executed.title,
+    subtext: executed.message,
+    type: executed.error === true ? "error" : "success",
+  });
 }

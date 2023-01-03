@@ -21,6 +21,11 @@ import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
 import { getWallet } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import { ethToEvmos } from "@evmos/address-converter";
 import { EVMOS_CHAIN } from "../../../../internal/wallet/functionality/networkConfig";
+import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import {
+  snackbarExecutedTx,
+  snackbarWaitingBroadcast,
+} from "../../../../internal/asset/style/format";
 
 const Deposit = ({
   item,
@@ -270,6 +275,18 @@ const Deposit = ({
                 type: res.error === true ? "error" : "success",
               })
             );
+
+            // check if tx is executed
+            if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
+              dispatch(snackbarWaitingBroadcast());
+              dispatch(
+                await snackbarExecutedTx(
+                  res.message,
+                  item.chainIdentifier.toUpperCase()
+                )
+              );
+            }
+
             setShow(false);
           }}
           text="Deposit"

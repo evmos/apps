@@ -5,7 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { executeWithdraw } from "../../../../internal/asset/functionality/transactions/withdraw";
 import { IBCChainParams } from "../../../../internal/asset/functionality/transactions/types";
-import { getReservedForFeeText } from "../../../../internal/asset/style/format";
+import {
+  getReservedForFeeText,
+  snackbarExecutedTx,
+  snackbarWaitingBroadcast,
+} from "../../../../internal/asset/style/format";
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
 import { StoreType } from "../../../../redux/Store";
 import ConfirmButton from "../../../common/ConfirmButton";
@@ -16,6 +20,8 @@ import Arrow from "../common/Arrow";
 import ErrorMessage from "../common/ErrorMessage";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
+import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 
 const Withdraw = ({
   item,
@@ -51,7 +57,6 @@ const Withdraw = ({
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
           <FromContainer
             fee={{
-              // modificar fee
               fee,
               feeDenom,
               feeBalance: feeBalance,
@@ -201,6 +206,12 @@ const Withdraw = ({
                 type: res.error === true ? "error" : "success",
               })
             );
+            // check if tx is executed
+            if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
+              dispatch(snackbarWaitingBroadcast());
+              dispatch(await snackbarExecutedTx(res.message, EVMOS_SYMBOL));
+            }
+
             setShow(false);
           }}
           text="Withdraw"

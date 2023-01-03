@@ -1,6 +1,7 @@
 import { BigNumber, utils } from "ethers";
 import { EVMOS_NETWORK_FOR_BACKEND } from "../../../wallet/functionality/networkConfig";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
+import { BROADCASTED_NOTIFICATIONS } from "./errors";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
 
@@ -54,13 +55,13 @@ export async function executeWithdraw(
     return {
       error: true,
       message: broadcastResponse.message,
-      title: "Error broadcasting tx",
+      title: BROADCASTED_NOTIFICATIONS.ErrorTitle,
     };
   }
 
   return {
     error: false,
     message: `Transaction submit with hash: ${broadcastResponse.txhash}`,
-    title: "Successfully broadcasted",
+    title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
   };
 }

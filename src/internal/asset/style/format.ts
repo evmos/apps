@@ -116,7 +116,7 @@ export async function snackbarExecutedTx(message: string, chain: string) {
     return addSnackbar({
       id: 0,
       text: EXECUTED_NOTIFICATIONS.ErrorTitle,
-      subtext: "Tx hash is incorrect",
+      subtext: EXECUTED_NOTIFICATIONS.UnexpectedSubtext,
       type: "error",
     });
   }

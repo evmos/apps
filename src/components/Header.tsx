@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import AssetsGuide from "./asset/modals/AssetsGuide";
 
 const Logo = dynamic(() => import("./common/images/Logo"));
 const ButtonWalletConnection = dynamic(
@@ -13,7 +14,10 @@ const Header = () => {
         <Link href={"/"} className="xl:pr-14" aria-label="home">
           <Logo className="w-32 xl:w-36 h-20" />
         </Link>
-        <p className="text-xl font-bold">Assets</p>
+        <div className="flex items-center">
+          <p className="text-xl font-bold">Assets</p>
+          <AssetsGuide />
+        </div>
       </div>
       <ButtonWalletConnection />
     </div>

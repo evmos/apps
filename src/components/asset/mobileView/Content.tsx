@@ -5,7 +5,10 @@ import {
   amountToDolars,
   convertAndFormat,
 } from "../../../internal/asset/style/format";
-import { METAMASK_KEY } from "../../../internal/wallet/functionality/wallet";
+import {
+  KEPLR_KEY,
+  METAMASK_KEY,
+} from "../../../internal/wallet/functionality/wallet";
 const Button = dynamic(() => import("../../common/Button"));
 const ExternalLinkIcon = dynamic(
   () => import("../../common/images/icons/ExternalLink")
@@ -170,6 +173,10 @@ const ContentCard = ({
                 </Button>
               )}
               <Button
+                disabled={
+                  value.extensionName === KEPLR_KEY &&
+                  item.symbol === EVMOS_SYMBOL
+                }
                 onClick={() => {
                   setShow(true);
                   setModalContent(

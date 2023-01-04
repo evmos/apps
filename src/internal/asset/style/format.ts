@@ -93,14 +93,6 @@ export function createBigNumber(value: string) {
   return BigNumber.from(value);
 }
 
-export function getLastWord(value: string) {
-  const lastWord = value.split(" ").pop();
-  if (lastWord === undefined) {
-    return "";
-  }
-  return lastWord;
-}
-
 export function snackbarWaitingBroadcast() {
   return addSnackbar({
     id: 0,
@@ -110,17 +102,8 @@ export function snackbarWaitingBroadcast() {
   });
 }
 
-export async function snackbarExecutedTx(message: string, chain: string) {
-  const hash = getLastWord(message);
-  if (hash === "") {
-    return addSnackbar({
-      id: 0,
-      text: EXECUTED_NOTIFICATIONS.ErrorTitle,
-      subtext: "Tx hash is incorrect",
-      type: "error",
-    });
-  }
-  const executed = await checkIBCExecutionStatus(hash, chain);
+export async function snackbarExecutedTx(txHash: string, chain: string) {
+  const executed = await checkIBCExecutionStatus(txHash, chain);
   return addSnackbar({
     id: 0,
     text: executed.title,

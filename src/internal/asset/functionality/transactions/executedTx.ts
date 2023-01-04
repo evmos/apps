@@ -16,7 +16,7 @@ export async function checkIBCState(txHash: string, network: string) {
     if (data.executed) {
       return {
         error: false,
-        message: data.msg,
+        message: "",
         title: EXECUTED_NOTIFICATIONS.SuccessTitle,
       };
     } else {

@@ -235,7 +235,7 @@ const Withdraw = ({
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
-              dispatch(await snackbarExecutedTx(res.message, EVMOS_SYMBOL));
+              dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
             }
 
             setShow(false);

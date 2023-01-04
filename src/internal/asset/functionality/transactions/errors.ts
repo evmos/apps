@@ -1,8 +1,9 @@
 export const EXECUTED_NOTIFICATIONS = {
-  SuccessTitle: "Successfully included in a block",
-  ErrorTitle: "Error including tx in a block",
+  SuccessTitle: "Successfully executed",
+  ErrorTitle: "Error executing the transaction",
   UnexpectedSubtext: "Unexpected error",
-  WaitingTitle: "Waiting for the transaction to be included in a block",
+  WaitingTitle:
+    "Waiting for the ibc transaction to be executed in the destination chain",
 } as const;
 
 export const BROADCASTED_NOTIFICATIONS = {

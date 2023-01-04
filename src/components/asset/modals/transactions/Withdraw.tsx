@@ -215,7 +215,6 @@ const Withdraw = ({
               token: item.symbol,
             };
             setDisabled(true);
-            console.log(isERC20Selected);
             const res = await executeWithdraw(
               wallet.evmosPubkey,
               wallet.evmosAddressCosmosFormat,

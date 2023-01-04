@@ -36,7 +36,7 @@ const AssetsGuide = () => {
         onClick={() => {
           setShow(true);
         }}
-        className="ml-3 rounded-xl bg-red px-2 font-bold cursor-pointer"
+        className="ml-3 rounded-full w-4 h-4 text-center flex items-center justify-center bg-red font-bold cursor-pointer text-xs"
       >
         ?
       </div>

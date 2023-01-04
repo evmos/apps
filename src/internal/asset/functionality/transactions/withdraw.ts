@@ -12,7 +12,8 @@ export async function executeWithdraw(
   address: string,
   params: IBCChainParams,
   feeBalance: BigNumber,
-  extension: string
+  extension: string,
+  useERC20Denom: boolean
 ) {
   if (feeBalance.lt(feeAmountForWithdraw)) {
     return {
@@ -31,7 +32,12 @@ export async function executeWithdraw(
   }
 
   //  TODO: if value is bigger than amount, return error
-  const tx = await ibcTransferBackendCall(pubkey, address, params);
+  const tx = await ibcTransferBackendCall(
+    pubkey,
+    address,
+    params,
+    useERC20Denom
+  );
   if (tx.error === true || tx.data === null) {
     // Error generating the transaction
     return { error: true, message: tx.message, title: "Error generating tx" };

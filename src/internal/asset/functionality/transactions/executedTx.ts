@@ -8,7 +8,7 @@ export async function checkIBCState(txHash: string, network: string) {
     const res = await fetchWithTimeout(
       `${EVMOS_BACKEND}/isIBCExecuted/${txHash}/${network}`,
       {
-        method: "post",
+        method: "get",
         headers: { "Content-Type": "application/json" },
       }
     );

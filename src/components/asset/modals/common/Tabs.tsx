@@ -9,40 +9,39 @@ const Tabs = ({
   cosmosBalance,
   erc20Balance,
   decimals,
-  selectedERC20,
-  setSelectedERC20,
+  isERC20Selected,
+  setIsERC20Selected,
 }: {
   cosmosBalance: BigNumber;
   erc20Balance: BigNumber;
   decimals: number;
-  selectedERC20: boolean;
-  setSelectedERC20: Dispatch<SetStateAction<boolean>>;
+  isERC20Selected: boolean;
+  setIsERC20Selected: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
     <div className="flex items-center w-full border border-darkGray1 bg-pearl justify-center rounded font-bold font-[IBM] ">
       <button
         className={`${
-          selectedERC20 ? "text-pearl bg-darkGray1 " : "text-darkGray1"
+          !isERC20Selected ? "text-pearl bg-darkGray1 " : "text-darkGray1"
         }border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col`}
         onClick={() => {
-          if (!selectedERC20) {
-            setSelectedERC20(!selectedERC20);
+          if (isERC20Selected) {
+            setIsERC20Selected(false);
           }
         }}
       >
         <span>ERC-20</span>
         <span className="font-normal text-xs">
-          {" "}
           {formatNumber(convertFromAtto(erc20Balance, decimals))}
         </span>
       </button>
       <button
         className={`${
-          selectedERC20 ? "text-darkGray1" : "text-pearl bg-darkGray1 "
+          !isERC20Selected ? "text-darkGray1" : "text-pearl bg-darkGray1 "
         }border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col`}
         onClick={() => {
-          if (selectedERC20) {
-            setSelectedERC20(!selectedERC20);
+          if (!isERC20Selected) {
+            setIsERC20Selected(true);
           }
         }}
       >

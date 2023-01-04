@@ -130,7 +130,7 @@ export async function executeConvert(
 
   //  TODO: if value is bigger than amount, return error
   let tx;
-  if (!isConvertCoin) {
+  if (isConvertCoin) {
     tx = await convertCoinBackendCall(pubkey, address, params);
   } else {
     tx = await convertERC20BackendCall(pubkey, address, params);

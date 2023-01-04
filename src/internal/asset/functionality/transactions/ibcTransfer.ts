@@ -4,7 +4,8 @@ import { IBCChainParams, IBCTransferResponse } from "./types";
 export async function ibcTransferBackendCall(
   pubkey: string,
   address: string,
-  params: IBCChainParams
+  params: IBCChainParams,
+  useERC20Denom = false
 ): Promise<{
   error: boolean;
   message: string;
@@ -25,6 +26,7 @@ export async function ibcTransferBackendCall(
           receiver: params.receiver,
           amount: params.amount,
           token: params.token,
+          useERC20Denom,
         },
       }),
       headers: { "Content-Type": "application/json" },

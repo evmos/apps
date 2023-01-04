@@ -35,7 +35,7 @@ const Convert = ({
   const dispatch = useDispatch();
 
   const wallet = useSelector((state: StoreType) => state.wallet.value);
-  const [selectedERC20, setSelectedERC20] = useState(false);
+  const [isERC20Selected, setIsERC20Selected] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
   const [confirmClicked, setConfirmClicked] = useState(false);
@@ -48,7 +48,7 @@ const Convert = ({
   });
 
   useEffect(() => {
-    if (!selectedERC20) {
+    if (isERC20Selected) {
       setTypeSelected({
         amount: item.cosmosBalance,
         from: "IBC Coin",
@@ -63,7 +63,7 @@ const Convert = ({
         token: "WEVMOS",
       });
     }
-  }, [selectedERC20, item]);
+  }, [isERC20Selected, item]);
 
   const WEVMOS = WEVMOS_CONTRACT_ADDRESS;
 
@@ -101,8 +101,8 @@ const Convert = ({
               cosmosBalance={item.cosmosBalance}
               decimals={item.decimals}
               erc20Balance={item.erc20Balance}
-              selectedERC20={selectedERC20}
-              setSelectedERC20={setSelectedERC20}
+              isERC20Selected={isERC20Selected}
+              setIsERC20Selected={setIsERC20Selected}
             />
           </div>
           <div className="text-xs font-bold opacity-80">
@@ -181,7 +181,7 @@ const Convert = ({
                 wallet.evmosPubkey,
                 wallet.evmosAddressCosmosFormat,
                 params,
-                selectedERC20,
+                isERC20Selected,
                 feeBalance,
                 wallet.extensionName
               );
@@ -195,7 +195,7 @@ const Convert = ({
                 })
               );
             } else {
-              if (selectedERC20) {
+              if (isERC20Selected) {
                 await WEVMOSContract.withdraw(amount);
                 // TODO: add snackbar
               } else {

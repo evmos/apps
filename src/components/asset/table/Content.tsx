@@ -60,20 +60,6 @@ const Content = ({
             <td>
               <div className="flex flex-col items-start uppercase">
                 <span className="font-bold">
-                  {convertAndFormat(item.cosmosBalance, item.decimals)}
-                </span>
-                <span className="text-sm text-darkGray5">
-                  {amountToDolars(
-                    item.cosmosBalance,
-                    item.decimals,
-                    item.coingeckoPrice
-                  )}
-                </span>
-              </div>
-            </td>
-            <td>
-              <div className="flex flex-col items-start uppercase">
-                <span className="font-bold">
                   {convertAndFormat(item.erc20Balance, item.decimals)}
                   {item.symbol.toUpperCase() === "EVMOS" ? " WEVMOS" : ""}
                 </span>
@@ -86,6 +72,21 @@ const Content = ({
                 </span>
               </div>
             </td>
+            <td>
+              <div className="flex flex-col items-start uppercase">
+                <span className="font-bold">
+                  {convertAndFormat(item.cosmosBalance, item.decimals)}
+                </span>
+                <span className="text-sm text-darkGray5">
+                  {amountToDolars(
+                    item.cosmosBalance,
+                    item.decimals,
+                    item.coingeckoPrice
+                  )}
+                </span>
+              </div>
+            </td>
+
             <td>
               <div className="space-x-3 flex justify-center">
                 {item.handledByExternalUI !== null ? (

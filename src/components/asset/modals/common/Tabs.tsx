@@ -23,7 +23,7 @@ const Tabs = ({
       <button
         className={`${
           !isERC20Selected ? "text-pearl bg-darkGray1 " : "text-darkGray1"
-        }border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col`}
+        }border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col items-center`}
         onClick={() => {
           if (isERC20Selected) {
             setIsERC20Selected(false);
@@ -38,7 +38,7 @@ const Tabs = ({
       <button
         className={`${
           !isERC20Selected ? "text-darkGray1" : "text-pearl bg-darkGray1 "
-        }border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col`}
+        }border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col items-center`}
         onClick={() => {
           if (!isERC20Selected) {
             setIsERC20Selected(true);

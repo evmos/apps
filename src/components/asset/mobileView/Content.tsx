@@ -53,6 +53,22 @@ const ContentCard = ({
                 <span className="text-sm text-darkGray5">{item.name}</span>
               </div>
             </div>
+            <div className="flex">
+              <p className="opacity-80 w-full">ERC-20 Balance</p>
+              <div className="flex justify-between w-full">
+                <p className="font-bold">
+                  {convertAndFormat(item.erc20Balance, item.decimals)}
+                </p>
+                <p>
+                  $
+                  {amountToDolars(
+                    item.erc20Balance,
+                    item.decimals,
+                    item.coingeckoPrice
+                  )}
+                </p>
+              </div>
+            </div>
             <div className="flex flex-col space-y-2">
               <div className="flex w-full">
                 <p className="opacity-80 w-full">IBC Balance</p>
@@ -64,22 +80,6 @@ const ContentCard = ({
                     $
                     {amountToDolars(
                       item.cosmosBalance,
-                      item.decimals,
-                      item.coingeckoPrice
-                    )}
-                  </p>
-                </div>
-              </div>
-              <div className="flex">
-                <p className="opacity-80 w-full">ERC-20 Balance</p>
-                <div className="flex justify-between w-full">
-                  <p className="font-bold">
-                    {convertAndFormat(item.erc20Balance, item.decimals)}
-                  </p>
-                  <p>
-                    $
-                    {amountToDolars(
-                      item.erc20Balance,
                       item.decimals,
                       item.coingeckoPrice
                     )}

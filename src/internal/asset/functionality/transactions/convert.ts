@@ -108,7 +108,7 @@ export async function executeConvert(
   pubkey: string,
   address: string,
   params: ConvertMsg,
-  isConvertCoin: boolean,
+  isERC20Selected: boolean,
   feeBalance: BigNumber,
   extension: string
 ) {
@@ -130,10 +130,10 @@ export async function executeConvert(
 
   //  TODO: if value is bigger than amount, return error
   let tx;
-  if (isConvertCoin) {
-    tx = await convertCoinBackendCall(pubkey, address, params);
-  } else {
+  if (isERC20Selected) {
     tx = await convertERC20BackendCall(pubkey, address, params);
+  } else {
+    tx = await convertCoinBackendCall(pubkey, address, params);
   }
 
   if (tx.error === true || tx.data === null) {

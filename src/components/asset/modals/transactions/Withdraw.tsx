@@ -51,7 +51,7 @@ const Withdraw = ({
     amount: item.cosmosBalance,
   });
   useEffect(() => {
-    if (isERC20Selected) {
+    if (!isERC20Selected) {
       setTypeSelected({
         amount: item.cosmosBalance,
       });
@@ -215,6 +215,7 @@ const Withdraw = ({
               token: item.symbol,
             };
             setDisabled(true);
+            console.log(isERC20Selected);
             const res = await executeWithdraw(
               wallet.evmosPubkey,
               wallet.evmosAddressCosmosFormat,

@@ -30,6 +30,7 @@ const AssetsTable = () => {
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
 
   const { data, error, isLoading } = useQuery<ERC20BalanceResponse, Error>({
+    refetchInterval: 3000,
     queryKey: [
       "assets",
       value.evmosAddressCosmosFormat,

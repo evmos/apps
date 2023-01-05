@@ -53,7 +53,9 @@ const Content = ({
                 />
                 <div className="flex flex-col items-start ">
                   <span className="font-bold">{item.symbol}</span>
-                  <span className="text-sm text-darkGray5">{item.name}</span>
+                  <span className="text-sm text-darkGray5">
+                    {item.description}
+                  </span>
                 </div>
               </div>
             </td>

@@ -32,14 +32,14 @@ const AssetsGuide = () => {
   );
   return (
     <>
-      <div
+      <button
         onClick={() => {
           setShow(true);
         }}
-        className="ml-3 rounded-full w-4 h-4 text-center flex items-center justify-center bg-red font-bold cursor-pointer text-xs"
+        className="bg-red text-xs font-[GreyCliff] p-3 font-bold rounded"
       >
-        ?
-      </div>
+        VIEW ASSETS GUIDE
+      </button>
       <ModalAsset
         show={show}
         modalContent={modalContent}

@@ -20,6 +20,8 @@ import {
 } from "../../../internal/asset/functionality/table/normalizeData";
 import { useRouter } from "next/router";
 import HeadTable from "./HeadTable";
+import TopBar from "./TopBar";
+import { getTotalAssets } from "../../../internal/asset/style/format";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -85,6 +87,10 @@ const AssetsTable = () => {
 
   return (
     <>
+      <TopBar
+        evmosPrice={normalizedAssetsData?.table[0]?.coingeckoPrice}
+        totalAssets={getTotalAssets(normalizedAssetsData)}
+      />
       <Switch
         onChange={() => setHideBalance(!hideZeroBalance)}
         checked={hideZeroBalance}

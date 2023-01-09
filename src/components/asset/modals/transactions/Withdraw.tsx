@@ -136,7 +136,8 @@ const Withdraw = ({
                 className="cursor-pointer"
                 onClick={async () => {
                   const keplrAddress = await getKeplrAddressByChain(
-                    item.chainId
+                    item.chainId,
+                    item.chainIdentifier
                   );
                   if (keplrAddress === null) {
                     dispatch(

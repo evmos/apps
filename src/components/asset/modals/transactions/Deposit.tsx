@@ -50,7 +50,10 @@ const Deposit = ({
   const [disabled, setDisabled] = useState(false);
   useEffect(() => {
     async function getData() {
-      const wallet = await getKeplrAddressByChain(item.chainId);
+      const wallet = await getKeplrAddressByChain(
+        item.chainId,
+        item.chainIdentifier
+      );
       if (wallet === null) {
         dispatch(
           addSnackbar({

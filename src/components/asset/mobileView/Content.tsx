@@ -112,6 +112,7 @@ const ContentCard = ({
               ) : (
                 <Button
                   disabled={
+                    !value.active ||
                     value.extensionName === METAMASK_KEY ||
                     item.symbol === EVMOS_SYMBOL
                   }
@@ -154,7 +155,7 @@ const ContentCard = ({
                 </Button>
               ) : (
                 <Button
-                  disabled={item.symbol === EVMOS_SYMBOL}
+                  disabled={!value.active || item.symbol === EVMOS_SYMBOL}
                   onClick={() => {
                     setShow(true);
                     setModalContent(
@@ -175,10 +176,7 @@ const ContentCard = ({
                 </Button>
               )}
               <Button
-                disabled={
-                  value.extensionName === KEPLR_KEY &&
-                  item.symbol === EVMOS_SYMBOL
-                }
+                disabled={!value.active || value.extensionName === KEPLR_KEY}
                 onClick={() => {
                   setShow(true);
                   setModalContent(

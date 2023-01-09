@@ -23,6 +23,8 @@ import ToContainer from "../common/ToContainer";
 import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import Tabs from "../common/Tabs";
+import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import AddTokenMetamask from "./AddTokenMetamask";
 
 const Withdraw = ({
   item,
@@ -61,6 +63,13 @@ const Withdraw = ({
       });
     }
   }, [isERC20Selected, item]);
+
+  const token: Token = {
+    // TODO: update erc20Address value
+    erc20Address: "erc20Address",
+    symbol: item.symbol,
+    decimals: item.decimals,
+  };
   return (
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
@@ -128,6 +137,7 @@ const Withdraw = ({
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
+            <AddTokenMetamask token={token} />
             <div className="flex items-center space-x-5 w-full justify-end">
               <span className="uppercase font-bold">Autofill</span>
               <KeplrIcon

@@ -38,6 +38,8 @@ export const METAMASK_NOTIFICATIONS = {
     "Could not get the pubkey, please sign the generate_pubkey message!",
   ChangeNetworkSubtext: "Could not change the network to EVMOS",
   AddressSubtext: "Could not get the user address from Metamask",
+  AddTokenTitle: "Token added successfully",
+  ErrorAddToken: "Could not add token, please try again",
 } as const;
 
 export const KEPLR_NOTIFICATIONS = {

@@ -12,6 +12,7 @@ import type { Maybe } from "@metamask/providers/dist/utils";
 import { signatureToPubkey } from "@hanchon/signature-to-pubkey";
 import { evmosToEth } from "@evmos/address-converter";
 import { queryPubKey } from "../pubkey";
+import { METAMASK_NOTIFICATIONS } from "../errors";
 
 export async function switchEthereumChain(ethChainId: string) {
   if (!window.ethereum) return false;
@@ -151,4 +152,47 @@ export async function generatePubKey(
     pubkey = await generatePubkeyFromSignature(account);
   }
   return pubkey;
+}
+
+export type Token = {
+  erc20Address: string;
+  symbol: string;
+  decimals: number;
+};
+
+export async function addToken(token: Token) {
+  if (window.ethereum) {
+    try {
+      if (token) {
+        const wasAdded = await window.ethereum.request({
+          method: "wallet_watchAsset",
+          params: {
+            type: "ERC20", // Initially only supports ERC20, but eventually more!
+            options: {
+              address: token.erc20Address, // The address that the token is at.
+              symbol: token.symbol === "EVMOS" ? "WEVMOS" : token.symbol,
+              decimals: token.decimals, // The number of decimals in the token
+              // image: token.img, // A string url of the token logo
+            },
+          },
+        });
+
+        if (wasAdded) {
+          return {
+            text: METAMASK_NOTIFICATIONS.AddTokenTitle,
+            type: "success",
+          };
+          // Sentry.captureMessage(`User adds token ${token} to wallet.`);
+        } else {
+          return {
+            text: METAMASK_NOTIFICATIONS.ErrorAddToken,
+            type: "error",
+          };
+          // Sentry.captureMessage(`Did not add token ${token} to wallet.`);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 }

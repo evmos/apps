@@ -18,7 +18,10 @@ import { getKeplrAddressByChain } from "../../../../internal/wallet/functionalit
 import { getBalance } from "../../../../internal/asset/functionality/fetch";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
-import { getWallet } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import {
+  getWallet,
+  Token,
+} from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import { ethToEvmos } from "@evmos/address-converter";
 import { EVMOS_CHAIN } from "../../../../internal/wallet/functionality/networkConfig";
 import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
@@ -26,6 +29,7 @@ import {
   snackbarExecutedTx,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
+import AddTokenMetamask from "./AddTokenMetamask";
 
 const Deposit = ({
   item,
@@ -92,6 +96,12 @@ const Deposit = ({
     getData();
   }, [address, item, dispatch, setShow]);
 
+  const token: Token = {
+    // TODO: update erc20Address value
+    erc20Address: "erc20Address",
+    symbol: item.symbol,
+    decimals: item.decimals,
+  };
   return (
     <>
       <ModalTitle title={`Deposit ${item.symbol}`} />
@@ -139,6 +149,8 @@ const Deposit = ({
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
+            <AddTokenMetamask token={token} />
+
             <div className="flex items-center space-x-5 w-full justify-end">
               <span className="uppercase font-bold">Autofill</span>
               <KeplrIcon

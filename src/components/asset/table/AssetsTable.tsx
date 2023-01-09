@@ -95,7 +95,7 @@ const AssetsTable = () => {
         onChange={() => setHideBalance(!hideZeroBalance)}
         checked={hideZeroBalance}
       />
-      <div className="mt-5 overflow-y-auto max-h-[54vh] lg:max-h-[55vh] xl:scrollbar-hide text-white font-[IBM] w-full">
+      <div className="mt-5 overflow-y-auto max-h-[40vh] lg:max-h-[53vh] xl:scrollbar-hide text-white font-[IBM] w-full">
         {!isLoading && !error && tableData?.length > 0 && showMobile && (
           <ContentCard
             tableData={{

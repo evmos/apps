@@ -92,10 +92,10 @@ export async function getKeplrAddressByChain(
         if (chainInfo !== "") {
           try {
             await window.keplr.experimentalSuggestChain(chainInfo);
-            offlineSigner = window.keplr.getOfflineSigner(chainId);
+            // NOTE: keplr bug offlineSigner fails after expermintalSuggestChain
+            offlineSigner = window.keplr.getOfflineSignerOnlyAmino(chainId);
             accounts = await offlineSigner.getAccounts();
           } catch (e) {
-            // TODO: when approve is clicked, is entering here.
             return null;
           }
 
@@ -103,7 +103,6 @@ export async function getKeplrAddressByChain(
             // Could not get accounts information
             return null;
           }
-
           return accounts[0].address;
         }
       }

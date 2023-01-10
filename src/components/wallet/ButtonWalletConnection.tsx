@@ -96,7 +96,19 @@ const ButtonWalletConnection = () => {
                 <KeplrIcon />
               )}
               <div className="flex flex-col font-bold ">
-                <p>{truncateAddress(value.evmosAddressCosmosFormat)}</p>
+                <div className="flex items-center space-x-2">
+                  <p>{truncateAddress(value.evmosAddressCosmosFormat)}</p>
+                  <button
+                    className="text-xs font-normal"
+                    onClick={() =>
+                      navigator.clipboard.writeText(
+                        value.evmosAddressCosmosFormat
+                      )
+                    }
+                  >
+                    Copy
+                  </button>
+                </div>
                 <p>{truncateAddress(value.evmosAddressEthFormat)}</p>
               </div>
               <ViewExplorer

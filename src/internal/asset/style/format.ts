@@ -128,3 +128,11 @@ export function getTotalAssets(normalizedAssetsData: TableData) {
   });
   return totalAssets.toFixed(2);
 }
+
+export function checkFormatAddress(address: string, prefix: string) {
+  // TODO: add test
+  if (address.startsWith(prefix.toLocaleLowerCase() + "1")) {
+    return true;
+  }
+  return false;
+}

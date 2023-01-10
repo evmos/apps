@@ -174,43 +174,27 @@ const Withdraw = ({
               setShow(false);
               return;
             }
-
+            const amount = parseUnits(
+              inputValue,
+              BigNumber.from(item.decimals)
+            );
             if (
               inputValue === undefined ||
               inputValue === null ||
               inputValue === "" ||
               addressTo === undefined ||
               addressTo === null ||
-              addressTo === ""
+              addressTo === "" ||
+              amount.gt(typeSelected.amount)
             ) {
-              // TODO: Add this validation to the input onchange
-
               return;
             }
 
-            let amount = "";
-            try {
-              amount = parseUnits(
-                inputValue,
-                BigNumber.from(item.decimals)
-              ).toString();
-            } catch (e) {
-              dispatch(
-                addSnackbar({
-                  id: 0,
-                  text: "Wrong params",
-                  subtext: "Amount can only be a positive number",
-                  type: "error",
-                })
-              );
-              setShow(false);
-              return;
-            }
             const params: IBCChainParams = {
               sender: address,
               receiver: addressTo,
-              amount,
-              srcChain: "EVMOS",
+              amount: amount.toString(),
+              srcChain: EVMOS_SYMBOL,
               dstChain: item.chainIdentifier,
               token: item.symbol,
             };

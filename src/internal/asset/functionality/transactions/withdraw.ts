@@ -1,6 +1,7 @@
 import { BigNumber, utils } from "ethers";
 import { EVMOS_NETWORK_FOR_BACKEND } from "../../../wallet/functionality/networkConfig";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
+import { checkFormatAddress } from "../../style/format";
 import { BROADCASTED_NOTIFICATIONS, MODAL_NOTIFICATIONS } from "./errors";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
@@ -33,7 +34,23 @@ export async function executeWithdraw(
     };
   }
 
-  // if (params.sender)
+  if (!checkFormatAddress(params.sender, "evmos")) {
+    return {
+      error: true,
+      message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
+      title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
+      txHash: "",
+    };
+  }
+  // TODO: add prefix when the value is in ERC20ModuleBalance endpoint
+  if (!checkFormatAddress(params.receiver, "juno")) {
+    return {
+      error: true,
+      message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
+      title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
+      txHash: "",
+    };
+  }
 
   const tx = await ibcTransferBackendCall(
     pubkey,
@@ -59,6 +76,15 @@ export async function executeWithdraw(
     extension
   );
   if (sign.result === false) {
+    return {
+      error: true,
+      message: sign.message,
+      title: "Error signing tx",
+      txHash: "",
+    };
+  }
+
+  if (sign.result === true && sign.message == "") {
     return {
       error: true,
       message: sign.message,

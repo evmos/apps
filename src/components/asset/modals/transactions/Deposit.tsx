@@ -208,38 +208,22 @@ const Deposit = ({
               setShow(false);
               return;
             }
-
+            const amount = parseUnits(
+              inputValue,
+              BigNumber.from(item.decimals)
+            );
             if (
               inputValue === undefined ||
               inputValue === null ||
               inputValue === "" ||
               addressTo === undefined ||
               addressTo === null ||
-              addressTo === ""
+              addressTo === "" ||
+              amount.gt(balance)
             ) {
-              // TODO: Add this validation to the input onchange
-
               return;
             }
 
-            let amount = "";
-            try {
-              amount = parseUnits(
-                inputValue,
-                BigNumber.from(item.decimals)
-              ).toString();
-            } catch (e) {
-              dispatch(
-                addSnackbar({
-                  id: 0,
-                  text: "Wrong params",
-                  subtext: "Amount can only be a positive number",
-                  type: "error",
-                })
-              );
-              setShow(false);
-              return;
-            }
             const keplrAddress = await getKeplrAddressByChain(item.chainId);
             if (keplrAddress === null) {
               return;
@@ -252,7 +236,7 @@ const Deposit = ({
             const params: IBCChainParams = {
               sender: keplrAddress,
               receiver: addressEvmos,
-              amount,
+              amount: amount.toString(),
               srcChain: item.chainIdentifier,
               dstChain: "EVMOS",
               token: item.symbol,

@@ -13,6 +13,9 @@ export const METAMASK_ERRORS = {
     "An error was produced while listening to change network events, please restart your browser",
   GetWallet:
     "An error was produced while getting your Metamask address, please allow the app to interact with your wallet",
+  DeniedSignature: "MetaMask Message Signature: User denied message signature.",
+  JsonParse:
+    "JSON.parse: unexpected end of data at line 1 column 1 of the JSON data",
 } as const;
 
 export const METAMASK_SUCCESS_MESSAGES = {
@@ -23,6 +26,7 @@ export const METAMASK_SUCCESS_MESSAGES = {
 export const KEPLR_ERRORS = {
   ExtensionNotFound: "Could not find Keplr Extension",
   ConnectionError: "Could not connect to Evmos and Osmosis Network",
+  RequestRejectedError: "Request rejected",
 } as const;
 
 export const KEPLR_SUCCESS_MESSAGES = {
@@ -38,6 +42,9 @@ export const METAMASK_NOTIFICATIONS = {
     "Could not get the pubkey, please sign the generate_pubkey message!",
   ChangeNetworkSubtext: "Could not change the network to EVMOS",
   AddressSubtext: "Could not get the user address from Metamask",
+  DeniedSignatureSubtext: "User denied message signature",
+  EipToSignSubtext:
+    "There was a problem creating the transaction, please try again",
 } as const;
 
 export const KEPLR_NOTIFICATIONS = {
@@ -47,4 +54,5 @@ export const KEPLR_NOTIFICATIONS = {
   LedgerNotInitSubtext: "Please initialize ethereum app on ledger first",
   RequestRejectedSubtext:
     "Please unlock the extension and allow the app to access your wallet address",
+  RequestRejectedSignSubtext: "User denied message signature",
 } as const;

@@ -18,6 +18,7 @@ import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
 import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
 import { useContract } from "./contracts/useContract";
+import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 
 const Convert = ({
   item,
@@ -138,43 +139,26 @@ const Convert = ({
               setShow(false);
               return;
             }
-
+            const amount = parseUnits(
+              inputValue,
+              BigNumber.from(item.decimals)
+            );
             if (
               inputValue === undefined ||
               inputValue === null ||
-              inputValue === ""
+              inputValue === "" ||
+              amount.gt(typeSelected.amount)
             ) {
-              // TODO: Add this validation to the input onchange
-
               return;
             }
 
-            let amount = "";
-            try {
-              amount = parseUnits(
-                inputValue,
-                BigNumber.from(item.decimals)
-              ).toString();
-            } catch (e) {
-              dispatch(
-                addSnackbar({
-                  id: 0,
-                  text: "Wrong params",
-                  subtext: "Amount can only be a positive number",
-                  type: "error",
-                })
-              );
-              // TODO: 0.0000001 too many decimals, now appears the positive number error
-              setShow(false);
-              return;
-            }
-            if (item.symbol !== "EVMOS") {
+            if (item.symbol !== EVMOS_SYMBOL) {
               const params: ConvertMsg = {
                 token: item.symbol,
-                amount,
+                amount: amount.toString(),
                 addressEth: wallet.evmosAddressEthFormat,
                 addressCosmos: wallet.evmosAddressCosmosFormat,
-                srcChain: "EVMOS",
+                srcChain: EVMOS_SYMBOL,
               };
               setDisabled(true);
               const res = await executeConvert(

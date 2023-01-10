@@ -1,5 +1,6 @@
 import { BigNumber, utils } from "ethers";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
+import { checkFormatAddress } from "../../style/format";
 import { MODAL_NOTIFICATIONS } from "./errors";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
@@ -16,6 +17,24 @@ export async function executeDeposit(
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
+      txHash: "",
+    };
+  }
+  // TODO: add prefix when the value is in ERC20ModuleBalance endpoint
+  if (!checkFormatAddress(params.sender, "")) {
+    return {
+      error: true,
+      message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
+      title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
+      txHash: "",
+    };
+  }
+
+  if (!checkFormatAddress(params.receiver, "evmos")) {
+    return {
+      error: true,
+      message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
+      title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
       txHash: "",
     };
   }

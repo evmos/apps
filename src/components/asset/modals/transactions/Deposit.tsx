@@ -279,7 +279,7 @@ const Deposit = ({
               dispatch(snackbarWaitingBroadcast());
               dispatch(
                 await snackbarExecutedTx(
-                  res.message,
+                  res.txHash,
                   item.chainIdentifier.toUpperCase()
                 )
               );

@@ -5,7 +5,10 @@ import {
   amountToDolars,
   convertAndFormat,
 } from "../../../internal/asset/style/format";
-import { METAMASK_KEY } from "../../../internal/wallet/functionality/wallet";
+import {
+  KEPLR_KEY,
+  METAMASK_KEY,
+} from "../../../internal/wallet/functionality/wallet";
 const Button = dynamic(() => import("../../common/Button"));
 const ExternalLinkIcon = dynamic(
   () => import("../../common/images/icons/ExternalLink")
@@ -17,6 +20,7 @@ import { StoreType } from "../../../redux/Store";
 import Convert from "../modals/transactions/Convert";
 import Withdraw from "../modals/transactions/Withdraw";
 import Deposit from "../modals/transactions/Deposit";
+import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 
 const Content = ({
   tableData,
@@ -49,22 +53,10 @@ const Content = ({
                 />
                 <div className="flex flex-col items-start ">
                   <span className="font-bold">{item.symbol}</span>
-                  <span className="text-sm text-darkGray5">{item.name}</span>
+                  <span className="text-sm text-darkGray5">
+                    {item.description}
+                  </span>
                 </div>
-              </div>
-            </td>
-            <td>
-              <div className="flex flex-col items-start uppercase">
-                <span className="font-bold">
-                  {convertAndFormat(item.cosmosBalance, item.decimals)}
-                </span>
-                <span className="text-sm text-darkGray5">
-                  {amountToDolars(
-                    item.cosmosBalance,
-                    item.decimals,
-                    item.coingeckoPrice
-                  )}
-                </span>
               </div>
             </td>
             <td>
@@ -82,6 +74,21 @@ const Content = ({
                 </span>
               </div>
             </td>
+            <td>
+              <div className="flex flex-col items-start uppercase">
+                <span className="font-bold">
+                  {convertAndFormat(item.cosmosBalance, item.decimals)}
+                </span>
+                <span className="text-sm text-darkGray5">
+                  {amountToDolars(
+                    item.cosmosBalance,
+                    item.decimals,
+                    item.coingeckoPrice
+                  )}
+                </span>
+              </div>
+            </td>
+
             <td>
               <div className="space-x-3 flex justify-center">
                 {item.handledByExternalUI !== null ? (
@@ -104,7 +111,10 @@ const Content = ({
                   </Button>
                 ) : (
                   <Button
-                    disabled={value.extensionName === METAMASK_KEY}
+                    disabled={
+                      value.extensionName === METAMASK_KEY ||
+                      item.symbol === EVMOS_SYMBOL
+                    }
                     onClick={() => {
                       setShow(true);
                       setModalContent(
@@ -144,6 +154,7 @@ const Content = ({
                   </Button>
                 ) : (
                   <Button
+                    disabled={item.symbol === EVMOS_SYMBOL}
                     onClick={() => {
                       setShow(true);
                       setModalContent(
@@ -164,6 +175,10 @@ const Content = ({
                   </Button>
                 )}
                 <Button
+                  disabled={
+                    value.extensionName === KEPLR_KEY &&
+                    item.symbol === EVMOS_SYMBOL
+                  }
                   onClick={() => {
                     setShow(true);
                     setModalContent(

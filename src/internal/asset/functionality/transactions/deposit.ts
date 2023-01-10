@@ -15,6 +15,7 @@ export async function executeDeposit(
       error: true,
       message: "Amount to send must be bigger than 0",
       title: "Wrong params",
+      txHash: "",
     };
   }
 
@@ -22,7 +23,12 @@ export async function executeDeposit(
   const tx = await ibcTransferBackendCall(pubkey, address, params);
   if (tx.error === true || tx.data === null) {
     // Error generating the transaction
-    return { error: true, message: tx.message, title: "Error generating tx" };
+    return {
+      error: true,
+      message: tx.message,
+      title: "Error generating tx",
+      txHash: "",
+    };
   }
 
   const signer = new Signer();
@@ -33,7 +39,12 @@ export async function executeDeposit(
     extension
   );
   if (sign.result === false) {
-    return { error: true, message: sign.message, title: "Error signing tx" };
+    return {
+      error: true,
+      message: sign.message,
+      title: "Error signing tx",
+      txHash: "",
+    };
   }
 
   const broadcastResponse = await signer.broadcastTxToBackend();
@@ -44,6 +55,7 @@ export async function executeDeposit(
       error: true,
       message: broadcastResponse.message,
       title: "Error broadcasting tx",
+      txHash: "",
     };
   }
 
@@ -51,5 +63,6 @@ export async function executeDeposit(
     error: false,
     message: `Transaction submit with hash: ${broadcastResponse.txhash}`,
     title: "Successfully broadcasted",
+    txHash: broadcastResponse.txhash,
   };
 }

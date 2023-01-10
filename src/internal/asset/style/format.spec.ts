@@ -1,7 +1,6 @@
 import { BigNumber } from "ethers";
 import {
   createBigNumber,
-  getLastWord,
   getReservedForFeeText,
   safeSubstraction,
 } from "./format";
@@ -47,30 +46,5 @@ describe("safeSubstraction function", () => {
     const value = safeSubstraction(createBigNumber("3"), createBigNumber("3"));
     expect(value._isBigNumber).toBe(true);
     expect(value._hex).toBe("0x00");
-  });
-});
-
-describe("getLastWord function", () => {
-  it("get last word if array length is bigger than 1", () => {
-    const value = getLastWord(
-      "Transaction submit with hash: 30D7F9D9EE3026CA704BDB9358148B39C85E6E6A51773C7E734109DA82071F7C"
-    );
-    expect(value).toBe(
-      "30D7F9D9EE3026CA704BDB9358148B39C85E6E6A51773C7E734109DA82071F7C"
-    );
-  });
-
-  it("get last word if array length is 1", () => {
-    const value = getLastWord(
-      "30D7F9D9EE3026CA704BDB9358148B39C85E6E6A51773C7E734109DA82071F7C"
-    );
-    expect(value).toBe(
-      "30D7F9D9EE3026CA704BDB9358148B39C85E6E6A51773C7E734109DA82071F7C"
-    );
-  });
-
-  it("get last word if array is empty", () => {
-    const value = getLastWord("");
-    expect(value).toBe("");
   });
 });

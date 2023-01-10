@@ -79,7 +79,6 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
           value={input.value}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             input.setInputValue(NumericOnly(e.target.value));
-            // TODO: should we use safeSubstraction here too?
           }}
         />
         <span className="opacity-80">{style.tokenTo}</span>

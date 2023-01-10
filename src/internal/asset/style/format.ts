@@ -2,6 +2,7 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { formatUnits } from "@ethersproject/units";
 import { addSnackbar } from "../../../components/notification/redux/notificationSlice";
 import { BIG_ZERO } from "../../common/math/Bignumbers";
+import { TableData } from "../functionality/table/normalizeData";
 import { EXECUTED_NOTIFICATIONS } from "../functionality/transactions/errors";
 import { checkIBCExecutionStatus } from "../functionality/transactions/executedTx";
 
@@ -93,14 +94,6 @@ export function createBigNumber(value: string) {
   return BigNumber.from(value);
 }
 
-export function getLastWord(value: string) {
-  const lastWord = value.split(" ").pop();
-  if (lastWord === undefined) {
-    return "";
-  }
-  return lastWord;
-}
-
 export function snackbarWaitingBroadcast() {
   return addSnackbar({
     id: 0,
@@ -110,21 +103,28 @@ export function snackbarWaitingBroadcast() {
   });
 }
 
-export async function snackbarExecutedTx(message: string, chain: string) {
-  const hash = getLastWord(message);
-  if (hash === "") {
-    return addSnackbar({
-      id: 0,
-      text: EXECUTED_NOTIFICATIONS.ErrorTitle,
-      subtext: EXECUTED_NOTIFICATIONS.UnexpectedSubtext,
-      type: "error",
-    });
-  }
-  const executed = await checkIBCExecutionStatus(hash, chain);
+export async function snackbarExecutedTx(txHash: string, chain: string) {
+  const executed = await checkIBCExecutionStatus(txHash, chain);
   return addSnackbar({
     id: 0,
     text: executed.title,
     subtext: executed.message,
     type: executed.error === true ? "error" : "success",
   });
+}
+
+export function getTotalAssets(normalizedAssetsData: TableData) {
+  // TODO: test it
+  let totalAssets = 0;
+  normalizedAssetsData?.table?.map((item) => {
+    totalAssets =
+      totalAssets +
+      parseFloat(
+        amountToDolars(item.cosmosBalance, item.decimals, item.coingeckoPrice)
+      ) +
+      parseFloat(
+        amountToDolars(item.erc20Balance, item.decimals, item.coingeckoPrice)
+      );
+  });
+  return totalAssets.toFixed(2);
 }

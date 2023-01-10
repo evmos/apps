@@ -1,6 +1,6 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { parseUnits } from "@ethersproject/units";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { executeWithdraw } from "../../../../internal/asset/functionality/transactions/withdraw";
@@ -22,6 +22,7 @@ import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
 import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
+import Tabs from "../common/Tabs";
 
 const Withdraw = ({
   item,
@@ -45,14 +46,28 @@ const Withdraw = ({
 
   const fee = BigNumber.from("4600000000000000");
   const feeDenom = "EVMOS";
+  const [isERC20Selected, setIsERC20Selected] = useState(false);
+  const [typeSelected, setTypeSelected] = useState({
+    amount: item.cosmosBalance,
+  });
+  useEffect(() => {
+    if (!isERC20Selected) {
+      setTypeSelected({
+        amount: item.cosmosBalance,
+      });
+    } else {
+      setTypeSelected({
+        amount: item.erc20Balance,
+      });
+    }
+  }, [isERC20Selected, item]);
   return (
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
       <div className="text-darkGray3">
         <p className="text-sm max-w-[500px] pb-3 italic">
-          At this time, only IBC coins can be withdrawn. Existing ERC-20 coins
-          must be converted back to IBC coins before being transferable to other
-          IBC chains
+          Since Evmos v10 you can withdraw directly your ERC20 balance without
+          previously converting it to IBC.
         </p>
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
           <FromContainer
@@ -64,7 +79,7 @@ const Withdraw = ({
             }}
             balance={{
               denom: item.symbol,
-              amount: item.cosmosBalance,
+              amount: typeSelected.amount,
               decimals: item.decimals,
             }}
             input={{ value: inputValue, setInputValue, confirmClicked }}
@@ -75,6 +90,16 @@ const Withdraw = ({
               text: "EVMOS",
             }}
           />
+          <div>
+            <span className="font-bold">Select balance:</span>
+            <Tabs
+              cosmosBalance={item.cosmosBalance}
+              decimals={item.decimals}
+              erc20Balance={item.erc20Balance}
+              isERC20Selected={isERC20Selected}
+              setIsERC20Selected={setIsERC20Selected}
+            />
+          </div>
           <div className="text-xs font-bold opacity-80">
             {getReservedForFeeText(fee, feeDenom, "EVMOS")}
           </div>
@@ -195,7 +220,8 @@ const Withdraw = ({
               wallet.evmosAddressCosmosFormat,
               params,
               feeBalance,
-              wallet.extensionName
+              wallet.extensionName,
+              isERC20Selected
             );
 
             dispatch(
@@ -209,7 +235,7 @@ const Withdraw = ({
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
-              dispatch(await snackbarExecutedTx(res.message, EVMOS_SYMBOL));
+              dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
             }
 
             setShow(false);

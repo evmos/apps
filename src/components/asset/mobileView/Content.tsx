@@ -5,7 +5,10 @@ import {
   amountToDolars,
   convertAndFormat,
 } from "../../../internal/asset/style/format";
-import { METAMASK_KEY } from "../../../internal/wallet/functionality/wallet";
+import {
+  KEPLR_KEY,
+  METAMASK_KEY,
+} from "../../../internal/wallet/functionality/wallet";
 const Button = dynamic(() => import("../../common/Button"));
 const ExternalLinkIcon = dynamic(
   () => import("../../common/images/icons/ExternalLink")
@@ -17,6 +20,7 @@ import { StoreType } from "../../../redux/Store";
 import Convert from "../modals/transactions/Convert";
 import Withdraw from "../modals/transactions/Withdraw";
 import Deposit from "../modals/transactions/Deposit";
+import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 
 const ContentCard = ({
   tableData,
@@ -46,7 +50,25 @@ const ContentCard = ({
               />
               <div className="flex flex-col items-start ">
                 <span className="font-bold">{item.symbol}</span>
-                <span className="text-sm text-darkGray5">{item.name}</span>
+                <span className="text-sm text-darkGray5">
+                  {item.description}
+                </span>
+              </div>
+            </div>
+            <div className="flex">
+              <p className="opacity-80 w-full">ERC-20 Balance</p>
+              <div className="flex justify-between w-full">
+                <p className="font-bold">
+                  {convertAndFormat(item.erc20Balance, item.decimals)}
+                </p>
+                <p>
+                  $
+                  {amountToDolars(
+                    item.erc20Balance,
+                    item.decimals,
+                    item.coingeckoPrice
+                  )}
+                </p>
               </div>
             </div>
             <div className="flex flex-col space-y-2">
@@ -60,22 +82,6 @@ const ContentCard = ({
                     $
                     {amountToDolars(
                       item.cosmosBalance,
-                      item.decimals,
-                      item.coingeckoPrice
-                    )}
-                  </p>
-                </div>
-              </div>
-              <div className="flex">
-                <p className="opacity-80 w-full">ERC-20 Balance</p>
-                <div className="flex justify-between w-full">
-                  <p className="font-bold">
-                    {convertAndFormat(item.erc20Balance, item.decimals)}
-                  </p>
-                  <p>
-                    $
-                    {amountToDolars(
-                      item.erc20Balance,
                       item.decimals,
                       item.coingeckoPrice
                     )}
@@ -105,7 +111,10 @@ const ContentCard = ({
                 </Button>
               ) : (
                 <Button
-                  disabled={value.extensionName === METAMASK_KEY}
+                  disabled={
+                    value.extensionName === METAMASK_KEY ||
+                    item.symbol === EVMOS_SYMBOL
+                  }
                   onClick={() => {
                     setShow(true);
                     setModalContent(
@@ -145,6 +154,7 @@ const ContentCard = ({
                 </Button>
               ) : (
                 <Button
+                  disabled={item.symbol === EVMOS_SYMBOL}
                   onClick={() => {
                     setShow(true);
                     setModalContent(
@@ -165,6 +175,10 @@ const ContentCard = ({
                 </Button>
               )}
               <Button
+                disabled={
+                  value.extensionName === KEPLR_KEY &&
+                  item.symbol === EVMOS_SYMBOL
+                }
                 onClick={() => {
                   setShow(true);
                   setModalContent(

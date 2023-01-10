@@ -1,4 +1,6 @@
 import { Sender, TxGenerated } from "@evmos/transactions";
+import { Web3Provider } from "@ethersproject/providers";
+
 import {
   signBackendTxWithKeplr,
   signEvmosjsTxWithKeplr,
@@ -145,6 +147,17 @@ export class Signer {
       message: `Invalid wallet extension`,
       txhash: `0x0`,
     };
+  }
+
+  // get provider
+  getProvider(currentExtension: string) {
+    if (!window.ethereum) {
+      return;
+    }
+    if (currentExtension === METAMASK_KEY) {
+      // @ts-expect-error type error
+      return new Web3Provider(window.ethereum);
+    }
   }
 }
 

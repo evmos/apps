@@ -251,7 +251,8 @@ const Deposit = ({
               keplrAddress,
               params,
               item.chainIdentifier.toUpperCase(),
-              wallet.extensionName
+              wallet.extensionName,
+              item.prefix
             );
 
             dispatch(

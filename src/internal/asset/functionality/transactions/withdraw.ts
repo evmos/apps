@@ -19,7 +19,8 @@ export async function executeWithdraw(
   params: IBCChainParams,
   feeBalance: BigNumber,
   extension: string,
-  useERC20Denom: boolean
+  useERC20Denom: boolean,
+  prefix: string
 ) {
   if (feeBalance.lt(feeAmountForWithdraw)) {
     return {
@@ -47,8 +48,7 @@ export async function executeWithdraw(
       txHash: "",
     };
   }
-  // TODO: add prefix when the value is in ERC20ModuleBalance endpoint
-  if (!checkFormatAddress(params.receiver, "juno")) {
+  if (!checkFormatAddress(params.receiver, prefix)) {
     return {
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,

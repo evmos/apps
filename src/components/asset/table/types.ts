@@ -11,6 +11,7 @@ export type ERC20Element = {
   // Currently only axelar assets are external actions
   handledByExternalUI: null | { handlingAction: string; url: string }[];
   coingeckoPrice: string;
+  prefix: string;
 };
 
 export type ERC20BalanceResponse = {

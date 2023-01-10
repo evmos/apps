@@ -15,7 +15,8 @@ export async function executeDeposit(
   address: string,
   params: IBCChainParams,
   identifier: string,
-  extension: string
+  extension: string,
+  prefix: string
 ) {
   if (utils.parseEther(params.amount).lte(BigNumber.from("0"))) {
     return {
@@ -25,8 +26,7 @@ export async function executeDeposit(
       txHash: "",
     };
   }
-  // TODO: add prefix when the value is in ERC20ModuleBalance endpoint
-  if (!checkFormatAddress(params.sender, "juno")) {
+  if (!checkFormatAddress(params.sender, prefix)) {
     return {
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,

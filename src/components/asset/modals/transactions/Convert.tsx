@@ -71,10 +71,10 @@ const Convert = ({
 
   const WEVMOSContract = useContract<WEVMOS>(WEVMOS, WETH_ABI);
   const token: Token = {
-    // TODO: update erc20Address value
-    erc20Address: "erc20Address",
+    erc20Address: item.erc20Address,
     symbol: item.symbol,
     decimals: item.decimals,
+    img: item.pngSrc,
   };
   return (
     <>

@@ -14,6 +14,8 @@ export type TableDataElement = {
   chainIdentifier: string;
   handledByExternalUI: null | { handlingAction: string; url: string };
   coingeckoPrice: number;
+  pngSrc: string;
+  erc20Address: string;
 };
 
 export type TableData = {
@@ -47,6 +49,8 @@ export function normalizeAssetsData(data: ERC20BalanceResponse | undefined) {
         chainIdentifier: item.chainIdentifier,
         handledByExternalUI: external,
         coingeckoPrice: Number(item.coingeckoPrice),
+        pngSrc: item.pngSrc,
+        erc20Address: item.erc20Address,
       });
     }
   });

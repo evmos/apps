@@ -158,6 +158,7 @@ export type Token = {
   erc20Address: string;
   symbol: string;
   decimals: number;
+  img: string;
 };
 
 export async function addToken(token: Token) {
@@ -172,7 +173,7 @@ export async function addToken(token: Token) {
               address: token.erc20Address, // The address that the token is at.
               symbol: token.symbol === "EVMOS" ? "WEVMOS" : token.symbol,
               decimals: token.decimals, // The number of decimals in the token
-              // image: token.img, // A string url of the token logo
+              image: token.img, // A string url of the token logo
             },
           },
         });

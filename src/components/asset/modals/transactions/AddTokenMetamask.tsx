@@ -16,6 +16,7 @@ const AddTokenMetamask = ({ token }: { token: Token }) => {
           erc20Address: token.erc20Address,
           symbol: token.symbol,
           decimals: token.decimals,
+          img: token.img,
         });
         if (value !== undefined) {
           dispatch(

@@ -65,10 +65,10 @@ const Withdraw = ({
   }, [isERC20Selected, item]);
 
   const token: Token = {
-    // TODO: update erc20Address value
-    erc20Address: "erc20Address",
+    erc20Address: item.erc20Address,
     symbol: item.symbol,
     decimals: item.decimals,
+    img: item.pngSrc,
   };
   return (
     <>

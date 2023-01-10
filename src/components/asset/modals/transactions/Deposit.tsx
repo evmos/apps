@@ -26,6 +26,10 @@ import {
   snackbarExecutedTx,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
+import {
+  KEPLR_NOTIFICATIONS,
+  METAMASK_NOTIFICATIONS,
+} from "../../../../internal/wallet/functionality/errors";
 
 const Deposit = ({
   item,
@@ -55,9 +59,8 @@ const Deposit = ({
         dispatch(
           addSnackbar({
             id: 0,
-            text: "Could not get information from Keplr",
-            subtext:
-              "Please unlock the extension and allow the app to access your wallet address",
+            text: KEPLR_NOTIFICATIONS.ErrorTitle,
+            subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
             type: "error",
           })
         );
@@ -153,9 +156,8 @@ const Deposit = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: "Could not get information from Keplr",
-                        subtext:
-                          "Please unlock the extension and allow the app to access your wallet address",
+                        text: KEPLR_NOTIFICATIONS.ErrorTitle,
+                        subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
                         type: "error",
                       })
                     );
@@ -175,9 +177,8 @@ const Deposit = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: "Could not get information from Metamask",
-                        subtext:
-                          "Please unlock the extension and allow the app to access your wallet address",
+                        text: METAMASK_NOTIFICATIONS.ErrorTitle,
+                        subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
                         type: "error",
                       })
                     );

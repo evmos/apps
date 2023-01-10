@@ -23,6 +23,7 @@ import ToContainer from "../common/ToContainer";
 import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import Tabs from "../common/Tabs";
+import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
 
 const Withdraw = ({
   item,
@@ -142,9 +143,8 @@ const Withdraw = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: "Could not get information from Keplr",
-                        subtext:
-                          "Please unlock the extension and allow the app to access your wallet address",
+                        text: KEPLR_NOTIFICATIONS.ErrorTitle,
+                        subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
                         type: "error",
                       })
                     );

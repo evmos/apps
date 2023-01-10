@@ -45,4 +45,6 @@ export const KEPLR_NOTIFICATIONS = {
   SuccessTitle: "Connected with Keplr",
   ExtensionNotFoundSubtext: "The Keplr extension could not be found",
   LedgerNotInitSubtext: "Please initialize ethereum app on ledger first",
+  RequestRejectedSubtext:
+    "Please unlock the extension and allow the app to access your wallet address",
 } as const;

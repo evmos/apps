@@ -146,6 +146,14 @@ export class Keplr {
           this.notificationsEnabled
         );
       }
+      if ((error as { message: string })?.message === "Request rejected") {
+        NotifyError(
+          KEPLR_NOTIFICATIONS.ErrorTitle,
+          KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+          this.reduxStore,
+          this.notificationsEnabled
+        );
+      }
       // TODO: catch wallet not unlocked
       // TODO: catch wallet not allowed to connect to evmos/osmosis
       this.reset();

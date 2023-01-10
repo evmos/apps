@@ -19,6 +19,11 @@ import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
 import { useContract } from "./contracts/useContract";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
+import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
+import {
+  BROADCASTED_NOTIFICATIONS,
+  GENERATING_TX_NOTIFICATIONS,
+} from "../../../../internal/asset/functionality/transactions/errors";
 
 const Convert = ({
   item,
@@ -45,7 +50,7 @@ const Convert = ({
     amount: item.cosmosBalance,
     from: "IBC Coin",
     to: "ERC-20",
-    token: "EVMOS",
+    token: EVMOS_SYMBOL,
   });
 
   useEffect(() => {
@@ -54,7 +59,7 @@ const Convert = ({
         amount: item.cosmosBalance,
         from: "IBC Coin",
         to: "ERC-20",
-        token: "EVMOS",
+        token: EVMOS_SYMBOL,
       });
     } else {
       setTypeSelected({
@@ -78,7 +83,7 @@ const Convert = ({
           <FromContainer
             fee={{
               fee: BigNumber.from("300000000000000000"),
-              feeDenom: "EVMOS",
+              feeDenom: EVMOS_SYMBOL,
               feeBalance: feeBalance,
               feeDecimals: 18,
             }}
@@ -90,7 +95,7 @@ const Convert = ({
             input={{ value: inputValue, setInputValue, confirmClicked }}
             style={{
               tokenTo:
-                item.symbol === "EVMOS" ? typeSelected.token : item.symbol,
+                item.symbol === EVMOS_SYMBOL ? typeSelected.token : item.symbol,
               address,
               img: `/tokens/${item.symbol.toLowerCase()}.png`,
               text: typeSelected.from,
@@ -109,8 +114,8 @@ const Convert = ({
           <div className="text-xs font-bold opacity-80">
             {getReservedForFeeText(
               BigNumber.from("300000000000000000"),
-              "EVMOS",
-              "EVMOS"
+              EVMOS_SYMBOL,
+              EVMOS_SYMBOL
             )}
           </div>
         </div>
@@ -131,8 +136,7 @@ const Convert = ({
                 addSnackbar({
                   id: 0,
                   text: "Wallet not connected",
-                  subtext:
-                    "Can not create a transaction without a wallet connected!",
+                  subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
                   type: "error",
                 })
               );
@@ -180,13 +184,51 @@ const Convert = ({
               );
             } else {
               if (isERC20Selected) {
-                await WEVMOSContract.withdraw(amount);
-                // TODO: add snackbar
+                try {
+                  const res = await WEVMOSContract.withdraw(amount);
+                  dispatch(
+                    addSnackbar({
+                      id: 0,
+                      text: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                      subtext: res.hash,
+                      type: "success",
+                    })
+                  );
+                } catch (e) {
+                  // TODO: Add Sentry here!
+                  dispatch(
+                    addSnackbar({
+                      id: 0,
+                      text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                      subtext: "",
+                      type: "error",
+                    })
+                  );
+                }
               } else {
-                await WEVMOSContract.deposit({
-                  value: amount,
-                });
-                // TODO: add snackbar
+                try {
+                  const res = await WEVMOSContract.deposit({
+                    value: amount,
+                  });
+                  dispatch(
+                    addSnackbar({
+                      id: 0,
+                      text: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                      subtext: res.hash,
+                      type: "success",
+                    })
+                  );
+                } catch (e) {
+                  // TODO: Add Sentry here!
+                  dispatch(
+                    addSnackbar({
+                      id: 0,
+                      text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                      subtext: "",
+                      type: "error",
+                    })
+                  );
+                }
               }
             }
             setShow(false);

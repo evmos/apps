@@ -89,20 +89,26 @@ export async function signBackendTxWithMetamask(
       signature: signature,
     };
   } catch (e) {
+    // Disabled until catching all the possible errors
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     let msg = `Error signing the tx: ${e}`;
+    // User rejected the action
     if (
       (e as { message: string })?.message === METAMASK_ERRORS.DeniedSignature
     ) {
       msg = METAMASK_NOTIFICATIONS.DeniedSignatureSubtext;
     }
+    // Error while creating signature
     if ((e as { message: string })?.message === METAMASK_ERRORS.JsonParse) {
       msg = METAMASK_NOTIFICATIONS.EipToSignSubtext;
+    }
+    // User is not connected to Evmos network
+    if ((e as { message: string })?.message === METAMASK_ERRORS.ProvidedChain) {
+      msg = METAMASK_NOTIFICATIONS.ProvidedChainSubtext;
     }
     // TODO: send custom responses for each of the knonw cases
     return {
       result: false,
-      // Disabled until catching all the possible errors
       message: msg,
       signature: null,
     };

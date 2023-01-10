@@ -16,6 +16,7 @@ export const METAMASK_ERRORS = {
   DeniedSignature: "MetaMask Message Signature: User denied message signature.",
   JsonParse:
     "JSON.parse: unexpected end of data at line 1 column 1 of the JSON data",
+  ProvidedChain: 'Provided chainId "9001" must match the active chainId "1"',
 } as const;
 
 export const METAMASK_SUCCESS_MESSAGES = {
@@ -45,6 +46,7 @@ export const METAMASK_NOTIFICATIONS = {
   DeniedSignatureSubtext: "User denied message signature",
   EipToSignSubtext:
     "There was a problem creating the transaction, please try again",
+  ProvidedChainSubtext: "Please, connect to the EVMOS network",
 } as const;
 
 export const KEPLR_NOTIFICATIONS = {

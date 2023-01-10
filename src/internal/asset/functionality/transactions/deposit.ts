@@ -1,7 +1,12 @@
 import { BigNumber, utils } from "ethers";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
 import { checkFormatAddress } from "../../style/format";
-import { MODAL_NOTIFICATIONS } from "./errors";
+import {
+  BROADCASTED_NOTIFICATIONS,
+  GENERATING_TX_NOTIFICATIONS,
+  MODAL_NOTIFICATIONS,
+  SIGNING_NOTIFICATIONS,
+} from "./errors";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
 
@@ -21,7 +26,7 @@ export async function executeDeposit(
     };
   }
   // TODO: add prefix when the value is in ERC20ModuleBalance endpoint
-  if (!checkFormatAddress(params.sender, "")) {
+  if (!checkFormatAddress(params.sender, "juno")) {
     return {
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
@@ -39,14 +44,13 @@ export async function executeDeposit(
     };
   }
 
-  //  TODO: if value is bigger than amount, return error
   const tx = await ibcTransferBackendCall(pubkey, address, params);
   if (tx.error === true || tx.data === null) {
     // Error generating the transaction
     return {
       error: true,
       message: tx.message,
-      title: "Error generating tx",
+      title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
       txHash: "",
     };
   }
@@ -62,7 +66,7 @@ export async function executeDeposit(
     return {
       error: true,
       message: sign.message,
-      title: "Error signing tx",
+      title: SIGNING_NOTIFICATIONS.ErrorTitle,
       txHash: "",
     };
   }
@@ -74,15 +78,15 @@ export async function executeDeposit(
     return {
       error: true,
       message: broadcastResponse.message,
-      title: "Error broadcasting tx",
+      title: BROADCASTED_NOTIFICATIONS.ErrorTitle,
       txHash: "",
     };
   }
 
   return {
     error: false,
-    message: `Transaction submit with hash: ${broadcastResponse.txhash}`,
-    title: "Successfully broadcasted",
+    message: `${BROADCASTED_NOTIFICATIONS.SubmitTitle} ${broadcastResponse.txhash}`,
+    title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
     txHash: broadcastResponse.txhash,
   };
 }

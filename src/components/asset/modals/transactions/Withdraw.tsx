@@ -20,7 +20,10 @@ import Arrow from "../common/Arrow";
 import ErrorMessage from "../common/ErrorMessage";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
-import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import {
+  BROADCASTED_NOTIFICATIONS,
+  MODAL_NOTIFICATIONS,
+} from "../../../../internal/asset/functionality/transactions/errors";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import Tabs from "../common/Tabs";
 import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
@@ -46,7 +49,7 @@ const Withdraw = ({
   const dispatch = useDispatch();
 
   const fee = BigNumber.from("4600000000000000");
-  const feeDenom = "EVMOS";
+  const feeDenom = EVMOS_SYMBOL;
   const [isERC20Selected, setIsERC20Selected] = useState(false);
   const [typeSelected, setTypeSelected] = useState({
     amount: item.cosmosBalance,
@@ -123,7 +126,7 @@ const Withdraw = ({
               />
             </div>
             {confirmClicked && addressTo === "" && (
-              <ErrorMessage text="Address can not be empty" />
+              <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
             )}
             <h6 className="italic text-sm">
               IMPORTANT: Transferring to an incorrect address will result in
@@ -166,8 +169,7 @@ const Withdraw = ({
                 addSnackbar({
                   id: 0,
                   text: "Wallet not connected",
-                  subtext:
-                    "Can not create a transaction without a wallet connected!",
+                  subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
                   type: "error",
                 })
               );

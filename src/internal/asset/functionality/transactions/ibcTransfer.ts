@@ -1,4 +1,5 @@
 import { EVMOS_BACKEND } from "../../../wallet/functionality/networkConfig";
+import { GENERATING_TX_NOTIFICATIONS } from "./errors";
 import { IBCChainParams, IBCTransferResponse } from "./types";
 
 export async function ibcTransferBackendCall(
@@ -36,7 +37,7 @@ export async function ibcTransferBackendCall(
       // TODO: add sentry call here!
       return {
         error: true,
-        message: "Error generating the transaction, please try again later",
+        message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
         data: null,
       };
     }
@@ -45,7 +46,7 @@ export async function ibcTransferBackendCall(
     // TODO: add sentry call here!
     return {
       error: true,
-      message: "Error generating the transaction, please try again later",
+      message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
       data: null,
     };
   }

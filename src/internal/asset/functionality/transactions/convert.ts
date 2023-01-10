@@ -7,7 +7,12 @@ import { parseEther } from "@ethersproject/units";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
 import { IBCTransferResponse, ConvertMsg } from "./types";
 import { BIG_ZERO } from "../../../common/math/Bignumbers";
-import { MODAL_NOTIFICATIONS } from "./errors";
+import {
+  BROADCASTED_NOTIFICATIONS,
+  GENERATING_TX_NOTIFICATIONS,
+  MODAL_NOTIFICATIONS,
+  SIGNING_NOTIFICATIONS,
+} from "./errors";
 
 const feeAmountForConvert = BigNumber.from("30000000000000000");
 
@@ -43,7 +48,7 @@ async function convertCoinBackendCall(
       // TODO: add sentry call here!
       return {
         error: true,
-        message: "Error generating the transaction, please try again later",
+        message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
         data: null,
       };
     }
@@ -52,7 +57,7 @@ async function convertCoinBackendCall(
     // TODO: add sentry call here!
     return {
       error: true,
-      message: "Error generating the transaction, please try again later",
+      message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
       data: null,
     };
   }
@@ -90,7 +95,7 @@ async function convertERC20BackendCall(
       // TODO: add sentry call here!
       return {
         error: true,
-        message: "Error generating the transaction, please try again later",
+        message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
         data: null,
       };
     }
@@ -99,7 +104,7 @@ async function convertERC20BackendCall(
     // TODO: add sentry call here!
     return {
       error: true,
-      message: "Error generating the transaction, please try again later",
+      message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
       data: null,
     };
   }
@@ -129,7 +134,6 @@ export async function executeConvert(
     };
   }
 
-  //  TODO: if value is bigger than amount, return error
   let tx;
   if (isERC20Selected) {
     tx = await convertERC20BackendCall(pubkey, address, params);
@@ -139,7 +143,11 @@ export async function executeConvert(
 
   if (tx.error === true || tx.data === null) {
     // Error generating the transaction
-    return { error: true, message: tx.message, title: "Error generating tx" };
+    return {
+      error: true,
+      message: tx.message,
+      title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+    };
   }
 
   const signer = new Signer();
@@ -150,7 +158,11 @@ export async function executeConvert(
     extension
   );
   if (sign.result === false) {
-    return { error: true, message: sign.message, title: "Error signing tx" };
+    return {
+      error: true,
+      message: sign.message,
+      title: SIGNING_NOTIFICATIONS.ErrorTitle,
+    };
   }
 
   const broadcastResponse = await signer.broadcastTxToBackend();
@@ -160,13 +172,13 @@ export async function executeConvert(
     return {
       error: true,
       message: broadcastResponse.message,
-      title: "Error broadcasting tx",
+      title: BROADCASTED_NOTIFICATIONS.ErrorTitle,
     };
   }
 
   return {
     error: false,
-    message: `Transaction submit with hash: ${broadcastResponse.txhash}`,
-    title: "Successfully broadcasted",
+    message: `${BROADCASTED_NOTIFICATIONS.SubmitTitle} ${broadcastResponse.txhash}`,
+    title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
   };
 }

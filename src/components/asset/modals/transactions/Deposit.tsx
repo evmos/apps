@@ -20,8 +20,14 @@ import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
 import { getWallet } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import { ethToEvmos } from "@evmos/address-converter";
-import { EVMOS_CHAIN } from "../../../../internal/wallet/functionality/networkConfig";
-import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import {
+  EVMOS_CHAIN,
+  EVMOS_SYMBOL,
+} from "../../../../internal/wallet/functionality/networkConfig";
+import {
+  BALANCE_NOTIFICATIONS,
+  BROADCASTED_NOTIFICATIONS,
+} from "../../../../internal/asset/functionality/transactions/errors";
 import {
   snackbarExecutedTx,
   snackbarWaitingBroadcast,
@@ -78,7 +84,7 @@ const Deposit = ({
         dispatch(
           addSnackbar({
             id: 0,
-            text: "Error getting balance from external chain",
+            text: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
             subtext: "",
             type: "error",
           })
@@ -102,7 +108,6 @@ const Deposit = ({
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
           <FromContainer
             fee={{
-              // modificar fee
               fee: BigNumber.from("5000"),
               feeDenom: item.symbol,
               feeBalance: feeBalance,
@@ -200,8 +205,7 @@ const Deposit = ({
                 addSnackbar({
                   id: 0,
                   text: "Wallet not connected",
-                  subtext:
-                    "Can not create a transaction without a wallet connected!",
+                  subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
                   type: "error",
                 })
               );
@@ -238,7 +242,7 @@ const Deposit = ({
               receiver: addressEvmos,
               amount: amount.toString(),
               srcChain: item.chainIdentifier,
-              dstChain: "EVMOS",
+              dstChain: EVMOS_SYMBOL,
               token: item.symbol,
             };
             setDisabled(true);

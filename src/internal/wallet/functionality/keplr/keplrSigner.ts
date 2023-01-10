@@ -73,8 +73,10 @@ export async function signKeplr(
       ),
     };
   } catch (e) {
+    // Disabled until catching all the possible errors
     // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     let msg = `Error signing the tx with keplr: ${e}`;
+    // User rejected the action
     if (
       (e as { message: string })?.message === KEPLR_ERRORS.RequestRejectedError
     ) {
@@ -82,7 +84,6 @@ export async function signKeplr(
     }
     return {
       result: false,
-      // Disabled until catching all the possible errors
       message: msg,
       transaction: null,
     };

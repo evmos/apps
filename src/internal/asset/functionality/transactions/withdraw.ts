@@ -2,7 +2,12 @@ import { BigNumber, utils } from "ethers";
 import { EVMOS_NETWORK_FOR_BACKEND } from "../../../wallet/functionality/networkConfig";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
 import { checkFormatAddress } from "../../style/format";
-import { BROADCASTED_NOTIFICATIONS, MODAL_NOTIFICATIONS } from "./errors";
+import {
+  BROADCASTED_NOTIFICATIONS,
+  GENERATING_TX_NOTIFICATIONS,
+  MODAL_NOTIFICATIONS,
+  SIGNING_NOTIFICATIONS,
+} from "./errors";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
 
@@ -63,7 +68,7 @@ export async function executeWithdraw(
     return {
       error: true,
       message: tx.message,
-      title: "Error generating tx",
+      title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
       txHash: "",
     };
   }
@@ -79,7 +84,7 @@ export async function executeWithdraw(
     return {
       error: true,
       message: sign.message,
-      title: "Error signing tx",
+      title: SIGNING_NOTIFICATIONS.ErrorTitle,
       txHash: "",
     };
   }
@@ -88,7 +93,7 @@ export async function executeWithdraw(
     return {
       error: true,
       message: sign.message,
-      title: "Error signing tx",
+      title: SIGNING_NOTIFICATIONS.ErrorTitle,
       txHash: "",
     };
   }
@@ -107,7 +112,7 @@ export async function executeWithdraw(
 
   return {
     error: false,
-    message: `Transaction submit with hash: ${broadcastResponse.txhash}`,
+    message: `${BROADCASTED_NOTIFICATIONS.SubmitTitle} ${broadcastResponse.txhash}`,
     title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
     txHash: broadcastResponse.txhash,
   };

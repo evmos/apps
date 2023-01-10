@@ -1,5 +1,6 @@
 import { BigNumber, utils } from "ethers";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
+import { MODAL_NOTIFICATIONS } from "./errors";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
 
@@ -13,8 +14,8 @@ export async function executeDeposit(
   if (utils.parseEther(params.amount).lte(BigNumber.from("0"))) {
     return {
       error: true,
-      message: "Amount to send must be bigger than 0",
-      title: "Wrong params",
+      message: MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext,
+      title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
       txHash: "",
     };
   }

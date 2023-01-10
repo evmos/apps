@@ -1,7 +1,7 @@
 import { BigNumber, utils } from "ethers";
 import { EVMOS_NETWORK_FOR_BACKEND } from "../../../wallet/functionality/networkConfig";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
-import { BROADCASTED_NOTIFICATIONS } from "./errors";
+import { BROADCASTED_NOTIFICATIONS, MODAL_NOTIFICATIONS } from "./errors";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
 
@@ -18,8 +18,8 @@ export async function executeWithdraw(
   if (feeBalance.lt(feeAmountForWithdraw)) {
     return {
       error: true,
-      message: "Insuficient EVMOS balance to pay the fee",
-      title: "Wrong params",
+      message: MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext,
+      title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
       txHash: "",
     };
   }
@@ -27,13 +27,14 @@ export async function executeWithdraw(
   if (utils.parseEther(params.amount).lte(BigNumber.from("0"))) {
     return {
       error: true,
-      message: "Amount to send must be bigger than 0",
-      title: "Wrong params",
+      message: MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext,
+      title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
       txHash: "",
     };
   }
 
-  //  TODO: if value is bigger than amount, return error
+  // if (params.sender)
+
   const tx = await ibcTransferBackendCall(
     pubkey,
     address,

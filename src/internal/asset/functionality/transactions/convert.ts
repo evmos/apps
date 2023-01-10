@@ -7,6 +7,7 @@ import { parseEther } from "@ethersproject/units";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
 import { IBCTransferResponse, ConvertMsg } from "./types";
 import { BIG_ZERO } from "../../../common/math/Bignumbers";
+import { MODAL_NOTIFICATIONS } from "./errors";
 
 const feeAmountForConvert = BigNumber.from("30000000000000000");
 
@@ -115,16 +116,16 @@ export async function executeConvert(
   if (feeBalance.lt(feeAmountForConvert)) {
     return {
       error: true,
-      message: "Insuficient EVMOS balance to pay the fee",
-      title: "Wrong params",
+      message: MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext,
+      title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
     };
   }
 
   if (parseEther(params.amount).lte(BIG_ZERO)) {
     return {
       error: true,
-      message: "Amount to send must be bigger than 0",
-      title: "Wrong params",
+      message: MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext,
+      title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
     };
   }
 

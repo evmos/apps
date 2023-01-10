@@ -10,3 +10,10 @@ export const BROADCASTED_NOTIFICATIONS = {
   SuccessTitle: "Successfully broadcasted",
   ErrorTitle: "Error broadcasting tx",
 } as const;
+
+export const MODAL_NOTIFICATIONS = {
+  ErrorAmountTitle: "Amount error",
+  ErrorZeroAmountSubtext: "The amount can't be 0",
+  ErrorInsufficientFeeSubtext:
+    "Lack sufficient balance to carry forth action. Balance needs to be above reserved amount.",
+};

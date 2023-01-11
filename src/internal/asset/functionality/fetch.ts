@@ -66,3 +66,12 @@ export const getBalance = async (
     };
   }
 };
+
+export type TotalStakedResponse = {
+  value: string;
+};
+
+export const getTotalStaked = async (address: string) => {
+  const res = await fetch(`${EVMOS_BACKEND}/totalStakedByAddress/${address}`);
+  return res.json() as Promise<TotalStakedResponse>;
+};

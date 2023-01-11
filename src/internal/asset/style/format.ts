@@ -113,7 +113,16 @@ export async function snackbarExecutedTx(txHash: string, chain: string) {
   });
 }
 
-export function getTotalAssets(normalizedAssetsData: TableData) {
+export type Staked = {
+  total: string;
+  decimals: number;
+  coingeckoPrice: number;
+};
+
+export function getTotalAssets(
+  normalizedAssetsData: TableData,
+  staked: Staked
+) {
   // TODO: test it
   let totalAssets = 0;
   normalizedAssetsData?.table?.map((item) => {
@@ -126,6 +135,22 @@ export function getTotalAssets(normalizedAssetsData: TableData) {
         amountToDolars(item.erc20Balance, item.decimals, item.coingeckoPrice)
       );
   });
+  if (
+    staked.total !== undefined &&
+    staked.total !== "0" &&
+    staked.decimals !== undefined &&
+    staked.coingeckoPrice !== undefined
+  ) {
+    const val = parseFloat(
+      amountToDolars(
+        BigNumber.from(staked.total.toString()),
+        staked.decimals,
+        staked.coingeckoPrice
+      )
+    );
+    totalAssets = totalAssets + val;
+  }
+
   return totalAssets.toFixed(2);
 }
 

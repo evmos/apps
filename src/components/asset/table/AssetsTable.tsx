@@ -3,7 +3,11 @@ import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../../redux/Store";
 import { ERC20BalanceResponse } from "./types";
-import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
+import {
+  getAssetsForAddress,
+  getTotalStaked,
+  TotalStakedResponse,
+} from "../../../internal/asset/functionality/fetch";
 
 import dynamic from "next/dynamic";
 
@@ -12,7 +16,7 @@ const MessageTable = dynamic(() => import("./MessageTable"));
 const Switch = dynamic(() => import("../utils/Switch"));
 const Content = dynamic(() => import("./Content"));
 const ContentCard = dynamic(() => import("../mobileView/Content"));
-const TopBar = dynamic(() => import("./TopBar"));
+const TopBar = dynamic(() => import("./topBar/TopBar"));
 
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
@@ -21,7 +25,12 @@ import {
 } from "../../../internal/asset/functionality/table/normalizeData";
 import { useRouter } from "next/router";
 import HeadTable from "./HeadTable";
-import { getTotalAssets } from "../../../internal/asset/style/format";
+import {
+  convertFromAtto,
+  formatNumber,
+  getTotalAssets,
+} from "../../../internal/asset/style/format";
+import { BigNumber } from "ethers";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -43,6 +52,11 @@ const AssetsTable = () => {
         value.evmosAddressCosmosFormat,
         value.evmosAddressEthFormat
       ),
+  });
+
+  const totalStakedResults = useQuery<TotalStakedResponse, Error>({
+    queryKey: ["totalStaked", value.evmosAddressCosmosFormat],
+    queryFn: () => getTotalStaked(value.evmosAddressCosmosFormat),
   });
 
   const [hideZeroBalance, setHideBalance] = useState(false);
@@ -85,11 +99,34 @@ const AssetsTable = () => {
     return () => window.removeEventListener("resize", handleClientWidthChanges);
   }, []);
 
+  const totalStaked = useMemo(() => {
+    let stakedRes = totalStakedResults?.data?.value?.toString();
+    if (stakedRes !== "" && stakedRes !== undefined) {
+      stakedRes = formatNumber(
+        convertFromAtto(
+          BigNumber.from(stakedRes),
+          normalizedAssetsData?.table[0]?.decimals
+        )
+      );
+    } else {
+      stakedRes = "0";
+    }
+
+    return `${stakedRes} EVMOS`;
+  }, [totalStakedResults, normalizedAssetsData]);
+
   return (
     <>
       <TopBar
         evmosPrice={normalizedAssetsData?.table[0]?.coingeckoPrice}
-        totalAssets={getTotalAssets(normalizedAssetsData)}
+        totalStaked={totalStaked}
+        totalAssets={getTotalAssets(normalizedAssetsData, {
+          total: totalStakedResults?.data
+            ? totalStakedResults?.data?.value
+            : "0",
+          decimals: normalizedAssetsData?.table[0]?.decimals,
+          coingeckoPrice: normalizedAssetsData.table[0]?.coingeckoPrice,
+        })}
       />
       <Switch
         onChange={() => setHideBalance(!hideZeroBalance)}

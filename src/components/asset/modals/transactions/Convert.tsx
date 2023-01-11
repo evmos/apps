@@ -24,6 +24,8 @@ import {
   BROADCASTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
 } from "../../../../internal/asset/functionality/transactions/errors";
+import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import AddTokenMetamask from "./AddTokenMetamask";
 
 const Convert = ({
   item,
@@ -74,7 +76,12 @@ const Convert = ({
   const WEVMOS = WEVMOS_CONTRACT_ADDRESS;
 
   const WEVMOSContract = useContract<WEVMOS>(WEVMOS, WETH_ABI);
-
+  const token: Token = {
+    erc20Address: item.erc20Address,
+    symbol: item.symbol,
+    decimals: item.decimals,
+    img: item.pngSrc,
+  };
   return (
     <>
       <ModalTitle title={`Convert ${item.symbol}`} />
@@ -126,6 +133,7 @@ const Convert = ({
             img={`/tokens/${item.symbol.toLowerCase()}.png`}
             text={typeSelected.to}
           />
+          <AddTokenMetamask token={token} />
         </div>
         <ConfirmButton
           disabled={disabled}

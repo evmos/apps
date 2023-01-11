@@ -27,6 +27,8 @@ import {
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import Tabs from "../common/Tabs";
 import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
+import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import AddTokenMetamask from "./AddTokenMetamask";
 
 const Withdraw = ({
   item,
@@ -65,6 +67,13 @@ const Withdraw = ({
       });
     }
   }, [isERC20Selected, item]);
+
+  const token: Token = {
+    erc20Address: item.erc20Address,
+    symbol: item.symbol,
+    decimals: item.decimals,
+    img: item.pngSrc,
+  };
   return (
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
@@ -132,6 +141,7 @@ const Withdraw = ({
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
+            <AddTokenMetamask token={token} />
             <div className="flex items-center space-x-5 w-full justify-end">
               <span className="uppercase font-bold">Autofill</span>
               <KeplrIcon
@@ -140,7 +150,8 @@ const Withdraw = ({
                 className="cursor-pointer"
                 onClick={async () => {
                   const keplrAddress = await getKeplrAddressByChain(
-                    item.chainId
+                    item.chainId,
+                    item.chainIdentifier
                   );
                   if (keplrAddress === null) {
                     dispatch(

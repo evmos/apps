@@ -47,6 +47,8 @@ export const METAMASK_NOTIFICATIONS = {
   EipToSignSubtext:
     "There was a problem creating the transaction, please try again",
   ProvidedChainSubtext: "Please, connect to the EVMOS network",
+  AddTokenTitle: "Token added successfully",
+  ErrorAddToken: "Could not add token, please try again",
 } as const;
 
 export const KEPLR_NOTIFICATIONS = {

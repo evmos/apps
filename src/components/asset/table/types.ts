@@ -12,6 +12,8 @@ export type ERC20Element = {
   handledByExternalUI: null | { handlingAction: string; url: string }[];
   coingeckoPrice: string;
   prefix: string;
+  pngSrc: string;
+  erc20Address: string;
 };
 
 export type ERC20BalanceResponse = {

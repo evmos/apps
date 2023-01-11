@@ -143,7 +143,7 @@ export function getTotalAssets(
   ) {
     const val = parseFloat(
       amountToDolars(
-        BigNumber.from(staked.total.toString()),
+        BigNumber.from(staked.total),
         staked.decimals,
         staked.coingeckoPrice
       )

@@ -73,7 +73,7 @@ export type TotalStakedResponse = {
 
 export const getTotalStaked = async (address: string) => {
   if (address === "") {
-    return Promise<{ value: "0" }>;
+    return { value: "0" };
   }
   const res = await fetch(`${EVMOS_BACKEND}/totalStakedByAddress/${address}`);
   return res.json() as Promise<TotalStakedResponse>;

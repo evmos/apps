@@ -100,7 +100,7 @@ const AssetsTable = () => {
   }, []);
 
   const totalStaked = useMemo(() => {
-    let stakedRes = totalStakedResults?.data?.value?.toString();
+    let stakedRes = totalStakedResults?.data?.value;
     if (stakedRes !== "" && stakedRes !== undefined) {
       stakedRes = formatNumber(
         convertFromAtto(

@@ -89,15 +89,6 @@ export async function executeWithdraw(
     };
   }
 
-  if (sign.result === true && sign.message == "") {
-    return {
-      error: true,
-      message: sign.message,
-      title: SIGNING_NOTIFICATIONS.ErrorTitle,
-      txHash: "",
-    };
-  }
-
   const broadcastResponse = await signer.broadcastTxToBackend();
 
   if (broadcastResponse.error === true) {

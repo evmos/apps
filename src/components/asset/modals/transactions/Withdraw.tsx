@@ -8,6 +8,7 @@ import { IBCChainParams } from "../../../../internal/asset/functionality/transac
 import {
   getReservedForFeeText,
   snackbarExecutedTx,
+  snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
@@ -22,6 +23,7 @@ import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
 import {
   BROADCASTED_NOTIFICATIONS,
+  EXECUTED_NOTIFICATIONS,
   MODAL_NOTIFICATIONS,
 } from "../../../../internal/asset/functionality/transactions/errors";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
@@ -212,6 +214,16 @@ const Withdraw = ({
               token: item.symbol,
             };
             setDisabled(true);
+
+            dispatch(
+              addSnackbar({
+                id: 0,
+                text: EXECUTED_NOTIFICATIONS.IBCTransferInformation.text,
+                subtext: EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext,
+                type: "default",
+              })
+            );
+            // create, sign and broadcast tx
             const res = await executeWithdraw(
               wallet.evmosPubkey,
               wallet.evmosAddressCosmosFormat,
@@ -233,6 +245,7 @@ const Withdraw = ({
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
+              dispatch(await snackbarIncludedInBlock(res.txHash, EVMOS_SYMBOL));
               dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
             }
 

@@ -105,8 +105,6 @@ export async function checkTx(txHash: string, network: string) {
       }
     }
   } catch (e) {
-    console.log(e);
-    // Sentry.captureException(e);
   }
 
   // HTTP error or not code 0, is that the transaction failed

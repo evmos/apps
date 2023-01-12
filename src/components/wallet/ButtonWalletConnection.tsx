@@ -4,6 +4,7 @@ import { truncateAddress } from "../../internal/wallet/style/format";
 import {
   KEPLR_KEY,
   METAMASK_KEY,
+  WALLECT_CONNECT_KEY,
 } from "../../internal/wallet/functionality/wallet";
 import { useDispatch, useSelector } from "react-redux";
 import { store, StoreType } from "../../redux/Store";
@@ -22,6 +23,10 @@ import WalletIcon from "../common/images/icons/WalletIcon";
 import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";
 import WalletConnectIcon from "../common/images/icons/WalletConnectIcon";
+import {
+  useActivateWalletConnect,
+  useWalletConnect,
+} from "../../internal/wallet/functionality/walletconnect/walletconnect";
 
 // Components
 const Button = dynamic(() => import("../common/Button"));
@@ -29,11 +34,15 @@ const Button = dynamic(() => import("../common/Button"));
 const ButtonWalletConnection = () => {
   const [show, setShow] = useState(false);
 
+  const useWC = useWalletConnect(store, true);
+
   const close = useCallback(() => setShow(false), []);
   const open = useCallback(() => setShow(true), []);
 
   const value = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
+
+  useActivateWalletConnect(store, value.extensionName);
 
   // Restore wallet connection on first load if exists
   const firstUpdate = useRef(true);
@@ -74,11 +83,10 @@ const ButtonWalletConnection = () => {
         className="flex items-center space-x-3 justify-center"
         onClick={open}
       >
-        {value.extensionName === METAMASK_KEY ? (
-          <MetamaskIcon />
-        ) : (
-          <KeplrIcon />
-        )}
+        {value.extensionName === METAMASK_KEY && <MetamaskIcon />}
+        {value.extensionName === KEPLR_KEY && <KeplrIcon />}
+        {value.extensionName === WALLECT_CONNECT_KEY && <WalletConnectIcon />}
+
         <span className="text-lg font-bold">
           {truncateAddress(value.evmosAddressEthFormat)}
         </span>
@@ -90,10 +98,10 @@ const ButtonWalletConnection = () => {
 
           <div className="space-y-5">
             <div className="flex items-center space-x-5">
-              {value.extensionName === METAMASK_KEY ? (
-                <MetamaskIcon />
-              ) : (
-                <KeplrIcon />
+              {value.extensionName === METAMASK_KEY && <MetamaskIcon />}
+              {value.extensionName === KEPLR_KEY && <KeplrIcon />}
+              {value.extensionName === WALLECT_CONNECT_KEY && (
+                <WalletConnectIcon />
               )}
               <div className="flex flex-col font-bold ">
                 <p>{truncateAddress(value.evmosAddressCosmosFormat)}</p>
@@ -161,14 +169,14 @@ const ButtonWalletConnection = () => {
               </ContentModalConnect>
             </ButtonWallet>
             <ButtonWallet
-              onClick={() => {
-                // TODO: implement function
-                throw "Not implemented!";
+              onClick={async () => {
+                console.log(await useWC.connect());
               }}
             >
               <ContentModalConnect>
                 <>
-                  <WalletConnectIcon /> <span>Wallet Connect</span>
+                  <WalletConnectIcon />
+                  <span>Wallet Connect {useWC.address}</span>
                 </>
               </ContentModalConnect>
             </ButtonWallet>

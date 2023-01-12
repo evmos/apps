@@ -62,6 +62,8 @@ export function subscribeToAccountChange(
 ): boolean {
   if (!window.ethereum) return false;
   try {
+    // This lint is disabled because installing wagmi overwrites the types of window, but the function actually exists
+    // eslint-disable-next-line  @typescript-eslint/no-unsafe-call
     window.ethereum.removeAllListeners("accountsChanged");
     // It expect unknown instead of string
     // @ts-expect-error type error
@@ -75,7 +77,10 @@ export function subscribeToAccountChange(
 export function unsubscribeToEvents() {
   if (!window.ethereum) return;
   try {
+    // This lint is disabled because installing wagmi overwrites the types of window, but the function actually exists
+    // eslint-disable-next-line  @typescript-eslint/no-unsafe-call
     window.ethereum.removeAllListeners("accountsChanged");
+    // eslint-disable-next-line  @typescript-eslint/no-unsafe-call
     window.ethereum.removeAllListeners("chainChanged");
     return;
   } catch (e) {
@@ -86,6 +91,8 @@ export function unsubscribeToEvents() {
 export function subscribeToChainChanged(): boolean {
   if (!window.ethereum) return false;
   try {
+    // This lint is disabled because installing wagmi overwrites the types of window, but the function actually exists
+    // eslint-disable-next-line  @typescript-eslint/no-unsafe-call
     window.ethereum.removeAllListeners("chainChanged");
     window.ethereum.on("chainChanged", async () => {
       await switchEthereumChain(EVMOS_ETH_CHAIN_ID);

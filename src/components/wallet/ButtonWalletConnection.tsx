@@ -34,7 +34,7 @@ const Button = dynamic(() => import("../common/Button"));
 const ButtonWalletConnection = () => {
   const [show, setShow] = useState(false);
 
-  const useWC = useWalletConnect(store, true);
+  const useWC = useWalletConnect(store);
 
   const close = useCallback(() => setShow(false), []);
   const open = useCallback(() => setShow(true), []);
@@ -42,7 +42,7 @@ const ButtonWalletConnection = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
 
-  useActivateWalletConnect(store, value.extensionName);
+  useActivateWalletConnect(store, true, value.extensionName);
 
   // Restore wallet connection on first load if exists
   const firstUpdate = useRef(true);

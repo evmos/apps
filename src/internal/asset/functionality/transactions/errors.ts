@@ -7,7 +7,7 @@ export const EXECUTED_NOTIFICATIONS = {
   IBCTransferInformation: {
     text: "Note",
     subtext:
-      "IBC transfer takes up to 15 mins in time of congestion. Please be patient before attempting to resend the transaction",
+      "IBC transfer takes up to 15 mins in time of congestion. Please be patient before attempting to resend the transaction.",
   },
 } as const;
 

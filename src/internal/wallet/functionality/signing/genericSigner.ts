@@ -16,7 +16,7 @@ import {
   TxGeneratedByBackend,
 } from "../signing";
 import { KEPLR_KEY, METAMASK_KEY, WALLECT_CONNECT_KEY } from "../wallet";
-import { signEvmosjsTxWithWalletConnect } from "../walletconnect/walletconnect";
+import { signEvmosjsTxWithWalletConnect } from "../walletconnect/walletconnectSigner";
 
 export class Signer {
   keplrBackendData: { tx: RawTx; sender: string; network: string } | null =

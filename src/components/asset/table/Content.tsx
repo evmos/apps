@@ -8,6 +8,7 @@ import {
 import {
   KEPLR_KEY,
   METAMASK_KEY,
+  WALLECT_CONNECT_KEY,
 } from "../../../internal/wallet/functionality/wallet";
 const Button = dynamic(() => import("../../common/Button"));
 const ExternalLinkIcon = dynamic(
@@ -114,7 +115,8 @@ const Content = ({
                     disabled={
                       !value.active ||
                       value.extensionName === METAMASK_KEY ||
-                      item.symbol === EVMOS_SYMBOL
+                      item.symbol === EVMOS_SYMBOL ||
+                      value.extensionName === WALLECT_CONNECT_KEY
                     }
                     onClick={() => {
                       setShow(true);

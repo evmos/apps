@@ -176,7 +176,7 @@ const ButtonWalletConnection = () => {
               <ContentModalConnect>
                 <>
                   <WalletConnectIcon />
-                  <span>Wallet Connect {useWC.address}</span>
+                  <span>Wallet Connect </span>
                 </>
               </ContentModalConnect>
             </ButtonWallet>

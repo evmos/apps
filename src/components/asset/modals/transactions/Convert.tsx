@@ -207,6 +207,7 @@ const Convert = ({
                       })
                     );
                     setShow(false);
+                    return;
                   }
 
                   const res = await (contract as WEVMOS).withdraw(amount);
@@ -246,6 +247,7 @@ const Convert = ({
                       })
                     );
                     setShow(false);
+                    return;
                   }
                   const res = await (contract as WEVMOS).deposit({
                     value: amount,

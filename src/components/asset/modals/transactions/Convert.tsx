@@ -198,9 +198,15 @@ const Convert = ({
                     wallet.extensionName
                   );
                   if (contract === null) {
-                    // TODO: alert invalid provider
-                    alert("invalid provider");
-                    return;
+                    dispatch(
+                      addSnackbar({
+                        id: 0,
+                        text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                        subtext: "",
+                        type: "error",
+                      })
+                    );
+                    setShow(false);
                   }
 
                   const res = await (contract as WEVMOS).withdraw(amount);
@@ -231,9 +237,15 @@ const Convert = ({
                     wallet.extensionName
                   );
                   if (contract === null) {
-                    // TODO: alert invalid provider
-                    alert("invalid provider");
-                    return;
+                    dispatch(
+                      addSnackbar({
+                        id: 0,
+                        text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                        subtext: "",
+                        type: "error",
+                      })
+                    );
+                    setShow(false);
                   }
                   const res = await (contract as WEVMOS).deposit({
                     value: amount,

@@ -170,7 +170,8 @@ const ButtonWalletConnection = () => {
             </ButtonWallet>
             <ButtonWallet
               onClick={async () => {
-                console.log(await useWC.connect());
+                setShow(false);
+                await useWC.connect();
               }}
             >
               <ContentModalConnect>

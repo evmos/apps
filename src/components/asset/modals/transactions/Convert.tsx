@@ -202,7 +202,7 @@ const Convert = ({
                     alert("invalid provider");
                     return;
                   }
-
+                  setDisabled(true);
                   const res = await (contract as WEVMOS).withdraw(amount);
                   dispatch(
                     addSnackbar({
@@ -235,6 +235,7 @@ const Convert = ({
                     alert("invalid provider");
                     return;
                   }
+                  setDisabled(true);
                   const res = await (contract as WEVMOS).deposit({
                     value: amount,
                   });

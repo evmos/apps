@@ -75,9 +75,7 @@ export function amountToDolars(
   decimals: number,
   coingeckoPrice: number
 ) {
-  return (
-    Number(formatNumber(convertFromAtto(value, decimals))) * coingeckoPrice
-  ).toFixed(2);
+  return (Number(convertFromAtto(value, decimals)) * coingeckoPrice).toFixed(2);
 }
 
 export function truncateNumber(number: string) {

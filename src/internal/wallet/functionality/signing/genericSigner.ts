@@ -15,7 +15,13 @@ import {
   RawTx,
   TxGeneratedByBackend,
 } from "../signing";
-import { KEPLR_KEY, METAMASK_KEY } from "../wallet";
+import { KEPLR_KEY, METAMASK_KEY, WALLECT_CONNECT_KEY } from "../wallet";
+import {
+  signBackendTxWithWalletConnect,
+  signEvmosjsTxWithWalletConnect,
+} from "../walletconnect/walletconnectSigner";
+import { wagmiClient } from "../walletconnect/walletconnectConstants";
+import { providers } from "ethers";
 
 export class Signer {
   keplrBackendData: { tx: RawTx; sender: string; network: string } | null =
@@ -44,6 +50,10 @@ export class Signer {
       return signEvmosjsTxWithMetamask(sender, tx);
     }
 
+    if (currentExtension === WALLECT_CONNECT_KEY) {
+      return signEvmosjsTxWithWalletConnect(sender, tx);
+    }
+
     if (currentExtension === KEPLR_KEY) {
       return signEvmosjsTxWithKeplr(sender, tx, chainId);
     }
@@ -62,14 +72,35 @@ export class Signer {
     currentExtension: string
   ) {
     this.reset();
-    if (currentExtension === METAMASK_KEY) {
-      const res = await signBackendTxWithMetamask(sender, tx);
-      if (res.signature === null) {
-        return {
-          result: res.result,
-          message: res.message,
-        };
+    if (
+      currentExtension === METAMASK_KEY ||
+      currentExtension === WALLECT_CONNECT_KEY
+    ) {
+      let res: {
+        result: boolean;
+        message: string;
+        signature: null | string;
+      };
+      if (currentExtension === METAMASK_KEY) {
+        res = await signBackendTxWithMetamask(sender, tx);
+        if (res.signature === null) {
+          return {
+            result: res.result,
+            message: res.message,
+          };
+        }
+        this.currentExtension = METAMASK_KEY;
+      } else {
+        res = await signBackendTxWithWalletConnect(sender, tx);
+        if (res.signature === null) {
+          return {
+            result: res.result,
+            message: res.message,
+          };
+        }
+        this.currentExtension = WALLECT_CONNECT_KEY;
       }
+
       this.metamaskBackendData = {
         chainId: tx.chainId,
         address: sender,
@@ -77,7 +108,6 @@ export class Signer {
         body: tx.legacyAmino.body,
         auth: tx.legacyAmino.authInfo,
       };
-      this.currentExtension = METAMASK_KEY;
       return {
         result: res.result,
         message: res.message,
@@ -108,8 +138,11 @@ export class Signer {
 
   // TODO: add support to broadcast EvmosJS transactions
   async broadcastTxToBackend() {
-    // Metamask
-    if (this.currentExtension === METAMASK_KEY) {
+    // Metamask and wallet connect
+    if (
+      this.currentExtension === METAMASK_KEY ||
+      this.currentExtension === WALLECT_CONNECT_KEY
+    ) {
       if (this.metamaskBackendData == null) {
         return {
           error: true,
@@ -150,13 +183,29 @@ export class Signer {
   }
 
   // get provider
-  getProvider(currentExtension: string) {
+  async getProvider(currentExtension: string) {
     if (!window.ethereum) {
       return;
     }
     if (currentExtension === METAMASK_KEY) {
       // @ts-expect-error type error
       return new Web3Provider(window.ethereum);
+    }
+    if (currentExtension === WALLECT_CONNECT_KEY) {
+      const connector = wagmiClient.connector;
+      if (!connector) {
+        return;
+      }
+
+      const provider = (await connector.getProvider({
+        chainId: 9001,
+      })) as providers.JsonRpcFetchFunc;
+
+      if (!provider) {
+        return;
+      }
+
+      return new Web3Provider(provider);
     }
   }
 }

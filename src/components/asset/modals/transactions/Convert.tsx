@@ -15,9 +15,8 @@ import { addSnackbar } from "../../../notification/redux/notificationSlice";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { ModalTitle } from "../../../common/Modal";
 import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
-import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
-import { useContract } from "./contracts/useContract";
+import { createContract } from "./contracts/contractHelper";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
 import {
@@ -27,6 +26,7 @@ import {
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
 import ViewExplorer from "../../../common/ViewExplorer";
+import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 
 const Convert = ({
   item,
@@ -76,7 +76,6 @@ const Convert = ({
 
   const WEVMOS = WEVMOS_CONTRACT_ADDRESS;
 
-  const WEVMOSContract = useContract<WEVMOS>(WEVMOS, WETH_ABI);
   const token: Token = {
     erc20Address: item.erc20Address,
     symbol: item.symbol,
@@ -203,7 +202,18 @@ const Convert = ({
             } else {
               if (isERC20Selected) {
                 try {
-                  const res = await WEVMOSContract.withdraw(amount);
+                  const contract = await createContract(
+                    WEVMOS,
+                    WETH_ABI,
+                    wallet.extensionName
+                  );
+                  if (contract === null) {
+                    // TODO: alert invalid provider
+                    alert("invalid provider");
+                    return;
+                  }
+
+                  const res = await (contract as WEVMOS).withdraw(amount);
                   dispatch(
                     addSnackbar({
                       id: 0,
@@ -231,7 +241,17 @@ const Convert = ({
                 }
               } else {
                 try {
-                  const res = await WEVMOSContract.deposit({
+                  const contract = await createContract(
+                    WEVMOS,
+                    WETH_ABI,
+                    wallet.extensionName
+                  );
+                  if (contract === null) {
+                    // TODO: alert invalid provider
+                    alert("invalid provider");
+                    return;
+                  }
+                  const res = await (contract as WEVMOS).deposit({
                     value: amount,
                   });
                   dispatch(

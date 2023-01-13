@@ -124,7 +124,11 @@ export const ButtonActions = ({
         </Button>
       )}
       <Button
-        disabled={!value.active || value.extensionName === KEPLR_KEY}
+        disabled={
+          !value.active ||
+          (value.extensionName === KEPLR_KEY &&
+            actionsProps.item.symbol === EVMOS_SYMBOL)
+        }
         onClick={() => {
           actionsProps.setShow(true);
           actionsProps.setModalContent(

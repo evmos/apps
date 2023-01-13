@@ -123,6 +123,8 @@ export async function executeConvert(
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
+      txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -131,6 +133,8 @@ export async function executeConvert(
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
+      txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -147,6 +151,8 @@ export async function executeConvert(
       error: true,
       message: tx.message,
       title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+      txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -162,6 +168,8 @@ export async function executeConvert(
       error: true,
       message: sign.message,
       title: SIGNING_NOTIFICATIONS.ErrorTitle,
+      txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -173,6 +181,8 @@ export async function executeConvert(
       error: true,
       message: broadcastResponse.message,
       title: BROADCASTED_NOTIFICATIONS.ErrorTitle,
+      txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -180,5 +190,7 @@ export async function executeConvert(
     error: false,
     message: `${BROADCASTED_NOTIFICATIONS.SubmitTitle} ${broadcastResponse.txhash}`,
     title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+    txHash: broadcastResponse.txhash,
+    explorerTxUrl: tx?.data?.explorerTxUrl,
   };
 }

@@ -258,8 +258,8 @@ const Withdraw = ({
               dispatch(
                 await snackbarIncludedInBlock(
                   res.txHash,
-                  EVMOS_SYMBOL
-                  // res.explorerTxUrl
+                  EVMOS_SYMBOL,
+                  res.explorerTxUrl
                 )
               );
               dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));

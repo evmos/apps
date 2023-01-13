@@ -307,8 +307,8 @@ const Deposit = ({
               dispatch(
                 await snackbarIncludedInBlock(
                   res.txHash,
-                  item.chainIdentifier.toUpperCase()
-                  // res.explorerTxUrl
+                  item.chainIdentifier.toUpperCase(),
+                  res.explorerTxUrl
                 )
               );
 

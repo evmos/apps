@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useAccount } from "wagmi";
+import { useAccount, useDisconnect } from "wagmi";
 import { useWeb3Modal } from "@web3modal/react";
 
 import {
@@ -32,10 +32,10 @@ export function useWalletConnect(reduxStore: ReduxWalletStore) {
   const { address, isConnecting } = useAccount();
 
   async function connect() {
+    SaveProviderToLocalStorate(WALLECT_CONNECT_KEY);
     if (!address && !isConnecting) {
       await open({ route: "ConnectWallet" });
     }
-    SaveProviderToLocalStorate(WALLECT_CONNECT_KEY);
     reduxStore.dispatch(
       setWallet({
         active: false,
@@ -57,6 +57,7 @@ export function useActivateWalletConnect(
   extensionName: string
 ) {
   const { address, isDisconnected } = useAccount();
+  const { disconnect } = useDisconnect();
 
   async function generatePubKeyWalletConnect(
     account: string,
@@ -72,11 +73,7 @@ export function useActivateWalletConnect(
   useEffect(() => {
     async function execute() {
       if (extensionName !== WALLECT_CONNECT_KEY) {
-        return;
-      }
-
-      if (isDisconnected) {
-        store.dispatch(resetWallet());
+        disconnect();
         return;
       }
 

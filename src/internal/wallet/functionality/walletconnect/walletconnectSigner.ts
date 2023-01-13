@@ -1,6 +1,6 @@
 import { evmosToEth } from "@evmos/address-converter";
-import { EIPToSign, Sender, TxGenerated } from "@evmos/transactions";
-import { providers, TypedDataField } from "ethers";
+import { Sender, TxGenerated } from "@evmos/transactions";
+import { providers } from "ethers";
 import { ProviderRpcError } from "wagmi";
 import { EVMOS_CHAIN } from "../networkConfig";
 import { createEIP712Transaction, TxGeneratedByBackend } from "../signing";
@@ -18,7 +18,8 @@ export async function signEvmosjsTxWithWalletConnect(
 
     if (
       signer === undefined ||
-      evmosToEth(sender.accountAddress) != (await signer.getAddress())
+      evmosToEth(sender.accountAddress).toLowerCase() !=
+        (await signer.getAddress()).toLowerCase()
     ) {
       return {
         result: false,
@@ -27,20 +28,12 @@ export async function signEvmosjsTxWithWalletConnect(
       };
     }
 
-    const types_ = Object.entries(tx.eipToSign.types)
-      .filter(([key]) => key !== "EIP712Domain")
-      .reduce((types, [key, attributes]: [string, TypedDataField[]]) => {
-        types[key] = attributes.filter((attr) => attr.type !== "EIP712Domain");
-        return types;
-      }, {} as Record<string, TypedDataField[]>);
-
     let signature = "";
     try {
-      signature = await signer._signTypedData(
-        tx.eipToSign.domain,
-        types_,
-        tx.eipToSign.message
-      );
+      signature = (await signer.provider.send("eth_signTypedData_v4", [
+        evmosToEth(sender.accountAddress).toLowerCase(),
+        tx.eipToSign,
+      ])) as string;
     } catch (error) {
       if (
         (error as ProviderRpcError).code === 4001 ||
@@ -88,15 +81,17 @@ export async function signBackendTxWithWalletConnect(
   sender: string,
   tx: TxGeneratedByBackend
 ) {
-  const eipToSignUTF8 = JSON.parse(
-    Buffer.from(tx.eipToSign, "base64").toString("utf-8")
-  ) as EIPToSign;
+  const eipToSignUTF8 = Buffer.from(tx.eipToSign, "base64").toString("utf-8");
 
   const signer = (await wagmiClient.connector?.getSigner?.({
     chainId: 9001,
   })) as providers.JsonRpcSigner;
 
-  if (signer === undefined || sender != (await signer.getAddress())) {
+  if (
+    signer === undefined ||
+    evmosToEth(sender).toLowerCase() !=
+      (await signer.getAddress()).toLowerCase()
+  ) {
     return {
       result: false,
       message: `Error signing the tx: Wallect Connect signer could not be connected`,
@@ -104,22 +99,12 @@ export async function signBackendTxWithWalletConnect(
     };
   }
 
-  const types_ = Object.entries(eipToSignUTF8.types)
-    .filter(([key]) => key !== "EIP712Domain")
-    .reduce((types, [key, attributes]: [string, TypedDataField[]]) => {
-      types[key] = attributes.filter((attr) => attr.type !== "EIP712Domain");
-      return types;
-    }, {} as Record<string, TypedDataField[]>);
-
   let signature = "";
   try {
-    // Method name may be changed in the future, see https://docs.ethers.io/v5/api/signer/#Signer-signTypedData
-    signature = await signer._signTypedData(
-      eipToSignUTF8.domain,
-      types_,
-      eipToSignUTF8.message
-    );
-
+    signature = (await signer.provider.send("eth_signTypedData_v4", [
+      evmosToEth(sender).toLowerCase(),
+      eipToSignUTF8,
+    ])) as string;
     return {
       result: true,
       message: "",

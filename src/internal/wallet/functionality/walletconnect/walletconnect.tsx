@@ -29,13 +29,10 @@ export type EthersError = Error & {
 
 export function useWalletConnect(reduxStore: ReduxWalletStore) {
   const { open } = useWeb3Modal();
-  const { address, isConnecting } = useAccount();
+  const { address } = useAccount();
 
   async function connect() {
-    SaveProviderToLocalStorate(WALLECT_CONNECT_KEY);
-    if (!address && !isConnecting) {
-      await open({ route: "ConnectWallet" });
-    }
+    await open({ route: "ConnectWallet" });
     reduxStore.dispatch(
       setWallet({
         active: false,
@@ -47,6 +44,12 @@ export function useWalletConnect(reduxStore: ReduxWalletStore) {
       })
     );
   }
+
+  useEffect(() => {
+    if (address) {
+      SaveProviderToLocalStorate(WALLECT_CONNECT_KEY);
+    }
+  }, [address]);
 
   return { connect, address };
 }
@@ -72,7 +75,7 @@ export function useActivateWalletConnect(
 
   useEffect(() => {
     async function execute() {
-      if (extensionName !== WALLECT_CONNECT_KEY) {
+      if (!isDisconnected && extensionName !== WALLECT_CONNECT_KEY) {
         disconnect();
         return;
       }
@@ -115,5 +118,12 @@ export function useActivateWalletConnect(
     // Can not await inside a useEffect
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     execute();
-  }, [address, isDisconnected, extensionName, notificationsEnabled, store]);
+  }, [
+    address,
+    disconnect,
+    isDisconnected,
+    extensionName,
+    notificationsEnabled,
+    store,
+  ]);
 }

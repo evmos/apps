@@ -100,7 +100,7 @@ export async function signBackendTxWithWalletConnect(
     return {
       result: false,
       message: `Error signing the tx: Wallect Connect signer could not be connected`,
-      transaction: null,
+      signature: null,
     };
   }
 
@@ -133,7 +133,7 @@ export async function signBackendTxWithWalletConnect(
       return {
         result: false,
         message: `Error signing the tx: Transaction was not signed.`,
-        transaction: null,
+        signature: null,
       };
     }
     return {
@@ -141,7 +141,7 @@ export async function signBackendTxWithWalletConnect(
       // Disabled until catching all the possible errors
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Error signing the tx: ${error}`,
-      transaction: null,
+      signature: null,
     };
   }
 }

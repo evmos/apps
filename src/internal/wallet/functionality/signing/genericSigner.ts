@@ -16,7 +16,12 @@ import {
   TxGeneratedByBackend,
 } from "../signing";
 import { KEPLR_KEY, METAMASK_KEY, WALLECT_CONNECT_KEY } from "../wallet";
-import { signEvmosjsTxWithWalletConnect } from "../walletconnect/walletconnectSigner";
+import {
+  signBackendTxWithWalletConnect,
+  signEvmosjsTxWithWalletConnect,
+} from "../walletconnect/walletconnectSigner";
+import { wagmiClient } from "../walletconnect/walletconnectConstants";
+import { providers } from "ethers";
 
 export class Signer {
   keplrBackendData: { tx: RawTx; sender: string; network: string } | null =
@@ -86,7 +91,7 @@ export class Signer {
         }
         this.currentExtension = METAMASK_KEY;
       } else {
-        res = await signBackendTxWithMetamask(sender, tx);
+        res = await signBackendTxWithWalletConnect(sender, tx);
         if (res.signature === null) {
           return {
             result: res.result,
@@ -178,13 +183,29 @@ export class Signer {
   }
 
   // get provider
-  getProvider(currentExtension: string) {
+  async getProvider(currentExtension: string) {
     if (!window.ethereum) {
       return;
     }
     if (currentExtension === METAMASK_KEY) {
       // @ts-expect-error type error
       return new Web3Provider(window.ethereum);
+    }
+    if (currentExtension === WALLECT_CONNECT_KEY) {
+      const connector = wagmiClient.connector;
+      if (!connector) {
+        return;
+      }
+
+      const provider = (await connector.getProvider({
+        chainId: 9001,
+      })) as providers.JsonRpcFetchFunc;
+
+      if (!provider) {
+        return;
+      }
+
+      return new Web3Provider(provider);
     }
   }
 }

@@ -212,6 +212,7 @@ const Convert = ({
                         <ViewExplorer
                           txHash={res.hash}
                           explorerTxUrl={`www.mintscan.io/evmos/txs/${res.hash}`}
+                          text={res.hash}
                         />
                       ),
                       type: "success",
@@ -241,6 +242,7 @@ const Convert = ({
                         <ViewExplorer
                           txHash={res.hash}
                           explorerTxUrl={`www.mintscan.io/evmos/txs/${res.hash}`}
+                          text={res.hash}
                         />
                       ),
                       type: "success",

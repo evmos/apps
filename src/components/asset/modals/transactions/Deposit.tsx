@@ -30,9 +30,11 @@ import {
 import {
   BALANCE_NOTIFICATIONS,
   BROADCASTED_NOTIFICATIONS,
+  EXECUTED_NOTIFICATIONS,
 } from "../../../../internal/asset/functionality/transactions/errors";
 import {
   snackbarExecutedTx,
+  snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
 import {
@@ -261,6 +263,16 @@ const Deposit = ({
               token: item.symbol,
             };
             setDisabled(true);
+
+            dispatch(
+              addSnackbar({
+                id: 0,
+                text: EXECUTED_NOTIFICATIONS.IBCTransferInformation.text,
+                subtext: EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext,
+                type: "default",
+              })
+            );
+            // create, sign and broadcast tx
             const res = await executeDeposit(
               wallet.osmosisPubkey,
               keplrAddress,
@@ -282,6 +294,13 @@ const Deposit = ({
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
+              dispatch(
+                await snackbarIncludedInBlock(
+                  res.txHash,
+                  item.chainIdentifier.toUpperCase()
+                )
+              );
+
               dispatch(
                 await snackbarExecutedTx(
                   res.txHash,

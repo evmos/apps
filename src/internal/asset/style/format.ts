@@ -4,7 +4,11 @@ import { addSnackbar } from "../../../components/notification/redux/notification
 import { BIG_ZERO } from "../../common/math/Bignumbers";
 import { TableData } from "../functionality/table/normalizeData";
 import { EXECUTED_NOTIFICATIONS } from "../functionality/transactions/errors";
-import { checkIBCExecutionStatus } from "../functionality/transactions/executedTx";
+import {
+  checkIBCExecutionStatus,
+  checkTxInclusionInABlock,
+} from "../functionality/transactions/executedTx";
+import { TransactionStatus } from "../functionality/transactions/types";
 
 export function getReservedForFeeText(
   amount: BigNumber,
@@ -98,6 +102,34 @@ export function snackbarWaitingBroadcast() {
   return addSnackbar({
     id: 0,
     text: EXECUTED_NOTIFICATIONS.WaitingTitle,
+    subtext: "",
+    type: "default",
+  });
+}
+
+export async function snackbarIncludedInBlock(txHash: string, chain: string) {
+  const includedInBlock = await checkTxInclusionInABlock(txHash, chain);
+  if (includedInBlock !== undefined) {
+    if (includedInBlock === TransactionStatus.SUCCESS) {
+      return addSnackbar({
+        id: 0,
+        text: "Successfully included in a block",
+        subtext: txHash,
+        type: "success",
+      });
+    } else {
+      return addSnackbar({
+        id: 0,
+        text: "Error including transaction in a block",
+        subtext: "",
+        type: "error",
+      });
+    }
+  }
+  // unconfirmed
+  return addSnackbar({
+    id: 0,
+    text: "Waiting for the transaction to be included in a block",
     subtext: "",
     type: "default",
   });

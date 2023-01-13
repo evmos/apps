@@ -12,7 +12,7 @@ const Snackbar = ({
 }: {
   type: string;
   text: string;
-  subtext: string;
+  subtext: string | JSX.Element;
   id: number;
 }) => {
   const dispatch = useDispatch();

@@ -31,6 +31,7 @@ import Tabs from "../common/Tabs";
 import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
+import ViewExplorer from "../../../common/ViewExplorer";
 
 const Withdraw = ({
   item,
@@ -238,14 +239,29 @@ const Withdraw = ({
               addSnackbar({
                 id: 0,
                 text: res.title,
-                subtext: res.message,
+                subtext:
+                  res.error === true ? (
+                    res.message
+                  ) : (
+                    <ViewExplorer
+                      text={res.message}
+                      txHash={res.txHash}
+                      explorerTxUrl={res.explorerTxUrl}
+                    />
+                  ),
                 type: res.error === true ? "error" : "success",
               })
             );
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
-              dispatch(await snackbarIncludedInBlock(res.txHash, EVMOS_SYMBOL));
+              dispatch(
+                await snackbarIncludedInBlock(
+                  res.txHash,
+                  EVMOS_SYMBOL
+                  // res.explorerTxUrl
+                )
+              );
               dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
             }
 

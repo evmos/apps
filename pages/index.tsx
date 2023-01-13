@@ -6,7 +6,9 @@ import AssetsTable from "../src/components/asset/table/AssetsTable";
 import Container from "../src/components/Container";
 import { store } from "../src/redux/Store";
 import { WagmiConfig } from "wagmi";
-import { Web3Modal } from "@web3modal/react";
+const Web3Modal = dynamic(() =>
+  import("@web3modal/react").then((mod) => mod.Web3Modal)
+);
 import {
   ethereumClient,
   projectId,

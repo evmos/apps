@@ -2,7 +2,7 @@ import { evmosToEth } from "@evmos/address-converter";
 import { signatureToPubkey } from "@hanchon/signature-to-pubkey";
 import { Signer } from "ethers";
 import { Token } from "../metamask/metamaskHelpers";
-import { wagmiClient } from "./walletconnect";
+import { wagmiClient } from "./walletconnectConstants";
 
 export async function watchAssetWalletConnect(token: Token) {
   try {

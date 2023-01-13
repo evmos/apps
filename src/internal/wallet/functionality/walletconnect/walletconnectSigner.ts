@@ -4,7 +4,8 @@ import { providers, TypedDataField } from "ethers";
 import { ProviderRpcError } from "wagmi";
 import { EVMOS_CHAIN } from "../networkConfig";
 import { createEIP712Transaction, TxGeneratedByBackend } from "../signing";
-import { EthersError, wagmiClient } from "./walletconnect";
+import { EthersError } from "./walletconnect";
+import { wagmiClient } from "./walletconnectConstants";
 
 export async function signEvmosjsTxWithWalletConnect(
   sender: Sender,

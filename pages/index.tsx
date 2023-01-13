@@ -6,12 +6,12 @@ import AssetsTable from "../src/components/asset/table/AssetsTable";
 import Container from "../src/components/Container";
 import { store } from "../src/redux/Store";
 import { WagmiConfig } from "wagmi";
+import { Web3Modal } from "@web3modal/react";
 import {
   ethereumClient,
   projectId,
   wagmiClient,
-} from "../src/internal/wallet/functionality/walletconnect/walletconnect";
-import { Web3Modal } from "@web3modal/react";
+} from "../src/internal/wallet/functionality/walletconnect/walletconnectConstants";
 
 const Header = dynamic(() => import("../src/components/Header"));
 const TermOfServices = dynamic(

@@ -14,7 +14,7 @@ import dynamic from "next/dynamic";
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
 const MessageTable = dynamic(() => import("./MessageTable"));
 const Switch = dynamic(() => import("../utils/Switch"));
-const Content = dynamic(() => import("./Content"));
+// const Content = dynamic(() => import("./Content"));
 const ContentCard = dynamic(() => import("../mobileView/Content"));
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 
@@ -31,6 +31,8 @@ import {
   getTotalAssets,
 } from "../../../internal/asset/style/format";
 import { BigNumber } from "ethers";
+import { STR } from "./STR";
+import HeadAssets from "./components/HeadAssets";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -171,17 +173,23 @@ const AssetsTable = () => {
           )}
         </table>
         {!isLoading && !error && tableData?.length > 0 && !showMobile && (
-          <table className="w-full">
-            <HeadTable />
-            <Content
+          <div>
+            <HeadAssets />
+            <STR
+              tableData={{
+                table: tableData,
+                feeBalance: normalizedAssetsData.feeBalance,
+              }}
+            />
+            {/* <Content
               tableData={{
                 table: tableData,
                 feeBalance: normalizedAssetsData.feeBalance,
               }}
               setShow={setShow}
               setModalContent={setModalContent}
-            />
-          </table>
+            /> */}
+          </div>
         )}
       </div>
       <ModalAsset

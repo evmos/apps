@@ -3,12 +3,18 @@ import Image from "next/image";
 export const Description = ({
   symbol,
   description,
+  subRow = false,
 }: {
   symbol: string;
   description: string;
+  subRow?: boolean;
 }) => {
   return (
-    <div className="flex items-center space-x-5">
+    <div
+      className={`flex items-center space-x-5 w-[50%] ${
+        subRow ? "pl-[55px]" : ""
+      } `}
+    >
       <Image
         src={`/tokens/${symbol.toLocaleLowerCase()}.png`}
         alt={symbol}

@@ -200,3 +200,39 @@ export function checkFormatAddress(address: string, prefix: string) {
   }
   return false;
 }
+
+export interface addDolarsAssetsType extends addAssetsType {
+  coingeckoPrice: number;
+}
+
+export type addAssetsType = {
+  cosmosBalance: BigNumber;
+  decimals: number;
+  erc20Balance: BigNumber;
+};
+
+export function addDolarAssets(assets: addDolarsAssetsType) {
+  return (
+    parseFloat(
+      amountToDolars(
+        assets.cosmosBalance,
+        assets.decimals,
+        assets.coingeckoPrice
+      )
+    ) +
+    parseFloat(
+      amountToDolars(
+        assets.erc20Balance,
+        assets.decimals,
+        assets.coingeckoPrice
+      )
+    )
+  );
+}
+
+export function addAssets(asset: addAssetsType) {
+  return (
+    Number(convertAndFormat(asset.cosmosBalance, asset.decimals)) +
+    Number(convertAndFormat(asset.erc20Balance, asset.decimals))
+  );
+}

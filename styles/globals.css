@@ -68,6 +68,15 @@
     last:border-r-darkGray2 last:rounded-r-3xl
   }
 
+  .accordion:first-of-type .accordion-item {
+    @apply first:rounded-bl-none first:border-l-darkGray2 first:rounded-l-3xl 
+    last:rounded-br-none last:border-r-darkGray2 last:rounded-r-3xl
+  }
+
+  .accordion:last-of-type .accordion-item {
+    @apply first:rounded-tl-none first:border-l-darkGray2 first:rounded-l-3xl 
+    last:rounded-tr-none last:border-r-darkGray2 last:rounded-r-3xl
+  }
   /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

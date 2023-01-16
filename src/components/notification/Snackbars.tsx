@@ -12,13 +12,7 @@ export default function Snackbars() {
     <div className="absolute left-3 bottom-3 space-y-5">
       {valueRedux.map((e) => {
         return (
-          <Snackbar
-            type={e.type}
-            text={e.text}
-            subtext={e.subtext}
-            id={e.id}
-            key={e.id}
-          />
+          <Snackbar type={e.type} content={e.content} id={e.id} key={e.id} />
         );
       })}
     </div>

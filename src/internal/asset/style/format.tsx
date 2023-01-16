@@ -9,7 +9,8 @@ import {
   checkTxInclusionInABlock,
 } from "../functionality/transactions/executedTx";
 import { TransactionStatus } from "../functionality/transactions/types";
-import ViewExplorer from "../../../components/common/ViewExplorer";
+import { SimpleSnackbar } from "../../../components/notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../components/notification/content/ViexExplorerSnackbar";
 export function getReservedForFeeText(
   amount: BigNumber,
   token: string,
@@ -99,8 +100,7 @@ export function createBigNumber(value: string) {
 export function snackbarWaitingBroadcast() {
   return addSnackbar({
     id: 0,
-    text: EXECUTED_NOTIFICATIONS.WaitingTitle,
-    subtext: "",
+    content: EXECUTED_NOTIFICATIONS.WaitingTitle,
     type: "default",
   });
 }
@@ -115,20 +115,25 @@ export async function snackbarIncludedInBlock(
     if (includedInBlock === TransactionStatus.SUCCESS) {
       return addSnackbar({
         id: 0,
-        text: "Successfully included in a block",
-        subtext:
-          explorerTxUrl !== "" ? (
-            <ViewExplorer txHash={txHash} explorerTxUrl={explorerTxUrl} />
+        content:
+          explorerTxUrl === "" ? (
+            "Successfully included in a block"
           ) : (
-            ""
+            <ViewExplorerSnackbar
+              values={{
+                title: "Successfully included in a block",
+                hash: txHash,
+                explorerTxUrl: explorerTxUrl,
+              }}
+            />
           ),
+
         type: "success",
       });
     } else {
       return addSnackbar({
         id: 0,
-        text: "Error including transaction in a block",
-        subtext: "",
+        content: "Error including transaction in a block",
         type: "error",
       });
     }
@@ -136,8 +141,7 @@ export async function snackbarIncludedInBlock(
   // unconfirmed
   return addSnackbar({
     id: 0,
-    text: "Waiting for the transaction to be included in a block",
-    subtext: "",
+    content: "Waiting for the transaction to be included in a block",
     type: "default",
   });
 }
@@ -146,8 +150,7 @@ export async function snackbarExecutedTx(txHash: string, chain: string) {
   const executed = await checkIBCExecutionStatus(txHash, chain);
   return addSnackbar({
     id: 0,
-    text: executed.title,
-    subtext: executed.message,
+    content: <SimpleSnackbar title={executed.title} text={executed.message} />,
     type: executed.error === true ? "error" : "success",
   });
 }

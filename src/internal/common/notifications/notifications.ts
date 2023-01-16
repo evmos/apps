@@ -3,8 +3,7 @@ import { ReduxWalletStore } from "../../../components/wallet/redux/WalletSlice";
 
 function notify(
   type: string,
-  text: string,
-  subtext: string,
+  content: JSX.Element | string,
   store: ReduxWalletStore,
   isEnabled: boolean
 ) {
@@ -15,31 +14,28 @@ function notify(
         // Using id here, to keep the Snackbar interface for the payload
         id: 0,
         type: type,
-        text: text,
-        subtext: subtext,
+        content: content,
       })
     );
   }
 }
 
 export function NotifyError(
-  text: string,
-  subtext: string,
+  content: JSX.Element | string,
   store: ReduxWalletStore,
   isEnabled: boolean
 ) {
   if (isEnabled) {
-    notify("error", text, subtext, store, isEnabled);
+    notify("error", content, store, isEnabled);
   }
 }
 
 export function NotifySuccess(
-  text: string,
-  subtext: string,
+  content: JSX.Element | string,
   store: ReduxWalletStore,
   isEnabled: boolean
 ) {
   if (isEnabled) {
-    notify("success", text, subtext, store, isEnabled);
+    notify("success", content, store, isEnabled);
   }
 }

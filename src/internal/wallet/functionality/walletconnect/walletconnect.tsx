@@ -19,6 +19,7 @@ import { queryPubKey } from "../pubkey";
 import { EVMOS_GRPC_URL } from "../networkConfig";
 import type { Logger } from "ethers/lib/utils.js";
 import { generatePubkeyFromSignatureWalletConnect } from "./walletconnectHelpers";
+import { SimpleSnackbar } from "../../../../components/notification/content/SimpleSnackbar";
 
 // Ethers does not have an error type so we can use this for casting
 // https://github.com/ethers-io/ethers.js/blob/main/packages/logger/src.ts/index.ts#L268
@@ -86,8 +87,10 @@ export function useActivateWalletConnect(
         if (pubkey === null) {
           store.dispatch(resetWallet());
           NotifyError(
-            "WalletConnect Error",
-            "You must sign the generate pubkey message to use the dashboard.",
+            <SimpleSnackbar
+              title="WalletConnect Error"
+              text="You must sign the generate pubkey message to use the dashboard"
+            />,
             store,
             notificationsEnabled
           );
@@ -106,8 +109,10 @@ export function useActivateWalletConnect(
         );
 
         NotifySuccess(
-          "Connected with WalletConnect",
-          "Using wallet " + truncateAddress(address),
+          <SimpleSnackbar
+            title="Connected with WalletConnect"
+            text={"Using wallet " + truncateAddress(address)}
+          />,
           store,
           notificationsEnabled
         );

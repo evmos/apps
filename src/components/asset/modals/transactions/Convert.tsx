@@ -25,8 +25,9 @@ import {
 } from "../../../../internal/asset/functionality/transactions/errors";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
-import ViewExplorer from "../../../common/ViewExplorer";
 import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
+import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
 
 const Convert = ({
   item,
@@ -143,8 +144,12 @@ const Convert = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  text: "Wallet not connected",
-                  subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                  content: (
+                    <SimpleSnackbar
+                      title="Wallet not connected"
+                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                    />
+                  ),
                   type: "error",
                 })
               );
@@ -185,15 +190,16 @@ const Convert = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  text: res.title,
-                  subtext:
+                  content:
                     res.error === true ? (
-                      res.message
+                      <SimpleSnackbar title={res.title} text={res.message} />
                     ) : (
-                      <ViewExplorer
-                        text={res.message}
-                        txHash={res.txHash}
-                        explorerTxUrl={res.explorerTxUrl}
+                      <ViewExplorerSnackbar
+                        values={{
+                          title: res.title,
+                          hash: res.txHash,
+                          explorerTxUrl: res.explorerTxUrl,
+                        }}
                       />
                     ),
                   type: res.error === true ? "error" : "success",
@@ -211,8 +217,7 @@ const Convert = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                        subtext: "",
+                        content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
                         type: "error",
                       })
                     );
@@ -224,12 +229,13 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      text: BROADCASTED_NOTIFICATIONS.SuccessTitle,
-                      subtext: (
-                        <ViewExplorer
-                          txHash={res.hash}
-                          explorerTxUrl={`www.mintscan.io/evmos/txs/${res.hash}`}
-                          text={res.hash}
+                      content: (
+                        <ViewExplorerSnackbar
+                          values={{
+                            title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                            hash: res.hash,
+                            explorerTxUrl: "www.mintscan.io/evmos/txs/",
+                          }}
                         />
                       ),
                       type: "success",
@@ -240,8 +246,7 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                      subtext: "",
+                      content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
                       type: "error",
                     })
                   );
@@ -257,8 +262,7 @@ const Convert = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                        subtext: "",
+                        content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
                         type: "error",
                       })
                     );
@@ -272,12 +276,13 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      text: BROADCASTED_NOTIFICATIONS.SuccessTitle,
-                      subtext: (
-                        <ViewExplorer
-                          txHash={res.hash}
-                          explorerTxUrl={`www.mintscan.io/evmos/txs/${res.hash}`}
-                          text={res.hash}
+                      content: (
+                        <ViewExplorerSnackbar
+                          values={{
+                            title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                            hash: res.hash,
+                            explorerTxUrl: "www.mintscan.io/evmos/txs/",
+                          }}
                         />
                       ),
                       type: "success",
@@ -288,8 +293,7 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                      subtext: "",
+                      content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
                       type: "error",
                     })
                   );

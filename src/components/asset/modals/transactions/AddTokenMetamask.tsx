@@ -20,8 +20,7 @@ const AddTokenMetamask = ({ token }: { token: Token }) => {
       dispatch(
         addSnackbar({
           id: 0,
-          text: value.text,
-          subtext: "",
+          content: value.text,
           type: value.type,
         })
       );

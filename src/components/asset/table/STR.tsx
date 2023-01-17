@@ -28,7 +28,6 @@ export const STR = ({
                   setShow={setShow}
                   isIBCBalance={true}
                   setModalContent={setModalContent}
-                  tableData={tableData}
                 />
               </div>
               <div className="bg-darkGray2 w-full ">
@@ -36,7 +35,6 @@ export const STR = ({
                   item={item}
                   setShow={setShow}
                   setModalContent={setModalContent}
-                  tableData={tableData}
                 />
               </div>
             </div>

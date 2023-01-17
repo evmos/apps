@@ -6,7 +6,7 @@ import Accordion from "../../common/Accordion";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContet";
 
-export const STR = ({
+const STR = ({
   tableData,
   setShow,
   setModalContent,
@@ -52,3 +52,5 @@ export const STR = ({
     </div>
   );
 };
+
+export default STR;

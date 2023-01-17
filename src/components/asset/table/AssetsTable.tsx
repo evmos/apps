@@ -17,6 +17,7 @@ const Switch = dynamic(() => import("../utils/Switch"));
 // const Content = dynamic(() => import("./Content"));
 const ContentCard = dynamic(() => import("../mobileView/Content"));
 const TopBar = dynamic(() => import("./topBar/TopBar"));
+const STR = dynamic(() => import("./STR"));
 
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
@@ -31,7 +32,6 @@ import {
   getTotalAssets,
 } from "../../../internal/asset/style/format";
 import { BigNumber } from "ethers";
-import { STR } from "./STR";
 import HeadAssets from "./components/HeadAssets";
 
 const AssetsTable = () => {

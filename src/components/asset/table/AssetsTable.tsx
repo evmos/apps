@@ -180,6 +180,8 @@ const AssetsTable = () => {
                 table: tableData,
                 feeBalance: normalizedAssetsData.feeBalance,
               }}
+              setShow={setShow}
+              setModalContent={setModalContent}
             />
             {/* <Content
               tableData={{

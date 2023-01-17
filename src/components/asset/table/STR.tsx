@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from "react";
 import { TableData } from "../../../internal/asset/functionality/table/normalizeData";
 
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
@@ -5,7 +6,15 @@ import Accordion from "../../common/Accordion";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContet";
 
-export const STR = ({ tableData }: { tableData: TableData }) => {
+export const STR = ({
+  tableData,
+  setShow,
+  setModalContent,
+}: {
+  tableData: TableData;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  setModalContent: Dispatch<SetStateAction<JSX.Element>>;
+}) => {
   return (
     <div className="flex flex-col w-full">
       {tableData?.table.map((item, index: number) => {
@@ -15,25 +24,19 @@ export const STR = ({ tableData }: { tableData: TableData }) => {
             <div className="flex w-full flex-col space-y-5 ">
               <div className="bg-darkGray2 w-full border-b-2 border-b-black pb-5">
                 <SubRowContent
-                  item={{
-                    symbol: item.symbol,
-                    description: item.description,
-                    balance: item.cosmosBalance,
-                    decimals: item.decimals,
-                    coingeckoPrice: item.coingeckoPrice,
-                  }}
+                  item={item}
+                  setShow={setShow}
+                  isIBCBalance={true}
+                  setModalContent={setModalContent}
+                  tableData={tableData}
                 />
               </div>
               <div className="bg-darkGray2 w-full ">
                 <SubRowContent
-                  item={{
-                    symbol: item.symbol,
-                    description: item.description,
-                    balance: item.erc20Balance,
-                    decimals: item.decimals,
-                    coingeckoPrice: item.coingeckoPrice,
-                    isERC20Balance: true,
-                  }}
+                  item={item}
+                  setShow={setShow}
+                  setModalContent={setModalContent}
+                  tableData={tableData}
                 />
               </div>
             </div>

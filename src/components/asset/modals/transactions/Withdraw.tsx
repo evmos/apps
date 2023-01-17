@@ -31,7 +31,8 @@ import Tabs from "../common/Tabs";
 import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
-import ViewExplorer from "../../../common/ViewExplorer";
+import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
 
 const Withdraw = ({
   item,
@@ -160,8 +161,12 @@ const Withdraw = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: KEPLR_NOTIFICATIONS.ErrorTitle,
-                        subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                        content: (
+                          <SimpleSnackbar
+                            title={KEPLR_NOTIFICATIONS.ErrorTitle}
+                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                          />
+                        ),
                         type: "error",
                       })
                     );
@@ -182,8 +187,12 @@ const Withdraw = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  text: "Wallet not connected",
-                  subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                  content: (
+                    <SimpleSnackbar
+                      title="Wallet not connected"
+                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                    />
+                  ),
                   type: "error",
                 })
               );
@@ -219,8 +228,12 @@ const Withdraw = ({
             dispatch(
               addSnackbar({
                 id: 0,
-                text: EXECUTED_NOTIFICATIONS.IBCTransferInformation.text,
-                subtext: EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext,
+                content: (
+                  <SimpleSnackbar
+                    title={EXECUTED_NOTIFICATIONS.IBCTransferInformation.text}
+                    text={EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext}
+                  />
+                ),
                 type: "default",
               })
             );
@@ -238,15 +251,16 @@ const Withdraw = ({
             dispatch(
               addSnackbar({
                 id: 0,
-                text: res.title,
-                subtext:
+                content:
                   res.error === true ? (
-                    res.message
+                    <SimpleSnackbar title={res.title} text={res.message} />
                   ) : (
-                    <ViewExplorer
-                      text={res.message}
-                      txHash={res.txHash}
-                      explorerTxUrl={res.explorerTxUrl}
+                    <ViewExplorerSnackbar
+                      values={{
+                        title: res.title,
+                        hash: res.txHash,
+                        explorerTxUrl: res.explorerTxUrl,
+                      }}
                     />
                   ),
                 type: res.error === true ? "error" : "success",

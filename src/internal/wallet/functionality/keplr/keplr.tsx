@@ -30,6 +30,7 @@ import {
   subscribeToKeplrEvents,
   unsubscribeToKeplrEvents,
 } from "./keplrHelpers";
+import { SimpleSnackbar } from "../../../../components/notification/content/SimpleSnackbar";
 
 export class Keplr {
   active = false;
@@ -75,8 +76,10 @@ export class Keplr {
       this.reset();
       // ExtensionNotFound
       NotifyError(
-        KEPLR_NOTIFICATIONS.ErrorTitle,
-        KEPLR_NOTIFICATIONS.ExtensionNotFoundSubtext,
+        <SimpleSnackbar
+          title={KEPLR_NOTIFICATIONS.ErrorTitle}
+          text={KEPLR_NOTIFICATIONS.ExtensionNotFoundSubtext}
+        />,
         this.reduxStore,
         this.notificationsEnabled
       );
@@ -126,8 +129,12 @@ export class Keplr {
       );
       SaveProviderToLocalStorate(KEPLR_KEY);
       NotifySuccess(
-        KEPLR_NOTIFICATIONS.SuccessTitle,
-        `Connected with wallet ${truncateAddress(accountsEvmos[0].address)}`,
+        <SimpleSnackbar
+          title={KEPLR_NOTIFICATIONS.SuccessTitle}
+          text={`Connected with wallet ${truncateAddress(
+            accountsEvmos[0].address
+          )}`}
+        />,
         this.reduxStore,
         this.notificationsEnabled
       );
@@ -140,16 +147,20 @@ export class Keplr {
       ) {
         // Init ethereum app first
         NotifyError(
-          KEPLR_NOTIFICATIONS.ErrorTitle,
-          KEPLR_NOTIFICATIONS.LedgerNotInitSubtext,
+          <SimpleSnackbar
+            title={KEPLR_NOTIFICATIONS.ErrorTitle}
+            text={KEPLR_NOTIFICATIONS.LedgerNotInitSubtext}
+          />,
           this.reduxStore,
           this.notificationsEnabled
         );
       }
       if ((error as { message: string })?.message === "Request rejected") {
         NotifyError(
-          KEPLR_NOTIFICATIONS.ErrorTitle,
-          KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+          <SimpleSnackbar
+            title={KEPLR_NOTIFICATIONS.ErrorTitle}
+            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+          />,
           this.reduxStore,
           this.notificationsEnabled
         );

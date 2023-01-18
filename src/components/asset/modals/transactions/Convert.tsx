@@ -8,8 +8,8 @@ import ConfirmButton from "../../../common/ConfirmButton";
 import { ModalTitle } from "../../../common/Modal";
 import Arrow from "../common/Arrow";
 import { ContainerModal } from "../common/ContainerModal";
-import FromContainer2 from "../common/FromContainer2";
-import ToContainer2 from "../common/ToContainer2";
+import FromConvert from "../common/FromConvert";
+import ToConvert from "../common/ToConvert";
 import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
 import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
@@ -133,7 +133,7 @@ export const Convert = ({
       <ModalTitle title="Convert WEVMOS" />
       <ContainerModal>
         <>
-          <FromContainer2
+          <FromConvert
             fee={{
               fee: BigNumber.from("300000000000000000"),
               feeDenom: EVMOS_SYMBOL,
@@ -165,7 +165,7 @@ export const Convert = ({
       <Arrow />
       <ContainerModal>
         <>
-          <ToContainer2
+          <ToConvert
             token={symbolTo}
             img={`/tokens/${symbolTo.toLowerCase()}.png`}
             balance={balanceTo}

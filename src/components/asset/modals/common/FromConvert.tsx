@@ -12,7 +12,7 @@ import ErrorMessage from "./ErrorMessage";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 import { FromProps } from "./types";
 
-const FromContainer2 = ({ fee, balance, input, style }: FromProps) => {
+const FromConvert = ({ fee, balance, input, style }: FromProps) => {
   const feeDeposit = "5000";
   const [maxClicked, setMaxClicked] = useState(false);
 
@@ -77,4 +77,4 @@ const FromContainer2 = ({ fee, balance, input, style }: FromProps) => {
   );
 };
 
-export default FromContainer2;
+export default FromConvert;

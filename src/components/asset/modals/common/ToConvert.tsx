@@ -7,7 +7,7 @@ import {
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "../transactions/AddTokenMetamask";
 
-const ToContainer2 = ({
+const ToConvert = ({
   token,
   img,
   balance,
@@ -44,4 +44,4 @@ const ToContainer2 = ({
   );
 };
 
-export default ToContainer2;
+export default ToConvert;

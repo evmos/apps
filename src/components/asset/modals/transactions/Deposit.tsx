@@ -163,7 +163,7 @@ const Deposit = ({
             {confirmClicked && addressTo === "" && (
               <ErrorMessage text="Address can not be empty" />
             )}
-            <h6 className="italic text-sm">
+            <h6 className="italic text-sm font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>

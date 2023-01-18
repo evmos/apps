@@ -4,17 +4,21 @@ import {
   convertFromAtto,
   formatNumber,
 } from "../../../../internal/asset/style/format";
+import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import AddTokenMetamask from "../transactions/AddTokenMetamask";
 
 const ToContainer2 = ({
   token,
   img,
   balance,
   decimals,
+  addToken,
 }: {
   token: string;
   img: string;
   balance: BigNumber;
   decimals: number;
+  addToken: Token;
 }) => {
   return (
     <>
@@ -27,13 +31,14 @@ const ToContainer2 = ({
           disabled
         />
       </div>
-      <div>
+      <div className="flex justify-between items-center">
         <span className="font-bold text-sm">
           Available Balance:{" "}
           <span className="font-normal opacity-80">
             {formatNumber(convertFromAtto(balance, decimals))}
           </span>
         </span>
+        <AddTokenMetamask token={addToken} />
       </div>
     </>
   );

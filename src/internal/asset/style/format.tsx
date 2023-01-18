@@ -239,3 +239,14 @@ export function addAssets(asset: addAssetsType) {
     Number(convertAndFormat(asset.erc20Balance, asset.decimals))
   );
 }
+
+export const numericOnly = (value: string) => {
+  const reg = /^[0-9.]+$/;
+  const preval = value;
+  if (value === "" || reg.test(value)) {
+    return value;
+  } else {
+    value = preval.substring(0, preval.length - 1);
+    return value;
+  }
+};

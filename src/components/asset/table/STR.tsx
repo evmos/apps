@@ -28,6 +28,7 @@ const STR = ({
                   setShow={setShow}
                   isIBCBalance={true}
                   setModalContent={setModalContent}
+                  feeBalance={tableData.feeBalance}
                 />
               </div>
               <div className="bg-darkGray2 w-full ">
@@ -35,6 +36,7 @@ const STR = ({
                   item={item}
                   setShow={setShow}
                   setModalContent={setModalContent}
+                  feeBalance={tableData.feeBalance}
                 />
               </div>
             </div>

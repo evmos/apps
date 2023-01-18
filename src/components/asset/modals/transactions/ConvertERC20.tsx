@@ -19,22 +19,25 @@ import { ContainerModal } from "../common/ContainerModal";
 import FromContainer2 from "../common/FromContainer2";
 import ToContainer2 from "../common/ToContainer2";
 import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
-import AddTokenMetamask from "./AddTokenMetamask";
 import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
 import { createContract } from "./contracts/contractHelper";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
+import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 
 export const ConvertERC20 = ({
   item,
   address,
   setShow,
   isIBCBalance = false,
+  feeBalance,
 }: {
   item: TableDataElement;
   address: string;
   setShow: Dispatch<SetStateAction<boolean>>;
   isIBCBalance?: boolean;
+  feeBalance: BigNumber;
 }) => {
   const [inputValue, setInputValue] = useState("");
   const [confirmClicked, setConfirmClicked] = useState(false);
@@ -63,20 +66,35 @@ export const ConvertERC20 = ({
     <>
       <ModalTitle title="Convert WEVMOS" />
       <ContainerModal>
-        <FromContainer2
-          balance={{
-            denom: symbolFrom,
-            amount: balanceFrom,
-            decimals: item.decimals,
-          }}
-          input={{ value: inputValue, setInputValue, confirmClicked }}
-          style={{
-            tokenTo: symbolFrom,
-            address,
-            img: `/tokens/${symbolFrom.toLowerCase()}.png`,
-            text: symbolFrom,
-          }}
-        />
+        <>
+          <FromContainer2
+            fee={{
+              fee: BigNumber.from("300000000000000000"),
+              feeDenom: EVMOS_SYMBOL,
+              feeBalance: feeBalance,
+              feeDecimals: 18,
+            }}
+            balance={{
+              denom: symbolFrom,
+              amount: balanceFrom,
+              decimals: item.decimals,
+            }}
+            input={{ value: inputValue, setInputValue, confirmClicked }}
+            style={{
+              tokenTo: symbolFrom,
+              address,
+              img: `/tokens/${symbolFrom.toLowerCase()}.png`,
+              text: symbolFrom,
+            }}
+          />
+          <div className="text-xs opacity-80">
+            {getReservedForFeeText(
+              BigNumber.from("300000000000000000"),
+              EVMOS_SYMBOL,
+              EVMOS_SYMBOL
+            )}
+          </div>
+        </>
       </ContainerModal>
       <Arrow />
       <ContainerModal>
@@ -86,8 +104,8 @@ export const ConvertERC20 = ({
             img={`/tokens/${symbolTo.toLowerCase()}.png`}
             balance={balanceTo}
             decimals={item.decimals}
+            addToken={token}
           />
-          <AddTokenMetamask token={token} />
         </>
       </ContainerModal>
       <div className="mb-4"></div>

@@ -1,61 +1,21 @@
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { useState } from "react";
 import {
   convertFromAtto,
+  createBigNumber,
   formatNumber,
+  numericOnly,
+  safeSubstraction,
   truncateNumber,
 } from "../../../../internal/asset/style/format";
 import ErrorMessage from "./ErrorMessage";
-import { BigNumber } from "ethers";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import { FromProps } from "./types";
 
-const NumericOnly = (value: string) => {
-  const reg = /^[0-9.]+$/;
-  const preval = value;
-  if (value === "" || reg.test(value)) {
-    return value;
-  } else {
-    value = preval.substring(0, preval.length - 1);
-    return value;
-  }
-};
+const FromContainer2 = ({ fee, balance, input, style }: FromProps) => {
+  const feeDeposit = "5000";
+  const [maxClicked, setMaxClicked] = useState(false);
 
-// type Fee = {
-//   fee: BigNumber;
-//   feeDenom: string;
-//   feeBalance: BigNumber;
-//   feeDecimals: number;
-// };
-
-type Balance = {
-  denom: string;
-  amount: BigNumber;
-  decimals: number;
-};
-
-type Input = {
-  value: string;
-  setInputValue: Dispatch<SetStateAction<string>>;
-  confirmClicked: boolean;
-};
-
-type Style = {
-  tokenTo: string;
-  address: string;
-  img: string;
-  text: string;
-};
-
-type FromProps = {
-  // fee: Fee;
-  balance: Balance;
-  input: Input;
-  style: Style;
-};
-
-const FromContainer2 = ({ balance, input, style }: FromProps) => {
-  // fees
-  console.log(style);
   return (
     <>
       <div className="flex justify-between sm:items-center flex-col sm:flex-row"></div>
@@ -67,9 +27,27 @@ const FromContainer2 = ({ balance, input, style }: FromProps) => {
           type="text"
           value={input.value}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            input.setInputValue(NumericOnly(e.target.value));
+            input.setInputValue(numericOnly(e.target.value));
           }}
         />
+        <button
+          onClick={() => {
+            if (style.tokenTo?.toUpperCase() !== fee.feeDenom.toUpperCase()) {
+              input.setInputValue(
+                numericOnly(convertFromAtto(balance.amount, balance.decimals))
+              );
+            } else {
+              setMaxClicked(true);
+              const val = safeSubstraction(balance.amount, fee.fee);
+              input.setInputValue(
+                numericOnly(convertFromAtto(val, balance.decimals))
+              );
+            }
+          }}
+          className="border border-black rounded p-1 opacity-80 font-bold text-black text-xs"
+        >
+          MAX
+        </button>
       </div>
       {truncateNumber(input.value) === 0 && (
         <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext} />
@@ -79,7 +57,7 @@ const FromContainer2 = ({ balance, input, style }: FromProps) => {
       )}
       {truncateNumber(input.value) >
         truncateNumber(
-          NumericOnly(convertFromAtto(balance.amount, balance.decimals))
+          numericOnly(convertFromAtto(balance.amount, balance.decimals))
         ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
       <div>
         <p className="font-bold text-sm">
@@ -90,6 +68,11 @@ const FromContainer2 = ({ balance, input, style }: FromProps) => {
           </span>
         </p>
       </div>
+      {fee.fee.eq(createBigNumber(feeDeposit)) && maxClicked && (
+        <div className="text-xs font-bold opacity-80">
+          {`Clicking on max reserves ${feeDeposit} * 10^-${fee.feeDecimals} ${fee.feeDenom} for transaction fees.`}
+        </div>
+      )}
     </>
   );
 };

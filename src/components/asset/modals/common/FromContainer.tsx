@@ -1,60 +1,17 @@
 import Image from "next/image";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import {
   convertFromAtto,
   createBigNumber,
   formatNumber,
+  numericOnly,
   safeSubstraction,
   truncateNumber,
 } from "../../../../internal/asset/style/format";
 import { truncateAddress } from "../../../../internal/wallet/style/format";
 import ErrorMessage from "./ErrorMessage";
-import { BigNumber } from "ethers";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
-
-const NumericOnly = (value: string) => {
-  const reg = /^[0-9.]+$/;
-  const preval = value;
-  if (value === "" || reg.test(value)) {
-    return value;
-  } else {
-    value = preval.substring(0, preval.length - 1);
-    return value;
-  }
-};
-
-type Fee = {
-  fee: BigNumber;
-  feeDenom: string;
-  feeBalance: BigNumber;
-  feeDecimals: number;
-};
-
-type Balance = {
-  denom: string;
-  amount: BigNumber;
-  decimals: number;
-};
-
-type Input = {
-  value: string;
-  setInputValue: Dispatch<SetStateAction<string>>;
-  confirmClicked: boolean;
-};
-
-type Style = {
-  tokenTo: string;
-  address: string;
-  img: string;
-  text: string;
-};
-
-type FromProps = {
-  fee: Fee;
-  balance: Balance;
-  input: Input;
-  style: Style;
-};
+import { FromProps } from "./types";
 
 const FromContainer = ({ fee, balance, input, style }: FromProps) => {
   const feeDeposit = "5000";
@@ -79,7 +36,7 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
           type="text"
           value={input.value}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            input.setInputValue(NumericOnly(e.target.value));
+            input.setInputValue(numericOnly(e.target.value));
           }}
         />
         <span className="opacity-80">{style.tokenTo}</span>
@@ -87,13 +44,13 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
           onClick={() => {
             if (style.tokenTo?.toUpperCase() !== fee.feeDenom.toUpperCase()) {
               input.setInputValue(
-                NumericOnly(convertFromAtto(balance.amount, balance.decimals))
+                numericOnly(convertFromAtto(balance.amount, balance.decimals))
               );
             } else {
               setMaxClicked(true);
               const val = safeSubstraction(balance.amount, fee.fee);
               input.setInputValue(
-                NumericOnly(convertFromAtto(val, balance.decimals))
+                numericOnly(convertFromAtto(val, balance.decimals))
               );
             }
           }}
@@ -113,7 +70,7 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
 
       {truncateNumber(input.value) >
         truncateNumber(
-          NumericOnly(convertFromAtto(balance.amount, balance.decimals))
+          numericOnly(convertFromAtto(balance.amount, balance.decimals))
         ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
       <div>
         <span className="font-bold">Balance: </span>

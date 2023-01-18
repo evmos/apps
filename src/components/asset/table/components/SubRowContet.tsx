@@ -1,3 +1,4 @@
+import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
@@ -17,11 +18,13 @@ export const SubRowContent = ({
   setShow,
   setModalContent,
   isIBCBalance = false,
+  feeBalance,
 }: {
   item: TableDataElement;
   setShow: Dispatch<SetStateAction<boolean>>;
   setModalContent: Dispatch<SetStateAction<JSX.Element>>;
   isIBCBalance?: boolean;
+  feeBalance: BigNumber;
 }) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
 
@@ -68,6 +71,7 @@ export const SubRowContent = ({
                     address={wallet.evmosAddressCosmosFormat}
                     setShow={setShow}
                     isIBCBalance={isIBCBalance}
+                    feeBalance={feeBalance}
                   />
                 );
               }}

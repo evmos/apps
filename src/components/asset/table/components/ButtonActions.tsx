@@ -10,7 +10,6 @@ const Button = dynamic(() => import("../../../common/Button"));
 const ExternalLinkIcon = dynamic(
   () => import("../../../common/images/icons/ExternalLink")
 );
-import Convert from "../../modals/transactions/Convert";
 import Withdraw from "../../modals/transactions/Withdraw";
 import Deposit from "../../modals/transactions/Deposit";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
@@ -21,6 +20,7 @@ import {
 import { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../../../redux/Store";
+import ConvertOld from "../../modals/transactions/ConvertOld";
 
 type actionsProps = {
   item: TableDataElement;
@@ -132,7 +132,7 @@ export const ButtonActions = ({
         onClick={() => {
           actionsProps.setShow(true);
           actionsProps.setModalContent(
-            <Convert
+            <ConvertOld
               item={actionsProps.item}
               feeBalance={actionsProps.tableData.feeBalance}
               address={value.evmosAddressCosmosFormat}

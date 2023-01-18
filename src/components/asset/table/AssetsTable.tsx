@@ -17,7 +17,7 @@ const Switch = dynamic(() => import("../utils/Switch"));
 // const Content = dynamic(() => import("./Content"));
 const ContentCard = dynamic(() => import("../mobileView/Content"));
 const TopBar = dynamic(() => import("./topBar/TopBar"));
-const STR = dynamic(() => import("./STR"));
+const ContentTable = dynamic(() => import("./ContentTable"));
 
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
@@ -175,7 +175,7 @@ const AssetsTable = () => {
         {!isLoading && !error && tableData?.length > 0 && !showMobile && (
           <div>
             <HeadAssets />
-            <STR
+            <ContentTable
               tableData={{
                 table: tableData,
                 feeBalance: normalizedAssetsData.feeBalance,
@@ -183,14 +183,6 @@ const AssetsTable = () => {
               setShow={setShow}
               setModalContent={setModalContent}
             />
-            {/* <Content
-              tableData={{
-                table: tableData,
-                feeBalance: normalizedAssetsData.feeBalance,
-              }}
-              setShow={setShow}
-              setModalContent={setModalContent}
-            /> */}
           </div>
         )}
       </div>

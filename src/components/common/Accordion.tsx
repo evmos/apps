@@ -5,19 +5,15 @@ import UpArrowIcon from "./images/icons/UpArrow";
 const Accordion = ({
   title,
   content,
-  className,
 }: {
   title: JSX.Element;
   content: JSX.Element | string;
-  className: string;
 }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
     <div className="accordion">
-      <div
-        className={`${className} bg-darkGray2 border-b-2 border-b-black py-5 accordion-item`}
-      >
+      <div className="bg-darkGray2 border-b-2 border-b-black py-5 accordion-item">
         <div
           className={`flex items-center ${
             content !== "" ? "cursor-pointer" : "cursor-default"

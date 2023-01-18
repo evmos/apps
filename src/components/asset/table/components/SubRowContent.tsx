@@ -10,7 +10,7 @@ import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkC
 import { KEPLR_KEY } from "../../../../internal/wallet/functionality/wallet";
 import { StoreType } from "../../../../redux/Store";
 import Button from "../../../common/Button";
-import { ConvertERC20 } from "../../modals/transactions/ConvertERC20";
+import { Convert } from "../../modals/transactions/Convert";
 import { Description } from "./Description";
 
 export const SubRowContent = ({
@@ -38,6 +38,18 @@ export const SubRowContent = ({
     }
   }
 
+  const openModalConvert = () => {
+    setShow(true);
+    setModalContent(
+      <Convert
+        item={item}
+        address={wallet.evmosAddressCosmosFormat}
+        setShow={setShow}
+        isIBCBalance={isIBCBalance}
+        feeBalance={feeBalance}
+      />
+    );
+  };
   return (
     <div className="flex w-full">
       <div className="w-[5%]"></div>
@@ -63,18 +75,7 @@ export const SubRowContent = ({
                 (wallet.extensionName === KEPLR_KEY &&
                   item.symbol === EVMOS_SYMBOL)
               }
-              onClick={() => {
-                setShow(true);
-                setModalContent(
-                  <ConvertERC20
-                    item={item}
-                    address={wallet.evmosAddressCosmosFormat}
-                    setShow={setShow}
-                    isIBCBalance={isIBCBalance}
-                    feeBalance={feeBalance}
-                  />
-                );
-              }}
+              onClick={openModalConvert}
             >
               <div className="flex flex-row items-center">
                 <span className="px-2">Convert</span>

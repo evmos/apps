@@ -4,9 +4,9 @@ import { TableData } from "../../../internal/asset/functionality/table/normalize
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import Accordion from "../../common/Accordion";
 import { RowContent } from "./components/RowContent";
-import { SubRowContent } from "./components/SubRowContet";
+import { SubRowContent } from "./components/SubRowContent";
 
-const STR = ({
+const ContentTable = ({
   tableData,
   setShow,
   setModalContent,
@@ -44,7 +44,6 @@ const STR = ({
         }
         return (
           <Accordion
-            className={``}
             key={index}
             title={<RowContent item={item} />}
             content={cont}
@@ -55,4 +54,4 @@ const STR = ({
   );
 };
 
-export default STR;
+export default ContentTable;

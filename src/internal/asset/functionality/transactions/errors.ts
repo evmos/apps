@@ -28,6 +28,7 @@ export const MODAL_NOTIFICATIONS = {
   ErrorAddressSubtext: "The address does not match with the chain",
   ErrorPositiveNumberSubtext: "Amount can only be a positive number",
   ErrorAddressEmpty: "Address can not be empty",
+  ErrorTokenEmpty: "Please, select a token",
 } as const;
 
 export const BALANCE_NOTIFICATIONS = {

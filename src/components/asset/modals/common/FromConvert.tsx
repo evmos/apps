@@ -18,13 +18,14 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
 
   return (
     <>
-      <div className="flex justify-between sm:items-center flex-col sm:flex-row"></div>
+      {/* TODO: create component for input style */}
       <div className="pr-5 pl-4 flex items-center space-x-3 bg-white hover:border-darkGray5 focus-visible:border-darkGray5 focus-within:border-darkGray5 border border-darkGray5 rounded">
         <Image src={style.img} width={20} height={20} alt={style.img} />
         <span className="font-bold uppercase">{style.text}</span>
         <input
           className="w-full p-3 border-none hover:border-none focus-visible:outline-none text-right"
           type="text"
+          placeholder="amount"
           value={input.value}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             input.setInputValue(numericOnly(e.target.value));

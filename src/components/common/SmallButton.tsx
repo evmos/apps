@@ -1,12 +1,10 @@
-const ConfirmButton = ({
-  text,
+const SmallButton = ({
   onClick,
-  disabled,
+  text,
   className,
 }: {
-  text: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-  disabled?: boolean;
+  text: string;
   className?: string;
 }) => {
   return (
@@ -14,13 +12,11 @@ const ConfirmButton = ({
       onClick={onClick}
       className={`${
         className !== undefined ? className : ""
-      } bg-red text-white uppercase w-full rounded px-8 py-2 text-lg font-bold font-[GreyCliff] hover:bg-red1  ${
-        disabled ? "disabled" : ""
-      }`}
+      } border border-black rounded py-0.5 px-3 opacity-80 font-bold text-black text-xs hover:opacity-50`}
     >
       {text}
     </button>
   );
 };
 
-export default ConfirmButton;
+export default SmallButton;

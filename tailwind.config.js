@@ -21,6 +21,7 @@ module.exports = {
         red: "#ed4e33",
         red1: "#AA2912",
         green: "#97ad11",
+        gray: "#F0EEEC",
         whiteOpacity: "rgba(255, 255, 255, 0.1)",
         blackOpacity: "rgba(0, 0, 0, 0.6)",
         grayOpacity: "rgba(0, 0, 0, 0.05)",

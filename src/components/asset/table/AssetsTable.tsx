@@ -129,6 +129,12 @@ const AssetsTable = () => {
           decimals: normalizedAssetsData?.table[0]?.decimals,
           coingeckoPrice: normalizedAssetsData.table[0]?.coingeckoPrice,
         })}
+        setShow={setShow}
+        setModalContent={setModalContent}
+        tableData={{
+          table: tableData,
+          feeBalance: normalizedAssetsData.feeBalance,
+        }}
       />
       <Switch
         onChange={() => setHideBalance(!hideZeroBalance)}

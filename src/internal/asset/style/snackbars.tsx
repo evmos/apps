@@ -4,8 +4,10 @@ import { addSnackbar } from "../../../components/notification/redux/notification
 import { KEPLR_NOTIFICATIONS } from "../../wallet/functionality/errors";
 import {
   BROADCASTED_NOTIFICATIONS,
+  EXECUTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
 } from "../functionality/transactions/errors";
+import { executeIBCTransferResponse } from "../functionality/transactions/types";
 
 export function snackRequestRejected() {
   return addSnackbar({
@@ -41,5 +43,37 @@ export function snackBroadcastSuccessful(hash: string, explorerTxUrl: string) {
       />
     ),
     type: "success",
+  });
+}
+
+export function snackIBCInformation() {
+  return addSnackbar({
+    id: 0,
+    content: (
+      <SimpleSnackbar
+        title={EXECUTED_NOTIFICATIONS.IBCTransferInformation.text}
+        text={EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext}
+      />
+    ),
+    type: "default",
+  });
+}
+
+export function snackExecuteIBCTransfer(res: executeIBCTransferResponse) {
+  return addSnackbar({
+    id: 0,
+    content:
+      res.error === true ? (
+        <SimpleSnackbar title={res.title} text={res.message} />
+      ) : (
+        <ViewExplorerSnackbar
+          values={{
+            title: res.title,
+            hash: res.txHash,
+            explorerTxUrl: res.explorerTxUrl,
+          }}
+        />
+      ),
+    type: res.error === true ? "error" : "success",
   });
 }

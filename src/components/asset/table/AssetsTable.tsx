@@ -60,6 +60,19 @@ const AssetsTable = () => {
   });
 
   const [hideZeroBalance, setHideBalance] = useState(false);
+  useEffect(() => {
+    const val = localStorage.getItem("zeroBalance");
+    if (val === null) {
+      setHideBalance(false);
+    } else {
+      setHideBalance(JSON.parse(val) as boolean);
+    }
+  }, []);
+
+  const zeroBalance = () => {
+    localStorage.setItem("zeroBalance", String(!hideZeroBalance));
+    setHideBalance(!hideZeroBalance);
+  };
 
   const normalizedAssetsData = useMemo<TableData>(() => {
     return normalizeAssetsData(data);
@@ -129,7 +142,9 @@ const AssetsTable = () => {
         })}
       />
       <Switch
-        onChange={() => setHideBalance(!hideZeroBalance)}
+        onChange={() => {
+          zeroBalance();
+        }}
         checked={hideZeroBalance}
       />
       <div className="mt-5 overflow-y-auto max-h-[40vh] lg:max-h-[53vh] xl:scrollbar-hide text-white font-[IBM] w-full">

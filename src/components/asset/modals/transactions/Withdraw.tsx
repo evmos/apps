@@ -33,6 +33,7 @@ import { Token } from "../../../../internal/wallet/functionality/metamask/metama
 import AddTokenMetamask from "./AddTokenMetamask";
 import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
 import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
+import Link from "next/link";
 
 const Withdraw = ({
   item,
@@ -78,13 +79,24 @@ const Withdraw = ({
     decimals: item.decimals,
     img: item.pngSrc,
   };
+  const v10Link =
+    "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
   return (
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
       <div className="text-darkGray3">
         <p className="text-sm max-w-[500px] pb-3 italic">
-          Since Evmos v10 you can withdraw directly your ERC20 balance without
-          previously converting it to IBC.
+          Since Evmos{" "}
+          <Link
+            className="text-red"
+            href={v10Link}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            v10
+          </Link>{" "}
+          you can withdraw directly your ERC20 balance without previously
+          converting it to IBC.
         </p>
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
           <FromContainer

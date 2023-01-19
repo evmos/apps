@@ -1,9 +1,12 @@
 import { BigNumber } from "@ethersproject/bignumber";
+import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import {
   convertFromAtto,
   formatNumber,
 } from "../../../../internal/asset/style/format";
+import QuestionMarkIcon from "../../../common/images/icons/QuestionMarkIcon";
+import Tooltip from "../../../common/Tooltip";
 
 const Tabs = ({
   cosmosBalance,
@@ -18,6 +21,8 @@ const Tabs = ({
   isERC20Selected: boolean;
   setIsERC20Selected: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const v10Link =
+    "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
   return (
     <div className="flex items-center w-full border border-darkGray1 bg-pearl justify-center rounded font-bold font-[IBM] ">
       <button
@@ -30,7 +35,28 @@ const Tabs = ({
           }
         }}
       >
-        <span>ERC-20</span>
+        <p className="flex items-center space-x-1">
+          <span>ERC-20</span>
+          <Tooltip
+            className="w-24"
+            element={<QuestionMarkIcon width={20} height={20} />}
+            text={
+              <>
+                Since{" "}
+                <Link
+                  className="text-red"
+                  href={v10Link}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  v10
+                </Link>{" "}
+                upgrade, all withdraws will pull first from IBC token balance
+                before ERC-20.
+              </>
+            }
+          />
+        </p>
         <span className="font-normal text-xs">
           {formatNumber(convertFromAtto(erc20Balance, decimals))}
         </span>

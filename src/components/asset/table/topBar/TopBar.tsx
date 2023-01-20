@@ -17,7 +17,6 @@ const TopBar = ({
         text="Total Staked"
         value={totalStaked}
         href="https://app.evmos.org/staking"
-        tooltip={true}
       />
       <Container
         text="EVMOS Price"

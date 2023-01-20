@@ -85,7 +85,7 @@ const Withdraw = ({
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
       <div className="text-darkGray3">
-        <p className="text-sm max-w-[500px] pb-3 italic">
+        <p className="text-sm max-w-[500px] pb-3">
           Since Evmos{" "}
           <Link
             className="text-red"

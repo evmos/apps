@@ -4,7 +4,7 @@ const SmallButton = ({
   className,
 }: {
   onClick: React.MouseEventHandler<HTMLButtonElement>;
-  text: string;
+  text: string | JSX.Element;
   className?: string;
 }) => {
   return (

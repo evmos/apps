@@ -77,3 +77,16 @@ export function snackExecuteIBCTransfer(res: executeIBCTransferResponse) {
     type: res.error === true ? "error" : "success",
   });
 }
+
+export function snackErrorConnectingKeplr() {
+  return addSnackbar({
+    id: 0,
+    content: (
+      <SimpleSnackbar
+        title={KEPLR_NOTIFICATIONS.ErrorTitle}
+        text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+      />
+    ),
+    type: "error",
+  });
+}

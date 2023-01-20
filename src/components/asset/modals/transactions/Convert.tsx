@@ -22,6 +22,7 @@ import {
   snackErrorGeneratingTx,
   snackRequestRejected,
 } from "../../../../internal/asset/style/snackbars";
+import Note from "../common/Note";
 
 export const Convert = ({
   item,
@@ -153,13 +154,13 @@ export const Convert = ({
               text: symbolFrom,
             }}
           />
-          <div className="text-xs opacity-80">
-            {getReservedForFeeText(
+          <Note
+            text={getReservedForFeeText(
               BigNumber.from("300000000000000000"),
               EVMOS_SYMBOL,
               EVMOS_SYMBOL
             )}
-          </div>
+          />
         </>
       </ContainerModal>
       <Arrow />

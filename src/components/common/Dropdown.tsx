@@ -64,13 +64,6 @@ const Dropdown = ({
     setTokenTo(option);
   };
 
-  // const isSelected = (option) => {
-  //   if (!selectedValue) {
-  //     return false;
-  //   }
-  //   return selectedValue.value === option.value;
-  // };
-
   return (
     <div className="text-left w-full relative rounded cursor-pointer text-black ">
       <div
@@ -78,12 +71,9 @@ const Dropdown = ({
         className="p-1 flex items-center justify-between select-none"
       >
         {showMenu && (
-          <div className="z-[9999] absolute translate-y-10 -left-4 top-0 w-auto overflow-auto max-h-40 bg-white border border-darkGray2 rounded">
+          <div className="z-[9999] absolute translate-y-9 -left-4 top-0 w-auto overflow-auto max-h-40 bg-white border border-darkGray2 rounded">
             {data.table.map((option) => {
-              if (
-                option.symbol !== EVMOS_SYMBOL &&
-                !option.erc20Balance.eq("0")
-              ) {
+              if (option.symbol !== EVMOS_SYMBOL) {
                 return (
                   <div
                     onClick={() => onItemClick(option)}

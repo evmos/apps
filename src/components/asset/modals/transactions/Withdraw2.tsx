@@ -26,6 +26,8 @@ import {
   snackbarIncludedInBlock,
   snackbarExecutedTx,
 } from "../../../../internal/asset/style/format";
+import ExternalLinkIcon from "../../../common/images/icons/ExternalLink";
+import Link from "next/link";
 
 const Withdraw2 = ({
   data,
@@ -47,9 +49,6 @@ const Withdraw2 = ({
 
   const dispatch = useDispatch();
 
-  // const fee = BigNumber.from("4600000000000000");
-  // const feeDenom = EVMOS_SYMBOL;
-
   const [tokenTo, setTokenTo] = useState<TableDataElement>();
 
   const handleConfirmButton = async () => {
@@ -59,7 +58,6 @@ const Withdraw2 = ({
       setShow(false);
       return;
     }
-    // tokenTo undefined ????
     // avoid withdraw if token is not selected
     if (tokenTo === undefined) {
       return;
@@ -132,17 +130,33 @@ const Withdraw2 = ({
           setValue={setInputValue}
           confirmClicked={confirmClicked}
         />
-
-        <ToWithdraw
-          tokenTo={tokenTo}
-          addressTo={addressTo}
-          setAddressTo={setAddressTo}
-        />
-        <ConfirmButton
-          disabled={disabled}
-          text="WITHDRAW"
-          onClick={handleConfirmButton}
-        />
+        {tokenTo === undefined || tokenTo.handledByExternalUI === null ? (
+          <ToWithdraw
+            tokenTo={tokenTo}
+            addressTo={addressTo}
+            setAddressTo={setAddressTo}
+            confirmClicked={confirmClicked}
+          />
+        ) : (
+          ""
+        )}
+        {tokenTo !== undefined && tokenTo.handledByExternalUI !== null ? (
+          <Link
+            rel="noopener noreferrer"
+            target="_blank"
+            href={tokenTo.handledByExternalUI.url}
+          >
+            <div className="mt-11 flex items-center justify-center space-x-3 bg-red text-white uppercase w-full rounded px-8 py-2 text-lg font-bold font-[GreyCliff] hover:bg-red1">
+              <span>Withdraw from Axelar</span> <ExternalLinkIcon />
+            </div>
+          </Link>
+        ) : (
+          <ConfirmButton
+            disabled={disabled}
+            text="WITHDRAW"
+            onClick={handleConfirmButton}
+          />
+        )}
       </div>
     </>
   );

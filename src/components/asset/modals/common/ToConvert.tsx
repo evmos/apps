@@ -6,6 +6,7 @@ import {
 } from "../../../../internal/asset/style/format";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "../transactions/AddTokenMetamask";
+import ContainerInput from "./ContainerInput";
 
 const ToConvert = ({
   token,
@@ -22,15 +23,17 @@ const ToConvert = ({
 }) => {
   return (
     <>
-      <div className="pr-5 pl-4 flex items-center space-x-3 bg-white hover:border-darkGray5 focus-visible:border-darkGray5 focus-within:border-darkGray5 border border-darkGray5 rounded">
-        <Image src={img} width={20} height={20} alt="" />
-        <span className="font-bold">{token}</span>
-        <input
-          className="w-full p-3 border-none hover:border-none focus-visible:outline-none text-right"
-          type="text"
-          disabled
-        />
-      </div>
+      <ContainerInput>
+        <>
+          <Image src={img} width={20} height={20} alt="" />
+          <span className="font-bold">{token}</span>
+          <input
+            className="w-full border-none hover:border-none focus-visible:outline-none text-right"
+            type="text"
+            disabled
+          />
+        </>
+      </ContainerInput>
       <div className="flex justify-between items-center">
         <span className="font-bold text-sm">
           Available Balance:{" "}

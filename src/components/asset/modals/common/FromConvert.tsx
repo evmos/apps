@@ -11,6 +11,8 @@ import {
 import ErrorMessage from "./ErrorMessage";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 import { FromProps } from "./types";
+import ContainerInput from "./ContainerInput";
+import SmallButton from "../../../common/SmallButton";
 
 const FromConvert = ({ fee, balance, input, style }: FromProps) => {
   const feeDeposit = "5000";
@@ -18,38 +20,37 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
 
   return (
     <>
-      {/* TODO: create component for input style */}
-      <div className="pr-5 pl-4 flex items-center space-x-3 bg-white hover:border-darkGray5 focus-visible:border-darkGray5 focus-within:border-darkGray5 border border-darkGray5 rounded">
-        <Image src={style.img} width={20} height={20} alt={style.img} />
-        <span className="font-bold uppercase">{style.text}</span>
-        <input
-          className="w-full p-3 border-none hover:border-none focus-visible:outline-none text-right"
-          type="text"
-          placeholder="amount"
-          value={input.value}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            input.setInputValue(numericOnly(e.target.value));
-          }}
-        />
-        <button
-          onClick={() => {
-            if (style.tokenTo?.toUpperCase() !== fee.feeDenom.toUpperCase()) {
-              input.setInputValue(
-                numericOnly(convertFromAtto(balance.amount, balance.decimals))
-              );
-            } else {
-              setMaxClicked(true);
-              const val = safeSubstraction(balance.amount, fee.fee);
-              input.setInputValue(
-                numericOnly(convertFromAtto(val, balance.decimals))
-              );
-            }
-          }}
-          className="border border-black rounded p-1 opacity-80 font-bold text-black text-xs"
-        >
-          MAX
-        </button>
-      </div>
+      <ContainerInput>
+        <>
+          <Image src={style.img} width={20} height={20} alt={style.img} />
+          <span className="font-bold uppercase">{style.text}</span>
+          <input
+            className="w-full border-none hover:border-none focus-visible:outline-none text-right"
+            type="text"
+            placeholder="amount"
+            value={input.value}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              input.setInputValue(numericOnly(e.target.value));
+            }}
+          />
+          <SmallButton
+            text="MAX"
+            onClick={() => {
+              if (style.tokenTo?.toUpperCase() !== fee.feeDenom.toUpperCase()) {
+                input.setInputValue(
+                  numericOnly(convertFromAtto(balance.amount, balance.decimals))
+                );
+              } else {
+                setMaxClicked(true);
+                const val = safeSubstraction(balance.amount, fee.fee);
+                input.setInputValue(
+                  numericOnly(convertFromAtto(val, balance.decimals))
+                );
+              }
+            }}
+          />
+        </>
+      </ContainerInput>
       {truncateNumber(input.value) === 0 && (
         <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext} />
       )}

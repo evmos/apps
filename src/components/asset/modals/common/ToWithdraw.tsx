@@ -1,10 +1,14 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import { useDispatch } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import { snackErrorConnectingKeplr } from "../../../../internal/asset/style/snackbars";
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
 import { truncateAddress } from "../../../../internal/wallet/style/format";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
 import SmallButton from "../../../common/SmallButton";
+import AddTokenMetamask from "../transactions/AddTokenMetamask";
+import ContainerInput from "./ContainerInput";
 import { ContainerModal } from "./ContainerModal";
 import ErrorMessage from "./ErrorMessage";
 import { TextSmall } from "./TextSmall";
@@ -13,10 +17,12 @@ const ToWithdraw = ({
   tokenTo,
   addressTo,
   setAddressTo,
+  confirmClicked,
 }: {
   tokenTo: TableDataElement | undefined;
   addressTo: string;
   setAddressTo: Dispatch<SetStateAction<string>>;
+  confirmClicked: boolean;
 }) => {
   const [showInput, setShowInput] = useState(false);
   const [showEditButton, setShowEditButton] = useState(true);
@@ -24,6 +30,8 @@ const ToWithdraw = ({
     setShowInput(true);
     setShowEditButton(false);
   };
+  const dispatch = useDispatch();
+
   return (
     <ContainerModal>
       <>
@@ -46,7 +54,7 @@ const ToWithdraw = ({
               }`}
               onClick={async () => {
                 if (tokenTo === undefined) {
-                  // check if this works. It should never enters here
+                  // It should never enters here
                   // because the button is disabled until the user
                   // selects a token
                   return;
@@ -56,47 +64,26 @@ const ToWithdraw = ({
                   tokenTo.chainIdentifier
                 );
                 if (keplrAddress === null) {
-                  // dispatch(
-                  //   addSnackbar({
-                  //     id: 0,
-                  //     content: (
-                  //       <SimpleSnackbar
-                  //         title={KEPLR_NOTIFICATIONS.ErrorTitle}
-                  //         text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-                  //       />
-                  //     ),
-                  //     type: "error",
-                  //   })
-                  // );
+                  dispatch(snackErrorConnectingKeplr());
                   return;
                 }
                 setAddressTo(keplrAddress);
               }}
             />
           </div>
-          {/* <div className="space-y-3"> */}
-
-          {/* 
-          {confirmClicked && addressTo === "" && (
-            <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
-          )} 
-          */}
-
-          {/* <AddTokenMetamask token={token} /> */}
-          {/* </div> */}
         </div>
+        {/* <div className="flex items-center justify-between"> */}
         {showInput && (
           <>
-            <div className="pr-5 pl-4 flex items-center space-x-3 bg-white hover:border-darkGray5 focus-visible:border-darkGray5 focus-within:border-darkGray5 border border-darkGray5 rounded">
+            <ContainerInput>
               <input
-                className="w-full p-3 border-none hover:border-none focus-visible:outline-none"
+                className="w-full border-none hover:border-none focus-visible:outline-none"
                 value={addressTo}
                 onChange={(e) => {
                   setAddressTo(e.target.value);
                 }}
               />
-            </div>
-            {/* confirmClicked && */}
+            </ContainerInput>
 
             <h6 className="italic text-xs font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
@@ -104,9 +91,22 @@ const ToWithdraw = ({
             </h6>
           </>
         )}
-        {addressTo === "" && (
+
+        {confirmClicked && addressTo === "" && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
         )}
+        <div className="flex justify-end w-full">
+          {tokenTo !== undefined && (
+            <AddTokenMetamask
+              token={{
+                erc20Address: tokenTo?.erc20Address,
+                symbol: tokenTo?.symbol,
+                decimals: tokenTo?.decimals,
+                img: tokenTo?.pngSrc,
+              }}
+            />
+          )}
+        </div>
       </>
     </ContainerModal>
   );

@@ -16,9 +16,11 @@ import {
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import Dropdown from "../../../common/Dropdown";
 import SmallButton from "../../../common/SmallButton";
+import ContainerInput from "./ContainerInput";
 
 import { ContainerModal } from "./ContainerModal";
 import ErrorMessage from "./ErrorMessage";
+import Note from "./Note";
 import { TextSmall } from "./TextSmall";
 
 const AmountWithdraw = ({
@@ -38,46 +40,61 @@ const AmountWithdraw = ({
 }) => {
   const fee = BigNumber.from("4600000000000000");
   const feeDenom = EVMOS_SYMBOL;
-  // const [maxClicked, setMaxClicked] = useState(false);
 
+  const handleOnClickMax = () => {
+    if (tokenTo !== undefined) {
+      if (tokenTo.symbol.toUpperCase() !== feeDenom.toUpperCase()) {
+        setValue(
+          numericOnly(convertFromAtto(tokenTo.erc20Balance, tokenTo.decimals))
+        );
+      } else {
+        const val = safeSubstraction(tokenTo.erc20Balance, fee);
+        setValue(numericOnly(convertFromAtto(val, tokenTo.decimals)));
+      }
+    }
+  };
+
+  const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(numericOnly(e.target.value));
+  };
   return (
     <ContainerModal>
       <>
-        <TextSmall text="AMOUNT" />
-        <div className="pr-5 pl-4 flex items-center space-x-3 bg-white hover:border-darkGray5 focus-visible:border-darkGray5 focus-within:border-darkGray5 border border-darkGray5 rounded">
-          <Dropdown
-            placeholder="Select token..."
-            data={data}
-            setTokenTo={setTokenTo}
+        {tokenTo === undefined || tokenTo.handledByExternalUI === null ? (
+          <TextSmall text="AMOUNT" />
+        ) : (
+          <TextSmall text="SELECT BRIDGE" />
+        )}
+        {tokenTo !== undefined && tokenTo.handledByExternalUI !== null && (
+          <Note
+            text="We currently do not offer transfers directly from Ethereum. For now,
+        here area few options that will allow you to withdraw from Evmos"
           />
-          <input
-            className="w-full p-3 border-none hover:border-none focus-visible:outline-none text-right"
-            type="text"
-            placeholder="amount"
-            value={value}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-              setValue(numericOnly(e.target.value));
-            }}
-          />
-          <SmallButton
-            text="MAX"
-            onClick={() => {
-              if (tokenTo !== undefined) {
-                if (tokenTo.symbol.toUpperCase() !== feeDenom.toUpperCase()) {
-                  setValue(
-                    numericOnly(
-                      convertFromAtto(tokenTo.erc20Balance, tokenTo.decimals)
-                    )
-                  );
-                } else {
-                  // setMaxClicked(true);
-                  const val = safeSubstraction(tokenTo.erc20Balance, fee);
-                  setValue(numericOnly(convertFromAtto(val, tokenTo.decimals)));
-                }
-              }
-            }}
-          />
-        </div>
+        )}
+        <ContainerInput>
+          <>
+            <Dropdown
+              placeholder="Select token..."
+              data={data}
+              setTokenTo={setTokenTo}
+            />
+
+            {tokenTo === undefined || tokenTo.handledByExternalUI === null ? (
+              <>
+                <input
+                  className="w-full  border-none hover:border-none focus-visible:outline-none text-right"
+                  type="text"
+                  placeholder="amount"
+                  value={value}
+                  onChange={handleOnChangeInput}
+                />
+                <SmallButton text="MAX" onClick={handleOnClickMax} />
+              </>
+            ) : (
+              ""
+            )}
+          </>
+        </ContainerInput>
         <div className="flex flex-col">
           {confirmClicked && tokenTo === undefined && (
             <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorTokenEmpty} />
@@ -89,6 +106,7 @@ const AmountWithdraw = ({
             <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAmountEmpty} />
           )}
           {tokenTo !== undefined &&
+            tokenTo.handledByExternalUI === null &&
             truncateNumber(value) >
               truncateNumber(
                 numericOnly(
@@ -97,7 +115,7 @@ const AmountWithdraw = ({
               ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
         </div>
         <div className="space-y-2">
-          {tokenTo !== undefined && (
+          {tokenTo !== undefined && tokenTo.handledByExternalUI === null && (
             <>
               <p className="font-bold text-sm">
                 Available Balance:{" "}
@@ -106,13 +124,13 @@ const AmountWithdraw = ({
                   {tokenTo.symbol}
                 </span>
               </p>
-              <div className="text-xs opacity-80">
-                {getReservedForFeeText(
+              <Note
+                text={getReservedForFeeText(
                   BigNumber.from(fee),
                   EVMOS_SYMBOL,
                   EVMOS_SYMBOL
                 )}
-              </div>
+              />
             </>
           )}
         </div>

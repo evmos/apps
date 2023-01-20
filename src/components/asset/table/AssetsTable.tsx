@@ -32,6 +32,8 @@ import {
   getTotalAssets,
 } from "../../../internal/asset/style/format";
 import { BigNumber } from "ethers";
+import LeftArrowIcon from "../../common/images/icons/LeftArrowIcon";
+import Link from "next/link";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -118,6 +120,13 @@ const AssetsTable = () => {
 
   return (
     <>
+      <Link
+        href="https://app.evmos.org/"
+        className="text-white flex items-center space-x-3 mb-2 font-bold mx-5 xl:mx-0 justify-center xl:justify-start"
+      >
+        <LeftArrowIcon width={15} height={15} />
+        <p>Back to Mission Control</p>
+      </Link>
       <TopBar
         evmosPrice={normalizedAssetsData?.table[0]?.coingeckoPrice}
         totalStaked={totalStaked}
@@ -134,7 +143,7 @@ const AssetsTable = () => {
         onChange={() => setHideBalance(!hideZeroBalance)}
         checked={hideZeroBalance}
       />
-      <div className="mt-5 overflow-y-auto max-h-[36vh] lg:max-h-[48vh] xl:scrollbar-hide text-white font-[IBM] w-full">
+      <div className="mt-5 overflow-y-auto max-h-[33vh] lg:max-h-[45vh] xl:scrollbar-hide text-white font-[IBM] w-full">
         {!isLoading && !error && tableData?.length > 0 && showMobile && (
           <ContentCard
             tableData={{

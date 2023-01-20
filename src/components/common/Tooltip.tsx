@@ -4,7 +4,7 @@ const Tooltip = ({
   className,
 }: {
   element: JSX.Element;
-  text: JSX.Element;
+  text: JSX.Element | string;
   className?: string;
 }) => {
   return (

@@ -17,6 +17,7 @@ const Switch = dynamic(() => import("../utils/Switch"));
 const Content = dynamic(() => import("./Content"));
 const ContentCard = dynamic(() => import("../mobileView/Content"));
 const TopBar = dynamic(() => import("./topBar/TopBar"));
+const Banner = dynamic(() => import("../Banner"));
 
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
@@ -128,11 +129,12 @@ const AssetsTable = () => {
           coingeckoPrice: normalizedAssetsData.table[0]?.coingeckoPrice,
         })}
       />
+      <Banner />
       <Switch
         onChange={() => setHideBalance(!hideZeroBalance)}
         checked={hideZeroBalance}
       />
-      <div className="mt-5 overflow-y-auto max-h-[40vh] lg:max-h-[53vh] xl:scrollbar-hide text-white font-[IBM] w-full">
+      <div className="mt-5 overflow-y-auto max-h-[36vh] lg:max-h-[48vh] xl:scrollbar-hide text-white font-[IBM] w-full">
         {!isLoading && !error && tableData?.length > 0 && showMobile && (
           <ContentCard
             tableData={{

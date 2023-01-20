@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: '/proxytest',
+  basePath: '/assets',
   swcMinify: true,
   i18n: {
     locales: ["en"],

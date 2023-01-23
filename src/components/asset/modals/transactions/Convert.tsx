@@ -28,7 +28,6 @@ import AddTokenMetamask from "./AddTokenMetamask";
 import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
 import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
-import { PAGE_URL } from "../../../constants";
 
 const Convert = ({
   item,
@@ -106,7 +105,7 @@ const Convert = ({
               tokenTo:
                 item.symbol === EVMOS_SYMBOL ? typeSelected.token : item.symbol,
               address,
-              img: `${PAGE_URL}/tokens/${item.symbol.toLowerCase()}.png`,
+              img: `/assets/tokens/${item.symbol.toLowerCase()}.png`,
               text: typeSelected.from,
             }}
           />
@@ -132,7 +131,7 @@ const Convert = ({
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
           <ToContainer
             token={item.symbol}
-            img={`${PAGE_URL}/tokens/${item.symbol.toLowerCase()}.png`}
+            img={`/assets/tokens/${item.symbol.toLowerCase()}.png`}
             text={typeSelected.to}
           />
           <AddTokenMetamask token={token} />

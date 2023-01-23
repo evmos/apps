@@ -31,7 +31,6 @@ import Tabs from "../common/Tabs";
 import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
-import { PAGE_URL } from "../../../constants";
 import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
 import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
 import Link from "next/link";
@@ -116,7 +115,7 @@ const Withdraw = ({
             style={{
               tokenTo: item.symbol,
               address: address,
-              img: `${PAGE_URL}/tokens/evmos.png`,
+              img: `/assets/tokens/evmos.png`,
               text: "EVMOS",
             }}
           />
@@ -139,7 +138,7 @@ const Withdraw = ({
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
           <ToContainer
             token={item.symbol}
-            img={`${PAGE_URL}/tokens/${item.symbol.toLowerCase()}.png`}
+            img={`/assets/tokens/${item.symbol.toLowerCase()}.png`}
           />
           <div className="space-y-3">
             <div className="pr-5 pl-2 flex items-center space-x-3 bg-white hover:border-black focus-visible:border-black focus-within:border-black border border-darkGray5 rounded-lg">

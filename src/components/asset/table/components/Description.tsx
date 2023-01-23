@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { PAGE_URL } from "../../../constants";
 
 export const Description = ({
   symbol,
@@ -11,7 +10,7 @@ export const Description = ({
   return (
     <div className="flex items-center space-x-5">
       <Image
-        src={`${PAGE_URL}/tokens/${symbol.toLocaleLowerCase()}.png`}
+        src={`/assets/tokens/${symbol.toLocaleLowerCase()}.png`}
         alt={symbol}
         width={35}
         height={35}

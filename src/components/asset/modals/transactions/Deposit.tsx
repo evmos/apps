@@ -44,7 +44,6 @@ import {
 import AddTokenMetamask from "./AddTokenMetamask";
 import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
 import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
-import { PAGE_URL } from "../../../constants";
 
 const Deposit = ({
   item,
@@ -143,14 +142,14 @@ const Deposit = ({
             style={{
               tokenTo: item.symbol,
               address: walletToUse,
-              img: `${PAGE_URL}/tokens/${item.symbol.toLowerCase()}.png`,
+              img: `/assets/tokens/${item.symbol.toLowerCase()}.png`,
               text: item.symbol,
             }}
           />
         </div>
         <Arrow />
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
-          <ToContainer token="EVMOS" img={`${PAGE_URL}/evmos.png`} />
+          <ToContainer token="EVMOS" img={`/assets/evmos.png`} />
           <div className="space-y-3">
             <div className="pr-5 pl-2 flex items-center space-x-3 bg-white hover:border-black focus-visible:border-black focus-within:border-black border border-darkGray5 rounded-lg">
               <input

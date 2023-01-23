@@ -73,3 +73,29 @@ export interface executedTx {
   executed: boolean;
   msg: string;
 }
+
+type txResultData = {
+  code: number;
+};
+
+type txResult = {
+  tx_result: txResultData;
+};
+
+export type txStatusResponse = {
+  result: txResult;
+};
+
+export enum TransactionStatus {
+  UNCONFIRMED = -1,
+  SUCCESS = 0,
+  ERROR = 1,
+}
+
+export type txStatusError = {
+  code: number;
+};
+
+export type txStatusErrorResponse = {
+  error: txStatusError | string;
+};

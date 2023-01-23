@@ -4,8 +4,13 @@ import { addSnackbar } from "../../../components/notification/redux/notification
 import { BIG_ZERO } from "../../common/math/Bignumbers";
 import { TableData } from "../functionality/table/normalizeData";
 import { EXECUTED_NOTIFICATIONS } from "../functionality/transactions/errors";
-import { checkIBCExecutionStatus } from "../functionality/transactions/executedTx";
-
+import {
+  checkIBCExecutionStatus,
+  checkTxInclusionInABlock,
+} from "../functionality/transactions/executedTx";
+import { TransactionStatus } from "../functionality/transactions/types";
+import { SimpleSnackbar } from "../../../components/notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../components/notification/content/ViexExplorerSnackbar";
 export function getReservedForFeeText(
   amount: BigNumber,
   token: string,
@@ -71,9 +76,7 @@ export function amountToDolars(
   decimals: number,
   coingeckoPrice: number
 ) {
-  return (
-    Number(formatNumber(convertFromAtto(value, decimals))) * coingeckoPrice
-  ).toFixed(2);
+  return (Number(convertFromAtto(value, decimals)) * coingeckoPrice).toFixed(2);
 }
 
 export function truncateNumber(number: string) {
@@ -97,8 +100,48 @@ export function createBigNumber(value: string) {
 export function snackbarWaitingBroadcast() {
   return addSnackbar({
     id: 0,
-    text: EXECUTED_NOTIFICATIONS.WaitingTitle,
-    subtext: "",
+    content: EXECUTED_NOTIFICATIONS.WaitingTitle,
+    type: "default",
+  });
+}
+
+export async function snackbarIncludedInBlock(
+  txHash: string,
+  chain: string,
+  explorerTxUrl: string
+) {
+  const includedInBlock = await checkTxInclusionInABlock(txHash, chain);
+  if (includedInBlock !== undefined) {
+    if (includedInBlock === TransactionStatus.SUCCESS) {
+      return addSnackbar({
+        id: 0,
+        content:
+          explorerTxUrl === "" ? (
+            "Successfully included in a block"
+          ) : (
+            <ViewExplorerSnackbar
+              values={{
+                title: "Successfully included in a block",
+                hash: txHash,
+                explorerTxUrl: explorerTxUrl,
+              }}
+            />
+          ),
+
+        type: "success",
+      });
+    } else {
+      return addSnackbar({
+        id: 0,
+        content: "Error including transaction in a block",
+        type: "error",
+      });
+    }
+  }
+  // unconfirmed
+  return addSnackbar({
+    id: 0,
+    content: "Waiting for the transaction to be included in a block",
     type: "default",
   });
 }
@@ -107,8 +150,7 @@ export async function snackbarExecutedTx(txHash: string, chain: string) {
   const executed = await checkIBCExecutionStatus(txHash, chain);
   return addSnackbar({
     id: 0,
-    text: executed.title,
-    subtext: executed.message,
+    content: <SimpleSnackbar title={executed.title} text={executed.message} />,
     type: executed.error === true ? "error" : "success",
   });
 }
@@ -143,7 +185,7 @@ export function getTotalAssets(
   ) {
     const val = parseFloat(
       amountToDolars(
-        BigNumber.from(staked.total.toString()),
+        BigNumber.from(staked.total),
         staked.decimals,
         staked.coingeckoPrice
       )

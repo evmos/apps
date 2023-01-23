@@ -15,9 +15,8 @@ import { addSnackbar } from "../../../notification/redux/notificationSlice";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { ModalTitle } from "../../../common/Modal";
 import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
-import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
-import { useContract } from "./contracts/useContract";
+import { createContract } from "./contracts/contractHelper";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
 import {
@@ -26,6 +25,9 @@ import {
 } from "../../../../internal/asset/functionality/transactions/errors";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
+import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
+import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
 import { PAGE_URL } from "../../../constants";
 
 const Convert = ({
@@ -76,7 +78,6 @@ const Convert = ({
 
   const WEVMOS = WEVMOS_CONTRACT_ADDRESS;
 
-  const WEVMOSContract = useContract<WEVMOS>(WEVMOS, WETH_ABI);
   const token: Token = {
     erc20Address: item.erc20Address,
     symbol: item.symbol,
@@ -144,8 +145,12 @@ const Convert = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  text: "Wallet not connected",
-                  subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                  content: (
+                    <SimpleSnackbar
+                      title="Wallet not connected"
+                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                    />
+                  ),
                   type: "error",
                 })
               );
@@ -186,20 +191,54 @@ const Convert = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  text: res.title,
-                  subtext: res.message,
+                  content:
+                    res.error === true ? (
+                      <SimpleSnackbar title={res.title} text={res.message} />
+                    ) : (
+                      <ViewExplorerSnackbar
+                        values={{
+                          title: res.title,
+                          hash: res.txHash,
+                          explorerTxUrl: res.explorerTxUrl,
+                        }}
+                      />
+                    ),
                   type: res.error === true ? "error" : "success",
                 })
               );
             } else {
               if (isERC20Selected) {
                 try {
-                  const res = await WEVMOSContract.withdraw(amount);
+                  const contract = await createContract(
+                    WEVMOS,
+                    WETH_ABI,
+                    wallet.extensionName
+                  );
+                  if (contract === null) {
+                    dispatch(
+                      addSnackbar({
+                        id: 0,
+                        content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                        type: "error",
+                      })
+                    );
+                    setShow(false);
+                    return;
+                  }
+                  setDisabled(true);
+                  const res = await (contract as WEVMOS).withdraw(amount);
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      text: BROADCASTED_NOTIFICATIONS.SuccessTitle,
-                      subtext: res.hash,
+                      content: (
+                        <ViewExplorerSnackbar
+                          values={{
+                            title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                            hash: res.hash,
+                            explorerTxUrl: "www.mintscan.io/evmos/txs/",
+                          }}
+                        />
+                      ),
                       type: "success",
                     })
                   );
@@ -208,22 +247,45 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                      subtext: "",
+                      content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
                       type: "error",
                     })
                   );
                 }
               } else {
                 try {
-                  const res = await WEVMOSContract.deposit({
+                  const contract = await createContract(
+                    WEVMOS,
+                    WETH_ABI,
+                    wallet.extensionName
+                  );
+                  if (contract === null) {
+                    dispatch(
+                      addSnackbar({
+                        id: 0,
+                        content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                        type: "error",
+                      })
+                    );
+                    setShow(false);
+                    return;
+                  }
+                  setDisabled(true);
+                  const res = await (contract as WEVMOS).deposit({
                     value: amount,
                   });
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      text: BROADCASTED_NOTIFICATIONS.SuccessTitle,
-                      subtext: res.hash,
+                      content: (
+                        <ViewExplorerSnackbar
+                          values={{
+                            title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                            hash: res.hash,
+                            explorerTxUrl: "www.mintscan.io/evmos/txs/",
+                          }}
+                        />
+                      ),
                       type: "success",
                     })
                   );
@@ -232,8 +294,7 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      text: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                      subtext: "",
+                      content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
                       type: "error",
                     })
                   );

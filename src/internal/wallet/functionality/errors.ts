@@ -43,7 +43,7 @@ export const METAMASK_NOTIFICATIONS = {
     "Could not get the pubkey, please sign the generate_pubkey message!",
   ChangeNetworkSubtext: "Could not change the network to EVMOS",
   AddressSubtext: "Could not get the user address from Metamask",
-  DeniedSignatureSubtext: "User denied message signature",
+  DeniedSignatureSubtext: "Transaction was not signed",
   EipToSignSubtext:
     "There was a problem creating the transaction, please try again",
   ProvidedChainSubtext: "Please, connect to the EVMOS network",
@@ -58,5 +58,5 @@ export const KEPLR_NOTIFICATIONS = {
   LedgerNotInitSubtext: "Please initialize ethereum app on ledger first",
   RequestRejectedSubtext:
     "Please unlock the extension and allow the app to access your wallet address",
-  RequestRejectedSignSubtext: "User denied message signature",
+  RequestRejectedSignSubtext: "Transaction was not signed",
 } as const;

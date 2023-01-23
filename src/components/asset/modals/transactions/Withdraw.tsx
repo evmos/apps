@@ -8,6 +8,7 @@ import { IBCChainParams } from "../../../../internal/asset/functionality/transac
 import {
   getReservedForFeeText,
   snackbarExecutedTx,
+  snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
@@ -22,6 +23,7 @@ import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
 import {
   BROADCASTED_NOTIFICATIONS,
+  EXECUTED_NOTIFICATIONS,
   MODAL_NOTIFICATIONS,
 } from "../../../../internal/asset/functionality/transactions/errors";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
@@ -30,6 +32,9 @@ import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/e
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
 import { PAGE_URL } from "../../../constants";
+import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
+import Link from "next/link";
 
 const Withdraw = ({
   item,
@@ -75,13 +80,24 @@ const Withdraw = ({
     decimals: item.decimals,
     img: item.pngSrc,
   };
+  const v10Link =
+    "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
   return (
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
       <div className="text-darkGray3">
         <p className="text-sm max-w-[500px] pb-3 italic">
-          Since Evmos v10 you can withdraw directly your ERC20 balance without
-          previously converting it to IBC.
+          Since Evmos{" "}
+          <Link
+            className="text-red"
+            href={v10Link}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            v10
+          </Link>{" "}
+          you can withdraw directly your ERC20 balance without previously
+          converting it to IBC.
         </p>
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
           <FromContainer
@@ -138,7 +154,7 @@ const Withdraw = ({
             {confirmClicked && addressTo === "" && (
               <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
             )}
-            <h6 className="italic text-sm">
+            <h6 className="italic text-sm font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
@@ -158,8 +174,12 @@ const Withdraw = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: KEPLR_NOTIFICATIONS.ErrorTitle,
-                        subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                        content: (
+                          <SimpleSnackbar
+                            title={KEPLR_NOTIFICATIONS.ErrorTitle}
+                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                          />
+                        ),
                         type: "error",
                       })
                     );
@@ -180,8 +200,12 @@ const Withdraw = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  text: "Wallet not connected",
-                  subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                  content: (
+                    <SimpleSnackbar
+                      title="Wallet not connected"
+                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                    />
+                  ),
                   type: "error",
                 })
               );
@@ -213,6 +237,20 @@ const Withdraw = ({
               token: item.symbol,
             };
             setDisabled(true);
+
+            dispatch(
+              addSnackbar({
+                id: 0,
+                content: (
+                  <SimpleSnackbar
+                    title={EXECUTED_NOTIFICATIONS.IBCTransferInformation.text}
+                    text={EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext}
+                  />
+                ),
+                type: "default",
+              })
+            );
+            // create, sign and broadcast tx
             const res = await executeWithdraw(
               wallet.evmosPubkey,
               wallet.evmosAddressCosmosFormat,
@@ -226,14 +264,31 @@ const Withdraw = ({
             dispatch(
               addSnackbar({
                 id: 0,
-                text: res.title,
-                subtext: res.message,
+                content:
+                  res.error === true ? (
+                    <SimpleSnackbar title={res.title} text={res.message} />
+                  ) : (
+                    <ViewExplorerSnackbar
+                      values={{
+                        title: res.title,
+                        hash: res.txHash,
+                        explorerTxUrl: res.explorerTxUrl,
+                      }}
+                    />
+                  ),
                 type: res.error === true ? "error" : "success",
               })
             );
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
+              dispatch(
+                await snackbarIncludedInBlock(
+                  res.txHash,
+                  EVMOS_SYMBOL,
+                  res.explorerTxUrl
+                )
+              );
               dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
             }
 

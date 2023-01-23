@@ -28,6 +28,7 @@ export async function executeWithdraw(
       message: MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -37,6 +38,7 @@ export async function executeWithdraw(
       message: MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -46,6 +48,7 @@ export async function executeWithdraw(
       message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
   if (!checkFormatAddress(params.receiver, prefix)) {
@@ -54,6 +57,7 @@ export async function executeWithdraw(
       message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -70,6 +74,7 @@ export async function executeWithdraw(
       message: tx.message,
       title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -86,15 +91,7 @@ export async function executeWithdraw(
       message: sign.message,
       title: SIGNING_NOTIFICATIONS.ErrorTitle,
       txHash: "",
-    };
-  }
-
-  if (sign.result === true && sign.message == "") {
-    return {
-      error: true,
-      message: sign.message,
-      title: SIGNING_NOTIFICATIONS.ErrorTitle,
-      txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -107,6 +104,7 @@ export async function executeWithdraw(
       message: broadcastResponse.message,
       title: BROADCASTED_NOTIFICATIONS.ErrorTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -115,5 +113,6 @@ export async function executeWithdraw(
     message: `${BROADCASTED_NOTIFICATIONS.SubmitTitle} ${broadcastResponse.txhash}`,
     title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
     txHash: broadcastResponse.txhash,
+    explorerTxUrl: tx?.data?.explorerTxUrl,
   };
 }

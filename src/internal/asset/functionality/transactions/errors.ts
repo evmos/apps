@@ -1,9 +1,14 @@
 export const EXECUTED_NOTIFICATIONS = {
   SuccessTitle: "Successfully executed",
-  ErrorTitle: "Error executing the transaction",
+  ErrorTitle: "Executing transaction",
   UnexpectedSubtext: "Unexpected error",
   WaitingTitle:
-    "Waiting for the ibc transaction to be executed in the destination chain",
+    "Waiting for ibc transaction to be executed in the destination chain",
+  IBCTransferInformation: {
+    text: "Note",
+    subtext:
+      "IBC transfer takes up to 15 mins in time of congestion. Please be patient before attempting to resend the transaction.",
+  },
 } as const;
 
 export const BROADCASTED_NOTIFICATIONS = {

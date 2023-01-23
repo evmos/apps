@@ -24,6 +24,7 @@ export async function executeDeposit(
       message: MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
   if (!checkFormatAddress(params.sender, prefix)) {
@@ -32,6 +33,7 @@ export async function executeDeposit(
       message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -41,6 +43,7 @@ export async function executeDeposit(
       message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -52,6 +55,7 @@ export async function executeDeposit(
       message: tx.message,
       title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -68,6 +72,7 @@ export async function executeDeposit(
       message: sign.message,
       title: SIGNING_NOTIFICATIONS.ErrorTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -80,6 +85,7 @@ export async function executeDeposit(
       message: broadcastResponse.message,
       title: BROADCASTED_NOTIFICATIONS.ErrorTitle,
       txHash: "",
+      explorerTxUrl: "",
     };
   }
 
@@ -88,5 +94,6 @@ export async function executeDeposit(
     message: `${BROADCASTED_NOTIFICATIONS.SubmitTitle} ${broadcastResponse.txhash}`,
     title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
     txHash: broadcastResponse.txhash,
+    explorerTxUrl: tx?.data?.explorerTxUrl,
   };
 }

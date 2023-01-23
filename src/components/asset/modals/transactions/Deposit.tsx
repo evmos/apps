@@ -30,9 +30,11 @@ import {
 import {
   BALANCE_NOTIFICATIONS,
   BROADCASTED_NOTIFICATIONS,
+  EXECUTED_NOTIFICATIONS,
 } from "../../../../internal/asset/functionality/transactions/errors";
 import {
   snackbarExecutedTx,
+  snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
 import {
@@ -40,6 +42,8 @@ import {
   METAMASK_NOTIFICATIONS,
 } from "../../../../internal/wallet/functionality/errors";
 import AddTokenMetamask from "./AddTokenMetamask";
+import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
 import { PAGE_URL } from "../../../constants";
 
 const Deposit = ({
@@ -73,8 +77,12 @@ const Deposit = ({
         dispatch(
           addSnackbar({
             id: 0,
-            text: KEPLR_NOTIFICATIONS.ErrorTitle,
-            subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+            content: (
+              <SimpleSnackbar
+                title={KEPLR_NOTIFICATIONS.ErrorTitle}
+                text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+              />
+            ),
             type: "error",
           })
         );
@@ -92,8 +100,7 @@ const Deposit = ({
         dispatch(
           addSnackbar({
             id: 0,
-            text: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
-            subtext: "",
+            content: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
             type: "error",
           })
         );
@@ -157,7 +164,7 @@ const Deposit = ({
             {confirmClicked && addressTo === "" && (
               <ErrorMessage text="Address can not be empty" />
             )}
-            <h6 className="italic text-sm">
+            <h6 className="italic text-sm font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
@@ -177,8 +184,12 @@ const Deposit = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: KEPLR_NOTIFICATIONS.ErrorTitle,
-                        subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                        content: (
+                          <SimpleSnackbar
+                            title={KEPLR_NOTIFICATIONS.ErrorTitle}
+                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                          />
+                        ),
                         type: "error",
                       })
                     );
@@ -198,8 +209,13 @@ const Deposit = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: METAMASK_NOTIFICATIONS.ErrorTitle,
-                        subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                        content: (
+                          <SimpleSnackbar
+                            title={METAMASK_NOTIFICATIONS.ErrorTitle}
+                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                          />
+                        ),
+
                         type: "error",
                       })
                     );
@@ -220,8 +236,12 @@ const Deposit = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  text: "Wallet not connected",
-                  subtext: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                  content: (
+                    <SimpleSnackbar
+                      title="Wallet not connected"
+                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                    />
+                  ),
                   type: "error",
                 })
               );
@@ -262,6 +282,20 @@ const Deposit = ({
               token: item.symbol,
             };
             setDisabled(true);
+
+            dispatch(
+              addSnackbar({
+                id: 0,
+                content: (
+                  <SimpleSnackbar
+                    title={EXECUTED_NOTIFICATIONS.IBCTransferInformation.text}
+                    text={EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext}
+                  />
+                ),
+                type: "default",
+              })
+            );
+            // create, sign and broadcast tx
             const res = await executeDeposit(
               wallet.osmosisPubkey,
               keplrAddress,
@@ -274,8 +308,18 @@ const Deposit = ({
             dispatch(
               addSnackbar({
                 id: 0,
-                text: res.title,
-                subtext: res.message,
+                content:
+                  res.error === true ? (
+                    <SimpleSnackbar title={res.title} text={res.message} />
+                  ) : (
+                    <ViewExplorerSnackbar
+                      values={{
+                        title: res.title,
+                        hash: res.txHash,
+                        explorerTxUrl: res.explorerTxUrl,
+                      }}
+                    />
+                  ),
                 type: res.error === true ? "error" : "success",
               })
             );
@@ -283,6 +327,14 @@ const Deposit = ({
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
+              dispatch(
+                await snackbarIncludedInBlock(
+                  res.txHash,
+                  item.chainIdentifier.toUpperCase(),
+                  res.explorerTxUrl
+                )
+              );
+
               dispatch(
                 await snackbarExecutedTx(
                   res.txHash,

@@ -4,8 +4,7 @@ import Snackbar from "../Snackbar";
 
 export type Snackbar = {
   type: string;
-  text: string;
-  subtext: string;
+  content: JSX.Element | string;
   id: number;
 };
 

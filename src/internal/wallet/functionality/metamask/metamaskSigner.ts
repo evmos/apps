@@ -1,5 +1,6 @@
 import { evmosToEth } from "@evmos/address-converter";
 import { EIPToSign, Sender, TxGenerated } from "@evmos/transactions";
+import { MetaMaskInpageProvider } from "@metamask/providers";
 import { METAMASK_ERRORS, METAMASK_NOTIFICATIONS } from "../errors";
 import { EVMOS_CHAIN } from "../networkConfig";
 import {
@@ -34,7 +35,9 @@ export async function signEvmosjsTxWithMetamask(
   try {
     const ethWallet = evmosToEth(sender.accountAddress);
     let signature = "";
-    signature = (await window.ethereum.request({
+    // NOTE: we need to convert the provider because wagmi dep is replacing our window type
+    const extension = window.ethereum as unknown as MetaMaskInpageProvider;
+    signature = (await extension.request({
       method: "eth_signTypedData_v4",
       params: [ethWallet, JSON.stringify(tx.eipToSign)],
     })) as string;
@@ -78,7 +81,9 @@ export async function signBackendTxWithMetamask(
       Buffer.from(tx.eipToSign, "base64").toString("utf-8")
     ) as EIPToSign;
 
-    const signature = (await window.ethereum.request({
+    // NOTE: we need to convert the provider because wagmi dep is replacing our window type
+    const extension = window.ethereum as unknown as MetaMaskInpageProvider;
+    const signature = (await extension.request({
       method: "eth_signTypedData_v4",
       params: [ethWallet, JSON.stringify(eipToSignUTF8)],
     })) as string;

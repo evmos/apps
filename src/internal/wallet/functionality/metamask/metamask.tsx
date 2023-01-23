@@ -33,6 +33,7 @@ import {
   subscribeToChainChanged,
   unsubscribeToEvents,
 } from "./metamaskHelpers";
+import { SimpleSnackbar } from "../../../../components/notification/content/SimpleSnackbar";
 
 export class Metamask {
   active = false;
@@ -85,8 +86,10 @@ export class Metamask {
       // TODO: if the user did not sign the pubkey, pop up a message
       if (this.evmosPubkey === null) {
         NotifyError(
-          METAMASK_NOTIFICATIONS.ErrorTitle,
-          METAMASK_NOTIFICATIONS.PubkeySubtext,
+          <SimpleSnackbar
+            title={METAMASK_NOTIFICATIONS.ErrorTitle}
+            text={METAMASK_NOTIFICATIONS.PubkeySubtext}
+          />,
           store,
           this.notificationsEnabled
         );
@@ -105,10 +108,13 @@ export class Metamask {
           osmosisPubkey: null,
         })
       );
-
       NotifySuccess(
-        METAMASK_NOTIFICATIONS.SuccessTitle,
-        `Connected with wallet ${truncateAddress(this.addressEthFormat)}`,
+        <SimpleSnackbar
+          title={METAMASK_NOTIFICATIONS.SuccessTitle}
+          text={`Connected with wallet ${truncateAddress(
+            this.addressEthFormat
+          )}`}
+        />,
         store,
         this.notificationsEnabled
       );
@@ -126,8 +132,10 @@ export class Metamask {
       this.reset();
 
       NotifyError(
-        METAMASK_NOTIFICATIONS.ErrorTitle,
-        METAMASK_NOTIFICATIONS.PubkeySubtext,
+        <SimpleSnackbar
+          title={METAMASK_NOTIFICATIONS.ErrorTitle}
+          text={METAMASK_NOTIFICATIONS.PubkeySubtext}
+        />,
         store,
         this.notificationsEnabled
       );
@@ -153,8 +161,11 @@ export class Metamask {
       this.reset();
 
       NotifyError(
-        METAMASK_NOTIFICATIONS.ErrorTitle,
-        METAMASK_NOTIFICATIONS.AddressSubtext,
+        <SimpleSnackbar
+          title={METAMASK_NOTIFICATIONS.ErrorTitle}
+          text={METAMASK_NOTIFICATIONS.AddressSubtext}
+        />,
+
         store,
         this.notificationsEnabled
       );

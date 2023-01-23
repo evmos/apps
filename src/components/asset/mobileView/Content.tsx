@@ -21,6 +21,7 @@ import Convert from "../modals/transactions/Convert";
 import Withdraw from "../modals/transactions/Withdraw";
 import Deposit from "../modals/transactions/Deposit";
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
+import { PAGE_URL } from "../../constants";
 
 const ContentCard = ({
   tableData,
@@ -43,7 +44,7 @@ const ContentCard = ({
           >
             <div className="flex items-center space-x-5 ">
               <Image
-                src={`/tokens/${item.symbol.toLocaleLowerCase()}.png`}
+                src={`${PAGE_URL}/tokens/${item.symbol.toLocaleLowerCase()}.png`}
                 alt={item.symbol}
                 width={35}
                 height={35}

@@ -26,6 +26,7 @@ import {
 } from "../../../../internal/asset/functionality/transactions/errors";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
+import { PAGE_URL } from "../../../constants";
 
 const Convert = ({
   item,
@@ -104,7 +105,7 @@ const Convert = ({
               tokenTo:
                 item.symbol === EVMOS_SYMBOL ? typeSelected.token : item.symbol,
               address,
-              img: `/tokens/${item.symbol.toLowerCase()}.png`,
+              img: `${PAGE_URL}/tokens/${item.symbol.toLowerCase()}.png`,
               text: typeSelected.from,
             }}
           />
@@ -130,7 +131,7 @@ const Convert = ({
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
           <ToContainer
             token={item.symbol}
-            img={`/tokens/${item.symbol.toLowerCase()}.png`}
+            img={`${PAGE_URL}/tokens/${item.symbol.toLowerCase()}.png`}
             text={typeSelected.to}
           />
           <AddTokenMetamask token={token} />

@@ -77,6 +77,8 @@ const ButtonWalletConnection = () => {
     firstUpdate.current = false;
   });
 
+  const [isCopied, setIsCopied] = useState(false);
+
   return value.active === true ? (
     <>
       <button
@@ -108,13 +110,15 @@ const ButtonWalletConnection = () => {
                   <p>{truncateAddress(value.evmosAddressCosmosFormat)}</p>
                   <button
                     className="text-xs font-normal"
-                    onClick={() =>
-                      navigator.clipboard.writeText(
+                    onClick={async () => {
+                      await navigator.clipboard.writeText(
                         value.evmosAddressCosmosFormat
-                      )
-                    }
+                      );
+                      setIsCopied(true);
+                    }}
                   >
-                    Copy
+                    {/* TODO: add Copy icon (waiting for design) */}
+                    {isCopied ? "Copied!" : "Copy"}
                   </button>
                 </div>
                 <p>{truncateAddress(value.evmosAddressEthFormat)}</p>
@@ -130,6 +134,7 @@ const ButtonWalletConnection = () => {
               onClick={() => {
                 disconnectWallets(dispatch);
                 setShow(false);
+                setIsCopied(false);
               }}
             >
               disconnect

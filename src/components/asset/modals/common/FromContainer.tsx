@@ -10,6 +10,7 @@ import {
 import { truncateAddress } from "../../../../internal/wallet/style/format";
 import ErrorMessage from "./ErrorMessage";
 import { BigNumber } from "ethers";
+import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 
 const NumericOnly = (value: string) => {
   const reg = /^[0-9.]+$/;
@@ -103,17 +104,17 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
       </div>
 
       {truncateNumber(input.value) === 0 && (
-        <ErrorMessage text="Amount to transfer can not be 0" />
+        <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext} />
       )}
 
       {input.confirmClicked && input.value === "" && (
-        <ErrorMessage text="Amount can not be empty" />
+        <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAmountEmpty} />
       )}
 
       {truncateNumber(input.value) >
         truncateNumber(
           NumericOnly(convertFromAtto(balance.amount, balance.decimals))
-        ) && <ErrorMessage text="Amount is bigger that the actual balance" />}
+        ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
       <div>
         <span className="font-bold">Balance: </span>
         {formatNumber(convertFromAtto(balance.amount, balance.decimals))}{" "}

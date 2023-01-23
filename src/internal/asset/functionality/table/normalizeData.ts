@@ -14,6 +14,9 @@ export type TableDataElement = {
   chainIdentifier: string;
   handledByExternalUI: null | { handlingAction: string; url: string };
   coingeckoPrice: number;
+  prefix: string;
+  pngSrc: string;
+  erc20Address: string;
 };
 
 export type TableData = {
@@ -24,7 +27,12 @@ export type TableData = {
 export function normalizeAssetsData(data: ERC20BalanceResponse | undefined) {
   const temp: TableData = { table: [], feeBalance: BIG_ZERO };
   data?.balance.map((item) => {
-    if (item.symbol !== "stATOM" && item.symbol !== "REGEN") {
+    if (
+      item.symbol !== "stATOM" &&
+      item.symbol !== "REGEN" &&
+      // TODO: show USK when erc20 balance bug is fixed
+      item.symbol !== "USK"
+    ) {
       let external = null;
       if (
         item.handledByExternalUI !== null &&
@@ -47,6 +55,9 @@ export function normalizeAssetsData(data: ERC20BalanceResponse | undefined) {
         chainIdentifier: item.chainIdentifier,
         handledByExternalUI: external,
         coingeckoPrice: Number(item.coingeckoPrice),
+        prefix: item.prefix,
+        pngSrc: item.pngSrc,
+        erc20Address: item.erc20Address,
       });
     }
   });

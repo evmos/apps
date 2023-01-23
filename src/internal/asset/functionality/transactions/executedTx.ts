@@ -1,7 +1,12 @@
 import { fetchWithTimeout } from "../../../wallet/functionality/fetch";
 import { EVMOS_BACKEND } from "../../../wallet/functionality/networkConfig";
 import { EXECUTED_NOTIFICATIONS } from "./errors";
-import { executedTx } from "./types";
+import {
+  executedTx,
+  TransactionStatus,
+  txStatusErrorResponse,
+  txStatusResponse,
+} from "./types";
 
 export async function checkIBCState(txHash: string, network: string) {
   try {
@@ -68,4 +73,58 @@ export async function checkIBCExecutionStatus(txHash: string, network: string) {
     message: EXECUTED_NOTIFICATIONS.UnexpectedSubtext,
     title: EXECUTED_NOTIFICATIONS.ErrorTitle,
   };
+}
+
+export async function checkTx(txHash: string, network: string) {
+  try {
+    const rawRes = await fetchWithTimeout(
+      `${EVMOS_BACKEND}/TxStatus/${network}/${txHash}`,
+      {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+    const res = (await rawRes.json()) as
+      | txStatusErrorResponse
+      | txStatusResponse;
+    // Transaction not found (not included in a block)
+    if ("error" in res) {
+      if (res.error === "All Endpoints are failing") {
+        return TransactionStatus.UNCONFIRMED;
+      }
+      if (typeof res.error !== "string") {
+        if (res.error?.code === -32603) {
+          return TransactionStatus.UNCONFIRMED;
+        }
+      }
+    }
+    // Success
+    if ("result" in res) {
+      if (res?.result?.tx_result?.code === 0) {
+        return TransactionStatus.SUCCESS;
+      }
+    }
+  } catch (e) {
+    return TransactionStatus.ERROR;
+  }
+
+  // HTTP error or not code 0, is that the transaction failed
+  // We probably shouldn't get here because the SYNC call should catch any transaction error
+  return TransactionStatus.ERROR;
+}
+
+export async function checkTxInclusionInABlock(
+  txHash: string,
+  network: string
+) {
+  let count = 0;
+  while (count < 10) {
+    const status = await checkTx(txHash, network);
+    if (status === TransactionStatus.UNCONFIRMED) {
+      count += 1;
+      await sleep(3000);
+    } else {
+      return status;
+    }
+  }
 }

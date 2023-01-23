@@ -8,6 +8,7 @@ import { IBCChainParams } from "../../../../internal/asset/functionality/transac
 import {
   getReservedForFeeText,
   snackbarExecutedTx,
+  snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
@@ -20,9 +21,19 @@ import Arrow from "../common/Arrow";
 import ErrorMessage from "../common/ErrorMessage";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
-import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import {
+  BROADCASTED_NOTIFICATIONS,
+  EXECUTED_NOTIFICATIONS,
+  MODAL_NOTIFICATIONS,
+} from "../../../../internal/asset/functionality/transactions/errors";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import Tabs from "../common/Tabs";
+import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
+import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import AddTokenMetamask from "./AddTokenMetamask";
+import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
+import Link from "next/link";
 
 const Withdraw = ({
   item,
@@ -45,7 +56,7 @@ const Withdraw = ({
   const dispatch = useDispatch();
 
   const fee = BigNumber.from("4600000000000000");
-  const feeDenom = "EVMOS";
+  const feeDenom = EVMOS_SYMBOL;
   const [isERC20Selected, setIsERC20Selected] = useState(false);
   const [typeSelected, setTypeSelected] = useState({
     amount: item.cosmosBalance,
@@ -61,13 +72,31 @@ const Withdraw = ({
       });
     }
   }, [isERC20Selected, item]);
+
+  const token: Token = {
+    erc20Address: item.erc20Address,
+    symbol: item.symbol,
+    decimals: item.decimals,
+    img: item.pngSrc,
+  };
+  const v10Link =
+    "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
   return (
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
       <div className="text-darkGray3">
         <p className="text-sm max-w-[500px] pb-3 italic">
-          Since Evmos v10 you can withdraw directly your ERC20 balance without
-          previously converting it to IBC.
+          Since Evmos{" "}
+          <Link
+            className="text-red"
+            href={v10Link}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            v10
+          </Link>{" "}
+          you can withdraw directly your ERC20 balance without previously
+          converting it to IBC.
         </p>
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
           <FromContainer
@@ -122,12 +151,13 @@ const Withdraw = ({
               />
             </div>
             {confirmClicked && addressTo === "" && (
-              <ErrorMessage text="Address can not be empty" />
+              <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
             )}
-            <h6 className="italic text-sm">
+            <h6 className="italic text-sm font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
+            <AddTokenMetamask token={token} />
             <div className="flex items-center space-x-5 w-full justify-end">
               <span className="uppercase font-bold">Autofill</span>
               <KeplrIcon
@@ -136,15 +166,19 @@ const Withdraw = ({
                 className="cursor-pointer"
                 onClick={async () => {
                   const keplrAddress = await getKeplrAddressByChain(
-                    item.chainId
+                    item.chainId,
+                    item.chainIdentifier
                   );
                   if (keplrAddress === null) {
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: "Could not get information from Keplr",
-                        subtext:
-                          "Please unlock the extension and allow the app to access your wallet address",
+                        content: (
+                          <SimpleSnackbar
+                            title={KEPLR_NOTIFICATIONS.ErrorTitle}
+                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                          />
+                        ),
                         type: "error",
                       })
                     );
@@ -165,76 +199,95 @@ const Withdraw = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  text: "Wallet not connected",
-                  subtext:
-                    "Can not create a transaction without a wallet connected!",
+                  content: (
+                    <SimpleSnackbar
+                      title="Wallet not connected"
+                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                    />
+                  ),
                   type: "error",
                 })
               );
               setShow(false);
               return;
             }
-
+            const amount = parseUnits(
+              inputValue,
+              BigNumber.from(item.decimals)
+            );
             if (
               inputValue === undefined ||
               inputValue === null ||
               inputValue === "" ||
               addressTo === undefined ||
               addressTo === null ||
-              addressTo === ""
+              addressTo === "" ||
+              amount.gt(typeSelected.amount)
             ) {
-              // TODO: Add this validation to the input onchange
-
               return;
             }
 
-            let amount = "";
-            try {
-              amount = parseUnits(
-                inputValue,
-                BigNumber.from(item.decimals)
-              ).toString();
-            } catch (e) {
-              dispatch(
-                addSnackbar({
-                  id: 0,
-                  text: "Wrong params",
-                  subtext: "Amount can only be a positive number",
-                  type: "error",
-                })
-              );
-              setShow(false);
-              return;
-            }
             const params: IBCChainParams = {
               sender: address,
               receiver: addressTo,
-              amount,
-              srcChain: "EVMOS",
+              amount: amount.toString(),
+              srcChain: EVMOS_SYMBOL,
               dstChain: item.chainIdentifier,
               token: item.symbol,
             };
             setDisabled(true);
+
+            dispatch(
+              addSnackbar({
+                id: 0,
+                content: (
+                  <SimpleSnackbar
+                    title={EXECUTED_NOTIFICATIONS.IBCTransferInformation.text}
+                    text={EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext}
+                  />
+                ),
+                type: "default",
+              })
+            );
+            // create, sign and broadcast tx
             const res = await executeWithdraw(
               wallet.evmosPubkey,
               wallet.evmosAddressCosmosFormat,
               params,
               feeBalance,
               wallet.extensionName,
-              isERC20Selected
+              isERC20Selected,
+              item.prefix
             );
 
             dispatch(
               addSnackbar({
                 id: 0,
-                text: res.title,
-                subtext: res.message,
+                content:
+                  res.error === true ? (
+                    <SimpleSnackbar title={res.title} text={res.message} />
+                  ) : (
+                    <ViewExplorerSnackbar
+                      values={{
+                        title: res.title,
+                        hash: res.txHash,
+                        explorerTxUrl: res.explorerTxUrl,
+                      }}
+                    />
+                  ),
                 type: res.error === true ? "error" : "success",
               })
             );
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
+              dispatch(
+                await snackbarIncludedInBlock(
+                  res.txHash,
+                  EVMOS_SYMBOL,
+                  res.explorerTxUrl
+                )
+              );
               dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
             }
 

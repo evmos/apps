@@ -17,7 +17,7 @@ const ModalTOS = ({
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="max-h-[350px] min-w-[300px] overflow-scroll sm:overflow-auto relative px-5 sm:px-10 py-8 bg-pearl text-black rounded-lg   w-[600px]  sm:max-h-full"
+        className="max-h-[350px] min-w-[300px] overflow-scroll sm:overflow-auto relative px-5 sm:px-10 py-8 bg-pearl text-black rounded-lg w-[600px]  sm:max-h-full"
       >
         <div className="w-[calc(100%-32px)] font-bold text-h5 mb-4 text-darkGray3">
           {title}

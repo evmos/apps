@@ -2,6 +2,7 @@ import { createTxRaw } from "@evmos/proto";
 import { Sender, TxGenerated } from "@evmos/transactions";
 // eslint-disable-next-line
 import Long from "long";
+import { KEPLR_ERRORS, KEPLR_NOTIFICATIONS } from "../errors";
 import { TxGeneratedByBackend } from "../signing";
 
 export async function signEvmosjsTxWithKeplr(
@@ -72,11 +73,18 @@ export async function signKeplr(
       ),
     };
   } catch (e) {
+    // Disabled until catching all the possible errors
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    let msg = `Error signing the tx with keplr: ${e}`;
+    // User rejected the action
+    if (
+      (e as { message: string })?.message === KEPLR_ERRORS.RequestRejectedError
+    ) {
+      msg = KEPLR_NOTIFICATIONS.RequestRejectedSignSubtext;
+    }
     return {
       result: false,
-      // Disabled until catching all the possible errors
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      message: `Error signing the tx with keplr:${e}`,
+      message: msg,
       transaction: null,
     };
   }

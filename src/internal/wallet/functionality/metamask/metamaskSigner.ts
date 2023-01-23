@@ -1,5 +1,7 @@
 import { evmosToEth } from "@evmos/address-converter";
 import { EIPToSign, Sender, TxGenerated } from "@evmos/transactions";
+import { MetaMaskInpageProvider } from "@metamask/providers";
+import { METAMASK_ERRORS, METAMASK_NOTIFICATIONS } from "../errors";
 import { EVMOS_CHAIN } from "../networkConfig";
 import {
   createEIP712Transaction,
@@ -33,7 +35,9 @@ export async function signEvmosjsTxWithMetamask(
   try {
     const ethWallet = evmosToEth(sender.accountAddress);
     let signature = "";
-    signature = (await window.ethereum.request({
+    // NOTE: we need to convert the provider because wagmi dep is replacing our window type
+    const extension = window.ethereum as unknown as MetaMaskInpageProvider;
+    signature = (await extension.request({
       method: "eth_signTypedData_v4",
       params: [ethWallet, JSON.stringify(tx.eipToSign)],
     })) as string;
@@ -77,7 +81,9 @@ export async function signBackendTxWithMetamask(
       Buffer.from(tx.eipToSign, "base64").toString("utf-8")
     ) as EIPToSign;
 
-    const signature = (await window.ethereum.request({
+    // NOTE: we need to convert the provider because wagmi dep is replacing our window type
+    const extension = window.ethereum as unknown as MetaMaskInpageProvider;
+    const signature = (await extension.request({
       method: "eth_signTypedData_v4",
       params: [ethWallet, JSON.stringify(eipToSignUTF8)],
     })) as string;
@@ -88,12 +94,27 @@ export async function signBackendTxWithMetamask(
       signature: signature,
     };
   } catch (e) {
+    // Disabled until catching all the possible errors
+    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+    let msg = `Error signing the tx: ${e}`;
+    // User rejected the action
+    if (
+      (e as { message: string })?.message === METAMASK_ERRORS.DeniedSignature
+    ) {
+      msg = METAMASK_NOTIFICATIONS.DeniedSignatureSubtext;
+    }
+    // Error while creating signature
+    if ((e as { message: string })?.message === METAMASK_ERRORS.JsonParse) {
+      msg = METAMASK_NOTIFICATIONS.EipToSignSubtext;
+    }
+    // User is not connected to Evmos network
+    if ((e as { message: string })?.message === METAMASK_ERRORS.ProvidedChain) {
+      msg = METAMASK_NOTIFICATIONS.ProvidedChainSubtext;
+    }
     // TODO: send custom responses for each of the knonw cases
     return {
       result: false,
-      // Disabled until catching all the possible errors
-      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-      message: `Error signing the tx: ${e}`,
+      message: msg,
       signature: null,
     };
   }

@@ -6,13 +6,11 @@ import { removeSnackbar } from "./redux/notificationSlice";
 
 const Snackbar = ({
   type,
-  text,
-  subtext,
+  content,
   id,
 }: {
   type: string;
-  text: string;
-  subtext: string;
+  content: JSX.Element | string;
   id: number;
 }) => {
   const dispatch = useDispatch();
@@ -25,8 +23,6 @@ const Snackbar = ({
   } else if (type === "success") {
     icon = <SuccessIcon color="white" />;
   }
-  const subTextStyling =
-    subtext && type !== "default" ? "text-white" : "text-darkGray3";
 
   return (
     <div
@@ -42,15 +38,12 @@ const Snackbar = ({
         ${type === "success" ? "text-white bg-green" : ""}
         ${type === "error" ? "text-white bg-red" : ""}
         ${type === "default" ? "bg-darkPearl text-darkGray2" : ""}
-        inline-flex  p-2 min-w-[280px] max-w-[360px] overflow-hidden rounded-lg shadow-[0px 4px 8px rgba(0, 0, 0, 0.5)] pointer-events-auto break-all`}
+        inline-flex  p-2  max-w-[360px] overflow-hidden rounded-lg shadow-[0px 4px 8px rgba(0, 0, 0, 0.5)] pointer-events-auto break-all`}
       >
         <div className="space-x-2 flex-auto p-2 self-center w-full">
           <div className="flex font-bold items-center w-full">
             <div className="pr-3">{icon}</div>
-            <div>
-              <div className="">{text}</div>
-              <div className={`${subTextStyling} text-sm`}>{subtext}</div>
-            </div>
+            {content}
           </div>
         </div>
       </div>

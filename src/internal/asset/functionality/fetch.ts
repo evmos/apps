@@ -1,5 +1,6 @@
 import { ERC20BalanceResponse } from "../../../components/asset/table/types";
 import { EVMOS_BACKEND } from "../../wallet/functionality/networkConfig";
+import { BALANCE_NOTIFICATIONS } from "./transactions/errors";
 
 export const getAssets = async () => {
   const res = await fetch(`${EVMOS_BACKEND}/ERC20ModuleBalance`);
@@ -51,7 +52,7 @@ export const getBalance = async (
       // TODO: add sentry call here!
       return {
         error: true,
-        message: "Error getting balance, please try again later",
+        message: BALANCE_NOTIFICATIONS.ErrorGetBalance,
         data: null,
       };
     }
@@ -60,8 +61,20 @@ export const getBalance = async (
     // TODO: add sentry call here!
     return {
       error: true,
-      message: "Error getting balance, please try again later",
+      message: BALANCE_NOTIFICATIONS.ErrorGetBalance,
       data: null,
     };
   }
+};
+
+export type TotalStakedResponse = {
+  value: string;
+};
+
+export const getTotalStaked = async (address: string) => {
+  if (address === "") {
+    return { value: "0" };
+  }
+  const res = await fetch(`${EVMOS_BACKEND}/totalStakedByAddress/${address}`);
+  return res.json() as Promise<TotalStakedResponse>;
 };

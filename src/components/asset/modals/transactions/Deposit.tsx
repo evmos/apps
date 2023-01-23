@@ -18,14 +18,32 @@ import { getKeplrAddressByChain } from "../../../../internal/wallet/functionalit
 import { getBalance } from "../../../../internal/asset/functionality/fetch";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
-import { getWallet } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import {
+  getWallet,
+  Token,
+} from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import { ethToEvmos } from "@evmos/address-converter";
-import { EVMOS_CHAIN } from "../../../../internal/wallet/functionality/networkConfig";
-import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import {
+  EVMOS_CHAIN,
+  EVMOS_SYMBOL,
+} from "../../../../internal/wallet/functionality/networkConfig";
+import {
+  BALANCE_NOTIFICATIONS,
+  BROADCASTED_NOTIFICATIONS,
+  EXECUTED_NOTIFICATIONS,
+} from "../../../../internal/asset/functionality/transactions/errors";
 import {
   snackbarExecutedTx,
+  snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
+import {
+  KEPLR_NOTIFICATIONS,
+  METAMASK_NOTIFICATIONS,
+} from "../../../../internal/wallet/functionality/errors";
+import AddTokenMetamask from "./AddTokenMetamask";
+import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
 
 const Deposit = ({
   item,
@@ -50,14 +68,20 @@ const Deposit = ({
   const [disabled, setDisabled] = useState(false);
   useEffect(() => {
     async function getData() {
-      const wallet = await getKeplrAddressByChain(item.chainId);
+      const wallet = await getKeplrAddressByChain(
+        item.chainId,
+        item.chainIdentifier
+      );
       if (wallet === null) {
         dispatch(
           addSnackbar({
             id: 0,
-            text: "Could not get information from Keplr",
-            subtext:
-              "Please unlock the extension and allow the app to access your wallet address",
+            content: (
+              <SimpleSnackbar
+                title={KEPLR_NOTIFICATIONS.ErrorTitle}
+                text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+              />
+            ),
             type: "error",
           })
         );
@@ -75,8 +99,7 @@ const Deposit = ({
         dispatch(
           addSnackbar({
             id: 0,
-            text: "Error getting balance from external chain",
-            subtext: "",
+            content: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
             type: "error",
           })
         );
@@ -92,6 +115,12 @@ const Deposit = ({
     getData();
   }, [address, item, dispatch, setShow]);
 
+  const token: Token = {
+    erc20Address: item.erc20Address,
+    symbol: item.symbol,
+    decimals: item.decimals,
+    img: item.pngSrc,
+  };
   return (
     <>
       <ModalTitle title={`Deposit ${item.symbol}`} />
@@ -99,7 +128,6 @@ const Deposit = ({
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
           <FromContainer
             fee={{
-              // modificar fee
               fee: BigNumber.from("5000"),
               feeDenom: item.symbol,
               feeBalance: feeBalance,
@@ -135,10 +163,12 @@ const Deposit = ({
             {confirmClicked && addressTo === "" && (
               <ErrorMessage text="Address can not be empty" />
             )}
-            <h6 className="italic text-sm">
+            <h6 className="italic text-sm font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
+            <AddTokenMetamask token={token} />
+
             <div className="flex items-center space-x-5 w-full justify-end">
               <span className="uppercase font-bold">Autofill</span>
               <KeplrIcon
@@ -153,9 +183,12 @@ const Deposit = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: "Could not get information from Keplr",
-                        subtext:
-                          "Please unlock the extension and allow the app to access your wallet address",
+                        content: (
+                          <SimpleSnackbar
+                            title={KEPLR_NOTIFICATIONS.ErrorTitle}
+                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                          />
+                        ),
                         type: "error",
                       })
                     );
@@ -175,9 +208,13 @@ const Deposit = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        text: "Could not get information from Metamask",
-                        subtext:
-                          "Please unlock the extension and allow the app to access your wallet address",
+                        content: (
+                          <SimpleSnackbar
+                            title={METAMASK_NOTIFICATIONS.ErrorTitle}
+                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                          />
+                        ),
+
                         type: "error",
                       })
                     );
@@ -198,47 +235,34 @@ const Deposit = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  text: "Wallet not connected",
-                  subtext:
-                    "Can not create a transaction without a wallet connected!",
+                  content: (
+                    <SimpleSnackbar
+                      title="Wallet not connected"
+                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                    />
+                  ),
                   type: "error",
                 })
               );
               setShow(false);
               return;
             }
-
+            const amount = parseUnits(
+              inputValue,
+              BigNumber.from(item.decimals)
+            );
             if (
               inputValue === undefined ||
               inputValue === null ||
               inputValue === "" ||
               addressTo === undefined ||
               addressTo === null ||
-              addressTo === ""
+              addressTo === "" ||
+              amount.gt(balance)
             ) {
-              // TODO: Add this validation to the input onchange
-
               return;
             }
 
-            let amount = "";
-            try {
-              amount = parseUnits(
-                inputValue,
-                BigNumber.from(item.decimals)
-              ).toString();
-            } catch (e) {
-              dispatch(
-                addSnackbar({
-                  id: 0,
-                  text: "Wrong params",
-                  subtext: "Amount can only be a positive number",
-                  type: "error",
-                })
-              );
-              setShow(false);
-              return;
-            }
             const keplrAddress = await getKeplrAddressByChain(item.chainId);
             if (keplrAddress === null) {
               return;
@@ -251,25 +275,50 @@ const Deposit = ({
             const params: IBCChainParams = {
               sender: keplrAddress,
               receiver: addressEvmos,
-              amount,
+              amount: amount.toString(),
               srcChain: item.chainIdentifier,
-              dstChain: "EVMOS",
+              dstChain: EVMOS_SYMBOL,
               token: item.symbol,
             };
             setDisabled(true);
+
+            dispatch(
+              addSnackbar({
+                id: 0,
+                content: (
+                  <SimpleSnackbar
+                    title={EXECUTED_NOTIFICATIONS.IBCTransferInformation.text}
+                    text={EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext}
+                  />
+                ),
+                type: "default",
+              })
+            );
+            // create, sign and broadcast tx
             const res = await executeDeposit(
               wallet.osmosisPubkey,
               keplrAddress,
               params,
               item.chainIdentifier.toUpperCase(),
-              wallet.extensionName
+              wallet.extensionName,
+              item.prefix
             );
 
             dispatch(
               addSnackbar({
                 id: 0,
-                text: res.title,
-                subtext: res.message,
+                content:
+                  res.error === true ? (
+                    <SimpleSnackbar title={res.title} text={res.message} />
+                  ) : (
+                    <ViewExplorerSnackbar
+                      values={{
+                        title: res.title,
+                        hash: res.txHash,
+                        explorerTxUrl: res.explorerTxUrl,
+                      }}
+                    />
+                  ),
                 type: res.error === true ? "error" : "success",
               })
             );
@@ -277,6 +326,14 @@ const Deposit = ({
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
+              dispatch(
+                await snackbarIncludedInBlock(
+                  res.txHash,
+                  item.chainIdentifier.toUpperCase(),
+                  res.explorerTxUrl
+                )
+              );
+
               dispatch(
                 await snackbarExecutedTx(
                   res.txHash,

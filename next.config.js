@@ -7,9 +7,6 @@ const nextConfig = {
     locales: ["en"],
     defaultLocale: "en",
   },
-  images: {
-    domains: ["app.evmos.org"],
-  },
 };
 
 module.exports = nextConfig;

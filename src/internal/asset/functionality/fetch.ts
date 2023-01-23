@@ -72,7 +72,7 @@ export type TotalStakedResponse = {
 };
 
 export const getTotalStaked = async (address: string) => {
-  if (address === "") {
+  if (address === "" || address == undefined || address == null) {
     return { value: "0" };
   }
   const res = await fetch(`${EVMOS_BACKEND}/totalStakedByAddress/${address}`);

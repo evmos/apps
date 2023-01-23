@@ -27,6 +27,8 @@ import {
   useActivateWalletConnect,
   useWalletConnect,
 } from "../../internal/wallet/functionality/walletconnect/walletconnect";
+import CopyIcon from "../common/images/icons/CopyIcon";
+import Tooltip from "../common/Tooltip";
 
 // Components
 const Button = dynamic(() => import("../common/Button"));
@@ -117,8 +119,10 @@ const ButtonWalletConnection = () => {
                       setIsCopied(true);
                     }}
                   >
-                    {/* TODO: add Copy icon (waiting for design) */}
-                    {isCopied ? "Copied!" : "Copy"}
+                    <Tooltip
+                      element={<CopyIcon width={14} height={14} />}
+                      text={isCopied ? "Copied!" : "Copy"}
+                    />
                   </button>
                 </div>
                 <p>{truncateAddress(value.evmosAddressEthFormat)}</p>

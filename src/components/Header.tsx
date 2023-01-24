@@ -18,7 +18,12 @@ const Header = () => {
         >
           <Logo className="w-32 xl:w-36 h-20" />
         </Link>
-        <p className="text-xl font-bold">Assets</p>
+        <p className="text-xl font-bold">
+          Assets{" "}
+          <span className="text-sm bg-red rounded-xl px-3 py-1 ml-2 items-center">
+            BETA
+          </span>
+        </p>
       </div>
       <ButtonWalletConnection />
     </div>

@@ -142,14 +142,14 @@ const Deposit = ({
             style={{
               tokenTo: item.symbol,
               address: walletToUse,
-              img: `/tokens/${item.symbol.toLowerCase()}.png`,
+              img: `/assets/tokens/${item.symbol.toLowerCase()}.png`,
               text: item.symbol,
             }}
           />
         </div>
         <Arrow />
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
-          <ToContainer token="EVMOS" img={`/tokens/evmos.png`} />
+          <ToContainer token="EVMOS" img={`/assets/evmos.png`} />
           <div className="space-y-3">
             <div className="pr-5 pl-2 flex items-center space-x-3 bg-white hover:border-black focus-visible:border-black focus-within:border-black border border-darkGray5 rounded-lg">
               <input
@@ -163,7 +163,7 @@ const Deposit = ({
             {confirmClicked && addressTo === "" && (
               <ErrorMessage text="Address can not be empty" />
             )}
-            <h6 className="italic text-sm">
+            <h6 className="italic text-sm font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>

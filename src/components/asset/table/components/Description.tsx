@@ -10,7 +10,7 @@ export const Description = ({
   return (
     <div className="flex items-center space-x-5">
       <Image
-        src={`/tokens/${symbol.toLocaleLowerCase()}.png`}
+        src={`/assets/tokens/${symbol.toLocaleLowerCase()}.png`}
         alt={symbol}
         width={35}
         height={35}

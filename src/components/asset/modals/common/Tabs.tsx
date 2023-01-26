@@ -14,12 +14,14 @@ const Tabs = ({
   decimals,
   isERC20Selected,
   setIsERC20Selected,
+  isEvmosToken = false,
 }: {
   cosmosBalance: BigNumber;
   erc20Balance: BigNumber;
   decimals: number;
   isERC20Selected: boolean;
   setIsERC20Selected: Dispatch<SetStateAction<boolean>>;
+  isEvmosToken: boolean;
 }) => {
   const v10Link =
     "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
@@ -28,7 +30,9 @@ const Tabs = ({
       <button
         className={`${
           isERC20Selected ? " text-pearl bg-darkGray1" : "text-darkGray1"
-        } border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col items-center`}
+        }
+        ${isEvmosToken ? "disabled" : ""}
+        border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col items-center`}
         onClick={() => {
           if (!isERC20Selected) {
             setIsERC20Selected(true);

@@ -15,7 +15,10 @@ import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
 import { executeDeposit } from "../../../../internal/asset/functionality/transactions/deposit";
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
-import { getBalance } from "../../../../internal/asset/functionality/fetch";
+import {
+  getBalance,
+  getEvmosBalanceForDeposit,
+} from "../../../../internal/asset/functionality/fetch";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
 import {
@@ -66,13 +69,23 @@ const Deposit = ({
   const [balance, setBalance] = useState(BIG_ZERO);
   const [walletToUse, setWalletToUse] = useState("");
   const [disabled, setDisabled] = useState(false);
+
+  // TODO: We'll work on this once we start with
+  // single token representation
+  // This function only supports OSMOSIS - EVMOS case.
+  let chainId = item.chainId;
+  let chainIdentifier = item.chainIdentifier;
+  if (item.symbol === EVMOS_SYMBOL) {
+    chainId = "osmosis-1";
+    chainIdentifier = "OSMOSIS";
+  }
   useEffect(() => {
     async function getData() {
-      const wallet = await getKeplrAddressByChain(
-        item.chainId,
-        item.chainIdentifier
+      const walletKeplr = await getKeplrAddressByChain(
+        chainId,
+        chainIdentifier
       );
-      if (wallet === null) {
+      if (walletKeplr === null) {
         dispatch(
           addSnackbar({
             id: 0,
@@ -88,12 +101,21 @@ const Deposit = ({
         setShow(false);
         return;
       }
-      setWalletToUse(wallet);
-      const balance = await getBalance(
-        wallet,
-        item.chainIdentifier.toUpperCase(),
-        item.symbol
-      );
+      setWalletToUse(walletKeplr);
+      let balance;
+      if (item.symbol === EVMOS_SYMBOL) {
+        balance = await getEvmosBalanceForDeposit(
+          walletKeplr,
+          chainIdentifier.toUpperCase(),
+          item.symbol
+        );
+      } else {
+        balance = await getBalance(
+          walletKeplr,
+          item.chainIdentifier.toUpperCase(),
+          item.symbol
+        );
+      }
 
       if (balance.error === true || balance.data === null) {
         dispatch(
@@ -113,7 +135,7 @@ const Deposit = ({
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     getData();
-  }, [address, item, dispatch, setShow]);
+  }, [address, item, dispatch, setShow, chainId, chainIdentifier]);
 
   const token: Token = {
     erc20Address: item.erc20Address,
@@ -121,6 +143,7 @@ const Deposit = ({
     decimals: item.decimals,
     img: item.pngSrc,
   };
+
   return (
     <>
       <ModalTitle title={`Deposit ${item.symbol}`} />
@@ -142,8 +165,11 @@ const Deposit = ({
             style={{
               tokenTo: item.symbol,
               address: walletToUse,
-              img: `/assets/tokens/${item.symbol.toLowerCase()}.png`,
-              text: item.symbol,
+              img:
+                item.symbol === EVMOS_SYMBOL
+                  ? "/assets/tokens/osmo.png"
+                  : `/assets/tokens/${item.symbol.toLowerCase()}.png`,
+              text: item.symbol === EVMOS_SYMBOL ? "OSMO" : item.symbol,
             }}
           />
         </div>
@@ -262,8 +288,7 @@ const Deposit = ({
             ) {
               return;
             }
-
-            const keplrAddress = await getKeplrAddressByChain(item.chainId);
+            const keplrAddress = await getKeplrAddressByChain(chainId);
             if (keplrAddress === null) {
               return;
             }
@@ -276,7 +301,7 @@ const Deposit = ({
               sender: keplrAddress,
               receiver: addressEvmos,
               amount: amount.toString(),
-              srcChain: item.chainIdentifier,
+              srcChain: chainIdentifier,
               dstChain: EVMOS_SYMBOL,
               token: item.symbol,
             };
@@ -299,7 +324,7 @@ const Deposit = ({
               wallet.osmosisPubkey,
               keplrAddress,
               params,
-              item.chainIdentifier.toUpperCase(),
+              chainIdentifier.toUpperCase(),
               wallet.extensionName,
               item.prefix
             );
@@ -329,7 +354,7 @@ const Deposit = ({
               dispatch(
                 await snackbarIncludedInBlock(
                   res.txHash,
-                  item.chainIdentifier.toUpperCase(),
+                  chainIdentifier.toUpperCase(),
                   res.explorerTxUrl
                 )
               );
@@ -337,7 +362,7 @@ const Deposit = ({
               dispatch(
                 await snackbarExecutedTx(
                   res.txHash,
-                  item.chainIdentifier.toUpperCase()
+                  chainIdentifier.toUpperCase()
                 )
               );
             }

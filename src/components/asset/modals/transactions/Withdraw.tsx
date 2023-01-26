@@ -81,6 +81,16 @@ const Withdraw = ({
   };
   const v10Link =
     "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
+
+  // TODO:  We'll work on this once we start with
+  // single token representation
+  // This function only supports OSMOSIS - EVMOS case.
+  let chainId = item.chainId;
+  let chainIdentifier = item.chainIdentifier;
+  if (item.symbol === EVMOS_SYMBOL) {
+    chainId = "osmosis-1";
+    chainIdentifier = "OSMOSIS";
+  }
   return (
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
@@ -127,6 +137,7 @@ const Withdraw = ({
               erc20Balance={item.erc20Balance}
               isERC20Selected={isERC20Selected}
               setIsERC20Selected={setIsERC20Selected}
+              isEvmosToken={item.symbol === EVMOS_SYMBOL}
             />
           </div>
           <div className="text-xs font-bold opacity-80">
@@ -137,8 +148,12 @@ const Withdraw = ({
 
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
           <ToContainer
-            token={item.symbol}
-            img={`/assets/tokens/${item.symbol.toLowerCase()}.png`}
+            token={item.symbol === EVMOS_SYMBOL ? "OSMO" : item.symbol}
+            img={
+              item.symbol === EVMOS_SYMBOL
+                ? "/assets/tokens/osmo.png"
+                : `/assets/tokens/${item.symbol.toLowerCase()}.png`
+            }
           />
           <div className="space-y-3">
             <div className="pr-5 pl-2 flex items-center space-x-3 bg-white hover:border-black focus-visible:border-black focus-within:border-black border border-darkGray5 rounded-lg">
@@ -166,8 +181,8 @@ const Withdraw = ({
                 className="cursor-pointer"
                 onClick={async () => {
                   const keplrAddress = await getKeplrAddressByChain(
-                    item.chainId,
-                    item.chainIdentifier
+                    chainId,
+                    chainIdentifier
                   );
                   if (keplrAddress === null) {
                     dispatch(
@@ -232,7 +247,7 @@ const Withdraw = ({
               receiver: addressTo,
               amount: amount.toString(),
               srcChain: EVMOS_SYMBOL,
-              dstChain: item.chainIdentifier,
+              dstChain: chainIdentifier,
               token: item.symbol,
             };
             setDisabled(true);

@@ -21,7 +21,7 @@ const Tabs = ({
   decimals: number;
   isERC20Selected: boolean;
   setIsERC20Selected: Dispatch<SetStateAction<boolean>>;
-  isEvmosToken: boolean;
+  isEvmosToken?: boolean;
 }) => {
   const v10Link =
     "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";

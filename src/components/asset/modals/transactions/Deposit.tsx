@@ -322,7 +322,7 @@ const Deposit = ({
                 type: res.error === true ? "error" : "success",
               })
             );
-
+            setShow(false);
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
@@ -341,8 +341,6 @@ const Deposit = ({
                 )
               );
             }
-
-            setShow(false);
           }}
           text="Deposit"
         />

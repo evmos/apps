@@ -278,6 +278,7 @@ const Withdraw = ({
                 type: res.error === true ? "error" : "success",
               })
             );
+            setShow(false);
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
@@ -290,8 +291,6 @@ const Withdraw = ({
               );
               dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
             }
-
-            setShow(false);
           }}
           text="Withdraw"
         />

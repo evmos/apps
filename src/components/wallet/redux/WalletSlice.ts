@@ -29,6 +29,7 @@ const initialValue: WalletExtension = {
   evmosAddressCosmosFormat: "",
   evmosPubkey: null,
   osmosisPubkey: null,
+  accountName: null,
 };
 
 export const walletSlice = createSlice({

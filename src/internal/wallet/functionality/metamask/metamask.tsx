@@ -106,6 +106,7 @@ export class Metamask {
           evmosAddressCosmosFormat: this.addressCosmosFormat,
           evmosPubkey: this.evmosPubkey,
           osmosisPubkey: null,
+          accountName: null,
         })
       );
       NotifySuccess(

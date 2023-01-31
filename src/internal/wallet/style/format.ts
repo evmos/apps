@@ -1,3 +1,5 @@
+import { KEPLR_KEY, WalletExtension } from "../functionality/wallet";
+
 export function truncateAddress(address?: string) {
   if (!address) {
     return "";
@@ -14,4 +16,18 @@ export function truncateAddress(address?: string) {
 
   // Evmos1 Address
   return `${address.slice(0, 13)}...${address.slice(address.length - 6)}`;
+}
+
+export function formatProviderAddress(
+  wallet: WalletExtension,
+  showName = false
+) {
+  const displayAddress =
+    wallet.extensionName === KEPLR_KEY
+      ? wallet.evmosAddressCosmosFormat
+      : wallet.evmosAddressEthFormat;
+
+  return wallet.accountName && showName
+    ? `${wallet.accountName} - ${truncateAddress(displayAddress)}`
+    : truncateAddress(displayAddress);
 }

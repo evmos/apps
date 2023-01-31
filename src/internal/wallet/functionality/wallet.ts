@@ -9,4 +9,5 @@ export type WalletExtension = {
   evmosAddressCosmosFormat: string;
   evmosPubkey: string | null;
   osmosisPubkey: string | null;
+  accountName: string | null;
 };

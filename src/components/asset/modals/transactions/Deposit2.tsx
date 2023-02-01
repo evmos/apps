@@ -26,8 +26,6 @@ import {
 import DepositReceiver from "../common/DepositReceiver";
 import AmountDeposit from "../common/AmountDeposit";
 import DepositSender from "../common/DepositSender";
-import Link from "next/link";
-import ExternalLinkIcon from "../../../common/images/icons/ExternalLink";
 import {
   snackErrorConnectingKeplr,
   snackErrorGettingBalanceExtChain,
@@ -35,6 +33,7 @@ import {
   snackIBCInformation,
   snackRequestRejected,
 } from "../../../../internal/asset/style/snackbars";
+import RedirectLink from "../common/RedirectLink";
 
 const Deposit2 = ({
   data,
@@ -206,15 +205,10 @@ const Deposit2 = ({
         )}
       </div>
       {token !== undefined && token.handledByExternalUI !== null ? (
-        <Link
-          rel="noopener noreferrer"
-          target="_blank"
+        <RedirectLink
           href={token.handledByExternalUI.url}
-        >
-          <div className="mt-11 flex items-center justify-center space-x-3 bg-red text-white uppercase w-full rounded px-8 py-2 text-lg font-bold font-[GreyCliff] hover:bg-red1">
-            <span>Deposit from Axelar</span> <ExternalLinkIcon />
-          </div>
-        </Link>
+          text="Deposit from Axelar"
+        />
       ) : (
         <ConfirmButton
           disabled={disabled}

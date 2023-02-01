@@ -102,6 +102,7 @@ const Withdraw2 = ({
     );
 
     dispatch(snackExecuteIBCTransfer(res));
+    setShow(false);
     // check if tx is executed
     if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
       dispatch(snackbarWaitingBroadcast());
@@ -114,7 +115,6 @@ const Withdraw2 = ({
       );
       dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
     }
-    setShow(false);
   };
 
   return (
@@ -129,6 +129,7 @@ const Withdraw2 = ({
           value={inputValue}
           setValue={setInputValue}
           confirmClicked={confirmClicked}
+          setAddressTo={setAddressTo}
         />
         {tokenTo === undefined || tokenTo.handledByExternalUI === null ? (
           <ToWithdraw

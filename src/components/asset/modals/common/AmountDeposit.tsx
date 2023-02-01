@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import {
   TableData,
   TableDataElement,
@@ -8,12 +8,12 @@ import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/tr
 import {
   convertAndFormat,
   convertFromAtto,
-  getReservedForFeeText,
+  createBigNumber,
   numericOnly,
   safeSubstraction,
   truncateNumber,
 } from "../../../../internal/asset/style/format";
-import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
+
 import Dropdown from "../../../common/Dropdown";
 import SmallButton from "../../../common/SmallButton";
 import ContainerInput from "./ContainerInput";
@@ -23,7 +23,14 @@ import ErrorMessage from "./ErrorMessage";
 import Note from "./Note";
 import { TextSmall } from "./TextSmall";
 
-const AmountWithdraw = ({
+export type Fee = {
+  fee: BigNumber;
+  feeDenom: string | undefined;
+  feeBalance: BigNumber;
+  feeDecimals: number | undefined;
+};
+
+const AmountDeposit = ({
   data,
   setTokenTo,
   tokenTo,
@@ -31,6 +38,8 @@ const AmountWithdraw = ({
   setValue,
   confirmClicked,
   setAddressTo,
+  balance,
+  fee,
 }: {
   data: TableData;
   setTokenTo: Dispatch<SetStateAction<TableDataElement | undefined>>;
@@ -39,19 +48,21 @@ const AmountWithdraw = ({
   setValue: Dispatch<SetStateAction<string>>;
   confirmClicked: boolean;
   setAddressTo: Dispatch<SetStateAction<string>>;
+  balance: BigNumber;
+  fee: Fee;
 }) => {
-  const fee = BigNumber.from("4600000000000000");
-  const feeDenom = EVMOS_SYMBOL;
+  const feeDeposit = "5000";
+  const [maxClicked, setMaxClicked] = useState(false);
 
   const handleOnClickMax = () => {
-    if (tokenTo !== undefined) {
-      if (tokenTo.symbol.toUpperCase() !== feeDenom.toUpperCase()) {
-        setValue(
-          numericOnly(convertFromAtto(tokenTo.erc20Balance, tokenTo.decimals))
-        );
+    if (tokenTo !== undefined && fee.feeDenom !== undefined) {
+      if (tokenTo.symbol.toUpperCase() !== fee.feeDenom.toUpperCase()) {
+        setValue(numericOnly(convertFromAtto(balance, tokenTo.decimals)));
+        setMaxClicked(true);
       } else {
-        const val = safeSubstraction(tokenTo.erc20Balance, fee);
+        const val = safeSubstraction(balance, fee.fee);
         setValue(numericOnly(convertFromAtto(val, tokenTo.decimals)));
+        setMaxClicked(true);
       }
     }
   };
@@ -113,9 +124,7 @@ const AmountWithdraw = ({
             tokenTo.handledByExternalUI === null &&
             truncateNumber(value) >
               truncateNumber(
-                numericOnly(
-                  convertFromAtto(tokenTo.erc20Balance, tokenTo.decimals)
-                )
+                numericOnly(convertFromAtto(balance, tokenTo.decimals))
               ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
         </div>
         <div className="space-y-2">
@@ -124,23 +133,22 @@ const AmountWithdraw = ({
               <p className="font-bold text-sm">
                 Available Balance:{" "}
                 <span className="font-normal opacity-80">
-                  {convertAndFormat(tokenTo.erc20Balance, tokenTo.decimals)}{" "}
-                  {tokenTo.symbol}
+                  {convertAndFormat(balance, tokenTo.decimals)} {tokenTo.symbol}
                 </span>
               </p>
-              <Note
-                text={getReservedForFeeText(
-                  BigNumber.from(fee),
-                  EVMOS_SYMBOL,
-                  EVMOS_SYMBOL
-                )}
-              />
             </>
           )}
         </div>
+        {fee.fee.eq(createBigNumber(feeDeposit)) &&
+          maxClicked &&
+          tokenTo !== undefined && (
+            <div className="text-xs font-bold opacity-80">
+              {`Clicking on max reserves ${feeDeposit} * 10^-${tokenTo?.decimals} ${tokenTo?.symbol} for transaction fees.`}
+            </div>
+          )}
       </>
     </ContainerModal>
   );
 };
 
-export default AmountWithdraw;
+export default AmountDeposit;

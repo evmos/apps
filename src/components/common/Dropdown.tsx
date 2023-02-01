@@ -19,10 +19,14 @@ const Dropdown = ({
   placeholder,
   data,
   setTokenTo,
+  setAddressTo,
+  setValue,
 }: {
   placeholder: string;
   data: TableData;
   setTokenTo: Dispatch<SetStateAction<TableDataElement | undefined>>;
+  setAddressTo: Dispatch<SetStateAction<string>>;
+  setValue: Dispatch<SetStateAction<string>>;
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
@@ -62,6 +66,8 @@ const Dropdown = ({
   const onItemClick = (option: TableDataElement) => {
     setSelectedValue(option);
     setTokenTo(option);
+    setAddressTo("");
+    setValue("");
   };
 
   return (

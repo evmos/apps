@@ -47,7 +47,7 @@ export async function executeDeposit(
     };
   }
 
-  const tx = await ibcTransferBackendCall(pubkey, address, params);
+  const tx = await ibcTransferBackendCall(pubkey, address, params, false);
   if (tx.error === true || tx.data === null) {
     // Error generating the transaction
     return {

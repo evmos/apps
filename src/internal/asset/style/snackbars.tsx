@@ -1,8 +1,12 @@
 import { SimpleSnackbar } from "../../../components/notification/content/SimpleSnackbar";
 import { ViewExplorerSnackbar } from "../../../components/notification/content/ViexExplorerSnackbar";
 import { addSnackbar } from "../../../components/notification/redux/notificationSlice";
-import { KEPLR_NOTIFICATIONS } from "../../wallet/functionality/errors";
 import {
+  KEPLR_NOTIFICATIONS,
+  METAMASK_NOTIFICATIONS,
+} from "../../wallet/functionality/errors";
+import {
+  BALANCE_NOTIFICATIONS,
   BROADCASTED_NOTIFICATIONS,
   EXECUTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
@@ -87,6 +91,28 @@ export function snackErrorConnectingKeplr() {
         text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
       />
     ),
+    type: "error",
+  });
+}
+
+export function snackErrorConnectingMetaMask() {
+  return addSnackbar({
+    id: 0,
+    content: (
+      <SimpleSnackbar
+        title={METAMASK_NOTIFICATIONS.ErrorTitle}
+        text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+      />
+    ),
+
+    type: "error",
+  });
+}
+
+export function snackErrorGettingBalanceExtChain() {
+  return addSnackbar({
+    id: 0,
+    content: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
     type: "error",
   });
 }

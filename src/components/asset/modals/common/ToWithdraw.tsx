@@ -37,7 +37,6 @@ const ToWithdraw = ({
       <>
         <div className="flex items-center space-x-3">
           <TextSmall text="TO" />
-          {/* TODO: add edit */}
           <span>{truncateAddress(addressTo)}</span>
           <div className="flex items-center space-x-5 w-full justify-end">
             <SmallButton
@@ -45,7 +44,6 @@ const ToWithdraw = ({
               text="EDIT"
               onClick={handleOnClickEdit}
             />
-            {/* <span className="uppercase font-bold">Autofill</span> */}
             <KeplrIcon
               width={25}
               height={25}

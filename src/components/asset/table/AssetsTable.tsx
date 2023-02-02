@@ -17,6 +17,7 @@ const Switch = dynamic(() => import("../utils/Switch"));
 const ContentCard = dynamic(() => import("../mobileView/Content"));
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));
+const Banner = dynamic(() => import("../Banner"));
 
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
@@ -32,6 +33,8 @@ import {
 } from "../../../internal/asset/style/format";
 import { BigNumber } from "ethers";
 import HeadAssets from "./components/HeadAssets";
+import LeftArrowIcon from "../../common/images/icons/LeftArrowIcon";
+import Link from "next/link";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -61,6 +64,19 @@ const AssetsTable = () => {
   });
 
   const [hideZeroBalance, setHideBalance] = useState(false);
+  useEffect(() => {
+    const val = localStorage.getItem("zeroBalance");
+    if (val === null) {
+      setHideBalance(false);
+    } else {
+      setHideBalance(JSON.parse(val) as boolean);
+    }
+  }, []);
+
+  const zeroBalance = () => {
+    localStorage.setItem("zeroBalance", String(!hideZeroBalance));
+    setHideBalance(!hideZeroBalance);
+  };
 
   const normalizedAssetsData = useMemo<TableData>(() => {
     return normalizeAssetsData(data);
@@ -134,12 +150,22 @@ const AssetsTable = () => {
 
   return (
     <>
+      <Link
+        href="https://app.evmos.org/"
+        className="text-white flex items-center space-x-3 mb-2 font-bold mx-5 xl:mx-0 justify-center xl:justify-start hover:opacity-80"
+      >
+        <LeftArrowIcon width={15} height={15} />
+        <p>Back to Mission Control</p>
+      </Link>
       <TopBar topProps={topProps} />
+      <Banner />
       <Switch
-        onChange={() => setHideBalance(!hideZeroBalance)}
+        onChange={() => {
+          zeroBalance();
+        }}
         checked={hideZeroBalance}
       />
-      <div className="mt-5 overflow-y-auto max-h-[40vh] lg:max-h-[53vh] xl:scrollbar-hide text-white font-[IBM] w-full">
+      <div className="mt-5 overflow-y-auto max-h-[33vh] lg:max-h-[43vh] xl:scrollbar-hide text-white font-[IBM] w-full">
         {!isLoading && !error && tableData?.length > 0 && showMobile && (
           <ContentCard
             tableData={{

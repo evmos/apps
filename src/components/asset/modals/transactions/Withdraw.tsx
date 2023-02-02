@@ -33,6 +33,7 @@ import { Token } from "../../../../internal/wallet/functionality/metamask/metama
 import AddTokenMetamask from "./AddTokenMetamask";
 import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
 import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
+import Link from "next/link";
 
 const Withdraw = ({
   item,
@@ -78,13 +79,34 @@ const Withdraw = ({
     decimals: item.decimals,
     img: item.pngSrc,
   };
+  const v10Link =
+    "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
+
+  // TODO:  We'll work on this once we start with
+  // single token representation
+  // This function only supports OSMOSIS - EVMOS case.
+  let chainId = item.chainId;
+  let chainIdentifier = item.chainIdentifier;
+  if (item.symbol === EVMOS_SYMBOL) {
+    chainId = "osmosis-1";
+    chainIdentifier = "OSMOSIS";
+  }
   return (
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
       <div className="text-darkGray3">
         <p className="text-sm max-w-[500px] pb-3 italic">
-          Since Evmos v10 you can withdraw directly your ERC20 balance without
-          previously converting it to IBC.
+          Since Evmos{" "}
+          <Link
+            className="text-red"
+            href={v10Link}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            v10
+          </Link>{" "}
+          you can withdraw directly your ERC20 balance without previously
+          converting it to IBC.
         </p>
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
           <FromContainer
@@ -103,7 +125,7 @@ const Withdraw = ({
             style={{
               tokenTo: item.symbol,
               address: address,
-              img: `/tokens/evmos.png`,
+              img: `/assets/tokens/evmos.png`,
               text: "EVMOS",
             }}
           />
@@ -115,6 +137,7 @@ const Withdraw = ({
               erc20Balance={item.erc20Balance}
               isERC20Selected={isERC20Selected}
               setIsERC20Selected={setIsERC20Selected}
+              isEvmosToken={item.symbol === EVMOS_SYMBOL}
             />
           </div>
           <div className="text-xs font-bold opacity-80">
@@ -125,8 +148,12 @@ const Withdraw = ({
 
         <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
           <ToContainer
-            token={item.symbol}
-            img={`/tokens/${item.symbol.toLowerCase()}.png`}
+            token={item.symbol === EVMOS_SYMBOL ? "OSMO" : item.symbol}
+            img={
+              item.symbol === EVMOS_SYMBOL
+                ? "/assets/tokens/osmo.png"
+                : `/assets/tokens/${item.symbol.toLowerCase()}.png`
+            }
           />
           <div className="space-y-3">
             <div className="pr-5 pl-2 flex items-center space-x-3 bg-white hover:border-black focus-visible:border-black focus-within:border-black border border-darkGray5 rounded-lg">
@@ -141,7 +168,7 @@ const Withdraw = ({
             {confirmClicked && addressTo === "" && (
               <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
             )}
-            <h6 className="italic text-sm">
+            <h6 className="italic text-sm font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
@@ -154,8 +181,8 @@ const Withdraw = ({
                 className="cursor-pointer"
                 onClick={async () => {
                   const keplrAddress = await getKeplrAddressByChain(
-                    item.chainId,
-                    item.chainIdentifier
+                    chainId,
+                    chainIdentifier
                   );
                   if (keplrAddress === null) {
                     dispatch(
@@ -220,7 +247,7 @@ const Withdraw = ({
               receiver: addressTo,
               amount: amount.toString(),
               srcChain: EVMOS_SYMBOL,
-              dstChain: item.chainIdentifier,
+              dstChain: chainIdentifier,
               token: item.symbol,
             };
             setDisabled(true);
@@ -266,6 +293,7 @@ const Withdraw = ({
                 type: res.error === true ? "error" : "success",
               })
             );
+            setShow(false);
             // check if tx is executed
             if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
               dispatch(snackbarWaitingBroadcast());
@@ -278,8 +306,6 @@ const Withdraw = ({
               );
               dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
             }
-
-            setShow(false);
           }}
           text="Withdraw"
         />

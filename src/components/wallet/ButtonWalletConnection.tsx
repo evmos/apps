@@ -27,6 +27,8 @@ import {
   useActivateWalletConnect,
   useWalletConnect,
 } from "../../internal/wallet/functionality/walletconnect/walletconnect";
+import CopyIcon from "../common/images/icons/CopyIcon";
+import Tooltip from "../common/Tooltip";
 
 // Components
 const Button = dynamic(() => import("../common/Button"));
@@ -77,6 +79,8 @@ const ButtonWalletConnection = () => {
     firstUpdate.current = false;
   });
 
+  const [isCopied, setIsCopied] = useState(false);
+
   return value.active === true ? (
     <>
       <button
@@ -104,7 +108,23 @@ const ButtonWalletConnection = () => {
                 <WalletConnectIcon />
               )}
               <div className="flex flex-col font-bold ">
-                <p>{truncateAddress(value.evmosAddressCosmosFormat)}</p>
+                <div className="flex items-center space-x-2">
+                  <p>{truncateAddress(value.evmosAddressCosmosFormat)}</p>
+                  <button
+                    className="text-xs font-normal"
+                    onClick={async () => {
+                      await navigator.clipboard.writeText(
+                        value.evmosAddressCosmosFormat
+                      );
+                      setIsCopied(true);
+                    }}
+                  >
+                    <Tooltip
+                      element={<CopyIcon width={14} height={14} />}
+                      text={isCopied ? "Copied!" : "Copy"}
+                    />
+                  </button>
+                </div>
                 <p>{truncateAddress(value.evmosAddressEthFormat)}</p>
               </div>
               <ViewExplorer
@@ -118,6 +138,7 @@ const ButtonWalletConnection = () => {
               onClick={() => {
                 disconnectWallets(dispatch);
                 setShow(false);
+                setIsCopied(false);
               }}
             >
               disconnect

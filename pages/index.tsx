@@ -14,6 +14,7 @@ import {
   projectId,
   wagmiClient,
 } from "../src/internal/wallet/functionality/walletconnect/walletconnectConstants";
+import Script from "next/script";
 
 const Header = dynamic(() => import("../src/components/Header"));
 const TermOfServices = dynamic(
@@ -68,7 +69,20 @@ export default function Home() {
               {/* <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> */}
               <link rel="manifest" href="/manifest.json" />
             </Head>
-
+            {/* Google tag (gtag.js)  */}
+            <Script
+              id="google-analytics"
+              strategy="lazyOnload"
+              src={`https://www.googletagmanager.com/gtag/js?id=G-TBJ303M1SC`}
+            />
+            <Script id="google-analytics-lz" strategy="lazyOnload">
+              {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TBJ303M1SC');
+        `}
+            </Script>
             <main>
               <TermOfServices />
               <Container>

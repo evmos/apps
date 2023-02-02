@@ -62,7 +62,6 @@ export const ButtonActions = ({
           disabled={
             !value.active ||
             value.extensionName === METAMASK_KEY ||
-            actionsProps.item.symbol === EVMOS_SYMBOL ||
             value.extensionName === WALLECT_CONNECT_KEY
           }
           onClick={() => {
@@ -104,7 +103,7 @@ export const ButtonActions = ({
         </Button>
       ) : (
         <Button
-          disabled={!value.active || actionsProps.item.symbol === EVMOS_SYMBOL}
+          disabled={!value.active}
           onClick={() => {
             actionsProps.setShow(true);
             actionsProps.setModalContent(

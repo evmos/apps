@@ -1,5 +1,5 @@
 import { BigNumber } from "@ethersproject/bignumber";
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreType } from "../../../../redux/Store";
 import { ModalTitle } from "../../../common/Modal";
@@ -7,10 +7,7 @@ import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functional
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import FromWithdraw from "../common/FromWithdraw";
 import AmountWithdraw from "../common/AmountWithdraw";
-import {
-  TableData,
-  TableDataElement,
-} from "../../../../internal/asset/functionality/table/normalizeData";
+import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import ConfirmButton from "../../../common/ConfirmButton";
 import ToWithdraw from "../common/ToWithdraw";
 import {
@@ -27,18 +24,14 @@ import {
   snackbarExecutedTx,
 } from "../../../../internal/asset/style/format";
 import RedirectLink from "../common/RedirectLink";
+import { ButtonActionsProps } from "./types";
 
 const Withdraw2 = ({
   data,
   feeBalance,
   address,
   setShow,
-}: {
-  data: TableData;
-  feeBalance: BigNumber;
-  address: string;
-  setShow: Dispatch<SetStateAction<boolean>>;
-}) => {
+}: ButtonActionsProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const [confirmClicked, setConfirmClicked] = useState(false);
 

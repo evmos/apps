@@ -1,6 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
-import { TableData } from "../../../../internal/asset/functionality/table/normalizeData";
 import {
   METAMASK_KEY,
   WALLECT_CONNECT_KEY,
@@ -9,12 +7,7 @@ import { StoreType } from "../../../../redux/Store";
 import ConfirmButton from "../../../common/ConfirmButton";
 import Deposit2 from "../../modals/transactions/Deposit2";
 import Withdraw2 from "../../modals/transactions/Withdraw2";
-
-type actionsProps = {
-  setShow: Dispatch<SetStateAction<boolean>>;
-  setModalContent: Dispatch<SetStateAction<JSX.Element>>;
-  tableData: TableData;
-};
+import { actionsProps } from "./types";
 
 const ButtonsActions = ({ actionsProps }: { actionsProps: actionsProps }) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);

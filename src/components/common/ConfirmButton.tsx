@@ -1,14 +1,11 @@
+import { ConfirmButtonProps } from "./types";
+
 const ConfirmButton = ({
   text,
   onClick,
   disabled,
   className,
-}: {
-  text: string | JSX.Element;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-  disabled?: boolean;
-  className?: string;
-}) => {
+}: ConfirmButtonProps) => {
   return (
     <button
       onClick={onClick}

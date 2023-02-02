@@ -14,7 +14,6 @@ import dynamic from "next/dynamic";
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
 const MessageTable = dynamic(() => import("./MessageTable"));
 const Switch = dynamic(() => import("../utils/Switch"));
-// const Content = dynamic(() => import("./Content"));
 const ContentCard = dynamic(() => import("../mobileView/Content"));
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));
@@ -117,25 +116,25 @@ const AssetsTable = () => {
     return `${stakedRes} EVMOS`;
   }, [totalStakedResults, normalizedAssetsData]);
 
+  const topProps = {
+    evmosPrice: normalizedAssetsData?.table[0]?.coingeckoPrice,
+    totalStaked: totalStaked,
+    totalAssets: getTotalAssets(normalizedAssetsData, {
+      total: totalStakedResults?.data ? totalStakedResults?.data?.value : "0",
+      decimals: normalizedAssetsData?.table[0]?.decimals,
+      coingeckoPrice: normalizedAssetsData.table[0]?.coingeckoPrice,
+    }),
+    setShow: setShow,
+    setModalContent: setModalContent,
+    tableData: {
+      table: tableData,
+      feeBalance: normalizedAssetsData.feeBalance,
+    },
+  };
+
   return (
     <>
-      <TopBar
-        evmosPrice={normalizedAssetsData?.table[0]?.coingeckoPrice}
-        totalStaked={totalStaked}
-        totalAssets={getTotalAssets(normalizedAssetsData, {
-          total: totalStakedResults?.data
-            ? totalStakedResults?.data?.value
-            : "0",
-          decimals: normalizedAssetsData?.table[0]?.decimals,
-          coingeckoPrice: normalizedAssetsData.table[0]?.coingeckoPrice,
-        })}
-        setShow={setShow}
-        setModalContent={setModalContent}
-        tableData={{
-          table: tableData,
-          feeBalance: normalizedAssetsData.feeBalance,
-        }}
-      />
+      <TopBar topProps={topProps} />
       <Switch
         onChange={() => setHideBalance(!hideZeroBalance)}
         checked={hideZeroBalance}

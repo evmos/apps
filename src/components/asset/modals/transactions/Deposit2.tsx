@@ -1,11 +1,8 @@
 import { BigNumber } from "ethers";
 import { parseUnits } from "ethers/lib/utils";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  TableData,
-  TableDataElement,
-} from "../../../../internal/asset/functionality/table/normalizeData";
+import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { IBCChainParams } from "../../../../internal/asset/functionality/transactions/types";
 import { StoreType } from "../../../../redux/Store";
 import ConfirmButton from "../../../common/ConfirmButton";
@@ -34,18 +31,14 @@ import {
   snackRequestRejected,
 } from "../../../../internal/asset/style/snackbars";
 import RedirectLink from "../common/RedirectLink";
+import { ButtonActionsProps } from "./types";
 
 const Deposit2 = ({
   data,
   feeBalance,
   address,
   setShow,
-}: {
-  data: TableData;
-  feeBalance: BigNumber;
-  address: string;
-  setShow: Dispatch<SetStateAction<boolean>>;
-}) => {
+}: ButtonActionsProps) => {
   const [inputValue, setInputValue] = useState("");
   const [confirmClicked, setConfirmClicked] = useState(false);
   const [receiver, setReceiver] = useState("");

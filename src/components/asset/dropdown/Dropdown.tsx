@@ -1,40 +1,23 @@
 import Image from "next/image";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-import {
-  TableData,
-  TableDataElement,
-} from "../../internal/asset/functionality/table/normalizeData";
-import { convertAndFormat } from "../../internal/asset/style/format";
-import { EVMOS_SYMBOL } from "../../internal/wallet/functionality/networkConfig";
-
-const Icon = () => {
-  return (
-    <svg height="20" width="20" viewBox="0 0 20 20">
-      <path d="M4.516 7.548c0.436-0.446 1.043-0.481 1.576 0l3.908 3.747 3.908-3.747c0.533-0.481 1.141-0.446 1.574 0 0.436 0.445 0.408 1.197 0 1.615-0.406 0.418-4.695 4.502-4.695 4.502-0.217 0.223-0.502 0.335-0.787 0.335s-0.57-0.112-0.789-0.335c0 0-4.287-4.084-4.695-4.502s-0.436-1.17 0-1.615z"></path>
-    </svg>
-  );
-};
-
+import React, { useEffect, useState } from "react";
+import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
+import { convertAndFormat } from "../../../internal/asset/style/format";
+import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
+import DropdownArrow from "../../common/images/icons/DropdownArrow";
+import { DropdownProps } from "./types";
 const Dropdown = ({
   placeholder,
   data,
   setTokenTo,
   setAddressTo,
   setValue,
-}: {
-  placeholder: string;
-  data: TableData;
-  setTokenTo: Dispatch<SetStateAction<TableDataElement | undefined>>;
-  setAddressTo: Dispatch<SetStateAction<string>>;
-  setValue: Dispatch<SetStateAction<string>>;
-}) => {
+}: DropdownProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
     null
   );
   useEffect(() => {
     const handler = () => setShowMenu(false);
-
     window.addEventListener("click", handler);
     return () => {
       window.removeEventListener("click", handler);
@@ -105,9 +88,9 @@ const Dropdown = ({
             })}
           </div>
         )}
-        <div>{getDisplay()}</div>
+        {getDisplay()}
         <div>
-          <Icon />
+          <DropdownArrow />
         </div>
       </div>
     </div>

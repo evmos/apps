@@ -14,10 +14,9 @@ import {
   truncateNumber,
 } from "../../../../internal/asset/style/format";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
-import Dropdown from "../../../common/Dropdown";
+import Dropdown from "../../dropdown/Dropdown";
 import SmallButton from "../../../common/SmallButton";
 import ContainerInput from "./ContainerInput";
-
 import { ContainerModal } from "./ContainerModal";
 import ErrorMessage from "./ErrorMessage";
 import Note from "./Note";

@@ -13,17 +13,15 @@ import {
   safeSubstraction,
   truncateNumber,
 } from "../../../../internal/asset/style/format";
-
-import Dropdown from "../../../common/Dropdown";
+import Dropdown from "../../dropdown/Dropdown";
 import SmallButton from "../../../common/SmallButton";
 import ContainerInput from "./ContainerInput";
-
 import { ContainerModal } from "./ContainerModal";
 import ErrorMessage from "./ErrorMessage";
 import Note from "./Note";
 import { TextSmall } from "./TextSmall";
 
-export type Fee = {
+type Fee = {
   fee: BigNumber;
   feeDenom: string | undefined;
   feeBalance: BigNumber;

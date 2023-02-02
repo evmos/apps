@@ -214,6 +214,7 @@ export type addAssetsType = {
   erc20Balance: BigNumber;
 };
 
+// TODO: add test
 export function addDolarAssets(assets: addDolarsAssetsType) {
   return (
     parseFloat(
@@ -233,6 +234,7 @@ export function addDolarAssets(assets: addDolarsAssetsType) {
   );
 }
 
+// TODO: add test
 export function addAssets(asset: addAssetsType) {
   return (
     Number(convertAndFormat(asset.cosmosBalance, asset.decimals)) +
@@ -240,6 +242,7 @@ export function addAssets(asset: addAssetsType) {
   );
 }
 
+// TODO: add test
 export const numericOnly = (value: string) => {
   const reg = /^[0-9.]+$/;
   const preval = value;

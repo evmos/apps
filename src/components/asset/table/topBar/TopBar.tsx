@@ -1,8 +1,7 @@
 // import AssetsGuide from "../../modals/AssetsGuide";
-import { Dispatch, SetStateAction } from "react";
-import { TableData } from "../../../../internal/asset/functionality/table/normalizeData";
 import ButtonsActions from "./ButtonsActions";
 import { Container } from "./Container";
+import { TopBarProps } from "./types";
 
 const TopBar = ({
   totalAssets,
@@ -11,14 +10,7 @@ const TopBar = ({
   setShow,
   setModalContent,
   tableData,
-}: {
-  totalAssets: string;
-  totalStaked: string;
-  evmosPrice: number;
-  setShow: Dispatch<SetStateAction<boolean>>;
-  setModalContent: Dispatch<SetStateAction<JSX.Element>>;
-  tableData: TableData;
-}) => {
+}: TopBarProps) => {
   const actionsProps = {
     setShow,
     setModalContent,

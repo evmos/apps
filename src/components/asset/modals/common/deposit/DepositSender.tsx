@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import { truncateAddress } from "../../../../internal/wallet/style/format";
-import { ContainerModal } from "./ContainerModal";
-import { TextSmall } from "./TextSmall";
+import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
+import { truncateAddress } from "../../../../../internal/wallet/style/format";
+import { ContainerModal } from "../ContainerModal";
+import { TextSmall } from "../TextSmall";
 
 const DepositSender = ({
   token,

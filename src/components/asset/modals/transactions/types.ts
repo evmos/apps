@@ -22,3 +22,13 @@ export type WithdrawProps = {
   setDisabled: Dispatch<SetStateAction<boolean>>;
   feeBalance: BigNumber;
 };
+
+export type DepositProps = {
+  setConfirmClicked: Dispatch<SetStateAction<boolean>>;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  token: TableDataElement | undefined;
+  inputValue: string;
+  receiverAddress: string;
+  setDisabled: Dispatch<SetStateAction<boolean>>;
+  balance: BigNumber;
+};

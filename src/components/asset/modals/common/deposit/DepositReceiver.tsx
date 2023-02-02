@@ -1,25 +1,25 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
-import { getWallet } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
-import { EVMOS_CHAIN } from "../../../../internal/wallet/functionality/networkConfig";
-import { truncateAddress } from "../../../../internal/wallet/style/format";
-import KeplrIcon from "../../../common/images/icons/KeplrIcon";
-import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
+import { getKeplrAddressByChain } from "../../../../../internal/wallet/functionality/keplr/keplrHelpers";
+import { getWallet } from "../../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import { EVMOS_CHAIN } from "../../../../../internal/wallet/functionality/networkConfig";
+import { truncateAddress } from "../../../../../internal/wallet/style/format";
+import KeplrIcon from "../../../../common/images/icons/KeplrIcon";
+import MetamaskIcon from "../../../../common/images/icons/MetamaskIcon";
 
-import { ContainerModal } from "./ContainerModal";
-import ErrorMessage from "./ErrorMessage";
-import { TextSmall } from "./TextSmall";
-import AddTokenMetamask from "../transactions/AddTokenMetamask";
+import { ContainerModal } from "../ContainerModal";
+import ErrorMessage from "../ErrorMessage";
+import { TextSmall } from "../TextSmall";
+import AddTokenMetamask from "../../transactions/AddTokenMetamask";
 import {
   snackErrorConnectingKeplr,
   snackErrorConnectingMetaMask,
-} from "../../../../internal/asset/style/snackbars";
-import SmallButton from "../../../common/SmallButton";
-import ContainerInput from "./ContainerInput";
-import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
-import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
+} from "../../../../../internal/asset/style/snackbars";
+import SmallButton from "../../../../common/SmallButton";
+import ContainerInput from "../ContainerInput";
+import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
+import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
 
 const DepositReceiver = ({
   receiver,

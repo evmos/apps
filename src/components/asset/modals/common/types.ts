@@ -54,3 +54,22 @@ export type AmountWithdrawProps = {
   confirmClicked: boolean;
   setReceiverAddress: Dispatch<SetStateAction<string>>;
 };
+
+type FeeDeposit = {
+  fee: BigNumber;
+  feeDenom: string | undefined;
+  feeBalance: BigNumber;
+  feeDecimals: number | undefined;
+};
+
+export type AmountDepositProps = {
+  data: TableData;
+  setToken: Dispatch<SetStateAction<TableDataElement | undefined>>;
+  token: TableDataElement | undefined;
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+  confirmClicked: boolean;
+  setReceiverAddress: Dispatch<SetStateAction<string>>;
+  balance: BigNumber;
+  fee: FeeDeposit;
+};

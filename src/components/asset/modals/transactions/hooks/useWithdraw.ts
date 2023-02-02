@@ -10,6 +10,7 @@ import {
   snackbarWaitingBroadcast,
 } from "../../../../../internal/asset/style/format";
 import {
+  snackErrorAmountGt,
   snackExecuteIBCTransfer,
   snackIBCInformation,
   snackRequestRejected,
@@ -21,7 +22,6 @@ import { WithdrawProps } from "../types";
 export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
-
   const handleConfirmButton = async () => {
     useWithdrawProps.setConfirmClicked(true);
     if (wallet.evmosPubkey === null) {
@@ -50,7 +50,21 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       BigNumber.from(useWithdrawProps.token.decimals)
     );
 
-    if (amount.gt(useWithdrawProps.token.erc20Balance)) {
+    // evmos keeps using cosmosBalance
+
+    // TODO: withdraw is only EVMOS-OSMO
+    // or should we have all the others options too?
+    let chainIdentifier = useWithdrawProps.token.chainIdentifier;
+    let balance = useWithdrawProps.token.erc20Balance;
+    let useERC20Denom = true;
+    if (useWithdrawProps.token.symbol === EVMOS_SYMBOL) {
+      chainIdentifier = "OSMOSIS";
+      balance = useWithdrawProps.token.cosmosBalance;
+      useERC20Denom = false;
+    }
+
+    if (amount.gt(balance)) {
+      dispatch(snackErrorAmountGt());
       return;
     }
 
@@ -59,7 +73,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       receiver: useWithdrawProps.receiverAddress,
       amount: amount.toString(),
       srcChain: EVMOS_SYMBOL,
-      dstChain: useWithdrawProps.token.chainIdentifier,
+      dstChain: chainIdentifier,
       token: useWithdrawProps.token.symbol,
     };
     useWithdrawProps.setDisabled(true);
@@ -72,7 +86,8 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       params,
       useWithdrawProps.feeBalance,
       wallet.extensionName,
-      useWithdrawProps.token.prefix
+      useWithdrawProps.token.prefix,
+      useERC20Denom
     );
 
     dispatch(snackExecuteIBCTransfer(res));

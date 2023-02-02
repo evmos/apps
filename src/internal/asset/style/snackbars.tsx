@@ -10,6 +10,7 @@ import {
   BROADCASTED_NOTIFICATIONS,
   EXECUTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
+  MODAL_NOTIFICATIONS,
 } from "../functionality/transactions/errors";
 import { executeIBCTransferResponse } from "../functionality/transactions/types";
 
@@ -113,6 +114,14 @@ export function snackErrorGettingBalanceExtChain() {
   return addSnackbar({
     id: 0,
     content: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
+    type: "error",
+  });
+}
+
+export function snackErrorAmountGt() {
+  return addSnackbar({
+    id: 0,
+    content: MODAL_NOTIFICATIONS.ErrorsAmountGt,
     type: "error",
   });
 }

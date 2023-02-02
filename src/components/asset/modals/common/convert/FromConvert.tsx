@@ -60,7 +60,7 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
       {truncateNumber(input.value) >
         truncateNumber(
           numericOnly(convertFromAtto(balance.amount, balance.decimals))
-        ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
+        ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
       <div>
         <p className="font-bold text-sm">
           Available Balance:{" "}

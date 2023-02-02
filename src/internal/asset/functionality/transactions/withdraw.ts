@@ -19,7 +19,8 @@ export async function executeWithdraw(
   params: IBCChainParams,
   feeBalance: BigNumber,
   extension: string,
-  prefix: string
+  prefix: string,
+  useERC20Denom: boolean
 ) {
   if (feeBalance.lt(feeAmountForWithdraw)) {
     return {
@@ -68,7 +69,12 @@ export async function executeWithdraw(
     };
   }
 
-  const tx = await ibcTransferBackendCall(pubkey, address, params);
+  const tx = await ibcTransferBackendCall(
+    pubkey,
+    address,
+    params,
+    useERC20Denom
+  );
   if (tx.error === true || tx.data === null) {
     // Error generating the transaction
     return {

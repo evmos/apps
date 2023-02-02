@@ -28,17 +28,17 @@ const AmountWithdraw = ({
 
   const handleOnClickMax = () => {
     if (amountProps.token !== undefined) {
+      // evmos keeps using cosmosBalance
+      let balance = amountProps.token.erc20Balance;
+      if (amountProps.token.symbol === EVMOS_SYMBOL) {
+        balance = amountProps.token.cosmosBalance;
+      }
       if (amountProps.token.symbol.toUpperCase() !== feeDenom.toUpperCase()) {
         amountProps.setValue(
-          numericOnly(
-            convertFromAtto(
-              amountProps.token.erc20Balance,
-              amountProps.token.decimals
-            )
-          )
+          numericOnly(convertFromAtto(balance, amountProps.token.decimals))
         );
       } else {
-        const val = safeSubstraction(amountProps.token.erc20Balance, fee);
+        const val = safeSubstraction(balance, fee);
         amountProps.setValue(
           numericOnly(convertFromAtto(val, amountProps.token.decimals))
         );
@@ -108,11 +108,14 @@ const AmountWithdraw = ({
               truncateNumber(
                 numericOnly(
                   convertFromAtto(
-                    amountProps.token.erc20Balance,
+                    // evmos keeps using cosmosBalance
+                    amountProps.token.symbol === EVMOS_SYMBOL
+                      ? amountProps.token.cosmosBalance
+                      : amountProps.token.erc20Balance,
                     amountProps.token.decimals
                   )
                 )
-              ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
+              ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
         </div>
         <div className="space-y-2">
           {amountProps.token !== undefined &&
@@ -122,7 +125,10 @@ const AmountWithdraw = ({
                   Available Balance:{" "}
                   <span className="font-normal opacity-80">
                     {convertAndFormat(
-                      amountProps.token.erc20Balance,
+                      // evmos keeps using cosmosBalance
+                      amountProps.token.symbol === EVMOS_SYMBOL
+                        ? amountProps.token.cosmosBalance
+                        : amountProps.token.erc20Balance,
                       amountProps.token.decimals
                     )}{" "}
                     {amountProps.token.symbol}

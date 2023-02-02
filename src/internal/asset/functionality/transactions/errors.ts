@@ -22,7 +22,7 @@ export const MODAL_NOTIFICATIONS = {
   ErrorZeroAmountSubtext: "Amount cannot be 0",
   ErrorInsufficientFeeSubtext:
     "Lack sufficient balance to carry forth action. Balance needs to be above reserved amount",
-  ErrosAmountGt: "Amount is bigger than the actual balance",
+  ErrorsAmountGt: "Amount is bigger than the actual balance",
   ErrorAmountEmpty: "Amount can not be empty",
   ErrorAddressTitle: "Invalid address",
   ErrorAddressSubtext: "The address does not match with the chain",

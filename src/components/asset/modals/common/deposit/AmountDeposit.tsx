@@ -116,7 +116,7 @@ const AmountDeposit = ({
                     amountProps.token.decimals
                   )
                 )
-              ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
+              ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
         </div>
         <div className="space-y-2">
           {amountProps.token !== undefined &&

@@ -62,29 +62,32 @@ const Dropdown = ({
         {showMenu && (
           <div className="z-[9999] absolute translate-y-9 -left-4 top-0 w-auto overflow-auto max-h-40 bg-white border border-darkGray2 rounded">
             {data.table.map((option) => {
-              if (option.symbol !== EVMOS_SYMBOL) {
-                return (
-                  <div
-                    onClick={() => onItemClick(option)}
-                    key={option.symbol}
-                    className={`p-3 cursor-pointer hover:bg-gray flex justify-between space-x-8 font-bold
-                  `}
-                  >
-                    <div className="flex items-center space-x-3">
-                      <Image
-                        src={`/assets/tokens/${option.symbol.toLowerCase()}.png`}
-                        alt={option.symbol}
-                        width={25}
-                        height={25}
-                      />
-                      <span>{option.symbol}</span>
-                    </div>
-                    <p className="pl-11">
-                      {convertAndFormat(option.erc20Balance, option.decimals)}
-                    </p>
-                  </div>
-                );
+              // evmos keeps using cosmosBalance
+              let balance = option.erc20Balance;
+              if (option.symbol === EVMOS_SYMBOL) {
+                balance = option.cosmosBalance;
               }
+              return (
+                <div
+                  onClick={() => onItemClick(option)}
+                  key={option.symbol}
+                  className={`p-3 cursor-pointer hover:bg-gray flex justify-between space-x-8 font-bold
+                  `}
+                >
+                  <div className="flex items-center space-x-3">
+                    <Image
+                      src={`/assets/tokens/${option.symbol.toLowerCase()}.png`}
+                      alt={option.symbol}
+                      width={25}
+                      height={25}
+                    />
+                    <span>{option.symbol}</span>
+                  </div>
+                  <p className="pl-11">
+                    {convertAndFormat(balance, option.decimals)}
+                  </p>
+                </div>
+              );
             })}
           </div>
         )}

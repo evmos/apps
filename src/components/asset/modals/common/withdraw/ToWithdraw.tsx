@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
 import { snackErrorConnectingKeplr } from "../../../../../internal/asset/style/snackbars";
 import { getKeplrAddressByChain } from "../../../../../internal/wallet/functionality/keplr/keplrHelpers";
+import { EVMOS_SYMBOL } from "../../../../../internal/wallet/functionality/networkConfig";
 import { truncateAddress } from "../../../../../internal/wallet/style/format";
 import KeplrIcon from "../../../../common/images/icons/KeplrIcon";
 import SmallButton from "../../../../common/SmallButton";
@@ -52,9 +53,19 @@ const ToWithdraw = ({
                   // selects a token
                   return;
                 }
+
+                // TODO: withdraw is only EVMOS-OSMO
+                // or should we have all the others options too?
+                let chainId = token.chainId;
+                let chainIdentifier = token.chainIdentifier;
+                if (token.symbol === EVMOS_SYMBOL) {
+                  chainId = "osmosis-1";
+                  chainIdentifier = "OSMOSIS";
+                }
+
                 const keplrAddress = await getKeplrAddressByChain(
-                  token.chainId,
-                  token.chainIdentifier
+                  chainId,
+                  chainIdentifier
                 );
                 if (keplrAddress === null) {
                   dispatch(snackErrorConnectingKeplr());

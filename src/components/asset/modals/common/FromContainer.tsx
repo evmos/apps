@@ -71,7 +71,7 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
       {truncateNumber(input.value) >
         truncateNumber(
           numericOnly(convertFromAtto(balance.amount, balance.decimals))
-        ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
+        ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
       <div>
         <span className="font-bold">Balance: </span>
         {formatNumber(convertFromAtto(balance.amount, balance.decimals))}{" "}

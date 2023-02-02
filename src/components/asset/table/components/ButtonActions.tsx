@@ -20,7 +20,7 @@ import {
 import { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../../../redux/Store";
-import ConvertOld from "../../modals/transactions/ConvertOld";
+import Convert from "../../modals/transactions/Convert";
 
 type actionsProps = {
   item: TableDataElement;
@@ -133,7 +133,7 @@ export const ButtonActions = ({
         onClick={() => {
           actionsProps.setShow(true);
           actionsProps.setModalContent(
-            <ConvertOld
+            <Convert
               item={actionsProps.item}
               feeBalance={actionsProps.tableData.feeBalance}
               address={value.evmosAddressCosmosFormat}

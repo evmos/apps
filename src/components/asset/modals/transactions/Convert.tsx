@@ -1,140 +1,94 @@
-import { BigNumber } from "ethers";
-import { parseUnits } from "ethers/lib/utils.js";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
+import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 import { StoreType } from "../../../../redux/Store";
 import ConfirmButton from "../../../common/ConfirmButton";
-import { ModalTitle } from "../../../common/Modal";
 import Arrow from "../common/Arrow";
-import { ContainerModal } from "../common/ContainerModal";
-import FromConvert from "../common/FromConvert";
-import ToConvert from "../common/ToConvert";
+import FromContainer from "../common/FromContainer";
+import Tabs from "../common/Tabs";
+import ToContainer from "../common/ToContainer";
+import { parseUnits } from "@ethersproject/units";
+import { BigNumber } from "@ethersproject/bignumber";
+import { ConvertMsg } from "../../../../internal/asset/functionality/transactions/types";
+import { executeConvert } from "../../../../internal/asset/functionality/transactions/convert";
+import { addSnackbar } from "../../../notification/redux/notificationSlice";
+import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
+import { ModalTitle } from "../../../common/Modal";
 import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
-import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
 import { createContract } from "./contracts/contractHelper";
-import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
-import { getReservedForFeeText } from "../../../../internal/asset/style/format";
+import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
 import {
-  snackBroadcastSuccessful,
-  snackErrorGeneratingTx,
-  snackRequestRejected,
-} from "../../../../internal/asset/style/snackbars";
-import Note from "../common/Note";
+  BROADCASTED_NOTIFICATIONS,
+  GENERATING_TX_NOTIFICATIONS,
+} from "../../../../internal/asset/functionality/transactions/errors";
+import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import AddTokenMetamask from "./AddTokenMetamask";
+import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
+import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
+import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
 
-export const Convert = ({
+const Convert = ({
   item,
+  feeBalance,
   address,
   setShow,
-  isIBCBalance = false,
-  feeBalance,
 }: {
   item: TableDataElement;
+  feeBalance: BigNumber;
   address: string;
   setShow: Dispatch<SetStateAction<boolean>>;
-  isIBCBalance?: boolean;
-  feeBalance: BigNumber;
 }) => {
   const [inputValue, setInputValue] = useState("");
-  const [confirmClicked, setConfirmClicked] = useState(false);
-  const [disabled, setDisabled] = useState(false);
-  const wallet = useSelector((state: StoreType) => state.wallet.value);
 
   const dispatch = useDispatch();
+
+  const wallet = useSelector((state: StoreType) => state.wallet.value);
+  const [isERC20Selected, setIsERC20Selected] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+
+  const [confirmClicked, setConfirmClicked] = useState(false);
+
+  const [typeSelected, setTypeSelected] = useState({
+    amount: item.cosmosBalance,
+    from: "IBC Coin",
+    to: "ERC-20",
+    token: EVMOS_SYMBOL,
+  });
+
+  useEffect(() => {
+    if (!isERC20Selected) {
+      setTypeSelected({
+        amount: item.cosmosBalance,
+        from: "IBC Coin",
+        to: "ERC-20",
+        token: EVMOS_SYMBOL,
+      });
+    } else {
+      setTypeSelected({
+        amount: item.erc20Balance,
+        from: "ERC-20",
+        to: "IBC Coin",
+        token: "WEVMOS",
+      });
+    }
+  }, [isERC20Selected, item]);
+
   const WEVMOS = WEVMOS_CONTRACT_ADDRESS;
 
-  let balanceFrom = item.erc20Balance;
-  let balanceTo = item.cosmosBalance;
-  let symbolFrom = "WEVMOS";
-  let symbolTo = "EVMOS";
-  if (isIBCBalance) {
-    balanceFrom = item.cosmosBalance;
-    balanceTo = item.erc20Balance;
-    symbolFrom = "EVMOS";
-    symbolTo = "WEVMOS";
-  }
   const token: Token = {
     erc20Address: item.erc20Address,
     symbol: item.symbol,
     decimals: item.decimals,
     img: item.pngSrc,
   };
-
-  const handleConfirmButton = async () => {
-    setConfirmClicked(true);
-    if (wallet.evmosPubkey === null) {
-      dispatch(snackRequestRejected());
-      setShow(false);
-      return;
-    }
-    if (
-      inputValue === undefined ||
-      inputValue === null ||
-      inputValue === "" ||
-      inputValue === "0"
-    ) {
-      return;
-    }
-    const amount = parseUnits(inputValue, BigNumber.from(item.decimals));
-    if (amount.gt(balanceFrom)) {
-      return;
-    }
-    if (isIBCBalance) {
-      try {
-        const contract = await createContract(
-          WEVMOS,
-          WETH_ABI,
-          wallet.extensionName
-        );
-        if (contract === null) {
-          dispatch(snackErrorGeneratingTx());
-          setShow(false);
-          return;
-        }
-        setDisabled(true);
-        const res = await (contract as WEVMOS).deposit({
-          value: amount,
-        });
-        dispatch(
-          snackBroadcastSuccessful(res.hash, "www.mintscan.io/evmos/txs/")
-        );
-      } catch (e) {
-        // TODO: Add Sentry here!
-        dispatch(snackErrorGeneratingTx());
-      }
-    } else {
-      try {
-        const contract = await createContract(
-          WEVMOS,
-          WETH_ABI,
-          wallet.extensionName
-        );
-        if (contract === null) {
-          dispatch(snackErrorGeneratingTx());
-          setShow(false);
-          return;
-        }
-        setDisabled(true);
-        const res = await (contract as WEVMOS).withdraw(amount);
-        dispatch(
-          snackBroadcastSuccessful(res.hash, "www.mintscan.io/evmos/txs/")
-        );
-      } catch (e) {
-        // TODO: Add Sentry here!
-        dispatch(snackErrorGeneratingTx());
-      }
-    }
-    setShow(false);
-  };
-
   return (
     <>
-      <ModalTitle title="Convert WEVMOS" />
-      <ContainerModal>
-        <>
-          <FromConvert
+      <ModalTitle title={`Convert ${item.symbol}`} />
+      <div className="text-darkGray3">
+        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
+          <FromContainer
             fee={{
               fee: BigNumber.from("300000000000000000"),
               feeDenom: EVMOS_SYMBOL,
@@ -142,45 +96,217 @@ export const Convert = ({
               feeDecimals: 18,
             }}
             balance={{
-              denom: symbolFrom,
-              amount: balanceFrom,
+              denom: item.symbol,
+              amount: typeSelected.amount,
               decimals: item.decimals,
             }}
             input={{ value: inputValue, setInputValue, confirmClicked }}
             style={{
-              tokenTo: symbolFrom,
+              tokenTo:
+                item.symbol === EVMOS_SYMBOL ? typeSelected.token : item.symbol,
               address,
-              img: `/tokens/${symbolFrom.toLowerCase()}.png`,
-              text: symbolFrom,
+              img: `/tokens/${item.symbol.toLowerCase()}.png`,
+              text: typeSelected.from,
             }}
           />
-          <Note
-            text={getReservedForFeeText(
+          <div>
+            <span className="font-bold">Select balance:</span>
+            <Tabs
+              cosmosBalance={item.cosmosBalance}
+              decimals={item.decimals}
+              erc20Balance={item.erc20Balance}
+              isERC20Selected={isERC20Selected}
+              setIsERC20Selected={setIsERC20Selected}
+            />
+          </div>
+          <div className="text-xs font-bold opacity-80">
+            {getReservedForFeeText(
               BigNumber.from("300000000000000000"),
               EVMOS_SYMBOL,
               EVMOS_SYMBOL
             )}
+          </div>
+        </div>
+        <Arrow />
+        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
+          <ToContainer
+            token={item.symbol}
+            img={`/tokens/${item.symbol.toLowerCase()}.png`}
+            text={typeSelected.to}
           />
-        </>
-      </ContainerModal>
-      <Arrow />
-      <ContainerModal>
-        <>
-          <ToConvert
-            token={symbolTo}
-            img={`/tokens/${symbolTo.toLowerCase()}.png`}
-            balance={balanceTo}
-            decimals={item.decimals}
-            addToken={token}
-          />
-        </>
-      </ContainerModal>
-      <div className="mb-4"></div>
-      <ConfirmButton
-        disabled={disabled}
-        onClick={handleConfirmButton}
-        text="Convert"
-      />
+          <AddTokenMetamask token={token} />
+        </div>
+        <ConfirmButton
+          disabled={disabled}
+          onClick={async () => {
+            setConfirmClicked(true);
+            if (wallet.evmosPubkey === null) {
+              dispatch(
+                addSnackbar({
+                  id: 0,
+                  content: (
+                    <SimpleSnackbar
+                      title="Wallet not connected"
+                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
+                    />
+                  ),
+                  type: "error",
+                })
+              );
+              setShow(false);
+              return;
+            }
+            const amount = parseUnits(
+              inputValue,
+              BigNumber.from(item.decimals)
+            );
+            if (
+              inputValue === undefined ||
+              inputValue === null ||
+              inputValue === "" ||
+              amount.gt(typeSelected.amount)
+            ) {
+              return;
+            }
+
+            if (item.symbol !== EVMOS_SYMBOL) {
+              const params: ConvertMsg = {
+                token: item.symbol,
+                amount: amount.toString(),
+                addressEth: wallet.evmosAddressEthFormat,
+                addressCosmos: wallet.evmosAddressCosmosFormat,
+                srcChain: EVMOS_SYMBOL,
+              };
+              setDisabled(true);
+              const res = await executeConvert(
+                wallet.evmosPubkey,
+                wallet.evmosAddressCosmosFormat,
+                params,
+                isERC20Selected,
+                feeBalance,
+                wallet.extensionName
+              );
+
+              dispatch(
+                addSnackbar({
+                  id: 0,
+                  content:
+                    res.error === true ? (
+                      <SimpleSnackbar title={res.title} text={res.message} />
+                    ) : (
+                      <ViewExplorerSnackbar
+                        values={{
+                          title: res.title,
+                          hash: res.txHash,
+                          explorerTxUrl: res.explorerTxUrl,
+                        }}
+                      />
+                    ),
+                  type: res.error === true ? "error" : "success",
+                })
+              );
+            } else {
+              if (isERC20Selected) {
+                try {
+                  const contract = await createContract(
+                    WEVMOS,
+                    WETH_ABI,
+                    wallet.extensionName
+                  );
+                  if (contract === null) {
+                    dispatch(
+                      addSnackbar({
+                        id: 0,
+                        content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                        type: "error",
+                      })
+                    );
+                    setShow(false);
+                    return;
+                  }
+                  setDisabled(true);
+                  const res = await (contract as WEVMOS).withdraw(amount);
+                  dispatch(
+                    addSnackbar({
+                      id: 0,
+                      content: (
+                        <ViewExplorerSnackbar
+                          values={{
+                            title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                            hash: res.hash,
+                            explorerTxUrl: "www.mintscan.io/evmos/txs/",
+                          }}
+                        />
+                      ),
+                      type: "success",
+                    })
+                  );
+                } catch (e) {
+                  // TODO: Add Sentry here!
+                  dispatch(
+                    addSnackbar({
+                      id: 0,
+                      content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                      type: "error",
+                    })
+                  );
+                }
+              } else {
+                try {
+                  const contract = await createContract(
+                    WEVMOS,
+                    WETH_ABI,
+                    wallet.extensionName
+                  );
+                  if (contract === null) {
+                    dispatch(
+                      addSnackbar({
+                        id: 0,
+                        content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                        type: "error",
+                      })
+                    );
+                    setShow(false);
+                    return;
+                  }
+                  setDisabled(true);
+                  const res = await (contract as WEVMOS).deposit({
+                    value: amount,
+                  });
+                  dispatch(
+                    addSnackbar({
+                      id: 0,
+                      content: (
+                        <ViewExplorerSnackbar
+                          values={{
+                            title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                            hash: res.hash,
+                            explorerTxUrl: "www.mintscan.io/evmos/txs/",
+                          }}
+                        />
+                      ),
+                      type: "success",
+                    })
+                  );
+                } catch (e) {
+                  // TODO: Add Sentry here!
+                  dispatch(
+                    addSnackbar({
+                      id: 0,
+                      content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                      type: "error",
+                    })
+                  );
+                }
+              }
+            }
+            setShow(false);
+          }}
+          text="Convert"
+        />
+      </div>
     </>
   );
 };
+
+export default Convert;

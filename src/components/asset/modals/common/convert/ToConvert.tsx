@@ -3,10 +3,10 @@ import Image from "next/image";
 import {
   convertFromAtto,
   formatNumber,
-} from "../../../../internal/asset/style/format";
-import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
-import AddTokenMetamask from "../transactions/AddTokenMetamask";
-import ContainerInput from "./ContainerInput";
+} from "../../../../../internal/asset/style/format";
+import { Token } from "../../../../../internal/wallet/functionality/metamask/metamaskHelpers";
+import AddTokenMetamask from "../../transactions/AddTokenMetamask";
+import ContainerInput from "../ContainerInput";
 
 const ToConvert = ({
   token,

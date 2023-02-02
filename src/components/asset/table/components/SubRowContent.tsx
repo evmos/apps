@@ -7,7 +7,7 @@ import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkC
 import { KEPLR_KEY } from "../../../../internal/wallet/functionality/wallet";
 import { StoreType } from "../../../../redux/Store";
 import Button from "../../../common/Button";
-import { Convert } from "../../modals/transactions/Convert";
+import { ConvertSTR } from "../../modals/transactions/ConvertSTR";
 import { Description } from "./Description";
 import { SubRowProps } from "./types";
 
@@ -33,7 +33,7 @@ export const SubRowContent = ({
   const openModalConvert = () => {
     setShow(true);
     setModalContent(
-      <Convert
+      <ConvertSTR
         item={item}
         address={wallet.evmosAddressCosmosFormat}
         setShow={setShow}

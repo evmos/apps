@@ -32,3 +32,15 @@ export type DepositProps = {
   setDisabled: Dispatch<SetStateAction<boolean>>;
   balance: BigNumber;
 };
+
+export type ConvertProps = {
+  setConfirmClicked: Dispatch<SetStateAction<boolean>>;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  inputValue: string;
+  item: TableDataElement;
+  balance: {
+    balanceFrom: BigNumber;
+    isIBCBalance: boolean;
+  };
+  setDisabled: Dispatch<SetStateAction<boolean>>;
+};

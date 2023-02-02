@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
-import { snackErrorConnectingKeplr } from "../../../../internal/asset/style/snackbars";
-import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
-import { truncateAddress } from "../../../../internal/wallet/style/format";
-import KeplrIcon from "../../../common/images/icons/KeplrIcon";
-import SmallButton from "../../../common/SmallButton";
-import AddTokenMetamask from "../transactions/AddTokenMetamask";
-import ContainerInput from "./ContainerInput";
-import { ContainerModal } from "./ContainerModal";
-import ErrorMessage from "./ErrorMessage";
-import { TextSmall } from "./TextSmall";
-import { WithdrawReceiverProps } from "./types";
+import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
+import { snackErrorConnectingKeplr } from "../../../../../internal/asset/style/snackbars";
+import { getKeplrAddressByChain } from "../../../../../internal/wallet/functionality/keplr/keplrHelpers";
+import { truncateAddress } from "../../../../../internal/wallet/style/format";
+import KeplrIcon from "../../../../common/images/icons/KeplrIcon";
+import SmallButton from "../../../../common/SmallButton";
+import AddTokenMetamask from "../../transactions/AddTokenMetamask";
+import ContainerInput from "../ContainerInput";
+import { ContainerModal } from "../ContainerModal";
+import ErrorMessage from "../ErrorMessage";
+import { TextSmall } from "../TextSmall";
+import { WithdrawReceiverProps } from "../types";
 
 const ToWithdraw = ({
   token,

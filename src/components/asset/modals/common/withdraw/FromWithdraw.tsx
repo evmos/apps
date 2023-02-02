@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { truncateAddress } from "../../../../internal/wallet/style/format";
-import { ContainerModal } from "./ContainerModal";
-import { TextSmall } from "./TextSmall";
+import { truncateAddress } from "../../../../../internal/wallet/style/format";
+import { ContainerModal } from "../ContainerModal";
+import { TextSmall } from "../TextSmall";
 
 const FromWithdraw = ({ address }: { address: string }) => {
   return (

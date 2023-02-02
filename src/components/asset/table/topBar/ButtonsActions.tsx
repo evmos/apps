@@ -6,7 +6,7 @@ import {
 import { StoreType } from "../../../../redux/Store";
 import ConfirmButton from "../../../common/ConfirmButton";
 import Deposit2 from "../../modals/transactions/Deposit2";
-import Withdraw2 from "../../modals/transactions/WithdrawSTR";
+import WithdrawSTR from "../../modals/transactions/WithdrawSTR";
 import { actionsProps } from "./types";
 
 const ButtonsActions = ({ actionsProps }: { actionsProps: actionsProps }) => {
@@ -41,7 +41,7 @@ const ButtonsActions = ({ actionsProps }: { actionsProps: actionsProps }) => {
         onClick={() => {
           actionsProps.setShow(true);
           actionsProps.setModalContent(
-            <Withdraw2
+            <WithdrawSTR
               data={actionsProps.tableData}
               feeBalance={actionsProps.tableData.feeBalance}
               address={wallet.evmosAddressCosmosFormat}

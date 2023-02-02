@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
 import {
   convertAndFormat,
   convertFromAtto,
@@ -7,16 +7,16 @@ import {
   numericOnly,
   safeSubstraction,
   truncateNumber,
-} from "../../../../internal/asset/style/format";
-import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
-import Dropdown from "../../dropdown/Dropdown";
-import SmallButton from "../../../common/SmallButton";
-import ContainerInput from "./ContainerInput";
-import { ContainerModal } from "./ContainerModal";
-import ErrorMessage from "./ErrorMessage";
-import Note from "./Note";
-import { TextSmall } from "./TextSmall";
-import { AmountWithdrawProps } from "./types";
+} from "../../../../../internal/asset/style/format";
+import { EVMOS_SYMBOL } from "../../../../../internal/wallet/functionality/networkConfig";
+import Dropdown from "../../../dropdown/Dropdown";
+import SmallButton from "../../../../common/SmallButton";
+import ContainerInput from "../ContainerInput";
+import { ContainerModal } from "../ContainerModal";
+import ErrorMessage from "../ErrorMessage";
+import Note from "../Note";
+import { TextSmall } from "../TextSmall";
+import { AmountWithdrawProps } from "../types";
 
 const AmountWithdraw = ({
   amountProps,

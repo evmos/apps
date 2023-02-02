@@ -6,7 +6,6 @@ const HeadTable = () => {
           Asset
         </th>
         <th className="text-left min-w-[200px]">Total Balance</th>
-        {/* <th className="text-left min-w-[200px]">IBC Balance</th> */}
         <th></th>
       </tr>
     </thead>

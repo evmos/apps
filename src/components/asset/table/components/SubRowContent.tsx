@@ -1,7 +1,4 @@
-import { BigNumber } from "ethers";
-import { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
-import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import {
   amountToDolars,
   convertAndFormat,
@@ -12,6 +9,7 @@ import { StoreType } from "../../../../redux/Store";
 import Button from "../../../common/Button";
 import { Convert } from "../../modals/transactions/Convert";
 import { Description } from "./Description";
+import { SubRowProps } from "./types";
 
 export const SubRowContent = ({
   item,
@@ -19,13 +17,7 @@ export const SubRowContent = ({
   setModalContent,
   isIBCBalance = false,
   feeBalance,
-}: {
-  item: TableDataElement;
-  setShow: Dispatch<SetStateAction<boolean>>;
-  setModalContent: Dispatch<SetStateAction<JSX.Element>>;
-  isIBCBalance?: boolean;
-  feeBalance: BigNumber;
-}) => {
+}: SubRowProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
 
   let balance = item.erc20Balance;

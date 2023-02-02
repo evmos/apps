@@ -29,6 +29,7 @@ type actionsProps = {
   tableData: TableData;
 };
 
+// TODO: delete once STR is fully working
 export const ButtonActions = ({
   actionsProps,
 }: {

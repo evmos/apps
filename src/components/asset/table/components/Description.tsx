@@ -1,14 +1,11 @@
 import Image from "next/image";
+import { DescriptionProps } from "./types";
 
 export const Description = ({
   symbol,
   description,
   subRow = false,
-}: {
-  symbol: string;
-  description: string;
-  subRow?: boolean;
-}) => {
+}: DescriptionProps) => {
   return (
     <div
       className={`flex items-center space-x-5 w-[50%] ${

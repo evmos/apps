@@ -1,20 +1,14 @@
-import { Dispatch, SetStateAction } from "react";
-import { TableData } from "../../../internal/asset/functionality/table/normalizeData";
-
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import Accordion from "../../common/Accordion";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContent";
+import { ContentTableProps } from "./types";
 
 const ContentTable = ({
   tableData,
   setShow,
   setModalContent,
-}: {
-  tableData: TableData;
-  setShow: Dispatch<SetStateAction<boolean>>;
-  setModalContent: Dispatch<SetStateAction<JSX.Element>>;
-}) => {
+}: ContentTableProps) => {
   return (
     <div className="flex flex-col w-full">
       {tableData?.table.map((item, index: number) => {

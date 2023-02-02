@@ -1,3 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
+import { TableData } from "../../../internal/asset/functionality/table/normalizeData";
+
 export type ERC20Element = {
   name: string;
   cosmosBalance: string;
@@ -18,4 +21,10 @@ export type ERC20Element = {
 
 export type ERC20BalanceResponse = {
   balance: ERC20Element[];
+};
+
+export type ContentTableProps = {
+  tableData: TableData;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  setModalContent: Dispatch<SetStateAction<JSX.Element>>;
 };

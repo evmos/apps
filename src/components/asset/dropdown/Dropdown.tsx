@@ -8,8 +8,8 @@ import { DropdownProps } from "./types";
 const Dropdown = ({
   placeholder,
   data,
-  setTokenTo,
-  setAddressTo,
+  setToken,
+  setAddress,
   setValue,
 }: DropdownProps) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -48,8 +48,8 @@ const Dropdown = ({
 
   const onItemClick = (option: TableDataElement) => {
     setSelectedValue(option);
-    setTokenTo(option);
-    setAddressTo("");
+    setToken(option);
+    setAddress("");
     setValue("");
   };
 

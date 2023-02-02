@@ -1,5 +1,9 @@
 import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction } from "react";
+import {
+  TableData,
+  TableDataElement,
+} from "../../../../internal/asset/functionality/table/normalizeData";
 
 export type Fee = {
   fee: BigNumber;
@@ -32,4 +36,21 @@ export type FromProps = {
   balance: Balance;
   input: Input;
   style: Style;
+};
+
+export type WithdrawReceiverProps = {
+  token: TableDataElement | undefined;
+  receiverAddress: string;
+  setReceiverAddress: Dispatch<SetStateAction<string>>;
+  confirmClicked: boolean;
+};
+
+export type AmountWithdrawProps = {
+  data: TableData;
+  setToken: Dispatch<SetStateAction<TableDataElement | undefined>>;
+  token: TableDataElement | undefined;
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+  confirmClicked: boolean;
+  setReceiverAddress: Dispatch<SetStateAction<string>>;
 };

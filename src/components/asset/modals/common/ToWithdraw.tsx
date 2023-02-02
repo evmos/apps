@@ -1,6 +1,5 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 import { snackErrorConnectingKeplr } from "../../../../internal/asset/style/snackbars";
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
@@ -12,18 +11,14 @@ import ContainerInput from "./ContainerInput";
 import { ContainerModal } from "./ContainerModal";
 import ErrorMessage from "./ErrorMessage";
 import { TextSmall } from "./TextSmall";
+import { WithdrawReceiverProps } from "./types";
 
 const ToWithdraw = ({
-  tokenTo,
-  addressTo,
-  setAddressTo,
+  token,
+  receiverAddress,
+  setReceiverAddress,
   confirmClicked,
-}: {
-  tokenTo: TableDataElement | undefined;
-  addressTo: string;
-  setAddressTo: Dispatch<SetStateAction<string>>;
-  confirmClicked: boolean;
-}) => {
+}: WithdrawReceiverProps) => {
   const [showInput, setShowInput] = useState(false);
   const [showEditButton, setShowEditButton] = useState(true);
   const handleOnClickEdit = () => {
@@ -37,7 +32,7 @@ const ToWithdraw = ({
       <>
         <div className="flex items-center space-x-3">
           <TextSmall text="TO" />
-          <span>{truncateAddress(addressTo)}</span>
+          <span>{truncateAddress(receiverAddress)}</span>
           <div className="flex items-center space-x-5 w-full justify-end">
             <SmallButton
               className={`${!showEditButton ? "invisible" : ""}`}
@@ -48,24 +43,24 @@ const ToWithdraw = ({
               width={25}
               height={25}
               className={`cursor-pointer ${
-                tokenTo === undefined ? "disabled" : ""
+                token === undefined ? "disabled" : ""
               }`}
               onClick={async () => {
-                if (tokenTo === undefined) {
+                if (token === undefined) {
                   // It should never enters here
                   // because the button is disabled until the user
                   // selects a token
                   return;
                 }
                 const keplrAddress = await getKeplrAddressByChain(
-                  tokenTo.chainId,
-                  tokenTo.chainIdentifier
+                  token.chainId,
+                  token.chainIdentifier
                 );
                 if (keplrAddress === null) {
                   dispatch(snackErrorConnectingKeplr());
                   return;
                 }
-                setAddressTo(keplrAddress);
+                setReceiverAddress(keplrAddress);
               }}
             />
           </div>
@@ -76,9 +71,9 @@ const ToWithdraw = ({
             <ContainerInput>
               <input
                 className="w-full border-none hover:border-none focus-visible:outline-none"
-                value={addressTo}
+                value={receiverAddress}
                 onChange={(e) => {
-                  setAddressTo(e.target.value);
+                  setReceiverAddress(e.target.value);
                 }}
               />
             </ContainerInput>
@@ -90,17 +85,17 @@ const ToWithdraw = ({
           </>
         )}
 
-        {confirmClicked && addressTo === "" && (
+        {confirmClicked && receiverAddress === "" && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
         )}
         <div className="flex justify-end w-full">
-          {tokenTo !== undefined && (
+          {token !== undefined && (
             <AddTokenMetamask
               token={{
-                erc20Address: tokenTo?.erc20Address,
-                symbol: tokenTo?.symbol,
-                decimals: tokenTo?.decimals,
-                img: tokenTo?.pngSrc,
+                erc20Address: token?.erc20Address,
+                symbol: token?.symbol,
+                decimals: token?.decimals,
+                img: token?.pngSrc,
               }}
             />
           )}

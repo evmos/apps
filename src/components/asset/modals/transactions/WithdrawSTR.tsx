@@ -36,12 +36,12 @@ const Withdraw2 = ({
   const [confirmClicked, setConfirmClicked] = useState(false);
 
   const [inputValue, setInputValue] = useState("");
-  const [addressTo, setAddressTo] = useState("");
+  const [receiverAddress, setReceiverAddress] = useState("");
   const [disabled, setDisabled] = useState(false);
 
   const dispatch = useDispatch();
 
-  const [tokenTo, setTokenTo] = useState<TableDataElement>();
+  const [token, setToken] = useState<TableDataElement>();
 
   const handleConfirmButton = async () => {
     setConfirmClicked(true);
@@ -51,7 +51,7 @@ const Withdraw2 = ({
       return;
     }
     // avoid withdraw if token is not selected
-    if (tokenTo === undefined) {
+    if (token === undefined) {
       return;
     }
 
@@ -60,25 +60,25 @@ const Withdraw2 = ({
       inputValue === null ||
       inputValue === "" ||
       inputValue === "0" ||
-      addressTo === undefined ||
-      addressTo === null ||
-      addressTo === ""
+      receiverAddress === undefined ||
+      receiverAddress === null ||
+      receiverAddress === ""
     ) {
       return;
     }
-    const amount = parseUnits(inputValue, BigNumber.from(tokenTo.decimals));
+    const amount = parseUnits(inputValue, BigNumber.from(token.decimals));
 
-    if (amount.gt(tokenTo.erc20Balance)) {
+    if (amount.gt(token.erc20Balance)) {
       return;
     }
 
     const params: IBCChainParams = {
       sender: address,
-      receiver: addressTo,
+      receiver: receiverAddress,
       amount: amount.toString(),
       srcChain: EVMOS_SYMBOL,
-      dstChain: tokenTo.chainIdentifier,
-      token: tokenTo.symbol,
+      dstChain: token.chainIdentifier,
+      token: token.symbol,
     };
     setDisabled(true);
 
@@ -90,7 +90,7 @@ const Withdraw2 = ({
       params,
       feeBalance,
       wallet.extensionName,
-      tokenTo.prefix
+      token.prefix
     );
 
     dispatch(snackExecuteIBCTransfer(res));
@@ -109,33 +109,35 @@ const Withdraw2 = ({
     }
   };
 
+  const amountProps = {
+    data: data,
+    setToken: setToken,
+    token: token,
+    value: inputValue,
+    setValue: setInputValue,
+    confirmClicked: confirmClicked,
+    setReceiverAddress: setReceiverAddress,
+  };
+
   return (
     <>
       <ModalTitle title="Withdraw Tokens" />
       <div className="text-darkGray3 space-y-3">
         <FromWithdraw address={address} />
-        <AmountWithdraw
-          data={data}
-          setTokenTo={setTokenTo}
-          tokenTo={tokenTo}
-          value={inputValue}
-          setValue={setInputValue}
-          confirmClicked={confirmClicked}
-          setAddressTo={setAddressTo}
-        />
-        {tokenTo === undefined || tokenTo.handledByExternalUI === null ? (
+        <AmountWithdraw amountProps={amountProps} />
+        {token === undefined || token.handledByExternalUI === null ? (
           <ToWithdraw
-            tokenTo={tokenTo}
-            addressTo={addressTo}
-            setAddressTo={setAddressTo}
+            token={token}
+            receiverAddress={receiverAddress}
+            setReceiverAddress={setReceiverAddress}
             confirmClicked={confirmClicked}
           />
         ) : (
           ""
         )}
-        {tokenTo !== undefined && tokenTo.handledByExternalUI !== null ? (
+        {token !== undefined && token.handledByExternalUI !== null ? (
           <RedirectLink
-            href={tokenTo.handledByExternalUI.url}
+            href={token.handledByExternalUI.url}
             text="Withdraw from Axelar"
           />
         ) : (

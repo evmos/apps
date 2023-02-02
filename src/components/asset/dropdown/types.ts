@@ -7,7 +7,7 @@ import {
 export type DropdownProps = {
   placeholder: string;
   data: TableData;
-  setTokenTo: Dispatch<SetStateAction<TableDataElement | undefined>>;
-  setAddressTo: Dispatch<SetStateAction<string>>;
+  setToken: Dispatch<SetStateAction<TableDataElement | undefined>>;
+  setAddress: Dispatch<SetStateAction<string>>;
   setValue: Dispatch<SetStateAction<string>>;
 };

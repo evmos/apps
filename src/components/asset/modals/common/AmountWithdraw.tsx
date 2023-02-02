@@ -1,9 +1,4 @@
 import { BigNumber } from "ethers";
-import { Dispatch, SetStateAction } from "react";
-import {
-  TableData,
-  TableDataElement,
-} from "../../../../internal/asset/functionality/table/normalizeData";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 import {
   convertAndFormat,
@@ -21,74 +16,73 @@ import { ContainerModal } from "./ContainerModal";
 import ErrorMessage from "./ErrorMessage";
 import Note from "./Note";
 import { TextSmall } from "./TextSmall";
+import { AmountWithdrawProps } from "./types";
 
 const AmountWithdraw = ({
-  data,
-  setTokenTo,
-  tokenTo,
-  value,
-  setValue,
-  confirmClicked,
-  setAddressTo,
+  amountProps,
 }: {
-  data: TableData;
-  setTokenTo: Dispatch<SetStateAction<TableDataElement | undefined>>;
-  tokenTo: TableDataElement | undefined;
-  value: string;
-  setValue: Dispatch<SetStateAction<string>>;
-  confirmClicked: boolean;
-  setAddressTo: Dispatch<SetStateAction<string>>;
+  amountProps: AmountWithdrawProps;
 }) => {
   const fee = BigNumber.from("4600000000000000");
   const feeDenom = EVMOS_SYMBOL;
 
   const handleOnClickMax = () => {
-    if (tokenTo !== undefined) {
-      if (tokenTo.symbol.toUpperCase() !== feeDenom.toUpperCase()) {
-        setValue(
-          numericOnly(convertFromAtto(tokenTo.erc20Balance, tokenTo.decimals))
+    if (amountProps.token !== undefined) {
+      if (amountProps.token.symbol.toUpperCase() !== feeDenom.toUpperCase()) {
+        amountProps.setValue(
+          numericOnly(
+            convertFromAtto(
+              amountProps.token.erc20Balance,
+              amountProps.token.decimals
+            )
+          )
         );
       } else {
-        const val = safeSubstraction(tokenTo.erc20Balance, fee);
-        setValue(numericOnly(convertFromAtto(val, tokenTo.decimals)));
+        const val = safeSubstraction(amountProps.token.erc20Balance, fee);
+        amountProps.setValue(
+          numericOnly(convertFromAtto(val, amountProps.token.decimals))
+        );
       }
     }
   };
 
   const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(numericOnly(e.target.value));
+    amountProps.setValue(numericOnly(e.target.value));
   };
   return (
     <ContainerModal>
       <>
-        {tokenTo === undefined || tokenTo.handledByExternalUI === null ? (
+        {amountProps.token === undefined ||
+        amountProps.token.handledByExternalUI === null ? (
           <TextSmall text="AMOUNT" />
         ) : (
           <TextSmall text="SELECT BRIDGE" />
         )}
-        {tokenTo !== undefined && tokenTo.handledByExternalUI !== null && (
-          <Note
-            text="We currently do not offer transfers directly from Ethereum. For now,
+        {amountProps.token !== undefined &&
+          amountProps.token.handledByExternalUI !== null && (
+            <Note
+              text="We currently do not offer transfers directly from Ethereum. For now,
         here area few options that will allow you to withdraw from Evmos"
-          />
-        )}
+            />
+          )}
         <ContainerInput>
           <>
             <Dropdown
               placeholder="Select token..."
-              data={data}
-              setTokenTo={setTokenTo}
-              setAddressTo={setAddressTo}
-              setValue={setValue}
+              data={amountProps.data}
+              setToken={amountProps.setToken}
+              setAddress={amountProps.setReceiverAddress}
+              setValue={amountProps.setValue}
             />
 
-            {tokenTo === undefined || tokenTo.handledByExternalUI === null ? (
+            {amountProps.token === undefined ||
+            amountProps.token.handledByExternalUI === null ? (
               <>
                 <input
                   className="w-full  border-none hover:border-none focus-visible:outline-none text-right"
                   type="text"
                   placeholder="amount"
-                  value={value}
+                  value={amountProps.value}
                   onChange={handleOnChangeInput}
                 />
                 <SmallButton text="MAX" onClick={handleOnClickMax} />
@@ -99,43 +93,50 @@ const AmountWithdraw = ({
           </>
         </ContainerInput>
         <div className="flex flex-col">
-          {confirmClicked && tokenTo === undefined && (
+          {amountProps.confirmClicked && amountProps.token === undefined && (
             <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorTokenEmpty} />
           )}
-          {truncateNumber(value) === 0 && (
+          {truncateNumber(amountProps.value) === 0 && (
             <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext} />
           )}
-          {confirmClicked && value === "" && (
+          {amountProps.confirmClicked && amountProps.value === "" && (
             <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAmountEmpty} />
           )}
-          {tokenTo !== undefined &&
-            tokenTo.handledByExternalUI === null &&
-            truncateNumber(value) >
+          {amountProps.token !== undefined &&
+            amountProps.token.handledByExternalUI === null &&
+            truncateNumber(amountProps.value) >
               truncateNumber(
                 numericOnly(
-                  convertFromAtto(tokenTo.erc20Balance, tokenTo.decimals)
+                  convertFromAtto(
+                    amountProps.token.erc20Balance,
+                    amountProps.token.decimals
+                  )
                 )
               ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
         </div>
         <div className="space-y-2">
-          {tokenTo !== undefined && tokenTo.handledByExternalUI === null && (
-            <>
-              <p className="font-bold text-sm">
-                Available Balance:{" "}
-                <span className="font-normal opacity-80">
-                  {convertAndFormat(tokenTo.erc20Balance, tokenTo.decimals)}{" "}
-                  {tokenTo.symbol}
-                </span>
-              </p>
-              <Note
-                text={getReservedForFeeText(
-                  BigNumber.from(fee),
-                  EVMOS_SYMBOL,
-                  EVMOS_SYMBOL
-                )}
-              />
-            </>
-          )}
+          {amountProps.token !== undefined &&
+            amountProps.token.handledByExternalUI === null && (
+              <>
+                <p className="font-bold text-sm">
+                  Available Balance:{" "}
+                  <span className="font-normal opacity-80">
+                    {convertAndFormat(
+                      amountProps.token.erc20Balance,
+                      amountProps.token.decimals
+                    )}{" "}
+                    {amountProps.token.symbol}
+                  </span>
+                </p>
+                <Note
+                  text={getReservedForFeeText(
+                    BigNumber.from(fee),
+                    EVMOS_SYMBOL,
+                    EVMOS_SYMBOL
+                  )}
+                />
+              </>
+            )}
         </div>
       </>
     </ContainerModal>

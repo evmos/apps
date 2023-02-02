@@ -87,8 +87,8 @@ const AmountDeposit = ({
             <Dropdown
               placeholder="Select token..."
               data={data}
-              setTokenTo={setTokenTo}
-              setAddressTo={setAddressTo}
+              setToken={setTokenTo}
+              setAddress={setAddressTo}
               setValue={setValue}
             />
 

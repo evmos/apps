@@ -68,8 +68,12 @@ const DepositReceiver = ({
       <>
         <div className="flex items-center space-x-4">
           <TextSmall text="TO" />
-          {/* TODO: update image with /assets/ */}
-          <Image src="/tokens/evmos.png" alt="evmos" width={25} height={25} />
+          <Image
+            src="/assets/tokens/evmos.png"
+            alt="evmos"
+            width={25}
+            height={25}
+          />
           <div>
             <p className="font-bold">Evmos</p>
             <p className="text-xs">{truncateAddress(receiver)}</p>

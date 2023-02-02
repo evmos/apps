@@ -84,7 +84,7 @@ export const ConvertSTR = ({
               style={{
                 tokenTo: symbolFrom,
                 address,
-                img: `/tokens/${symbolFrom.toLowerCase()}.png`,
+                img: `/assets/tokens/${symbolFrom.toLowerCase()}.png`,
                 text: symbolFrom,
               }}
             />
@@ -101,7 +101,7 @@ export const ConvertSTR = ({
           <>
             <ToConvert
               token={symbolTo}
-              img={`/tokens/${symbolTo.toLowerCase()}.png`}
+              img={`/assets/tokens/${symbolTo.toLowerCase()}.png`}
               balance={balanceTo}
               decimals={item.decimals}
               addToken={token}

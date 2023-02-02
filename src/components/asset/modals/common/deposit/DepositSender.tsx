@@ -15,10 +15,9 @@ const DepositSender = ({
     <ContainerModal>
       <div className="flex items-center space-x-4">
         <TextSmall text="FROM" />
-        {/* TODO: add /assets/ */}
         {token !== undefined && (
           <Image
-            src={`/tokens/${token?.symbol.toLowerCase()}.png`}
+            src={`/assets/tokens/${token?.symbol.toLowerCase()}.png`}
             alt={token?.symbol}
             width={25}
             height={25}

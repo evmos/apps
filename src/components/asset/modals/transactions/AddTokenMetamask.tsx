@@ -36,7 +36,7 @@ const AddTokenMetamask = ({ token }: { token: Token }) => {
             width={15}
             height={15}
             className="cursor-pointer"
-            src={`/tokens/${token.symbol.toLowerCase()}.png`}
+            src={`/assets/tokens/${token.symbol.toLowerCase()}.png`}
             alt={token.symbol}
           />
           <span>Add {token.symbol}</span>

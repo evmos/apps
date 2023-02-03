@@ -32,7 +32,7 @@ export async function executeDeposit(
   // single token representation
   // This function only supports OSMOSIS - EVMOS case.
   let prefixSender = prefix;
-  if (params.sender.includes("osmo")) {
+  if (params.sender.startsWith("osmo")) {
     prefixSender = "osmo";
   }
   if (!checkFormatAddress(params.sender, prefixSender)) {

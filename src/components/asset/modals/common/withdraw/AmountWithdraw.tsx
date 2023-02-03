@@ -9,7 +9,7 @@ import {
   truncateNumber,
 } from "../../../../../internal/asset/style/format";
 import { EVMOS_SYMBOL } from "../../../../../internal/wallet/functionality/networkConfig";
-import Dropdown from "../../../dropdown/Dropdown";
+import DropdownTokens from "../../../dropdown/DropdownTokens";
 import SmallButton from "../../../../common/SmallButton";
 import ContainerInput from "../ContainerInput";
 import { ContainerModal } from "../ContainerModal";
@@ -67,7 +67,7 @@ const AmountWithdraw = ({
           )}
         <ContainerInput>
           <>
-            <Dropdown
+            <DropdownTokens
               placeholder="Select token..."
               data={amountProps.data}
               setToken={amountProps.setToken}

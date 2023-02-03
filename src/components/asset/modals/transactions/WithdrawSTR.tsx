@@ -20,7 +20,7 @@ const WithdrawSTR = ({
   const [receiverAddress, setReceiverAddress] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [token, setToken] = useState<TableDataElement>();
-
+  const [chain, setChain] = useState<TableDataElement>();
   const useWithdrawProps = {
     setConfirmClicked,
     setShow,
@@ -30,6 +30,7 @@ const WithdrawSTR = ({
     address,
     setDisabled,
     feeBalance,
+    chain,
   };
 
   const { handleConfirmButton } = useWithdraw(useWithdrawProps);
@@ -56,6 +57,14 @@ const WithdrawSTR = ({
             receiverAddress={receiverAddress}
             setReceiverAddress={setReceiverAddress}
             confirmClicked={confirmClicked}
+            dropChainProps={{
+              placeholder: "Select chain...",
+              data: data,
+              token: token,
+              chain: chain,
+              setChain: setChain,
+              setAddress: setReceiverAddress,
+            }}
           />
         ) : (
           ""

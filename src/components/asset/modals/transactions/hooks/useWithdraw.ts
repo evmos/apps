@@ -50,15 +50,15 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       BigNumber.from(useWithdrawProps.token.decimals)
     );
 
-    // evmos keeps using cosmosBalance
-
-    // TODO: withdraw is only EVMOS-OSMO
-    // or should we have all the others options too?
     let chainIdentifier = useWithdrawProps.token.chainIdentifier;
     let balance = useWithdrawProps.token.erc20Balance;
     let useERC20Denom = true;
-    if (useWithdrawProps.token.symbol === EVMOS_SYMBOL) {
-      chainIdentifier = "OSMOSIS";
+    if (
+      useWithdrawProps.token.symbol === EVMOS_SYMBOL &&
+      useWithdrawProps.chain !== undefined
+    ) {
+      chainIdentifier = useWithdrawProps.chain.chainIdentifier;
+      // evmos keeps using cosmosBalance
       balance = useWithdrawProps.token.cosmosBalance;
       useERC20Denom = false;
     }
@@ -79,6 +79,14 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
     useWithdrawProps.setDisabled(true);
 
     dispatch(snackIBCInformation());
+
+    let prefixReceiver = useWithdrawProps.token.prefix;
+    if (
+      useWithdrawProps.chain !== undefined &&
+      params.receiver.includes(useWithdrawProps.chain?.prefix)
+    ) {
+      prefixReceiver = useWithdrawProps.chain.prefix;
+    }
     // create, sign and broadcast tx
     const res = await executeWithdraw(
       wallet.evmosPubkey,
@@ -86,7 +94,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       params,
       useWithdrawProps.feeBalance,
       wallet.extensionName,
-      useWithdrawProps.token.prefix,
+      prefixReceiver,
       useERC20Denom
     );
 

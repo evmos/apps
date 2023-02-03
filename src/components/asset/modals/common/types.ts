@@ -4,6 +4,7 @@ import {
   TableData,
   TableDataElement,
 } from "../../../../internal/asset/functionality/table/normalizeData";
+import { DropdownChainsProps } from "../../dropdown/types";
 
 export type Fee = {
   fee: BigNumber;
@@ -43,6 +44,7 @@ export type WithdrawReceiverProps = {
   receiverAddress: string;
   setReceiverAddress: Dispatch<SetStateAction<string>>;
   confirmClicked: boolean;
+  dropChainProps: DropdownChainsProps;
 };
 
 export type AmountWithdrawProps = {

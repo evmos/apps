@@ -13,12 +13,14 @@ import { ContainerModal } from "../ContainerModal";
 import ErrorMessage from "../ErrorMessage";
 import { TextSmall } from "../TextSmall";
 import { WithdrawReceiverProps } from "../types";
+import ChainContainer from "./ChainContainer";
 
 const ToWithdraw = ({
   token,
   receiverAddress,
   setReceiverAddress,
   confirmClicked,
+  dropChainProps,
 }: WithdrawReceiverProps) => {
   const [showInput, setShowInput] = useState(false);
   const [showEditButton, setShowEditButton] = useState(true);
@@ -28,6 +30,27 @@ const ToWithdraw = ({
   };
   const dispatch = useDispatch();
 
+  const handleOnClickKeplr = async () => {
+    if (token === undefined) {
+      // It should never enters here because the button
+      // is disabled until the user selects a token
+      return;
+    }
+
+    let chainId = token.chainId;
+    let chainIdentifier = token.chainIdentifier;
+    if (token.symbol === EVMOS_SYMBOL && dropChainProps.chain !== undefined) {
+      chainId = dropChainProps.chain?.chainId;
+      chainIdentifier = dropChainProps.chain?.chainIdentifier;
+    }
+
+    const keplrAddress = await getKeplrAddressByChain(chainId, chainIdentifier);
+    if (keplrAddress === null) {
+      dispatch(snackErrorConnectingKeplr());
+      return;
+    }
+    setReceiverAddress(keplrAddress);
+  };
   return (
     <ContainerModal>
       <>
@@ -46,37 +69,13 @@ const ToWithdraw = ({
               className={`cursor-pointer ${
                 token === undefined ? "disabled" : ""
               }`}
-              onClick={async () => {
-                if (token === undefined) {
-                  // It should never enters here
-                  // because the button is disabled until the user
-                  // selects a token
-                  return;
-                }
-
-                // TODO: withdraw is only EVMOS-OSMO
-                // or should we have all the others options too?
-                let chainId = token.chainId;
-                let chainIdentifier = token.chainIdentifier;
-                if (token.symbol === EVMOS_SYMBOL) {
-                  chainId = "osmosis-1";
-                  chainIdentifier = "OSMOSIS";
-                }
-
-                const keplrAddress = await getKeplrAddressByChain(
-                  chainId,
-                  chainIdentifier
-                );
-                if (keplrAddress === null) {
-                  dispatch(snackErrorConnectingKeplr());
-                  return;
-                }
-                setReceiverAddress(keplrAddress);
-              }}
+              onClick={handleOnClickKeplr}
             />
           </div>
         </div>
-        {/* <div className="flex items-center justify-between"> */}
+        {token !== undefined && token.symbol === EVMOS_SYMBOL && (
+          <ChainContainer dropChainProps={dropChainProps} />
+        )}
         {showInput && (
           <>
             <ContainerInput>

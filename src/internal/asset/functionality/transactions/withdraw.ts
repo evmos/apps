@@ -52,14 +52,7 @@ export async function executeWithdraw(
     };
   }
 
-  // TODO: We'll work on this once we start with
-  // single token representation
-  // This function only supports OSMOSIS - EVMOS case.
-  let prefixReceiver = prefix;
-  if (params.receiver.includes("osmo")) {
-    prefixReceiver = "osmo";
-  }
-  if (!checkFormatAddress(params.receiver, prefixReceiver)) {
+  if (!checkFormatAddress(params.receiver, prefix)) {
     return {
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,

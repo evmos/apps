@@ -21,6 +21,7 @@ export type WithdrawProps = {
   address: string;
   setDisabled: Dispatch<SetStateAction<boolean>>;
   feeBalance: BigNumber;
+  chain: TableDataElement | undefined;
 };
 
 export type DepositProps = {

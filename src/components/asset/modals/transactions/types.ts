@@ -32,6 +32,7 @@ export type DepositProps = {
   receiverAddress: string;
   setDisabled: Dispatch<SetStateAction<boolean>>;
   balance: BigNumber;
+  chain: TableDataElement | undefined;
 };
 
 export type ConvertProps = {

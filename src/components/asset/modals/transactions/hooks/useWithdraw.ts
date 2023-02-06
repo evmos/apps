@@ -5,6 +5,7 @@ import { BROADCASTED_NOTIFICATIONS } from "../../../../../internal/asset/functio
 import { IBCChainParams } from "../../../../../internal/asset/functionality/transactions/types";
 import { executeWithdraw } from "../../../../../internal/asset/functionality/transactions/withdraw";
 import {
+  getPrefix,
   snackbarExecutedTx,
   snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
@@ -80,12 +81,15 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
 
     dispatch(snackIBCInformation());
 
-    let prefixReceiver = useWithdrawProps.token.prefix;
-    if (
-      useWithdrawProps.chain !== undefined &&
-      params.receiver.includes(useWithdrawProps.chain?.prefix)
-    ) {
-      prefixReceiver = useWithdrawProps.chain.prefix;
+    const prefix = getPrefix(
+      useWithdrawProps.token,
+      useWithdrawProps.chain,
+      params.receiver
+    );
+
+    if (prefix === undefined) {
+      // TODO: snackbar?
+      return;
     }
     // create, sign and broadcast tx
     const res = await executeWithdraw(
@@ -94,7 +98,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       params,
       useWithdrawProps.feeBalance,
       wallet.extensionName,
-      prefixReceiver,
+      prefix,
       useERC20Denom
     );
 

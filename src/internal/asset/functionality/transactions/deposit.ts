@@ -28,14 +28,7 @@ export async function executeDeposit(
     };
   }
 
-  // TODO: We'll work on this once we start with
-  // single token representation
-  // This function only supports OSMOSIS - EVMOS case.
-  let prefixSender = prefix;
-  if (params.sender.includes("osmo")) {
-    prefixSender = "osmo";
-  }
-  if (!checkFormatAddress(params.sender, prefixSender)) {
+  if (!checkFormatAddress(params.sender, prefix)) {
     return {
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,

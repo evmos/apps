@@ -6,6 +6,8 @@ import { executeDeposit } from "../../../../../internal/asset/functionality/tran
 import { BROADCASTED_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
 import { IBCChainParams } from "../../../../../internal/asset/functionality/transactions/types";
 import {
+  getChainIds,
+  getPrefix,
   snackbarExecutedTx,
   snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
@@ -35,25 +37,36 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       return;
     }
 
-    const amount = parseUnits(
-      useDepositProps.inputValue,
-      BigNumber.from(useDepositProps.token.decimals)
-    );
     if (
       useDepositProps.inputValue === undefined ||
       useDepositProps.inputValue === null ||
       useDepositProps.inputValue === "" ||
       useDepositProps.receiverAddress === undefined ||
       useDepositProps.receiverAddress === null ||
-      useDepositProps.receiverAddress === "" ||
-      amount.gt(useDepositProps.balance)
+      useDepositProps.receiverAddress === ""
     ) {
       return;
     }
-
-    const keplrAddress = await getKeplrAddressByChain(
-      useDepositProps.token.chainId
+    const amount = parseUnits(
+      useDepositProps.inputValue,
+      BigNumber.from(useDepositProps.token.decimals)
     );
+    if (amount.gt(useDepositProps.balance)) {
+      return;
+    }
+
+    const chainIds = getChainIds(useDepositProps.token, useDepositProps.chain);
+    if (
+      chainIds.chainId === "" ||
+      chainIds.chainId === undefined ||
+      chainIds.chainIdentifier === "" ||
+      chainIds.chainIdentifier === undefined
+    ) {
+      // TODO: snackbar?
+      return;
+    }
+
+    const keplrAddress = await getKeplrAddressByChain(chainIds.chainId);
     if (keplrAddress === null) {
       return;
     }
@@ -66,21 +79,32 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       sender: keplrAddress,
       receiver: addressEvmos,
       amount: amount.toString(),
-      srcChain: useDepositProps.token.chainIdentifier,
+      srcChain: chainIds.chainIdentifier,
       dstChain: EVMOS_SYMBOL,
       token: useDepositProps.token.symbol,
     };
     useDepositProps.setDisabled(true);
 
     dispatch(snackIBCInformation());
+
+    const prefix = getPrefix(
+      useDepositProps.token,
+      useDepositProps.chain,
+      params.sender
+    );
+
+    if (prefix === undefined) {
+      // TODO: snackbar?
+      return;
+    }
     // create, sign and broadcast tx
     const res = await executeDeposit(
       wallet.osmosisPubkey,
       keplrAddress,
       params,
-      useDepositProps.token.chainIdentifier.toUpperCase(),
+      chainIds.chainIdentifier.toUpperCase(),
       wallet.extensionName,
-      useDepositProps.token.prefix
+      prefix
     );
 
     dispatch(snackExecuteIBCTransfer(res));
@@ -91,7 +115,7 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       dispatch(
         await snackbarIncludedInBlock(
           res.txHash,
-          useDepositProps.token.chainIdentifier.toUpperCase(),
+          chainIds.chainIdentifier.toUpperCase(),
           res.explorerTxUrl
         )
       );
@@ -99,7 +123,7 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       dispatch(
         await snackbarExecutedTx(
           res.txHash,
-          useDepositProps.token.chainIdentifier.toUpperCase()
+          chainIds.chainIdentifier.toUpperCase()
         )
       );
     }

@@ -11,6 +11,7 @@ const DropdownTokens = ({
   setToken,
   setAddress,
   setValue,
+  setChain,
 }: DropdownTokensProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
@@ -51,6 +52,8 @@ const DropdownTokens = ({
     setToken(option);
     setAddress("");
     setValue("");
+    // TODO: is it right to set as undefined?
+    setChain(undefined);
   };
 
   return (

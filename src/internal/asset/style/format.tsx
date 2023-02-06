@@ -2,7 +2,10 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { formatUnits } from "@ethersproject/units";
 import { addSnackbar } from "../../../components/notification/redux/notificationSlice";
 import { BIG_ZERO } from "../../common/math/Bignumbers";
-import { TableData } from "../functionality/table/normalizeData";
+import {
+  TableData,
+  TableDataElement,
+} from "../functionality/table/normalizeData";
 import { EXECUTED_NOTIFICATIONS } from "../functionality/transactions/errors";
 import {
   checkIBCExecutionStatus,
@@ -11,6 +14,7 @@ import {
 import { TransactionStatus } from "../functionality/transactions/types";
 import { SimpleSnackbar } from "../../../components/notification/content/SimpleSnackbar";
 import { ViewExplorerSnackbar } from "../../../components/notification/content/ViexExplorerSnackbar";
+import { EVMOS_SYMBOL } from "../../wallet/functionality/networkConfig";
 export function getReservedForFeeText(
   amount: BigNumber,
   token: string,
@@ -252,4 +256,44 @@ export const numericOnly = (value: string) => {
     value = preval.substring(0, preval.length - 1);
     return value;
   }
+};
+
+// TODO: add test
+export const getSymbol = (
+  token: TableDataElement | undefined,
+  chain: TableDataElement | undefined
+) => {
+  let symbolTemp = token?.symbol;
+  if (token?.symbol === EVMOS_SYMBOL) {
+    if (chain !== undefined) {
+      symbolTemp = chain?.symbol;
+    }
+  }
+  return symbolTemp;
+};
+
+export const getChainIds = (
+  token: TableDataElement | undefined,
+  chain: TableDataElement | undefined
+) => {
+  let chainId = token?.chainId;
+  let chainIdentifier = token?.chainIdentifier;
+  if (token?.symbol === EVMOS_SYMBOL) {
+    chainId = chain?.chainId;
+    chainIdentifier = chain?.chainIdentifier;
+  }
+
+  return { chainId: chainId, chainIdentifier: chainIdentifier };
+};
+
+export const getPrefix = (
+  token: TableDataElement | undefined,
+  chain: TableDataElement | undefined,
+  address: string
+) => {
+  let prefix = token?.prefix;
+  if (chain !== undefined && address.startsWith(chain?.prefix)) {
+    prefix = chain.prefix;
+  }
+  return prefix;
 };

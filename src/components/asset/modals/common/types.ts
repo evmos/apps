@@ -55,6 +55,7 @@ export type AmountWithdrawProps = {
   setValue: Dispatch<SetStateAction<string>>;
   confirmClicked: boolean;
   setReceiverAddress: Dispatch<SetStateAction<string>>;
+  setChain: Dispatch<SetStateAction<TableDataElement | undefined>>;
 };
 
 type FeeDeposit = {
@@ -74,4 +75,5 @@ export type AmountDepositProps = {
   setReceiverAddress: Dispatch<SetStateAction<string>>;
   balance: BigNumber;
   fee: FeeDeposit;
+  setChain: Dispatch<SetStateAction<TableDataElement | undefined>>;
 };

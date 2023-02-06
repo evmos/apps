@@ -5,7 +5,10 @@ import { TableDataElement } from "../../../../internal/asset/functionality/table
 import ConfirmButton from "../../../common/ConfirmButton";
 import { ModalTitle } from "../../../common/Modal";
 import { getKeplrAddressByChain } from "../../../../internal/wallet/functionality/keplr/keplrHelpers";
-import { getBalance } from "../../../../internal/asset/functionality/fetch";
+import {
+  getBalance,
+  getEvmosBalanceForDeposit,
+} from "../../../../internal/asset/functionality/fetch";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import DepositReceiver from "../common/deposit/DepositReceiver";
 import AmountDeposit from "../common/deposit/AmountDeposit";
@@ -17,6 +20,8 @@ import {
 import RedirectLink from "../common/RedirectLink";
 import { ButtonActionsProps } from "./types";
 import { useDeposit } from "./hooks/useDeposit";
+import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
+import { getChainIds } from "../../../../internal/asset/style/format";
 
 const DepositSTR = ({
   data,
@@ -31,6 +36,7 @@ const DepositSTR = ({
   const [walletToUse, setWalletToUse] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [token, setToken] = useState<TableDataElement>();
+  const [chain, setChain] = useState<TableDataElement>();
 
   const dispatch = useDispatch();
 
@@ -42,16 +48,22 @@ const DepositSTR = ({
     receiverAddress,
     setDisabled,
     balance,
+    chain,
   };
 
   const { handleConfirmButton } = useDeposit(useDepositProps);
 
+  const chainIds = getChainIds(token, chain);
+
   useEffect(() => {
     async function getData() {
-      if (token !== undefined) {
+      if (chain === undefined) {
+        setWalletToUse("");
+      }
+      if (token !== undefined && chainIds.chainId !== undefined) {
         const wallet = await getKeplrAddressByChain(
-          token.chainId,
-          token.chainIdentifier
+          chainIds.chainId,
+          chainIds.chainIdentifier
         );
         if (wallet === null) {
           dispatch(snackErrorConnectingKeplr());
@@ -59,11 +71,23 @@ const DepositSTR = ({
           return;
         }
         setWalletToUse(wallet);
-        const balance = await getBalance(
-          wallet,
-          token.chainIdentifier.toUpperCase(),
-          token.symbol
-        );
+        let balance;
+        if (
+          token.symbol === EVMOS_SYMBOL &&
+          chainIds.chainIdentifier !== undefined
+        ) {
+          balance = await getEvmosBalanceForDeposit(
+            wallet,
+            chainIds.chainIdentifier.toUpperCase(),
+            token.symbol
+          );
+        } else {
+          balance = await getBalance(
+            wallet,
+            token.chainIdentifier.toUpperCase(),
+            token.symbol
+          );
+        }
 
         if (balance.error === true || balance.data === null) {
           dispatch(snackErrorGettingBalanceExtChain());
@@ -78,7 +102,15 @@ const DepositSTR = ({
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     getData();
-  }, [address, token, dispatch, setShow]);
+  }, [
+    address,
+    token,
+    dispatch,
+    setShow,
+    chainIds.chainId,
+    chainIds.chainIdentifier,
+    chain,
+  ]);
 
   const amountProps = {
     data: data,
@@ -95,13 +127,25 @@ const DepositSTR = ({
       feeBalance: feeBalance,
       feeDecimals: token?.decimals,
     },
+    setChain: setChain,
   };
 
   return (
     <>
       <ModalTitle title="Deposit Tokens" />
       <div className="text-darkGray3 space-y-3">
-        <DepositSender token={token} address={walletToUse} />
+        <DepositSender
+          token={token}
+          address={walletToUse}
+          dropChainProps={{
+            placeholder: "Select chain...",
+            data: data,
+            token: token,
+            chain: chain,
+            setChain: setChain,
+            setAddress: setReceiverAddress,
+          }}
+        />
 
         <AmountDeposit amountProps={amountProps} />
 
@@ -116,19 +160,20 @@ const DepositSTR = ({
         ) : (
           ""
         )}
+
+        {token !== undefined && token.handledByExternalUI !== null ? (
+          <RedirectLink
+            href={token.handledByExternalUI.url}
+            text="Deposit from Axelar"
+          />
+        ) : (
+          <ConfirmButton
+            disabled={disabled}
+            text="DEPOSIT"
+            onClick={handleConfirmButton}
+          />
+        )}
       </div>
-      {token !== undefined && token.handledByExternalUI !== null ? (
-        <RedirectLink
-          href={token.handledByExternalUI.url}
-          text="Deposit from Axelar"
-        />
-      ) : (
-        <ConfirmButton
-          disabled={disabled}
-          text="DEPOSIT"
-          onClick={handleConfirmButton}
-        />
-      )}
     </>
   );
 };

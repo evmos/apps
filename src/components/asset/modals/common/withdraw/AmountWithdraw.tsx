@@ -73,6 +73,7 @@ const AmountWithdraw = ({
               setToken={amountProps.setToken}
               setAddress={amountProps.setReceiverAddress}
               setValue={amountProps.setValue}
+              setChain={amountProps.setChain}
             />
 
             {amountProps.token === undefined ||

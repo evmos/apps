@@ -43,6 +43,7 @@ const WithdrawSTR = ({
     setValue: setInputValue,
     confirmClicked: confirmClicked,
     setReceiverAddress: setReceiverAddress,
+    setChain: setChain,
   };
 
   return (

@@ -10,6 +10,7 @@ export type DropdownTokensProps = {
   setToken: Dispatch<SetStateAction<TableDataElement | undefined>>;
   setAddress: Dispatch<SetStateAction<string>>;
   setValue: Dispatch<SetStateAction<string>>;
+  setChain: Dispatch<SetStateAction<TableDataElement | undefined>>;
 };
 
 export type DropdownChainsProps = {

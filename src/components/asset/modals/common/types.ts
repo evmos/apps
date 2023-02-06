@@ -76,4 +76,5 @@ export type AmountDepositProps = {
   balance: BigNumber;
   fee: FeeDeposit;
   setChain: Dispatch<SetStateAction<TableDataElement | undefined>>;
+  chain: TableDataElement | undefined;
 };

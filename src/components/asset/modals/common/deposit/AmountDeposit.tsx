@@ -16,6 +16,7 @@ import Note from "../Note";
 import { TextSmall } from "../TextSmall";
 import { AmountDepositProps } from "../types";
 import { useState } from "react";
+import { EVMOS_SYMBOL } from "../../../../../internal/wallet/functionality/networkConfig";
 
 const AmountDeposit = ({
   amountProps,
@@ -56,19 +57,48 @@ const AmountDeposit = ({
   return (
     <ContainerModal>
       <>
-        {amountProps.token === undefined ||
-        amountProps.token.handledByExternalUI === null ? (
-          <TextSmall text="AMOUNT" />
-        ) : (
-          <TextSmall text="SELECT BRIDGE" />
-        )}
+        {amountProps.token === undefined && <TextSmall text="AMOUNT" />}
+
+        {amountProps.token !== undefined &&
+          amountProps.token.handledByExternalUI === null &&
+          amountProps.token.symbol !== EVMOS_SYMBOL && (
+            <TextSmall text="AMOUNT" />
+          )}
+
         {amountProps.token !== undefined &&
           amountProps.token.handledByExternalUI !== null && (
-            <Note
-              text="We currently do not offer transfers directly from Ethereum. For now,
-        here area few options that will allow you to withdraw from Evmos"
-            />
+            <>
+              <TextSmall text="SELECT BRIDGE" />
+              <Note
+                text="We currently do not offer transfers directly from Ethereum. For now,
+      here area few options that will allow you to withdraw from Evmos"
+              />
+            </>
           )}
+
+        {amountProps.token !== undefined &&
+          amountProps.token.symbol === EVMOS_SYMBOL &&
+          amountProps.chain?.handledByExternalUI === null && (
+            <TextSmall text="AMOUNT" />
+          )}
+
+        {amountProps.token !== undefined &&
+          amountProps.token.symbol === EVMOS_SYMBOL &&
+          amountProps.chain === undefined && <TextSmall text="AMOUNT" />}
+
+        {amountProps.token !== undefined &&
+          amountProps.token.symbol === EVMOS_SYMBOL &&
+          amountProps.chain !== undefined &&
+          amountProps.chain?.handledByExternalUI !== null && (
+            <>
+              <TextSmall text="SELECT BRIDGE" />
+              <Note
+                text="We currently do not offer transfers directly from Ethereum. For now,
+      here area few options that will allow you to withdraw from Evmos"
+              />
+            </>
+          )}
+
         <ContainerInput>
           <>
             <DropdownTokens
@@ -80,11 +110,26 @@ const AmountDeposit = ({
               setChain={amountProps.setChain}
             />
 
-            {amountProps.token === undefined ||
+            {/* {amountProps.token === undefined ||
             amountProps.token.handledByExternalUI === null ? (
               <>
                 <input
                   className="w-full  border-none hover:border-none focus-visible:outline-none text-right"
+                  type="text"
+                  placeholder="amount"
+                  value={amountProps.value}
+                  onChange={handleOnChangeInput}
+                />
+                <SmallButton text="MAX" onClick={handleOnClickMax} />
+              </>
+            ) : (
+              ""
+            )} */}
+            {amountProps.chain === undefined ||
+            amountProps.chain.handledByExternalUI === null ? (
+              <>
+                <input
+                  className="w-full border-none hover:border-none focus-visible:outline-none text-right"
                   type="text"
                   placeholder="amount"
                   value={amountProps.value}
@@ -120,7 +165,7 @@ const AmountDeposit = ({
               ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
         </div>
         <div className="space-y-2">
-          {amountProps.token !== undefined &&
+          {/* {amountProps.token !== undefined &&
             amountProps.token.handledByExternalUI === null && (
               <>
                 <p className="font-bold text-sm">
@@ -131,6 +176,21 @@ const AmountDeposit = ({
                       amountProps.token.decimals
                     )}{" "}
                     {amountProps.token.symbol}
+                  </span>
+                </p>
+              </>
+            )} */}
+          {amountProps.chain !== undefined &&
+            amountProps.chain.handledByExternalUI === null && (
+              <>
+                <p className="font-bold text-sm">
+                  Available Balance:{" "}
+                  <span className="font-normal opacity-80">
+                    {convertAndFormat(
+                      amountProps.balance,
+                      amountProps.token?.decimals
+                    )}{" "}
+                    {amountProps.token?.symbol}
                   </span>
                 </p>
               </>

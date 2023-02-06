@@ -81,11 +81,6 @@ const DepositSTR = ({
             chainIds.chainIdentifier.toUpperCase(),
             token.symbol
           );
-          // balance = await getBalance(
-          //   wallet,
-          //   token.chainIdentifier.toUpperCase(),
-          //   token.symbol
-          // );
         } else {
           balance = await getBalance(
             wallet,
@@ -103,7 +98,6 @@ const DepositSTR = ({
         setBalance(
           BigNumber.from(balance.data.balance ? balance.data.balance.amount : 0)
         );
-        // setBalance(BigNumber.from("1"));
       }
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
@@ -155,6 +149,35 @@ const DepositSTR = ({
       </>
     );
   };
+
+  const depositDiv = () => {
+    // No token selected, display deposit and confirm button
+    if (token === undefined) {
+      return depositContent();
+    }
+
+    // If chain is from axelar, return redirect component
+    if (chain !== undefined && chain.handledByExternalUI !== null) {
+      return (
+        <RedirectLink
+          href={chain.handledByExternalUI.url}
+          text="Deposit from Axelar"
+        />
+      );
+    }
+    // If token is from axelar, return redirect component
+    if (token !== undefined && token.handledByExternalUI !== null) {
+      return (
+        <RedirectLink
+          href={token.handledByExternalUI.url}
+          text="Deposit from Axelar"
+        />
+      );
+    }
+
+    return depositContent();
+  };
+
   return (
     <>
       <ModalTitle title="Deposit Tokens" />
@@ -173,39 +196,7 @@ const DepositSTR = ({
         />
 
         <AmountDeposit amountProps={amountProps} />
-
-        {token === undefined && depositContent()}
-
-        {token !== undefined &&
-          token.handledByExternalUI === null &&
-          token.symbol !== EVMOS_SYMBOL &&
-          depositContent()}
-
-        {token !== undefined &&
-          token.symbol === EVMOS_SYMBOL &&
-          chain?.handledByExternalUI === null &&
-          depositContent()}
-
-        {token !== undefined &&
-          token.symbol === EVMOS_SYMBOL &&
-          chain === undefined &&
-          depositContent()}
-
-        {token !== undefined && token.handledByExternalUI !== null && (
-          <RedirectLink
-            href={token.handledByExternalUI.url}
-            text="Deposit from Axelar"
-          />
-        )}
-
-        {token !== undefined &&
-          chain !== undefined &&
-          chain.handledByExternalUI !== null && (
-            <RedirectLink
-              href={chain.handledByExternalUI.url}
-              text="Deposit from Axelar"
-            />
-          )}
+        {depositDiv()}
       </div>
     </>
   );

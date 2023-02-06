@@ -16,7 +16,6 @@ import Note from "../Note";
 import { TextSmall } from "../TextSmall";
 import { AmountDepositProps } from "../types";
 import { useState } from "react";
-import { EVMOS_SYMBOL } from "../../../../../internal/wallet/functionality/networkConfig";
 
 const AmountDeposit = ({
   amountProps,
@@ -108,6 +107,33 @@ const AmountDeposit = ({
     );
   };
 
+  const createBalanceDiv = () => {
+    // If token or chain are from axelar, return empty component
+    if (amountProps.token === undefined) {
+      return <></>;
+    }
+
+    if (
+      (amountProps.token !== undefined &&
+        amountProps.token.handledByExternalUI !== null) ||
+      (amountProps.chain !== undefined &&
+        amountProps.chain.handledByExternalUI !== null)
+    ) {
+      return <></>;
+    }
+    return (
+      <>
+        <p className="font-bold text-sm">
+          Available Balance:{" "}
+          <span className="font-normal opacity-80">
+            {convertAndFormat(amountProps.balance, amountProps.token?.decimals)}{" "}
+            {amountProps.token?.symbol}
+          </span>
+        </p>
+      </>
+    );
+  };
+
   return (
     <ContainerModal>
       <>
@@ -148,38 +174,7 @@ const AmountDeposit = ({
                 )
               ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
         </div>
-        <div className="space-y-2">
-          {/* {amountProps.token !== undefined &&
-            amountProps.token.handledByExternalUI === null && (
-              <>
-                <p className="font-bold text-sm">
-                  Available Balance:{" "}
-                  <span className="font-normal opacity-80">
-                    {convertAndFormat(
-                      amountProps.balance,
-                      amountProps.token.decimals
-                    )}{" "}
-                    {amountProps.token.symbol}
-                  </span>
-                </p>
-              </>
-            )} */}
-          {amountProps.chain !== undefined &&
-            amountProps.chain.handledByExternalUI === null && (
-              <>
-                <p className="font-bold text-sm">
-                  Available Balance:{" "}
-                  <span className="font-normal opacity-80">
-                    {convertAndFormat(
-                      amountProps.balance,
-                      amountProps.token?.decimals
-                    )}{" "}
-                    {amountProps.token?.symbol}
-                  </span>
-                </p>
-              </>
-            )}
-        </div>
+        <div className="space-y-2">{createBalanceDiv()}</div>
         {amountProps.fee.fee.eq(createBigNumber(feeDeposit)) &&
           maxClicked &&
           amountProps.token !== undefined && (

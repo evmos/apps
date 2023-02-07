@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import DropdownArrow from "../../common/images/icons/DropdownArrow";
@@ -49,6 +49,19 @@ const DropdownChains = ({
     dropChainProps.setAddress("");
   };
 
+  // get the uniques chains for select
+  const chainsWithoutRep = useMemo(() => {
+    const temp = new Set<string>();
+    const ret: TableDataElement[] = [];
+    dropChainProps?.data?.table.forEach((e) => {
+      if (temp.has(e.chainIdentifier) === false) {
+        temp.add(e.chainIdentifier);
+        ret.push(e);
+      }
+    });
+    return ret;
+  }, [dropChainProps?.data?.table]);
+
   return (
     <div className="text-left w-full relative rounded cursor-pointer text-black ">
       <div
@@ -57,12 +70,12 @@ const DropdownChains = ({
       >
         {showMenu && (
           <div className="z-[9999] absolute translate-y-9 -left-4 top-0 w-auto overflow-auto max-h-40 bg-white border border-darkGray2 rounded">
-            {dropChainProps?.data?.table.map((option) => {
+            {chainsWithoutRep.map((option) => {
               if (option.symbol !== EVMOS_SYMBOL) {
                 return (
                   <div
                     onClick={() => onItemClick(option)}
-                    key={option.name}
+                    key={option.chainIdentifier}
                     className={`p-3 cursor-pointer hover:bg-gray flex justify-between space-x-8 font-bold
                   `}
                   >
@@ -73,7 +86,7 @@ const DropdownChains = ({
                         width={25}
                         height={25}
                       />
-                      <span>{option.name}</span>
+                      <span>{option.chainIdentifier}</span>
                     </div>
                   </div>
                 );

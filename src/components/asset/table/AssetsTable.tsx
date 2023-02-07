@@ -35,6 +35,7 @@ import { BigNumber } from "ethers";
 import HeadAssets from "./components/HeadAssets";
 import LeftArrowIcon from "../../common/images/icons/LeftArrowIcon";
 import Link from "next/link";
+import Guide from "./Guide";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -159,12 +160,15 @@ const AssetsTable = () => {
       </Link>
       <TopBar topProps={topProps} />
       <Banner />
-      <Switch
-        onChange={() => {
-          zeroBalance();
-        }}
-        checked={hideZeroBalance}
-      />
+      <div className="flex flex-col lg:flex-row mx-5 xl:mx-0 justify-center lg:justify-between">
+        <Guide />
+        <Switch
+          onChange={() => {
+            zeroBalance();
+          }}
+          checked={hideZeroBalance}
+        />
+      </div>
       <div className="mt-5 overflow-y-auto max-h-[33vh] lg:max-h-[43vh] xl:scrollbar-hide text-white font-[IBM] w-full">
         {!isLoading && !error && tableData?.length > 0 && showMobile && (
           <ContentCard

@@ -1,4 +1,3 @@
-// import AssetsGuide from "../../modals/AssetsGuide";
 import ButtonsActions from "./ButtonsActions";
 import { Container } from "./Container";
 import { TopBarProps } from "./types";

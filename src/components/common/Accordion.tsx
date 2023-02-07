@@ -7,7 +7,7 @@ const Accordion = ({
   content,
 }: {
   title: JSX.Element;
-  content: JSX.Element | string;
+  content: JSX.Element | null;
 }) => {
   const [isActive, setIsActive] = useState(false);
 
@@ -16,12 +16,12 @@ const Accordion = ({
       <div className="bg-darkGray2 border-b-2 border-b-black py-5 accordion-item">
         <div
           className={`flex items-center ${
-            content !== "" ? "cursor-pointer" : "cursor-default"
+            content !== null ? "cursor-pointer" : "cursor-default"
           } `}
           onClick={() => setIsActive(!isActive)}
         >
           <div className="w-[5%] flex justify-center">
-            {content !== "" ? (
+            {content !== null ? (
               isActive ? (
                 <UpArrowIcon />
               ) : (
@@ -33,7 +33,7 @@ const Accordion = ({
           </div>
           {title}
         </div>
-        {content !== "" && isActive && (
+        {content !== null && isActive && (
           <div className="border-t-2 border-t-black pt-5 mt-5 flex ">
             <div className="flex justify-between w-full">{content}</div>
           </div>

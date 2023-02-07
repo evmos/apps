@@ -17,6 +17,7 @@ export type ERC20Element = {
   prefix: string;
   pngSrc: string;
   erc20Address: string;
+  tokenIdentifier: string;
 };
 
 export type ERC20BalanceResponse = {

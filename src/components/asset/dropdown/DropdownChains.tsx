@@ -31,8 +31,8 @@ const DropdownChains = ({
       return (
         <div className="flex items-center space-x-3 font-bold">
           <Image
-            src={`/assets/tokens/${selectedValue.symbol.toLowerCase()}.png`}
-            alt={selectedValue.symbol}
+            src={`/assets/chains/${selectedValue.chainIdentifier}.png`}
+            alt={selectedValue.chainIdentifier}
             width={25}
             height={25}
           />
@@ -81,8 +81,8 @@ const DropdownChains = ({
                   >
                     <div className="flex items-center space-x-3">
                       <Image
-                        src={`/assets/tokens/${option.symbol.toLowerCase()}.png`}
-                        alt={option.symbol}
+                        src={`/assets/chains/${option.chainIdentifier}.png`}
+                        alt={option.chainIdentifier}
                         width={25}
                         height={25}
                       />

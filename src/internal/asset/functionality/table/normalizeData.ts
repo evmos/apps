@@ -17,6 +17,7 @@ export type TableDataElement = {
   prefix: string;
   pngSrc: string;
   erc20Address: string;
+  tokenIdentifier: string;
 };
 
 export type TableData = {
@@ -66,6 +67,7 @@ export function normalizeAssetsData(data: ERC20BalanceResponse | undefined) {
         prefix: item.prefix,
         pngSrc: item.pngSrc,
         erc20Address: item.erc20Address,
+        tokenIdentifier: item.tokenIdentifier,
       });
     }
   });

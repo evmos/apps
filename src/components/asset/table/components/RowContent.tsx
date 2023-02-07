@@ -1,3 +1,4 @@
+import { BigNumber } from "ethers";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import {
   addAssets,

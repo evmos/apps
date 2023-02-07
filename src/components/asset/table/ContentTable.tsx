@@ -1,6 +1,11 @@
 import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction, useMemo } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
+import {
+  addAssets,
+  addDolarAssets,
+  formatNumber,
+} from "../../../internal/asset/style/format";
 // import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import Accordion from "../../common/Accordion";
 import { RowContent } from "./components/RowContent";
@@ -47,7 +52,6 @@ const ContentTable = ({
           return;
         }
         b.tokens.push(e);
-
         b.total = b.total.add(e.erc20Balance);
       } else {
         map.set(e.tokenIdentifier, {
@@ -67,25 +71,45 @@ const ContentTable = ({
 
     data.forEach((v, k) => {
       let content: JSX.Element[] | null = null;
-      const firstRowData = v.tokens[0];
-      if (v.tokens.length > 1) {
-        firstRowData.erc20Balance = v.total;
-        content = [];
-        v.tokens.map((e) => {
-          content?.push(
-            createSubRow(e, setShow, setModalContent, tableData.feeBalance)
-          );
+
+      let valueInDollars = 0;
+      let valueInTokens = 0;
+
+      content = [];
+      v.tokens.map((e) => {
+        content?.push(
+          createSubRow(e, setShow, setModalContent, tableData.feeBalance)
+        );
+        valueInTokens += addAssets({
+          erc20Balance: e.erc20Balance,
+          decimals: e.decimals,
+          cosmosBalance: e.cosmosBalance,
         });
-      }
+        valueInDollars += addDolarAssets({
+          erc20Balance: e.erc20Balance,
+          decimals: e.decimals,
+          coingeckoPrice: e.coingeckoPrice,
+          cosmosBalance: e.cosmosBalance,
+        });
+      });
+
       ret.push(
         <Accordion
           key={k}
           content={
             content ? (
-              <div className="flex w-full flex-col space-y-5 ">{content} </div>
+              <div className="flex w-full flex-col space-y-5">{content}</div>
             ) : null
           }
-          title={<RowContent item={firstRowData} />}
+          title={
+            <RowContent
+              symbol={v.name}
+              //TODO: add imgsrc for each indentifier
+              imgSrc=""
+              valueInTokens={formatNumber(valueInTokens)}
+              valueInDollars={valueInDollars.toFixed(2)}
+            />
+          }
         />
       );
     });

@@ -4,6 +4,7 @@ import { DescriptionProps } from "./types";
 export const Description = ({
   symbol,
   description,
+  imageSrc = undefined,
   subRow = false,
 }: DescriptionProps) => {
   return (
@@ -13,7 +14,11 @@ export const Description = ({
       } `}
     >
       <Image
-        src={`/assets/tokens/${symbol.toLocaleLowerCase()}.png`}
+        src={
+          imageSrc
+            ? imageSrc
+            : `/assets/tokens/${symbol.toLocaleLowerCase()}.png`
+        }
         alt={symbol}
         width={35}
         height={35}

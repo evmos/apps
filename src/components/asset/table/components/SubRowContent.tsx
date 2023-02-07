@@ -1,3 +1,4 @@
+import { BigNumber } from "ethers";
 import { useSelector } from "react-redux";
 import {
   amountToDolars,
@@ -54,6 +55,14 @@ export const SubRowContent = ({
         <div className="flex flex-col">
           <span className="font-bold">
             {convertAndFormat(balance, item.decimals)}
+          </span>
+          <span
+            className={`${
+              item.cosmosBalance.eq(BigNumber.from("0")) ? "hidden" : ""
+            } font-bold`}
+          >
+            {convertAndFormat(item.cosmosBalance, item.decimals)} (Cosmos
+            balance)
           </span>
           <span className="text-sm text-darkGray5">
             {amountToDolars(balance, item.decimals, item.coingeckoPrice)}

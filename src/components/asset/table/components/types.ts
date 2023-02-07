@@ -13,5 +13,6 @@ export type SubRowProps = {
 export type DescriptionProps = {
   symbol: string;
   description: string;
+  imageSrc?: string;
   subRow?: boolean;
 };

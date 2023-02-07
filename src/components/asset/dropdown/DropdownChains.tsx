@@ -36,7 +36,7 @@ const DropdownChains = ({
             width={25}
             height={25}
           />
-          <span> {selectedValue.name}</span>
+          <span> {selectedValue.chainIdentifier}</span>
         </div>
       );
     }

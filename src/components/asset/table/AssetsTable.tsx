@@ -14,7 +14,6 @@ import dynamic from "next/dynamic";
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
 const MessageTable = dynamic(() => import("./MessageTable"));
 const Switch = dynamic(() => import("../utils/Switch"));
-const ContentCard = dynamic(() => import("../mobileView/Content"));
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));
 const Banner = dynamic(() => import("../Banner"));
@@ -24,7 +23,6 @@ import {
   normalizeAssetsData,
   TableData,
 } from "../../../internal/asset/functionality/table/normalizeData";
-import { useRouter } from "next/router";
 import HeadTable from "./HeadTable";
 import {
   convertFromAtto,
@@ -39,8 +37,6 @@ import Guide from "./Guide";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
-
-  const [showMobile, setShowMobile] = useState(false);
 
   const value = useSelector((state: StoreType) => state.wallet.value);
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
@@ -96,27 +92,6 @@ const AssetsTable = () => {
     });
   }, [normalizedAssetsData, hideZeroBalance]);
 
-  const router = useRouter();
-  const handleClientWidthChanges = () => {
-    if (window.innerWidth <= 1280) {
-      setShowMobile(true);
-    } else if (window.innerWidth > 1280) {
-      setShowMobile(false);
-    }
-  };
-
-  useEffect(() => {
-    if (window.innerWidth <= 1280) {
-      setShowMobile(true);
-    }
-  }, [router.pathname]);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleClientWidthChanges);
-
-    return () => window.removeEventListener("resize", handleClientWidthChanges);
-  }, []);
-
   const totalStaked = useMemo(() => {
     let stakedRes = totalStakedResults?.data?.value;
     if (stakedRes !== "" && stakedRes !== undefined) {
@@ -170,18 +145,8 @@ const AssetsTable = () => {
         />
       </div>
       <div className="mt-5 overflow-y-auto max-h-[33vh] lg:max-h-[43vh] xl:scrollbar-hide text-white font-[IBM] w-full">
-        {!isLoading && !error && tableData?.length > 0 && showMobile && (
-          <ContentCard
-            tableData={{
-              table: tableData,
-              feeBalance: normalizedAssetsData.feeBalance,
-            }}
-            setShow={setShow}
-            setModalContent={setModalContent}
-          />
-        )}
         <table className="w-full">
-          {tableData?.length === 0 && !showMobile && <HeadTable />}
+          {tableData?.length === 0 && <HeadTable />}
           <tbody>
             {isLoading && (
               <MessageTable>
@@ -207,8 +172,8 @@ const AssetsTable = () => {
             </tbody>
           )}
         </table>
-        {!isLoading && !error && tableData?.length > 0 && !showMobile && (
-          <div>
+        {!isLoading && !error && tableData?.length > 0 && (
+          <div className="mx-5 xl:mx-0">
             <HeadAssets />
             <ContentTable
               tableData={{

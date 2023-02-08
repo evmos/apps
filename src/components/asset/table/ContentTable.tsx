@@ -46,13 +46,12 @@ const ContentTable = ({
     const map = new Map<string, accordionData>();
     tableData?.table.map((e) => {
       if (map.has(e.tokenIdentifier) === true) {
-        // if (e.symbol === EVMOS_SYMBOL ) add evmos
-        const b = map.get(e.tokenIdentifier);
-        if (b === undefined) {
+        const temp = map.get(e.tokenIdentifier);
+        if (temp === undefined) {
           return;
         }
-        b.tokens.push(e);
-        b.total = b.total.add(e.erc20Balance);
+        temp.tokens.push(e);
+        temp.total = temp.total.add(e.erc20Balance);
       } else {
         map.set(e.tokenIdentifier, {
           name: e.tokenIdentifier,
@@ -104,8 +103,7 @@ const ContentTable = ({
           title={
             <RowContent
               symbol={v.name}
-              //TODO: add imgsrc for each indentifier
-              imgSrc=""
+              imgSrc={`/assets/tokenIdentifier/${v.icon.toLocaleLowerCase()}.png`}
               valueInTokens={formatNumber(valueInTokens)}
               valueInDollars={valueInDollars.toFixed(2)}
             />

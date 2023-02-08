@@ -1,4 +1,5 @@
 import { BigNumber } from "ethers";
+import Link from "next/link";
 import { useSelector } from "react-redux";
 import {
   amountToDolars,
@@ -8,6 +9,8 @@ import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkC
 import { KEPLR_KEY } from "../../../../internal/wallet/functionality/wallet";
 import { StoreType } from "../../../../redux/Store";
 import Button from "../../../common/Button";
+import QuestionMarkIcon from "../../../common/images/icons/QuestionMarkIcon";
+import Tooltip from "../../../common/Tooltip";
 import { ConvertSTR } from "../../modals/transactions/ConvertSTR";
 import { Description } from "./Description";
 import { SubRowProps } from "./types";
@@ -43,6 +46,8 @@ export const SubRowContent = ({
       />
     );
   };
+  const v10Link =
+    "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
   return (
     <div className="flex w-full">
       <div className="w-[5%]"></div>
@@ -56,14 +61,35 @@ export const SubRowContent = ({
           <span className="font-bold">
             {convertAndFormat(balance, item.decimals)}
           </span>
-          <span
+          <p
             className={`${
               item.cosmosBalance.eq(BigNumber.from("0")) ? "hidden" : ""
-            } font-bold`}
+            } font-bold block md:flex md:space-x-2`}
           >
-            {convertAndFormat(item.cosmosBalance, item.decimals)} (Cosmos
-            balance)
-          </span>
+            <span>{convertAndFormat(item.cosmosBalance, item.decimals)} </span>
+            <span className="text-xs capitalize flex items-center space-x-2">
+              <span>(IBC balance)</span>
+              <Tooltip
+                className="w-24"
+                element={<QuestionMarkIcon width={20} height={20} />}
+                text={
+                  <>
+                    Since{" "}
+                    <Link
+                      className="text-red"
+                      href={v10Link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      v10
+                    </Link>{" "}
+                    upgrade, all withdraws will pull first from IBC token
+                    balance before ERC-20.
+                  </>
+                }
+              />
+            </span>
+          </p>
           <span className="text-sm text-darkGray5">
             {amountToDolars(balance, item.decimals, item.coingeckoPrice)}
           </span>

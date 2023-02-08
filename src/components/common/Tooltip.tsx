@@ -8,7 +8,7 @@ const Tooltip = ({
   className?: string;
 }) => {
   return (
-    <div className="group relative">
+    <div className="group relative text-center">
       {element}
       <span
         className={`group-hover:opacity-100 transition-opacity bg-black px-1 text-white rounded-md absolute left-1/2 

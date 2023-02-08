@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { EVMOSIBCBalancesResponse } from "../../../internal/asset/functionality/fetch";
 import { TableData } from "../../../internal/asset/functionality/table/normalizeData";
 
 export type ERC20Element = {
@@ -28,4 +29,5 @@ export type ContentTableProps = {
   tableData: TableData;
   setShow: Dispatch<SetStateAction<boolean>>;
   setModalContent: Dispatch<SetStateAction<JSX.Element>>;
+  evmosIBCBalancesData?: EVMOSIBCBalancesResponse;
 };

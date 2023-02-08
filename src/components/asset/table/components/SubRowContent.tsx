@@ -63,11 +63,13 @@ export const SubRowContent = ({
           </span>
           <p
             className={`${
-              item.cosmosBalance.eq(BigNumber.from("0")) ? "hidden" : ""
-            } font-bold block md:flex md:space-x-2`}
+              item.cosmosBalance.eq(BigNumber.from("0"))
+                ? "hidden"
+                : "block md:flex md:space-x-2"
+            } font-bold `}
           >
             <span>{convertAndFormat(item.cosmosBalance, item.decimals)} </span>
-            <span className="text-xs capitalize flex items-center space-x-2">
+            <div className="text-xs capitalize flex items-center space-x-2">
               <span>(IBC balance)</span>
               <Tooltip
                 className="w-24"
@@ -88,7 +90,7 @@ export const SubRowContent = ({
                   </>
                 }
               />
-            </span>
+            </div>
           </p>
           <span className="text-sm text-darkGray5">
             {amountToDolars(balance, item.decimals, item.coingeckoPrice)}

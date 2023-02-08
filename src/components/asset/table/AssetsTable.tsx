@@ -4,7 +4,9 @@ import { useSelector } from "react-redux";
 import { StoreType } from "../../../redux/Store";
 import { ERC20BalanceResponse } from "./types";
 import {
+  EVMOSIBCBalancesResponse,
   getAssetsForAddress,
+  getEVMOSIBCBalances,
   getTotalStaked,
   TotalStakedResponse,
 } from "../../../internal/asset/functionality/fetch";
@@ -39,6 +41,7 @@ const AssetsTable = () => {
   const [show, setShow] = useState(false);
 
   const value = useSelector((state: StoreType) => state.wallet.value);
+
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
 
   const { data, error, isLoading } = useQuery<ERC20BalanceResponse, Error>({
@@ -124,6 +127,12 @@ const AssetsTable = () => {
     },
   };
 
+  const evmosIBCBalances = useQuery<EVMOSIBCBalancesResponse>({
+    queryKey: ["EVMOSIBCBalances", value.osmosisPubkey],
+    queryFn: () =>
+      getEVMOSIBCBalances(value.osmosisPubkey ? value.osmosisPubkey : ""),
+  });
+
   return (
     <>
       <Link
@@ -182,6 +191,7 @@ const AssetsTable = () => {
               }}
               setShow={setShow}
               setModalContent={setModalContent}
+              evmosIBCBalancesData={evmosIBCBalances.data?.data}
             />
           </div>
         )}

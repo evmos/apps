@@ -6,7 +6,6 @@ import {
   addDolarAssets,
   formatNumber,
 } from "../../../internal/asset/style/format";
-// import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import Accordion from "../../common/Accordion";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContent";
@@ -26,7 +25,7 @@ const createSubRow = (
   feeBalance: BigNumber
 ) => {
   return (
-    <div className="bg-darkGray2 w-full ">
+    <div className="bg-darkGray2 w-full " key={item.symbol}>
       <SubRowContent
         item={item}
         setShow={setShow}
@@ -41,29 +40,36 @@ const ContentTable = ({
   tableData,
   setShow,
   setModalContent,
+  evmosIBCBalancesData,
 }: ContentTableProps) => {
   const data = useMemo(() => {
     const map = new Map<string, accordionData>();
-    tableData?.table.map((e) => {
-      if (map.has(e.tokenIdentifier) === true) {
-        const temp = map.get(e.tokenIdentifier);
-        if (temp === undefined) {
-          return;
+    tableData?.table.map(
+      (e) => {
+        if (map.has(e.tokenIdentifier) === true) {
+          const temp = map.get(e.tokenIdentifier);
+          if (temp === undefined) {
+            return;
+          }
+          temp.tokens.push(e);
+          temp.total = temp.total.add(e.erc20Balance);
+        } else {
+          map.set(e.tokenIdentifier, {
+            name: e.tokenIdentifier,
+            icon: e.tokenIdentifier,
+            total: e.erc20Balance,
+            tokens: [e],
+          });
         }
-        temp.tokens.push(e);
-        temp.total = temp.total.add(e.erc20Balance);
-      } else {
-        map.set(e.tokenIdentifier, {
-          name: e.tokenIdentifier,
-          icon: e.tokenIdentifier,
-          total: e.erc20Balance,
-          tokens: [e],
-        });
       }
-    });
-
+      // recorrer el array
+    );
+    // console.log("evmosIBCBalancesData", evmosIBCBalancesData);
+    // evmosIBCBalancesData?.values?.map((e) => {
+    //   console.log("E", e);
+    // });
     return map;
-  }, [tableData?.table]);
+  }, [tableData?.table, evmosIBCBalancesData]);
 
   const renderData = useMemo(() => {
     const ret: JSX.Element[] = [];
@@ -76,6 +82,7 @@ const ContentTable = ({
 
       content = [];
       v.tokens.map((e) => {
+        // diferenciar evmos u otra
         content?.push(
           createSubRow(e, setShow, setModalContent, tableData.feeBalance)
         );
@@ -113,6 +120,7 @@ const ContentTable = ({
     });
     return ret;
   }, [data, setModalContent, setShow, tableData.feeBalance]);
+
   return <div className="flex flex-col w-full">{renderData}</div>;
 };
 

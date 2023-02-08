@@ -28,15 +28,20 @@ const createSubRow = (
   item: TableDataElement,
   setShow: Dispatch<SetStateAction<boolean>>,
   setModalContent: Dispatch<SetStateAction<JSX.Element>>,
-  feeBalance: BigNumber
+  feeBalance: BigNumber,
+  isIBCBalance: boolean
 ) => {
   return (
-    <div className="bg-darkGray2 w-full " key={item.symbol}>
+    <div
+      className="bg-darkGray2 w-full "
+      key={isIBCBalance ? item.symbol.toLocaleLowerCase() : item.symbol}
+    >
       <SubRowContent
         item={item}
         setShow={setShow}
         setModalContent={setModalContent}
         feeBalance={feeBalance}
+        isIBCBalance={isIBCBalance}
       />
     </div>
   );
@@ -44,7 +49,7 @@ const createSubRow = (
 
 const createSubRowEvmos = (value: EVMOSIBCBalances) => {
   return (
-    <div className="bg-darkGray2 w-full">
+    <div className="bg-darkGray2 w-full" key={value.chain}>
       <SubRowContentEvmos values={value} />
     </div>
   );
@@ -93,20 +98,39 @@ const ContentTable = ({
       v.tokens.map((e) => {
         if (e.symbol === EVMOS_SYMBOL) {
           evmosIBCBalancesData?.values?.map((item) => {
-            // if (item.evmosBalance !== "0") {
             item.coingeckoPrice = e.coingeckoPrice;
             content?.push(createSubRowEvmos(item));
             amountEvmos = amountEvmos.add(BigNumber.from(item.evmosBalance));
-            // }
           });
         }
         if (e.symbol === EVMOS_SYMBOL) {
           content?.unshift(
-            createSubRow(e, setShow, setModalContent, tableData.feeBalance)
+            createSubRow(
+              e,
+              setShow,
+              setModalContent,
+              tableData.feeBalance,
+              false
+            )
+          );
+          content?.unshift(
+            createSubRow(
+              e,
+              setShow,
+              setModalContent,
+              tableData.feeBalance,
+              true
+            )
           );
         } else {
           content?.push(
-            createSubRow(e, setShow, setModalContent, tableData.feeBalance)
+            createSubRow(
+              e,
+              setShow,
+              setModalContent,
+              tableData.feeBalance,
+              false
+            )
           );
         }
         valueInTokens += addAssets({

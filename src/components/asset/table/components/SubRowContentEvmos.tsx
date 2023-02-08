@@ -26,6 +26,7 @@ const SubRowContentEvmos = ({ values }: { values: EVMOSIBCBalances }) => {
           </span>
 
           <span className="text-sm text-darkGray5">
+            $
             {amountToDolars(
               BigNumber.from(values.evmosBalance ? values.evmosBalance : "0"),
               18,

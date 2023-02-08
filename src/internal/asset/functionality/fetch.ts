@@ -135,20 +135,21 @@ export const getEVMOSIBCBalances = async (pubkey: string | null) => {
     try {
       const res = await fetch(`${EVMOS_BACKEND}/EVMOSIBCBalances/${pubkey}`);
       const data = (await res.json()) as EVMOSIBCBalancesResponse;
-      data.values.filter((v, i, a) => {
+      const dataTemp: EVMOSIBCBalances[] = [];
+      data.values.map((v) => {
         if (
           v.chain === "Kujira" ||
           v.chain === "Regen" ||
           v.chain === "Stride" ||
-          v.chain === "Evmos"
+          v.chain === "Evmos" ||
+          v.evmosBalance === "0"
         ) {
-          a.splice(i, 1);
-          return true;
+          return;
         }
-        return false;
+        dataTemp.push(v);
+        return;
       });
-
-      data.values.sort((a, b) => {
+      dataTemp.sort((a, b) => {
         if (
           BigNumber.from(a.evmosBalance === "" ? "0" : a.evmosBalance).gte(
             BigNumber.from(b.evmosBalance === "" ? "0" : b.evmosBalance)
@@ -159,7 +160,7 @@ export const getEVMOSIBCBalances = async (pubkey: string | null) => {
 
         return 1;
       });
-      return data;
+      return { values: dataTemp };
     } catch (e) {
       return { values: [] };
     }

@@ -95,6 +95,8 @@ export class Keplr {
 
       const accountsEvmos = await offlineSignerEvmos.getAccounts();
       const accountsOsmosis = await offlineSignerOsmosis.getAccounts();
+      const accountName =
+        (await window.keplr.getKey(EVMOS_CHAIN.cosmosChainId)).name || null;
 
       if (
         !accountsEvmos ||
@@ -125,6 +127,7 @@ export class Keplr {
           evmosAddressCosmosFormat: accountsEvmos[0].address,
           evmosPubkey: pubkeyEvmos,
           osmosisPubkey: pubkeyOsmosis,
+          accountName: accountName,
         })
       );
       SaveProviderToLocalStorate(KEPLR_KEY);

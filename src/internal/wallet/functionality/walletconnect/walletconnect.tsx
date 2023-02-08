@@ -42,6 +42,7 @@ export function useWalletConnect(reduxStore: ReduxWalletStore) {
         evmosAddressCosmosFormat: "",
         evmosPubkey: null,
         osmosisPubkey: null,
+        accountName: null,
       })
     );
   }
@@ -105,6 +106,7 @@ export function useActivateWalletConnect(
             evmosAddressCosmosFormat: ethToEvmos(address),
             evmosPubkey: pubkey,
             osmosisPubkey: null,
+            accountName: null,
           })
         );
 

@@ -1,6 +1,9 @@
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { truncateAddress } from "../../internal/wallet/style/format";
+import {
+  formatProviderAddress,
+  truncateAddress,
+} from "../../internal/wallet/style/format";
 import {
   KEPLR_KEY,
   METAMASK_KEY,
@@ -92,7 +95,7 @@ const ButtonWalletConnection = () => {
         {value.extensionName === WALLECT_CONNECT_KEY && <WalletConnectIcon />}
 
         <span className="text-lg font-bold">
-          {truncateAddress(value.evmosAddressEthFormat)}
+          {formatProviderAddress(value, true)}
         </span>
       </button>
 

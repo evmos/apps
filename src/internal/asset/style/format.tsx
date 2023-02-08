@@ -238,11 +238,15 @@ export function addDolarAssets(assets: addDolarsAssetsType) {
   );
 }
 
+export function NumberConvertAndFormat(balance: BigNumber, decimals: number) {
+  return Number(convertAndFormat(balance, decimals));
+}
+
 // TODO: add test
 export function addAssets(asset: addAssetsType) {
   return (
-    Number(convertAndFormat(asset.cosmosBalance, asset.decimals)) +
-    Number(convertAndFormat(asset.erc20Balance, asset.decimals))
+    NumberConvertAndFormat(asset.cosmosBalance, asset.decimals) +
+    NumberConvertAndFormat(asset.erc20Balance, asset.decimals)
   );
 }
 

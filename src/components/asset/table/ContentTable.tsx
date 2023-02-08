@@ -1,14 +1,20 @@
 import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction, useMemo } from "react";
+import { EVMOSIBCBalances } from "../../../internal/asset/functionality/fetch";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
 import {
   addAssets,
   addDolarAssets,
+  amountToDolars,
   formatNumber,
+  NumberConvertAndFormat,
 } from "../../../internal/asset/style/format";
+import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
+import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import Accordion from "../../common/Accordion";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContent";
+import SubRowContentEvmos from "./components/SubRowContentEvmos";
 import { ContentTableProps } from "./types";
 
 type accordionData = {
@@ -36,6 +42,14 @@ const createSubRow = (
   );
 };
 
+const createSubRowEvmos = (value: EVMOSIBCBalances) => {
+  return (
+    <div className="bg-darkGray2 w-full">
+      <SubRowContentEvmos values={value} />
+    </div>
+  );
+};
+
 const ContentTable = ({
   tableData,
   setShow,
@@ -44,32 +58,26 @@ const ContentTable = ({
 }: ContentTableProps) => {
   const data = useMemo(() => {
     const map = new Map<string, accordionData>();
-    tableData?.table.map(
-      (e) => {
-        if (map.has(e.tokenIdentifier) === true) {
-          const temp = map.get(e.tokenIdentifier);
-          if (temp === undefined) {
-            return;
-          }
-          temp.tokens.push(e);
-          temp.total = temp.total.add(e.erc20Balance);
-        } else {
-          map.set(e.tokenIdentifier, {
-            name: e.tokenIdentifier,
-            icon: e.tokenIdentifier,
-            total: e.erc20Balance,
-            tokens: [e],
-          });
+    tableData?.table.map((e) => {
+      if (map.has(e.tokenIdentifier) === true) {
+        const temp = map.get(e.tokenIdentifier);
+        if (temp === undefined) {
+          return;
         }
+        temp.tokens.push(e);
+        temp.total = temp.total.add(e.erc20Balance);
+      } else {
+        map.set(e.tokenIdentifier, {
+          name: e.tokenIdentifier,
+          icon: e.tokenIdentifier,
+          total: e.erc20Balance,
+          tokens: [e],
+        });
       }
-      // recorrer el array
-    );
-    // console.log("evmosIBCBalancesData", evmosIBCBalancesData);
-    // evmosIBCBalancesData?.values?.map((e) => {
-    //   console.log("E", e);
-    // });
+    });
+
     return map;
-  }, [tableData?.table, evmosIBCBalancesData]);
+  }, [tableData?.table]);
 
   const renderData = useMemo(() => {
     const ret: JSX.Element[] = [];
@@ -81,11 +89,26 @@ const ContentTable = ({
       let valueInTokens = 0;
 
       content = [];
+      let amountEvmos = BIG_ZERO;
       v.tokens.map((e) => {
-        // diferenciar evmos u otra
-        content?.push(
-          createSubRow(e, setShow, setModalContent, tableData.feeBalance)
-        );
+        if (e.symbol === EVMOS_SYMBOL) {
+          evmosIBCBalancesData?.values?.map((item) => {
+            // if (item.evmosBalance !== "0") {
+            item.coingeckoPrice = e.coingeckoPrice;
+            content?.push(createSubRowEvmos(item));
+            amountEvmos = amountEvmos.add(BigNumber.from(item.evmosBalance));
+            // }
+          });
+        }
+        if (e.symbol === EVMOS_SYMBOL) {
+          content?.unshift(
+            createSubRow(e, setShow, setModalContent, tableData.feeBalance)
+          );
+        } else {
+          content?.push(
+            createSubRow(e, setShow, setModalContent, tableData.feeBalance)
+          );
+        }
         valueInTokens += addAssets({
           erc20Balance: e.erc20Balance,
           decimals: e.decimals,
@@ -97,6 +120,14 @@ const ContentTable = ({
           coingeckoPrice: e.coingeckoPrice,
           cosmosBalance: e.cosmosBalance,
         });
+
+        valueInTokens =
+          NumberConvertAndFormat(amountEvmos, e.decimals) + valueInTokens;
+
+        valueInDollars =
+          parseFloat(
+            amountToDolars(amountEvmos, e.decimals, e.coingeckoPrice)
+          ) + valueInDollars;
       });
 
       ret.push(
@@ -119,7 +150,13 @@ const ContentTable = ({
       );
     });
     return ret;
-  }, [data, setModalContent, setShow, tableData.feeBalance]);
+  }, [
+    data,
+    setModalContent,
+    setShow,
+    tableData.feeBalance,
+    evmosIBCBalancesData,
+  ]);
 
   return <div className="flex flex-col w-full">{renderData}</div>;
 };

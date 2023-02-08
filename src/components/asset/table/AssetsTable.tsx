@@ -127,10 +127,13 @@ const AssetsTable = () => {
     },
   };
 
-  const evmosIBCBalances = useQuery<EVMOSIBCBalancesResponse>({
-    queryKey: ["EVMOSIBCBalances", value.osmosisPubkey],
-    queryFn: () =>
-      getEVMOSIBCBalances(value.osmosisPubkey ? value.osmosisPubkey : ""),
+  const cosmosPubkey = useMemo(() => {
+    return value.osmosisPubkey ? value.osmosisPubkey : "";
+  }, [value.osmosisPubkey]);
+
+  const evmosIBCBalances = useQuery<EVMOSIBCBalancesResponse, Error>({
+    queryKey: ["EVMOSIBCBalances", cosmosPubkey],
+    queryFn: () => getEVMOSIBCBalances(cosmosPubkey),
   });
 
   return (
@@ -191,7 +194,7 @@ const AssetsTable = () => {
               }}
               setShow={setShow}
               setModalContent={setModalContent}
-              evmosIBCBalancesData={evmosIBCBalances.data?.data}
+              evmosIBCBalancesData={evmosIBCBalances.data}
             />
           </div>
         )}

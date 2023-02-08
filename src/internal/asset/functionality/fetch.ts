@@ -132,22 +132,12 @@ export const getEVMOSIBCBalances = async (pubkey: string | null) => {
   if (pubkey !== null && pubkey !== "") {
     try {
       const res = await fetch(`${EVMOS_BACKEND}/EVMOSIBCBalances/${pubkey}`);
-      const asd = (await res.json()) as EVMOSIBCBalancesResponse;
-      console.log("asd", asd);
-      return { error: false, message: "", data: asd };
+      const data = (await res.json()) as EVMOSIBCBalancesResponse;
+      return data;
     } catch (e) {
-      console.log("e", e);
-      return {
-        error: true,
-        message: BALANCE_NOTIFICATIONS.ErrorGetBalance,
-        data: null,
-      };
+      return { values: [] };
     }
   } else {
-    return {
-      error: true,
-      message: BALANCE_NOTIFICATIONS.ErrorGetBalance,
-      data: null,
-    };
+    return { values: [] };
   }
 };

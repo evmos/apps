@@ -12,8 +12,9 @@ export const Description = ({
       <Image
         src={`/assets/tokens/${symbol.toLocaleLowerCase()}.png`}
         alt={symbol}
-        width={35}
-        height={35}
+        width={30}
+        height={30}
+        className="w-auto"
       />
       <div className="flex flex-col items-start ">
         <span className="font-bold">{symbol}</span>

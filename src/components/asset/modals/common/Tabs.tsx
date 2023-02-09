@@ -39,7 +39,7 @@ const Tabs = ({
           }
         }}
       >
-        <p className="flex items-center space-x-1">
+        <div className="flex items-center space-x-1">
           <span>ERC-20</span>
           <Tooltip
             className="w-24"
@@ -60,7 +60,7 @@ const Tabs = ({
               </>
             }
           />
-        </p>
+        </div>
         <span className="font-normal text-xs">
           {formatNumber(convertFromAtto(erc20Balance, decimals))}
         </span>

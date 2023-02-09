@@ -6,15 +6,20 @@ import {
   TableData,
   TableDataElement,
 } from "../functionality/table/normalizeData";
-import { EXECUTED_NOTIFICATIONS } from "../functionality/transactions/errors";
+import {
+  EXECUTED_NOTIFICATIONS,
+  INCLUDED_BLOCK_NOTIFICATIONS,
+} from "../functionality/transactions/errors";
 import {
   checkIBCExecutionStatus,
   checkTxInclusionInABlock,
 } from "../functionality/transactions/executedTx";
 import { TransactionStatus } from "../functionality/transactions/types";
-import { SimpleSnackbar } from "../../../components/notification/content/SimpleSnackbar";
-import { ViewExplorerSnackbar } from "../../../components/notification/content/ViexExplorerSnackbar";
 import { EVMOS_SYMBOL } from "../../wallet/functionality/networkConfig";
+import {
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "../../../components/notification/types";
 export function getReservedForFeeText(
   amount: BigNumber,
   token: string,
@@ -104,8 +109,11 @@ export function createBigNumber(value: string) {
 export function snackbarWaitingBroadcast() {
   return addSnackbar({
     id: 0,
-    content: EXECUTED_NOTIFICATIONS.WaitingTitle,
-    type: "default",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: EXECUTED_NOTIFICATIONS.WaitingTitle,
+    },
+    type: SNACKBAR_TYPES.DEFAULT,
   });
 }
 
@@ -120,33 +128,39 @@ export async function snackbarIncludedInBlock(
       return addSnackbar({
         id: 0,
         content:
-          explorerTxUrl === "" ? (
-            "Successfully included in a block"
-          ) : (
-            <ViewExplorerSnackbar
-              values={{
-                title: "Successfully included in a block",
+          explorerTxUrl === ""
+            ? {
+                type: SNACKBAR_CONTENT_TYPES.TEXT,
+                title: INCLUDED_BLOCK_NOTIFICATIONS.SuccessTitle,
+              }
+            : {
+                type: SNACKBAR_CONTENT_TYPES.LINK,
+                title: INCLUDED_BLOCK_NOTIFICATIONS.SuccessTitle,
                 hash: txHash,
                 explorerTxUrl: explorerTxUrl,
-              }}
-            />
-          ),
+              },
 
-        type: "success",
+        type: SNACKBAR_TYPES.SUCCESS,
       });
     } else {
       return addSnackbar({
         id: 0,
-        content: "Error including transaction in a block",
-        type: "error",
+        content: {
+          type: SNACKBAR_CONTENT_TYPES.TEXT,
+          title: INCLUDED_BLOCK_NOTIFICATIONS.ErrorTitle,
+        },
+        type: SNACKBAR_TYPES.ERROR,
       });
     }
   }
   // unconfirmed
   return addSnackbar({
     id: 0,
-    content: "Waiting for the transaction to be included in a block",
-    type: "default",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: INCLUDED_BLOCK_NOTIFICATIONS.WaitingTitle,
+    },
+    type: SNACKBAR_TYPES.DEFAULT,
   });
 }
 
@@ -154,8 +168,13 @@ export async function snackbarExecutedTx(txHash: string, chain: string) {
   const executed = await checkIBCExecutionStatus(txHash, chain);
   return addSnackbar({
     id: 0,
-    content: <SimpleSnackbar title={executed.title} text={executed.message} />,
-    type: executed.error === true ? "error" : "success",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: executed.title,
+      text: executed.message,
+    },
+    type:
+      executed.error === true ? SNACKBAR_TYPES.ERROR : SNACKBAR_TYPES.SUCCESS,
   });
 }
 

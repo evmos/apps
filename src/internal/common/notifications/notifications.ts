@@ -1,9 +1,16 @@
 import { addSnackbar } from "../../../components/notification/redux/notificationSlice";
+import { SNACKBAR_TYPES } from "../../../components/notification/types";
 import { ReduxWalletStore } from "../../../components/wallet/redux/WalletSlice";
 
 function notify(
   type: string,
-  content: JSX.Element | string,
+  content: {
+    type: string;
+    title: string;
+    text?: string;
+    hash?: string;
+    explorerTxUrl?: string;
+  },
   store: ReduxWalletStore,
   isEnabled: boolean
 ) {
@@ -21,21 +28,33 @@ function notify(
 }
 
 export function NotifyError(
-  content: JSX.Element | string,
+  content: {
+    type: string;
+    title: string;
+    text?: string;
+    hash?: string;
+    explorerTxUrl?: string;
+  },
   store: ReduxWalletStore,
   isEnabled: boolean
 ) {
   if (isEnabled) {
-    notify("error", content, store, isEnabled);
+    notify(SNACKBAR_TYPES.ERROR, content, store, isEnabled);
   }
 }
 
 export function NotifySuccess(
-  content: JSX.Element | string,
+  content: {
+    type: string;
+    title: string;
+    text?: string;
+    hash?: string;
+    explorerTxUrl?: string;
+  },
   store: ReduxWalletStore,
   isEnabled: boolean
 ) {
   if (isEnabled) {
-    notify("success", content, store, isEnabled);
+    notify(SNACKBAR_TYPES.SUCCESS, content, store, isEnabled);
   }
 }

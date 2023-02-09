@@ -6,6 +6,7 @@ import {
 } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import SmallButton from "../../../common/SmallButton";
 import { addSnackbar } from "../../../notification/redux/notificationSlice";
+import { SNACKBAR_CONTENT_TYPES } from "../../../notification/types";
 
 const AddTokenMetamask = ({ token }: { token: Token }) => {
   const dispatch = useDispatch();
@@ -21,7 +22,10 @@ const AddTokenMetamask = ({ token }: { token: Token }) => {
       dispatch(
         addSnackbar({
           id: 0,
-          content: value.text,
+          content: {
+            type: SNACKBAR_CONTENT_TYPES.TEXT,
+            title: value.text,
+          },
           type: value.type,
         })
       );

@@ -30,7 +30,7 @@ import {
   subscribeToKeplrEvents,
   unsubscribeToKeplrEvents,
 } from "./keplrHelpers";
-import { SimpleSnackbar } from "../../../../components/notification/content/SimpleSnackbar";
+import { SNACKBAR_CONTENT_TYPES } from "../../../../components/notification/types";
 
 export class Keplr {
   active = false;
@@ -76,10 +76,12 @@ export class Keplr {
       this.reset();
       // ExtensionNotFound
       NotifyError(
-        <SimpleSnackbar
-          title={KEPLR_NOTIFICATIONS.ErrorTitle}
-          text={KEPLR_NOTIFICATIONS.ExtensionNotFoundSubtext}
-        />,
+        {
+          type: SNACKBAR_CONTENT_TYPES.TEXT,
+          title: KEPLR_NOTIFICATIONS.ErrorTitle,
+          text: KEPLR_NOTIFICATIONS.ExtensionNotFoundSubtext,
+        },
+
         this.reduxStore,
         this.notificationsEnabled
       );
@@ -132,12 +134,12 @@ export class Keplr {
       );
       SaveProviderToLocalStorate(KEPLR_KEY);
       NotifySuccess(
-        <SimpleSnackbar
-          title={KEPLR_NOTIFICATIONS.SuccessTitle}
-          text={`Connected with wallet ${truncateAddress(
-            accountsEvmos[0].address
-          )}`}
-        />,
+        {
+          type: SNACKBAR_CONTENT_TYPES.TEXT,
+          title: KEPLR_NOTIFICATIONS.SuccessTitle,
+          text:
+            "Connected with wallet" + truncateAddress(accountsEvmos[0].address),
+        },
         this.reduxStore,
         this.notificationsEnabled
       );
@@ -150,20 +152,22 @@ export class Keplr {
       ) {
         // Init ethereum app first
         NotifyError(
-          <SimpleSnackbar
-            title={KEPLR_NOTIFICATIONS.ErrorTitle}
-            text={KEPLR_NOTIFICATIONS.LedgerNotInitSubtext}
-          />,
+          {
+            type: SNACKBAR_CONTENT_TYPES.TEXT,
+            title: KEPLR_NOTIFICATIONS.ErrorTitle,
+            text: KEPLR_NOTIFICATIONS.LedgerNotInitSubtext,
+          },
           this.reduxStore,
           this.notificationsEnabled
         );
       }
       if ((error as { message: string })?.message === "Request rejected") {
         NotifyError(
-          <SimpleSnackbar
-            title={KEPLR_NOTIFICATIONS.ErrorTitle}
-            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-          />,
+          {
+            type: SNACKBAR_CONTENT_TYPES.TEXT,
+            title: KEPLR_NOTIFICATIONS.ErrorTitle,
+            text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+          },
           this.reduxStore,
           this.notificationsEnabled
         );

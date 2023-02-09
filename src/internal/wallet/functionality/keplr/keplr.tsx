@@ -138,7 +138,8 @@ export class Keplr {
           type: SNACKBAR_CONTENT_TYPES.TEXT,
           title: KEPLR_NOTIFICATIONS.SuccessTitle,
           text:
-            "Connected with wallet" + truncateAddress(accountsEvmos[0].address),
+            "Connected with wallet " +
+            truncateAddress(accountsEvmos[0].address),
         },
         this.reduxStore,
         this.notificationsEnabled

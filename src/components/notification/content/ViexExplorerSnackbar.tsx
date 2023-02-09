@@ -13,7 +13,7 @@ export const ViewExplorerSnackbar = ({ values }: { values: snackbarProps }) => {
       <ViewExplorer
         txHash={values.hash}
         explorerTxUrl={`${values.explorerTxUrl}`}
-        text={values.hash}
+        text="Tx explorer"
       />
     </div>
   );

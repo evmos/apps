@@ -115,7 +115,7 @@ export class Metamask {
           type: SNACKBAR_CONTENT_TYPES.TEXT,
           title: METAMASK_NOTIFICATIONS.SuccessTitle,
           text:
-            "Connected with wallet" + truncateAddress(this.addressEthFormat),
+            "Connected with wallet " + truncateAddress(this.addressEthFormat),
         },
         store,
         this.notificationsEnabled

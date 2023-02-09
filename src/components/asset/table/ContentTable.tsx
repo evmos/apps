@@ -4,11 +4,8 @@ import { TableDataElement } from "../../../internal/asset/functionality/table/no
 import {
   addAssets,
   addDolarAssets,
-  amountToDolars,
   formatNumber,
-  NumberConvertAndFormat,
 } from "../../../internal/asset/style/format";
-import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import Accordion from "../../common/Accordion";
 import { RowContent } from "./components/RowContent";
@@ -83,7 +80,6 @@ const ContentTable = ({
       let valueInTokens = 0;
 
       content = [];
-      const amountEvmos = BIG_ZERO;
       v.tokens.map((e) => {
         if (e.symbol === EVMOS_SYMBOL) {
           content?.unshift(
@@ -126,14 +122,6 @@ const ContentTable = ({
           coingeckoPrice: e.coingeckoPrice,
           cosmosBalance: e.cosmosBalance,
         });
-
-        valueInTokens =
-          NumberConvertAndFormat(amountEvmos, e.decimals) + valueInTokens;
-
-        valueInDollars =
-          parseFloat(
-            amountToDolars(amountEvmos, e.decimals, e.coingeckoPrice)
-          ) + valueInDollars;
       });
 
       ret.push(

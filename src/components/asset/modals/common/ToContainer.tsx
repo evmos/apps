@@ -14,7 +14,13 @@ const ToContainer = ({
       <div className="flex items-center space-x-10">
         <span className="font-bold">TO</span>
         <div className="flex items-center space-x-3">
-          <Image src={img} width={20} height={20} alt={img} />
+          <Image
+            src={img}
+            width={20}
+            height={20}
+            alt={img}
+            className="w-auto"
+          />
           <span className="font-bold">{text ? text : token}</span>
         </div>
       </div>

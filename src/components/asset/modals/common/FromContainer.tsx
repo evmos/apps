@@ -22,7 +22,13 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
         <div className="flex items-center space-x-10">
           <span className="font-bold">FROM</span>
           <div className="flex items-center space-x-3">
-            <Image src={style.img} width={20} height={20} alt={style.img} />
+            <Image
+              src={style.img}
+              width={20}
+              height={20}
+              alt={style.img}
+              className="w-auto"
+            />
             <span className="font-bold">{style.text}</span>
           </div>
         </div>

@@ -31,7 +31,7 @@ const AddTokenMetamask = ({ token }: { token: Token }) => {
       className="flex items-center border border-darkGray2 rounded-lg p-1 px-3 text-xs uppercase space-x-2 font-bold"
       onClick={handleOnClick}
     >
-      <MetamaskIcon width={20} height={20} className="cursor-pointer" />
+      <MetamaskIcon width={20} height={20} className="cursor-pointer w-auto" />
       Add {token.symbol}
     </button>
   );

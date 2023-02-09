@@ -64,7 +64,7 @@ export const ConvertSTR = ({
 
   return (
     <>
-      <ModalTitle title="Convert WEVMOS" />
+      <ModalTitle title={`Convert ${symbolFrom}`} />
       <div className="text-darkGray3 space-y-3">
         <ContainerModal>
           <>

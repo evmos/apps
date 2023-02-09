@@ -1,6 +1,5 @@
 import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction, useMemo } from "react";
-import { EVMOSIBCBalances } from "../../../internal/asset/functionality/fetch";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
 import {
   addAssets,
@@ -14,7 +13,6 @@ import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConf
 import Accordion from "../../common/Accordion";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContent";
-import SubRowContentEvmos from "./components/SubRowContentEvmos";
 import { ContentTableProps } from "./types";
 
 type accordionData = {
@@ -47,19 +45,10 @@ const createSubRow = (
   );
 };
 
-const createSubRowEvmos = (value: EVMOSIBCBalances) => {
-  return (
-    <div className="bg-darkGray2 w-full" key={value.chain}>
-      <SubRowContentEvmos values={value} />
-    </div>
-  );
-};
-
 const ContentTable = ({
   tableData,
   setShow,
   setModalContent,
-  evmosIBCBalancesData,
 }: ContentTableProps) => {
   const data = useMemo(() => {
     const map = new Map<string, accordionData>();
@@ -94,15 +83,8 @@ const ContentTable = ({
       let valueInTokens = 0;
 
       content = [];
-      let amountEvmos = BIG_ZERO;
+      const amountEvmos = BIG_ZERO;
       v.tokens.map((e) => {
-        if (e.symbol === EVMOS_SYMBOL) {
-          evmosIBCBalancesData?.values?.map((item) => {
-            item.coingeckoPrice = e.coingeckoPrice;
-            content?.push(createSubRowEvmos(item));
-            amountEvmos = amountEvmos.add(BigNumber.from(item.evmosBalance));
-          });
-        }
         if (e.symbol === EVMOS_SYMBOL) {
           content?.unshift(
             createSubRow(
@@ -174,13 +156,7 @@ const ContentTable = ({
       );
     });
     return ret;
-  }, [
-    data,
-    setModalContent,
-    setShow,
-    tableData.feeBalance,
-    evmosIBCBalancesData,
-  ]);
+  }, [data, setModalContent, setShow, tableData.feeBalance]);
 
   return <div className="flex flex-col w-full">{renderData}</div>;
 };

@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import { StoreType } from "../../../redux/Store";
 import { ERC20BalanceResponse } from "./types";
 import {
-  EVMOSIBCBalancesResponse,
   getAssetsForAddress,
-  getEVMOSIBCBalances,
   getTotalStaked,
   TotalStakedResponse,
 } from "../../../internal/asset/functionality/fetch";
@@ -127,15 +125,6 @@ const AssetsTable = () => {
     },
   };
 
-  const cosmosPubkey = useMemo(() => {
-    return value.osmosisPubkey ? value.osmosisPubkey : "";
-  }, [value.osmosisPubkey]);
-
-  const evmosIBCBalances = useQuery<EVMOSIBCBalancesResponse, Error>({
-    queryKey: ["EVMOSIBCBalances", cosmosPubkey],
-    queryFn: () => getEVMOSIBCBalances(cosmosPubkey),
-  });
-
   return (
     <>
       <Link
@@ -194,7 +183,6 @@ const AssetsTable = () => {
               }}
               setShow={setShow}
               setModalContent={setModalContent}
-              evmosIBCBalancesData={evmosIBCBalances.data}
             />
           </div>
         )}

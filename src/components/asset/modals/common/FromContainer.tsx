@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 import {
+  convertAndFormat,
   convertFromAtto,
   createBigNumber,
-  formatNumber,
   safeSubstraction,
   truncateNumber,
 } from "../../../../internal/asset/style/format";
@@ -117,15 +117,15 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
         ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrosAmountGt} />}
       <div>
         <span className="font-bold">Balance: </span>
-        {formatNumber(convertFromAtto(balance.amount, balance.decimals))}{" "}
-        {style.tokenTo}
+        {convertAndFormat(balance.amount, balance.decimals)} {style.tokenTo}
       </div>
       {!fee.fee.eq(createBigNumber(feeDeposit)) && (
         <div>
           <span className="font-bold">
             Fee denom ({fee.feeDenom}) Balance:{" "}
           </span>
-          {formatNumber(convertFromAtto(fee.feeBalance))} {fee.feeDenom}
+          {convertAndFormat(fee.feeBalance)}
+          {fee.feeDenom}
         </div>
       )}
       {fee.fee.eq(createBigNumber(feeDeposit)) && maxClicked && (

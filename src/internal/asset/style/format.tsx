@@ -71,7 +71,7 @@ export function convertAndFormat(value: BigNumber, exponent = 18) {
   return formatNumber(convertFromAtto(value, exponent));
 }
 
-export function amountToDolars(
+export function amountToDollars(
   value: BigNumber,
   decimals: number,
   coingeckoPrice: number
@@ -81,7 +81,8 @@ export function amountToDolars(
 
 export function truncateNumber(number: string) {
   const index = number.indexOf(".");
-  if (index !== undefined) {
+  // if index is -1 return the string as float
+  if (index !== -1) {
     let end = index + 6;
     if (end > number.length) {
       end = number.length;
@@ -93,7 +94,10 @@ export function truncateNumber(number: string) {
 }
 
 export function createBigNumber(value: string) {
-  // TODO: check if string has only numbers
+  // +: check the string by converting the string into a number
+  if (!+value) {
+    return BigNumber.from("0");
+  }
   return BigNumber.from(value);
 }
 
@@ -156,25 +160,24 @@ export async function snackbarExecutedTx(txHash: string, chain: string) {
 }
 
 export type Staked = {
-  total: string;
-  decimals: number;
-  coingeckoPrice: number;
+  total: string | undefined;
+  decimals: number | undefined;
+  coingeckoPrice: number | undefined;
 };
 
 export function getTotalAssets(
   normalizedAssetsData: TableData,
   staked: Staked
 ) {
-  // TODO: test it
   let totalAssets = 0;
   normalizedAssetsData?.table?.map((item) => {
     totalAssets =
       totalAssets +
       parseFloat(
-        amountToDolars(item.cosmosBalance, item.decimals, item.coingeckoPrice)
+        amountToDollars(item.cosmosBalance, item.decimals, item.coingeckoPrice)
       ) +
       parseFloat(
-        amountToDolars(item.erc20Balance, item.decimals, item.coingeckoPrice)
+        amountToDollars(item.erc20Balance, item.decimals, item.coingeckoPrice)
       );
   });
   if (
@@ -184,7 +187,7 @@ export function getTotalAssets(
     staked.coingeckoPrice !== undefined
   ) {
     const val = parseFloat(
-      amountToDolars(
+      amountToDollars(
         BigNumber.from(staked.total),
         staked.decimals,
         staked.coingeckoPrice
@@ -197,7 +200,6 @@ export function getTotalAssets(
 }
 
 export function checkFormatAddress(address: string, prefix: string) {
-  // TODO: add test
   if (address.startsWith(prefix.toLocaleLowerCase() + "1")) {
     return true;
   }

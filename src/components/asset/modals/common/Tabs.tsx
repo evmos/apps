@@ -1,10 +1,7 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
-import {
-  convertFromAtto,
-  formatNumber,
-} from "../../../../internal/asset/style/format";
+import { convertAndFormat } from "../../../../internal/asset/style/format";
 import QuestionMarkIcon from "../../../common/images/icons/QuestionMarkIcon";
 import Tooltip from "../../../common/Tooltip";
 
@@ -62,7 +59,7 @@ const Tabs = ({
           />
         </p>
         <span className="font-normal text-xs">
-          {formatNumber(convertFromAtto(erc20Balance, decimals))}
+          {convertAndFormat(erc20Balance, decimals)}
         </span>
       </button>
       <button
@@ -77,7 +74,7 @@ const Tabs = ({
       >
         <span>IBC</span>
         <span className="font-normal text-xs">
-          {formatNumber(convertFromAtto(cosmosBalance, decimals))}
+          {convertAndFormat(cosmosBalance, decimals)}
         </span>
       </button>
     </div>

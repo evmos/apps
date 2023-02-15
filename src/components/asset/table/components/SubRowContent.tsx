@@ -64,63 +64,70 @@ export const SubRowContent = ({
   const v10Link =
     "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
   return (
-    <div className="flex w-full">
-      <div className="w-[5%]"></div>
+    <div className="flex w-full text-xs md:text-base">
+      <div className="md:w-[5%] md:mx-2"></div>
       <Description
         symbol={symbol}
         description={item.description}
         subRow={true}
       />
-      <div className="flex items-center uppercase w-[50%]">
-        <div className="flex flex-col">
-          <span className="font-bold">
+      <div className="flex items-center uppercase w-[50%] pl-4 md:pl-0 ">
+        <div className="flex flex-col w-full ">
+          <span className="font-bold break-all">
             {convertAndFormat(balance, item.decimals)}
           </span>
-          <div
-            className={`text-xs capitalize flex items-center space-x-2 ${
-              item.cosmosBalance.eq(BigNumber.from("0")) ||
-              item.symbol === EVMOS_SYMBOL
-                ? "hidden"
-                : ""
-            }`}
-          >
-            <span className="">(IBC balance)</span>
-            <Tooltip
-              className="w-24"
-              element={<QuestionMarkIcon width={20} height={20} />}
-              text={
-                <>
-                  Since{" "}
-                  <Link
-                    className="text-red"
-                    href={v10Link}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    v10
-                  </Link>{" "}
-                  upgrade, all withdraws will pull first from IBC token balance
-                  before ERC-20. Deposits are autoconverted to ERC-20
-                </>
-              }
-            />
-          </div>
           <div
             className={` ${
               item.cosmosBalance.eq(BigNumber.from("0")) ||
               item.symbol === EVMOS_SYMBOL
                 ? "hidden"
                 : ""
-            } font-bold `}
+            } font-bold flex items-center space-x-1`}
           >
-            <span>{convertAndFormat(item.cosmosBalance, item.decimals)} </span>
+            <Tooltip
+              className="capitalize"
+              element={
+                <p className="break-all opacity-80">
+                  {convertAndFormat(item.cosmosBalance, item.decimals)}{" "}
+                </p>
+              }
+              text="IBC Balance"
+            />
+            <div
+              className={`text-xs capitalize ${
+                item.cosmosBalance.eq(BigNumber.from("0")) ||
+                item.symbol === EVMOS_SYMBOL
+                  ? "hidden"
+                  : ""
+              }`}
+            >
+              <Tooltip
+                className="w-24 "
+                element={<QuestionMarkIcon width={16} height={16} />}
+                text={
+                  <>
+                    Since{" "}
+                    <Link
+                      className="text-red"
+                      href={v10Link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                    >
+                      v10
+                    </Link>{" "}
+                    upgrade, all withdraws will pull first from IBC token
+                    balance before ERC-20. Deposits are autoconverted to ERC-20
+                  </>
+                }
+              />
+            </div>
           </div>
-          <span className="text-sm text-darkGray5">
+          <span className="text-xs md:text-sm text-darkGray5">
             ${amountToDollars(balance, item.decimals, item.coingeckoPrice)}
           </span>
         </div>
         {item.symbol === EVMOS_SYMBOL && (
-          <div className="justify-end w-full flex pr-8">
+          <div className="justify-end w-full flex pr-2 md:pr-8">
             <Button
               disabled={
                 !wallet.active ||
@@ -136,7 +143,7 @@ export const SubRowContent = ({
           </div>
         )}
         {item.symbol !== EVMOS_SYMBOL && !item.cosmosBalance.eq(BIG_ZERO) && (
-          <div className="justify-end w-full flex pr-8">
+          <div className="justify-end w-full flex pr-2 md:pr-8">
             <Button onClick={openModalConvert}>
               <div className="flex flex-row items-center">
                 <span className="px-2">Convert</span>

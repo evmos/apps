@@ -10,7 +10,7 @@ export const Description = ({
   return (
     <div
       className={`flex items-center space-x-5 w-[50%] ${
-        subRow ? "pl-[55px]" : ""
+        subRow ? "pl-5 md:pl-14" : ""
       } `}
     >
       <Image
@@ -22,11 +22,11 @@ export const Description = ({
         alt={symbol}
         width={30}
         height={30}
-        className="w-auto"
+        className={`${subRow ? "w-5 h-5 md:w-7 md:h-7" : ""}`}
       />
       <div className="flex flex-col items-start ">
         <span className="font-bold">{symbol}</span>
-        <span className="text-sm text-darkGray5">{description}</span>
+        <span className="text-xs md:text-sm text-darkGray5">{description}</span>
       </div>
     </div>
   );

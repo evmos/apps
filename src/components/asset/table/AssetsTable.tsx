@@ -171,7 +171,7 @@ const AssetsTable = () => {
           )}
         </table>
         {!isLoading && !error && tableData?.length > 0 && (
-          <div className="mx-5 xl:mx-0">
+          <div className="mx-2 xl:mx-0">
             <HeadAssets />
             <ContentTable
               tableData={{

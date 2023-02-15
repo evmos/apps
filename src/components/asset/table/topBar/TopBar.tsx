@@ -1,31 +1,35 @@
-import AssetsGuide from "../../modals/AssetsGuide";
+import ButtonsActions from "./ButtonsActions";
 import { Container } from "./Container";
+import { TopBarProps } from "./types";
 
-const TopBar = ({
-  totalAssets,
-  totalStaked,
-  evmosPrice,
-}: {
-  totalAssets: string;
-  totalStaked: string;
-  evmosPrice: number;
-}) => {
+const TopBar = ({ topProps }: { topProps: TopBarProps }) => {
+  const actionsProps = {
+    setShow: topProps.setShow,
+    setModalContent: topProps.setModalContent,
+    tableData: topProps.tableData,
+  };
   return (
-    <div className="mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white grid grid-cols-2 sm:grid-cols-4 text-center items-center">
-      <Container text="Total Assets" value={`$${totalAssets}`} href="" />
+    <div className="mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 space-y-2 sm:space-y-0 text-center items-center">
+      <Container
+        text="Total Assets"
+        value={`$${topProps.totalAssets}`}
+        href=""
+      />
       <Container
         text="Total Staked"
-        value={totalStaked}
+        value={topProps.totalStaked}
         href="https://app.evmos.org/staking"
       />
       <Container
         text="EVMOS Price"
-        value={evmosPrice === undefined ? "--" : `$${evmosPrice.toString()}`}
+        value={
+          topProps.evmosPrice === undefined
+            ? "--"
+            : `$${topProps.evmosPrice.toString()}`
+        }
         href=""
       />
-      <div className="mt-5 sm:mt-0">
-        <AssetsGuide />
-      </div>
+      <ButtonsActions actionsProps={actionsProps} />
     </div>
   );
 };

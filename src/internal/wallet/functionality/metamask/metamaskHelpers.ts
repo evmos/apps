@@ -197,17 +197,18 @@ export async function addToken(token: Token) {
             text: METAMASK_NOTIFICATIONS.AddTokenTitle,
             type: "success",
           };
-          // Sentry.captureMessage(`User adds token ${token} to wallet.`);
         } else {
           return {
             text: METAMASK_NOTIFICATIONS.ErrorAddToken,
             type: "error",
           };
-          // Sentry.captureMessage(`Did not add token ${token} to wallet.`);
         }
       }
     } catch (err) {
-      console.log(err);
+      return {
+        text: METAMASK_NOTIFICATIONS.ErrorAddToken,
+        type: "error",
+      };
     }
   }
 }

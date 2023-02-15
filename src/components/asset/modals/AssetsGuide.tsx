@@ -32,14 +32,14 @@ const AssetsGuide = () => {
   );
   return (
     <>
-      <button
+      <span
         onClick={() => {
           setShow(true);
         }}
-        className="bg-red text-xs font-[GreyCliff] p-3 font-bold rounded"
+        className="text-red cursor-pointer"
       >
-        VIEW ASSETS GUIDE
-      </button>
+        view the assets guide
+      </span>
       <ModalAsset
         show={show}
         modalContent={modalContent}

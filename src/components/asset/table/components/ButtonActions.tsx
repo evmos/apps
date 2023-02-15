@@ -10,7 +10,6 @@ const Button = dynamic(() => import("../../../common/Button"));
 const ExternalLinkIcon = dynamic(
   () => import("../../../common/images/icons/ExternalLink")
 );
-import Convert from "../../modals/transactions/Convert";
 import Withdraw from "../../modals/transactions/Withdraw";
 import Deposit from "../../modals/transactions/Deposit";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
@@ -21,6 +20,7 @@ import {
 import { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../../../redux/Store";
+import Convert from "../../modals/transactions/Convert";
 
 type actionsProps = {
   item: TableDataElement;
@@ -29,6 +29,7 @@ type actionsProps = {
   tableData: TableData;
 };
 
+// TODO: delete once STR is fully working
 export const ButtonActions = ({
   actionsProps,
 }: {

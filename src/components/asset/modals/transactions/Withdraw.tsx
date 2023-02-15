@@ -271,8 +271,8 @@ const Withdraw = ({
               params,
               feeBalance,
               wallet.extensionName,
-              isERC20Selected,
-              item.prefix
+              item.prefix,
+              isERC20Selected
             );
 
             dispatch(

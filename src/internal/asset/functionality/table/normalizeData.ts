@@ -17,6 +17,7 @@ export type TableDataElement = {
   prefix: string;
   pngSrc: string;
   erc20Address: string;
+  tokenIdentifier: string;
 };
 
 export type TableData = {
@@ -43,6 +44,14 @@ export function normalizeAssetsData(data: ERC20BalanceResponse | undefined) {
       if (item.tokenName.toUpperCase() === "EVMOS") {
         temp.feeBalance = BigNumber.from(item.cosmosBalance);
       }
+
+      if (item.erc20Balance === "") {
+        item.erc20Balance = "0";
+      }
+
+      if (item.cosmosBalance === "") {
+        item.cosmosBalance = "0";
+      }
       temp.table.push({
         name: item.name,
         cosmosBalance: BigNumber.from(item.cosmosBalance),
@@ -58,6 +67,7 @@ export function normalizeAssetsData(data: ERC20BalanceResponse | undefined) {
         prefix: item.prefix,
         pngSrc: item.pngSrc,
         erc20Address: item.erc20Address,
+        tokenIdentifier: item.tokenIdentifier,
       });
     }
   });

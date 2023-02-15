@@ -1,9 +1,10 @@
+import Image from "next/image";
 import { useDispatch } from "react-redux";
 import {
   addToken,
   Token,
 } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
-import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
+import SmallButton from "../../../common/SmallButton";
 import { addSnackbar } from "../../../notification/redux/notificationSlice";
 
 const AddTokenMetamask = ({ token }: { token: Token }) => {
@@ -27,13 +28,21 @@ const AddTokenMetamask = ({ token }: { token: Token }) => {
     }
   };
   return (
-    <button
-      className="flex items-center border border-darkGray2 rounded-lg p-1 px-3 text-xs uppercase space-x-2 font-bold"
+    <SmallButton
       onClick={handleOnClick}
-    >
-      <MetamaskIcon width={20} height={20} className="cursor-pointer" />
-      Add {token.symbol}
-    </button>
+      text={
+        <div className="flex items-center space-x-1 uppercase">
+          <Image
+            width={15}
+            height={15}
+            className="cursor-pointer"
+            src={`/assets/tokens/${token.symbol.toLowerCase()}.png`}
+            alt={token.symbol}
+          />
+          <span>Add {token.symbol}</span>
+        </div>
+      }
+    />
   );
 };
 

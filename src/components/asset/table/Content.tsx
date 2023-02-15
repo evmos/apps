@@ -45,6 +45,7 @@ const Content = ({
                   {item.symbol.toUpperCase() === "EVMOS" ? " WEVMOS" : ""}
                 </span>
                 <span className="text-sm text-darkGray5">
+                  $
                   {amountToDolars(
                     item.erc20Balance,
                     item.decimals,
@@ -59,6 +60,7 @@ const Content = ({
                   {convertAndFormat(item.cosmosBalance, item.decimals)}
                 </span>
                 <span className="text-sm text-darkGray5">
+                  $
                   {amountToDolars(
                     item.cosmosBalance,
                     item.decimals,

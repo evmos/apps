@@ -1,16 +1,24 @@
 import Image from "next/image";
+import { DescriptionProps } from "./types";
 
 export const Description = ({
   symbol,
   description,
-}: {
-  symbol: string;
-  description: string;
-}) => {
+  imageSrc = undefined,
+  subRow = false,
+}: DescriptionProps) => {
   return (
-    <div className="flex items-center space-x-5">
+    <div
+      className={`flex items-center space-x-5 w-[50%] ${
+        subRow ? "pl-[55px]" : ""
+      } `}
+    >
       <Image
-        src={`/assets/tokens/${symbol.toLocaleLowerCase()}.png`}
+        src={
+          imageSrc
+            ? imageSrc
+            : `/assets/tokens/${symbol.toLocaleLowerCase()}.png`
+        }
         alt={symbol}
         width={35}
         height={35}

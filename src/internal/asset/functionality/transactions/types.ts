@@ -99,3 +99,11 @@ export type txStatusError = {
 export type txStatusErrorResponse = {
   error: txStatusError | string;
 };
+
+export type executeIBCTransferResponse = {
+  error: boolean;
+  message: string;
+  title: string;
+  txHash: string;
+  explorerTxUrl: string;
+};

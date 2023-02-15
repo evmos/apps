@@ -99,7 +99,7 @@ export const getEvmosBalanceForDeposit = async (
   }
   try {
     const res = await fetch(
-      `${EVMOS_BACKEND}/BalanceByDenom/${network}/${address}/ibc/6AE98883D4D5D5FF9E50D7130F1305DA2FFA0C652D1DD9C123657C6B4EB2DF8A`
+      `${EVMOS_BACKEND}/EVMOSIBCBalance/${network}/${address}`
     );
     const data = (await res.json()) as BalanceResponse;
     if ("error" in data) {

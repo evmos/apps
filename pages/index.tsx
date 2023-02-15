@@ -45,6 +45,8 @@ export default function Home() {
                 name="keywords"
                 content="assets, evmos, evm, evm on cosmos, fast finality, delegated proof-of-stake, single-token representation, erc20 assets"
               />
+              <link rel="canonical" href="https://app.evmos.org/assets" />
+
               {/* <!--  Essential META Tags --> */}
               <meta property="og:title" content="Evmos Assets" />
               <meta property="og:type" content="article" />

@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import {
-  amountToDolars,
+  amountToDollars,
   convertAndFormat,
 } from "../../../../internal/asset/style/format";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
@@ -116,7 +116,7 @@ export const SubRowContent = ({
             <span>{convertAndFormat(item.cosmosBalance, item.decimals)} </span>
           </div>
           <span className="text-sm text-darkGray5">
-            ${amountToDolars(balance, item.decimals, item.coingeckoPrice)}
+            ${amountToDollars(balance, item.decimals, item.coingeckoPrice)}
           </span>
         </div>
         {item.symbol === EVMOS_SYMBOL && (

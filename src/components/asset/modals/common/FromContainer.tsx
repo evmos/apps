@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { useState } from "react";
 import {
+  convertAndFormat,
   convertFromAtto,
   createBigNumber,
-  formatNumber,
   numericOnly,
   safeSubstraction,
   truncateNumber,
@@ -22,7 +22,13 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
         <div className="flex items-center space-x-10">
           <span className="font-bold">FROM</span>
           <div className="flex items-center space-x-3">
-            <Image src={style.img} width={20} height={20} alt={style.img} />
+            <Image
+              src={style.img}
+              width={20}
+              height={20}
+              alt={style.img}
+              className="w-auto"
+            />
             <span className="font-bold">{style.text}</span>
           </div>
         </div>
@@ -74,15 +80,15 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
         ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
       <div>
         <span className="font-bold">Balance: </span>
-        {formatNumber(convertFromAtto(balance.amount, balance.decimals))}{" "}
-        {style.tokenTo}
+        {convertAndFormat(balance.amount, balance.decimals)} {style.tokenTo}
       </div>
       {!fee.fee.eq(createBigNumber(feeDeposit)) && (
         <div>
           <span className="font-bold">
             Fee denom ({fee.feeDenom}) Balance:{" "}
           </span>
-          {formatNumber(convertFromAtto(fee.feeBalance))} {fee.feeDenom}
+          {convertAndFormat(fee.feeBalance)}
+          {fee.feeDenom}
         </div>
       )}
       {fee.fee.eq(createBigNumber(feeDeposit)) && maxClicked && (

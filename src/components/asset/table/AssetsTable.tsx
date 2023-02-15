@@ -25,8 +25,7 @@ import {
 } from "../../../internal/asset/functionality/table/normalizeData";
 import HeadTable from "./HeadTable";
 import {
-  convertFromAtto,
-  formatNumber,
+  convertAndFormat,
   getTotalAssets,
 } from "../../../internal/asset/style/format";
 import { BigNumber } from "ethers";
@@ -96,11 +95,9 @@ const AssetsTable = () => {
   const totalStaked = useMemo(() => {
     let stakedRes = totalStakedResults?.data?.value;
     if (stakedRes !== "" && stakedRes !== undefined) {
-      stakedRes = formatNumber(
-        convertFromAtto(
-          BigNumber.from(stakedRes),
-          normalizedAssetsData?.table[0]?.decimals
-        )
+      stakedRes = convertAndFormat(
+        BigNumber.from(stakedRes),
+        normalizedAssetsData?.table[0]?.decimals
       );
     } else {
       stakedRes = "0";

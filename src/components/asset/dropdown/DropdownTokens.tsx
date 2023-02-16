@@ -39,7 +39,7 @@ const DropdownTokens = ({
             alt={selectedValue.symbol}
             width={25}
             height={25}
-            className="w-auto"
+            className="w-6 h-6"
           />
           <span> {selectedValue.symbol}</span>
         </div>
@@ -84,7 +84,7 @@ const DropdownTokens = ({
                       alt={option.symbol}
                       width={25}
                       height={25}
-                      className="w-auto"
+                      className=" w-6 h-6"
                     />
                     <span>{option.symbol}</span>
                   </div>

@@ -35,7 +35,7 @@ const DropdownChains = ({
             alt={selectedValue.chainIdentifier}
             width={25}
             height={25}
-            className="w-auto"
+            className="w-6 h-6"
           />
           <span> {selectedValue.chainIdentifier}</span>
         </div>
@@ -86,7 +86,7 @@ const DropdownChains = ({
                         alt={option.chainIdentifier}
                         width={25}
                         height={25}
-                        className="w-auto"
+                        className=" w-6 h-6"
                       />
                       <span>{option.chainIdentifier}</span>
                     </div>

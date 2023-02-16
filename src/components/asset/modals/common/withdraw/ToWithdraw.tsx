@@ -51,28 +51,80 @@ const ToWithdraw = ({
     }
     setReceiverAddress(keplrAddress);
   };
+
+  const walletDiv = () => {
+    return (
+      <div className="flex items-center space-x-3">
+        <TextSmall text="TO" />
+        <span>{truncateAddress(receiverAddress)}</span>
+        <div className="flex items-center space-x-5 w-full justify-end">
+          <SmallButton
+            className={`${!showEditButton ? "invisible" : ""}`}
+            text="EDIT"
+            onClick={handleOnClickEdit}
+          />
+          <KeplrIcon
+            width={25}
+            height={25}
+            className={`cursor-pointer ${
+              token === undefined ? "disabled" : ""
+            }`}
+            onClick={handleOnClickKeplr}
+          />
+        </div>
+      </div>
+    );
+  };
+  const createWalletDiv = () => {
+    if (token === undefined) {
+      return walletDiv();
+    }
+
+    if (
+      token !== undefined &&
+      dropChainProps.chain !== undefined &&
+      dropChainProps.chain.handledByExternalUI !== null
+    ) {
+      return <></>;
+    }
+    return walletDiv();
+  };
+
+  const addMetamaskDiv = () => {
+    return (
+      <div className="flex justify-end w-full">
+        {token !== undefined && (
+          <AddTokenMetamask
+            token={{
+              erc20Address: token?.erc20Address,
+              symbol: token?.symbol,
+              decimals: token?.decimals,
+              img: token?.pngSrc,
+            }}
+          />
+        )}
+      </div>
+    );
+  };
+
+  const createAddMetamaskDiv = () => {
+    if (token === undefined) {
+      return addMetamaskDiv();
+    }
+
+    if (
+      token !== undefined &&
+      dropChainProps.chain !== undefined &&
+      dropChainProps.chain.handledByExternalUI !== null
+    ) {
+      return <></>;
+    }
+    return addMetamaskDiv();
+  };
   return (
     <ContainerModal>
       <>
-        <div className="flex items-center space-x-3">
-          <TextSmall text="TO" />
-          <span>{truncateAddress(receiverAddress)}</span>
-          <div className="flex items-center space-x-5 w-full justify-end">
-            <SmallButton
-              className={`${!showEditButton ? "invisible" : ""}`}
-              text="EDIT"
-              onClick={handleOnClickEdit}
-            />
-            <KeplrIcon
-              width={25}
-              height={25}
-              className={`cursor-pointer ${
-                token === undefined ? "disabled" : ""
-              }`}
-              onClick={handleOnClickKeplr}
-            />
-          </div>
-        </div>
+        {createWalletDiv()}
         {token !== undefined && token.symbol === EVMOS_SYMBOL && (
           <ChainContainer dropChainProps={dropChainProps} />
         )}
@@ -98,18 +150,7 @@ const ToWithdraw = ({
         {confirmClicked && receiverAddress === "" && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
         )}
-        <div className="flex justify-end w-full">
-          {token !== undefined && (
-            <AddTokenMetamask
-              token={{
-                erc20Address: token?.erc20Address,
-                symbol: token?.symbol,
-                decimals: token?.decimals,
-                img: token?.pngSrc,
-              }}
-            />
-          )}
-        </div>
+        {createAddMetamaskDiv()}
       </>
     </ContainerModal>
   );

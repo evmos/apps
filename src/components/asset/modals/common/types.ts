@@ -56,6 +56,7 @@ export type AmountWithdrawProps = {
   confirmClicked: boolean;
   setReceiverAddress: Dispatch<SetStateAction<string>>;
   setChain: Dispatch<SetStateAction<TableDataElement | undefined>>;
+  chain: TableDataElement | undefined;
 };
 
 type FeeDeposit = {

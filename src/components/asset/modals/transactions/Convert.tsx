@@ -22,12 +22,15 @@ import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/e
 import {
   BROADCASTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
+  WALLET_NOTIFICATIONS,
 } from "../../../../internal/asset/functionality/transactions/errors";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
 import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
-import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
-import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
+import {
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "../../../notification/types";
 
 const Convert = ({
   item,
@@ -144,13 +147,12 @@ const Convert = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  content: (
-                    <SimpleSnackbar
-                      title="Wallet not connected"
-                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-                    />
-                  ),
-                  type: "error",
+                  content: {
+                    type: SNACKBAR_CONTENT_TYPES.TEXT,
+                    title: WALLET_NOTIFICATIONS.ErrorTitle,
+                    text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                  },
+                  type: SNACKBAR_TYPES.ERROR,
                 })
               );
               setShow(false);
@@ -191,18 +193,22 @@ const Convert = ({
                 addSnackbar({
                   id: 0,
                   content:
-                    res.error === true ? (
-                      <SimpleSnackbar title={res.title} text={res.message} />
-                    ) : (
-                      <ViewExplorerSnackbar
-                        values={{
+                    res.error === true
+                      ? {
+                          type: SNACKBAR_CONTENT_TYPES.TEXT,
+                          title: res.title,
+                          text: res.message,
+                        }
+                      : {
+                          type: SNACKBAR_CONTENT_TYPES.LINK,
                           title: res.title,
                           hash: res.txHash,
                           explorerTxUrl: res.explorerTxUrl,
-                        }}
-                      />
-                    ),
-                  type: res.error === true ? "error" : "success",
+                        },
+                  type:
+                    res.error === true
+                      ? SNACKBAR_TYPES.ERROR
+                      : SNACKBAR_TYPES.SUCCESS,
                 })
               );
             } else {
@@ -217,8 +223,11 @@ const Convert = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                        type: "error",
+                        content: {
+                          type: SNACKBAR_CONTENT_TYPES.TEXT,
+                          title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                        },
+                        type: SNACKBAR_TYPES.ERROR,
                       })
                     );
                     setShow(false);
@@ -229,16 +238,13 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      content: (
-                        <ViewExplorerSnackbar
-                          values={{
-                            title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
-                            hash: res.hash,
-                            explorerTxUrl: "www.mintscan.io/evmos/txs/",
-                          }}
-                        />
-                      ),
-                      type: "success",
+                      content: {
+                        type: SNACKBAR_CONTENT_TYPES.LINK,
+                        title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                        hash: res.hash,
+                        explorerTxUrl: "www.mintscan.io/evmos/txs/",
+                      },
+                      type: SNACKBAR_TYPES.SUCCESS,
                     })
                   );
                 } catch (e) {
@@ -246,8 +252,11 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                      type: "error",
+                      content: {
+                        type: SNACKBAR_CONTENT_TYPES.TEXT,
+                        title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                      },
+                      type: SNACKBAR_TYPES.ERROR,
                     })
                   );
                 }
@@ -262,8 +271,11 @@ const Convert = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                        type: "error",
+                        content: {
+                          type: SNACKBAR_CONTENT_TYPES.TEXT,
+                          title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                        },
+                        type: SNACKBAR_TYPES.ERROR,
                       })
                     );
                     setShow(false);
@@ -276,16 +288,13 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      content: (
-                        <ViewExplorerSnackbar
-                          values={{
-                            title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
-                            hash: res.hash,
-                            explorerTxUrl: "www.mintscan.io/evmos/txs/",
-                          }}
-                        />
-                      ),
-                      type: "success",
+                      content: {
+                        type: SNACKBAR_CONTENT_TYPES.LINK,
+                        title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+                        hash: res.hash,
+                        explorerTxUrl: "www.mintscan.io/evmos/txs/",
+                      },
+                      type: SNACKBAR_TYPES.SUCCESS,
                     })
                   );
                 } catch (e) {
@@ -293,8 +302,11 @@ const Convert = ({
                   dispatch(
                     addSnackbar({
                       id: 0,
-                      content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-                      type: "error",
+                      content: {
+                        type: SNACKBAR_CONTENT_TYPES.TEXT,
+                        title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+                      },
+                      type: SNACKBAR_TYPES.ERROR,
                     })
                   );
                 }

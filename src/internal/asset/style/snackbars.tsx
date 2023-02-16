@@ -1,6 +1,8 @@
-import { SimpleSnackbar } from "../../../components/notification/content/SimpleSnackbar";
-import { ViewExplorerSnackbar } from "../../../components/notification/content/ViexExplorerSnackbar";
 import { addSnackbar } from "../../../components/notification/redux/notificationSlice";
+import {
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "../../../components/notification/types";
 import {
   KEPLR_NOTIFICATIONS,
   METAMASK_NOTIFICATIONS,
@@ -11,56 +13,55 @@ import {
   EXECUTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
   MODAL_NOTIFICATIONS,
+  WALLET_NOTIFICATIONS,
 } from "../functionality/transactions/errors";
 import { executeIBCTransferResponse } from "../functionality/transactions/types";
 
 export function snackRequestRejected() {
   return addSnackbar({
     id: 0,
-    content: (
-      <SimpleSnackbar
-        title="Wallet not connected"
-        text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-      />
-    ),
-    type: "error",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: WALLET_NOTIFICATIONS.ErrorTitle,
+      text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+    },
+    type: SNACKBAR_TYPES.ERROR,
   });
 }
 
 export function snackErrorGeneratingTx() {
   return addSnackbar({
     id: 0,
-    content: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-    type: "error",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+    },
+    type: SNACKBAR_TYPES.ERROR,
   });
 }
 
 export function snackBroadcastSuccessful(hash: string, explorerTxUrl: string) {
   return addSnackbar({
     id: 0,
-    content: (
-      <ViewExplorerSnackbar
-        values={{
-          title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
-          hash: hash,
-          explorerTxUrl: explorerTxUrl,
-        }}
-      />
-    ),
-    type: "success",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.LINK,
+      title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+      hash: hash,
+      explorerTxUrl: explorerTxUrl,
+    },
+    type: SNACKBAR_TYPES.SUCCESS,
   });
 }
 
 export function snackIBCInformation() {
   return addSnackbar({
     id: 0,
-    content: (
-      <SimpleSnackbar
-        title={EXECUTED_NOTIFICATIONS.IBCTransferInformation.text}
-        text={EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext}
-      />
-    ),
-    type: "default",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: EXECUTED_NOTIFICATIONS.IBCTransferInformation.text,
+      text: EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext,
+    },
+    type: SNACKBAR_TYPES.DEFAULT,
   });
 }
 
@@ -68,60 +69,66 @@ export function snackExecuteIBCTransfer(res: executeIBCTransferResponse) {
   return addSnackbar({
     id: 0,
     content:
-      res.error === true ? (
-        <SimpleSnackbar title={res.title} text={res.message} />
-      ) : (
-        <ViewExplorerSnackbar
-          values={{
+      res.error === true
+        ? {
+            type: SNACKBAR_CONTENT_TYPES.TEXT,
+            title: res.title,
+            text: res.message,
+          }
+        : {
+            type: SNACKBAR_CONTENT_TYPES.LINK,
             title: res.title,
             hash: res.txHash,
             explorerTxUrl: res.explorerTxUrl,
-          }}
-        />
-      ),
-    type: res.error === true ? "error" : "success",
+          },
+
+    type: res.error === true ? SNACKBAR_TYPES.ERROR : SNACKBAR_TYPES.SUCCESS,
   });
 }
 
 export function snackErrorConnectingKeplr() {
   return addSnackbar({
     id: 0,
-    content: (
-      <SimpleSnackbar
-        title={KEPLR_NOTIFICATIONS.ErrorTitle}
-        text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-      />
-    ),
-    type: "error",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: KEPLR_NOTIFICATIONS.ErrorTitle,
+      text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+    },
+    type: SNACKBAR_TYPES.ERROR,
   });
 }
 
 export function snackErrorConnectingMetaMask() {
   return addSnackbar({
     id: 0,
-    content: (
-      <SimpleSnackbar
-        title={METAMASK_NOTIFICATIONS.ErrorTitle}
-        text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-      />
-    ),
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: METAMASK_NOTIFICATIONS.ErrorTitle,
+      text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+    },
 
-    type: "error",
+    type: SNACKBAR_TYPES.ERROR,
   });
 }
 
 export function snackErrorGettingBalanceExtChain() {
   return addSnackbar({
     id: 0,
-    content: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
-    type: "error",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
+    },
+    type: SNACKBAR_TYPES.ERROR,
   });
 }
 
 export function snackErrorAmountGt() {
   return addSnackbar({
     id: 0,
-    content: MODAL_NOTIFICATIONS.ErrorsAmountGt,
-    type: "error",
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: MODAL_NOTIFICATIONS.ErrorsAmountGt,
+    },
+    type: SNACKBAR_TYPES.ERROR,
   });
 }

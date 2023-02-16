@@ -33,7 +33,7 @@ import {
   subscribeToChainChanged,
   unsubscribeToEvents,
 } from "./metamaskHelpers";
-import { SimpleSnackbar } from "../../../../components/notification/content/SimpleSnackbar";
+import { SNACKBAR_CONTENT_TYPES } from "../../../../components/notification/types";
 
 export class Metamask {
   active = false;
@@ -86,10 +86,11 @@ export class Metamask {
       // TODO: if the user did not sign the pubkey, pop up a message
       if (this.evmosPubkey === null) {
         NotifyError(
-          <SimpleSnackbar
-            title={METAMASK_NOTIFICATIONS.ErrorTitle}
-            text={METAMASK_NOTIFICATIONS.PubkeySubtext}
-          />,
+          {
+            type: SNACKBAR_CONTENT_TYPES.TEXT,
+            title: METAMASK_NOTIFICATIONS.ErrorTitle,
+            text: METAMASK_NOTIFICATIONS.PubkeySubtext,
+          },
           store,
           this.notificationsEnabled
         );
@@ -110,12 +111,12 @@ export class Metamask {
         })
       );
       NotifySuccess(
-        <SimpleSnackbar
-          title={METAMASK_NOTIFICATIONS.SuccessTitle}
-          text={`Connected with wallet ${truncateAddress(
-            this.addressEthFormat
-          )}`}
-        />,
+        {
+          type: SNACKBAR_CONTENT_TYPES.TEXT,
+          title: METAMASK_NOTIFICATIONS.SuccessTitle,
+          text:
+            "Connected with wallet " + truncateAddress(this.addressEthFormat),
+        },
         store,
         this.notificationsEnabled
       );
@@ -133,10 +134,11 @@ export class Metamask {
       this.reset();
 
       NotifyError(
-        <SimpleSnackbar
-          title={METAMASK_NOTIFICATIONS.ErrorTitle}
-          text={METAMASK_NOTIFICATIONS.PubkeySubtext}
-        />,
+        {
+          type: SNACKBAR_CONTENT_TYPES.TEXT,
+          title: METAMASK_NOTIFICATIONS.ErrorTitle,
+          text: METAMASK_NOTIFICATIONS.PubkeySubtext,
+        },
         store,
         this.notificationsEnabled
       );
@@ -162,11 +164,11 @@ export class Metamask {
       this.reset();
 
       NotifyError(
-        <SimpleSnackbar
-          title={METAMASK_NOTIFICATIONS.ErrorTitle}
-          text={METAMASK_NOTIFICATIONS.AddressSubtext}
-        />,
-
+        {
+          type: SNACKBAR_CONTENT_TYPES.TEXT,
+          title: METAMASK_NOTIFICATIONS.ErrorTitle,
+          text: METAMASK_NOTIFICATIONS.AddressSubtext,
+        },
         store,
         this.notificationsEnabled
       );

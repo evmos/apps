@@ -25,15 +25,18 @@ import {
   BROADCASTED_NOTIFICATIONS,
   EXECUTED_NOTIFICATIONS,
   MODAL_NOTIFICATIONS,
+  WALLET_NOTIFICATIONS,
 } from "../../../../internal/asset/functionality/transactions/errors";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import Tabs from "../common/Tabs";
 import { KEPLR_NOTIFICATIONS } from "../../../../internal/wallet/functionality/errors";
 import { Token } from "../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import AddTokenMetamask from "./AddTokenMetamask";
-import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
-import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
 import Link from "next/link";
+import {
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "../../../notification/types";
 
 const Withdraw = ({
   item,
@@ -189,13 +192,13 @@ const Withdraw = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        content: (
-                          <SimpleSnackbar
-                            title={KEPLR_NOTIFICATIONS.ErrorTitle}
-                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-                          />
-                        ),
-                        type: "error",
+                        content: {
+                          type: SNACKBAR_CONTENT_TYPES.TEXT,
+                          title: KEPLR_NOTIFICATIONS.ErrorTitle,
+                          text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                        },
+
+                        type: SNACKBAR_TYPES.ERROR,
                       })
                     );
                     return;
@@ -215,13 +218,13 @@ const Withdraw = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  content: (
-                    <SimpleSnackbar
-                      title="Wallet not connected"
-                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-                    />
-                  ),
-                  type: "error",
+                  content: {
+                    type: SNACKBAR_CONTENT_TYPES.TEXT,
+                    title: WALLET_NOTIFICATIONS.ErrorTitle,
+                    text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                  },
+
+                  type: SNACKBAR_TYPES.ERROR,
                 })
               );
               setShow(false);
@@ -256,13 +259,13 @@ const Withdraw = ({
             dispatch(
               addSnackbar({
                 id: 0,
-                content: (
-                  <SimpleSnackbar
-                    title={EXECUTED_NOTIFICATIONS.IBCTransferInformation.text}
-                    text={EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext}
-                  />
-                ),
-                type: "default",
+                content: {
+                  type: SNACKBAR_CONTENT_TYPES.TEXT,
+                  title: EXECUTED_NOTIFICATIONS.IBCTransferInformation.text,
+                  text: EXECUTED_NOTIFICATIONS.IBCTransferInformation.text,
+                },
+
+                type: SNACKBAR_TYPES.DEFAULT,
               })
             );
             // create, sign and broadcast tx
@@ -280,18 +283,22 @@ const Withdraw = ({
               addSnackbar({
                 id: 0,
                 content:
-                  res.error === true ? (
-                    <SimpleSnackbar title={res.title} text={res.message} />
-                  ) : (
-                    <ViewExplorerSnackbar
-                      values={{
+                  res.error === true
+                    ? {
+                        type: SNACKBAR_CONTENT_TYPES.TEXT,
+                        title: res.title,
+                        text: res.message,
+                      }
+                    : {
+                        type: SNACKBAR_CONTENT_TYPES.LINK,
                         title: res.title,
                         hash: res.txHash,
                         explorerTxUrl: res.explorerTxUrl,
-                      }}
-                    />
-                  ),
-                type: res.error === true ? "error" : "success",
+                      },
+                type:
+                  res.error === true
+                    ? SNACKBAR_TYPES.ERROR
+                    : SNACKBAR_TYPES.SUCCESS,
               })
             );
             setShow(false);

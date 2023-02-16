@@ -34,6 +34,7 @@ import {
   BALANCE_NOTIFICATIONS,
   BROADCASTED_NOTIFICATIONS,
   EXECUTED_NOTIFICATIONS,
+  WALLET_NOTIFICATIONS,
 } from "../../../../internal/asset/functionality/transactions/errors";
 import {
   snackbarExecutedTx,
@@ -45,8 +46,10 @@ import {
   METAMASK_NOTIFICATIONS,
 } from "../../../../internal/wallet/functionality/errors";
 import AddTokenMetamask from "./AddTokenMetamask";
-import { SimpleSnackbar } from "../../../notification/content/SimpleSnackbar";
-import { ViewExplorerSnackbar } from "../../../notification/content/ViexExplorerSnackbar";
+import {
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "../../../notification/types";
 
 const Deposit = ({
   item,
@@ -89,13 +92,12 @@ const Deposit = ({
         dispatch(
           addSnackbar({
             id: 0,
-            content: (
-              <SimpleSnackbar
-                title={KEPLR_NOTIFICATIONS.ErrorTitle}
-                text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-              />
-            ),
-            type: "error",
+            content: {
+              type: SNACKBAR_CONTENT_TYPES.TEXT,
+              title: KEPLR_NOTIFICATIONS.ErrorTitle,
+              text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+            },
+            type: SNACKBAR_TYPES.ERROR,
           })
         );
         setShow(false);
@@ -121,8 +123,12 @@ const Deposit = ({
         dispatch(
           addSnackbar({
             id: 0,
-            content: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
-            type: "error",
+            content: {
+              type: SNACKBAR_CONTENT_TYPES.TEXT,
+              title: BALANCE_NOTIFICATIONS.ErrorGetBalanceExtChain,
+            },
+
+            type: SNACKBAR_TYPES.ERROR,
           })
         );
         setShow(false);
@@ -209,13 +215,12 @@ const Deposit = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        content: (
-                          <SimpleSnackbar
-                            title={KEPLR_NOTIFICATIONS.ErrorTitle}
-                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-                          />
-                        ),
-                        type: "error",
+                        content: {
+                          type: SNACKBAR_CONTENT_TYPES.TEXT,
+                          title: KEPLR_NOTIFICATIONS.ErrorTitle,
+                          text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                        },
+                        type: SNACKBAR_TYPES.ERROR,
                       })
                     );
                     setShow(false);
@@ -234,14 +239,12 @@ const Deposit = ({
                     dispatch(
                       addSnackbar({
                         id: 0,
-                        content: (
-                          <SimpleSnackbar
-                            title={METAMASK_NOTIFICATIONS.ErrorTitle}
-                            text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-                          />
-                        ),
-
-                        type: "error",
+                        content: {
+                          type: SNACKBAR_CONTENT_TYPES.TEXT,
+                          title: METAMASK_NOTIFICATIONS.ErrorTitle,
+                          text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                        },
+                        type: SNACKBAR_TYPES.ERROR,
                       })
                     );
                     setShow(false);
@@ -261,13 +264,12 @@ const Deposit = ({
               dispatch(
                 addSnackbar({
                   id: 0,
-                  content: (
-                    <SimpleSnackbar
-                      title="Wallet not connected"
-                      text={KEPLR_NOTIFICATIONS.RequestRejectedSubtext}
-                    />
-                  ),
-                  type: "error",
+                  content: {
+                    type: SNACKBAR_CONTENT_TYPES.TEXT,
+                    title: WALLET_NOTIFICATIONS.ErrorTitle,
+                    text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+                  },
+                  type: SNACKBAR_TYPES.ERROR,
                 })
               );
               setShow(false);
@@ -310,13 +312,12 @@ const Deposit = ({
             dispatch(
               addSnackbar({
                 id: 0,
-                content: (
-                  <SimpleSnackbar
-                    title={EXECUTED_NOTIFICATIONS.IBCTransferInformation.text}
-                    text={EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext}
-                  />
-                ),
-                type: "default",
+                content: {
+                  type: SNACKBAR_CONTENT_TYPES.TEXT,
+                  title: EXECUTED_NOTIFICATIONS.IBCTransferInformation.text,
+                  text: EXECUTED_NOTIFICATIONS.IBCTransferInformation.subtext,
+                },
+                type: SNACKBAR_TYPES.DEFAULT,
               })
             );
             // create, sign and broadcast tx
@@ -333,18 +334,22 @@ const Deposit = ({
               addSnackbar({
                 id: 0,
                 content:
-                  res.error === true ? (
-                    <SimpleSnackbar title={res.title} text={res.message} />
-                  ) : (
-                    <ViewExplorerSnackbar
-                      values={{
+                  res.error === true
+                    ? {
+                        type: SNACKBAR_CONTENT_TYPES.TEXT,
+                        title: res.title,
+                        text: res.message,
+                      }
+                    : {
+                        type: SNACKBAR_CONTENT_TYPES.LINK,
                         title: res.title,
                         hash: res.txHash,
                         explorerTxUrl: res.explorerTxUrl,
-                      }}
-                    />
-                  ),
-                type: res.error === true ? "error" : "success",
+                      },
+                type:
+                  res.error === true
+                    ? SNACKBAR_TYPES.ERROR
+                    : SNACKBAR_TYPES.SUCCESS,
               })
             );
             setShow(false);

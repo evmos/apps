@@ -3,7 +3,7 @@ export const SimpleSnackbar = ({
   text,
 }: {
   title: string;
-  text: string;
+  text?: string;
 }) => {
   return (
     <div>

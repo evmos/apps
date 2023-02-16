@@ -43,3 +43,13 @@ export const GENERATING_TX_NOTIFICATIONS = {
 export const SIGNING_NOTIFICATIONS = {
   ErrorTitle: "Error signing tx",
 } as const;
+
+export const INCLUDED_BLOCK_NOTIFICATIONS = {
+  SuccessTitle: "Successfully included in a block",
+  ErrorTitle: "Error including transaction in a block",
+  WaitingTitle: "Waiting for the transaction to be included in a block",
+} as const;
+
+export const WALLET_NOTIFICATIONS = {
+  ErrorTitle: "Wallet not connected",
+};

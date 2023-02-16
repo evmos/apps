@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import {
-  amountToDolars,
+  amountToDollars,
   convertAndFormat,
 } from "../../../internal/asset/style/format";
 import { TableData } from "../../../internal/asset/functionality/table/normalizeData";
@@ -46,7 +46,7 @@ const Content = ({
                 </span>
                 <span className="text-sm text-darkGray5">
                   $
-                  {amountToDolars(
+                  {amountToDollars(
                     item.erc20Balance,
                     item.decimals,
                     item.coingeckoPrice
@@ -61,7 +61,7 @@ const Content = ({
                 </span>
                 <span className="text-sm text-darkGray5">
                   $
-                  {amountToDolars(
+                  {amountToDollars(
                     item.cosmosBalance,
                     item.decimals,
                     item.coingeckoPrice

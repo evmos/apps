@@ -12,11 +12,11 @@ export const RowContent = ({
   valueInDollars: string;
 }) => {
   return (
-    <div className="flex w-full">
+    <div className="flex w-full justify-between mr-8 lg:mr-0">
       <Description symbol={symbol} imageSrc={imgSrc} description={""} />
-      <div className="flex flex-col items-start uppercase w-[50%]">
-        <span className="font-bold">{valueInTokens}</span>
-        <span className="text-sm text-darkGray5">${valueInDollars}</span>
+      <div className="flex flex-col items-end w-full lg:items-start uppercase lg:w-[50%]">
+        <span className="font-bold text-sm">{valueInTokens}</span>
+        <span className="text-xs text-darkGray5">${valueInDollars}</span>
       </div>
     </div>
   );

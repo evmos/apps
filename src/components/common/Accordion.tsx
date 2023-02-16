@@ -20,7 +20,7 @@ const Accordion = ({
           } `}
           onClick={() => setIsActive(!isActive)}
         >
-          <div className="w-[5%] flex justify-center">
+          <div className="w-[5%] flex justify-center mx-4 lg:mx-0">
             {content !== null ? (
               isActive ? (
                 <UpArrowIcon />
@@ -34,7 +34,7 @@ const Accordion = ({
           {title}
         </div>
         {content !== null && isActive && (
-          <div className="border-t-2 border-t-black pt-5 mt-5 flex ">
+          <div className="border-t-2 border-t-darkGray3 pt-5 mt-5 flex ">
             <div className="flex justify-between w-full">{content}</div>
           </div>
         )}

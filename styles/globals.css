@@ -77,6 +77,13 @@
     @apply first:rounded-tl-none first:border-l-darkGray2 first:rounded-l-3xl 
     last:rounded-tr-none last:border-r-darkGray2 last:rounded-r-3xl
   }
+
+  .subrow {
+    @apply border-b-2 border-b-darkGray3 pb-4
+  }
+  .subrow:last-of-type {
+    @apply last:border-b-0 last:border-b-darkGray3
+  }
   /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

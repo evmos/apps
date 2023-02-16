@@ -9,8 +9,8 @@ export const Description = ({
 }: DescriptionProps) => {
   return (
     <div
-      className={`flex items-center space-x-5 w-[50%] ${
-        subRow ? "pl-[55px]" : ""
+      className={`flex items-center space-x-3 lg:space-x-5 w-[50%] ${
+        subRow ? "pl-5 md:pl-14" : ""
       } `}
     >
       <Image
@@ -22,11 +22,12 @@ export const Description = ({
         alt={symbol}
         width={30}
         height={30}
-        className="w-auto"
       />
-      <div className="flex flex-col items-start ">
+      <div className="flex flex-col items-start">
         <span className="font-bold">{symbol}</span>
-        <span className="text-sm text-darkGray5">{description}</span>
+        <span className="text-xs text-darkGray5 lowercase first-letter:capitalize">
+          {description}
+        </span>
       </div>
     </div>
   );

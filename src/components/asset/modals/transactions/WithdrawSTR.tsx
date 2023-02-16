@@ -44,15 +44,45 @@ const WithdrawSTR = ({
     confirmClicked: confirmClicked,
     setReceiverAddress: setReceiverAddress,
     setChain: setChain,
+    chain: chain,
   };
 
-  return (
-    <>
-      <ModalTitle title="Withdraw Tokens" />
-      <div className="text-darkGray3 space-y-3">
-        <FromWithdraw address={address} />
-        <AmountWithdraw amountProps={amountProps} />
-        {token === undefined || token.handledByExternalUI === null ? (
+  const withdrawContent = () => {
+    return (
+      <>
+        <ToWithdraw
+          token={token}
+          receiverAddress={receiverAddress}
+          setReceiverAddress={setReceiverAddress}
+          confirmClicked={confirmClicked}
+          dropChainProps={{
+            placeholder: "Select chain...",
+            data: data,
+            token: token,
+            chain: chain,
+            setChain: setChain,
+            setAddress: setReceiverAddress,
+          }}
+        />
+        <ConfirmButton
+          disabled={disabled}
+          text="WITHDRAW"
+          onClick={handleConfirmButton}
+        />
+      </>
+    );
+  };
+
+  const withdrawDiv = () => {
+    // No token selected, display deposit and confirm button
+    if (token === undefined) {
+      return withdrawContent();
+    }
+
+    // If chain is from axelar, return redirect component
+    if (chain !== undefined && chain.handledByExternalUI !== null) {
+      return (
+        <>
           <ToWithdraw
             token={token}
             receiverAddress={receiverAddress}
@@ -67,21 +97,33 @@ const WithdrawSTR = ({
               setAddress: setReceiverAddress,
             }}
           />
-        ) : (
-          ""
-        )}
-        {token !== undefined && token.handledByExternalUI !== null ? (
           <RedirectLink
-            href={token.handledByExternalUI.url}
+            href={chain.handledByExternalUI.url}
             text="Withdraw from Axelar"
           />
-        ) : (
-          <ConfirmButton
-            disabled={disabled}
-            text="WITHDRAW"
-            onClick={handleConfirmButton}
-          />
-        )}
+        </>
+      );
+    }
+    // If token is from axelar, return redirect component
+    if (token !== undefined && token.handledByExternalUI !== null) {
+      return (
+        <RedirectLink
+          href={token.handledByExternalUI.url}
+          text="Withdraw from Axelar"
+        />
+      );
+    }
+
+    return withdrawContent();
+  };
+
+  return (
+    <>
+      <ModalTitle title="Withdraw Tokens" />
+      <div className="text-darkGray3 space-y-3">
+        <FromWithdraw address={address} />
+        <AmountWithdraw amountProps={amountProps} />
+        {withdrawDiv()}
       </div>
     </>
   );

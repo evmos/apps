@@ -49,22 +49,103 @@ const AmountWithdraw = ({
   const handleOnChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     amountProps.setValue(numericOnly(e.target.value));
   };
+
+  const createAmountLabel = () => {
+    // No token selected, display amount label
+    if (amountProps.token === undefined) {
+      return <TextSmall text="AMOUNT" />;
+    }
+
+    // If token selected or chain select is a bridge with their own ui, link the bridge page
+    if (
+      amountProps.token.handledByExternalUI !== null ||
+      (amountProps.chain !== undefined &&
+        amountProps.chain.handledByExternalUI !== null)
+    ) {
+      return (
+        <>
+          <TextSmall text="SELECT BRIDGE" />
+          <Note
+            text="We currently do not offer transfers directly from Ethereum. For now,
+      here area few options that will allow you to withdraw from Evmos"
+          />
+        </>
+      );
+    }
+
+    // By default display the amount label
+    return <TextSmall text="AMOUNT" />;
+  };
+
+  const createAmountInput = () => {
+    // If token or chain are from axelar, return empty component
+    if (
+      (amountProps.token !== undefined &&
+        amountProps.token.handledByExternalUI !== null) ||
+      (amountProps.chain !== undefined &&
+        amountProps.chain.handledByExternalUI !== null)
+    ) {
+      return <></>;
+    }
+
+    // Return amount input
+    return (
+      <>
+        <input
+          className="w-full border-none hover:border-none focus-visible:outline-none text-right"
+          type="text"
+          placeholder="amount"
+          value={amountProps.value}
+          onChange={handleOnChangeInput}
+        />
+        <SmallButton text="MAX" onClick={handleOnClickMax} />
+      </>
+    );
+  };
+
+  const createBalanceDiv = () => {
+    // If token or chain are from axelar, return empty component
+    if (amountProps.token === undefined) {
+      return <></>;
+    }
+
+    if (
+      (amountProps.token !== undefined &&
+        amountProps.token.handledByExternalUI !== null) ||
+      (amountProps.chain !== undefined &&
+        amountProps.chain.handledByExternalUI !== null)
+    ) {
+      return <></>;
+    }
+    return (
+      <>
+        <p className="font-bold text-sm">
+          Available Balance:{" "}
+          <span className="font-normal opacity-80">
+            {convertAndFormat(
+              // evmos keeps using cosmosBalance
+              amountProps.token.symbol === EVMOS_SYMBOL
+                ? amountProps.token.cosmosBalance
+                : amountProps.token.erc20Balance,
+              amountProps.token.decimals
+            )}{" "}
+            {amountProps.token.symbol}
+          </span>
+        </p>
+        <Note
+          text={getReservedForFeeText(
+            BigNumber.from(fee),
+            EVMOS_SYMBOL,
+            EVMOS_SYMBOL
+          )}
+        />
+      </>
+    );
+  };
   return (
     <ContainerModal>
       <>
-        {amountProps.token === undefined ||
-        amountProps.token.handledByExternalUI === null ? (
-          <TextSmall text="AMOUNT" />
-        ) : (
-          <TextSmall text="SELECT BRIDGE" />
-        )}
-        {amountProps.token !== undefined &&
-          amountProps.token.handledByExternalUI !== null && (
-            <Note
-              text="We currently do not offer transfers directly from Ethereum. For now,
-        here area few options that will allow you to withdraw from Evmos"
-            />
-          )}
+        {createAmountLabel()}
         <ContainerInput>
           <>
             <DropdownTokens
@@ -75,22 +156,7 @@ const AmountWithdraw = ({
               setValue={amountProps.setValue}
               setChain={amountProps.setChain}
             />
-
-            {amountProps.token === undefined ||
-            amountProps.token.handledByExternalUI === null ? (
-              <>
-                <input
-                  className="w-full  border-none hover:border-none focus-visible:outline-none text-right"
-                  type="text"
-                  placeholder="amount"
-                  value={amountProps.value}
-                  onChange={handleOnChangeInput}
-                />
-                <SmallButton text="MAX" onClick={handleOnClickMax} />
-              </>
-            ) : (
-              ""
-            )}
+            {createAmountInput()}
           </>
         </ContainerInput>
         <div className="flex flex-col">
@@ -118,33 +184,7 @@ const AmountWithdraw = ({
                 )
               ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
         </div>
-        <div className="space-y-2">
-          {amountProps.token !== undefined &&
-            amountProps.token.handledByExternalUI === null && (
-              <>
-                <p className="font-bold text-sm">
-                  Available Balance:{" "}
-                  <span className="font-normal opacity-80">
-                    {convertAndFormat(
-                      // evmos keeps using cosmosBalance
-                      amountProps.token.symbol === EVMOS_SYMBOL
-                        ? amountProps.token.cosmosBalance
-                        : amountProps.token.erc20Balance,
-                      amountProps.token.decimals
-                    )}{" "}
-                    {amountProps.token.symbol}
-                  </span>
-                </p>
-                <Note
-                  text={getReservedForFeeText(
-                    BigNumber.from(fee),
-                    EVMOS_SYMBOL,
-                    EVMOS_SYMBOL
-                  )}
-                />
-              </>
-            )}
-        </div>
+        <div className="space-y-2">{createBalanceDiv()} </div>
       </>
     </ContainerModal>
   );

@@ -1,7 +1,7 @@
 import { BigNumber } from "ethers";
 import { EVMOSIBCBalances } from "../../../../internal/asset/functionality/fetch";
 import {
-  amountToDolars,
+  amountToDollars,
   convertAndFormat,
 } from "../../../../internal/asset/style/format";
 import { Description } from "./Description";
@@ -27,7 +27,7 @@ const SubRowContentEvmos = ({ values }: { values: EVMOSIBCBalances }) => {
 
           <span className="text-sm text-darkGray5">
             $
-            {amountToDolars(
+            {amountToDollars(
               BigNumber.from(values.evmosBalance ? values.evmosBalance : "0"),
               18,
               values?.coingeckoPrice ? values.coingeckoPrice : 0

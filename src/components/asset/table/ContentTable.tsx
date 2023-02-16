@@ -28,7 +28,7 @@ const createSubRow = (
 ) => {
   return (
     <div
-      className="bg-darkGray2 w-full"
+      className="bg-darkGray2 w-full subrow"
       key={isIBCBalance ? item.symbol.toLocaleLowerCase() : item.symbol}
     >
       <SubRowContent

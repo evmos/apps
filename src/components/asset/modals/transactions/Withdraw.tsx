@@ -58,7 +58,8 @@ const Withdraw = ({
 
   const dispatch = useDispatch();
 
-  const fee = BigNumber.from("4600000000000000");
+  // the average fee on Keplr is 0.005
+  const fee = BigNumber.from("5000000000000000");
   const feeDenom = EVMOS_SYMBOL;
   const [isERC20Selected, setIsERC20Selected] = useState(false);
   const [typeSelected, setTypeSelected] = useState({

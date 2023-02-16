@@ -39,7 +39,7 @@ const AddTokenMetamask = ({ token }: { token: Token }) => {
           <Image
             width={15}
             height={15}
-            className="cursor-pointer"
+            className="cursor-pointer w-auto"
             src={`/assets/tokens/${token.symbol.toLowerCase()}.png`}
             alt={token.symbol}
           />

@@ -13,6 +13,7 @@ const FromWithdraw = ({ address }: { address: string }) => {
           alt="evmos"
           width={25}
           height={25}
+          className="w-auto"
         />
         <div>
           <p className="font-bold">Evmos</p>

@@ -22,7 +22,13 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
     <>
       <ContainerInput>
         <>
-          <Image src={style.img} width={20} height={20} alt={style.img} />
+          <Image
+            src={style.img}
+            width={20}
+            height={20}
+            alt={style.img}
+            className="w-auto"
+          />
           <span className="font-bold uppercase">{style.text}</span>
           <input
             className="w-full border-none hover:border-none focus-visible:outline-none text-right"

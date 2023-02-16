@@ -25,7 +25,13 @@ const ToConvert = ({
     <>
       <ContainerInput>
         <>
-          <Image src={img} width={20} height={20} alt="" />
+          <Image
+            src={img}
+            width={20}
+            height={20}
+            alt={img}
+            className="w-auto"
+          />
           <span className="font-bold">{token}</span>
           <input
             className="w-full border-none hover:border-none focus-visible:outline-none text-right"

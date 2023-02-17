@@ -22,7 +22,7 @@ export const Description = ({
         alt={symbol}
         width={30}
         height={30}
-        className="w-auto"
+        className=""
       />
       <div className="flex flex-col items-start">
         <span className="font-bold">{symbol}</span>

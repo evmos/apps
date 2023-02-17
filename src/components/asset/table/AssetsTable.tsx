@@ -16,7 +16,6 @@ const MessageTable = dynamic(() => import("./MessageTable"));
 const Switch = dynamic(() => import("../utils/Switch"));
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));
-const Banner = dynamic(() => import("../Banner"));
 
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
@@ -132,7 +131,6 @@ const AssetsTable = () => {
         <p>Back to Mission Control</p>
       </Link>
       <TopBar topProps={topProps} />
-      <Banner />
       <div className="flex flex-col lg:flex-row mx-5 xl:mx-0 justify-center lg:justify-between">
         <Guide />
         <Switch

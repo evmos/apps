@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
+import { getChainIdentifier } from "../../../internal/asset/Helpers";
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import DropdownArrow from "../../common/images/icons/DropdownArrow";
 import { DropdownChainsProps } from "./types";
@@ -13,6 +14,7 @@ const DropdownChains = ({
   const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
     null
   );
+
   useEffect(() => {
     const handler = () => setShowMenu(false);
     window.addEventListener("click", handler);
@@ -37,7 +39,7 @@ const DropdownChains = ({
             height={25}
             className="w-6 h-6"
           />
-          <span> {selectedValue.chainIdentifier}</span>
+          <span> {getChainIdentifier(selectedValue.chainIdentifier)}</span>
         </div>
       );
     }
@@ -88,7 +90,7 @@ const DropdownChains = ({
                         height={25}
                         className=" w-6 h-6"
                       />
-                      <span>{option.chainIdentifier}</span>
+                      <span>{getChainIdentifier(option.chainIdentifier)}</span>
                     </div>
                   </div>
                 );

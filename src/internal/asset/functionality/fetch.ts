@@ -1,4 +1,3 @@
-import { BigNumber } from "ethers";
 import { ERC20BalanceResponse } from "../../../components/asset/table/types";
 import { EVMOS_BACKEND } from "../../wallet/functionality/networkConfig";
 import { BALANCE_NOTIFICATIONS } from "./transactions/errors";
@@ -117,54 +116,5 @@ export const getEvmosBalanceForDeposit = async (
       message: BALANCE_NOTIFICATIONS.ErrorGetBalance,
       data: null,
     };
-  }
-};
-
-export type EVMOSIBCBalances = {
-  chain: string;
-  evmosBalance: string;
-  coingeckoPrice?: number;
-};
-
-export type EVMOSIBCBalancesResponse = {
-  values: EVMOSIBCBalances[];
-};
-
-export const getEVMOSIBCBalances = async (pubkey: string | null) => {
-  if (pubkey !== null && pubkey !== "") {
-    try {
-      const res = await fetch(`${EVMOS_BACKEND}/EVMOSIBCBalances/${pubkey}`);
-      const data = (await res.json()) as EVMOSIBCBalancesResponse;
-      const dataTemp: EVMOSIBCBalances[] = [];
-      data.values.map((v) => {
-        if (
-          v.chain === "Kujira" ||
-          v.chain === "Regen" ||
-          v.chain === "Stride" ||
-          v.chain === "Evmos" ||
-          v.evmosBalance === "0"
-        ) {
-          return;
-        }
-        dataTemp.push(v);
-        return;
-      });
-      dataTemp.sort((a, b) => {
-        if (
-          BigNumber.from(a.evmosBalance === "" ? "0" : a.evmosBalance).gte(
-            BigNumber.from(b.evmosBalance === "" ? "0" : b.evmosBalance)
-          )
-        ) {
-          return 0;
-        }
-
-        return 1;
-      });
-      return { values: dataTemp };
-    } catch (e) {
-      return { values: [] };
-    }
-  } else {
-    return { values: [] };
   }
 };

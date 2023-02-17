@@ -266,8 +266,8 @@ export function NumberConvertAndFormat(balance: BigNumber, decimals: number) {
 // TODO: add test
 export function addAssets(asset: addAssetsType) {
   return (
-    NumberConvertAndFormat(asset.cosmosBalance, asset.decimals) +
-    NumberConvertAndFormat(asset.erc20Balance, asset.decimals)
+    Number(convertFromAtto(asset.cosmosBalance, asset.decimals)) +
+    Number(convertFromAtto(asset.erc20Balance, asset.decimals))
   );
 }
 

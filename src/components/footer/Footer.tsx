@@ -73,6 +73,16 @@ const Footer = () => {
             Privacy Policy
           </Link>
         </p>
+        <p>
+          <Link
+            target="_blank"
+            rel="noreferrer"
+            href="https://evmos.canny.io/feedback"
+            aria-label="feedback"
+          >
+            Feedback
+          </Link>
+        </p>
       </div>
     </footer>
   );

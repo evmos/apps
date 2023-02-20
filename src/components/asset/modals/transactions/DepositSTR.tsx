@@ -193,11 +193,6 @@ const DepositSTR = ({
   };
 
   const depositDiv = () => {
-    // No token selected, display deposit and confirm button
-    // if (token === undefined) {
-    //   return depositContent();
-    // }
-
     // If chain is from axelar, return redirect component
     if (chain !== undefined && chain.elements[0].handledByExternalUI !== null) {
       return (

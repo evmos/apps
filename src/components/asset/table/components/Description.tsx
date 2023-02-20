@@ -26,9 +26,7 @@ export const Description = ({
       />
       <div className="flex flex-col items-start">
         <span className="font-bold">{symbol}</span>
-        <span className="text-xs text-darkGray5 lowercase first-letter:capitalize">
-          {description}
-        </span>
+        <span className="text-xs text-darkGray5">{description}</span>
       </div>
     </div>
   );

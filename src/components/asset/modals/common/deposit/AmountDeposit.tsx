@@ -7,7 +7,7 @@ import {
   safeSubstraction,
   truncateNumber,
 } from "../../../../../internal/asset/style/format";
-import DropdownTokens from "../../../dropdown/DropdownTokens";
+import DropdownTokensDeposit from "../../../dropdown/DropdownTokensDeposit";
 import SmallButton from "../../../../common/SmallButton";
 import ContainerInput from "../ContainerInput";
 import { ContainerModal } from "../ContainerModal";
@@ -141,7 +141,7 @@ const AmountDeposit = ({
 
         <ContainerInput>
           <>
-            <DropdownTokens
+            <DropdownTokensDeposit
               placeholder="Select token..."
               data={amountProps.data}
               setToken={amountProps.setToken}

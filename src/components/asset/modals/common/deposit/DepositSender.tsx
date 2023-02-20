@@ -3,10 +3,10 @@ import { TableDataElement } from "../../../../../internal/asset/functionality/ta
 import { getSymbol } from "../../../../../internal/asset/style/format";
 import { EVMOS_SYMBOL } from "../../../../../internal/wallet/functionality/networkConfig";
 import { truncateAddress } from "../../../../../internal/wallet/style/format";
-import { DropdownChainsProps } from "../../../dropdown/types";
+import { DropdownChainsDepositProps } from "../../../dropdown/types";
 import { ContainerModal } from "../ContainerModal";
 import { TextSmall } from "../TextSmall";
-import ChainContainer from "../withdraw/ChainContainer";
+import ChainContainerDeposit from "./ChainContainerDeposit";
 
 const DepositSender = ({
   token,
@@ -15,7 +15,7 @@ const DepositSender = ({
 }: {
   address: string;
   token: TableDataElement | undefined;
-  dropChainProps: DropdownChainsProps;
+  dropChainProps: DropdownChainsDepositProps;
 }) => {
   const symbol = getSymbol(token, dropChainProps.chain);
 
@@ -44,9 +44,7 @@ const DepositSender = ({
             <p className="text-xs">{truncateAddress(address)}</p>
           </div>
         </div>
-        {token !== undefined && token.symbol === EVMOS_SYMBOL && (
-          <ChainContainer dropChainProps={dropChainProps} />
-        )}
+        <ChainContainerDeposit dropChainProps={dropChainProps} />
       </>
     </ContainerModal>
   );

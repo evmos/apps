@@ -1,13 +1,13 @@
 import Image from "next/image";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import DropdownArrow from "../../common/images/icons/DropdownArrow";
-import { DropdownChainsProps } from "./types";
-const DropdownChains = ({
+import { DropdownChainsDepositProps } from "./types";
+const DropdownChainDeposit = ({
   dropChainProps,
 }: {
-  dropChainProps: DropdownChainsProps;
+  dropChainProps: DropdownChainsDepositProps;
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
@@ -51,17 +51,17 @@ const DropdownChains = ({
   };
 
   // get the uniques chains for select
-  const chainsWithoutRep = useMemo(() => {
-    const temp = new Set<string>();
-    const ret: TableDataElement[] = [];
-    dropChainProps?.data?.table.forEach((e) => {
-      if (temp.has(e.chainIdentifier) === false) {
-        temp.add(e.chainIdentifier);
-        ret.push(e);
-      }
-    });
-    return ret;
-  }, [dropChainProps?.data?.table]);
+  // const chainsWithoutRep = useMemo(() => {
+  //   const temp = new Set<string>();
+  //   const ret: TableDataElement[] = [];
+  //   dropChainProps?.data?.table.forEach((e) => {
+  //     if (temp.has(e.chainIdentifier) === false) {
+  //       temp.add(e.chainIdentifier);
+  //       ret.push(e);
+  //     }
+  //   });
+  //   return ret;
+  // }, [dropChainProps?.data?.table]);
 
   return (
     <div className="text-left w-full relative rounded cursor-pointer text-black ">
@@ -71,24 +71,24 @@ const DropdownChains = ({
       >
         {showMenu && (
           <div className="z-[9999] absolute translate-y-9 -left-4 top-1 w-auto overflow-auto max-h-32 bg-white border border-darkGray2 rounded">
-            {chainsWithoutRep.map((option) => {
-              if (option.symbol !== EVMOS_SYMBOL) {
+            {dropChainProps.data.map((option) => {
+              if (option.chain !== EVMOS_SYMBOL) {
                 return (
                   <div
-                    onClick={() => onItemClick(option)}
-                    key={option.chainIdentifier}
+                    onClick={() => onItemClick(option.elements[0])}
+                    key={option.chain}
                     className={`p-3 cursor-pointer hover:bg-gray flex justify-between space-x-8 font-bold
                   `}
                   >
                     <div className="flex items-center space-x-3">
                       <Image
-                        src={`/assets/chains/${option.chainIdentifier}.png`}
-                        alt={option.chainIdentifier}
+                        src={`/assets/chains/${option.chain}.png`}
+                        alt={option.chain}
                         width={25}
                         height={25}
                         className=" w-6 h-6"
                       />
-                      <span>{option.chainIdentifier}</span>
+                      <span>{option.chain}</span>
                     </div>
                   </div>
                 );
@@ -105,4 +105,4 @@ const DropdownChains = ({
   );
 };
 
-export default DropdownChains;
+export default DropdownChainDeposit;

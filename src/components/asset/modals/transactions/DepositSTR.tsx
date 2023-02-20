@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import ConfirmButton from "../../../common/ConfirmButton";
@@ -23,6 +23,11 @@ import { useDeposit } from "./hooks/useDeposit";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import { getChainIds } from "../../../../internal/asset/style/format";
 
+export type DepositElement = {
+  chain: string;
+  elements: TableDataElement[];
+};
+
 const DepositSTR = ({
   data,
   feeBalance,
@@ -37,6 +42,42 @@ const DepositSTR = ({
   const [disabled, setDisabled] = useState(false);
   const [token, setToken] = useState<TableDataElement>();
   const [chain, setChain] = useState<TableDataElement>();
+
+  const depositData = useMemo(() => {
+    const temp = new Array<DepositElement>();
+    let evmos: TableDataElement;
+    data.table.map((item) => {
+      if (item.chainIdentifier === "Evmos") {
+        evmos = item;
+        return;
+      }
+      const element = temp.find((e) => {
+        if (e.chain === item.chainIdentifier) {
+          return true;
+        }
+        return false;
+      });
+
+      if (element !== undefined) {
+        element.elements.push(item);
+      } else {
+        temp.push({ chain: item.chainIdentifier, elements: [item] });
+      }
+    });
+
+    temp.map((e) => {
+      if (e.chain !== "Evmos") {
+        e.elements.push(evmos);
+      }
+    });
+
+    temp.sort((a, b) => {
+      return a.chain.toLowerCase() > b.chain.toLowerCase() ? 1 : -1;
+    });
+    console.log(temp);
+
+    return temp;
+  }, [data]);
 
   const dispatch = useDispatch();
 
@@ -187,7 +228,7 @@ const DepositSTR = ({
           address={walletToUse}
           dropChainProps={{
             placeholder: "Select chain...",
-            data: data,
+            data: depositData,
             token: token,
             chain: chain,
             setChain: setChain,

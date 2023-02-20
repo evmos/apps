@@ -5,6 +5,7 @@ import {
   TableDataElement,
 } from "../../../../internal/asset/functionality/table/normalizeData";
 import { DropdownChainsProps } from "../../dropdown/types";
+import { DepositElement } from "../transactions/DepositSTR";
 
 export type Fee = {
   fee: BigNumber;
@@ -67,7 +68,7 @@ type FeeDeposit = {
 };
 
 export type AmountDepositProps = {
-  data: TableDataElement[];
+  data: TableDataElement[] | undefined;
   setToken: Dispatch<SetStateAction<TableDataElement | undefined>>;
   token: TableDataElement | undefined;
   value: string;
@@ -76,6 +77,6 @@ export type AmountDepositProps = {
   setReceiverAddress: Dispatch<SetStateAction<string>>;
   balance: BigNumber;
   fee: FeeDeposit;
-  setChain: Dispatch<SetStateAction<TableDataElement | undefined>>;
-  chain: TableDataElement | undefined;
+  setChain: Dispatch<SetStateAction<DepositElement | undefined>>;
+  chain: DepositElement | undefined;
 };

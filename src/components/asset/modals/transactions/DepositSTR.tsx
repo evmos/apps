@@ -21,7 +21,6 @@ import RedirectLink from "../common/RedirectLink";
 import { ButtonActionsProps } from "./types";
 import { useDeposit } from "./hooks/useDeposit";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
-import { getChainIds } from "../../../../internal/asset/style/format";
 
 export type DepositElement = {
   chain: string;
@@ -74,7 +73,6 @@ const DepositSTR = ({
     temp.sort((a, b) => {
       return a.chain.toLowerCase() > b.chain.toLowerCase() ? 1 : -1;
     });
-    console.log(temp);
 
     return temp;
   }, [data]);
@@ -115,44 +113,46 @@ const DepositSTR = ({
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     getData();
   }, [address, token, dispatch, setShow, chain]);
+
   const tokenData = useMemo(() => {
     const tokens = depositData.find((e) => {
-      console.log(chain?.chain);
       return e.chain === chain?.chain;
     });
-    console.log(tokens, "tokens");
-    return tokens?.elements;
 
-    //
-    //   let balance;
-    //   if (
-    //     token.symbol === EVMOS_SYMBOL &&
-    //     chainIds.chainIdentifier !== undefined
-    //   ) {
-    //     balance = await getEvmosBalanceForDeposit(
-    //       wallet,
-    //       chainIds.chainIdentifier.toUpperCase(),
-    //       token.symbol
-    //     );
-    //   } else {
-    //     balance = await getBalance(
-    //       wallet,
-    //       token.chainIdentifier.toUpperCase(),
-    //       token.symbol
-    //     );
-    //   }
-    //
-    //   if (balance.error === true || balance.data === null) {
-    //     dispatch(snackErrorGettingBalanceExtChain());
-    //     setShow(false);
-    //     return;
-    //   }
-    //
-    //   setBalance(
-    //     BigNumber.from(balance.data.balance ? balance.data.balance.amount : 0)
-    //   );
-    // }
+    return tokens?.elements;
   }, [depositData, chain]);
+
+  useEffect(() => {
+    async function getData() {
+      let balance;
+      if (token !== undefined) {
+        if (token.symbol === EVMOS_SYMBOL && chain !== undefined) {
+          balance = await getEvmosBalanceForDeposit(
+            walletToUse,
+            chain.chain.toUpperCase(),
+            token.symbol
+          );
+        } else {
+          balance = await getBalance(
+            walletToUse,
+            token.chainIdentifier.toUpperCase(),
+            token.symbol
+          );
+        }
+      }
+      if (balance?.error === true || balance?.data === null) {
+        dispatch(snackErrorGettingBalanceExtChain());
+        setShow(false);
+        return;
+      }
+
+      setBalance(
+        BigNumber.from(balance?.data.balance ? balance.data.balance.amount : 0)
+      );
+    }
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    getData();
+  }, [chain, token, walletToUse, dispatch, setShow]);
 
   const amountProps = {
     data: tokenData,
@@ -194,15 +194,15 @@ const DepositSTR = ({
 
   const depositDiv = () => {
     // No token selected, display deposit and confirm button
-    if (token === undefined) {
-      return depositContent();
-    }
+    // if (token === undefined) {
+    //   return depositContent();
+    // }
 
     // If chain is from axelar, return redirect component
-    if (chain !== undefined && chain.handledByExternalUI !== null) {
+    if (chain !== undefined && chain.elements[0].handledByExternalUI !== null) {
       return (
         <RedirectLink
-          href={chain.handledByExternalUI.url}
+          href={chain.elements[0].handledByExternalUI.url}
           text="Deposit from Axelar"
         />
       );
@@ -225,7 +225,6 @@ const DepositSTR = ({
       <ModalTitle title="Deposit Tokens" />
       <div className="text-darkGray3 space-y-3">
         <DepositSender
-          token={token}
           address={walletToUse}
           dropChainProps={{
             placeholder: "Select chain...",
@@ -234,6 +233,7 @@ const DepositSTR = ({
             chain: chain,
             setChain: setChain,
             setAddress: setReceiverAddress,
+            setToken: setToken,
           }}
         />
 

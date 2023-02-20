@@ -150,7 +150,7 @@ const AmountWithdraw = ({
           <>
             <DropdownTokens
               placeholder="Select token..."
-              data={amountProps.data}
+              data={amountProps.data.table}
               setToken={amountProps.setToken}
               setAddress={amountProps.setReceiverAddress}
               setValue={amountProps.setValue}

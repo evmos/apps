@@ -4,20 +4,18 @@ import { TableDataElement } from "../../../internal/asset/functionality/table/no
 import { convertAndFormat } from "../../../internal/asset/style/format";
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import DropdownArrow from "../../common/images/icons/DropdownArrow";
-import { DropdownTokensProps } from "./types";
+import { DropdownTokensDepositProps } from "./types";
 const DropdownTokensDeposit = ({
   placeholder,
   data,
   setToken,
-  setAddress,
   setValue,
-  setChain,
-}: DropdownTokensProps) => {
+  token,
+}: DropdownTokensDepositProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
     null
   );
-  console.log(data, "asd2");
   useEffect(() => {
     const handler = () => setShowMenu(false);
     window.addEventListener("click", handler);
@@ -32,19 +30,21 @@ const DropdownTokensDeposit = ({
   };
 
   const getDisplay = () => {
-    if (selectedValue) {
-      return (
-        <div className="flex items-center space-x-3 font-bold">
-          <Image
-            src={`/assets/tokens/${selectedValue.symbol.toLowerCase()}.png`}
-            alt={selectedValue.symbol}
-            width={25}
-            height={25}
-            className="w-6 h-6"
-          />
-          <span> {selectedValue.symbol}</span>
-        </div>
-      );
+    if (token !== undefined) {
+      if (selectedValue) {
+        return (
+          <div className="flex items-center space-x-3 font-bold">
+            <Image
+              src={`/assets/tokens/${selectedValue.symbol.toLowerCase()}.png`}
+              alt={selectedValue.symbol}
+              width={25}
+              height={25}
+              className="w-6 h-6"
+            />
+            <span> {selectedValue.symbol}</span>
+          </div>
+        );
+      }
     }
     return placeholder;
   };
@@ -52,10 +52,7 @@ const DropdownTokensDeposit = ({
   const onItemClick = (option: TableDataElement) => {
     setSelectedValue(option);
     setToken(option);
-    setAddress("");
     setValue("");
-    // TODO: is it right to set as undefined?
-    setChain(undefined);
   };
 
   return (
@@ -66,7 +63,7 @@ const DropdownTokensDeposit = ({
       >
         {showMenu && (
           <div className="z-[9999] absolute translate-y-9 -left-4 top-1 w-auto overflow-auto max-h-40 bg-white border border-darkGray2 rounded">
-            {data.map((option) => {
+            {data?.map((option) => {
               // evmos keeps using cosmosBalance
               let balance = option.erc20Balance;
               if (option.symbol === EVMOS_SYMBOL) {

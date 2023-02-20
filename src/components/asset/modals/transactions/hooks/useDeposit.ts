@@ -55,7 +55,10 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       return;
     }
 
-    const chainIds = getChainIds(useDepositProps.token, useDepositProps.chain);
+    const chainIds = getChainIds(
+      useDepositProps.token,
+      useDepositProps.chain?.elements[0]
+    );
     if (
       chainIds.chainId === "" ||
       chainIds.chainId === undefined ||
@@ -89,7 +92,7 @@ export const useDeposit = (useDepositProps: DepositProps) => {
 
     const prefix = getPrefix(
       useDepositProps.token,
-      useDepositProps.chain,
+      useDepositProps.chain?.elements[0],
       params.sender
     );
 

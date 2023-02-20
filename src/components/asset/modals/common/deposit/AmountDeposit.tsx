@@ -55,16 +55,10 @@ const AmountDeposit = ({
   };
 
   const createAmountLabel = () => {
-    // No token selected, display amount label
-    if (amountProps.token === undefined) {
-      return <TextSmall text="AMOUNT" />;
-    }
-
-    // If token selected or chain select is a bridge with their own ui, link the bridge page
+    // If chain select is a bridge with their own ui, link the bridge page
     if (
-      amountProps.token.handledByExternalUI !== null ||
-      (amountProps.chain !== undefined &&
-        amountProps.chain.handledByExternalUI !== null)
+      amountProps.chain !== undefined &&
+      amountProps.chain.elements[0].handledByExternalUI !== null
     ) {
       return (
         <>
@@ -87,7 +81,7 @@ const AmountDeposit = ({
       (amountProps.token !== undefined &&
         amountProps.token.handledByExternalUI !== null) ||
       (amountProps.chain !== undefined &&
-        amountProps.chain.handledByExternalUI !== null)
+        amountProps.chain.elements[0].handledByExternalUI !== null)
     ) {
       return <></>;
     }
@@ -117,7 +111,7 @@ const AmountDeposit = ({
       (amountProps.token !== undefined &&
         amountProps.token.handledByExternalUI !== null) ||
       (amountProps.chain !== undefined &&
-        amountProps.chain.handledByExternalUI !== null)
+        amountProps.chain.elements[0].handledByExternalUI !== null)
     ) {
       return <></>;
     }
@@ -143,11 +137,12 @@ const AmountDeposit = ({
           <>
             <DropdownTokensDeposit
               placeholder="Select token..."
-              data={amountProps.data}
+              data={amountProps?.data}
               setToken={amountProps.setToken}
               setAddress={amountProps.setReceiverAddress}
               setValue={amountProps.setValue}
               setChain={amountProps.setChain}
+              token={amountProps.token}
             />
             {createAmountInput()}
           </>

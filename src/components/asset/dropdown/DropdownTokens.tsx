@@ -1,8 +1,6 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
-import { convertAndFormat } from "../../../internal/asset/style/format";
-import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import DropdownArrow from "../../common/images/icons/DropdownArrow";
 import { DropdownTokensProps } from "./types";
 const DropdownTokens = ({
@@ -66,11 +64,6 @@ const DropdownTokens = ({
         {showMenu && (
           <div className="z-[9999] absolute translate-y-9 -left-4 top-1 w-auto overflow-auto max-h-40 bg-white border border-darkGray2 rounded">
             {data?.map((option) => {
-              // evmos keeps using cosmosBalance
-              let balance = option.erc20Balance;
-              if (option.symbol === EVMOS_SYMBOL) {
-                balance = option.cosmosBalance;
-              }
               return (
                 <div
                   onClick={() => onItemClick(option)}
@@ -88,9 +81,6 @@ const DropdownTokens = ({
                     />
                     <span>{option.symbol}</span>
                   </div>
-                  <p className="pl-11">
-                    {convertAndFormat(balance, option.decimals)}
-                  </p>
                 </div>
               );
             })}

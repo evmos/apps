@@ -79,10 +79,10 @@
   }
 
   .subrow {
-    @apply border-b-2 border-b-darkGray3 pb-4
+    @apply border-b-2 border-b-black pb-4
   }
   .subrow:last-of-type {
-    @apply last:border-b-0 last:border-b-darkGray3
+    @apply last:border-b-0 last:border-b-black
   }
   /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,

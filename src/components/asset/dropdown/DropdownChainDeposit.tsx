@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
 import { EVMOS_SYMBOL } from "../../../internal/wallet/functionality/networkConfig";
 import DropdownArrow from "../../common/images/icons/DropdownArrow";
+import { DepositElement } from "../modals/transactions/DepositSTR";
 import { DropdownChainsDepositProps } from "./types";
 const DropdownChainDeposit = ({
   dropChainProps,
@@ -10,7 +11,7 @@ const DropdownChainDeposit = ({
   dropChainProps: DropdownChainsDepositProps;
 }) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
+  const [selectedValue, setSelectedValue] = useState<DepositElement | null>(
     null
   );
   useEffect(() => {
@@ -31,20 +32,20 @@ const DropdownChainDeposit = ({
       return (
         <div className="flex items-center space-x-3 font-bold">
           <Image
-            src={`/assets/chains/${selectedValue.chainIdentifier}.png`}
-            alt={selectedValue.chainIdentifier}
+            src={`/assets/chains/${selectedValue.elements[0].chainIdentifier}.png`}
+            alt={selectedValue.elements[0].chainIdentifier}
             width={25}
             height={25}
             className="w-6 h-6"
           />
-          <span> {selectedValue.chainIdentifier}</span>
+          <span> {selectedValue.elements[0].chainIdentifier}</span>
         </div>
       );
     }
     return dropChainProps.placeholder;
   };
 
-  const onItemClick = (option: TableDataElement) => {
+  const onItemClick = (option: DepositElement) => {
     setSelectedValue(option);
     dropChainProps.setChain(option);
     dropChainProps.setAddress("");
@@ -75,7 +76,7 @@ const DropdownChainDeposit = ({
               if (option.chain !== EVMOS_SYMBOL) {
                 return (
                   <div
-                    onClick={() => onItemClick(option.elements[0])}
+                    onClick={() => onItemClick(option)}
                     key={option.chain}
                     className={`p-3 cursor-pointer hover:bg-gray flex justify-between space-x-8 font-bold
                   `}

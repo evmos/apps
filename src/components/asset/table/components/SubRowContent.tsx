@@ -28,11 +28,14 @@ export const SubRowContent = ({
 
   let balance = item.erc20Balance;
   let symbol = item.symbol;
+  let description = item.description;
+
   if (isIBCBalance) {
     balance = item.cosmosBalance;
   } else {
     if (item.symbol === EVMOS_SYMBOL) {
       symbol = "WEVMOS";
+      description = "Wrapped EVMOS";
     }
   }
 
@@ -62,6 +65,13 @@ export const SubRowContent = ({
   };
 
   const createEvmosConvertButton = () => {
+    let label = "Convert";
+    if (symbol === "EVMOS") {
+      label = "WRAP";
+    } else if (symbol === "WEVMOS") {
+      label = "UNWRAP";
+    }
+
     return (
       <div className="justify-end w-full flex pr-8">
         <Button
@@ -71,8 +81,8 @@ export const SubRowContent = ({
           }
           onClick={openModalConvertEvmos}
         >
-          <div className="flex flex-row items-center">
-            <span className="px-2">Convert</span>
+          <div className="flex w-16 justify-center flex-row items-center">
+            <span className="px-2">{label}</span>
           </div>
         </Button>
       </div>
@@ -130,19 +140,11 @@ export const SubRowContent = ({
       <div className="md:w-[5%]"></div>
       {/* symbol - token name - description */}
       <div className="lg:flex w-[50%] hidden">
-        <Description
-          symbol={symbol}
-          description={item.description}
-          subRow={true}
-        />
+        <Description symbol={symbol} description={description} subRow={true} />
       </div>
       {/* mobile view for description and convert */}
       <div className="flex items-center lg:hidden">
-        <Description
-          symbol={symbol}
-          description={item.description}
-          subRow={true}
-        />
+        <Description symbol={symbol} description={description} subRow={true} />
 
         {item.symbol === EVMOS_SYMBOL && createEvmosConvertButton()}
         {item.symbol !== EVMOS_SYMBOL &&

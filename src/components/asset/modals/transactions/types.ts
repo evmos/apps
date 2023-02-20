@@ -4,6 +4,7 @@ import {
   TableData,
   TableDataElement,
 } from "../../../../internal/asset/functionality/table/normalizeData";
+import { DepositElement } from "./DepositSTR";
 
 export type ButtonActionsProps = {
   data: TableData;
@@ -32,7 +33,7 @@ export type DepositProps = {
   receiverAddress: string;
   setDisabled: Dispatch<SetStateAction<boolean>>;
   balance: BigNumber;
-  chain: TableDataElement | undefined;
+  chain: DepositElement | undefined;
 };
 
 export type ConvertProps = {

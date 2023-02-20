@@ -52,16 +52,6 @@ export async function executeWithdraw(
     };
   }
 
-  if (!checkFormatAddress(params.receiver, prefix)) {
-    return {
-      error: true,
-      message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
-      title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
-      txHash: "",
-      explorerTxUrl: "",
-    };
-  }
-
   const tx = await ibcTransferBackendCall(
     pubkey,
     address,

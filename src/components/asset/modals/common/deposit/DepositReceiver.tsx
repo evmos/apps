@@ -20,6 +20,10 @@ import SmallButton from "../../../../common/SmallButton";
 import ContainerInput from "../ContainerInput";
 import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
 import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
+import {
+  checkFormatAddress,
+  checkMetaMaskFormatAddress,
+} from "../../../../../internal/asset/style/format";
 
 const DepositReceiver = ({
   receiver,
@@ -121,6 +125,12 @@ const DepositReceiver = ({
         {confirmClicked && receiver === "" && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
         )}
+
+        {confirmClicked &&
+          !checkFormatAddress(receiver, "evmos") &&
+          !checkMetaMaskFormatAddress(receiver) && (
+            <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorWrongPrefix} />
+          )}
         <div className="flex justify-end w-full">
           {token !== undefined && (
             <AddTokenMetamask

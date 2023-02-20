@@ -6,6 +6,8 @@ import { executeDeposit } from "../../../../../internal/asset/functionality/tran
 import { BROADCASTED_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
 import { IBCChainParams } from "../../../../../internal/asset/functionality/transactions/types";
 import {
+  checkFormatAddress,
+  checkMetaMaskFormatAddress,
   getChainIds,
   getPrefix,
   snackbarExecutedTx,
@@ -55,7 +57,16 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       return;
     }
 
-    const chainIds = getChainIds(useDepositProps.token, useDepositProps.chain);
+    if (
+      !checkFormatAddress(useDepositProps.receiverAddress, "evmos") &&
+      !checkMetaMaskFormatAddress(useDepositProps.receiverAddress)
+    ) {
+      return;
+    }
+    const chainIds = getChainIds(
+      useDepositProps.token,
+      useDepositProps.chain?.elements[0]
+    );
     if (
       chainIds.chainId === "" ||
       chainIds.chainId === undefined ||
@@ -89,7 +100,7 @@ export const useDeposit = (useDepositProps: DepositProps) => {
 
     const prefix = getPrefix(
       useDepositProps.token,
-      useDepositProps.chain,
+      useDepositProps.chain?.elements[0],
       params.sender
     );
 

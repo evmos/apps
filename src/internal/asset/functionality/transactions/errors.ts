@@ -29,6 +29,7 @@ export const MODAL_NOTIFICATIONS = {
   ErrorPositiveNumberSubtext: "Amount can only be a positive number",
   ErrorAddressEmpty: "Address can not be empty",
   ErrorTokenEmpty: "Please, select a token",
+  ErrorWrongPrefix: "Incorrect address",
 } as const;
 
 export const BALANCE_NOTIFICATIONS = {

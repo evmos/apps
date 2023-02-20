@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import ConfirmButton from "../../../common/ConfirmButton";
@@ -21,7 +21,11 @@ import RedirectLink from "../common/RedirectLink";
 import { ButtonActionsProps } from "./types";
 import { useDeposit } from "./hooks/useDeposit";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
-import { getChainIds } from "../../../../internal/asset/style/format";
+
+export type DepositElement = {
+  chain: string;
+  elements: TableDataElement[];
+};
 
 const DepositSTR = ({
   data,
@@ -36,7 +40,42 @@ const DepositSTR = ({
   const [walletToUse, setWalletToUse] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [token, setToken] = useState<TableDataElement>();
-  const [chain, setChain] = useState<TableDataElement>();
+  const [chain, setChain] = useState<DepositElement>();
+
+  const depositData = useMemo(() => {
+    const temp = new Array<DepositElement>();
+    let evmos: TableDataElement;
+    data.table.map((item) => {
+      if (item.chainIdentifier === "Evmos") {
+        evmos = item;
+        return;
+      }
+      const element = temp.find((e) => {
+        if (e.chain === item.chainIdentifier) {
+          return true;
+        }
+        return false;
+      });
+
+      if (element !== undefined) {
+        element.elements.push(item);
+      } else {
+        temp.push({ chain: item.chainIdentifier, elements: [item] });
+      }
+    });
+
+    temp.map((e) => {
+      if (e.chain !== "Evmos") {
+        e.elements.push(evmos);
+      }
+    });
+
+    temp.sort((a, b) => {
+      return a.chain.toLowerCase() > b.chain.toLowerCase() ? 1 : -1;
+    });
+
+    return temp;
+  }, [data]);
 
   const dispatch = useDispatch();
 
@@ -53,17 +92,15 @@ const DepositSTR = ({
 
   const { handleConfirmButton } = useDeposit(useDepositProps);
 
-  const chainIds = getChainIds(token, chain);
-
   useEffect(() => {
     async function getData() {
       if (chain === undefined) {
         setWalletToUse("");
       }
-      if (token !== undefined && chainIds.chainId !== undefined) {
+      if (chain !== undefined) {
         const wallet = await getKeplrAddressByChain(
-          chainIds.chainId,
-          chainIds.chainIdentifier
+          chain.elements[0].chainId,
+          chain.elements[0].chainIdentifier
         );
         if (wallet === null) {
           dispatch(snackErrorConnectingKeplr());
@@ -71,49 +108,54 @@ const DepositSTR = ({
           return;
         }
         setWalletToUse(wallet);
-        let balance;
-        if (
-          token.symbol === EVMOS_SYMBOL &&
-          chainIds.chainIdentifier !== undefined
-        ) {
-          balance = await getEvmosBalanceForDeposit(
-            wallet,
-            chainIds.chainIdentifier.toUpperCase(),
-            token.symbol
-          );
-        } else {
-          balance = await getBalance(
-            wallet,
-            token.chainIdentifier.toUpperCase(),
-            token.symbol
-          );
-        }
-
-        if (balance.error === true || balance.data === null) {
-          dispatch(snackErrorGettingBalanceExtChain());
-          setShow(false);
-          return;
-        }
-
-        setBalance(
-          BigNumber.from(balance.data.balance ? balance.data.balance.amount : 0)
-        );
       }
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     getData();
-  }, [
-    address,
-    token,
-    dispatch,
-    setShow,
-    chainIds.chainId,
-    chainIds.chainIdentifier,
-    chain,
-  ]);
+  }, [address, token, dispatch, setShow, chain]);
+
+  const tokenData = useMemo(() => {
+    const tokens = depositData.find((e) => {
+      return e.chain === chain?.chain;
+    });
+
+    return tokens?.elements;
+  }, [depositData, chain]);
+
+  useEffect(() => {
+    async function getData() {
+      let balance;
+      if (token !== undefined) {
+        if (token.symbol === EVMOS_SYMBOL && chain !== undefined) {
+          balance = await getEvmosBalanceForDeposit(
+            walletToUse,
+            chain.chain.toUpperCase(),
+            token.symbol
+          );
+        } else {
+          balance = await getBalance(
+            walletToUse,
+            token.chainIdentifier.toUpperCase(),
+            token.symbol
+          );
+        }
+      }
+      if (balance?.error === true || balance?.data === null) {
+        dispatch(snackErrorGettingBalanceExtChain());
+        setShow(false);
+        return;
+      }
+
+      setBalance(
+        BigNumber.from(balance?.data.balance ? balance.data.balance.amount : 0)
+      );
+    }
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
+    getData();
+  }, [chain, token, walletToUse, dispatch, setShow]);
 
   const amountProps = {
-    data: data,
+    data: tokenData,
     setToken: setToken,
     token: token,
     value: inputValue,
@@ -151,16 +193,11 @@ const DepositSTR = ({
   };
 
   const depositDiv = () => {
-    // No token selected, display deposit and confirm button
-    if (token === undefined) {
-      return depositContent();
-    }
-
     // If chain is from axelar, return redirect component
-    if (chain !== undefined && chain.handledByExternalUI !== null) {
+    if (chain !== undefined && chain.elements[0].handledByExternalUI !== null) {
       return (
         <RedirectLink
-          href={chain.handledByExternalUI.url}
+          href={chain.elements[0].handledByExternalUI.url}
           text="Deposit from Axelar"
         />
       );
@@ -183,15 +220,15 @@ const DepositSTR = ({
       <ModalTitle title="Deposit Tokens" />
       <div className="text-darkGray3 space-y-3">
         <DepositSender
-          token={token}
           address={walletToUse}
           dropChainProps={{
             placeholder: "Select chain...",
-            data: data,
+            data: depositData,
             token: token,
             chain: chain,
             setChain: setChain,
             setAddress: setReceiverAddress,
+            setToken: setToken,
           }}
         />
 

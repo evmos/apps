@@ -229,6 +229,13 @@ export function checkFormatAddress(address: string, prefix: string) {
   return false;
 }
 
+export function checkMetaMaskFormatAddress(address: string) {
+  if (address.startsWith("0x")) {
+    return true;
+  }
+  return false;
+}
+
 export interface addDolarsAssetsType extends addAssetsType {
   coingeckoPrice: number;
 }

@@ -38,16 +38,6 @@ export async function executeDeposit(
     };
   }
 
-  if (!checkFormatAddress(params.receiver, "evmos")) {
-    return {
-      error: true,
-      message: MODAL_NOTIFICATIONS.ErrorAddressSubtext,
-      title: MODAL_NOTIFICATIONS.ErrorAddressTitle,
-      txHash: "",
-      explorerTxUrl: "",
-    };
-  }
-
   const tx = await ibcTransferBackendCall(pubkey, address, params, false);
   if (tx.error === true || tx.data === null) {
     // Error generating the transaction

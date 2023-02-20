@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
+import { checkFormatAddress } from "../../../../../internal/asset/style/format";
 import { snackErrorConnectingKeplr } from "../../../../../internal/asset/style/snackbars";
 import { getKeplrAddressByChain } from "../../../../../internal/wallet/functionality/keplr/keplrHelpers";
 import { EVMOS_SYMBOL } from "../../../../../internal/wallet/functionality/networkConfig";
@@ -150,6 +151,12 @@ const ToWithdraw = ({
         {confirmClicked && receiverAddress === "" && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
         )}
+
+        {confirmClicked &&
+          token !== undefined &&
+          !checkFormatAddress(receiverAddress, token?.prefix) && (
+            <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorWrongPrefix} />
+          )}
         {createAddMetamaskDiv()}
       </>
     </ContainerModal>

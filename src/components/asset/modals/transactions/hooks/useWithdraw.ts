@@ -5,6 +5,8 @@ import { BROADCASTED_NOTIFICATIONS } from "../../../../../internal/asset/functio
 import { IBCChainParams } from "../../../../../internal/asset/functionality/transactions/types";
 import { executeWithdraw } from "../../../../../internal/asset/functionality/transactions/withdraw";
 import {
+  checkFormatAddress,
+  checkMetaMaskFormatAddress,
   getPrefix,
   snackbarExecutedTx,
   snackbarIncludedInBlock,
@@ -66,6 +68,16 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
 
     if (amount.gt(balance)) {
       dispatch(snackErrorAmountGt());
+      return;
+    }
+
+    if (
+      !checkFormatAddress(
+        useWithdrawProps.receiverAddress,
+        useWithdrawProps.token.symbol
+      ) &&
+      !checkMetaMaskFormatAddress(useWithdrawProps.receiverAddress)
+    ) {
       return;
     }
 

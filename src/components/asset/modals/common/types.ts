@@ -67,7 +67,7 @@ type FeeDeposit = {
 };
 
 export type AmountDepositProps = {
-  data: TableData;
+  data: TableDataElement[];
   setToken: Dispatch<SetStateAction<TableDataElement | undefined>>;
   token: TableDataElement | undefined;
   value: string;

@@ -7,7 +7,7 @@ import { DepositElement } from "../modals/transactions/DepositSTR";
 
 export type DropdownTokensProps = {
   placeholder: string;
-  data: TableData;
+  data: TableDataElement[];
   setToken: Dispatch<SetStateAction<TableDataElement | undefined>>;
   setAddress: Dispatch<SetStateAction<string>>;
   setValue: Dispatch<SetStateAction<string>>;
@@ -28,6 +28,6 @@ export type DropdownChainsDepositProps = {
   data: DepositElement[];
   token: TableDataElement | undefined;
   chain: TableDataElement | undefined;
-  setChain: Dispatch<SetStateAction<TableDataElement | undefined>>;
+  setChain: Dispatch<SetStateAction<DepositElement | undefined>>;
   setAddress: Dispatch<SetStateAction<string>>;
 };

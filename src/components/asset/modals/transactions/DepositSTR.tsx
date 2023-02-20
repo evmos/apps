@@ -41,7 +41,7 @@ const DepositSTR = ({
   const [walletToUse, setWalletToUse] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [token, setToken] = useState<TableDataElement>();
-  const [chain, setChain] = useState<TableDataElement>();
+  const [chain, setChain] = useState<DepositElement>();
 
   const depositData = useMemo(() => {
     const temp = new Array<DepositElement>();
@@ -94,17 +94,15 @@ const DepositSTR = ({
 
   const { handleConfirmButton } = useDeposit(useDepositProps);
 
-  const chainIds = getChainIds(token, chain);
-
   useEffect(() => {
     async function getData() {
       if (chain === undefined) {
         setWalletToUse("");
       }
-      if (token !== undefined && chainIds.chainId !== undefined) {
+      if (chain !== undefined) {
         const wallet = await getKeplrAddressByChain(
-          chainIds.chainId,
-          chainIds.chainIdentifier
+          chain.elements[0].chainId,
+          chain.elements[0].chainIdentifier
         );
         if (wallet === null) {
           dispatch(snackErrorConnectingKeplr());
@@ -112,49 +110,52 @@ const DepositSTR = ({
           return;
         }
         setWalletToUse(wallet);
-        let balance;
-        if (
-          token.symbol === EVMOS_SYMBOL &&
-          chainIds.chainIdentifier !== undefined
-        ) {
-          balance = await getEvmosBalanceForDeposit(
-            wallet,
-            chainIds.chainIdentifier.toUpperCase(),
-            token.symbol
-          );
-        } else {
-          balance = await getBalance(
-            wallet,
-            token.chainIdentifier.toUpperCase(),
-            token.symbol
-          );
-        }
-
-        if (balance.error === true || balance.data === null) {
-          dispatch(snackErrorGettingBalanceExtChain());
-          setShow(false);
-          return;
-        }
-
-        setBalance(
-          BigNumber.from(balance.data.balance ? balance.data.balance.amount : 0)
-        );
       }
     }
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     getData();
-  }, [
-    address,
-    token,
-    dispatch,
-    setShow,
-    chainIds.chainId,
-    chainIds.chainIdentifier,
-    chain,
-  ]);
+  }, [address, token, dispatch, setShow, chain]);
+  const tokenData = useMemo(() => {
+    const tokens = depositData.find((e) => {
+      console.log(chain?.chain);
+      return e.chain === chain?.chain;
+    });
+    console.log(tokens, "tokens");
+    return tokens?.elements;
+
+    //
+    //   let balance;
+    //   if (
+    //     token.symbol === EVMOS_SYMBOL &&
+    //     chainIds.chainIdentifier !== undefined
+    //   ) {
+    //     balance = await getEvmosBalanceForDeposit(
+    //       wallet,
+    //       chainIds.chainIdentifier.toUpperCase(),
+    //       token.symbol
+    //     );
+    //   } else {
+    //     balance = await getBalance(
+    //       wallet,
+    //       token.chainIdentifier.toUpperCase(),
+    //       token.symbol
+    //     );
+    //   }
+    //
+    //   if (balance.error === true || balance.data === null) {
+    //     dispatch(snackErrorGettingBalanceExtChain());
+    //     setShow(false);
+    //     return;
+    //   }
+    //
+    //   setBalance(
+    //     BigNumber.from(balance.data.balance ? balance.data.balance.amount : 0)
+    //   );
+    // }
+  }, [depositData, chain]);
 
   const amountProps = {
-    data: data,
+    data: tokenData,
     setToken: setToken,
     token: token,
     value: inputValue,

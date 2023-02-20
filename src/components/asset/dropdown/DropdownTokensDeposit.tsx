@@ -17,6 +17,7 @@ const DropdownTokensDeposit = ({
   const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
     null
   );
+  console.log(data, "asd2");
   useEffect(() => {
     const handler = () => setShowMenu(false);
     window.addEventListener("click", handler);
@@ -65,7 +66,7 @@ const DropdownTokensDeposit = ({
       >
         {showMenu && (
           <div className="z-[9999] absolute translate-y-9 -left-4 top-1 w-auto overflow-auto max-h-40 bg-white border border-darkGray2 rounded">
-            {data.table.map((option) => {
+            {data.map((option) => {
               // evmos keeps using cosmosBalance
               let balance = option.erc20Balance;
               if (option.symbol === EVMOS_SYMBOL) {

@@ -6,7 +6,6 @@ import { IBCChainParams } from "../../../../../internal/asset/functionality/tran
 import { executeWithdraw } from "../../../../../internal/asset/functionality/transactions/withdraw";
 import {
   checkFormatAddress,
-  checkMetaMaskFormatAddress,
   getPrefix,
   snackbarExecutedTx,
   snackbarIncludedInBlock,
@@ -52,7 +51,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       useWithdrawProps.inputValue,
       BigNumber.from(useWithdrawProps.token.decimals)
     );
-
+    let prefixTemp = useWithdrawProps.token.prefix;
     let chainIdentifier = useWithdrawProps.token.chainIdentifier;
     let balance = useWithdrawProps.token.erc20Balance;
     let useERC20Denom = true;
@@ -64,6 +63,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       // evmos keeps using cosmosBalance
       balance = useWithdrawProps.token.cosmosBalance;
       useERC20Denom = false;
+      prefixTemp = useWithdrawProps.chain.prefix;
     }
 
     if (amount.gt(balance)) {
@@ -71,13 +71,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       return;
     }
 
-    if (
-      !checkFormatAddress(
-        useWithdrawProps.receiverAddress,
-        useWithdrawProps.token.symbol
-      ) &&
-      !checkMetaMaskFormatAddress(useWithdrawProps.receiverAddress)
-    ) {
+    if (!checkFormatAddress(useWithdrawProps.receiverAddress, prefixTemp)) {
       return;
     }
 

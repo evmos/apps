@@ -25,6 +25,7 @@ const ToWithdraw = ({
 }: WithdrawReceiverProps) => {
   const [showInput, setShowInput] = useState(false);
   const [showEditButton, setShowEditButton] = useState(true);
+  const [prefix, setPrefix] = useState("");
   const handleOnClickEdit = () => {
     setShowInput(true);
     setShowEditButton(false);
@@ -40,9 +41,11 @@ const ToWithdraw = ({
 
     let chainId = token.chainId;
     let chainIdentifier = token.chainIdentifier;
+    setPrefix(token.prefix);
     if (token.symbol === EVMOS_SYMBOL && dropChainProps.chain !== undefined) {
       chainId = dropChainProps.chain?.chainId;
       chainIdentifier = dropChainProps.chain?.chainIdentifier;
+      setPrefix(dropChainProps.chain.prefix);
     }
 
     const keplrAddress = await getKeplrAddressByChain(chainId, chainIdentifier);
@@ -154,7 +157,7 @@ const ToWithdraw = ({
 
         {confirmClicked &&
           token !== undefined &&
-          !checkFormatAddress(receiverAddress, token?.prefix) && (
+          !checkFormatAddress(receiverAddress, prefix) && (
             <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorWrongPrefix} />
           )}
         {createAddMetamaskDiv()}

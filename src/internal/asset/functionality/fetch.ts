@@ -79,11 +79,6 @@ export const getTotalStaked = async (address: string) => {
   return res.json() as Promise<TotalStakedResponse>;
 };
 
-// TODO: we need to add sourceIBCDenomToEvmos to the
-// BalanceByNetworkAndDenom endpoint in the backend
-// We'll work on this once we start with single token
-// representation
-// This function only supports OSMOSIS - EVMOS case.
 export const getEvmosBalanceForDeposit = async (
   address: string,
   network: string,

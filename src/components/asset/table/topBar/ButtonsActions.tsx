@@ -13,7 +13,7 @@ const ButtonsActions = ({ actionsProps }: { actionsProps: actionsProps }) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
 
   return (
-    <div className="flex items-center justify-center sm:justify-end space-x-2">
+    <div className="flex items-center justify-center lg:justify-end space-x-2">
       <ConfirmButton
         disabled={
           !wallet.active ||

@@ -164,3 +164,9 @@ input[type=number] {
     scrollbar-width: none;  /* Firefox */
   }
 }
+
+/* Custom */
+::selection {
+  background-color: #F5E8D4;
+  color: #0b0a09;
+}

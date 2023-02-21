@@ -5,6 +5,7 @@ import { BROADCASTED_NOTIFICATIONS } from "../../../../../internal/asset/functio
 import { IBCChainParams } from "../../../../../internal/asset/functionality/transactions/types";
 import { executeWithdraw } from "../../../../../internal/asset/functionality/transactions/withdraw";
 import {
+  checkFormatAddress,
   getPrefix,
   snackbarExecutedTx,
   snackbarIncludedInBlock,
@@ -50,7 +51,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       useWithdrawProps.inputValue,
       BigNumber.from(useWithdrawProps.token.decimals)
     );
-
+    let prefixTemp = useWithdrawProps.token.prefix;
     let chainIdentifier = useWithdrawProps.token.chainIdentifier;
     let balance = useWithdrawProps.token.erc20Balance;
     let useERC20Denom = true;
@@ -62,10 +63,15 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       // evmos keeps using cosmosBalance
       balance = useWithdrawProps.token.cosmosBalance;
       useERC20Denom = false;
+      prefixTemp = useWithdrawProps.chain.prefix;
     }
 
     if (amount.gt(balance)) {
       dispatch(snackErrorAmountGt());
+      return;
+    }
+
+    if (!checkFormatAddress(useWithdrawProps.receiverAddress, prefixTemp)) {
       return;
     }
 

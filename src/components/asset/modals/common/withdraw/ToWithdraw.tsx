@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
+import { checkFormatAddress } from "../../../../../internal/asset/style/format";
 import { snackErrorConnectingKeplr } from "../../../../../internal/asset/style/snackbars";
 import { getKeplrAddressByChain } from "../../../../../internal/wallet/functionality/keplr/keplrHelpers";
 import { EVMOS_SYMBOL } from "../../../../../internal/wallet/functionality/networkConfig";
@@ -24,6 +25,7 @@ const ToWithdraw = ({
 }: WithdrawReceiverProps) => {
   const [showInput, setShowInput] = useState(false);
   const [showEditButton, setShowEditButton] = useState(true);
+  const [prefix, setPrefix] = useState("");
   const handleOnClickEdit = () => {
     setShowInput(true);
     setShowEditButton(false);
@@ -39,9 +41,11 @@ const ToWithdraw = ({
 
     let chainId = token.chainId;
     let chainIdentifier = token.chainIdentifier;
+    setPrefix(token.prefix);
     if (token.symbol === EVMOS_SYMBOL && dropChainProps.chain !== undefined) {
       chainId = dropChainProps.chain?.chainId;
       chainIdentifier = dropChainProps.chain?.chainIdentifier;
+      setPrefix(dropChainProps.chain.prefix);
     }
 
     const keplrAddress = await getKeplrAddressByChain(chainId, chainIdentifier);
@@ -150,6 +154,12 @@ const ToWithdraw = ({
         {confirmClicked && receiverAddress === "" && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
         )}
+
+        {confirmClicked &&
+          token !== undefined &&
+          !checkFormatAddress(receiverAddress, prefix) && (
+            <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorWrongPrefix} />
+          )}
         {createAddMetamaskDiv()}
       </>
     </ContainerModal>

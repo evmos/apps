@@ -2,15 +2,14 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
 import DropdownArrow from "../../common/images/icons/DropdownArrow";
-import { DropdownTokensProps } from "./types";
-const DropdownTokens = ({
+import { DropdownTokensDepositProps } from "./types";
+const DropdownTokensDeposit = ({
   placeholder,
   data,
   setToken,
-  setAddress,
   setValue,
-  setChain,
-}: DropdownTokensProps) => {
+  token,
+}: DropdownTokensDepositProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
     null
@@ -29,19 +28,21 @@ const DropdownTokens = ({
   };
 
   const getDisplay = () => {
-    if (selectedValue) {
-      return (
-        <div className="flex items-center space-x-3 font-bold">
-          <Image
-            src={`/assets/tokens/${selectedValue.symbol.toLowerCase()}.png`}
-            alt={selectedValue.symbol}
-            width={25}
-            height={25}
-            className="w-6 h-6"
-          />
-          <span> {selectedValue.symbol}</span>
-        </div>
-      );
+    if (token !== undefined) {
+      if (selectedValue) {
+        return (
+          <div className="flex items-center space-x-3 font-bold">
+            <Image
+              src={`/assets/tokens/${selectedValue.symbol.toLowerCase()}.png`}
+              alt={selectedValue.symbol}
+              width={25}
+              height={25}
+              className="w-6 h-6"
+            />
+            <span> {selectedValue.symbol}</span>
+          </div>
+        );
+      }
     }
     return placeholder;
   };
@@ -49,10 +50,7 @@ const DropdownTokens = ({
   const onItemClick = (option: TableDataElement) => {
     setSelectedValue(option);
     setToken(option);
-    setAddress("");
     setValue("");
-    // TODO: is it right to set as undefined?
-    setChain(undefined);
   };
 
   return (
@@ -95,4 +93,4 @@ const DropdownTokens = ({
   );
 };
 
-export default DropdownTokens;
+export default DropdownTokensDeposit;

@@ -49,10 +49,7 @@ export default function Home() {
               {/* <!--  Essential META Tags --> */}
               <meta property="og:title" content="Evmos Assets" />
               <meta property="og:type" content="article" />
-              <meta
-                property="og:image"
-                content="https://app.evmos.org/assets/social_share.jpg"
-              />
+              <meta property="og:image" content="/assets/social_share.jpg" />
               <meta property="og:url" content="https://app.evmos.org/assets" />
               <meta name="twitter:card" content="summary_large_image" />
 
@@ -64,7 +61,7 @@ export default function Home() {
               <meta property="og:site_name" content="Evmos Assets" />
               <meta
                 property="twitter:image"
-                content="https://app.evmos.org/assets/social_share.jpg"
+                content="/assets/social_share.jpg"
               />
               <meta
                 name="twitter:description"

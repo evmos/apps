@@ -199,6 +199,8 @@ export const SubRowContent = ({
           {item.symbol !== EVMOS_SYMBOL &&
             !item.cosmosBalance.eq(BIG_ZERO) &&
             createConvertButton()}
+          {/* to withdraw axelar, the users need to convert
+          the erc20 to ibc-balance */}
           {item.symbol !== EVMOS_SYMBOL &&
             item.handledByExternalUI !== null &&
             createConvertButton()}

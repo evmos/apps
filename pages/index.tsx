@@ -63,10 +63,7 @@ export default function Home() {
                 property="twitter:image"
                 content="/assets/social_share.jpg"
               />
-              <meta
-                name="twitter:description"
-                content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
-              />
+
               <meta name="twitter:site" content="@EvmosOrg" />
 
               <link rel="icon" href="/favicon.ico" />

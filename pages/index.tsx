@@ -52,7 +52,7 @@ export default function Home() {
               <meta property="og:type" content="article" />
               <meta property="og:image" content={twitterPreviewImage.src} />
               <meta property="og:url" content="https://app.evmos.org/assets" />
-              <meta name="twitter:card" content="summary_large_image" />
+              <meta name="twitter:card" content={twitterPreviewImage.src} />
 
               {/* <!--  Non-Essential, But Recommended --> */}
               <meta

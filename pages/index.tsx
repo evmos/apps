@@ -52,7 +52,7 @@ export default function Home() {
               <meta property="og:type" content="article" />
               <meta property="og:image" content={twitterPreviewImage.src} />
               <meta property="og:url" content="https://app.evmos.org/assets" />
-              <meta name="twitter:card" content={twitterPreviewImage.src} />
+              <meta name="twitter:card" content="summary_large_image" />
 
               {/* <!--  Non-Essential, But Recommended --> */}
               <meta
@@ -61,7 +61,7 @@ export default function Home() {
               />
               <meta property="og:site_name" content="Evmos Assets" />
               <meta
-                name="twitter:image:alt"
+                name="twitter:description"
                 content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
               />
               <meta name="twitter:site" content="@EvmosOrg" />

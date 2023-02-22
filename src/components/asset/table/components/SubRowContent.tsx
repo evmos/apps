@@ -199,6 +199,9 @@ export const SubRowContent = ({
           {item.symbol !== EVMOS_SYMBOL &&
             !item.cosmosBalance.eq(BIG_ZERO) &&
             createConvertButton()}
+          {item.symbol !== EVMOS_SYMBOL &&
+            item.handledByExternalUI !== null &&
+            createConvertButton()}
         </div>
       </div>
     </div>

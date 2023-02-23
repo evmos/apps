@@ -1,10 +1,11 @@
 import { BigNumber } from "ethers";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   amountToDollars,
   convertAndFormat,
 } from "../../../../internal/asset/style/format";
+import { snackWarningLedger } from "../../../../internal/asset/style/snackbars";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import { KEPLR_KEY } from "../../../../internal/wallet/functionality/wallet";
@@ -25,6 +26,7 @@ export const SubRowContent = ({
   feeBalance,
 }: SubRowProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
+  const dispatch = useDispatch();
 
   let balance = item.erc20Balance;
   let symbol = item.symbol;
@@ -53,15 +55,19 @@ export const SubRowContent = ({
   };
 
   const openModalConvert = () => {
-    setShow(true);
-    setModalContent(
-      <Convert
-        item={item}
-        feeBalance={feeBalance}
-        address={wallet.evmosAddressCosmosFormat}
-        setShow={setShow}
-      />
-    );
+    if (wallet.evmosAddressCosmosFormat !== "") {
+      setShow(true);
+      setModalContent(
+        <Convert
+          item={item}
+          feeBalance={feeBalance}
+          address={wallet.evmosAddressCosmosFormat}
+          setShow={setShow}
+        />
+      );
+    } else {
+      dispatch(snackWarningLedger());
+    }
   };
 
   const createEvmosConvertButton = () => {

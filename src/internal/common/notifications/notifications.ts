@@ -58,3 +58,19 @@ export function NotifySuccess(
     notify(SNACKBAR_TYPES.SUCCESS, content, store, isEnabled);
   }
 }
+
+export function NotifyWarning(
+  content: {
+    type: string;
+    title: string;
+    text?: string;
+    hash?: string;
+    explorerTxUrl?: string;
+  },
+  store: ReduxWalletStore,
+  isEnabled: boolean
+) {
+  if (isEnabled) {
+    notify(SNACKBAR_TYPES.DEFAULT, content, store, isEnabled);
+  }
+}

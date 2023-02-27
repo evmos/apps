@@ -116,7 +116,7 @@ const AssetsTable = () => {
     setShow: setShow,
     setModalContent: setModalContent,
     tableData: {
-      table: tableData,
+      table: normalizedAssetsData.table,
       feeBalance: normalizedAssetsData.feeBalance,
     },
   };

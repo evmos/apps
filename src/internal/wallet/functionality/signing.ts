@@ -32,6 +32,9 @@ export declare type TxGeneratedByBackend = {
   eipToSign: string;
   accountNumber: string;
   chainId: string;
+  data: {
+    dataSigningAmino: string;
+  };
 };
 
 export declare type RawTx = {

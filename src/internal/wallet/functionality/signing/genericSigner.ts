@@ -4,6 +4,7 @@ import { Web3Provider } from "@ethersproject/providers";
 import {
   signBackendTxWithKeplr,
   signEvmosjsTxWithKeplr,
+  signKeplrAmino,
 } from "../keplr/keplrSigner";
 import {
   signBackendTxWithMetamask,
@@ -22,6 +23,7 @@ import {
 } from "../walletconnect/walletconnectSigner";
 import { wagmiClient } from "../walletconnect/walletconnectConstants";
 import { providers } from "ethers";
+import { StdSignDoc } from "@keplr-wallet/types";
 
 export class Signer {
   keplrBackendData: { tx: RawTx; sender: string; network: string } | null =
@@ -133,6 +135,51 @@ export class Signer {
     return {
       result: false,
       message: `Error signing the tx: Extension not supported`,
+    };
+  }
+
+  async signBackendTxWithAmino(
+    sender: string,
+    tx: TxGeneratedByBackend,
+    network: string,
+    currentExtension: string
+  ) {
+    this.reset();
+    if (
+      currentExtension === METAMASK_KEY ||
+      currentExtension === WALLECT_CONNECT_KEY
+    ) {
+      return {
+        result: false,
+        message:
+          "You can not sign amino transactions with a wallet different from Keplr",
+        aminoResponse: null,
+      };
+    }
+
+    if (currentExtension === KEPLR_KEY) {
+      const res = await signKeplrAmino(
+        sender,
+        JSON.parse(tx.data.dataSigningAmino) as StdSignDoc
+      );
+      if (res.transaction === null) {
+        return {
+          result: res.result,
+          message: res.message,
+          aminoResponse: null,
+        };
+      }
+      return {
+        result: true,
+        message: "",
+        aminoResponse: res.transaction,
+      };
+    }
+
+    return {
+      result: false,
+      message: `Error signing the tx: Extension not supported`,
+      aminoResponse: null,
     };
   }
 

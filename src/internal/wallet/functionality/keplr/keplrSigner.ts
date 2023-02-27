@@ -1,6 +1,5 @@
-import { ethToEvmos } from "@evmos/address-converter";
 import { createTxRaw } from "@evmos/proto";
-import { Sender, TxGenerated } from "@evmos/transactions";
+import { EIPToSign, Sender, TxGenerated } from "@evmos/transactions";
 import { EthSignType, StdSignDoc } from "@keplr-wallet/types";
 // eslint-disable-next-line
 import Long from "long";
@@ -47,11 +46,7 @@ export async function signBackendTxWithKeplr(
   const key = await window.keplr.getKey(tx.chainId);
   if (key.isNanoLedger) {
     // Sign with eip712
-    const eip712Res = await signKeplrEIP712(
-      ethToEvmos(sender),
-      tx.chainId,
-      tx.eipToSign
-    );
+    const eip712Res = await signKeplrEIP712(sender, tx.chainId, tx.eipToSign);
     const ret: KeplrReturn = {
       result: eip712Res.result,
       message: eip712Res.message,
@@ -219,10 +214,18 @@ export async function signKeplrEIP712(
     };
   }
   try {
+    const eipToSignUTF8 = JSON.parse(
+      Buffer.from(tx, "base64").toString("utf-8")
+    ) as EIPToSign;
+
+    eipToSignUTF8.domain.chainId = parseInt(
+      eipToSignUTF8.domain.chainId.toString(),
+      16
+    );
     const sign = await window.keplr.signEthereum(
       chainId,
       sender,
-      tx,
+      JSON.stringify(eipToSignUTF8),
       EthSignType.EIP712
     );
 
@@ -233,11 +236,10 @@ export async function signKeplrEIP712(
         signature: null,
       };
     }
-
     return {
       result: true,
       message: `Transaction correctly signed`,
-      signature: Buffer.from(sign).toString("utf-8"),
+      signature: Buffer.from(sign).toString("hex"),
     };
   } catch (e) {
     // Disabled until catching all the possible errors

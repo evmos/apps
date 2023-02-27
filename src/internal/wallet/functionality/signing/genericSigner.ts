@@ -25,16 +25,22 @@ import { wagmiClient } from "../walletconnect/walletconnectConstants";
 import { providers } from "ethers";
 import { StdSignDoc } from "@keplr-wallet/types";
 
+type EIP712Data = {
+  chainId: string;
+  address: string;
+  signature: string;
+  body: string;
+  auth: string;
+};
+
 export class Signer {
-  keplrBackendData: { tx: RawTx; sender: string; network: string } | null =
-    null;
-  metamaskBackendData: {
-    chainId: string;
-    address: string;
-    signature: string;
-    body: string;
-    auth: string;
+  keplrBackendData: {
+    tx: RawTx | null;
+    eipData: EIP712Data | null;
+    sender: string;
+    network: string;
   } | null = null;
+  metamaskBackendData: EIP712Data | null = null;
   currentExtension: string | null = null;
 
   reset() {
@@ -118,17 +124,52 @@ export class Signer {
 
     if (currentExtension === KEPLR_KEY) {
       const res = await signBackendTxWithKeplr(sender, tx);
-      if (res.transaction === null) {
+      if (res.result === false) {
         return {
           result: res.result,
           message: res.message,
         };
       }
-      this.keplrBackendData = { tx: res.transaction, sender, network };
-      this.currentExtension = KEPLR_KEY;
+
+      if (res.signature) {
+        // EIPTransaction
+        this.keplrBackendData = {
+          tx: null,
+          eipData: {
+            chainId: tx.chainId,
+            address: sender,
+            signature: res.signature,
+            body: tx.legacyAmino.body,
+            auth: tx.legacyAmino.authInfo,
+          },
+          sender,
+          network,
+        };
+        this.currentExtension = KEPLR_KEY;
+        return {
+          result: res.result,
+          message: res.message,
+        };
+      }
+
+      if (res.transaction) {
+        this.keplrBackendData = {
+          tx: res.transaction,
+          eipData: null,
+          sender,
+          network,
+        };
+        this.currentExtension = KEPLR_KEY;
+        return {
+          result: res.result,
+          message: res.message,
+        };
+      }
+
+      // The code must always return before reaching this point
       return {
-        result: res.result,
-        message: res.message,
+        result: false,
+        message: "Unknow error",
       };
     }
 
@@ -206,6 +247,7 @@ export class Signer {
         this.metamaskBackendData.auth
       );
     }
+
     // Keplr
     if (this.currentExtension === KEPLR_KEY) {
       if (this.keplrBackendData == null) {
@@ -215,13 +257,28 @@ export class Signer {
           txhash: `0x0`,
         };
       }
+
       // Broadcast
-      return broadcastSignedTxToBackend(
-        this.keplrBackendData.tx,
-        this.keplrBackendData.sender,
-        this.keplrBackendData.network
-      );
+      if (this.keplrBackendData.tx !== null) {
+        // ProtoTransaction
+        return broadcastSignedTxToBackend(
+          this.keplrBackendData.tx,
+          this.keplrBackendData.sender,
+          this.keplrBackendData.network
+        );
+      }
+      if (this.keplrBackendData.eipData !== null) {
+        // EIP712 transaction
+        return await broadcastEip712BackendTxToBackend(
+          cosmosChainIdToEth(this.keplrBackendData.eipData.chainId),
+          this.keplrBackendData.eipData.address,
+          this.keplrBackendData.eipData.signature,
+          this.keplrBackendData.eipData.body,
+          this.keplrBackendData.eipData.auth
+        );
+      }
     }
+
     return {
       error: true,
       message: `Invalid wallet extension`,

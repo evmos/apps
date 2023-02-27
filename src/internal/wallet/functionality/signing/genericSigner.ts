@@ -159,8 +159,8 @@ export class Signer {
 
     if (currentExtension === KEPLR_KEY) {
       const res = await signKeplrAmino(
-        sender,
-        JSON.parse(tx.data.dataSigningAmino) as StdSignDoc
+        tx.chainId,
+        JSON.parse(tx.dataSigningAmino) as StdSignDoc
       );
       if (res.transaction === null) {
         return {

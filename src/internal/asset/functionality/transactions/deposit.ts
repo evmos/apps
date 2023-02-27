@@ -9,7 +9,8 @@ import {
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
 import { broadcastAminoBackendTxToBackend } from "../../../wallet/functionality/signing";
-import { StdSignDoc } from "@keplr-wallet/types";
+import { Signer } from "../../../wallet/functionality/signing/genericSigner";
+import { EVMOS_NETWORK_FOR_BACKEND } from "../../../wallet/functionality/networkConfig";
 
 export async function executeDeposit(
   pubkey: string,
@@ -52,53 +53,38 @@ export async function executeDeposit(
       explorerTxUrl: "",
     };
   }
-
-  const offlineSigner =
-    window.getOfflineSignerOnlyAmino &&
-    window.getOfflineSignerOnlyAmino(chainId);
-
-  if (offlineSigner === undefined) {
-    // Error generating the transaction
-    return {
-      error: true,
-      message: "",
-      // TODO: check what error send
-      title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-      txHash: "",
-      explorerTxUrl: "",
-    };
-  }
-
-  const account = await offlineSigner?.getAccounts();
-  if (account === undefined) {
-    // Error generating the transaction
-    return {
-      error: true,
-      message: "",
-      // TODO: check title
-      title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-      txHash: "",
-      explorerTxUrl: "",
-    };
-  }
-
-  const sign = await offlineSigner?.signAmino(
-    account[0].address,
-    JSON.parse(tx.data.dataSigningAmino) as unknown as StdSignDoc
+  const signer = new Signer();
+  const sign = await signer.signBackendTxWithAmino(
+    address,
+    tx.data,
+    EVMOS_NETWORK_FOR_BACKEND,
+    extension
   );
-
-  if (sign === undefined) {
+  if (sign.result === false) {
     return {
       error: true,
-      message: "",
+      message: sign.message,
+      title: SIGNING_NOTIFICATIONS.ErrorTitle,
+      txHash: "",
+      explorerTxUrl: "",
+    };
+  }
+
+  if (
+    sign.aminoResponse === null ||
+    sign.aminoResponse?.signature === undefined
+  ) {
+    return {
+      error: true,
+      message: sign.message,
       title: SIGNING_NOTIFICATIONS.ErrorTitle,
       txHash: "",
       explorerTxUrl: "",
     };
   }
   const broadcastResponse = await broadcastAminoBackendTxToBackend(
-    sign?.signature,
-    sign?.signed,
+    sign.aminoResponse.signature,
+    sign.aminoResponse.signed,
     chainIdentifier
   );
   if (broadcastResponse.error === true) {

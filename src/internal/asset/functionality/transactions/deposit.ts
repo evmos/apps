@@ -1,5 +1,4 @@
 import { BigNumber, utils } from "ethers";
-import { Signer } from "../../../wallet/functionality/signing/genericSigner";
 import { checkFormatAddress } from "../../style/format";
 import {
   BROADCASTED_NOTIFICATIONS,
@@ -9,6 +8,8 @@ import {
 } from "./errors";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
+import { broadcastAminoBackendTxToBackend } from "../../../wallet/functionality/signing";
+import { StdSignDoc } from "@keplr-wallet/types";
 
 export async function executeDeposit(
   pubkey: string,
@@ -16,7 +17,9 @@ export async function executeDeposit(
   params: IBCChainParams,
   identifier: string,
   extension: string,
-  prefix: string
+  prefix: string,
+  chainId: string,
+  chainIdentifier: string
 ) {
   if (utils.parseEther(params.amount).lte(BigNumber.from("0"))) {
     return {
@@ -50,25 +53,54 @@ export async function executeDeposit(
     };
   }
 
-  const signer = new Signer();
-  const sign = await signer.signBackendTx(
-    address,
-    tx.data,
-    identifier,
-    extension
-  );
-  if (sign.result === false) {
+  const offlineSigner =
+    window.getOfflineSignerOnlyAmino &&
+    window.getOfflineSignerOnlyAmino(chainId);
+
+  if (offlineSigner === undefined) {
+    // Error generating the transaction
     return {
       error: true,
-      message: sign.message,
-      title: SIGNING_NOTIFICATIONS.ErrorTitle,
+      message: "",
+      // TODO: check what error send
+      title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
       txHash: "",
       explorerTxUrl: "",
     };
   }
 
-  const broadcastResponse = await signer.broadcastTxToBackend();
+  const account = await offlineSigner?.getAccounts();
+  if (account === undefined) {
+    // Error generating the transaction
+    return {
+      error: true,
+      message: "",
+      // TODO: check title
+      title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+      txHash: "",
+      explorerTxUrl: "",
+    };
+  }
 
+  const sign = await offlineSigner?.signAmino(
+    account[0].address,
+    JSON.parse(tx.data.dataSigningAmino) as unknown as StdSignDoc
+  );
+
+  if (sign === undefined) {
+    return {
+      error: true,
+      message: "",
+      title: SIGNING_NOTIFICATIONS.ErrorTitle,
+      txHash: "",
+      explorerTxUrl: "",
+    };
+  }
+  const broadcastResponse = await broadcastAminoBackendTxToBackend(
+    sign?.signature,
+    sign?.signed,
+    chainIdentifier
+  );
   if (broadcastResponse.error === true) {
     // TODO: add sentry call here!
     return {

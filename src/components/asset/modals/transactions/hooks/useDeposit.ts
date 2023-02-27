@@ -115,7 +115,9 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       params,
       chainIds.chainIdentifier.toUpperCase(),
       wallet.extensionName,
-      prefix
+      prefix,
+      chainIds.chainId,
+      chainIds.chainIdentifier
     );
 
     dispatch(snackExecuteIBCTransfer(res));

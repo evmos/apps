@@ -17,6 +17,7 @@ export interface IBCTransferResponse {
   accountNumber: string;
   chainId: string;
   explorerTxUrl: string;
+  dataSigningAmino: string;
 }
 
 export interface Transaction {

@@ -327,9 +327,10 @@ const Deposit = ({
               params,
               chainIdentifier.toUpperCase(),
               wallet.extensionName,
-              item.prefix
+              item.prefix,
+              item.chainId,
+              item.chainIdentifier
             );
-
             dispatch(
               addSnackbar({
                 id: 0,

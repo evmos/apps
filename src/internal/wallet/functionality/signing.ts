@@ -212,3 +212,97 @@ export async function broadcastEip712BackendTxToBackend(
     });
   }
 }
+
+type PubKeySignature = {
+  type: string;
+  value: string;
+};
+type SignatureAmino = {
+  pub_key: PubKeySignature;
+  signature: string;
+};
+
+type FeeAmountSignedAmino = {
+  denom: string;
+  amount: string;
+};
+type FeeSignedAmino = {
+  amount: readonly FeeAmountSignedAmino[];
+  gas: string;
+};
+
+type TimeoutHeightSignedAmino = {
+  revision_height: string;
+  revision_number: string;
+};
+
+type TokenSignedAmino = {
+  amount: string;
+  denom: string;
+};
+type MsgsValueSignedAmino = {
+  receiver: string;
+  sender: string;
+  source_channel: string;
+  source_port: string;
+  timeout_height: TimeoutHeightSignedAmino;
+  timeout_timestamp: string;
+  token: TokenSignedAmino;
+};
+type MsgsSignedAmino = {
+  type: string;
+  value: MsgsValueSignedAmino;
+};
+
+type SignedAmino = {
+  account_number: string;
+  chain_id: string;
+  fee: FeeSignedAmino;
+  memo: string;
+  msgs: readonly MsgsSignedAmino[];
+  sequence: string;
+};
+
+export async function broadcastAminoBackendTxToBackend(
+  signature: SignatureAmino,
+  signed: SignedAmino,
+  chainIdentifier: string,
+  endpoint: string = EVMOS_BACKEND
+) {
+  try {
+    const txBody = {
+      signature: signature,
+      signed: signed,
+      chainIdentifier: chainIdentifier.toUpperCase(),
+    };
+
+    const postBroadcast = await fetchWithTimeout(`${endpoint}/broadcastAmino`, {
+      method: "post",
+      body: JSON.stringify(txBody),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    const response = (await postBroadcast.json()) as BroadcastToBackendResponse;
+    if (response.error) {
+      return Promise.reject({
+        error: true,
+        message: `Transaction Failed ${response.error}`,
+        txhash: `0x0`,
+      });
+    }
+
+    return {
+      error: false,
+      message: `Transaction successful!`,
+      txhash: response.tx_hash,
+    };
+  } catch (e) {
+    return Promise.reject({
+      error: true,
+      // Disabled until catching all the possible errors
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+      message: `Transaction Failed ${e}`,
+      txhash: `0x0`,
+    });
+  }
+}

@@ -65,7 +65,7 @@ const AmountDeposit = ({
           <TextSmall text="SELECT BRIDGE" />
           <Note
             text="We currently do not offer transfers directly from Ethereum. For now,
-      here area few options that will allow you to withdraw from Evmos"
+      here are a few options that will allow you to withdraw from Evmos"
           />
         </>
       );

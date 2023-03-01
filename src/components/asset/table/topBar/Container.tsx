@@ -7,7 +7,7 @@ export const Container = ({
 }: {
   text: string;
   value: string;
-  href: string;
+  href?: string;
 }) => {
   const drawDiv = () => (
     <div>
@@ -20,8 +20,8 @@ export const Container = ({
 
   return (
     <>
-      {href !== "" && <Link href={href}>{drawDiv()}</Link>}
-      {href === "" && drawDiv()}
+      {href !== undefined && <Link href={href}>{drawDiv()}</Link>}
+      {href === undefined && drawDiv()}
     </>
   );
 };

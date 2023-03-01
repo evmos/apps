@@ -70,3 +70,23 @@ export type BalanceResponse = {
     amount: string;
   };
 };
+
+type RewardResponse = {
+  denom: string;
+  amount: string;
+};
+
+type RewardsResponse = {
+  reward: RewardResponse[];
+  validator_address: string;
+};
+
+type TotalStakingRewards = {
+  amount: string;
+  denom: string;
+};
+
+export type StakingRewardsResponse = {
+  rewards: RewardsResponse[];
+  total: TotalStakingRewards[];
+};

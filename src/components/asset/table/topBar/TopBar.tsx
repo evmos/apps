@@ -12,11 +12,7 @@ const TopBar = ({ topProps }: { topProps: TopBarProps }) => {
   return (
     <TopBarContainer>
       <>
-        <Container
-          text="Total Assets"
-          value={`$${topProps.totalAssets}`}
-          href=""
-        />
+        <Container text="Total Assets" value={`$${topProps.totalAssets}`} />
         <Container
           text="Total Staked"
           value={topProps.totalStaked}
@@ -29,7 +25,6 @@ const TopBar = ({ topProps }: { topProps: TopBarProps }) => {
               ? "--"
               : `$${topProps.evmosPrice.toString()}`
           }
-          href=""
         />
         <ButtonsActions actionsProps={actionsProps} />
       </>

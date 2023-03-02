@@ -3,15 +3,15 @@ import {
   EVMOS_MINIMAL_COIN_DENOM,
   EVMOS_SYMBOL,
 } from "../../wallet/functionality/networkConfig";
-import {
-  BalanceResponse,
-  StakingInfoResponse,
-  StakingRewardsResponse,
-} from "./types";
+import { BalanceResponse, StakingInfoResponse } from "./types";
 
 export const getStakingInfo = async (address: string) => {
   if (address === "" || address == undefined || address == null) {
-    return { delegations: [], undelegations: [] };
+    return {
+      delegations: [],
+      undelegations: [],
+      rewards: { rewards: [], total: [] },
+    };
   }
   const res = await fetch(`${EVMOS_BACKEND}/stakingInfo/${address}`);
   return res.json() as Promise<StakingInfoResponse>;
@@ -26,15 +26,3 @@ export const getEvmosBalance = async (address: string) => {
   );
   return res.json() as Promise<BalanceResponse>;
 };
-
-export const getStakingRewards = async (address: string) => {
-  if (address === "" || address == undefined || address == null) {
-    return { rewards: [], total: [] };
-  }
-  const res = await fetch(
-    `${EVMOS_BACKEND}/StakingRewards/${EVMOS_SYMBOL}/${address}`
-  );
-  return res.json() as Promise<StakingRewardsResponse>;
-};
-
-//

@@ -18,7 +18,7 @@ const TopBarStaking = () => {
 
   const value = useSelector((state: StoreType) => state.wallet.value);
   const { totalStaked } = useStakedEvmos();
-  const { totalUndelegations } = useStakingInfo();
+  const { totalUndelegations, totalRewards } = useStakingInfo();
   const { evmosBalance } = useEvmosBalance();
   // const { rewards } = useClaimRewards();
 
@@ -39,12 +39,10 @@ const TopBarStaking = () => {
         <div className=" ">
           <ConfirmButton
             className="w-fit text-sm px-4"
-            text="Claim Rewards: 0 EVMOS"
+            text={`Claim Rewards: ${totalRewards.toFixed(2)} EVMOS`}
             onClick={handleClaimRewards}
             disabled={
-              !value.active
-              // !Number(totalClaimableReward) ||
-              // Number(totalClaimableReward) < 0.005 // insure that small residual is covered
+              !value.active || !totalRewards || totalRewards < 0.005 // insure that small residual is covered
             }
           />
         </div>

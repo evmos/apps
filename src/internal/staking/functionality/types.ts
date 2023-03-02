@@ -59,16 +59,9 @@ export type UndelegationsResponse = {
   validator_address: string;
 };
 
-export type StakingInfoResponse = {
-  delegations: delegationsResponse[];
-  undelegations: UndelegationsResponse[];
-};
-
-export type BalanceResponse = {
-  balance: {
-    denom: string;
-    amount: string;
-  };
+type totalRewards = {
+  amount: string;
+  denom: string;
 };
 
 type RewardResponse = {
@@ -76,17 +69,25 @@ type RewardResponse = {
   amount: string;
 };
 
-type RewardsResponse = {
+type Rewards = {
   reward: RewardResponse[];
   validator_address: string;
 };
 
-type TotalStakingRewards = {
-  amount: string;
-  denom: string;
+type rewardsResponse = {
+  rewards: Rewards[];
+  total: totalRewards[];
 };
 
-export type StakingRewardsResponse = {
-  rewards: RewardsResponse[];
-  total: TotalStakingRewards[];
+export type StakingInfoResponse = {
+  delegations: delegationsResponse[];
+  undelegations: UndelegationsResponse[];
+  rewards: rewardsResponse;
+};
+
+export type BalanceResponse = {
+  balance: {
+    denom: string;
+    amount: string;
+  };
 };

@@ -6,6 +6,7 @@ import { StakingInfoResponse } from "../types";
 import { useMemo } from "react";
 import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import { BigNumber } from "ethers";
+import { convertStringFromAtto } from "../../../asset/style/format";
 
 export const useStakingInfo = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
@@ -31,5 +32,17 @@ export const useStakingInfo = () => {
     return total;
   }, [stakingInfo]);
 
-  return { totalUndelegations };
+  const totalRewards = useMemo(() => {
+    let total = "0";
+    if (stakingInfo.data !== undefined) {
+      if (stakingInfo.data.rewards !== undefined) {
+        if (stakingInfo.data.rewards.total.length !== 0) {
+          total = stakingInfo.data.rewards.total[0].amount;
+        }
+      }
+    }
+    return convertStringFromAtto(total);
+  }, [stakingInfo]);
+
+  return { totalUndelegations, totalRewards };
 };

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { convertAndFormat } from "../../../internal/asset/style/format";
+import { convertFromAtto } from "../../../internal/asset/style/format";
 import { useEpochDay } from "../../../internal/common/api/hooks/useEpochDay";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
 import { useEvmosBalance } from "../../../internal/staking/functionality/hooks/useEvmosBalance";
@@ -24,12 +24,17 @@ const TopBarStaking = () => {
       <>
         <Container
           text="Available"
-          value={`${convertAndFormat(evmosBalance)} EVMOS`}
+          value={`${Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS`}
         />
-        <Container text="Total Staked" value={`${totalStaked} EVMOS`} />
+        <Container
+          text="Total Staked"
+          value={`${Number(totalStaked).toFixed(2)} EVMOS`}
+        />
         <Container
           text="Total Unbonding"
-          value={`${convertAndFormat(totalUndelegations)} EVMOS`}
+          value={`${Number(convertFromAtto(totalUndelegations)).toFixed(
+            2
+          )} EVMOS`}
         />
         <Container
           text="Reward Distribution"

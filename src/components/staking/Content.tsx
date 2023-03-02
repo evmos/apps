@@ -63,44 +63,40 @@ const Content = () => {
 
     return dataBody.map((item) => {
       return (
-        <>
-          <tr key={item.rank} className={`${trBodyStyle}`}>
-            <td className={`${tdBodyStyle} md:hidden text-pearl font-bold`}>
-              {item.name}
-            </td>
-            <td className={`${tdBodyStyle} md:pl-8`}>
-              <TdContent tdProps={{ title: dataHead[0], value: item.rank }} />
-            </td>
-            <td className={`${tdBodyStyle} hidden md:table-cell`}>
-              {item.name}
-            </td>
-            <td className={`${tdBodyStyle}`}>
-              <TdContent
-                tdProps={{ title: dataHead[2], value: item.votingPower }}
-              />
-            </td>
-            <td className={`${tdBodyStyle}`}>
-              <TdContent tdProps={{ title: dataHead[3], value: item.staked }} />
-            </td>
-            <td className={`${tdBodyStyle}`}>
-              <TdContent
-                tdProps={{ title: dataHead[4], value: item.commission }}
-              />
-            </td>
+        <tr key={item.rank} className={`${trBodyStyle}`}>
+          <td className={`${tdBodyStyle} md:hidden text-pearl font-bold`}>
+            {item.name}
+          </td>
+          <td className={`${tdBodyStyle} md:pl-8`}>
+            <TdContent tdProps={{ title: dataHead[0], value: item.rank }} />
+          </td>
+          <td className={`${tdBodyStyle} hidden md:table-cell`}>{item.name}</td>
+          <td className={`${tdBodyStyle}`}>
+            <TdContent
+              tdProps={{ title: dataHead[2], value: item.votingPower }}
+            />
+          </td>
+          <td className={`${tdBodyStyle}`}>
+            <TdContent tdProps={{ title: dataHead[3], value: item.staked }} />
+          </td>
+          <td className={`${tdBodyStyle}`}>
+            <TdContent
+              tdProps={{ title: dataHead[4], value: item.commission }}
+            />
+          </td>
 
-            <td className={`${tdBodyStyle}`}>
-              <div className="flex md:justify-end">
-                <Button
-                  onClick={() => {
-                    // noop, redirect handled by the Link element
-                  }}
-                >
-                  <span className="px-2">Manage</span>
-                </Button>
-              </div>
-            </td>
-          </tr>
-        </>
+          <td className={`${tdBodyStyle}`}>
+            <div className="flex md:justify-end">
+              <Button
+                onClick={() => {
+                  // noop, redirect handled by the Link element
+                }}
+              >
+                <span className="px-2">Manage</span>
+              </Button>
+            </div>
+          </td>
+        </tr>
       );
     });
   };

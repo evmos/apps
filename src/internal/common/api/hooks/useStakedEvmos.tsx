@@ -2,12 +2,10 @@ import { BigNumber } from "ethers";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import { StoreType } from "../../../redux/Store";
-import {
-  getTotalStaked,
-  TotalStakedResponse,
-} from "../../asset/functionality/fetch";
-import { convertAndFormat } from "../../asset/style/format";
+import { StoreType } from "../../../../redux/Store";
+
+import { convertAndFormat } from "../../../asset/style/format";
+import { getTotalStaked, TotalStakedResponse } from "./fetch";
 
 export const useStakedEvmos = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);

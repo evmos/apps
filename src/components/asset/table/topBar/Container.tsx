@@ -6,7 +6,7 @@ export const Container = ({
   href,
 }: {
   text: string;
-  value: string;
+  value: string | JSX.Element;
   href?: string;
 }) => {
   const drawDiv = () => (

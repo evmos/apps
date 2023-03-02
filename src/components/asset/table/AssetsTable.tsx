@@ -24,7 +24,7 @@ import HeadAssets from "./components/HeadAssets";
 import LeftArrowIcon from "../../common/images/icons/LeftArrowIcon";
 import Link from "next/link";
 import Guide from "./Guide";
-import { useStakedEvmos } from "../../../internal/common/api/useStakedEvmos";
+import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);

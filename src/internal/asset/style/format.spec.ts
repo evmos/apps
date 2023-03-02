@@ -1,4 +1,5 @@
 import { BigNumber } from "ethers";
+import { parseUnits } from "ethers/lib/utils.js";
 import {
   amountToDollars,
   checkFormatAddress,
@@ -7,6 +8,7 @@ import {
   formatNumber,
   getReservedForFeeText,
   getTotalAssets,
+  numericOnly,
   safeSubstraction,
   truncateNumber,
 } from "./format";
@@ -245,5 +247,22 @@ describe("truncateNumber function", () => {
   it("Truncate float: leave 5 numbers afte2 .", () => {
     const value = truncateNumber("0.469495");
     expect(value).toBe(0.46949);
+  });
+});
+
+describe("numeric function", () => {
+  it("numeric only", () => {
+    const value = numericOnly("10000000000000000000");
+    expect(value).toBe("10000000000000000000");
+    const truncate = truncateNumber(value);
+    expect(truncate).toBe(10000000000000000000);
+  });
+});
+
+describe("parseUnits function", () => {
+  it("parse float", () => {
+    const value = parseUnits("10.1");
+
+    expect(value.toString()).toBe("10100000000000000000");
   });
 });

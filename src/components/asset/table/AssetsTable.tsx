@@ -145,7 +145,7 @@ const AssetsTable = () => {
           {tableData?.length === 0 && <HeadTable />}
           <tbody>
             {isLoading && (
-              <MessageTable>
+              <MessageTable amountCols={4}>
                 <>
                   <span className="loader"></span>
                   <p>Loading...</p>
@@ -155,14 +155,14 @@ const AssetsTable = () => {
           </tbody>
           {error && !isLoading && tableData?.length === 0 && (
             <tbody>
-              <MessageTable>
+              <MessageTable amountCols={4}>
                 <p>Request failed</p>
               </MessageTable>
             </tbody>
           )}
           {!isLoading && !error && tableData?.length === 0 && (
             <tbody>
-              <MessageTable>
+              <MessageTable amountCols={4}>
                 <p>No results </p>
               </MessageTable>
             </tbody>

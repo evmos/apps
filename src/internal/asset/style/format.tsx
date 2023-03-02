@@ -1,4 +1,4 @@
-import { BigNumber } from "@ethersproject/bignumber";
+import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
 import { formatUnits } from "@ethersproject/units";
 import { addSnackbar } from "../../../components/notification/redux/notificationSlice";
 import { BIG_ZERO } from "../../common/math/Bignumbers";
@@ -51,6 +51,33 @@ export function convertFromAtto(value: BigNumber, exponent = 18) {
     });
   }
   return formatUnits(valueAsString.split(".")[0], exponent);
+}
+
+export function convertStringFromAtto(value: BigNumberish, exponent = 18) {
+  // value is a string with decimals.
+  // it is the same as convertFromAtto but it receives a string and returns a number
+  if (!value) return 0;
+  let valueAsString = value.toString();
+  if (typeof value === "number") {
+    // Strip scientific notation
+    valueAsString = Number(value).toLocaleString("fullwide", {
+      useGrouping: false,
+    });
+  }
+  return Number(formatUnits(valueAsString.split(".")[0], exponent));
+}
+
+export function formatPercentage(value: string | number) {
+  let valueAsNumber = value;
+  if (typeof valueAsNumber === "string") {
+    valueAsNumber = Number(valueAsNumber);
+  }
+
+  return new Intl.NumberFormat("en-US", {
+    style: "percent",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }).format(valueAsNumber);
 }
 
 export function formatNumber(

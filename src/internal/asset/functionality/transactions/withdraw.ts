@@ -11,8 +11,7 @@ import {
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
 
-const feeAmountForWithdraw = BigNumber.from("200000000000000000");
-
+const feeAmountForWithdraw = BigNumber.from("4600000000000000");
 export async function executeWithdraw(
   pubkey: string,
   address: string,

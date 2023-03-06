@@ -1,10 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
-import {
-  getAllValidators,
-  ValidatorResponse,
-  ValidatorsResponse,
-} from "../fetch";
+import { getAllValidators, ValidatorsResponse } from "../fetch";
+import { ValidatorResponse } from "../types";
 
 export const useAllValidators = () => {
   const validators = useQuery<ValidatorsResponse, Error>({

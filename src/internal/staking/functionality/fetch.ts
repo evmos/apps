@@ -1,42 +1,16 @@
 import { EVMOS_BACKEND } from "../../wallet/functionality/networkConfig";
+import { StakingInfoResponse, ValidatorResponse } from "./types";
 
-type commission_rates = {
-  max_change_rate: string;
-  max_rate: string;
-  rate: string;
-};
-
-type commission = {
-  commission_rates: commission_rates;
-  update_time: string;
-};
-
-type consensusPubKey = {
-  type_url: string;
-  value: string;
-};
-
-type description = {
-  details: string;
-  identity: string;
-  moniker: string;
-  security_contract: string;
-  website: string;
-};
-
-export type ValidatorResponse = {
-  commission: commission;
-  consensus_key: consensusPubKey;
-  delegator_shares: string;
-  description: description;
-  jailed: boolean;
-  min_self_delegation: string;
-  operator_address: string;
-  rank: number;
-  status: string;
-  tokens: string;
-  unbonding_height: string;
-  unbonding_time: string;
+export const getStakingInfo = async (address: string) => {
+  if (address === "" || address == undefined || address == null) {
+    return {
+      delegations: [],
+      undelegations: [],
+      rewards: { rewards: [], total: [] },
+    };
+  }
+  const res = await fetch(`${EVMOS_BACKEND}/stakingInfo/${address}`);
+  return res.json() as Promise<StakingInfoResponse>;
 };
 
 export type ValidatorsResponse = {

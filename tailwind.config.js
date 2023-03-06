@@ -18,6 +18,7 @@ module.exports = {
         darkGray4: "#70655c",
         darkGray5: "#918378",
         darkGray400: "#898175",
+        darGray800: "#262017",
         skinTan: "#F5E8D4",
         red: "#ed4e33",
         red1: "#AA2912",

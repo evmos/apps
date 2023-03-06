@@ -11,7 +11,7 @@ export const Table = ({
     };
     tBody: {
       style: string;
-      content: JSX.Element[] | JSX.Element;
+      content: JSX.Element[] | JSX.Element | JSX.Element[][];
     };
   };
 }) => {

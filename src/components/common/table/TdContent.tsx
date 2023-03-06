@@ -3,7 +3,7 @@ export const TdContent = ({
 }: {
   tdProps: {
     title: string;
-    value: string | number;
+    value: string | number | JSX.Element;
   };
 }) => {
   return (

@@ -1,6 +1,7 @@
 import { BigNumber, utils } from "ethers";
 import { EVMOS_NETWORK_FOR_BACKEND } from "../../../wallet/functionality/networkConfig";
 import { Signer } from "../../../wallet/functionality/signing/genericSigner";
+import { feeWithdraw } from "../../Helpers";
 import { checkFormatAddress } from "../../style/format";
 import {
   BROADCASTED_NOTIFICATIONS,
@@ -11,8 +12,6 @@ import {
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
 
-const feeAmountForWithdraw = BigNumber.from("4600000000000000");
-
 export async function executeWithdraw(
   pubkey: string,
   address: string,
@@ -22,7 +21,7 @@ export async function executeWithdraw(
   prefix: string,
   useERC20Denom: boolean
 ) {
-  if (feeBalance.lt(feeAmountForWithdraw)) {
+  if (feeBalance.lt(feeWithdraw)) {
     return {
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext,

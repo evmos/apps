@@ -6,6 +6,10 @@ import {
   formatNumber,
   formatPercentage,
 } from "../../../internal/asset/style/format";
+import {
+  SearchContext,
+  useSearchContext,
+} from "../../../internal/common/context/SearchContext";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
 import MessageTable from "../../asset/table/MessageTable";
 import Button from "../../common/Button";
@@ -23,11 +27,27 @@ const dataHead = ["Rank", "Name", "Voting Power", "Staked", "Comission", ""];
 
 const Delegations = () => {
   const { delegations } = useStakingInfo();
+  const { value } = useSearchContext() as SearchContext;
+  const filtered = useMemo(() => {
+    // it filters by rank or name
+    const filteredData = delegations.filter(
+      (i) =>
+        i.delegation.validator.description.moniker
+          .toLowerCase()
+          .includes(value) ||
+        i.delegation.validator.rank.toString().includes(value)
+    );
+    if (value !== "") {
+      return filteredData;
+    } else {
+      return delegations;
+    }
+  }, [delegations, value]);
 
   const isLoading = false;
   const error = false;
   const drawDelegations = useMemo(() => {
-    return delegations?.map((item) => {
+    return filtered?.map((item) => {
       return (
         <tr key={item.delegation.validator.rank} className={`${trBodyStyle}`}>
           <td className={`${tdBodyStyle} md:hidden text-pearl font-bold`}>
@@ -94,7 +114,7 @@ const Delegations = () => {
         </tr>
       );
     });
-  }, [delegations]);
+  }, [filtered]);
 
   const dataForBody = () => {
     if (isLoading) {

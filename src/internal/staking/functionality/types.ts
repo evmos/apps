@@ -93,3 +93,8 @@ export type StakingInfoResponse = {
   undelegations: UndelegationsResponse[];
   rewards: rewardsResponse;
 };
+
+export type ValidatorsList = {
+  validator: ValidatorResponse;
+  balance: BalanceResponse;
+};

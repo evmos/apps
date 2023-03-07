@@ -1,9 +1,15 @@
+import { BigNumber } from "ethers";
 import { useMemo } from "react";
 import {
+  convertAndFormat,
   convertStringFromAtto,
   formatNumber,
   formatPercentage,
 } from "../../../internal/asset/style/format";
+import {
+  SearchContext,
+  useSearchContext,
+} from "../../../internal/common/context/SearchContext";
 import { useAllValidators } from "../../../internal/staking/functionality/hooks/useAllValidators";
 import MessageTable from "../../asset/table/MessageTable";
 import Button from "../../common/Button";
@@ -24,20 +30,42 @@ const Validators = () => {
 
   const isLoading = false;
   const error = false;
+  const { value } = useSearchContext() as SearchContext;
+  const filtered = useMemo(() => {
+    // it filters by rank or name
+    const filteredData = validators.filter(
+      (i) =>
+        i.validator.description.moniker
+          .toLowerCase()
+          .includes(value.toLowerCase()) ||
+        i.validator.rank.toString().includes(value)
+    );
+
+    if (value !== "") {
+      return filteredData;
+    }
+
+    return validators;
+  }, [validators, value]);
 
   const drawValidators = useMemo(() => {
-    return validators.map((item) => {
+    return filtered.map((item) => {
       return (
-        <tr key={item.rank} className={`${trBodyStyle}`}>
+        <tr key={item.validator.rank} className={`${trBodyStyle}`}>
           <td className={`${tdBodyStyle} md:hidden text-pearl font-bold`}>
-            {item.description.moniker}
+            {item.validator.description.moniker}
           </td>
           <td className={`${tdBodyStyle} md:pl-8`}>
-            <TdContent tdProps={{ title: dataHead[0], value: item.rank }} />
+            <TdContent
+              tdProps={{ title: dataHead[0], value: item.validator.rank }}
+            />
           </td>
           <td className={`${tdBodyStyle} hidden md:table-cell`}>
             <TdContent
-              tdProps={{ title: dataHead[2], value: item.description.moniker }}
+              tdProps={{
+                title: dataHead[2],
+                value: item.validator.description.moniker,
+              }}
             />
           </td>
           <td className={`${tdBodyStyle}`}>
@@ -45,22 +73,28 @@ const Validators = () => {
               tdProps={{
                 title: dataHead[2],
                 value: formatNumber(
-                  convertStringFromAtto(item.tokens).toFixed(2)
+                  convertStringFromAtto(item.validator.tokens).toFixed(2)
                 ),
               }}
             />
           </td>
           <td className={`${tdBodyStyle}`}>
-            {/* TODO: add delegation staked value
-                         value: item.staked */}
-            <TdContent tdProps={{ title: dataHead[3], value: "0" }} />
+            <TdContent
+              tdProps={{
+                title: dataHead[3],
+                value:
+                  item.balance.amount !== ""
+                    ? convertAndFormat(BigNumber.from(item.balance.amount))
+                    : "--",
+              }}
+            />
           </td>
           <td className={`${tdBodyStyle}`}>
             <TdContent
               tdProps={{
                 title: dataHead[4],
                 value: formatPercentage(
-                  item.commission?.commission_rates?.rate
+                  item.validator.commission?.commission_rates?.rate
                 ),
               }}
             />
@@ -80,7 +114,7 @@ const Validators = () => {
         </tr>
       );
     });
-  }, [validators]);
+  }, [filtered]);
 
   const dataForBody = () => {
     if (isLoading) {

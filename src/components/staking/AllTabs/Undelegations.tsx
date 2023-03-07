@@ -1,6 +1,10 @@
 import { BigNumber } from "ethers";
 import { useMemo } from "react";
 import { convertAndFormat } from "../../../internal/asset/style/format";
+import {
+  SearchContext,
+  useSearchContext,
+} from "../../../internal/common/context/SearchContext";
 import { getRemainingTime } from "../../../internal/common/style/format";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
 import MessageTable from "../../asset/table/MessageTable";
@@ -19,13 +23,26 @@ const dataHead = ["Name", "Amount to be undelegated", "Remaining time"];
 const Undelegations = () => {
   const { undelegations } = useStakingInfo();
 
+  const { value } = useSearchContext() as SearchContext;
+  const filtered = useMemo(() => {
+    // it filters by name
+    const filteredData = undelegations.filter((i) =>
+      i.validator.description.moniker.toLowerCase().includes(value)
+    );
+    if (value !== "") {
+      return filteredData;
+    } else {
+      return undelegations;
+    }
+  }, [undelegations, value]);
+
   const isLoading = false;
   const error = false;
   const drawDelegations = useMemo(() => {
-    return undelegations?.map((item) => {
-      return item.entries.map((entry) => {
+    return filtered?.map((item) => {
+      return item.entries.map((entry, index) => {
         return (
-          <tr key={item.validator.rank} className={`${trBodyStyle}`}>
+          <tr key={item.validator.rank + index} className={`${trBodyStyle}`}>
             <td className={`${tdBodyStyle} md:hidden text-pearl font-bold`}>
               {item.validator.description.moniker}
             </td>
@@ -61,7 +78,7 @@ const Undelegations = () => {
         );
       });
     });
-  }, [undelegations]);
+  }, [filtered]);
 
   const dataForBody = () => {
     if (isLoading) {

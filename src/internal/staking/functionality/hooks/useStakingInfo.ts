@@ -52,6 +52,11 @@ export const useStakingInfo = () => {
     let delegations: DelegationsResponse[] = [];
     if (stakingInfo.data !== undefined) {
       delegations = stakingInfo.data?.delegations;
+      delegations.sort((a, b) => {
+        return a.delegation.validator.rank > b.delegation.validator.rank
+          ? 1
+          : -1;
+      });
     }
     return delegations;
   }, [stakingInfo]);
@@ -60,6 +65,9 @@ export const useStakingInfo = () => {
     let undelegations: UndelegationsResponse[] = [];
     if (stakingInfo.data !== undefined) {
       undelegations = stakingInfo.data?.undelegations;
+      undelegations.sort((a, b) => {
+        return a.validator.rank > b.validator.rank ? 1 : -1;
+      });
     }
     return undelegations;
   }, [stakingInfo]);

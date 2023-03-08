@@ -130,6 +130,12 @@ const AssetsTable = () => {
         <LeftArrowIcon width={15} height={15} />
         <p>Back to Mission Control</p>
       </Link>
+      <div className="flex justify-center">
+        <div className="text-white w-full rounded-lg mb-5 px-4 py-3 self-center bg-red">
+          We are experiencing issues with the performance of our dashboard. We
+          are taking care of it!
+        </div>
+      </div>
       <TopBar topProps={topProps} />
       <div className="flex flex-col lg:flex-row mx-5 xl:mx-0 justify-center lg:justify-between">
         <Guide />

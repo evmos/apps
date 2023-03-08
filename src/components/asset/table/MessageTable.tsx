@@ -8,7 +8,7 @@ const MessageTable = ({
   return (
     <tr className="assetOneItem">
       <td colSpan={amountCols}>
-        <div className="flex items-center space-x-3 justify-center font-bold font-[GreyCliff] my-4">
+        <div className="flex items-center space-x-3 justify-center font-semibold font-[GreyCliff] my-4">
           {children}
         </div>
       </td>

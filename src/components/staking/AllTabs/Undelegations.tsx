@@ -83,7 +83,7 @@ const Undelegations = () => {
   const dataForBody = () => {
     if (isLoading) {
       return (
-        <MessageTable amountCols={6}>
+        <MessageTable amountCols={3}>
           <>
             <span className="loader"></span>
             <p>Loading...</p>
@@ -93,7 +93,7 @@ const Undelegations = () => {
     }
     if (error && !isLoading && undelegations.length === 0) {
       return (
-        <MessageTable amountCols={6}>
+        <MessageTable amountCols={3}>
           <p>Request failed</p>
         </MessageTable>
       );
@@ -101,8 +101,8 @@ const Undelegations = () => {
 
     if (!error && !isLoading && undelegations.length === 0) {
       return (
-        <MessageTable amountCols={6}>
-          <p>No results </p>
+        <MessageTable amountCols={3}>
+          <p>You don&apos;t have anything undelegated at the moment! </p>
         </MessageTable>
       );
     }

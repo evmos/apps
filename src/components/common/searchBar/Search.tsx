@@ -4,17 +4,17 @@ import {
 } from "../../../internal/common/context/SearchContext";
 import SearchIcon from "../images/icons/SearchIcon";
 
-const Search = () => {
+const Search = ({ placeholder }: { placeholder: string }) => {
   const { value, handleSetValue } = useSearchContext() as SearchContext;
   return (
-    <div className="px-4 font-medium flex items-center justify-between rounded-lg border border-darkGray2">
+    <div className="px-4 font-medium flex items-center justify-between rounded-lg border border-darkGray3">
       <input
         onChange={handleSetValue}
         value={value}
-        className="text-lg bg-transparent focus-visible:outline-none text-white "
-        placeholder="Search..."
+        className="w-full placeholder:text-darkGray3 text-lg bg-transparent focus-visible:outline-none text-white"
+        placeholder={placeholder}
       />
-      <SearchIcon className="w-10 h-10 text-darkGray400" />
+      <SearchIcon className="w-10 h-10 text-darkGray3" />
     </div>
   );
 };

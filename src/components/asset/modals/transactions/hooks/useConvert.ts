@@ -1,4 +1,4 @@
-import { parseUnits } from "ethers/lib/utils.js";
+import { parseUnits } from "@ethersproject/units";
 import { useDispatch, useSelector } from "react-redux";
 import {
   snackBroadcastSuccessful,

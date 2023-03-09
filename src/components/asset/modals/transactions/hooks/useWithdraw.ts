@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { parseUnits } from "ethers/lib/utils.js";
+import { parseUnits } from "@ethersproject/units";
 import { useDispatch, useSelector } from "react-redux";
 import { BROADCASTED_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
 import { IBCChainParams } from "../../../../../internal/asset/functionality/transactions/types";

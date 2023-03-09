@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { parseUnits } from "ethers/lib/utils.js";
+import { parseUnits } from "@ethersproject/units";
 import {
   amountToDollars,
   checkFormatAddress,

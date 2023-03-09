@@ -1,15 +1,8 @@
 import { BigNumber } from "ethers";
-import { parseUnits } from "ethers/lib/utils.js";
+import { parseUnits } from "@ethersproject/units";
 import { useDispatch } from "react-redux";
-import { BROADCASTED_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
-import {
-  snackbarExecutedTx,
-  snackbarIncludedInBlock,
-  snackbarWaitingBroadcast,
-} from "../../../../internal/asset/style/format";
 import { snackExecuteIBCTransfer } from "../../../../internal/asset/style/snackbars";
 import { executeDelegate } from "../../../../internal/staking/functionality/transactions/delegate";
-import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import { DelegateProps } from "../types";
 
 export const useDelegation = (useDelegateProps: DelegateProps) => {
@@ -30,7 +23,6 @@ export const useDelegation = (useDelegateProps: DelegateProps) => {
     if (amount.gt(useDelegateProps.evmosBalance)) {
       return;
     }
-    // TODO: check amount: empty, greater than...
     const res = await executeDelegate(
       useDelegateProps.wallet,
       useDelegateProps.item.validatorAddress,
@@ -39,19 +31,6 @@ export const useDelegation = (useDelegateProps: DelegateProps) => {
 
     dispatch(snackExecuteIBCTransfer(res));
     useDelegateProps.setShow(false);
-    // check if tx is executed
-    if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
-      dispatch(snackbarWaitingBroadcast());
-      dispatch(
-        await snackbarIncludedInBlock(
-          res.txHash,
-          EVMOS_SYMBOL,
-          res.explorerTxUrl
-        )
-      );
-      // TODO: it is failing, remove it?
-      dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
-    }
   };
   return { handleConfirmButton };
 };

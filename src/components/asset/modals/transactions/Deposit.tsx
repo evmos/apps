@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { parseUnits } from "ethers/lib/utils";
+import { parseUnits } from "@ethersproject/units";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";

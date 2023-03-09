@@ -1,6 +1,6 @@
 import { ethToEvmos } from "@evmos/address-converter";
 import { BigNumber } from "ethers";
-import { parseUnits } from "ethers/lib/utils.js";
+import { parseUnits } from "@ethersproject/units";
 import { useDispatch, useSelector } from "react-redux";
 import { executeDeposit } from "../../../../../internal/asset/functionality/transactions/deposit";
 import { BROADCASTED_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";

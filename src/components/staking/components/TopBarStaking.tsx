@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { convertFromAtto } from "../../../internal/asset/style/format";
 import { useEpochDay } from "../../../internal/common/api/hooks/useEpochDay";
-import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
 import { useEvmosBalance } from "../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
 import { StoreType } from "../../../redux/Store";
@@ -14,8 +13,8 @@ const FULL_DAY_MINUS_ONE_SECOND = 86399000;
 
 const TopBarStaking = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
-  const { totalStaked } = useStakedEvmos();
-  const { totalUndelegations, totalRewards } = useStakingInfo();
+  const { totalDelegations, totalUndelegations, totalRewards } =
+    useStakingInfo();
   const { evmosBalance } = useEvmosBalance();
   const { epochs } = useEpochDay();
 
@@ -28,7 +27,9 @@ const TopBarStaking = () => {
         />
         <Container
           text="Total Staked"
-          value={`${Number(totalStaked).toFixed(2)} EVMOS`}
+          value={`${Number(convertFromAtto(totalDelegations)).toFixed(
+            2
+          )} EVMOS`}
         />
         <Container
           text="Total Unbonding"

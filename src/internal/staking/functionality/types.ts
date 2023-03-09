@@ -37,12 +37,22 @@ type validatorResponse = {
   unbonding_time: string;
 };
 
-type delegationsResponse = {
+type delegationResponse = {
   delegator_address: string;
   rank: number;
   shares: string;
   validator: validatorResponse;
   validator_address: string;
+};
+
+type DelegationBalanceResponse = {
+  denom: string;
+  amount: string;
+};
+
+export type DelegationsResponse = {
+  delegation: delegationResponse;
+  balance: DelegationBalanceResponse;
 };
 
 type entries = {
@@ -80,7 +90,7 @@ type rewardsResponse = {
 };
 
 export type StakingInfoResponse = {
-  delegations: delegationsResponse[];
+  delegations: DelegationsResponse[];
   undelegations: UndelegationsResponse[];
   rewards: rewardsResponse;
 };

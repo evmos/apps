@@ -16,6 +16,20 @@ export const useStakingInfo = () => {
     queryFn: () => getStakingInfo(value.evmosAddressCosmosFormat),
   });
 
+  const totalDelegations = useMemo(() => {
+    let total = BIG_ZERO;
+    if (stakingInfo.data !== undefined) {
+      const sum = stakingInfo.data.delegations.reduce((prev, curr) => {
+        return prev.add(BigNumber.from(curr?.balance.amount));
+      }, total);
+      total = sum ? sum : BIG_ZERO;
+
+      return total;
+    }
+
+    return total;
+  }, [stakingInfo]);
+
   const totalUndelegations = useMemo(() => {
     let total = BIG_ZERO;
     if (stakingInfo.data !== undefined) {
@@ -37,6 +51,7 @@ export const useStakingInfo = () => {
     if (stakingInfo.data !== undefined) {
       if (stakingInfo.data.rewards !== undefined) {
         if (stakingInfo.data.rewards.total.length !== 0) {
+          // the sum is already done in the backend
           total = stakingInfo.data.rewards.total[0].amount;
         }
       }
@@ -44,5 +59,5 @@ export const useStakingInfo = () => {
     return convertStringFromAtto(total);
   }, [stakingInfo]);
 
-  return { totalUndelegations, totalRewards };
+  return { totalDelegations, totalUndelegations, totalRewards };
 };

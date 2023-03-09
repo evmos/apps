@@ -49,7 +49,17 @@ export default function Home() {
               {/* <!--  Essential META Tags --> */}
               <meta property="og:title" content="Evmos Assets" />
               <meta property="og:type" content="article" />
-              <meta property="og:image" content="/assets/social_share.jpg" />
+              <meta
+                property="og:image"
+                content="https://storage.evmos.org/social_previews/social_share_apps.jpg"
+              />
+              <meta
+                name="twitter:image"
+                property="og:image"
+                content={
+                  "https://storage.evmos.org/social_previews/social_share_apps.jpg"
+                }
+              />
               <meta property="og:url" content="https://app.evmos.org/assets" />
               <meta name="twitter:card" content="summary_large_image" />
 

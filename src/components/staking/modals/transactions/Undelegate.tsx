@@ -3,55 +3,47 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 import {
-  convertAndFormat,
   numericOnly,
   safeSubstraction,
   convertFromAtto,
   getReservedForFeeText,
   truncateNumber,
 } from "../../../../internal/asset/style/format";
-import { useEvmosBalance } from "../../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { ModalDelegate } from "../../../../internal/staking/functionality/types";
 import { StoreType } from "../../../../redux/Store";
 import ContainerInput from "../../../asset/modals/common/ContainerInput";
 import ErrorMessage from "../../../asset/modals/common/ErrorMessage";
 import ConfirmButton from "../../../common/ConfirmButton";
 import SmallButton from "../../../common/SmallButton";
-import { useDelegation } from "../hooks/useDelegation";
+import { useUndelegation } from "../hooks/useUndelegations";
 
-export const Delegation = ({
+export const Undelegate = ({
   item,
   setShow,
-  setShowDelegate,
+  setShowUndelegate,
 }: {
   item: ModalDelegate;
   setShow: Dispatch<SetStateAction<boolean>>;
-  setShowDelegate: Dispatch<SetStateAction<boolean>>;
+  setShowUndelegate: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const { evmosBalance } = useEvmosBalance();
   const [value, setValue] = useState("");
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const [confirmClicked, setConfirmClicked] = useState(false);
 
-  const useDelegateProps = {
+  const useUndelegateProps = {
     value,
     setShow,
     wallet,
     item,
     setConfirmClicked,
-    evmosBalance,
   };
 
-  const { handleConfirmButton } = useDelegation(useDelegateProps);
+  const { handleConfirmButton } = useUndelegation(useUndelegateProps);
 
   return (
     <div className="space-y-4">
-      <div className="flex justify-between">
-        <p className="font-bold">Available Balance</p>
-        <p>{convertAndFormat(evmosBalance)} EVMOS</p>
-      </div>
       <div className="space-y-2">
-        <p className="font-bold">Amount to delegate</p>
+        <p className="font-bold">Amount to Undelegate</p>
         <ContainerInput>
           <>
             <input
@@ -67,7 +59,7 @@ export const Delegation = ({
               text="MAX"
               onClick={() => {
                 const val = safeSubstraction(
-                  evmosBalance,
+                  BigNumber.from(item.balance),
                   // TODO: amount fee?
                   BigNumber.from("4600000000000000")
                 );
@@ -83,9 +75,9 @@ export const Delegation = ({
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAmountEmpty} />
         )}
         {truncateNumber(value) >
-          truncateNumber(numericOnly(convertFromAtto(evmosBalance, 18))) && (
-          <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />
-        )}
+          truncateNumber(
+            numericOnly(convertFromAtto(BigNumber.from(item.balance), 18))
+          ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
         {/* TODO: fee amount? */}
         <p className="text-sm">
           {getReservedForFeeText(
@@ -100,11 +92,11 @@ export const Delegation = ({
           className="w-fit"
           text="BACK"
           onClick={() => {
-            setShowDelegate(false);
+            setShowUndelegate(false);
           }}
         />
         <ConfirmButton
-          text="Delegate"
+          text="Undelegate"
           onClick={handleConfirmButton}
           className="w-fit text-sm px-4"
         />

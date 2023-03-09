@@ -7,8 +7,9 @@ import {
 import { ModalDelegate } from "../../../internal/staking/functionality/types";
 import ConfirmButton from "../../common/ConfirmButton";
 import SmallButton from "../../common/SmallButton";
-import { Delegation } from "./transactions/Delegation";
+import { Delegate } from "./transactions/Delegate";
 import { Redelegate } from "./transactions/Redelegate";
+import { Undelegate } from "./transactions/Undelegate";
 
 export const Staking = ({
   item,
@@ -19,6 +20,8 @@ export const Staking = ({
 }) => {
   const [showDelegate, setShowDelegate] = useState(false);
   const [showRedelegate, setShowRedelegate] = useState(false);
+  const [showUndelegate, setShowUndelegate] = useState(false);
+
   return (
     <div className="space-y-4">
       <div>
@@ -47,7 +50,11 @@ export const Staking = ({
         </div>
       )}
       <div className="flex justify-between">
-        <p className="font-bold">My Delegation</p>
+        {showUndelegate ? (
+          <p className="font-bold">Available for Undelegation</p>
+        ) : (
+          <p className="font-bold">My Delegation</p>
+        )}
         <p>
           {item.balance !== ""
             ? convertAndFormat(BigNumber.from(item.balance))
@@ -55,15 +62,18 @@ export const Staking = ({
           EVMOS
         </p>
       </div>
-      {(item.details || item.website) && !showDelegate && !showRedelegate && (
-        <div className="space-y-2">
-          <p className="font-bold">Description</p>
-          <p className="text-sm">{item.details}</p>
-          <p className="text-red font-bold text-sm">{item.website}</p>
-        </div>
-      )}
+      {(item.details || item.website) &&
+        !showDelegate &&
+        !showRedelegate &&
+        !showUndelegate && (
+          <div className="space-y-2">
+            <p className="font-bold">Description</p>
+            <p className="text-sm">{item.details}</p>
+            <p className="text-red font-bold text-sm">{item.website}</p>
+          </div>
+        )}
       {showDelegate && (
-        <Delegation
+        <Delegate
           item={item}
           setShow={setShow}
           setShowDelegate={setShowDelegate}
@@ -77,12 +87,19 @@ export const Staking = ({
           setShowRedelegate={setShowRedelegate}
         />
       )}
-      {!showDelegate && !showRedelegate && (
+      {showUndelegate && (
+        <Undelegate
+          item={item}
+          setShow={setShow}
+          setShowUndelegate={setShowUndelegate}
+        />
+      )}
+      {!showDelegate && !showRedelegate && !showUndelegate && (
         <div className="flex justify-end space-x-3">
           <SmallButton
             text="UNDELEGATE"
             onClick={() => {
-              // TODO: undelegate
+              setShowUndelegate(true);
             }}
             className="w-fit text-xs"
           />
@@ -94,13 +111,15 @@ export const Staking = ({
             className="w-fit text-[0.75rem] py-1"
           />
 
-          <ConfirmButton
-            text="Redelegate"
-            onClick={() => {
-              setShowRedelegate(true);
-            }}
-            className="w-fit text-[0.75rem] py-1"
-          />
+          {item.balance !== "" && (
+            <ConfirmButton
+              text="Redelegate"
+              onClick={() => {
+                setShowRedelegate(true);
+              }}
+              className="w-fit text-[0.75rem] py-1"
+            />
+          )}
         </div>
       )}
     </div>

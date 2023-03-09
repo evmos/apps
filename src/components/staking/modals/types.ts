@@ -19,3 +19,11 @@ export type RedelegateProps = {
   item: ModalDelegate;
   setConfirmClicked: Dispatch<SetStateAction<boolean>>;
 };
+
+export type UndelegateProps = {
+  value: string;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  wallet: WalletExtension;
+  item: ModalDelegate;
+  setConfirmClicked: Dispatch<SetStateAction<boolean>>;
+};

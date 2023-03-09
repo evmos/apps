@@ -6,7 +6,9 @@ import {
 } from "../../../internal/asset/style/format";
 import { ModalDelegate } from "../../../internal/staking/functionality/types";
 import ConfirmButton from "../../common/ConfirmButton";
+import SmallButton from "../../common/SmallButton";
 import { Delegation } from "./transactions/Delegation";
+import { Redelegate } from "./transactions/Redelegate";
 
 export const Staking = ({
   item,
@@ -16,6 +18,7 @@ export const Staking = ({
   setShow: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [showDelegate, setShowDelegate] = useState(false);
+  const [showRedelegate, setShowRedelegate] = useState(false);
   return (
     <div className="space-y-4">
       <div>
@@ -24,7 +27,14 @@ export const Staking = ({
           Commission - {formatPercentage(item.commissionRate)}
         </p>
       </div>
-
+      {showRedelegate && (
+        <div className="border rounded-md border-darkGray1 p-3 text-sm">
+          <p>
+            Once you undelegate your staked EVMOS, you will need to wait 14 days
+            for your tokens to be liquid
+          </p>
+        </div>
+      )}
       {showDelegate && (
         <div className="border rounded-md border-darkGray1 p-3 text-sm">
           <p className="text-red font-bold">
@@ -45,7 +55,7 @@ export const Staking = ({
           EVMOS
         </p>
       </div>
-      {(item.details || item.website) && !showDelegate && (
+      {(item.details || item.website) && !showDelegate && !showRedelegate && (
         <div className="space-y-2">
           <p className="font-bold">Description</p>
           <p className="text-sm">{item.details}</p>
@@ -59,14 +69,37 @@ export const Staking = ({
           setShowDelegate={setShowDelegate}
         />
       )}
-      {!showDelegate && (
-        <div className="flex justify-end">
+
+      {showRedelegate && (
+        <Redelegate
+          item={item}
+          setShow={setShow}
+          setShowRedelegate={setShowRedelegate}
+        />
+      )}
+      {!showDelegate && !showRedelegate && (
+        <div className="flex justify-end space-x-3">
+          <SmallButton
+            text="UNDELEGATE"
+            onClick={() => {
+              // TODO: undelegate
+            }}
+            className="w-fit text-xs"
+          />
           <ConfirmButton
             text="Delegate"
             onClick={() => {
               setShowDelegate(true);
             }}
-            className="w-fit text-sm"
+            className="w-fit text-[0.75rem] py-1"
+          />
+
+          <ConfirmButton
+            text="Redelegate"
+            onClick={() => {
+              setShowRedelegate(true);
+            }}
+            className="w-fit text-[0.75rem] py-1"
           />
         </div>
       )}

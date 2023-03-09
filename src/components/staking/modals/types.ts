@@ -11,3 +11,11 @@ export type DelegateProps = {
   setConfirmClicked: Dispatch<SetStateAction<boolean>>;
   evmosBalance: BigNumber;
 };
+
+export type RedelegateProps = {
+  value: string;
+  setShow: Dispatch<SetStateAction<boolean>>;
+  wallet: WalletExtension;
+  item: ModalDelegate;
+  setConfirmClicked: Dispatch<SetStateAction<boolean>>;
+};

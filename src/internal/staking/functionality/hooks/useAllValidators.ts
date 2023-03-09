@@ -18,13 +18,13 @@ export const useAllValidators = () => {
       values?.map((item) => {
         validatorWithDelegations.push({
           validator: item,
-          balance: { amount: "", denom: "" },
+          balance: { balance: { amount: "", denom: "" } },
         });
       });
       delegations.map((item) => {
         validatorWithDelegations.filter((i) => {
           if (i.validator.rank === item.delegation.validator.rank) {
-            i.balance.amount = item.balance.amount;
+            i.balance.balance.amount = item.balance.amount;
           }
         });
       });

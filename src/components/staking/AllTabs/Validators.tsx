@@ -1,5 +1,7 @@
 import { BigNumber } from "ethers";
-import { useMemo } from "react";
+import dynamic from "next/dynamic";
+import { useCallback, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   convertAndFormat,
   convertStringFromAtto,
@@ -11,6 +13,8 @@ import {
   useSearchContext,
 } from "../../../internal/common/context/SearchContext";
 import { useAllValidators } from "../../../internal/staking/functionality/hooks/useAllValidators";
+import { ValidatorsList } from "../../../internal/staking/functionality/types";
+import { StoreType } from "../../../redux/Store";
 import MessageTable from "../../asset/table/MessageTable";
 import Button from "../../common/Button";
 import { Table } from "../../common/table/Table";
@@ -22,11 +26,31 @@ import {
   trBodyStyle,
 } from "../../common/table/tablesStyles";
 import { TdContent } from "../../common/table/TdContent";
-
+import { Staking } from "../modals/Staking";
+const Modal = dynamic(() => import("../../common/Modal"));
 const dataHead = ["Rank", "Name", "Voting Power", "Staked", "Comission", ""];
 
 const Validators = () => {
   const { validators } = useAllValidators();
+  const wallet = useSelector((state: StoreType) => state.wallet.value);
+  const [show, setShow] = useState(false);
+  const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
+  const handleOnClick = useCallback((item: ValidatorsList) => {
+    setShow(true);
+    setModalContent(
+      <Staking
+        item={{
+          moniker: item.validator.description.moniker,
+          commissionRate: item.validator.commission.commission_rates.rate,
+          balance: item.balance.balance.amount,
+          details: item.validator.description.details,
+          website: item.validator.description.website,
+          validatorAddress: item.validator.operator_address,
+        }}
+        setShow={setShow}
+      />
+    );
+  }, []);
 
   const isLoading = false;
   const error = false;
@@ -83,8 +107,10 @@ const Validators = () => {
               tdProps={{
                 title: dataHead[3],
                 value:
-                  item.balance.amount !== ""
-                    ? convertAndFormat(BigNumber.from(item.balance.amount))
+                  item.balance.balance.amount !== ""
+                    ? convertAndFormat(
+                        BigNumber.from(item.balance.balance.amount)
+                      )
                     : "--",
               }}
             />
@@ -103,8 +129,9 @@ const Validators = () => {
           <td className={`${tdBodyStyle}`}>
             <div className="flex md:justify-end">
               <Button
+                disabled={!wallet.active}
                 onClick={() => {
-                  // noop, redirect handled by the Link element
+                  handleOnClick(item);
                 }}
               >
                 <span className="px-2">Manage</span>
@@ -114,7 +141,7 @@ const Validators = () => {
         </tr>
       );
     });
-  }, [filtered]);
+  }, [filtered, wallet.active, handleOnClick]);
 
   const dataForBody = () => {
     if (isLoading) {
@@ -159,7 +186,19 @@ const Validators = () => {
     },
   };
 
-  return <Table tableProps={tableProps} />;
+  return (
+    <>
+      <Table tableProps={tableProps} />
+      <Modal
+        show={show}
+        onClose={() => {
+          setShow(false);
+        }}
+      >
+        {modalContent}
+      </Modal>
+    </>
+  );
 };
 
 export default Validators;

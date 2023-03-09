@@ -19,7 +19,9 @@ const Header = dynamic(() => import("../src/components/Header"));
 const TermOfServices = dynamic(
   () => import("../src/components/termsOfServices/TermOfServices")
 );
-
+const Snackbars = dynamic(
+  () => import("../src/components/notification/Snackbars")
+);
 const Footer = dynamic(() => import("../src/components/footer/Footer"));
 
 export default function Home() {
@@ -38,6 +40,7 @@ export default function Home() {
               <TermOfServices />
               <Container>
                 <>
+                  <Snackbars />
                   <Header />
                   <div className="container mx-auto overflow-auto mb-auto">
                     <Content />

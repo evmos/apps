@@ -45,13 +45,13 @@ type delegationResponse = {
   validator_address: string;
 };
 
-type BalanceResponse = {
+type DelegationBalanceResponse = {
   denom: string;
   amount: string;
 };
 export type DelegationsResponse = {
   delegation: delegationResponse;
-  balance: BalanceResponse;
+  balance: DelegationBalanceResponse;
 };
 
 type entries = {
@@ -94,7 +94,23 @@ export type StakingInfoResponse = {
   rewards: rewardsResponse;
 };
 
+export type BalanceResponse = {
+  balance: {
+    denom: string;
+    amount: string;
+  };
+};
+
 export type ValidatorsList = {
   validator: ValidatorResponse;
   balance: BalanceResponse;
+};
+
+export type ModalDelegate = {
+  moniker: string;
+  commissionRate: string;
+  balance: string;
+  details: string;
+  website: string;
+  validatorAddress: string;
 };

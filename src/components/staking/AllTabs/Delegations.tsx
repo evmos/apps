@@ -1,5 +1,7 @@
 import { BigNumber } from "ethers";
-import { useMemo } from "react";
+import dynamic from "next/dynamic";
+import { useCallback, useMemo, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   convertAndFormat,
   convertStringFromAtto,
@@ -11,6 +13,8 @@ import {
   useSearchContext,
 } from "../../../internal/common/context/SearchContext";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
+import { DelegationsResponse } from "../../../internal/staking/functionality/types";
+import { StoreType } from "../../../redux/Store";
 import MessageTable from "../../asset/table/MessageTable";
 import Button from "../../common/Button";
 import { Table } from "../../common/table/Table";
@@ -22,12 +26,17 @@ import {
   trBodyStyle,
 } from "../../common/table/tablesStyles";
 import { TdContent } from "../../common/table/TdContent";
+import { Staking } from "../modals/Staking";
+const Modal = dynamic(() => import("../../common/Modal"));
 
 const dataHead = ["Rank", "Name", "Voting Power", "Staked", "Comission", ""];
 
 const Delegations = () => {
   const { delegations } = useStakingInfo();
   const { value } = useSearchContext() as SearchContext;
+  const wallet = useSelector((state: StoreType) => state.wallet.value);
+  const [show, setShow] = useState(false);
+  const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
   const filtered = useMemo(() => {
     // it filters by rank or name
     const filteredData = delegations.filter(
@@ -43,6 +52,24 @@ const Delegations = () => {
       return delegations;
     }
   }, [delegations, value]);
+
+  const handleOnClick = useCallback((item: DelegationsResponse) => {
+    setShow(true);
+    setModalContent(
+      <Staking
+        item={{
+          moniker: item.delegation.validator.description.moniker,
+          commissionRate:
+            item.delegation.validator.commission.commission_rates.rate,
+          balance: item.balance.amount,
+          details: item.delegation.validator.description.details,
+          website: item.delegation.validator.description.website,
+          validatorAddress: item.delegation.validator_address,
+        }}
+        setShow={setShow}
+      />
+    );
+  }, []);
 
   const isLoading = false;
   const error = false;
@@ -103,8 +130,9 @@ const Delegations = () => {
           <td className={`${tdBodyStyle}`}>
             <div className="flex md:justify-end">
               <Button
+                disabled={!wallet.active}
                 onClick={() => {
-                  // noop, redirect handled by the Link element
+                  handleOnClick(item);
                 }}
               >
                 <span className="px-2">Manage</span>
@@ -114,7 +142,7 @@ const Delegations = () => {
         </tr>
       );
     });
-  }, [filtered]);
+  }, [filtered, wallet.active, handleOnClick]);
 
   const dataForBody = () => {
     if (isLoading) {
@@ -138,7 +166,7 @@ const Delegations = () => {
     if (!error && !isLoading && delegations.length === 0) {
       return (
         <MessageTable amountCols={6}>
-          <p>No results </p>
+          <p>You don&apos;t have anything staked at the moment! </p>
         </MessageTable>
       );
     }
@@ -160,9 +188,18 @@ const Delegations = () => {
   };
 
   return (
-    // <div className=" mt-5 overflow-y-auto max-h-[50vh] lg:max-h-[50vh] xl:scrollbar-hide text-white font-[IBM] w-full px-2">
-    <Table tableProps={tableProps} />
-    // </div>
+    // <div className=" mt-5 overflow-y-auto max-h-[50vh] lg:max-h-[50vh] xl:scrollbar-hide text-white font-[IBM] w-full px-2"></div>
+    <>
+      <Table tableProps={tableProps} />
+      <Modal
+        show={show}
+        onClose={() => {
+          setShow(false);
+        }}
+      >
+        {modalContent}
+      </Modal>
+    </>
   );
 };
 

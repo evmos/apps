@@ -20,6 +20,7 @@ export type RedelegateProps = {
   item: ModalDelegate;
   setConfirmClicked: Dispatch<SetStateAction<boolean>>;
   setDisabled: Dispatch<SetStateAction<boolean>>;
+  validatorDst: string;
 };
 
 export type UndelegateProps = {

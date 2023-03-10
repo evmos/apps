@@ -41,6 +41,7 @@ export const Redelegate = ({
     item,
     setConfirmClicked,
     setDisabled,
+    validatorDst: validator,
   };
 
   const { handleConfirmButton } = useRedelegation(useRedelegateProps);

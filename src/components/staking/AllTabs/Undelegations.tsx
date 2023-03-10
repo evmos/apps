@@ -14,6 +14,7 @@ import {
   tBodyStyle,
   tdBodyStyle,
   tHeadStyle,
+  thStyle,
   trBodyStyle,
 } from "../../common/table/tablesStyles";
 import { TdContent } from "../../common/table/TdContent";
@@ -121,13 +122,12 @@ const Undelegations = () => {
       style: tBodyStyle,
       content: dataForBody(),
     },
+    th: {
+      style: thStyle,
+    },
   };
 
-  return (
-    // <div className=" mt-5 overflow-y-auto max-h-[50vh] lg:max-h-[50vh] xl:scrollbar-hide text-white font-[IBM] w-full px-2">
-    <Table tableProps={tableProps} />
-    // </div>
-  );
+  return <Table tableProps={tableProps} />;
 };
 
 export default Undelegations;

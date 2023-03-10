@@ -8,7 +8,6 @@ export const useAllValidators = () => {
   const validators = useQuery<ValidatorsResponse, Error>({
     queryKey: ["allValidators"],
     queryFn: () => getAllValidators(),
-    refetchInterval: 6000,
   });
   const { delegations } = useStakingInfo();
   const allValidators = useMemo(() => {

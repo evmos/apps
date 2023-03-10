@@ -1,7 +1,7 @@
 export const tableStyle = "w-full text-left table-fixed break-words";
 
 export const tHeadStyle =
-  "hidden md:table-row-group text-white uppercase font-bold";
+  "hidden md:table-row-group text-white uppercase font-bold cursor-pointer";
 
 export const tBodyStyle = "bg-darkGray2 text-white text-lg ";
 export const tdBodyStyle =

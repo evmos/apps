@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { convertAndFormat } from "../../../internal/asset/style/format";
 import {
   SearchContext,
@@ -21,6 +21,13 @@ import { TdContent } from "../../common/table/TdContent";
 
 const dataHead = ["Name", "Amount to be undelegated", "Remaining time"];
 
+type undelegationData = {
+  rank: number;
+  moniker: string;
+  balance: string;
+  completionTime: string;
+};
+
 const Undelegations = () => {
   const { undelegations } = useStakingInfo();
 
@@ -36,50 +43,83 @@ const Undelegations = () => {
       return undelegations;
     }
   }, [undelegations, value]);
-
+  const [sorting, setSorting] = useState({ column: 0, direction: true });
   const isLoading = false;
   const error = false;
   const drawDelegations = useMemo(() => {
-    return filtered?.map((item) => {
-      return item.entries.map((entry, index) => {
-        return (
-          <tr key={item.validator.rank + index} className={`${trBodyStyle}`}>
-            <td className={`${tdBodyStyle} md:hidden text-pearl font-bold`}>
-              {item.validator.description.moniker}
-            </td>
+    if (filtered && filtered.length === 0) {
+      return <></>;
+    }
+    filtered.sort((a, b) => {
+      // default sort by rank
+      const temp = a.validator.rank > b.validator.rank ? 1 : -1;
+      return temp * (sorting.direction ? 1 : -1);
+    });
 
-            <td className={`${tdBodyStyle} md:pl-8 hidden md:table-cell`}>
-              <TdContent
-                tdProps={{
-                  title: dataHead[0],
-                  value: item.validator.description.moniker,
-                }}
-              />
-            </td>
-
-            <td className={`${tdBodyStyle}`}>
-              <TdContent
-                tdProps={{
-                  title: dataHead[1],
-                  value: convertAndFormat(BigNumber.from(entry.balance)),
-                }}
-              />
-            </td>
-
-            <td className={`${tdBodyStyle}`}>
-              <TdContent
-                tdProps={{
-                  title: dataHead[2],
-                  //   TODO: update this value when time pass
-                  value: getRemainingTime(entry.completion_time),
-                }}
-              />
-            </td>
-          </tr>
-        );
+    const tableData: undelegationData[] = [];
+    filtered?.map((item) => {
+      item.entries.map((entry) => {
+        tableData.push({
+          rank: item.validator.rank,
+          moniker: item.validator.description.moniker,
+          balance: entry.balance,
+          completionTime: entry.completion_time,
+        });
       });
     });
-  }, [filtered]);
+
+    tableData?.sort((a, b) => {
+      if (sorting.column === 2) {
+        // sorty by remaining time
+        const temp =
+          new Date(a.completionTime) > new Date(b.completionTime) ? 1 : -1;
+        return temp * (sorting.direction ? 1 : -1);
+      }
+      //  sort by amount to be undelegated
+      const temp = BigNumber.from(a.balance).gt(BigNumber.from(b.balance))
+        ? 1
+        : -1;
+      return temp * (sorting.direction ? 1 : -1);
+    });
+
+    return tableData?.map((item, index) => {
+      return (
+        <tr key={index} className={`${trBodyStyle}`}>
+          <td className={`${tdBodyStyle} md:hidden text-pearl font-bold`}>
+            {item.moniker}
+          </td>
+
+          <td className={`${tdBodyStyle} md:pl-8 hidden md:table-cell`}>
+            <TdContent
+              tdProps={{
+                title: dataHead[0],
+                value: item.moniker,
+              }}
+            />
+          </td>
+
+          <td className={`${tdBodyStyle}`}>
+            <TdContent
+              tdProps={{
+                title: dataHead[1],
+                value: convertAndFormat(BigNumber.from(item.balance)),
+              }}
+            />
+          </td>
+
+          <td className={`${tdBodyStyle}`}>
+            <TdContent
+              tdProps={{
+                title: dataHead[2],
+                //   TODO: update this value when time pass
+                value: getRemainingTime(item.completionTime),
+              }}
+            />
+          </td>
+        </tr>
+      );
+    });
+  }, [filtered, sorting]);
 
   const dataForBody = () => {
     if (isLoading) {
@@ -125,6 +165,8 @@ const Undelegations = () => {
     th: {
       style: thStyle,
     },
+    setSorting,
+    sorting,
   };
 
   return <Table tableProps={tableProps} />;

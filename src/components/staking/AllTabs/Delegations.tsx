@@ -72,9 +72,58 @@ const Delegations = () => {
     );
   }, []);
 
+  const [sorting, setSorting] = useState({ column: 0, direction: true });
   const isLoading = false;
   const error = false;
   const drawDelegations = useMemo(() => {
+    if (filtered && filtered.length === 0) {
+      return <></>;
+    }
+    filtered.sort((a, b) => {
+      if (sorting.column === 1) {
+        // sort by name
+        const temp =
+          a.delegation.validator.description.moniker.trim().toLowerCase() >
+          b.delegation.validator.description.moniker.trim().toLowerCase()
+            ? 1
+            : -1;
+        return temp * (sorting.direction ? 1 : -1);
+      }
+      if (sorting.column === 2) {
+        // sort by voting power
+        const temp = BigNumber.from(a.delegation.validator.tokens).gt(
+          BigNumber.from(b.delegation.validator.tokens)
+        )
+          ? 1
+          : -1;
+        return temp * (sorting.direction ? 1 : -1);
+      }
+      if (sorting.column === 3) {
+        // sort by staked
+        const balance1 = a.balance.amount === "" ? "0" : a.balance.amount;
+        const balance2 = b.balance.amount === "" ? "0" : b.balance.amount;
+
+        const temp = BigNumber.from(balance1).gt(BigNumber.from(balance2))
+          ? 1
+          : -1;
+
+        return temp * (sorting.direction ? 1 : -1);
+      }
+      if (sorting.column === 4) {
+        // sort by commission
+        const temp =
+          Number(a.delegation.validator.commission?.commission_rates?.rate) >
+          Number(b.delegation.validator.commission?.commission_rates?.rate)
+            ? 1
+            : -1;
+
+        return temp * (sorting.direction ? 1 : -1);
+      }
+      // default sort by rank
+      const temp =
+        a.delegation.validator.rank > b.delegation.validator.rank ? 1 : -1;
+      return temp * (sorting.direction ? 1 : -1);
+    });
     return filtered?.map((item) => {
       return (
         <tr key={item.delegation.validator.rank} className={`${trBodyStyle}`}>
@@ -143,7 +192,7 @@ const Delegations = () => {
         </tr>
       );
     });
-  }, [filtered, wallet.active, handleOnClick]);
+  }, [filtered, wallet.active, handleOnClick, sorting]);
 
   const dataForBody = () => {
     if (isLoading) {
@@ -189,6 +238,8 @@ const Delegations = () => {
     th: {
       style: thStyle,
     },
+    setSorting,
+    sorting,
   };
 
   return (

@@ -56,6 +56,8 @@ const Validators = () => {
   const isLoading = false;
   const error = false;
   const { value } = useSearchContext() as SearchContext;
+  const [sorting, setSorting] = useState({ column: 0, direction: true });
+
   const filtered = useMemo(() => {
     // it filters by rank or name
     const filteredData = validators.filter(
@@ -74,6 +76,55 @@ const Validators = () => {
   }, [validators, value]);
 
   const drawValidators = useMemo(() => {
+    if (filtered && filtered.length === 0) {
+      return <></>;
+    }
+    filtered.sort((a, b) => {
+      if (sorting.column === 1) {
+        // sort by name
+        const temp =
+          a.validator.description.moniker.trim().toLowerCase() >
+          b.validator.description.moniker.trim().toLowerCase()
+            ? 1
+            : -1;
+        return temp * (sorting.direction ? 1 : -1);
+      }
+      if (sorting.column === 2) {
+        // sort by voting power
+        const temp = BigNumber.from(a.validator.tokens).gt(
+          BigNumber.from(b.validator.tokens)
+        )
+          ? 1
+          : -1;
+        return temp * (sorting.direction ? 1 : -1);
+      }
+      if (sorting.column === 3) {
+        // sort by staked
+        const balance1 =
+          a.balance.balance.amount === "" ? "0" : a.balance.balance.amount;
+        const balance2 =
+          b.balance.balance.amount === "" ? "0" : b.balance.balance.amount;
+
+        const temp = BigNumber.from(balance1).gt(BigNumber.from(balance2))
+          ? 1
+          : -1;
+
+        return temp * (sorting.direction ? 1 : -1);
+      }
+      if (sorting.column === 4) {
+        // sort by commission
+        const temp =
+          Number(a.validator.commission?.commission_rates?.rate) >
+          Number(b.validator.commission?.commission_rates?.rate)
+            ? 1
+            : -1;
+
+        return temp * (sorting.direction ? 1 : -1);
+      }
+      // default sort by rank
+      const temp = a.validator.rank > b.validator.rank ? 1 : -1;
+      return temp * (sorting.direction ? 1 : -1);
+    });
     return filtered.map((item) => {
       return (
         <tr key={item.validator.rank} className={`${trBodyStyle}`}>
@@ -142,7 +193,7 @@ const Validators = () => {
         </tr>
       );
     });
-  }, [filtered, wallet.active, handleOnClick]);
+  }, [filtered, wallet.active, handleOnClick, sorting]);
 
   const dataForBody = () => {
     if (isLoading) {
@@ -188,6 +239,8 @@ const Validators = () => {
     th: {
       style: thStyle,
     },
+    setSorting,
+    sorting,
   };
 
   return (

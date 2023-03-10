@@ -7,6 +7,9 @@ export const useRedelegation = (useRedelegateProps: RedelegateProps) => {
   //   async
   const handleConfirmButton = () => {
     useRedelegateProps.setConfirmClicked(true);
+
+    useRedelegateProps.setDisabled(true);
+
     // TODO: call redelegate endpoint
   };
 

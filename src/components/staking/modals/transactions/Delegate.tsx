@@ -32,6 +32,7 @@ export const Delegate = ({
   const [value, setValue] = useState("");
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const [confirmClicked, setConfirmClicked] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const useDelegateProps = {
     value,
@@ -40,6 +41,7 @@ export const Delegate = ({
     item,
     setConfirmClicked,
     evmosBalance,
+    setDisabled,
   };
 
   const { handleConfirmButton } = useDelegation(useDelegateProps);
@@ -107,7 +109,7 @@ export const Delegate = ({
           text="Delegate"
           onClick={handleConfirmButton}
           className="w-fit text-sm px-4"
-          disabled={confirmClicked}
+          disabled={disabled}
         />
       </div>
     </div>

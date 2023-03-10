@@ -32,12 +32,15 @@ export const Redelegate = ({
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const [confirmClicked, setConfirmClicked] = useState(false);
   const [isValidatorSelected, setIsValidatorSelected] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+
   const useRedelegateProps = {
     value,
     setShow,
     wallet,
     item,
     setConfirmClicked,
+    setDisabled,
   };
 
   const { handleConfirmButton } = useRedelegation(useRedelegateProps);
@@ -109,7 +112,7 @@ export const Redelegate = ({
           text="Redelegate"
           onClick={handleConfirmButton}
           className="w-fit text-sm px-4"
-          disabled={confirmClicked}
+          disabled={disabled}
         />
       </div>
     </div>

@@ -10,6 +10,7 @@ export type DelegateProps = {
   item: ModalDelegate;
   setConfirmClicked: Dispatch<SetStateAction<boolean>>;
   evmosBalance: BigNumber;
+  setDisabled: Dispatch<SetStateAction<boolean>>;
 };
 
 export type RedelegateProps = {
@@ -18,6 +19,7 @@ export type RedelegateProps = {
   wallet: WalletExtension;
   item: ModalDelegate;
   setConfirmClicked: Dispatch<SetStateAction<boolean>>;
+  setDisabled: Dispatch<SetStateAction<boolean>>;
 };
 
 export type UndelegateProps = {
@@ -26,4 +28,5 @@ export type UndelegateProps = {
   wallet: WalletExtension;
   item: ModalDelegate;
   setConfirmClicked: Dispatch<SetStateAction<boolean>>;
+  setDisabled: Dispatch<SetStateAction<boolean>>;
 };

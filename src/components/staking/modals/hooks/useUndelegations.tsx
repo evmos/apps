@@ -24,6 +24,8 @@ export const useUndelegation = (useUndelegateProps: UndelegateProps) => {
       return;
     }
 
+    useUndelegateProps.setDisabled(true);
+
     const res = await executeUndelegate(
       useUndelegateProps.wallet,
       useUndelegateProps.item.validatorAddress,

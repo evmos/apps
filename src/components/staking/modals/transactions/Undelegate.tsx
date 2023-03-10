@@ -29,6 +29,7 @@ export const Undelegate = ({
   const [value, setValue] = useState("");
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const [confirmClicked, setConfirmClicked] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
   const useUndelegateProps = {
     value,
@@ -36,6 +37,7 @@ export const Undelegate = ({
     wallet,
     item,
     setConfirmClicked,
+    setDisabled,
   };
 
   const { handleConfirmButton } = useUndelegation(useUndelegateProps);
@@ -99,7 +101,7 @@ export const Undelegate = ({
           text="Undelegate"
           onClick={handleConfirmButton}
           className="w-fit text-sm px-4"
-          disabled={confirmClicked}
+          disabled={disabled}
         />
       </div>
     </div>

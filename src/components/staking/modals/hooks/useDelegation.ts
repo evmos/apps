@@ -23,6 +23,9 @@ export const useDelegation = (useDelegateProps: DelegateProps) => {
     if (amount.gt(useDelegateProps.evmosBalance)) {
       return;
     }
+
+    useDelegateProps.setDisabled(true);
+
     const res = await executeDelegate(
       useDelegateProps.wallet,
       useDelegateProps.item.validatorAddress,

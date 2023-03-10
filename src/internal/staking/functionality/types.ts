@@ -49,6 +49,7 @@ type DelegationBalanceResponse = {
   denom: string;
   amount: string;
 };
+
 export type DelegationsResponse = {
   delegation: delegationResponse;
   balance: DelegationBalanceResponse;

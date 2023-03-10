@@ -41,7 +41,7 @@ export default function Home() {
               <Container>
                 <>
                   <Snackbars />
-                  <Header />
+                  <Header pageName="Staking" />
                   <div className="container mx-auto overflow-auto mb-auto">
                     <Content />
                   </div>

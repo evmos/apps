@@ -3,11 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../../redux/Store";
 import { ERC20BalanceResponse } from "./types";
-import {
-  getAssetsForAddress,
-  getTotalStaked,
-  TotalStakedResponse,
-} from "../../../internal/asset/functionality/fetch";
+import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
 
 import dynamic from "next/dynamic";
 
@@ -23,15 +19,12 @@ import {
   TableData,
 } from "../../../internal/asset/functionality/table/normalizeData";
 import HeadTable from "./HeadTable";
-import {
-  convertAndFormat,
-  getTotalAssets,
-} from "../../../internal/asset/style/format";
-import { BigNumber } from "ethers";
+import { getTotalAssets } from "../../../internal/asset/style/format";
 import HeadAssets from "./components/HeadAssets";
 import LeftArrowIcon from "../../common/images/icons/LeftArrowIcon";
 import Link from "next/link";
 import Guide from "./Guide";
+import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -39,6 +32,8 @@ const AssetsTable = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
 
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
+
+  const { stakedData, totalStaked } = useStakedEvmos();
 
   const { data, error, isLoading } = useQuery<ERC20BalanceResponse, Error>({
     refetchInterval: 3000,
@@ -52,11 +47,6 @@ const AssetsTable = () => {
         value.evmosAddressCosmosFormat,
         value.evmosAddressEthFormat
       ),
-  });
-
-  const totalStakedResults = useQuery<TotalStakedResponse, Error>({
-    queryKey: ["totalStaked", value.evmosAddressCosmosFormat],
-    queryFn: () => getTotalStaked(value.evmosAddressCosmosFormat),
   });
 
   const [hideZeroBalance, setHideBalance] = useState(false);
@@ -91,25 +81,11 @@ const AssetsTable = () => {
     });
   }, [normalizedAssetsData, hideZeroBalance]);
 
-  const totalStaked = useMemo(() => {
-    let stakedRes = totalStakedResults?.data?.value;
-    if (stakedRes !== "" && stakedRes !== undefined) {
-      stakedRes = convertAndFormat(
-        BigNumber.from(stakedRes),
-        normalizedAssetsData?.table[0]?.decimals
-      );
-    } else {
-      stakedRes = "0";
-    }
-
-    return `${stakedRes} EVMOS`;
-  }, [totalStakedResults, normalizedAssetsData]);
-
   const topProps = {
     evmosPrice: normalizedAssetsData?.table[0]?.coingeckoPrice,
     totalStaked: totalStaked,
     totalAssets: getTotalAssets(normalizedAssetsData, {
-      total: totalStakedResults?.data ? totalStakedResults?.data?.value : "0",
+      total: stakedData ? stakedData?.value : "0",
       decimals: normalizedAssetsData?.table[0]?.decimals,
       coingeckoPrice: normalizedAssetsData.table[0]?.coingeckoPrice,
     }),

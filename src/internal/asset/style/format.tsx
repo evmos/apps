@@ -43,7 +43,6 @@ export function convertFromAtto(value: BigNumber, exponent = 18) {
   // for appropriate conversion
   if (!value) return "0";
   let valueAsString = value.toString();
-
   if (typeof value === "number") {
     // Strip scientific notation
     valueAsString = Number(value).toLocaleString("fullwide", {

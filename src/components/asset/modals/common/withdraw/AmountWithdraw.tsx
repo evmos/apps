@@ -17,13 +17,13 @@ import ErrorMessage from "../ErrorMessage";
 import Note from "../Note";
 import { TextSmall } from "../TextSmall";
 import { AmountWithdrawProps } from "../types";
+import { feeWithdraw } from "../../../../../internal/asset/Helpers";
 
 const AmountWithdraw = ({
   amountProps,
 }: {
   amountProps: AmountWithdrawProps;
 }) => {
-  const fee = BigNumber.from("4600000000000000");
   const feeDenom = EVMOS_SYMBOL;
 
   const handleOnClickMax = () => {
@@ -38,7 +38,7 @@ const AmountWithdraw = ({
           numericOnly(convertFromAtto(balance, amountProps.token.decimals))
         );
       } else {
-        const val = safeSubstraction(balance, fee);
+        const val = safeSubstraction(balance, feeWithdraw);
         amountProps.setValue(
           numericOnly(convertFromAtto(val, amountProps.token.decimals))
         );
@@ -134,7 +134,7 @@ const AmountWithdraw = ({
         </p>
         <Note
           text={getReservedForFeeText(
-            BigNumber.from(fee),
+            BigNumber.from(feeWithdraw),
             EVMOS_SYMBOL,
             EVMOS_SYMBOL
           )}

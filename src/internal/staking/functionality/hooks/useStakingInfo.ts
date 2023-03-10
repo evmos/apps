@@ -18,6 +18,7 @@ export const useStakingInfo = () => {
   const stakingInfo = useQuery<StakingInfoResponse, Error>({
     queryKey: ["stakingInfo", value.evmosAddressCosmosFormat],
     queryFn: () => getStakingInfo(value.evmosAddressCosmosFormat),
+    refetchInterval: 3000,
   });
 
   const totalDelegations = useMemo(() => {

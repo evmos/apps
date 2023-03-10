@@ -33,12 +33,12 @@ const Tabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
   }, [tabsContent, activeTab]);
 
   return (
-    <div className="space-y-8 px-2">
-      <div className="flex justify-between space-x-2 md:space-x-0 w-full">
+    <div className="space-y-4 px-2">
+      <div className="py-2 flex justify-between space-x-2 md:space-x-0 w-full sticky top-0 bg-black">
         <div className="md:hidden ">
           <TabsDropdown content={tabsContent} setActiveTab={setActiveTab} />
         </div>
-        <ul className="hidden w-fit md:flex items-center justify-between border-2 border-pearl rounded">
+        <ul className="hidden w-fit md:flex items-center justify-between border-2 border-pearl rounded ">
           {tabItems}
         </ul>
         <Search placeholder="Search validators..." />

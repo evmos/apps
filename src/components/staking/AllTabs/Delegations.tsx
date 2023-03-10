@@ -24,6 +24,7 @@ import {
   tdBodyStyle,
   tHeadStyle,
   trBodyStyle,
+  thStyle,
 } from "../../common/table/tablesStyles";
 import { TdContent } from "../../common/table/TdContent";
 import { Staking } from "../modals/Staking";
@@ -185,10 +186,12 @@ const Delegations = () => {
       style: tBodyStyle,
       content: dataForBody(),
     },
+    th: {
+      style: thStyle,
+    },
   };
 
   return (
-    // <div className=" mt-5 overflow-y-auto max-h-[50vh] lg:max-h-[50vh] xl:scrollbar-hide text-white font-[IBM] w-full px-2"></div>
     <>
       <Table tableProps={tableProps} />
       <Modal

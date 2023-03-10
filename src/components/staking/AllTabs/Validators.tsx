@@ -23,6 +23,7 @@ import {
   tBodyStyle,
   tdBodyStyle,
   tHeadStyle,
+  thStyle,
   trBodyStyle,
 } from "../../common/table/tablesStyles";
 import { TdContent } from "../../common/table/TdContent";
@@ -183,6 +184,9 @@ const Validators = () => {
     tBody: {
       style: tBodyStyle,
       content: dataForBody(),
+    },
+    th: {
+      style: thStyle,
     },
   };
 

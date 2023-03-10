@@ -9,6 +9,9 @@ export const Table = ({
       style: string;
       content: string[];
     };
+    th: {
+      style: string;
+    };
     tBody: {
       style: string;
       content: JSX.Element[] | JSX.Element | JSX.Element[][];
@@ -21,7 +24,7 @@ export const Table = ({
         <tr>
           {tableProps.tHead.content.map((item) => {
             return (
-              <th className="first:pl-8 py-4 sticky top-0 bg-black" key={item}>
+              <th className={`${tableProps.th.style}`} key={item}>
                 {item}
               </th>
             );

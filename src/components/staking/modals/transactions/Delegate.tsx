@@ -107,6 +107,7 @@ export const Delegate = ({
           text="Delegate"
           onClick={handleConfirmButton}
           className="w-fit text-sm px-4"
+          disabled={confirmClicked}
         />
       </div>
     </div>

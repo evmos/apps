@@ -109,6 +109,7 @@ export const Redelegate = ({
           text="Redelegate"
           onClick={handleConfirmButton}
           className="w-fit text-sm px-4"
+          disabled={confirmClicked}
         />
       </div>
     </div>

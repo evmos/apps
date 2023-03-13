@@ -1,7 +1,9 @@
+import dynamic from "next/dynamic";
 import { SearchWrapper } from "../../internal/common/context/SearchContext";
-import Tabs from "../common/tabComponent/Tabs";
 import { tabsContent } from "./Tabs/Content";
-import TopBarStaking from "./components/TopBarStaking";
+
+const TopBarStaking = dynamic(() => import("./components/TopBarStaking"));
+const Tabs = dynamic(() => import("../common/tabComponent/Tabs"));
 
 const Content = () => {
   return (

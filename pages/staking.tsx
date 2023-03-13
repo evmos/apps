@@ -12,7 +12,6 @@ import {
   projectId,
   wagmiClient,
 } from "../src/internal/wallet/functionality/walletconnect/walletconnectConstants";
-import Content from "../src/components/staking/Content";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Header = dynamic(() => import("../src/components/Header"));
@@ -23,6 +22,7 @@ const Snackbars = dynamic(
   () => import("../src/components/notification/Snackbars")
 );
 const Footer = dynamic(() => import("../src/components/footer/Footer"));
+const Content = dynamic(() => import("../src/components/staking/Content"));
 
 export default function Home() {
   const queryClient = new QueryClient();

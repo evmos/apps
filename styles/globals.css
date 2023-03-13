@@ -211,3 +211,14 @@ tr:last-child td:first-child{
   @apply md:rounded-bl-2xl
 }
 
+/* width */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  /* For Firefox and IE*/
+  overflow-y: scroll;
+  scrollbar-color: transparent transparent;
+  -ms-overflow-style: none;
+}

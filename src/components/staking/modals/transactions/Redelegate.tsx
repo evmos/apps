@@ -2,6 +2,7 @@ import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import { FEE } from "../../../../internal/asset/Helpers";
 import {
   numericOnly,
   safeSubstraction,
@@ -9,6 +10,8 @@ import {
   getReservedForFeeText,
   truncateNumber,
 } from "../../../../internal/asset/style/format";
+import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
+import { useEvmosBalance } from "../../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { ModalDelegate } from "../../../../internal/staking/functionality/types";
 import { StoreType } from "../../../../redux/Store";
 import ContainerInput from "../../../asset/modals/common/ContainerInput";
@@ -27,6 +30,7 @@ export const Redelegate = ({
   setShow: Dispatch<SetStateAction<boolean>>;
   setShowRedelegate: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const { evmosBalance } = useEvmosBalance();
   const [value, setValue] = useState("");
   const [validator, setValidator] = useState("");
   const wallet = useSelector((state: StoreType) => state.wallet.value);
@@ -42,6 +46,7 @@ export const Redelegate = ({
     setConfirmClicked,
     setDisabled,
     validatorDst: validator,
+    evmosBalance,
   };
 
   const { handleConfirmButton } = useRedelegation(useRedelegateProps);
@@ -63,11 +68,8 @@ export const Redelegate = ({
             <SmallButton
               text="MAX"
               onClick={() => {
-                const val = safeSubstraction(
-                  BigNumber.from(item.balance),
-                  // TODO: amount fee?
-                  BigNumber.from("4600000000000000")
-                );
+                const val =
+                  item.balance !== "" ? BigNumber.from(item.balance) : BIG_ZERO;
                 setValue(numericOnly(convertFromAtto(val, 18)));
               }}
             />
@@ -79,26 +81,32 @@ export const Redelegate = ({
         {confirmClicked && value === "" && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAmountEmpty} />
         )}
+        {safeSubstraction(evmosBalance, BigNumber.from(FEE)).lte(BIG_ZERO) && (
+          <ErrorMessage
+            text={MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext}
+          />
+        )}
         {truncateNumber(value) >
           truncateNumber(
-            numericOnly(convertFromAtto(BigNumber.from(item.balance), 18))
+            numericOnly(
+              convertFromAtto(
+                item.balance !== "" ? BigNumber.from(item.balance) : BIG_ZERO,
+                18
+              )
+            )
           ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
 
         <p className="font-bold">Validator to Redelegate</p>
         <ValidatorsDropdown
           setValidator={setValidator}
           setIsValidatorSelected={setIsValidatorSelected}
+          validatorName={item.moniker.toLowerCase()}
         />
         {confirmClicked && (validator === "" || !isValidatorSelected) && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorValidatorEmpty} />
         )}
-        {/* TODO: fee amount? */}
         <p className="text-sm">
-          {getReservedForFeeText(
-            BigNumber.from("4600000000000000"),
-            "EVMOS",
-            "EVMOS"
-          )}
+          {getReservedForFeeText(BigNumber.from(FEE), "EVMOS", "EVMOS")}
         </p>
       </div>
       <div className="flex justify-end space-x-2">

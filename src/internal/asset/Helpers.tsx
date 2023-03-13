@@ -4,3 +4,5 @@ export function getChainIdentifier(identifier: string) {
   }
   return identifier;
 }
+
+export const FEE = "250000000000000000";

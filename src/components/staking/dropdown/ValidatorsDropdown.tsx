@@ -14,9 +14,11 @@ import { ValidatorsList } from "../../../internal/staking/functionality/types";
 const ValidatorsDropdown = ({
   setValidator,
   setIsValidatorSelected,
+  validatorName,
 }: {
   setValidator: Dispatch<SetStateAction<string>>;
   setIsValidatorSelected: Dispatch<SetStateAction<boolean>>;
+  validatorName: string;
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<string>("");
@@ -83,20 +85,21 @@ const ValidatorsDropdown = ({
 
   const listValidators = useMemo(() => {
     return filtered.map((option) => {
-      return (
-        <div
-          onClick={() => onItemClick(option)}
-          key={option.validator.rank}
-          className={`px-6 py-3 cursor-pointer hover:bg-gray flex justify-between font-semibold
+      if (option.validator.description.moniker.toLowerCase() !== validatorName)
+        return (
+          <div
+            onClick={() => onItemClick(option)}
+            key={option.validator.rank}
+            className={`px-6 py-3 cursor-pointer hover:bg-gray flex justify-between font-semibold
             `}
-        >
-          <div className="flex items-center space-x-3">
-            <span>{option.validator.description.moniker}</span>
+          >
+            <div className="flex items-center space-x-3">
+              <span>{option.validator.description.moniker}</span>
+            </div>
           </div>
-        </div>
-      );
+        );
     });
-  }, [onItemClick, filtered]);
+  }, [onItemClick, filtered, validatorName]);
 
   return (
     <div

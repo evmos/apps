@@ -13,7 +13,7 @@ const Search = ({ placeholder }: { placeholder: string }) => {
       <input
         onChange={handleSetValue}
         value={value}
-        className="w-full placeholder:text-darkGray3 text-lg bg-transparent focus-visible:outline-none text-white"
+        className="w-full placeholder:text-darkGray3 bg-transparent focus-visible:outline-none text-white"
         placeholder={placeholder}
       />
       <SearchIcon className="w-10 h-10 text-darkGray3" />

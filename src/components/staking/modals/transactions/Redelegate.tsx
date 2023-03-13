@@ -81,11 +81,12 @@ export const Redelegate = ({
         {confirmClicked && value === "" && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAmountEmpty} />
         )}
-        {safeSubstraction(evmosBalance, BigNumber.from(FEE)).lte(BIG_ZERO) && (
-          <ErrorMessage
-            text={MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext}
-          />
-        )}
+        {confirmClicked &&
+          safeSubstraction(evmosBalance, BigNumber.from(FEE)).lte(BIG_ZERO) && (
+            <ErrorMessage
+              text={MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext}
+            />
+          )}
         {truncateNumber(value) >
           truncateNumber(
             numericOnly(

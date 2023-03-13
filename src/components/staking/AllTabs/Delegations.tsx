@@ -15,8 +15,6 @@ import {
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
 import { DelegationsResponse } from "../../../internal/staking/functionality/types";
 import { StoreType } from "../../../redux/Store";
-import MessageTable from "../../asset/table/MessageTable";
-import Button from "../../common/Button";
 import { Table } from "../../common/table/Table";
 import {
   tableStyle,
@@ -27,8 +25,11 @@ import {
   thStyle,
 } from "../../common/table/tablesStyles";
 import { TdContent } from "../../common/table/TdContent";
-import { Staking } from "../modals/Staking";
+import Staking from "../modals/Staking";
+
 const Modal = dynamic(() => import("../../common/Modal"));
+const Button = dynamic(() => import("../../common/Button"));
+const MessageTable = dynamic(() => import("../../asset/table/MessageTable"));
 
 const dataHead = ["Rank", "Name", "Voting Power", "Staked", "Comission", ""];
 

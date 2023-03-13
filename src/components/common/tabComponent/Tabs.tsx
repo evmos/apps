@@ -1,9 +1,13 @@
+import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
-import TabsDropdown from "../../staking/dropdown/TabsDropdown";
 import { tabContent } from "../../staking/Tabs/Content";
-import Search from "../searchBar/Search";
-import TabContent from "./TabContent";
-import TabNavItem from "./TabNavItem";
+
+const TabNavItem = dynamic(() => import("./TabNavItem"));
+const TabContent = dynamic(() => import("./TabContent"));
+const Search = dynamic(() => import("../searchBar/Search"));
+const TabsDropdown = dynamic(
+  () => import("../../staking/dropdown/TabsDropdown")
+);
 
 const Tabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
   const [activeTab, setActiveTab] = useState(tabsContent[0].id);

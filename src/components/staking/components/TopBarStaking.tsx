@@ -1,15 +1,16 @@
+import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
+import { FULL_DAY_MINUS_ONE_SECOND } from "../../../internal/asset/Helpers";
 import { convertFromAtto } from "../../../internal/asset/style/format";
 import { useEpochDay } from "../../../internal/common/api/hooks/useEpochDay";
 import { useEvmosBalance } from "../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
 import { StoreType } from "../../../redux/Store";
 import { Container } from "../../asset/table/topBar/Container";
-import ConfirmButton from "../../common/ConfirmButton";
 import { Countdown } from "../../common/Countdown";
-import TopBarContainer from "../../common/TopBarContainer";
 
-const FULL_DAY_MINUS_ONE_SECOND = 86399000;
+const TopBarContainer = dynamic(() => import("../../common/TopBarContainer"));
+const ConfirmButton = dynamic(() => import("../../common/ConfirmButton"));
 
 const TopBarStaking = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);

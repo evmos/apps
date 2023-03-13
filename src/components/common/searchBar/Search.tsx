@@ -1,8 +1,10 @@
+import dynamic from "next/dynamic";
 import {
   SearchContext,
   useSearchContext,
 } from "../../../internal/common/context/SearchContext";
-import SearchIcon from "../images/icons/SearchIcon";
+
+const SearchIcon = dynamic(() => import("../images/icons/SearchIcon"));
 
 const Search = ({ placeholder }: { placeholder: string }) => {
   const { value, handleSetValue } = useSearchContext() as SearchContext;

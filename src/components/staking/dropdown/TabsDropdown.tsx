@@ -1,7 +1,16 @@
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import React, {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { tabContent } from "../../staking/Tabs/Content";
 
-import DropdownArrow from "../../common/images/icons/DropdownArrow";
+const DropdownArrow = dynamic(
+  () => import("../../common/images/icons/DropdownArrow")
+);
 const TabsDropdown = ({
   content,
   setActiveTab,
@@ -11,7 +20,6 @@ const TabsDropdown = ({
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<string | null>(null);
-  const values = content;
   useEffect(() => {
     const handler = () => setShowMenu(false);
     window.addEventListener("click", handler);
@@ -20,12 +28,15 @@ const TabsDropdown = ({
     };
   }, []);
 
-  const handleInputClick = (e: React.MouseEvent<HTMLElement>) => {
-    e.stopPropagation();
-    setShowMenu(!showMenu);
-  };
+  const handleInputClick = useCallback(
+    (e: React.MouseEvent<HTMLElement>) => {
+      e.stopPropagation();
+      setShowMenu(!showMenu);
+    },
+    [showMenu]
+  );
 
-  const getDisplay = () => {
+  const getDisplay = useCallback(() => {
     if (selectedValue) {
       return (
         <div className="capitalize px-3 font-semibold">
@@ -34,14 +45,17 @@ const TabsDropdown = ({
       );
     }
     return (
-      <div className="capitalize px-3 font-semibold">{values[0].title}</div>
+      <div className="capitalize px-3 font-semibold">{content[0].title}</div>
     );
-  };
+  }, [content, selectedValue]);
 
-  const onItemClick = (option: tabContent) => {
-    setSelectedValue(option.title);
-    setActiveTab(option.id);
-  };
+  const onItemClick = useCallback(
+    (option: tabContent) => {
+      setSelectedValue(option.title);
+      setActiveTab(option.id);
+    },
+    [setActiveTab]
+  );
 
   return (
     <div
@@ -55,7 +69,7 @@ const TabsDropdown = ({
       >
         {showMenu && (
           <div className="absolute w-full translate-y-9 left-0 top-[4px] overflow-auto max-h-36 bg-white capitalize rounded rounded-t-none">
-            {values.map((option) => {
+            {content?.map((option) => {
               return (
                 <div
                   onClick={() => onItemClick(option)}

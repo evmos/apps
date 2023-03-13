@@ -1,4 +1,10 @@
-import { ChangeEvent, createContext, useContext, useState } from "react";
+import {
+  ChangeEvent,
+  createContext,
+  useCallback,
+  useContext,
+  useState,
+} from "react";
 
 export type SearchContext = {
   value: string;
@@ -10,9 +16,10 @@ const SearchContext = createContext<SearchContext | null>(null);
 export function SearchWrapper({ children }: { children: JSX.Element }) {
   const [value, setValue] = useState("");
 
-  const handleSetValue = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSetValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
-  };
+  }, []);
+
   return (
     <SearchContext.Provider value={{ value, handleSetValue }}>
       {children}

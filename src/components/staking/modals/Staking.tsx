@@ -11,7 +11,7 @@ import { Delegate } from "./transactions/Delegate";
 import { Redelegate } from "./transactions/Redelegate";
 import { Undelegate } from "./transactions/Undelegate";
 
-export const Staking = ({
+const Staking = ({
   item,
   setShow,
 }: {
@@ -21,7 +21,6 @@ export const Staking = ({
   const [showDelegate, setShowDelegate] = useState(false);
   const [showRedelegate, setShowRedelegate] = useState(false);
   const [showUndelegate, setShowUndelegate] = useState(false);
-
   return (
     <div className="space-y-4">
       <div>
@@ -125,3 +124,5 @@ export const Staking = ({
     </div>
   );
 };
+
+export default Staking;

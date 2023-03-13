@@ -1,6 +1,7 @@
-import Delegations from "../AllTabs/Delegations";
-import Undelegations from "../AllTabs/Undelegations";
-import Validators from "../AllTabs/Validators";
+import dynamic from "next/dynamic";
+const Validators = dynamic(() => import("../AllTabs/Validators"));
+const Undelegations = dynamic(() => import("../AllTabs/Undelegations"));
+const Delegations = dynamic(() => import("../AllTabs/Delegations"));
 
 export type tabContent = {
   title: string;

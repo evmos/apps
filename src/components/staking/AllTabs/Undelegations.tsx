@@ -88,8 +88,9 @@ const Undelegations = () => {
           <td className={`${tdBodyStyle} md:hidden text-pearl font-bold`}>
             {item.moniker}
           </td>
-
-          <td className={`${tdBodyStyle} md:pl-8 hidden md:table-cell`}>
+          <td
+            className={`${tdBodyStyle} md:pl-8 hidden md:table-cell firstRow`}
+          >
             <TdContent
               tdProps={{
                 title: dataHead[0],

@@ -6,9 +6,9 @@ const MessageTable = ({
   amountCols: number;
 }) => {
   return (
-    <tr className="assetOneItem">
-      <td colSpan={amountCols}>
-        <div className="flex items-center space-x-3 justify-center font-semibold font-[GreyCliff] my-4">
+    <tr className="">
+      <td colSpan={amountCols} className="bg-darkGray2">
+        <div className="flex text-center items-center space-x-3 justify-center font-semibold font-[GreyCliff] my-4">
           {children}
         </div>
       </td>

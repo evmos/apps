@@ -187,3 +187,27 @@ input[type=number] {
   background-color: #F5E8D4;
   color: #0b0a09;
 }
+
+tr:first-child .firstRow {
+  @apply md:rounded-tl-2xl 
+}
+
+tr:last-child .firstRow {
+  @apply md:rounded-bl-2xl 
+}
+
+tr:first-child td:first-child  { 
+  @apply rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none
+}
+tr:first-child td:last-child { 
+  @apply md:rounded-tr-2xl
+}
+
+tr:last-child td:last-child{
+  @apply rounded-br-2xl rounded-bl-2xl md:rounded-bl-none
+}
+
+tr:last-child td:first-child{ 
+  @apply md:rounded-bl-2xl
+}
+

@@ -126,11 +126,11 @@ const Delegations = () => {
     });
     return filtered?.map((item) => {
       return (
-        <tr key={item.delegation.validator.rank} className={`${trBodyStyle}`}>
+        <tr key={item.delegation.validator.rank} className={`${trBodyStyle} `}>
           <td className={`${tdBodyStyle} md:hidden text-pearl font-bold`}>
             {item.delegation.validator.description.moniker}
           </td>
-          <td className={`${tdBodyStyle} md:pl-8`}>
+          <td className={`${tdBodyStyle} md:pl-8 firstRow`}>
             <TdContent
               tdProps={{
                 title: dataHead[0],

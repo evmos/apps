@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getKeplrAddressByChain } from "../../../../../internal/wallet/functionality/keplr/keplrHelpers";
 import { getWallet } from "../../../../../internal/wallet/functionality/metamask/metamaskHelpers";
 import { EVMOS_CHAIN } from "../../../../../internal/wallet/functionality/networkConfig";
@@ -24,6 +24,7 @@ import {
   checkFormatAddress,
   checkMetaMaskFormatAddress,
 } from "../../../../../internal/asset/style/format";
+import { StoreType } from "../../../../../redux/Store";
 
 const DepositReceiver = ({
   receiver,
@@ -67,6 +68,8 @@ const DepositReceiver = ({
     setReceiver(address);
   };
 
+  const wallet = useSelector((state: StoreType) => state.wallet.value);
+
   return (
     <ContainerModal>
       <>
@@ -91,12 +94,15 @@ const DepositReceiver = ({
             text="EDIT"
             onClick={handleOnClickEdit}
           />
-          <KeplrIcon
-            width={25}
-            height={25}
-            className="cursor-pointer"
-            onClick={handleOnClickKeplr}
-          />
+
+          {wallet.evmosAddressCosmosFormat !== "" && (
+            <KeplrIcon
+              width={25}
+              height={25}
+              className="cursor-pointer"
+              onClick={handleOnClickKeplr}
+            />
+          )}
           <MetamaskIcon
             width={25}
             height={25}

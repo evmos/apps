@@ -59,4 +59,6 @@ export const KEPLR_NOTIFICATIONS = {
   RequestRejectedSubtext:
     "Please unlock the extension and allow the app to access your wallet address",
   RequestRejectedSignSubtext: "Transaction was not signed",
+  WarningSubtext:
+    "If you want to use Keplr with ledger in the EVMOS network, you need to install the ethereum app first",
 } as const;

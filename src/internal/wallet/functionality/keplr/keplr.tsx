@@ -24,6 +24,7 @@ import {
 import {
   NotifyError,
   NotifySuccess,
+  NotifyWarning,
 } from "../../../common/notifications/notifications";
 import { KEPLR_KEY } from "../wallet";
 import {
@@ -94,26 +95,53 @@ export class Keplr {
       );
       const offlineSignerOsmosis =
         window.keplr.getOfflineSigner(OSMOSIS_CHAIN_ID);
-
-      const accountsEvmos = await offlineSignerEvmos.getAccounts();
+      let accountsEvmos;
+      try {
+        accountsEvmos = await offlineSignerEvmos.getAccounts();
+      } catch (error) {
+        if (
+          (error as { message: string })?.message ===
+          "Please initialize ethereum app on ledger first"
+        ) {
+          // Init ethereum app first
+          NotifyWarning(
+            {
+              type: SNACKBAR_CONTENT_TYPES.TEXT,
+              title: "",
+              text: KEPLR_NOTIFICATIONS.WarningSubtext,
+            },
+            this.reduxStore,
+            this.notificationsEnabled
+          );
+        } else {
+          if ((error as { message: string })?.message === "Request rejected") {
+            NotifyError(
+              {
+                type: SNACKBAR_CONTENT_TYPES.TEXT,
+                title: KEPLR_NOTIFICATIONS.ErrorTitle,
+                text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
+              },
+              this.reduxStore,
+              this.notificationsEnabled
+            );
+          }
+          // TODO: catch wallet not unlocked
+          // TODO: catch wallet not allowed to connect to evmos/osmosis
+          this.reset();
+          return false;
+        }
+      }
       const accountsOsmosis = await offlineSignerOsmosis.getAccounts();
-      const accountName =
-        (await window.keplr.getKey(EVMOS_CHAIN.cosmosChainId)).name || null;
-
-      if (
-        !accountsEvmos ||
-        accountsEvmos.length === 0 ||
-        !accountsOsmosis ||
-        accountsOsmosis.length === 0
-      ) {
+      const accountName = (await window.keplr.getKey("osmosis-1")).name || null;
+      if (!accountsOsmosis || accountsOsmosis.length === 0) {
         // Could not get accounts information
         this.reset();
         return false;
       }
 
-      const pubkeyEvmos = Buffer.from(accountsEvmos[0].pubkey).toString(
-        "base64"
-      );
+      const pubkeyEvmos = accountsEvmos
+        ? Buffer.from(accountsEvmos[0].pubkey).toString("base64")
+        : "";
       const pubkeyOsmosis = Buffer.from(accountsOsmosis[0].pubkey).toString(
         "base64"
       );
@@ -125,8 +153,12 @@ export class Keplr {
         setWallet({
           active: this.active,
           extensionName: KEPLR_KEY,
-          evmosAddressEthFormat: evmosToEth(accountsEvmos[0].address),
-          evmosAddressCosmosFormat: accountsEvmos[0].address,
+          evmosAddressEthFormat: accountsEvmos
+            ? evmosToEth(accountsEvmos[0].address)
+            : "",
+          evmosAddressCosmosFormat: accountsEvmos
+            ? accountsEvmos[0].address
+            : "",
           evmosPubkey: pubkeyEvmos,
           osmosisPubkey: pubkeyOsmosis,
           accountName: accountName,
@@ -139,29 +171,15 @@ export class Keplr {
           title: KEPLR_NOTIFICATIONS.SuccessTitle,
           text:
             "Connected with wallet " +
-            truncateAddress(accountsEvmos[0].address),
+            truncateAddress(
+              accountsEvmos ? accountsEvmos[0].address : accountsEvmos
+            ),
         },
         this.reduxStore,
         this.notificationsEnabled
       );
       return true;
     } catch (error) {
-      // The error message is hardcoded on keplr's side
-      if (
-        (error as { message: string })?.message ===
-        "Please initialize ethereum app on ledger first"
-      ) {
-        // Init ethereum app first
-        NotifyError(
-          {
-            type: SNACKBAR_CONTENT_TYPES.TEXT,
-            title: KEPLR_NOTIFICATIONS.ErrorTitle,
-            text: KEPLR_NOTIFICATIONS.LedgerNotInitSubtext,
-          },
-          this.reduxStore,
-          this.notificationsEnabled
-        );
-      }
       if ((error as { message: string })?.message === "Request rejected") {
         NotifyError(
           {

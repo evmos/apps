@@ -1,5 +1,4 @@
 import { BigNumber, utils } from "ethers";
-import { Signer } from "../../../wallet/functionality/signing/genericSigner";
 import { checkFormatAddress } from "../../style/format";
 import {
   BROADCASTED_NOTIFICATIONS,
@@ -9,6 +8,9 @@ import {
 } from "./errors";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import { IBCChainParams } from "./types";
+import { broadcastAminoBackendTxToBackend } from "../../../wallet/functionality/signing";
+import { Signer } from "../../../wallet/functionality/signing/genericSigner";
+import { EVMOS_NETWORK_FOR_BACKEND } from "../../../wallet/functionality/networkConfig";
 
 export async function executeDeposit(
   pubkey: string,
@@ -16,7 +18,9 @@ export async function executeDeposit(
   params: IBCChainParams,
   identifier: string,
   extension: string,
-  prefix: string
+  prefix: string,
+  chainId: string,
+  chainIdentifier: string
 ) {
   if (utils.parseEther(params.amount).lte(BigNumber.from("0"))) {
     return {
@@ -49,12 +53,11 @@ export async function executeDeposit(
       explorerTxUrl: "",
     };
   }
-
   const signer = new Signer();
-  const sign = await signer.signBackendTx(
+  const sign = await signer.signBackendTxWithAmino(
     address,
     tx.data,
-    identifier,
+    EVMOS_NETWORK_FOR_BACKEND,
     extension
   );
   if (sign.result === false) {
@@ -67,8 +70,23 @@ export async function executeDeposit(
     };
   }
 
-  const broadcastResponse = await signer.broadcastTxToBackend();
-
+  if (
+    sign.aminoResponse === null ||
+    sign.aminoResponse?.signature === undefined
+  ) {
+    return {
+      error: true,
+      message: sign.message,
+      title: SIGNING_NOTIFICATIONS.ErrorTitle,
+      txHash: "",
+      explorerTxUrl: "",
+    };
+  }
+  const broadcastResponse = await broadcastAminoBackendTxToBackend(
+    sign.aminoResponse.signature,
+    sign.aminoResponse.signed,
+    chainIdentifier
+  );
   if (broadcastResponse.error === true) {
     // TODO: add sentry call here!
     return {

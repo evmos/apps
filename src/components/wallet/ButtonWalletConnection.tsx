@@ -110,30 +110,37 @@ const ButtonWalletConnection = () => {
               {value.extensionName === WALLECT_CONNECT_KEY && (
                 <WalletConnectIcon />
               )}
-              <div className="flex flex-col font-bold ">
-                <div className="flex items-center space-x-2">
-                  <p>{truncateAddress(value.evmosAddressCosmosFormat)}</p>
-                  <button
-                    className="text-xs font-normal"
-                    onClick={async () => {
-                      await navigator.clipboard.writeText(
-                        value.evmosAddressCosmosFormat
-                      );
-                      setIsCopied(true);
-                    }}
-                  >
-                    <Tooltip
-                      element={<CopyIcon width={14} height={14} />}
-                      text={isCopied ? "Copied!" : "Copy"}
-                    />
-                  </button>
-                </div>
-                <p>{truncateAddress(value.evmosAddressEthFormat)}</p>
-              </div>
-              <ViewExplorer
-                explorerTxUrl="https://www.mintscan.io/evmos/account"
-                txHash={value.evmosAddressEthFormat}
-              />
+              {value.evmosAddressCosmosFormat !== "" && (
+                <>
+                  <div className="flex flex-col font-bold ">
+                    <div className="flex items-center space-x-2">
+                      <p>{truncateAddress(value.evmosAddressCosmosFormat)}</p>
+                      <button
+                        className="text-xs font-normal"
+                        onClick={async () => {
+                          await navigator.clipboard.writeText(
+                            value.evmosAddressCosmosFormat
+                          );
+                          setIsCopied(true);
+                        }}
+                      >
+                        <Tooltip
+                          element={<CopyIcon width={14} height={14} />}
+                          text={isCopied ? "Copied!" : "Copy"}
+                        />
+                      </button>
+                    </div>
+                    <p>{truncateAddress(value.evmosAddressEthFormat)}</p>
+                  </div>
+                  <ViewExplorer
+                    explorerTxUrl="https://www.mintscan.io/evmos/account"
+                    txHash={value.evmosAddressEthFormat}
+                  />
+                </>
+              )}
+              {value.evmosAddressCosmosFormat === "" && (
+                <p className="font-bold"> Keplr without EVMOS ledger</p>
+              )}
             </div>
 
             <button

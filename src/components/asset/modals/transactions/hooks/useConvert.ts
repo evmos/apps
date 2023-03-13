@@ -29,7 +29,7 @@ export const useConvert = (useConvertProps: ConvertProps) => {
       useConvertProps.inputValue === undefined ||
       useConvertProps.inputValue === null ||
       useConvertProps.inputValue === "" ||
-      useConvertProps.inputValue === "0"
+      Number(useConvertProps.inputValue) === 0
     ) {
       return;
     }

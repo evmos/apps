@@ -132,3 +132,16 @@ export function snackErrorAmountGt() {
     type: SNACKBAR_TYPES.ERROR,
   });
 }
+
+export function snackWarningLedger() {
+  return addSnackbar({
+    id: 0,
+    content: {
+      type: SNACKBAR_CONTENT_TYPES.TEXT,
+      title: "",
+      text: KEPLR_NOTIFICATIONS.WarningSubtext,
+    },
+
+    type: SNACKBAR_TYPES.DEFAULT,
+  });
+}

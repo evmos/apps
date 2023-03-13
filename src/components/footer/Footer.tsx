@@ -57,7 +57,7 @@ const Footer = () => {
           <Link
             target="_blank"
             rel="noreferrer"
-            href="https://evmos.notion.site/Terms-of-Service-2a064953c56741a79331f7f767e3634d"
+            href="https://evmos.org/terms-of-service"
             aria-label="terms of services"
           >
             Terms of Service
@@ -67,7 +67,7 @@ const Footer = () => {
           <Link
             target="_blank"
             rel="noreferrer"
-            href="https://evmos.notion.site/PRIVACY-NOTICE-1e9a3346e3d343eb9fd3e61527d28d62"
+            href="https://evmos.org/privacy-policy"
             aria-label="privacy policy"
           >
             Privacy Policy

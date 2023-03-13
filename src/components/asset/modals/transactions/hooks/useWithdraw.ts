@@ -12,7 +12,6 @@ import {
   snackbarWaitingBroadcast,
 } from "../../../../../internal/asset/style/format";
 import {
-  snackErrorAmountGt,
   snackExecuteIBCTransfer,
   snackIBCInformation,
   snackRequestRejected,
@@ -40,10 +39,10 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       useWithdrawProps.inputValue === undefined ||
       useWithdrawProps.inputValue === null ||
       useWithdrawProps.inputValue === "" ||
-      useWithdrawProps.inputValue === "0" ||
       useWithdrawProps.receiverAddress === undefined ||
       useWithdrawProps.receiverAddress === null ||
-      useWithdrawProps.receiverAddress === ""
+      useWithdrawProps.receiverAddress === "" ||
+      Number(useWithdrawProps.inputValue) === 0
     ) {
       return;
     }
@@ -67,7 +66,6 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
     }
 
     if (amount.gt(balance)) {
-      dispatch(snackErrorAmountGt());
       return;
     }
 

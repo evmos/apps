@@ -43,6 +43,7 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       useDepositProps.inputValue === undefined ||
       useDepositProps.inputValue === null ||
       useDepositProps.inputValue === "" ||
+      Number(useDepositProps.inputValue) === 0 ||
       useDepositProps.receiverAddress === undefined ||
       useDepositProps.receiverAddress === null ||
       useDepositProps.receiverAddress === ""
@@ -115,7 +116,9 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       params,
       chainIds.chainIdentifier.toUpperCase(),
       wallet.extensionName,
-      prefix
+      prefix,
+      chainIds.chainId,
+      chainIds.chainIdentifier
     );
 
     dispatch(snackExecuteIBCTransfer(res));

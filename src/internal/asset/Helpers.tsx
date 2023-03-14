@@ -7,6 +7,6 @@ export function getChainIdentifier(identifier: string) {
   return identifier;
 }
 
-export const FEE = "250000000000000000";
+export const FEE_STAKING_ACTIONS = "8049999999999999";
 export const feeWithdraw = BigNumber.from("4600000000000000");
 export const FULL_DAY_MINUS_ONE_SECOND = 86399000;

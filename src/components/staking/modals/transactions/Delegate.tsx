@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
-import { FEE } from "../../../../internal/asset/Helpers";
+import { FEE_STAKING_ACTIONS } from "../../../../internal/asset/Helpers";
 import {
   convertAndFormat,
   numericOnly,
@@ -69,7 +69,10 @@ export const Delegate = ({
             <SmallButton
               text="MAX"
               onClick={() => {
-                const val = safeSubstraction(evmosBalance, BigNumber.from(FEE));
+                const val = safeSubstraction(
+                  evmosBalance,
+                  BigNumber.from(FEE_STAKING_ACTIONS)
+                );
                 setValue(numericOnly(convertFromAtto(val, 18)));
               }}
             />
@@ -86,7 +89,11 @@ export const Delegate = ({
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />
         )}
         <p className="text-sm">
-          {getReservedForFeeText(BigNumber.from(FEE), "EVMOS", "EVMOS")}
+          {getReservedForFeeText(
+            BigNumber.from(FEE_STAKING_ACTIONS),
+            "EVMOS",
+            "EVMOS"
+          )}
         </p>
       </div>
       <div className="flex justify-end space-x-2">

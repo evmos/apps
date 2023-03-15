@@ -98,7 +98,7 @@ export default function Home() {
               <Container>
                 <>
                   <Snackbars />
-                  <Header />
+                  <Header pageName="Assets" />
                   <div className="container mx-auto overflow-auto mb-auto">
                     <AssetsTable />
                   </div>

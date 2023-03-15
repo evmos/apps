@@ -37,9 +37,9 @@ const KeplrIcon: React.FC<KeplrIconProps> = ({
           y2="109.626"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#17D2FF" />
-          <stop offset="1" stop-color="#704EFF" />
-          <stop offset="1" stop-color="#704EFF" />
+          <stop stopColor="#17D2FF" />
+          <stop offset="1" stopColor="#704EFF" />
+          <stop offset="1" stopColor="#704EFF" />
         </linearGradient>
         <radialGradient
           id="paint1_radial_417_6478"
@@ -49,8 +49,8 @@ const KeplrIcon: React.FC<KeplrIconProps> = ({
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(-0.00183922 134.267) rotate(-56.6396) scale(101.149 105.53)"
         >
-          <stop stop-color="#2845E5" />
-          <stop offset="1" stop-color="#099BF7" stop-opacity="0" />
+          <stop stopColor="#2845E5" />
+          <stop offset="1" stopColor="#099BF7" stopOpacity="0" />
         </radialGradient>
       </defs>
     </svg>

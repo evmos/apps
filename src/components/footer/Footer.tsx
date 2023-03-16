@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { COMMONWEALTH_URL } from "../../internal/common/links";
 
 const TwitterIcon = dynamic(() => import("./icons/Twitter"));
 const TelegramIcon = dynamic(() => import("./icons/Telegram"));
@@ -46,7 +47,7 @@ const Footer = () => {
         <Link
           target="_blank"
           rel="noreferrer"
-          href="https://commonwealth.im/evmos"
+          href={COMMONWEALTH_URL}
           aria-label="commonwealth evmos"
         >
           <CommonWealthIcon />

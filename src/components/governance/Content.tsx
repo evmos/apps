@@ -1,3 +1,4 @@
+import { COMMONWEALTH_URL } from "../../internal/common/links";
 import BannerBlack from "../common/banners/BannerBlack";
 
 const Content = () => {
@@ -6,7 +7,7 @@ const Content = () => {
       <BannerBlack
         text="Have you ever wondered where proposals come from? Join us in our open
           and lively discussions over at Commonwealth"
-        href="https://commonwealth.im/evmos"
+        href={COMMONWEALTH_URL}
       />
     </>
   );

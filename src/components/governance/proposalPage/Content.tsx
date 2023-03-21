@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useProposals } from "../../../internal/governance/functionality/hooks/useProposal";
+import { useProposals } from "../../../internal/governance/functionality/hooks/useProposals";
 import ProposalDescription from "./ProposalDescription";
 
 const Content = () => {

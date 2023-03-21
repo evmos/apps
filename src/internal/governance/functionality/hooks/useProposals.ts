@@ -13,7 +13,7 @@ export const useProposals = () => {
   const proposals = useMemo(() => {
     const temp: ProposalProps[] = [];
     if (proposalsResponse.data !== undefined) {
-      proposalsResponse.data.map((item) => {
+      proposalsResponse.data.proposals.map((item) => {
         const percents = getPercentage([
           item.final_tally_result.yes_count,
           item.final_tally_result.no_count,

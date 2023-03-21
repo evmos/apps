@@ -2,7 +2,6 @@ type AmountProposal = {
   denom: string;
   amount: string;
 };
-
 type MessageProposal = {
   "@type": string;
   authority: string;
@@ -13,6 +12,11 @@ type MessageProposal = {
     recipient: string;
     title: string;
   };
+};
+
+export type V1Proposals = {
+  proposals: Proposal[];
+  tally_params: TallyingProps;
 };
 
 export type Proposal = {
@@ -31,7 +35,6 @@ export type Proposal = {
   voting_end_time: string;
   voting_start_time: string;
 };
-
 export type ProposalProps = {
   id: string;
   title: string;
@@ -40,7 +43,6 @@ export type ProposalProps = {
   votingEndTime: string;
   tallyResults: string[];
 };
-
 export const PROPOSAL_STATUS_REJECTED = "PROPOSAL_STATUS_REJECTED";
 export const PROPOSAL_STATUS_PASSED = "PROPOSAL_STATUS_PASSED";
 export const PROPOSAL_STATUS_VOTING_PERIOD = "PROPOSAL_STATUS_VOTING_PERIOD";
@@ -51,4 +53,25 @@ export const PROPOSAL_STATUS = {
   PROPOSAL_STATUS_PASSED: "Passed",
   PROPOSAL_STATUS_REJECTED: "Rejected",
   PROPOSAL_STATUS_FAILED: "Failed",
+};
+
+export type TallyingProps = {
+  quorum: string;
+  threshold: string;
+  veto_threshold: string;
+};
+
+export type ProposalDetailProps = {
+  id: string;
+  title: string;
+  status: string;
+  votingStartTime: string;
+  votingEndTime: string;
+  tallyResults: string[];
+  tallying: TallyingProps;
+  type: string;
+  totalDeposit: string;
+  submitTime: string;
+  depositEndTime: string;
+  description: string;
 };

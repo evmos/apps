@@ -174,7 +174,7 @@ input[type=number] {
 .markdown {
   @apply text-pearl space-y-2
 }
-.markdown h2 {
+.markdown h2, h1 {
   @apply text-xl font-bold 
 }
 

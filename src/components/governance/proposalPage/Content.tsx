@@ -12,7 +12,7 @@ const Content = () => {
   const { pid } = router.query;
   const { proposalDetail } = useProposals(pid as string);
   return (
-    <>
+    <div className="mt-5 overflow-y-auto max-h-[65vh] md:max-h-[65vh] xl:scrollbar-hide text-white font-[IBM] w-full">
       {/* TODO: create component for container general of cards */}
       <section
         className="space-y-5
@@ -61,13 +61,13 @@ const Content = () => {
 
       <section
         className="markdown space-y-5
-    mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white "
+    mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white break-words"
       >
         <ReactMarkdown remarkPlugins={[remarkGfm]}>
           {proposalDetail.description}
         </ReactMarkdown>
       </section>
-    </>
+    </div>
   );
 };
 

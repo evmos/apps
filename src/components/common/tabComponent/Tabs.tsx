@@ -38,7 +38,7 @@ const Tabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
 
   return (
     <div className="space-y-4 px-2 min-h-[200px]">
-      <div className="py-2 flex justify-between space-x-2 md:space-x-0 w-full sticky top-0 bg-black">
+      <div className="z-[999] py-2 flex justify-between space-x-2 md:space-x-0 w-full sticky top-0 bg-black">
         <div className="md:hidden ">
           <TabsDropdown content={tabsContent} setActiveTab={setActiveTab} />
         </div>

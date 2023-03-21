@@ -34,5 +34,9 @@ export const useProposals = () => {
     return temp;
   }, [proposalsResponse]);
 
-  return { proposals };
+  return {
+    proposals,
+    loading: proposalsResponse.isLoading,
+    error: proposalsResponse.error,
+  };
 };

@@ -2,9 +2,18 @@ import { ProposalProps } from "../../../internal/governance/functionality/types"
 import BarContainer from "./bar/BarContainer";
 import ProposalStatus from "./ProposalStatus";
 
-const ProposalCard = ({ proposalProps }: { proposalProps: ProposalProps }) => {
+const ProposalCard = ({
+  proposalProps,
+  onClick,
+}: {
+  proposalProps: ProposalProps;
+  onClick: () => Promise<boolean>;
+}) => {
   return (
-    <div className="bg-darkGray2 hover:bg-darkGray2Opacity transition-all duration-300 rounded-2xl p-5 space-y-5 cursor-pointer">
+    <div
+      className="bg-darkGray2 hover:bg-darkGray2Opacity transition-all duration-300 rounded-2xl p-5 space-y-5 cursor-pointer"
+      onClick={onClick}
+    >
       <div className="flex justify-between font-bold text-pearl font-[IBM]">
         <div className="bg-black px-3 py-2 rounded-3xl">
           #{proposalProps.id}

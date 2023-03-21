@@ -1,5 +1,7 @@
+import ContainerProposals from "./proposals/ContainerProposals";
+
 const Content = () => {
-  return <></>;
+  return <ContainerProposals />;
 };
 
 export default Content;

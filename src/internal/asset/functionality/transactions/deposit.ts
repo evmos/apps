@@ -53,6 +53,46 @@ export async function executeDeposit(
       explorerTxUrl: "",
     };
   }
+  // As stride does not support amino, we sign with proto.
+  if (params.srcChain.toLowerCase() === "stride") {
+    const signer = new Signer();
+    const sign = await signer.signBackendTx(
+      address,
+      tx.data,
+      identifier,
+      extension
+    );
+    if (sign.result === false) {
+      return {
+        error: true,
+        message: sign.message,
+        title: SIGNING_NOTIFICATIONS.ErrorTitle,
+        txHash: "",
+        explorerTxUrl: "",
+      };
+    }
+    const broadcastResponse = await signer.broadcastTxToBackend();
+    if (broadcastResponse.error === true) {
+      // TODO: add sentry call here!
+      return {
+        error: true,
+        message: broadcastResponse.message,
+        title: BROADCASTED_NOTIFICATIONS.ErrorTitle,
+        txHash: "",
+        explorerTxUrl: "",
+      };
+    }
+    return {
+      error: false,
+      message: `${BROADCASTED_NOTIFICATIONS.SubmitTitle} ${broadcastResponse.txhash}`,
+      title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
+      txHash: broadcastResponse.txhash,
+      explorerTxUrl: tx?.data?.explorerTxUrl,
+    };
+  }
+
+  // for chains that supports amino. This allows the user
+  // to use Ledger
   const signer = new Signer();
   const sign = await signer.signBackendTxWithAmino(
     address,

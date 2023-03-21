@@ -8,6 +8,7 @@ import { useStakingInfo } from "../../../internal/staking/functionality/hooks/us
 import { StoreType } from "../../../redux/Store";
 import { Container } from "../../asset/table/topBar/Container";
 import { Countdown } from "../../common/Countdown";
+import { useRewards } from "../modals/hooks/useRewards";
 
 const TopBarContainer = dynamic(() => import("../../common/TopBarContainer"));
 const ConfirmButton = dynamic(() => import("../../common/ConfirmButton"));
@@ -18,6 +19,7 @@ const TopBarStaking = () => {
     useStakingInfo();
   const { evmosBalance } = useEvmosBalance();
   const { epochs } = useEpochDay();
+  const { handleConfirmButton } = useRewards(value);
 
   return (
     <TopBarContainer>
@@ -54,9 +56,7 @@ const TopBarStaking = () => {
           <ConfirmButton
             className="w-fit text-sm px-4"
             text={`Claim Rewards: ${totalRewards.toFixed(2)} EVMOS`}
-            onClick={() => {
-              // TODO: add claim all rewards enpoint
-            }}
+            onClick={handleConfirmButton}
             disabled={
               !value.active || !totalRewards || totalRewards < 0.005 // insure that small residual is covered
             }

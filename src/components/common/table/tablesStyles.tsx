@@ -10,4 +10,4 @@ export const tdBodyStyle =
 
 export const trBodyStyle = "text-white border-b-2 border-b-black md:space-y-1";
 
-export const thStyle = "first:pl-8 py-4 sticky top-16 bg-black";
+export const thStyle = "first:pl-8 py-4 sticky top-16 bg-black z-[999]";

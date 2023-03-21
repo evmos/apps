@@ -68,7 +68,7 @@ export type ProposalDetailProps = {
   votingStartTime: string;
   votingEndTime: string;
   tallyResults: string[];
-  tallyPercents: string[];
+  tallyPercents: number[];
   tallying: TallyingProps;
   type: string;
   totalDeposit: string;

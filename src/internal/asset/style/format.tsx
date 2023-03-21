@@ -335,7 +335,7 @@ export const getPrefix = (
 
 export function formatAttoNumber(
   // it applies the Millon letter for example
-  value: BigNumberish,
+  value: BigNumberish | BigNumber,
   options?: Intl.NumberFormatOptions,
   notation: "standard" | "compact" = "compact"
 ) {

@@ -5,11 +5,11 @@ const VotingDetails = ({
   percents,
   values,
 }: {
-  percents: string[];
+  percents: number[];
   values: string[];
 }) => {
   return (
-    <div className="grid grid-cols-2 ">
+    <div className="grid grid-cols-2 gap-1">
       <VotingDetail
         votingProps={{
           bgColor: BAR_COLORS.yes,

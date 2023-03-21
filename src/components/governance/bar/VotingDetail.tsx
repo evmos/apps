@@ -9,7 +9,7 @@ const VotingDetail = ({ votingProps }: { votingProps: VotingDetail }) => {
       ></div>
       <div className="text-pearl opacity-80 font-bold">
         <p>{votingProps.type}</p>
-        <span>{votingProps.percent}% </span>
+        <span>{Number(votingProps.percent).toFixed(2)}% </span>
         {votingProps.value !== undefined && (
           <span>({formatAttoNumber(votingProps.value)})</span>
         )}

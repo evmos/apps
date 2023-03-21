@@ -41,7 +41,12 @@ export const useProposals = (pid: string) => {
           votingStartTime: formatDate(item.voting_start_time),
           votingEndTime: formatDate(item.voting_end_time),
           // Order for tallyResults:  yes, no, abstain, no_with_veto
-          tallyResults: [percents[0], percents[1], percents[2], percents[3]],
+          tallyResults: [
+            String(percents[0]),
+            String(percents[1]),
+            String(percents[2]),
+            String(percents[3]),
+          ],
         });
       });
     }
@@ -57,7 +62,7 @@ export const useProposals = (pid: string) => {
       votingEndTime: "--",
       // Order for tallyResults:  yes, no, abstain, no_with_veto
       tallyResults: ["0", "0", "0", "0"],
-      tallyPercents: ["0", "0", "0", "0"],
+      tallyPercents: [0, 0, 0, 0],
       tallying: { quorum: "--", threshold: "--", vetoThreshold: "--" },
       type: "--",
       totalDeposit: "--",
@@ -139,5 +144,10 @@ export const useProposals = (pid: string) => {
     return temp;
   }, [proposalsResponse, pid, tallyingResponse]);
 
-  return { proposals, proposalDetail };
+  return {
+    proposals,
+    proposalDetail,
+    loading: proposalsResponse.isLoading,
+    error: proposalsResponse.error,
+  };
 };

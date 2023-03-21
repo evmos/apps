@@ -15,7 +15,7 @@ export const getPercentage = (value: string[]) => {
     total = 1;
   }
   const percents = value.map((item) => {
-    return ((Number(item) * 100) / total).toFixed(2);
+    return (Number(item) * 100) / total;
   });
   return percents;
 };
@@ -40,20 +40,20 @@ export const splitString = (value: string) => {
   return splitted[splitted.length - 1];
 };
 
-export function indexOfMax(arr: string[]) {
-  // given an array of strings, convert them to
+export function indexOfMax(arr: number[]) {
+  // given an array of numbers, convert them to
   // numbers and returns index of greatest value
   if (arr.length === 0) {
     return -1;
   }
 
-  let max = Number(arr[0]);
+  let max = arr[0];
   let maxIndex = 0;
 
   for (let i = 1; i < arr.length; i++) {
-    if (Number(arr[i]) > max) {
+    if (arr[i] > max) {
       maxIndex = i;
-      max = Number(arr[i]);
+      max = arr[i];
     }
   }
 

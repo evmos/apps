@@ -7,8 +7,8 @@ import {
   getPercentage,
   splitString,
 } from "../../../common/helpers/style";
-import { getProposals, getTallying } from "../fetch";
-import { ProposalDetailProps, ProposalProps, TallyingProps } from "../types";
+import { getProposals } from "../fetch";
+import { ProposalDetailProps, ProposalProps } from "../types";
 
 export const useProposals = (pid: string) => {
   const proposalsResponse = useQuery({
@@ -16,15 +16,10 @@ export const useProposals = (pid: string) => {
     queryFn: () => getProposals(),
   });
 
-  const tallyingResponse = useQuery({
-    queryKey: ["tallying"],
-    queryFn: () => getTallying(),
-  });
-
   const proposals = useMemo(() => {
     const temp: ProposalProps[] = [];
     if (proposalsResponse.data !== undefined) {
-      proposalsResponse.data.map((item) => {
+      proposalsResponse.data.proposals.map((item) => {
         const percents = getPercentage([
           item.final_tally_result.yes_count,
           item.final_tally_result.no_count,
@@ -54,7 +49,7 @@ export const useProposals = (pid: string) => {
       votingEndTime: "--",
       // Order for tallyResults:  yes, no, abstain, no_with_veto
       tallyResults: ["0", "0", "0", "0"],
-      tallying: { quorum: "--", threshold: "--", vetoThreshold: "--" },
+      tallying: { quorum: "--", threshold: "--", veto_threshold: "--" },
       type: "--",
       totalDeposit: "--",
       submitTime: "--",
@@ -62,7 +57,7 @@ export const useProposals = (pid: string) => {
       description: "",
     };
     if (proposalsResponse.data !== undefined) {
-      const filtered = proposalsResponse.data.filter(
+      const filtered = proposalsResponse.data.proposals.filter(
         (proposal) => proposal.id === pid
       );
       // TODO: handle if pid is invalid or we have it
@@ -79,24 +74,17 @@ export const useProposals = (pid: string) => {
         proposalFiltered.final_tally_result.no_with_veto_count,
       ]);
 
-      let tallyingData: TallyingProps = {
-        quorum: "",
-        threshold: "",
-        vetoThreshold: "",
+      const tallyingData = {
+        quorum: (
+          Number(proposalsResponse.data.tally_params.quorum) * 100
+        ).toFixed(2),
+        threshold: (
+          Number(proposalsResponse.data.tally_params.threshold) * 100
+        ).toFixed(2),
+        veto_threshold: (
+          Number(proposalsResponse.data.tally_params.veto_threshold) * 100
+        ).toFixed(2),
       };
-      if (tallyingResponse.data !== undefined) {
-        tallyingData = {
-          quorum: (
-            Number(tallyingResponse.data.tally_params.quorum) * 100
-          ).toFixed(2),
-          threshold: (
-            Number(tallyingResponse.data.tally_params.threshold) * 100
-          ).toFixed(2),
-          vetoThreshold: (
-            Number(tallyingResponse.data.tally_params.veto_threshold) * 100
-          ).toFixed(2),
-        };
-      }
 
       temp = {
         id: proposalFiltered.id,
@@ -120,7 +108,12 @@ export const useProposals = (pid: string) => {
       };
     }
     return temp;
-  }, [proposalsResponse, pid, tallyingResponse]);
+  }, [proposalsResponse, pid]);
 
-  return { proposals, proposalDetail };
+  return {
+    proposals,
+    proposalDetail,
+    loading: proposalsResponse.isLoading,
+    error: proposalsResponse.error,
+  };
 };

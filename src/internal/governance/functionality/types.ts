@@ -15,6 +15,11 @@ type MessageProposal = {
   };
 };
 
+export type V1Proposals = {
+  proposals: Proposal[];
+  tally_params: TallyingProps;
+};
+
 export type Proposal = {
   deposit_end_time: string;
   final_tally_result: {
@@ -56,7 +61,7 @@ export const PROPOSAL_STATUS = {
 export type TallyingProps = {
   quorum: string;
   threshold: string;
-  vetoThreshold: string;
+  veto_threshold: string;
 };
 
 export type ProposalDetailProps = {
@@ -72,19 +77,4 @@ export type ProposalDetailProps = {
   submitTime: string;
   depositEndTime: string;
   description: string;
-};
-
-export type Tallying = {
-  deposit_params: {
-    max_deposit_period: string;
-    min_deposit: [];
-  };
-  tally_params: {
-    quorum: string;
-    threshold: string;
-    veto_threshold: string;
-  };
-  voting_params: {
-    voting_period: string;
-  };
 };

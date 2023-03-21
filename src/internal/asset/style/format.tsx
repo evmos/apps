@@ -1,4 +1,4 @@
-import { BigNumber } from "@ethersproject/bignumber";
+import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
 import { formatUnits } from "@ethersproject/units";
 import { addSnackbar } from "../../../components/notification/redux/notificationSlice";
 import { BIG_ZERO } from "../../common/math/Bignumbers";
@@ -38,7 +38,10 @@ export function safeSubstraction(amount: BigNumber, fee: BigNumber) {
   return substraction;
 }
 
-export function convertFromAtto(value: BigNumber, exponent = 18) {
+export function convertFromAtto(
+  value: BigNumber | BigNumberish,
+  exponent = 18
+) {
   // Convert to string and truncate past decimal
   // for appropriate conversion
   if (!value) return "0";
@@ -71,7 +74,7 @@ export function formatNumber(
   return new Intl.NumberFormat("en-US", {
     notation: notation,
     compactDisplay: "short",
-    maximumFractionDigits: 6,
+    maximumFractionDigits: 2,
     ...options,
   }).format(valueAsNumber);
 }
@@ -329,3 +332,13 @@ export const getPrefix = (
   }
   return prefix;
 };
+
+export function formatAttoNumber(
+  // it applies the Millon letter for example
+  value: BigNumberish,
+  options?: Intl.NumberFormatOptions,
+  notation: "standard" | "compact" = "compact"
+) {
+  const converted = convertFromAtto(value);
+  return formatNumber(converted, options, notation);
+}

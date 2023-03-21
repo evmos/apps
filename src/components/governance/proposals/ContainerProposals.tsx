@@ -35,7 +35,7 @@ const ContainerProposals = () => {
   }, [proposals, loading, error, router]);
 
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 gap-4 px-4 md:px-0">
+    <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-4 md:px-0">
       {drawProposals()}
     </section>
   );

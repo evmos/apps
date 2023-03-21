@@ -38,7 +38,11 @@ const Tabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
 
   return (
     <div className="space-y-4 px-2 min-h-[200px]">
-      <div className="z-[999] py-2 flex justify-between space-x-2 md:space-x-0 w-full sticky top-0 bg-black">
+      {/* z-[9] was added so when the user scrolls, the Manage button 
+      does not appear above the search validators component 
+     the value should be lower than the modal z-index
+*/}
+      <div className="z-[9] py-2 flex justify-between space-x-2 md:space-x-0 w-full sticky top-0 bg-black">
         <div className="md:hidden ">
           <TabsDropdown content={tabsContent} setActiveTab={setActiveTab} />
         </div>

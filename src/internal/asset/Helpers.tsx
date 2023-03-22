@@ -8,3 +8,4 @@ export function getChainIdentifier(identifier: string) {
 }
 
 export const feeWithdraw = BigNumber.from("4600000000000000");
+export const feeVote = BigNumber.from("6250000000000000");

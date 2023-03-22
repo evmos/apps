@@ -26,7 +26,9 @@ export function getReservedForFeeText(
   network: string
 ) {
   return `${convertAndFormat(
-    amount
+    amount,
+    18,
+    6
   )} ${token} is reserved for transaction fees on the ${network} network.`;
 }
 
@@ -58,6 +60,7 @@ export function convertFromAtto(
 
 export function formatNumber(
   value: string | number | undefined,
+  maxDigits = 2,
   options?: Intl.NumberFormatOptions,
   notation: "standard" | "compact" = "standard"
 ) {
@@ -74,13 +77,17 @@ export function formatNumber(
   return new Intl.NumberFormat("en-US", {
     notation: notation,
     compactDisplay: "short",
-    maximumFractionDigits: 2,
+    maximumFractionDigits: maxDigits,
     ...options,
   }).format(valueAsNumber);
 }
 
-export function convertAndFormat(value: BigNumber, exponent = 18) {
-  return formatNumber(convertFromAtto(value, exponent));
+export function convertAndFormat(
+  value: BigNumber,
+  exponent = 18,
+  maxDigits = 2
+) {
+  return formatNumber(convertFromAtto(value, exponent), maxDigits);
 }
 
 export function amountToDollars(
@@ -337,8 +344,9 @@ export function formatAttoNumber(
   // it applies the Millon letter for example
   value: BigNumberish | BigNumber,
   options?: Intl.NumberFormatOptions,
-  notation: "standard" | "compact" = "compact"
+  notation: "standard" | "compact" = "compact",
+  maxDigits = 2
 ) {
   const converted = convertFromAtto(value);
-  return formatNumber(converted, options, notation);
+  return formatNumber(converted, maxDigits, options, notation);
 }

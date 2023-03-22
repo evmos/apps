@@ -89,3 +89,10 @@ export const lookupProposalEndStatus: { [key: string]: string } = {
   1: "No",
   3: "No With Veto",
 };
+
+export const optionVoteSelected: { [key: string]: number } = {
+  Yes: 1,
+  Abstain: 2,
+  No: 3,
+  "No with Veto": 4,
+};

@@ -93,6 +93,7 @@ const Graphic = ({
         voteProps={{
           id: data.id,
           title: data.title,
+          votingEndTime: data.votingEndTime,
         }}
       />
     </section>

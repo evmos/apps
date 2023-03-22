@@ -26,10 +26,16 @@ const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
 
   const close = useCallback(() => setShow(false), []);
   const open = useCallback(() => setShow(true), []);
+  const isVotingTimeWithinRange =
+    voteProps?.votingEndTime < new Date().toISOString();
   const { handleConfirmButton } = useVote(useVoteProps);
   return (
     <>
-      <ConfirmButton text="Vote" onClick={open} disabled={false} />
+      <ConfirmButton
+        text="Vote"
+        onClick={open}
+        disabled={!wallet.active || !isVotingTimeWithinRange}
+      />
       <Modal show={show} onClose={close}>
         <div className="space-y-4">
           <p className="font-bold">Your Vote</p>
@@ -49,7 +55,7 @@ const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
           <ConfirmButton
             text="Vote"
             onClick={handleConfirmButton}
-            disabled={false}
+            disabled={!wallet.active || !isVotingTimeWithinRange}
           />
         </div>
       </Modal>

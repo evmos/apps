@@ -69,11 +69,8 @@ export const useProposals = (pid?: string) => {
       const filtered = proposalsResponse.data.proposals.filter(
         (proposal) => proposal.id === pid
       );
-      // TODO: handle if pid is invalid or we have it
-      // as undefined or null.
-      // let temp: ProposalDetailProps;
       if (filtered.length === 0) {
-        return temp;
+        return "Proposal not found, please try again";
       }
       const proposalFiltered = filtered[0];
       const percents = getPercentage([

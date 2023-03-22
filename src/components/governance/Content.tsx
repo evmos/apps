@@ -1,9 +1,13 @@
+import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { COMMONWEALTH_URL } from "../../internal/common/links";
 import { useProposals } from "../../internal/governance/functionality/hooks/useProposals";
-import BannerBlack from "../common/banners/BannerBlack";
-import ContentProposal from "./proposalPage/ContentProposal";
-import ContainerProposals from "./proposals/ContainerProposals";
+
+const BannerBlack = dynamic(() => import("../common/banners/BannerBlack"));
+const ContainerProposals = dynamic(
+  () => import("./proposals/ContainerProposals")
+);
+const ContentProposal = dynamic(() => import("./proposalPage/ContentProposal"));
 
 const Content = () => {
   const router = useRouter();

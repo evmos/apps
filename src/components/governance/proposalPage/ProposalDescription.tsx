@@ -1,9 +1,10 @@
 import IdContainer from "../common/IdContainer";
-import TitleContainer from "../common/TItleContainer";
+import TitleContainer from "../common/TitleContainer";
 import DescriptionItem from "./DescriptionItem";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 import { ProposalDetailProps } from "../../../internal/governance/functionality/types";
+import BannerMessages from "../../common/banners/BannerMessages";
 
 const ProposalDescription = ({
   loading,
@@ -15,19 +16,10 @@ const ProposalDescription = ({
   proposalDetail: ProposalDetailProps;
 }) => {
   if (loading) {
-    return (
-      <div className="md:col-span-2 justify-center mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white flex text-center items-center space-x-2">
-        <span className="loader"></span>
-        <p className="font-bold">Loading...</p>
-      </div>
-    );
+    return <BannerMessages text="Loading..." spinner={true} />;
   }
   if (error) {
-    return (
-      <div className="md:col-span-2 justify-center mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white flex text-center items-center">
-        <p className="font-bold">No results</p>
-      </div>
-    );
+    return <BannerMessages text="No results" />;
   }
   return (
     <div>

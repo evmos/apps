@@ -43,7 +43,7 @@ export const splitString = (value: string) => {
 export function indexOfMax(arr: number[]) {
   // given an array of numbers, convert them to
   // numbers and returns index of greatest value
-  if (arr.length === 0) {
+  if (arr === undefined || arr?.length === 0) {
     return -1;
   }
 
@@ -62,7 +62,7 @@ export function indexOfMax(arr: number[]) {
 
 export const SumBigNumber = (value: string[]) => {
   let total = BIG_ZERO;
-  const sum = value.reduce((prev, curr) => {
+  const sum = value?.reduce((prev, curr) => {
     return prev.add(BigNumber.from(curr));
   }, total);
   total = sum ? sum : BIG_ZERO;

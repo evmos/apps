@@ -37,6 +37,7 @@ export default function Home() {
               <title>Governance Page</title>
               <link rel="icon" href="/favicon.ico" />
             </Head>
+
             <main>
               <TermOfServices />
               <Container>

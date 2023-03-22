@@ -69,7 +69,7 @@ const Graphic = ({
           items={[
             {
               color: "#97AD11",
-              percentage: Number(data.tallyPercents[0]),
+              percentage: Number(data?.tallyPercents[0]),
             },
             {
               color: "#ed4e33",

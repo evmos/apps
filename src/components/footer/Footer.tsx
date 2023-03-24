@@ -52,7 +52,8 @@ const Footer = () => {
           <CommonWealthIcon />
         </Link>
       </div>
-      <div className="flex items-center space-x-5">
+      <div className="flex items-center space-x-5 justify-center w-full px-2">
+        <p>Version: c549d8f</p>
         <p>
           <Link
             target="_blank"

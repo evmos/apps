@@ -78,8 +78,24 @@ export const isVotingTimeWithinRange = (date: string) => {
     return false;
   }
   const now = new Date();
+  const nowUTC = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate(),
+    now.getUTCHours(),
+    now.getUTCMinutes(),
+    now.getUTCSeconds()
+  );
   const endPeriodVote = new Date(date);
-  // change to <
-  const canVote = endPeriodVote < now;
+  const endPeriodVoteUTC = Date.UTC(
+    endPeriodVote.getUTCFullYear(),
+    endPeriodVote.getUTCMonth(),
+    endPeriodVote.getUTCDate(),
+    endPeriodVote.getUTCHours(),
+    endPeriodVote.getUTCMinutes(),
+    endPeriodVote.getUTCSeconds()
+  );
+  const canVote =
+    new Date(endPeriodVoteUTC).getTime() > new Date(nowUTC).getTime();
   return canVote;
 };

@@ -127,6 +127,7 @@ export type VoteResponse = {
   vote: {
     proposal_id: string;
     voter: string;
+    option: string;
     options: OptionsVoteResponse[];
   };
 };

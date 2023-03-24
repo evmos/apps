@@ -15,13 +15,11 @@ export const getVoteRecord = async (id: string, address: string) => {
     id == undefined ||
     id == null
   ) {
-    return { vote: { proposal_id: "", voter: "", options: [] } };
+    return { vote: { proposal_id: "", voter: "", option: "", options: [] } };
   }
 
   const res = await fetch(
-    `${EVMOS_BACKEND}/VoteRecord/EVMOS/${Number(
-      id
-    )}/evmos1wrmxs8mknurxmefa3qwt8ptk6qxk3s7hn3vypn`
+    `${EVMOS_BACKEND}/VoteRecord/EVMOS/${Number(id)}/${address}`
   );
   return res.json() as Promise<VoteResponse>;
 };

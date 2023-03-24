@@ -27,7 +27,6 @@ const Graphic = ({
 }) => {
   const isNotInDepositPeriod =
     PROPOSAL_DISPLAY_MAPPING[data.status] !== "Deposit";
-
   const largestWinningBlock = useMemo(() => {
     return indexOfMax(data.tallyPercents);
   }, [data.tallyPercents]);
@@ -43,18 +42,9 @@ const Graphic = ({
       return null;
     }
 
-    if (largestWinningBlock === 0) {
-      return (
-        <div
-          className={`py-1 px-2 font-bold inset-0 text-white absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
-      ${BAR_COLORS.yes}
-      `}
-        >
-          <CheckIcon width={30} height={30} />
-          {lookupProposalEndStatus[largestWinningBlock]}
-        </div>
-      );
-    } else {
+    // 1 indicates that the majority of the votes were NO
+    // 3 indicates that the majority of the votes were NO with veto
+    if (largestWinningBlock === 1 || largestWinningBlock === 3) {
       return (
         <div
           className={`py-1 px-2 font-bold inset-0 text-white absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
@@ -63,6 +53,17 @@ const Graphic = ({
         >
           <CloseIcon width={30} height={30} />
           {lookupProposalEndStatus[largestWinningBlock]}
+        </div>
+      );
+    } else {
+      return (
+        <div
+          className={`py-1 px-2 font-bold inset-0 text-white absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
+      ${BAR_COLORS.yes}
+      `}
+        >
+          <CheckIcon width={30} height={30} />
+          {lookupProposalEndStatus[0]}
         </div>
       );
     }
@@ -117,7 +118,7 @@ const Graphic = ({
         voteProps={{
           id: data.id,
           title: data.title,
-          votingEndTime: data.votingEndTime,
+          isVotingTimeWithinRange: data.isVotingTimeWithinRange,
         }}
       />
     </section>

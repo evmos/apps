@@ -29,9 +29,8 @@ import {
 } from "../../../internal/asset/style/format";
 import { BigNumber } from "ethers";
 import HeadAssets from "./components/HeadAssets";
-import LeftArrowIcon from "../../common/images/icons/LeftArrowIcon";
-import Link from "next/link";
 import Guide from "./Guide";
+import NavToMissionControl from "../../common/navigation/NavToMissionControl";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -123,13 +122,7 @@ const AssetsTable = () => {
 
   return (
     <>
-      <Link
-        href="https://app.evmos.org/"
-        className="text-white flex items-center space-x-3 mb-2 font-bold mx-5 xl:mx-0 justify-center xl:justify-start hover:opacity-80"
-      >
-        <LeftArrowIcon width={15} height={15} />
-        <p>Back to Mission Control</p>
-      </Link>
+      <NavToMissionControl />
       <TopBar topProps={topProps} />
       <div className="flex flex-col lg:flex-row mx-5 xl:mx-0 justify-center lg:justify-between">
         <Guide />

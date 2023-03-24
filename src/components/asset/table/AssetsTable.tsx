@@ -31,6 +31,7 @@ import { BigNumber } from "ethers";
 import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import NavToMissionControl from "../../common/navigation/NavToMissionControl";
+import { EVMOS_PAGE_URL, NAV_TO_MISSION_CONTROL } from "../../common/constants";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -122,7 +123,10 @@ const AssetsTable = () => {
 
   return (
     <>
-      <NavToMissionControl />
+      <NavToMissionControl
+        href={EVMOS_PAGE_URL}
+        text={NAV_TO_MISSION_CONTROL}
+      />
       <TopBar topProps={topProps} />
       <div className="flex flex-col lg:flex-row mx-5 xl:mx-0 justify-center lg:justify-between">
         <Guide />

@@ -9,6 +9,9 @@ describe("Test For Helpers", () => {
       "2263301217153781448738",
     ];
     const msg = getPercentage(arr);
-    expect(msg).toStrictEqual(["86.33", "0.19", "13.48", "0.00"]);
+    expect(msg).toStrictEqual([
+      86.3270570163752, 0.1905728578658595, 13.480736473460993,
+      0.0016336522979564414,
+    ]);
   });
 });

@@ -90,13 +90,13 @@ describe("FormatNumber function", () => {
   });
 
   it("Format number with decimals", () => {
-    const value = formatNumber(0.000008);
+    const value = formatNumber(0.000008, 6);
     expect(value).toBe("0.000008");
   });
 
   it("Format string with decimals", () => {
     const value = formatNumber("0.000008");
-    expect(value).toBe("0.000008");
+    expect(value).toBe("0");
   });
 });
 

@@ -1,7 +1,10 @@
+import { BigNumber } from "ethers";
+
 type AmountProposal = {
   denom: string;
   amount: string;
 };
+
 type MessageProposal = {
   "@type": string;
   authority: string;
@@ -35,6 +38,7 @@ export type Proposal = {
   voting_end_time: string;
   voting_start_time: string;
 };
+
 export type ProposalProps = {
   id: string;
   title: string;
@@ -43,6 +47,7 @@ export type ProposalProps = {
   votingEndTime: string;
   tallyResults: string[];
 };
+
 export const PROPOSAL_STATUS_REJECTED = "PROPOSAL_STATUS_REJECTED";
 export const PROPOSAL_STATUS_PASSED = "PROPOSAL_STATUS_PASSED";
 export const PROPOSAL_STATUS_VOTING_PERIOD = "PROPOSAL_STATUS_VOTING_PERIOD";
@@ -68,10 +73,19 @@ export type ProposalDetailProps = {
   votingStartTime: string;
   votingEndTime: string;
   tallyResults: string[];
+  tallyPercents: number[];
   tallying: TallyingProps;
   type: string;
   totalDeposit: string;
   submitTime: string;
   depositEndTime: string;
   description: string;
+  total: BigNumber;
+};
+
+export const lookupProposalEndStatus: { [key: string]: string } = {
+  0: "Passed",
+  2: "Abstain",
+  1: "No",
+  3: "No With Veto",
 };

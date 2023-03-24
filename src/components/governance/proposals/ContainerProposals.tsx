@@ -1,38 +1,40 @@
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { useCallback } from "react";
-import { useProposals } from "../../../internal/governance/functionality/hooks/useProposals";
+import { ProposalProps } from "../../../internal/governance/functionality/types";
+import BannerMessages from "../../common/banners/BannerMessages";
+import { GOVERNANCE_PATH } from "../common/helpers";
 import ProposalCard from "./ProposalCard";
 
-const ContainerProposals = () => {
-  const { proposals, loading, error } = useProposals();
-  const router = useRouter();
-
+const ContainerProposals = ({
+  proposals,
+  loading,
+  error,
+}: {
+  proposals: ProposalProps[];
+  loading: boolean;
+  error: unknown;
+}) => {
   const drawProposals = useCallback(() => {
     if (loading) {
-      return (
-        <div className="md:col-span-2 justify-center mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white flex text-center items-center space-x-2">
-          <span className="loader"></span>
-          <p className="font-bold">Loading...</p>
-        </div>
-      );
+      return <BannerMessages text="Loading..." spinner={true} />;
     }
     if (error) {
-      return (
-        <div className="md:col-span-2 justify-center mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white flex text-center items-center">
-          <p className="font-bold">No results</p>
-        </div>
-      );
+      return <BannerMessages text="No results" />;
     }
     return proposals.map((proposal) => {
       return (
-        <ProposalCard
-          proposalProps={proposal}
+        <Link
           key={proposal.id}
-          onClick={() => router.push("/governance" + `/${proposal.id}`)}
-        />
+          href={{
+            pathname: GOVERNANCE_PATH,
+            query: { id: proposal.id },
+          }}
+        >
+          <ProposalCard proposalProps={proposal} />
+        </Link>
       );
     });
-  }, [proposals, loading, error, router]);
+  }, [proposals, loading, error]);
 
   return (
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-4 px-4 md:px-0">

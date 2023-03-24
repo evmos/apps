@@ -6,7 +6,7 @@ const VotingDetail = ({ votingProps }: { votingProps: VotingDetail }) => {
       <div className={`${votingProps.bgColor} w-4 h-4 rounded-lg`}></div>
       <div className="text-pearl opacity-80 font-bold">
         <p>{votingProps.type}</p>
-        <p>{votingProps.percent}%</p>
+        <p>{Number(votingProps.percent).toFixed(2)}%</p>
       </div>
     </div>
   );

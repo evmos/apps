@@ -1,3 +1,6 @@
+import { BigNumber } from "ethers";
+import { BIG_ZERO } from "../math/Bignumbers";
+
 export const getPercentage = (value: string[]) => {
   // given an array of strings,
   // returns an array with the percents
@@ -12,7 +15,7 @@ export const getPercentage = (value: string[]) => {
     total = 1;
   }
   const percents = value.map((item) => {
-    return ((Number(item) * 100) / total).toFixed(2);
+    return (Number(item) * 100) / total;
   });
   return percents;
 };
@@ -35,4 +38,34 @@ export const splitString = (value: string) => {
     return value;
   }
   return splitted[splitted.length - 1];
+};
+
+export function indexOfMax(arr: number[]) {
+  // given an array of numbers, convert them to
+  // numbers and returns index of greatest value
+  if (arr === undefined || arr?.length === 0) {
+    return -1;
+  }
+
+  let max = arr[0];
+  let maxIndex = 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] > max) {
+      maxIndex = i;
+      max = arr[i];
+    }
+  }
+
+  return maxIndex;
+}
+
+export const SumBigNumber = (value: string[]) => {
+  let total = BIG_ZERO;
+  const sum = value?.reduce((prev, curr) => {
+    return prev.add(BigNumber.from(curr));
+  }, total);
+  total = sum ? sum : BIG_ZERO;
+
+  return total;
 };

@@ -6,7 +6,9 @@ import {
   formatDate,
   getPercentage,
   splitString,
+  SumBigNumber,
 } from "../../../common/helpers/style";
+import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import { getProposals } from "../fetch";
 import { ProposalDetailProps, ProposalProps } from "../types";
 
@@ -33,7 +35,12 @@ export const useProposals = (pid?: string) => {
           votingStartTime: formatDate(item.voting_start_time),
           votingEndTime: formatDate(item.voting_end_time),
           // Order for tallyResults:  yes, no, abstain, no_with_veto
-          tallyResults: [percents[0], percents[1], percents[2], percents[3]],
+          tallyResults: [
+            String(percents[0]),
+            String(percents[1]),
+            String(percents[2]),
+            String(percents[3]),
+          ],
         });
       });
     }
@@ -49,22 +56,21 @@ export const useProposals = (pid?: string) => {
       votingEndTime: "--",
       // Order for tallyResults:  yes, no, abstain, no_with_veto
       tallyResults: ["0", "0", "0", "0"],
+      tallyPercents: [0, 0, 0, 0],
       tallying: { quorum: "--", threshold: "--", veto_threshold: "--" },
       type: "--",
       totalDeposit: "--",
       submitTime: "--",
       depositEndTime: "--",
       description: "",
+      total: BIG_ZERO,
     };
     if (proposalsResponse.data !== undefined) {
       const filtered = proposalsResponse.data.proposals.filter(
         (proposal) => proposal.id === pid
       );
-      // TODO: handle if pid is invalid or we have it
-      // as undefined or null.
-      // let temp: ProposalDetailProps;
       if (filtered.length === 0) {
-        return temp;
+        return "Proposal not found, please try again";
       }
       const proposalFiltered = filtered[0];
       const percents = getPercentage([
@@ -93,7 +99,13 @@ export const useProposals = (pid?: string) => {
         votingStartTime: formatDate(proposalFiltered.voting_start_time),
         votingEndTime: formatDate(proposalFiltered.voting_end_time),
         // Order for tallyResults:  yes, no, abstain, no_with_veto
-        tallyResults: [percents[0], percents[1], percents[2], percents[3]],
+        tallyPercents: [percents[0], percents[1], percents[2], percents[3]],
+        tallyResults: [
+          proposalFiltered.final_tally_result.yes_count,
+          proposalFiltered.final_tally_result.no_count,
+          proposalFiltered.final_tally_result.abstain_count,
+          proposalFiltered.final_tally_result.no_with_veto_count,
+        ],
         tallying: tallyingData,
         type: splitString(proposalFiltered.messages[0].content["@type"]),
         totalDeposit: convertAndFormat(
@@ -105,6 +117,12 @@ export const useProposals = (pid?: string) => {
           /\\[rn]/g,
           "\n"
         ),
+        total: SumBigNumber([
+          proposalFiltered.final_tally_result.yes_count,
+          proposalFiltered.final_tally_result.no_count,
+          proposalFiltered.final_tally_result.abstain_count,
+          proposalFiltered.final_tally_result.no_with_veto_count,
+        ]),
       };
     }
     return temp;

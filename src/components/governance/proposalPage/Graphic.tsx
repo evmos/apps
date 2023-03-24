@@ -11,6 +11,7 @@ import CheckIcon from "../../common/images/icons/CheckIcon";
 import CloseIcon from "../../common/images/icons/CloseIcon";
 import { BAR_COLORS } from "../bar/styles";
 import VotingDetails from "../common/VotingDetails";
+import VoteButton from "./vote/VoteButton";
 const Graphic = ({
   data,
   loading,
@@ -48,13 +49,14 @@ const Graphic = ({
     }
   }, [error, loading, largestWinningBlock]);
   return (
-    <section className="space-y-5 mx-5 lg:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM]">
+    <section className="space-y-5 mx-5 lg:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] h-fit">
       <div className="text-pearl font-bold flex justify-between">
         <p>Total</p>
         <p>
           {formatAttoNumber(data.total)} {EVMOS_SYMBOL}
         </p>
       </div>
+      {/* graphic */}
       <div className="relative">
         <div
           className={`py-1 px-2 font-bold inset-0 text-white absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
@@ -87,6 +89,13 @@ const Graphic = ({
         ></Arc>
       </div>
       <VotingDetails percents={data.tallyPercents} values={data.tallyResults} />
+      <VoteButton
+        voteProps={{
+          id: data.id,
+          title: data.title,
+          votingEndTime: data.votingEndTime,
+        }}
+      />
     </section>
   );
 };

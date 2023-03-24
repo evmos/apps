@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { BigNumber } from "ethers";
 import { useMemo } from "react";
-import { convertAndFormat } from "../../../asset/style/format";
+import { formatAttoNumber } from "../../../asset/style/format";
 import {
   formatDate,
   getPercentage,
@@ -108,7 +108,7 @@ export const useProposals = (pid?: string) => {
         ],
         tallying: tallyingData,
         type: splitString(proposalFiltered.messages[0].content["@type"]),
-        totalDeposit: convertAndFormat(
+        totalDeposit: formatAttoNumber(
           BigNumber.from(proposalFiltered.total_deposit[0].amount)
         ),
         submitTime: formatDate(proposalFiltered.submit_time),

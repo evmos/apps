@@ -10,10 +10,12 @@ const ProposalDescription = ({
   loading,
   error,
   proposalDetail,
+  userVote,
 }: {
   loading: boolean;
   error: unknown;
   proposalDetail: ProposalDetailProps;
+  userVote: null | JSX.Element;
 }) => {
   if (loading) {
     return <BannerMessages text="Loading..." spinner={true} />;
@@ -24,9 +26,12 @@ const ProposalDescription = ({
   return (
     <div>
       <section className="space-y-5 mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white ">
-        <div className="flex space-x-4 items-center ">
-          <IdContainer id={proposalDetail.id} />
-          <TitleContainer title={proposalDetail.title} />
+        <div className="flex justify-between">
+          <div className="flex space-x-4 items-center ">
+            <IdContainer id={proposalDetail.id} />
+            <TitleContainer title={proposalDetail.title} />
+          </div>
+          {userVote !== null && userVote}
         </div>
         <div className="space-y-4">
           <DescriptionItem
@@ -64,12 +69,13 @@ const ProposalDescription = ({
           />
         </div>
       </section>
-
-      <section className="markdown space-y-5 mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white break-words">
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-          {proposalDetail.description}
-        </ReactMarkdown>
-      </section>
+      {proposalDetail.description && (
+        <section className="markdown space-y-5 mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white break-words">
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            {proposalDetail.description}
+          </ReactMarkdown>
+        </section>
+      )}
     </div>
   );
 };

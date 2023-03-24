@@ -7,7 +7,7 @@ import CheckIcon from "../../common/images/icons/CheckIcon";
 import CloseIcon from "../../common/images/icons/CloseIcon";
 const ProposalStatus = ({ status }: { status: string }) => {
   const style =
-    "text-sm flex items-center space-x-2 px-3 py-2 rounded-3xl opacity-80";
+    "text-sm flex items-center space-x-2 px-4 py-2 rounded-3xl opacity-80";
   if (status === PROPOSAL_STATUS_REJECTED) {
     return (
       <div className={`${style} bg-black`}>
@@ -28,7 +28,7 @@ const ProposalStatus = ({ status }: { status: string }) => {
   //   PROPOSAL_STATUS_FAILED, PROPOSAL_STATUS_VOTING_PERIOD
 
   return (
-    <div className={`${style} bg-darkGray5`}>
+    <div className={`${style} border-2 border-pearl`}>
       <span>{PROPOSAL_STATUS.PROPOSAL_STATUS_VOTING_PERIOD}</span>
     </div>
   );

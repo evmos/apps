@@ -6,4 +6,5 @@ export type VoteProps = {
   option: string;
   setShow: Dispatch<SetStateAction<boolean>>;
   wallet: WalletExtension;
+  isVotingTimeWithinRange: boolean;
 };

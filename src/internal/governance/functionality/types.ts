@@ -47,11 +47,20 @@ export type ProposalProps = {
   votingEndTime: string;
   tallyResults: string[];
 };
-
+// actualizar estos
 export const PROPOSAL_STATUS_REJECTED = "PROPOSAL_STATUS_REJECTED";
 export const PROPOSAL_STATUS_PASSED = "PROPOSAL_STATUS_PASSED";
 export const PROPOSAL_STATUS_VOTING_PERIOD = "PROPOSAL_STATUS_VOTING_PERIOD";
 export const PROPOSAL_STATUS = {
+  PROPOSAL_STATUS_UNSPECIFIED: "Default",
+  PROPOSAL_STATUS_DEPOSIT_PERIOD: "Deposit",
+  PROPOSAL_STATUS_VOTING_PERIOD: "Voting",
+  PROPOSAL_STATUS_PASSED: "Passed",
+  PROPOSAL_STATUS_REJECTED: "Rejected",
+  PROPOSAL_STATUS_FAILED: "Failed",
+};
+
+export const PROPOSAL_DISPLAY_MAPPING: Record<string, string> = {
   PROPOSAL_STATUS_UNSPECIFIED: "Default",
   PROPOSAL_STATUS_DEPOSIT_PERIOD: "Deposit",
   PROPOSAL_STATUS_VOTING_PERIOD: "Voting",
@@ -81,6 +90,7 @@ export type ProposalDetailProps = {
   depositEndTime: string;
   description: string;
   total: BigNumber;
+  isVotingTimeWithinRange: boolean;
 };
 
 export const lookupProposalEndStatus: { [key: string]: string } = {
@@ -95,4 +105,29 @@ export const optionVoteSelected: { [key: string]: number } = {
   Abstain: 2,
   No: 3,
   "No with Veto": 4,
+};
+
+interface VotingReference {
+  [key: string]: string;
+}
+
+export const VOTING_LOOKUP: VotingReference = {
+  VOTE_OPTION_YES: "Yes",
+  VOTE_OPTION_ABSTAIN: "Abstain",
+  VOTE_OPTION_NO: "No",
+  VOTE_OPTION_NO_WITH_VETO: "No with Veto",
+};
+
+type OptionsVoteResponse = {
+  option: string;
+  weight: string;
+};
+
+export type VoteResponse = {
+  vote: {
+    proposal_id: string;
+    voter: string;
+    option: string;
+    options: OptionsVoteResponse[];
+  };
 };

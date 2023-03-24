@@ -33,6 +33,9 @@ export function formatDate(date: string) {
 }
 
 export const splitString = (value: string) => {
+  if (value === undefined) {
+    return "";
+  }
   const splitted = value.split(".");
   if (splitted.length === 0) {
     return value;
@@ -60,7 +63,7 @@ export function indexOfMax(arr: number[]) {
   return maxIndex;
 }
 
-export const SumBigNumber = (value: string[]) => {
+export const sumBigNumber = (value: string[]) => {
   let total = BIG_ZERO;
   const sum = value?.reduce((prev, curr) => {
     return prev.add(BigNumber.from(curr));
@@ -68,4 +71,31 @@ export const SumBigNumber = (value: string[]) => {
   total = sum ? sum : BIG_ZERO;
 
   return total;
+};
+
+export const isVotingTimeWithinRange = (date: string) => {
+  if (date === undefined) {
+    return false;
+  }
+  const now = new Date();
+  const nowUTC = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate(),
+    now.getUTCHours(),
+    now.getUTCMinutes(),
+    now.getUTCSeconds()
+  );
+  const endPeriodVote = new Date(date);
+  const endPeriodVoteUTC = Date.UTC(
+    endPeriodVote.getUTCFullYear(),
+    endPeriodVote.getUTCMonth(),
+    endPeriodVote.getUTCDate(),
+    endPeriodVote.getUTCHours(),
+    endPeriodVote.getUTCMinutes(),
+    endPeriodVote.getUTCSeconds()
+  );
+  const canVote =
+    new Date(endPeriodVoteUTC).getTime() > new Date(nowUTC).getTime();
+  return canVote;
 };

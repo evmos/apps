@@ -1,6 +1,9 @@
 import { useCallback, useState } from "react";
 import { feeVote } from "../../../../internal/asset/Helpers";
-import { getReservedForFeeText } from "../../../../internal/asset/style/format";
+import {
+  convertFromAtto,
+  getReservedForFeeText,
+} from "../../../../internal/asset/style/format";
 import { EVMOS_SYMBOL } from "../../../../internal/wallet/functionality/networkConfig";
 import ConfirmButton from "../../../common/ConfirmButton";
 import Modal from "../../../common/Modal";
@@ -11,14 +14,18 @@ import { VoteProps } from "../../common/types";
 import RadioElementContainer from "./RadioElementContainer";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../../../redux/Store";
+import { useEvmosBalance } from "../../../../internal/common/functionality/hooks/useEvmosBalance";
+import ErrorMessage from "../../../asset/modals/common/ErrorMessage";
+import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
 
 const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
   const [show, setShow] = useState(false);
   const [selected, setSelected] = useState("");
   const wallet = useSelector((state: StoreType) => state.wallet.value);
-
+  const { evmosBalance } = useEvmosBalance();
   const useVoteProps = {
     id: voteProps.id,
+    isVotingTimeWithinRange: voteProps.isVotingTimeWithinRange,
     option: selected,
     setShow,
     wallet,
@@ -26,15 +33,16 @@ const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
 
   const close = useCallback(() => setShow(false), []);
   const open = useCallback(() => setShow(true), []);
-  const isVotingTimeWithinRange =
-    voteProps?.votingEndTime < new Date().toISOString();
   const { handleConfirmButton } = useVote(useVoteProps);
+
+  const isSmallBalance = Number(convertFromAtto(evmosBalance)) < 0.0001;
+
   return (
     <>
       <ConfirmButton
         text="Vote"
         onClick={open}
-        disabled={!wallet.active || !isVotingTimeWithinRange}
+        disabled={!wallet.active || !voteProps.isVotingTimeWithinRange}
       />
       <Modal show={show} onClose={close}>
         <div className="space-y-4">
@@ -50,12 +58,21 @@ const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
             setSelected={setSelected}
           />
 
-          {/* TODO: check if fee is correct */}
           <p>{getReservedForFeeText(feeVote, EVMOS_SYMBOL, EVMOS_SYMBOL)}</p>
+          {isSmallBalance && (
+            <ErrorMessage
+              text={MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext}
+            />
+          )}
+
           <ConfirmButton
             text="Vote"
             onClick={handleConfirmButton}
-            disabled={!wallet.active || !isVotingTimeWithinRange}
+            disabled={
+              !wallet.active ||
+              !voteProps.isVotingTimeWithinRange ||
+              isSmallBalance
+            }
           />
         </div>
       </Modal>

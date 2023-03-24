@@ -3,6 +3,8 @@ import Graphic from "./Graphic";
 import { useCallback } from "react";
 import BannerMessages from "../../common/banners/BannerMessages";
 import { ProposalDetailProps } from "../../../internal/governance/functionality/types";
+import UserVote from "./UserVote";
+import { useVote } from "../../../internal/governance/functionality/hooks/useVote";
 
 const ContentProposal = ({
   proposalDetail,
@@ -13,7 +15,11 @@ const ContentProposal = ({
   loading: boolean;
   error: unknown;
 }) => {
+  const { vote } = useVote(
+    typeof proposalDetail !== "string" ? proposalDetail.id : ""
+  );
   const drawContentProposal = useCallback(() => {
+    const voteRecord = <UserVote voteRecord={vote} />;
     if (loading) {
       return <BannerMessages text="Loading..." spinner={true} />;
     }
@@ -31,12 +37,18 @@ const ContentProposal = ({
             proposalDetail={proposalDetail}
             loading={loading}
             error={error}
+            userVote={voteRecord}
           />
         </section>
-        <Graphic data={proposalDetail} loading={loading} error={error} />
+        <Graphic
+          data={proposalDetail}
+          loading={loading}
+          error={error}
+          userVote={voteRecord}
+        />
       </div>
     );
-  }, [error, loading, proposalDetail]);
+  }, [error, loading, proposalDetail, vote]);
 
   return drawContentProposal();
 };

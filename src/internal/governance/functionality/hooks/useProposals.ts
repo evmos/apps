@@ -5,8 +5,9 @@ import { formatAttoNumber } from "../../../asset/style/format";
 import {
   formatDate,
   getPercentage,
+  isVotingTimeWithinRange,
   splitString,
-  SumBigNumber,
+  sumBigNumber,
 } from "../../../common/helpers/style";
 import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import { getProposals } from "../fetch";
@@ -30,10 +31,14 @@ export const useProposals = (pid?: string) => {
         ]);
         temp.push({
           id: item.id,
-          title: item.messages[0].content.title,
+          title: item.messages.length > 0 ? item.messages[0].content.title : "",
           status: item.status,
-          votingStartTime: formatDate(item.voting_start_time),
-          votingEndTime: formatDate(item.voting_end_time),
+          votingStartTime:
+            item.voting_start_time !== ""
+              ? formatDate(item.voting_start_time)
+              : "",
+          votingEndTime:
+            item.voting_end_time !== "" ? formatDate(item.voting_end_time) : "",
           // Order for tallyResults:  yes, no, abstain, no_with_veto
           tallyResults: [
             String(percents[0]),
@@ -64,6 +69,7 @@ export const useProposals = (pid?: string) => {
       depositEndTime: "--",
       description: "",
       total: BIG_ZERO,
+      isVotingTimeWithinRange: false,
     };
     if (proposalsResponse.data !== undefined) {
       const filtered = proposalsResponse.data.proposals.filter(
@@ -94,10 +100,20 @@ export const useProposals = (pid?: string) => {
 
       temp = {
         id: proposalFiltered.id,
-        title: proposalFiltered.messages[0].content.title,
+        title:
+          proposalFiltered.messages.length > 0
+            ? proposalFiltered.messages[0].content.title
+            : "",
         status: proposalFiltered.status,
-        votingStartTime: formatDate(proposalFiltered.voting_start_time),
-        votingEndTime: formatDate(proposalFiltered.voting_end_time),
+        votingStartTime:
+          proposalFiltered.voting_start_time !== ""
+            ? formatDate(proposalFiltered.voting_start_time)
+            : "",
+        votingEndTime:
+          proposalFiltered.voting_end_time !== ""
+            ? formatDate(proposalFiltered.voting_end_time)
+            : "",
+
         // Order for tallyResults:  yes, no, abstain, no_with_veto
         tallyPercents: [percents[0], percents[1], percents[2], percents[3]],
         tallyResults: [
@@ -107,22 +123,40 @@ export const useProposals = (pid?: string) => {
           proposalFiltered.final_tally_result.no_with_veto_count,
         ],
         tallying: tallyingData,
-        type: splitString(proposalFiltered.messages[0].content["@type"]),
-        totalDeposit: formatAttoNumber(
-          BigNumber.from(proposalFiltered.total_deposit[0].amount)
-        ),
-        submitTime: formatDate(proposalFiltered.submit_time),
-        depositEndTime: formatDate(proposalFiltered.deposit_end_time),
-        description: proposalFiltered.messages[0].content.description.replace(
-          /\\[rn]/g,
-          "\n"
-        ),
-        total: SumBigNumber([
+        type:
+          proposalFiltered.messages.length > 0
+            ? splitString(proposalFiltered.messages[0].content["@type"])
+            : "",
+        totalDeposit:
+          proposalFiltered.total_deposit.length > 0
+            ? formatAttoNumber(
+                BigNumber.from(proposalFiltered.total_deposit[0].amount)
+              )
+            : "--",
+        submitTime:
+          proposalFiltered.submit_time !== ""
+            ? formatDate(proposalFiltered.submit_time)
+            : "",
+        depositEndTime:
+          proposalFiltered.deposit_end_time !== ""
+            ? formatDate(proposalFiltered.deposit_end_time)
+            : "",
+        description:
+          proposalFiltered.messages.length > 0
+            ? proposalFiltered.messages[0].content.description?.replace(
+                /\\[rn]/g,
+                "\n"
+              )
+            : "",
+        total: sumBigNumber([
           proposalFiltered.final_tally_result.yes_count,
           proposalFiltered.final_tally_result.no_count,
           proposalFiltered.final_tally_result.abstain_count,
           proposalFiltered.final_tally_result.no_with_veto_count,
         ]),
+        isVotingTimeWithinRange: isVotingTimeWithinRange(
+          proposalFiltered.voting_end_time
+        ),
       };
     }
     return temp;

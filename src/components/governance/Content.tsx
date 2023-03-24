@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { COMMONWEALTH_URL } from "../../internal/common/links";
 import { useProposals } from "../../internal/governance/functionality/hooks/useProposals";
+import NavToMissionControl from "../common/navigation/NavToMissionControl";
 
 const BannerBlack = dynamic(() => import("../common/banners/BannerBlack"));
 const ContainerProposals = dynamic(
@@ -19,6 +20,7 @@ const Content = () => {
 
   return (
     <div>
+      <NavToMissionControl />
       {id === undefined && (
         <BannerBlack
           text="Have you ever wondered where proposals come from? Join us in our open
@@ -26,6 +28,7 @@ const Content = () => {
           href={COMMONWEALTH_URL}
         />
       )}
+
       <div className="mt-5  text-white font-[IBM] w-full">
         {id === undefined ? (
           <ContainerProposals

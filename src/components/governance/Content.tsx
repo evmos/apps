@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { COMMONWEALTH_URL } from "../../internal/common/links";
 import { useProposals } from "../../internal/governance/functionality/hooks/useProposals";
 import {
@@ -23,16 +24,20 @@ const Content = () => {
   const { proposals, loading, error, proposalDetail } = useProposals(
     id !== undefined ? (id as string) : ""
   );
-  let href = EVMOS_PAGE_URL;
-  let text = NAV_TO_MISSION_CONTROL;
-  if (id !== undefined) {
-    href = EVMOS_PAGE_URL + GOVERNANCE_PATH;
-    text = NAV_TO_GOVERNANCE;
-  }
+
+  const drawNavigation = useCallback(() => {
+    let href = EVMOS_PAGE_URL;
+    let text = NAV_TO_MISSION_CONTROL;
+    if (id !== undefined) {
+      href = GOVERNANCE_PATH;
+      text = NAV_TO_GOVERNANCE;
+    }
+    return <NavToMissionControl href={href} text={text} />;
+  }, [id]);
 
   return (
     <div>
-      <NavToMissionControl href={href} text={text} />
+      {drawNavigation()}
       {id === undefined && (
         <BannerBlack
           text="Have you ever wondered where proposals come from? Join us in our open

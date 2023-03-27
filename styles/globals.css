@@ -170,3 +170,8 @@ input[type=number] {
   background-color: #F5E8D4;
   color: #0b0a09;
 }
+
+html {
+  overflow: hidden;
+  height: 100%
+}

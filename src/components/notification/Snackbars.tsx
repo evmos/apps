@@ -9,7 +9,7 @@ export default function Snackbars() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
 
   return (
-    <div className="absolute left-3 bottom-3 space-y-5">
+    <div className="fixed left-3 bottom-3 z-[100] space-y-5">
       {valueRedux.map((e) => {
         return (
           <Snackbar type={e.type} content={e.content} id={e.id} key={e.id} />

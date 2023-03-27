@@ -21,10 +21,10 @@ import {
 import HeadTable from "./HeadTable";
 import { getTotalAssets } from "../../../internal/asset/style/format";
 import HeadAssets from "./components/HeadAssets";
-import LeftArrowIcon from "../../common/images/icons/LeftArrowIcon";
-import Link from "next/link";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
+import NavToMissionControl from "../../common/navigation/NavToMissionControl";
+import { EVMOS_PAGE_URL, NAV_TO_MISSION_CONTROL } from "../../common/constants";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -99,13 +99,10 @@ const AssetsTable = () => {
 
   return (
     <>
-      <Link
-        href="https://app.evmos.org/"
-        className="text-white flex items-center space-x-3 mb-2 font-bold mx-5 xl:mx-0 justify-center xl:justify-start hover:opacity-80"
-      >
-        <LeftArrowIcon width={15} height={15} />
-        <p>Back to Mission Control</p>
-      </Link>
+      <NavToMissionControl
+        href={EVMOS_PAGE_URL}
+        text={NAV_TO_MISSION_CONTROL}
+      />
       <TopBar topProps={topProps} />
       <div className="flex flex-col lg:flex-row mx-5 xl:mx-0 justify-center lg:justify-between">
         <Guide />

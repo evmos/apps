@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { VERSION_TAG } from "../common/constants";
 
 const TwitterIcon = dynamic(() => import("./icons/Twitter"));
 const TelegramIcon = dynamic(() => import("./icons/Telegram"));
@@ -52,7 +53,8 @@ const Footer = () => {
           <CommonWealthIcon />
         </Link>
       </div>
-      <div className="flex items-center space-x-5">
+      <div className="flex items-center space-x-5 justify-center w-full px-2">
+        <p>Version: {VERSION_TAG}</p>
         <p>
           <Link
             target="_blank"

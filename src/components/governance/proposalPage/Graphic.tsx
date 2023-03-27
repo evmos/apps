@@ -42,6 +42,10 @@ const Graphic = ({
       return null;
     }
 
+    // avoid showing circle with data if total is 0
+    if (data.total.eq(BIG_ZERO)) {
+      return null;
+    }
     // 1 indicates that the majority of the votes were NO
     // 3 indicates that the majority of the votes were NO with veto
     if (largestWinningBlock === 1 || largestWinningBlock === 3) {
@@ -73,11 +77,12 @@ const Graphic = ({
     largestWinningBlock,
     data.isVotingTimeWithinRange,
     isNotInDepositPeriod,
+    data.total,
   ]);
   return (
     <section className="space-y-5 mx-5 lg:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] h-fit">
       {isNotInDepositPeriod && (
-        <div className="text-pearl font-bold flex justify-between">
+        <div className="text-pearl fonst-bold flex justify-between">
           <p>Total</p>
           <p>
             {formatAttoNumber(data.total)} {EVMOS_SYMBOL}

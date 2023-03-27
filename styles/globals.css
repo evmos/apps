@@ -222,3 +222,17 @@ html {
   scrollbar-color: transparent transparent;
   -ms-overflow-style: none;
 }
+.markdown {
+  @apply text-pearl space-y-2
+}
+.markdown h2, h1, h3, h4, h5, h6 {
+  @apply text-xl font-bold 
+}
+
+.markdown p {
+  @apply text-base
+}
+
+.markdown a {
+  @apply underline
+}

@@ -39,7 +39,7 @@ const Snackbar = ({
         // remove me from state
         dispatch(removeSnackbar({ id }));
       }}
-      className="relative animation z-[9999]"
+      className="animation z-[9999]"
       key={id}
     >
       <div
@@ -47,7 +47,7 @@ const Snackbar = ({
         ${type === SNACKBAR_TYPES.SUCCESS ? "text-white bg-green" : ""}
         ${type === SNACKBAR_TYPES.ERROR ? "text-white bg-red" : ""}
         ${type === SNACKBAR_TYPES.DEFAULT ? "bg-darkPearl text-darkGray2" : ""}
-        inline-flex p-2 max-w-[360px] overflow-hidden rounded-lg shadow-[0px 4px 8px rgba(0, 0, 0, 0.5)] pointer-events-auto`}
+        inline-flex relative p-2 min-w-[280px] max-w-[360px] overflow-hidden rounded-lg  shadow-[0px 4px 8px rgba(0, 0, 0, 0.5)] pointer-events-auto`}
       >
         <div className="space-x-2 flex-auto p-2 self-center w-full">
           <div className="flex font-bold items-center w-full">

@@ -27,6 +27,8 @@ module.exports = {
         whiteOpacity: "rgba(255, 255, 255, 0.1)",
         blackOpacity: "rgba(0, 0, 0, 0.6)",
         grayOpacity: "rgba(0, 0, 0, 0.05)",
+        darkGray2Opacity: "rgba(54,54,50,.301)",
+        yellow: "#EDCD5B",
       },
       fontSize: {
         h5: "1.36rem",

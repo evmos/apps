@@ -1,21 +1,27 @@
-import TopBarContainer from "../../../common/TopBarContainer";
-import ButtonsActions from "./ButtonsActions";
-import { Container } from "../../../common/topBar/Container";
-import { TopBarProps } from "./types";
+import TopBarContainer from "../common/TopBarContainer";
+import { Container } from "../common/topBar/Container";
+
+type TopBarProps = {
+  totalAssets: string;
+  totalStaked: string;
+  evmosPrice: number;
+};
 
 const TopBar = ({ topProps }: { topProps: TopBarProps }) => {
-  const actionsProps = {
-    setShow: topProps.setShow,
-    setModalContent: topProps.setModalContent,
-    tableData: topProps.tableData,
-  };
   return (
     <TopBarContainer>
       <>
         <Container text="Total Assets" value={`$${topProps.totalAssets}`} />
+        <Container text="Total EVMOS" value={`${topProps.totalAssets} EVMOS`} />
+
+        <Container
+          text="Total Rewards Received"
+          value={`${topProps.totalAssets} EVMOS`}
+        />
+
         <Container
           text="Total Staked"
-          value={topProps.totalStaked}
+          value={`${topProps.totalStaked} EVMOS`}
           href="https://app.evmos.org/staking"
         />
         <Container
@@ -26,7 +32,6 @@ const TopBar = ({ topProps }: { topProps: TopBarProps }) => {
               : `$${topProps.evmosPrice.toString()}`
           }
         />
-        <ButtonsActions actionsProps={actionsProps} />
       </>
     </TopBarContainer>
   );

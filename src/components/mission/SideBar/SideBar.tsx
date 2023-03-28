@@ -1,12 +1,8 @@
-import dynamic from "next/dynamic";
-import Link from "next/link";
 import CoinsIcon from "../../../images/icons/CoinsIcon";
 import GaugeIcon from "../../../images/icons/GaugeIcon";
 import GrilledSteakIcon from "../../../images/icons/GrilledSteakIcon";
 import HandShakeIcon from "../../../images/icons/ShakeIcon";
 import SideBarItem, { SideBarEntry } from "./SideBarItem";
-
-const Logo = dynamic(() => import("../../common/images/Logo"));
 
 const sideBarItems: SideBarEntry[] = [
   {
@@ -39,18 +35,7 @@ const SideBar = () => {
   }
 
   return (
-    <div
-      style={{ minWidth: "178.5px" }}
-      className="md:flex col-span-1 hidden text-white h-72 flex-col"
-    >
-      <Link
-        href="https://app.evmos.org"
-        rel="noreferrer"
-        className="xl:pr-14 pl-4"
-        aria-label="home"
-      >
-        <Logo className="w-32 xl:w-36 h-20" />
-      </Link>
+    <div className="md:flex col-span-1 hidden text-white flex-col min-w-[178.5px] space-y-3">
       {renderMenuElements()}
     </div>
   );

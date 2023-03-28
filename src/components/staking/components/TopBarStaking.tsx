@@ -6,7 +6,7 @@ import { useEpochDay } from "../../../internal/common/api/hooks/useEpochDay";
 import { useEvmosBalance } from "../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
 import { StoreType } from "../../../redux/Store";
-import { Container } from "../../asset/table/topBar/Container";
+import { Container } from "../../common/topBar/Container";
 import { Countdown } from "../../common/Countdown";
 import { useRewards } from "../modals/hooks/useRewards";
 

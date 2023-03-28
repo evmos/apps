@@ -20,7 +20,7 @@ const NewsFeed = () => {
     return (
       <MissionContainer>
         <>
-          <p className="text-2xl font-bold text-pearl">NEWS FEED</p>
+          <p className="text-xl font-bold text-pearl">NEWS FEED</p>
           <SimpleTabs tabsContent={tabsAnnouncements} />
         </>
       </MissionContainer>

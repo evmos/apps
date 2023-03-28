@@ -1,4 +1,5 @@
 import Latest from "./allTabs/Latest";
+import News from "./allTabs/News";
 import System from "./allTabs/System";
 
 export type tabContent = {
@@ -21,6 +22,6 @@ export const tabsAnnouncements = [
   {
     title: "News",
     id: "tab3",
-    content: <p>news</p>,
+    content: <News />,
   },
 ];

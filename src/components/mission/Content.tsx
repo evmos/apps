@@ -56,7 +56,7 @@ const Content = () => {
             </div>
           </MissionContainer>
         </div>
-        <div className="flex col-span-2 flex-col">
+        <div className="flex col-span-2 flex-col space-y-5">
           <HalfLifeContainer />
           <NewsFeed />
         </div>

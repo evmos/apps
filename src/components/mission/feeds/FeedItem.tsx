@@ -4,7 +4,6 @@ import { RecordsResponse } from "../../../internal/mission/types";
 
 const FeedItem = ({ annoucement }: { annoucement: RecordsResponse }) => {
   const getColor = useCallback(() => {
-    console.log(annoucement.fields.Type);
     if (annoucement.fields.Type === "News") {
       return "bg-red text-pearl";
     } else if (annoucement.fields.Type === "Asset") {
@@ -14,7 +13,7 @@ const FeedItem = ({ annoucement }: { annoucement: RecordsResponse }) => {
     return "bg-green text-pearl";
   }, [annoucement.fields.Type]);
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 text-pearl">
       <p className="text-xl font-bold ">{annoucement.fields.Name}</p>
       <p>{annoucement.fields.Description}</p>
       <div className="flex items-center space-x-2">

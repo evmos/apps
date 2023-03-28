@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import { useAnnouncements } from "../../../internal/mission/functionality/hooks/useAnnouncements";
 import BannerMessages from "../../common/banners/BannerMessages";
+import SimpleTabs from "../../common/tabComponent/SimpleTabs";
+import MissionContainer from "../MissionContainer";
 import { tabsAnnouncements } from "../tabs/Content";
-import Tabs from "../tabs/Tabs";
 
 const NewsFeed = () => {
   const { loading, error } = useAnnouncements();
@@ -17,9 +18,12 @@ const NewsFeed = () => {
     }
 
     return (
-      <>
-        <Tabs tabsContent={tabsAnnouncements} />
-      </>
+      <MissionContainer>
+        <>
+          <p className="text-2xl font-bold text-pearl">NEWS FEED</p>
+          <SimpleTabs tabsContent={tabsAnnouncements} />
+        </>
+      </MissionContainer>
     );
   }, [loading, error]);
 

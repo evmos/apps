@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import HalfLifeContainer from "./HalfLifeContainer";
 import MissionContainer from "./MissionContainer";
+import NewsFeed from "./feeds/NewsFeed";
 
 const TopBar = dynamic(() => import("./TopBar"));
 const Button = dynamic(() => import("../common/Button"));
@@ -57,6 +58,7 @@ const Content = () => {
         </div>
         <div className="flex col-span-2 flex-col">
           <HalfLifeContainer />
+          <NewsFeed />
         </div>
       </div>
     </div>

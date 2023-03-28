@@ -8,9 +8,7 @@ import React, {
 } from "react";
 import { tabContent } from "../../staking/Tabs/Content";
 
-const DropdownArrow = dynamic(
-  () => import("../../common/images/icons/DropdownArrow")
-);
+const DropdownArrow = dynamic(() => import("../images/icons/DropdownArrow"));
 const TabsDropdown = ({
   content,
   setActiveTab,

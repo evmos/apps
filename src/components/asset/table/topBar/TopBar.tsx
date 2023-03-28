@@ -1,6 +1,6 @@
 import TopBarContainer from "../../../common/TopBarContainer";
 import ButtonsActions from "./ButtonsActions";
-import { Container } from "./Container";
+import { Container } from "../../../common/topBar/Container";
 import { TopBarProps } from "./types";
 
 const TopBar = ({ topProps }: { topProps: TopBarProps }) => {

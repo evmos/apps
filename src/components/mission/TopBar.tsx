@@ -1,5 +1,5 @@
 import TopBarContainer from "../common/TopBarContainer";
-import { Container } from "./Container";
+import { Container } from "../common/topBar/Container";
 
 type TopBarProps = {
   totalAssets: string;

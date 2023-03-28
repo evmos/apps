@@ -13,9 +13,9 @@ import {
 } from "../src/internal/wallet/functionality/walletconnect/walletconnectConstants";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import SideBar from "../src/components/mission/SideBar/SideBar";
-import MissionContainer from "../src/components/MissionContainer";
+import Container from "../src/components/Container";
 
-const MissionHeader = dynamic(() => import("../src/components/MissionHeader"));
+const Header = dynamic(() => import("../src/components/Header"));
 const TermOfServices = dynamic(
   () => import("../src/components/termsOfServices/TermOfServices")
 );
@@ -39,13 +39,13 @@ export default function Mission() {
 
             <main>
               <TermOfServices />
-              <MissionContainer>
+              <Container>
                 <>
                   <Snackbars />
+                  <Header pageName="Mission Control " />
                   <div className="grid grid-cols-8">
                     <SideBar />
                     <div className="flex col-span-7 flex-1 flex-col">
-                      <MissionHeader pageName="Mission Control" />
                       <div className="container mx-auto overflow-auto mb-auto">
                         <Content />
                       </div>
@@ -53,7 +53,7 @@ export default function Mission() {
                     </div>
                   </div>
                 </>
-              </MissionContainer>
+              </Container>
             </main>
           </>
         </WagmiConfig>

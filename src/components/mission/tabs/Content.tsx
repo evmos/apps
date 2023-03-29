@@ -1,6 +1,6 @@
-import Latest from "./allTabs/Latest";
+import Discussions from "./allTabs/Discussions";
+import Guides from "./allTabs/Guides";
 import News from "./allTabs/News";
-import System from "./allTabs/System";
 
 export type tabContent = {
   title: string;
@@ -10,18 +10,18 @@ export type tabContent = {
 
 export const tabsAnnouncements = [
   {
-    title: "Latest",
-    id: "tab1",
-    content: <Latest />,
-  },
-  {
-    title: "System",
-    id: "tab2",
-    content: <System />,
-  },
-  {
     title: "News",
-    id: "tab3",
+    id: "tab1",
     content: <News />,
+  },
+  {
+    title: "Discussions",
+    id: "tab2",
+    content: <Discussions />,
+  },
+  {
+    title: "Guides",
+    id: "tab3",
+    content: <Guides />,
   },
 ];

@@ -4,17 +4,17 @@ import FeedItem from "../../feeds/FeedItem";
 import FeedContainer from "../../feeds/FeedContainer";
 import Container from "./Container";
 
-const System = () => {
-  const { systemAnnouncements } = useAnnouncements();
+const Discussions = () => {
+  const { discussionsAnnouncements } = useAnnouncements();
   const drawLatest = useCallback(() => {
-    return systemAnnouncements.map((item) => {
+    return discussionsAnnouncements.map((item) => {
       return (
         <FeedContainer key={item.id}>
           <FeedItem annoucement={item} />
         </FeedContainer>
       );
     });
-  }, [systemAnnouncements]);
+  }, [discussionsAnnouncements]);
 
   return (
     <Container>
@@ -23,4 +23,4 @@ const System = () => {
   );
 };
 
-export default System;
+export default Discussions;

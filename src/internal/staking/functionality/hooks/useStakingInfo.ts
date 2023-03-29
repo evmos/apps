@@ -94,5 +94,6 @@ export const useStakingInfo = () => {
     totalRewards,
     delegations,
     undelegations,
+    rewards: stakingInfo?.data?.rewards,
   };
 };

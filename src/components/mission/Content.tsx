@@ -3,13 +3,14 @@ import HalfLifeContainer from "./HalfLifeContainer";
 import MissionContainer from "./MissionContainer";
 import Assets from "./sections/Assets";
 import NewsFeed from "./feeds/NewsFeed";
+import Staking from "./staking/Staking";
 
 const TopBar = dynamic(() => import("./TopBar"));
 const Button = dynamic(() => import("../common/Button"));
 
 const Content = () => {
   return (
-    <div className="pt-4 flex flex-col">
+    <div className="pt-4 flex flex-col overflow-auto">
       <TopBar
         topProps={{ totalAssets: "0", totalStaked: "0", evmosPrice: 0 }}
       />
@@ -43,8 +44,9 @@ const Content = () => {
               </div>
             </div>
           </MissionContainer>
+          <Staking />
         </div>
-        <div className="flex col-span-2 flex-col space-y-5">
+        <div className="flex col-span-6 lg:col-span-2 flex-col space-y-5">
           <HalfLifeContainer />
           <NewsFeed />
         </div>

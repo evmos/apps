@@ -24,7 +24,9 @@ export const useAnnouncements = () => {
       return [];
     }
     const filteredData = announcementsResponse.data.records.filter(
-      (i) => i.fields.Type.toLowerCase() === feedsTypes.SYSTEM
+      (i) =>
+        i.fields.Type !== undefined &&
+        i.fields.Type.toLowerCase() === feedsTypes.SYSTEM
     );
     if (filteredData.length > 0) {
       return filteredData;
@@ -38,7 +40,24 @@ export const useAnnouncements = () => {
       return [];
     }
     const filteredData = announcementsResponse.data.records.filter(
-      (i) => i.fields.Type.toLowerCase() === feedsTypes.NEWS
+      (i) =>
+        i.fields.Type !== undefined &&
+        i.fields.Type.toLowerCase() === feedsTypes.NEWS
+    );
+    if (filteredData.length > 0) {
+      return filteredData;
+    } else {
+      return [];
+    }
+  }, [announcementsResponse.data]);
+
+  const getHeroAnnouncements = useMemo(() => {
+    if (announcementsResponse.data === undefined) {
+      return [];
+    }
+
+    const filteredData = announcementsResponse.data.records.filter(
+      (i) => i.fields["Is Hero"] !== undefined && i.fields["Is Hero"] === true
     );
     if (filteredData.length > 0) {
       return filteredData;
@@ -52,5 +71,6 @@ export const useAnnouncements = () => {
     error: announcementsResponse.error,
     systemAnnouncements: getSystemAnnouncements,
     newsAnnouncements: getNewsAnnouncements,
+    heroAnnouncement: getHeroAnnouncements,
   };
 };

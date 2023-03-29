@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      'storage.evmos.org',
-    ],
+    domains: ["storage.evmos.org", "v5.airtableusercontent.com"],
   },
   reactStrictMode: true,
   basePath: "/assets",

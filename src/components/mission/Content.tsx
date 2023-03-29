@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import HalfLifeContainer from "./HalfLifeContainer";
 import MissionContainer from "./MissionContainer";
+import Assets from "./sections/Assets";
 import NewsFeed from "./feeds/NewsFeed";
 import Staking from "./staking/Staking";
 
@@ -13,22 +14,9 @@ const Content = () => {
       <TopBar
         topProps={{ totalAssets: "0", totalStaked: "0", evmosPrice: 0 }}
       />
-      <div className="grid gap-6 grid-cols-6 mx-5 xl:mx-0">
-        <div className="flex col-span-6 lg:col-span-4 gap-4 flex-col">
-          <MissionContainer>
-            <div className="flex w-full justify-between">
-              <span className="text-lg text-pearl font-semibold">ASSETS</span>
-              <Button
-                onClick={() => {
-                  console.log("click");
-                }}
-              >
-                <div className="flex items-center space-x-2 ">
-                  <span>VIEW ALL ASSETS</span>
-                </div>
-              </Button>
-            </div>
-          </MissionContainer>
+      <div className="grid gap-6 grid-cols-6">
+        <div className="flex col-span-4 gap-4 flex-col">
+          <Assets />
           <MissionContainer>
             <div className="flex w-full justify-between">
               <span className="text-lg text-pearl font-semibold">

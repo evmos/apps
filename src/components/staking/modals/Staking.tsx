@@ -1,4 +1,5 @@
 import { BigNumber } from "ethers";
+import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
 import {
   convertAndFormat,
@@ -68,7 +69,16 @@ const Staking = ({
           <div className="space-y-2">
             <p className="font-bold">Description</p>
             <p className="text-sm">{item.details}</p>
-            <p className="text-red font-bold text-sm">{item.website}</p>
+            {item.website && (
+              <Link
+                rel="noopener noreferrer"
+                target="_blank"
+                href={item.website}
+                className="text-red font-bold text-sm"
+              >
+                {item.website}
+              </Link>
+            )}
           </div>
         )}
       {showDelegate && (

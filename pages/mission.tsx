@@ -43,9 +43,9 @@ export default function Mission() {
                 <>
                   <Snackbars />
                   <Header pageName="Mission Control " />
-                  <div className="grid grid-cols-8">
+                  <div className="grid grid-cols-8 space-x-5">
                     <SideBar />
-                    <div className="flex col-span-7 flex-1 flex-col">
+                    <div className="flex col-span-8 lg:col-span-7 flex-1 flex-col">
                       <div className="container mx-auto overflow-auto mb-auto">
                         <Content />
                       </div>

@@ -1,12 +1,11 @@
 import dynamic from "next/dynamic";
 import HalfLifeContainer from "./HalfLifeContainer";
-import MissionContainer from "./MissionContainer";
 import Assets from "./sections/Assets";
 import NewsFeed from "./feeds/NewsFeed";
+import Governance from "./Governance/Governance";
 import Staking from "./staking/Staking";
 
 const TopBar = dynamic(() => import("./TopBar"));
-const Button = dynamic(() => import("../common/Button"));
 
 const Content = () => {
   return (
@@ -17,33 +16,7 @@ const Content = () => {
       <div className="grid gap-6 grid-cols-6">
         <div className="flex col-span-4 gap-4 flex-col">
           <Assets />
-          <MissionContainer>
-            <div className="flex w-full justify-between">
-              <span className="text-lg text-pearl font-semibold">
-                GOVERNANCE
-              </span>
-              <div className="flex gap-2">
-                <Button
-                  onClick={() => {
-                    console.log("click");
-                  }}
-                >
-                  <div className="flex items-center space-x-2 ">
-                    <span>VOTE</span>
-                  </div>
-                </Button>
-                <Button
-                  onClick={() => {
-                    console.log("click");
-                  }}
-                >
-                  <div className="flex items-center space-x-2 ">
-                    <span>DOCS</span>
-                  </div>
-                </Button>
-              </div>
-            </div>
-          </MissionContainer>
+          <Governance />
           <Staking />
         </div>
         <div className="flex col-span-6 lg:col-span-2 flex-col space-y-5">

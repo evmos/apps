@@ -9,12 +9,12 @@ const Button = dynamic(() => import("../common/Button"));
 
 const Content = () => {
   return (
-    <div className="pt-4 flex flex-col">
+    <div className="pt-4 flex flex-col overflow-auto">
       <TopBar
         topProps={{ totalAssets: "0", totalStaked: "0", evmosPrice: 0 }}
       />
-      <div className="grid gap-6 grid-cols-6">
-        <div className="flex col-span-4 gap-4 flex-col">
+      <div className="grid gap-6 grid-cols-6 mx-5 xl:mx-0">
+        <div className="flex col-span-6 lg:col-span-4 gap-4 flex-col">
           <MissionContainer>
             <div className="flex w-full justify-between">
               <span className="text-lg text-pearl font-semibold">ASSETS</span>
@@ -58,7 +58,7 @@ const Content = () => {
           </MissionContainer>
           <Staking />
         </div>
-        <div className="flex col-span-2 flex-col space-y-5">
+        <div className="flex col-span-6 lg:col-span-2 flex-col space-y-5">
           <HalfLifeContainer />
           <NewsFeed />
         </div>

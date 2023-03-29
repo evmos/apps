@@ -23,7 +23,8 @@ const FeedItem = ({ annoucement }: { annoucement: RecordsResponse }) => {
           {annoucement.fields.Type}
         </p>
         <p className="opacity-80 text-sm">
-          {formatDate(annoucement.fields["Start Date Time"])}
+          {annoucement.fields["Start Date Time"] !== undefined &&
+            formatDate(annoucement.fields["Start Date Time"])}
         </p>
       </div>
     </div>

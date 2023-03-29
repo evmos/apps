@@ -4,15 +4,13 @@ import MissionContainer from "./MissionContainer";
 import NewsFeed from "./feeds/NewsFeed";
 import Staking from "./staking/Staking";
 
-const TopBar = dynamic(() => import("./TopBar"));
+const TopBarMissionControl = dynamic(() => import("./TopBarMissionControl"));
 const Button = dynamic(() => import("../common/Button"));
 
 const Content = () => {
   return (
     <div className="pt-4 flex flex-col">
-      <TopBar
-        topProps={{ totalAssets: "0", totalStaked: "0", evmosPrice: 0 }}
-      />
+      <TopBarMissionControl />
       <div className="grid gap-6 grid-cols-6">
         <div className="flex col-span-4 gap-4 flex-col">
           <MissionContainer>

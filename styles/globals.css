@@ -236,3 +236,7 @@ html {
 .markdown a {
   @apply underline
 }
+html {
+  overflow: hidden;
+  height: 100%
+}

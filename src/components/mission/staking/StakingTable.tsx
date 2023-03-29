@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {
   convertFromAtto,
-  numericOnly,
+  formatNumber,
 } from "../../../internal/asset/style/format";
 import {
   DelegationsResponse,
@@ -40,15 +40,15 @@ const StakingTable = ({
   rewards: rewardsResponse | undefined;
 }) => {
   return delegations?.length > 0 ? (
-    <table className="w-full text-left">
+    <table className="w-full text-left text-pearl">
       <thead className="">
-        <tr className="grid px-4 mb-4 grid-cols-3">
+        <tr className="grid px-4 mb-4 grid-cols-3 ">
           <th className="cols-span-1">VALIDATORS</th>
           <th className="cols-span-1">STAKED</th>
           <th className="cols-span-1">PENDING REWARDS</th>
         </tr>
       </thead>
-      {delegations?.splice(0, 3)?.map((d) => (
+      {delegations?.slice(0, 3)?.map((d) => (
         <tr
           className="grid  p-4 border-b border-darkGray5 grid-cols-3"
           key={d.delegation.validator_address}
@@ -57,10 +57,10 @@ const StakingTable = ({
             {d.delegation.validator.description.moniker}
           </th>
           <th className="font-light cols-span-1">
-            {numericOnly(convertFromAtto(d.balance.amount))}
+            {formatNumber(convertFromAtto(d.balance.amount))}
           </th>
           <th className="font-light cols-span-1">
-            {numericOnly(
+            {formatNumber(
               parseFloat(
                 convertFromAtto(
                   rewards?.rewards.find(
@@ -69,7 +69,7 @@ const StakingTable = ({
                       d.delegation.validator_address.toLowerCase()
                   )?.reward[0]?.amount ?? 0
                 )
-              ).toFixed(2)
+              )
             )}
           </th>
         </tr>

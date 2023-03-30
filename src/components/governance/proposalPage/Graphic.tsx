@@ -51,7 +51,7 @@ const Graphic = ({
     if (largestWinningBlock === 1 || largestWinningBlock === 3) {
       return (
         <div
-          className={`py-1 px-2 font-bold inset-0 text-white absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
+          className={`py-1 px-2 font-bold inset-0 text-pearl absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
     ${BAR_COLORS.no}
     `}
         >
@@ -62,7 +62,7 @@ const Graphic = ({
     } else {
       return (
         <div
-          className={`py-1 px-2 font-bold inset-0 text-white absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
+          className={`py-1 px-2 font-bold inset-0 text-pearl absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
       ${BAR_COLORS.yes}
       `}
         >

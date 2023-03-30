@@ -8,7 +8,7 @@ const ButtonWalletConnection = dynamic(
 
 const Header = ({ pageName }: { pageName: string }) => {
   return (
-    <div className="xl:h-32 mb-3 text-white flex flex-col xl:flex-row xl:items-center xl:justify-between mx-5 xl:mx-0">
+    <div className="xl:h-32 mb-3 text-pearl flex flex-col xl:flex-row xl:items-center xl:justify-between mx-5 xl:mx-0">
       <div className="flex items-center justify-between xl:justify-start">
         <Link
           href="https://app.evmos.org"

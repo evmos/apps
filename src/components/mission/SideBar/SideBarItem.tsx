@@ -9,7 +9,7 @@ export type SideBarEntry = {
 const SideBarItem = ({ item }: { item: SideBarEntry }) => {
   const isActive = item.title.includes("Mission");
   return (
-    <Link href={item.path}>
+    <Link href={item.path} className="flex justify-center lg:justify-start">
       <div
         className={`flex rounded-full hover:bg-white hover:bg-opacity-10 items-center px-4 py-3 w-fit
           ${isActive ? "text-pearl" : "text-darkGray4"}`}

@@ -1,0 +1,43 @@
+import Link from "next/link";
+import { useCallback } from "react";
+import { useProposals } from "../../../internal/governance/functionality/hooks/useProposals";
+import BannerMessages from "../../common/banners/BannerMessages";
+import { GOVERNANCE_PATH } from "../../governance/common/helpers";
+import MissionContainer from "../MissionContainer";
+import Header from "./Header";
+import ProposalCard from "./ProposalCard";
+
+const Governance = () => {
+  const { proposals, loading, error } = useProposals("");
+
+  const drawProposals = useCallback(() => {
+    if (loading) {
+      return <BannerMessages text="Loading..." spinner={true} />;
+    }
+    if (error) {
+      return <BannerMessages text="No results" />;
+    }
+    return proposals.slice(0, 3).map((p) => (
+      <Link
+        key={p.id}
+        href={{
+          pathname: GOVERNANCE_PATH,
+          query: { id: p.id },
+        }}
+      >
+        <ProposalCard proposalProps={p} key={p.id} />
+      </Link>
+    ));
+  }, [proposals, loading, error]);
+
+  return (
+    <MissionContainer>
+      <>
+        <Header />
+        {drawProposals()}
+      </>
+    </MissionContainer>
+  );
+};
+
+export default Governance;

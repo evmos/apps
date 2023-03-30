@@ -14,7 +14,11 @@ const FeedItem = ({ annoucement }: { annoucement: RecordsResponse }) => {
     return "bg-green text-pearl";
   }, [annoucement.fields.Type]);
   return (
-    <Link href={annoucement.fields["Web Link"]}>
+    <Link
+      href={annoucement.fields["Web Link"]}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <div className="space-y-2 text-pearl">
         <p className="text-xl font-bold ">{annoucement.fields.Name}</p>
         <p>{annoucement.fields.Description}</p>

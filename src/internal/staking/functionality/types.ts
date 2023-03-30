@@ -84,7 +84,7 @@ type Rewards = {
   validator_address: string;
 };
 
-type rewardsResponse = {
+export type rewardsResponse = {
   rewards: Rewards[];
   total: totalRewards[];
 };

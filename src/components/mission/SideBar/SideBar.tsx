@@ -1,3 +1,4 @@
+import Link from "next/link";
 import CoinsIcon from "../../../images/icons/CoinsIcon";
 import GaugeIcon from "../../../images/icons/GaugeIcon";
 import GrilledSteakIcon from "../../../images/icons/GrilledSteakIcon";
@@ -35,8 +36,16 @@ const SideBar = () => {
   }
 
   return (
-    <div className="lg:flex col-span-1 hidden text-pearl flex-col min-w-[200px] space-y-3">
+    <div className="justify-center lg:text-left flex col-span-1 text-pearl flex-col lg:min-w-[200px] space-y-3">
       {renderMenuElements()}
+      <Link
+        className="text-center text-xs text-darkGray5 lg:text-left"
+        href="https://www.coingecko.com"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Price Data from Coingecko
+      </Link>
     </div>
   );
 };

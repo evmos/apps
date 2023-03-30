@@ -9,6 +9,7 @@ import {
   addDolarAssets,
   amountToDollars,
 } from "../../../asset/style/format";
+import { BIG_ZERO } from "../../math/Bignumbers";
 import { getAssetsForAddress } from "./fetch";
 
 const useAssets = () => {
@@ -90,9 +91,29 @@ const useAssets = () => {
     return assets.data.balance[0].coingeckoPrice;
   }, [assets.data]);
 
+  const getTotalEvmos = useMemo(() => {
+    // returns the amount of evmos and wrap evmos
+    let total = BIG_ZERO;
+
+    if (assets.data === undefined || assets.data.balance.length === 0) {
+      return total;
+    }
+
+    const evmosData = assets.data.balance.filter(
+      (i) => i.symbol.toLowerCase() === "evmos"
+    );
+
+    total = BigNumber.from(evmosData[0].cosmosBalance).add(
+      BigNumber.from(evmosData[0].erc20Balance)
+    );
+
+    return total;
+  }, [assets.data]);
+
   return {
     assets: getAssetsForMissionControl,
     totalAssets: getTotalAssetsForMissionControl,
+    totalEvmosAsset: getTotalEvmos,
     evmosPrice: getEvmosPrice,
     loading: assets.isLoading,
     error: assets.error,

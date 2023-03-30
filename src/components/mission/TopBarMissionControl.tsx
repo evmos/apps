@@ -1,25 +1,27 @@
 import TopBarContainer from "../common/TopBarContainer";
 import { Container } from "../common/topBar/Container";
-import { convertFromAtto } from "../../internal/asset/style/format";
+import {
+  amountToDollars,
+  convertFromAtto,
+} from "../../internal/asset/style/format";
 import { useHeaderInfo } from "../../internal/mission/functionality/hooks/useHeaderInfo";
-import { useEvmosBalance } from "../../internal/common/functionality/hooks/useEvmosBalance";
 import useAssets from "../../internal/common/functionality/hooks/useAssets";
 
 const TopBarMissionControl = () => {
-  const { totalStaked } = useHeaderInfo();
-  const { evmosBalance } = useEvmosBalance();
+  const { totalStaked, totalRewards } = useHeaderInfo();
+  const { totalAssets, evmosPrice, totalEvmosAsset } = useAssets();
+  const totalEvmos = totalEvmosAsset.add(totalStaked);
 
-  const { totalAssets, evmosPrice } = useAssets();
-  const totalEvmos = evmosBalance.add(totalStaked);
-
+  const amountToDollars1 = amountToDollars(totalStaked, 18, Number(evmosPrice));
+  console.log(amountToDollars1);
   return (
     <TopBarContainer>
       <>
         <Container
           // it shows the total amount of ALL assets including
-          // cosmosBalance and erc20Balance
+          // cosmosBalance and erc20Balance + total staked in dollars
           text="Total Assets"
-          value={`$${totalAssets.toFixed(2)}`}
+          value={`$${(totalAssets + Number(amountToDollars1)).toFixed(2)}`}
         />
 
         <Container
@@ -35,8 +37,11 @@ const TopBarMissionControl = () => {
           ${Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS`}
           href="https://app.evmos.org/staking"
         />
-        {/* not sure what we have to display here */}
-        <Container text="Total Rewards Received" value={``} />
+        {/* displays the total rewards availables */}
+        <Container
+          text="Total Rewards Available"
+          value={`${totalRewards.toFixed(2)} EVMOS`}
+        />
 
         <Container text="EVMOS Price" value={evmosPrice} />
       </>

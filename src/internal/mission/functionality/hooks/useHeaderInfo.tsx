@@ -3,6 +3,7 @@ import { BigNumber } from "ethers";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../../../redux/Store";
+import { convertStringFromAtto } from "../../../asset/style/format";
 import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import { getStakingInfo } from "../../../staking/functionality/fetch";
 import { StakingInfoResponse } from "../../../staking/functionality/types";
@@ -29,5 +30,18 @@ export const useHeaderInfo = () => {
     return total;
   }, [stakingInfo]);
 
-  return { totalStaked };
+  const totalRewards = useMemo(() => {
+    let total = "0";
+    if (stakingInfo.data !== undefined) {
+      if (stakingInfo.data.rewards !== undefined) {
+        if (stakingInfo.data.rewards.total.length !== 0) {
+          // the sum is already done in the backend
+          total = stakingInfo.data.rewards.total[0].amount;
+        }
+      }
+    }
+    return convertStringFromAtto(total);
+  }, [stakingInfo]);
+
+  return { totalStaked, totalRewards };
 };

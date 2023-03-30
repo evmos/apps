@@ -17,7 +17,7 @@ const Assets = () => {
   const drawAssets = useCallback(() => {
     if (!value.active) {
       return (
-        <p className="text-center text-pearl mt-10">
+        <p className="text-center text-darkGray5 mt-10">
           Please connect your wallet to see your assets
         </p>
       );

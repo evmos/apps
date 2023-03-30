@@ -46,7 +46,7 @@ const Content = () => {
         />
       )}
 
-      <div className="mt-5  text-white font-[IBM] w-full">
+      <div className="mt-5  text-pearl font-[IBM] w-full">
         {id === undefined ? (
           <ContainerProposals
             proposals={proposals}

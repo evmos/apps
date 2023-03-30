@@ -56,7 +56,7 @@ const Tabs = ({
         <Search placeholder={placeholder ? placeholder : ""} />
       </div>
 
-      <div className="text-white">{tabContent}</div>
+      <div className="text-pearl">{tabContent}</div>
     </div>
   );
 };

@@ -4,17 +4,17 @@ import FeedItem from "../../feeds/FeedItem";
 import FeedContainer from "../../feeds/FeedContainer";
 import Container from "./Container";
 
-const Latest = () => {
-  const { announcements } = useAnnouncements();
+const Guides = () => {
+  const { guidesAnnouncements } = useAnnouncements();
   const drawLatest = useCallback(() => {
-    return announcements?.map((item) => {
+    return guidesAnnouncements.map((item) => {
       return (
         <FeedContainer key={item.id}>
           <FeedItem annoucement={item} />
         </FeedContainer>
       );
     });
-  }, [announcements]);
+  }, [guidesAnnouncements]);
 
   return (
     <Container>
@@ -23,4 +23,4 @@ const Latest = () => {
   );
 };
 
-export default Latest;
+export default Guides;

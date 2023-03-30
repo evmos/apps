@@ -38,8 +38,8 @@ const SimpleTabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
       does not appear above the search validators component 
      the value should be lower than the modal z-index
 */}
-      <div className="z-[9] py-2 flex justify-between space-x-2 md:space-x-0 w-full sticky top-0">
-        <ul className="hidden w-fit md:flex items-center justify-between rounded ">
+      <div className="z-[9] py-2 flex justify-between space-x-2 md:space-x-0 w-full sticky top-0 overflow-auto">
+        <ul className="w-fit flex items-center justify-between rounded text-pearl">
           {tabItems}
         </ul>
       </div>

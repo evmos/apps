@@ -35,7 +35,7 @@ const TopBarStaking = () => {
           )} EVMOS`}
         />
         <Container
-          text="Total Unbonding"
+          text="Total Unstaked"
           value={`${Number(convertFromAtto(totalUndelegations)).toFixed(
             2
           )} EVMOS`}

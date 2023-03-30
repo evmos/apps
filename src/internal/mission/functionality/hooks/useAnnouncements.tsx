@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { feedsTypes } from "../../constants";
 import { getAnnouncements } from "../../fetch";
-import { RecordsResponse } from "../../types";
 
 export const useAnnouncements = () => {
   const announcementsResponse = useQuery({
@@ -10,21 +9,14 @@ export const useAnnouncements = () => {
     queryFn: () => getAnnouncements(),
   });
 
-  const getAllAnnouncements = useMemo(() => {
-    let response: RecordsResponse[] = [];
-    if (announcementsResponse.data !== undefined) {
-      response = announcementsResponse.data.records;
-    }
-
-    return response;
-  }, [announcementsResponse.data]);
-
-  const getSystemAnnouncements = useMemo(() => {
+  const getNewsAnnouncements = useMemo(() => {
     if (announcementsResponse.data === undefined) {
       return [];
     }
     const filteredData = announcementsResponse.data.records.filter(
-      (i) => i.fields.Type.toLowerCase() === feedsTypes.SYSTEM
+      (i) =>
+        i.fields.Type !== undefined &&
+        i.fields.Type.toLowerCase() === feedsTypes.NEWS
     );
     if (filteredData.length > 0) {
       return filteredData;
@@ -33,12 +25,30 @@ export const useAnnouncements = () => {
     }
   }, [announcementsResponse.data]);
 
-  const getNewsAnnouncements = useMemo(() => {
+  const getDiscussionsAnnouncements = useMemo(() => {
     if (announcementsResponse.data === undefined) {
       return [];
     }
     const filteredData = announcementsResponse.data.records.filter(
-      (i) => i.fields.Type.toLowerCase() === feedsTypes.NEWS
+      (i) =>
+        i.fields.Type !== undefined &&
+        i.fields.Type.toLowerCase() === feedsTypes.DISCUSSIONS
+    );
+    if (filteredData.length > 0) {
+      return filteredData;
+    } else {
+      return [];
+    }
+  }, [announcementsResponse.data]);
+
+  const getGuidesAnnouncements = useMemo(() => {
+    if (announcementsResponse.data === undefined) {
+      return [];
+    }
+    const filteredData = announcementsResponse.data.records.filter(
+      (i) =>
+        i.fields.Type !== undefined &&
+        i.fields.Type.toLowerCase() === feedsTypes.GUIDES
     );
     if (filteredData.length > 0) {
       return filteredData;
@@ -47,10 +57,10 @@ export const useAnnouncements = () => {
     }
   }, [announcementsResponse.data]);
   return {
-    announcements: getAllAnnouncements,
     loading: announcementsResponse.isLoading,
     error: announcementsResponse.error,
-    systemAnnouncements: getSystemAnnouncements,
     newsAnnouncements: getNewsAnnouncements,
+    discussionsAnnouncements: getDiscussionsAnnouncements,
+    guidesAnnouncements: getGuidesAnnouncements,
   };
 };

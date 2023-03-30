@@ -33,7 +33,7 @@ const AssetsTable = () => {
 
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
 
-  const { stakedData, totalStaked } = useStakedEvmos();
+  const { stakedData } = useStakedEvmos();
 
   const { data, error, isLoading } = useQuery<ERC20BalanceResponse, Error>({
     refetchInterval: 3000,
@@ -83,7 +83,6 @@ const AssetsTable = () => {
 
   const topProps = {
     evmosPrice: normalizedAssetsData?.table[0]?.coingeckoPrice,
-    totalStaked: totalStaked,
     totalAssets: getTotalAssets(normalizedAssetsData, {
       total: stakedData ? stakedData?.value : "0",
       decimals: normalizedAssetsData?.table[0]?.decimals,

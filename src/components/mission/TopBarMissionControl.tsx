@@ -12,8 +12,11 @@ const TopBarMissionControl = () => {
   const { totalAssets, evmosPrice, totalEvmosAsset } = useAssets();
   const totalEvmos = totalEvmosAsset.add(totalStaked);
 
-  const amountToDollars1 = amountToDollars(totalStaked, 18, Number(evmosPrice));
-  console.log(amountToDollars1);
+  const totalAmountDollars = amountToDollars(
+    totalStaked,
+    18,
+    Number(evmosPrice)
+  );
   return (
     <TopBarContainer>
       <>
@@ -21,7 +24,7 @@ const TopBarMissionControl = () => {
           // it shows the total amount of ALL assets including
           // cosmosBalance and erc20Balance + total staked in dollars
           text="Total Assets"
-          value={`$${(totalAssets + Number(amountToDollars1)).toFixed(2)}`}
+          value={`$${(totalAssets + Number(totalAmountDollars)).toFixed(2)}`}
         />
 
         <Container

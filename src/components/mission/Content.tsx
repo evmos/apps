@@ -4,6 +4,7 @@ import Assets from "./sections/Assets";
 import NewsFeed from "./feeds/NewsFeed";
 import Governance from "./Governance/Governance";
 import Staking from "./staking/Staking";
+import EvmosApps from "./apps/EvmosApps";
 
 const TopBar = dynamic(() => import("./TopBar"));
 
@@ -22,6 +23,7 @@ const Content = () => {
         <div className="flex col-span-6 lg:col-span-2 flex-col space-y-5">
           <HalfLifeContainer />
           <NewsFeed />
+          <EvmosApps />
         </div>
       </div>
     </div>

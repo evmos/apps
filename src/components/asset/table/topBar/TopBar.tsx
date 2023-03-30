@@ -14,11 +14,6 @@ const TopBar = ({ topProps }: { topProps: TopBarProps }) => {
       <>
         <Container text="Total Assets" value={`$${topProps.totalAssets}`} />
         <Container
-          text="Total Staked"
-          value={topProps.totalStaked}
-          href="https://app.evmos.org/staking"
-        />
-        <Container
           text="EVMOS Price"
           value={
             topProps.evmosPrice === undefined

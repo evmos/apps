@@ -121,6 +121,9 @@ export function amountToDollars(
   decimals: number,
   coingeckoPrice: number
 ) {
+  if (!value || !coingeckoPrice) {
+    return "0";
+  }
   return (Number(convertFromAtto(value, decimals)) * coingeckoPrice).toFixed(2);
 }
 

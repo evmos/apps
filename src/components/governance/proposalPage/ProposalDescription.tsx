@@ -25,7 +25,7 @@ const ProposalDescription = ({
   }
   return (
     <div>
-      <section className="space-y-5 mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white ">
+      <section className="space-y-5 mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-pearl ">
         <div className="flex justify-between">
           <div className="flex space-x-4 items-center ">
             <IdContainer id={proposalDetail.id} />
@@ -70,7 +70,7 @@ const ProposalDescription = ({
         </div>
       </section>
       {proposalDetail.description && (
-        <section className="markdown space-y-5 mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white break-words">
+        <section className="markdown space-y-5 mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-pearl break-words">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {proposalDetail.description}
           </ReactMarkdown>

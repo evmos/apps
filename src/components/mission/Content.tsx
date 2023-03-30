@@ -14,8 +14,8 @@ const Content = () => {
       <TopBar
         topProps={{ totalAssets: "0", totalStaked: "0", evmosPrice: 0 }}
       />
-      <div className="grid gap-6 grid-cols-6">
-        <div className="flex col-span-4 gap-4 flex-col">
+      <div className="grid gap-6 grid-cols-6 mx-5 xl:mx-0">
+        <div className="flex col-span-6 lg:col-span-4 gap-4 flex-col">
           <Assets />
           <Governance />
           <Staking />

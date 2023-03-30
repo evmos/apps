@@ -35,7 +35,7 @@ const SideBar = () => {
   }
 
   return (
-    <div className="lg:flex col-span-1 hidden text-white flex-col min-w-[200px] space-y-3">
+    <div className="lg:flex col-span-1 hidden text-pearl flex-col min-w-[200px] space-y-3">
       {renderMenuElements()}
     </div>
   );

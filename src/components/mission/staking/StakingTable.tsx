@@ -48,32 +48,34 @@ const StakingTable = ({
           <th className="cols-span-1">PENDING REWARDS</th>
         </tr>
       </thead>
-      {delegations?.slice(0, 3)?.map((d) => (
-        <tr
-          className="grid  p-4 border-b border-darkGray5 grid-cols-3"
-          key={d.delegation.validator_address}
-        >
-          <th className="font-light cols-span-1">
-            {d.delegation.validator.description.moniker}
-          </th>
-          <th className="font-light cols-span-1">
-            {formatNumber(convertFromAtto(d.balance.amount))}
-          </th>
-          <th className="font-light cols-span-1">
-            {formatNumber(
-              parseFloat(
-                convertFromAtto(
-                  rewards?.rewards.find(
-                    (r) =>
-                      r.validator_address.toLowerCase() ===
-                      d.delegation.validator_address.toLowerCase()
-                  )?.reward[0]?.amount ?? 0
+      <tbody>
+        {delegations?.slice(0, 3)?.map((d) => (
+          <tr
+            className="grid  p-4 border-b border-darkGray5 grid-cols-3"
+            key={d.delegation.validator_address}
+          >
+            <td className="font-light cols-span-1">
+              {d.delegation.validator.description.moniker}
+            </td>
+            <td className="font-light cols-span-1">
+              {formatNumber(convertFromAtto(d.balance.amount))}
+            </td>
+            <td className="font-light cols-span-1">
+              {formatNumber(
+                parseFloat(
+                  convertFromAtto(
+                    rewards?.rewards.find(
+                      (r) =>
+                        r.validator_address.toLowerCase() ===
+                        d.delegation.validator_address.toLowerCase()
+                    )?.reward[0]?.amount ?? 0
+                  )
                 )
-              )
-            )}
-          </th>
-        </tr>
-      ))}
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   ) : (
     <EmptyDelegations />

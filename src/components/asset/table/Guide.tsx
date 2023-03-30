@@ -4,7 +4,7 @@ import AssetsGuide from "../modals/AssetsGuide";
 
 const Guide = () => {
   return (
-    <div className="flex items-center space-x-3 text-white">
+    <div className="flex items-center space-x-3 text-pearl">
       <QuestionMarkIcon width={20} height={20} />
       <div>
         Don&apos;t see your token? Find out how to {/* TODO: add link */}

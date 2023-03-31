@@ -23,7 +23,7 @@ import { getTotalAssets } from "../../../internal/asset/style/format";
 import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
-import NavToMissionControl from "../../common/navigation/NavToMissionControl";
+import Navigation from "../../common/navigation/Navigation";
 import { EVMOS_PAGE_URL, NAV_TO_MISSION_CONTROL } from "../../common/constants";
 
 const AssetsTable = () => {
@@ -98,10 +98,7 @@ const AssetsTable = () => {
 
   return (
     <>
-      <NavToMissionControl
-        href={EVMOS_PAGE_URL}
-        text={NAV_TO_MISSION_CONTROL}
-      />
+      <Navigation href={EVMOS_PAGE_URL} text={NAV_TO_MISSION_CONTROL} />
       <TopBar topProps={topProps} />
       <div className="flex flex-col lg:flex-row mx-5 xl:mx-0 justify-center lg:justify-between">
         <Guide />

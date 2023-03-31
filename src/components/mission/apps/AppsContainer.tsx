@@ -25,7 +25,7 @@ const AppsContainer = () => {
             src={a.image}
           />
           <div className="flex flex-col">
-            <span className="font-medium">{a.name}</span>
+            <span className="font-bold font-[GreyCliff]">{a.name}</span>
             <span
               style={{ fontSize: "12px" }}
               className="uppercase font-extralight text-pearl"

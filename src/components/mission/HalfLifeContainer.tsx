@@ -9,8 +9,8 @@ const HalfLifeContainer = () => {
 
   return (
     <>
-      <div className=" bg-darkGray2 flex text-xl flex-col p-5 border border-pearl font-semibold rounded-2xl font-[IBM] text-pearl ">
-        <span className="text-sm font-normal">The Half Life</span>
+      <div className=" bg-darkGray2 flex text-2xl flex-col p-5 border border-pearl font-bold rounded-2xl font-[GreyCliff] text-pearl ">
+        <span className="text-sm font-normal font-[IBM]">The Half Life</span>
         <Countdown epochs={remainingEpochs * miliSecondsPerDay + epochs} />
       </div>
     </>

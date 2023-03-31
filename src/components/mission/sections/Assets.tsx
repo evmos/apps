@@ -38,8 +38,11 @@ const Assets = () => {
         </div>
         {assets.map((item) => {
           return (
-            <div key={item.symbol} className="text-pearl">
-              <div className="grid grid-cols-2 w-full border-b border-darkGray5 pb-5">
+            <div
+              key={item.symbol}
+              className="text-pearl border-b border-darkGray5 pb-5 last:border-b-0"
+            >
+              <div className="grid grid-cols-2 w-full ">
                 <div className="flex items-center space-x-5">
                   <Image
                     src={`/assets/tokens/${item.symbol.toLocaleLowerCase()}.png`}
@@ -48,7 +51,7 @@ const Assets = () => {
                     height={30}
                   />
                   <div>
-                    <p className="font-bold text-xl ">{item.symbol}</p>
+                    <p className="font-bold text-lg">{item.symbol}</p>
                     <p className="text-xs">{item.description}</p>
                   </div>
                 </div>
@@ -68,7 +71,9 @@ const Assets = () => {
     <MissionContainer>
       <section>
         <div className="flex w-full justify-between">
-          <span className="text-lg text-pearl font-semibold">ASSETS</span>
+          <span className="text-xl text-pearl font-bold font-[GreyCliff]">
+            ASSETS
+          </span>
           <Button
             onClick={async () => {
               // TODO: update this redirection to assets

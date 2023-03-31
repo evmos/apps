@@ -20,9 +20,11 @@ const ProposalCard = ({ proposalProps }: { proposalProps: ProposalProps }) => {
 
   return (
     <div className="flex p-6 gap-4 hover:bg-darkGray2Opacity flex-col border-b border-darkGray5">
-      <span className="font-medium text-base">{proposalProps?.title}</span>
+      <span className="font-bold text-xl font-[GreyCliff]">
+        {proposalProps?.title}
+      </span>
       <div className="flex items-center gap-3 text-darkGray5">
-        <div className="border text-xs px-2 py-0.5 rounded border-darkGray5">
+        <div className="border text-xs px-2 py-0.5 rounded border-darkGray5 uppercase">
           {getPropStatus()}
         </div>
         <span>Voting ends on {proposalProps.votingEndTime}</span>

@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import SideBar from "./SideBar/SideBar";
-import SidebarMobile from "./SideBar/SidebarMobile";
 
 const Header = dynamic(() => import("../Header"));
 const Footer = dynamic(() => import("../footer/Footer"));
 const Content = dynamic(() => import("../mission/Content"));
+const SideBar = dynamic(() => import("./SideBar/SideBar"));
+const SidebarMobile = dynamic(() => import("./SideBar/SidebarMobile"));
 
 const MainContainer = () => {
   const [showSidebar, setShowSidebar] = useState(false);

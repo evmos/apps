@@ -19,7 +19,7 @@ const TabNavItemWithBorder = ({
   return (
     <li
       onClick={handleClick}
-      className={`cursor-pointer text-sm tracking-wider uppercase px-4 py-2 text-center font-bold ${
+      className={`cursor-pointer text-xs tracking-wider uppercase px-4 py-2 text-center  ${
         activeTab === id ? "border-b-2 border-pearl" : ""
       } 
        

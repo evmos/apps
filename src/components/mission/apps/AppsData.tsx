@@ -13,7 +13,18 @@ import CronusFinance from "../../../images/twitter/CronusFinance.jpeg";
 import Multitransfer from "../../../images/twitter/Multitransfer.jpeg";
 import DIA from "../../../images/twitter/DIA.jpeg";
 
-export const MISSION_CONTROL_DATA = {
+type dataApps = {
+  name: string;
+  twitter: string;
+  image: string;
+  category: string;
+};
+
+export type appsOnEvmos = {
+  appsOnEvmos: dataApps[];
+};
+
+export const MISSION_CONTROL_DATA: appsOnEvmos = {
   appsOnEvmos: [
     {
       name: "Diffusion Finance",

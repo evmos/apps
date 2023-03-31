@@ -103,7 +103,9 @@ const Undelegations = () => {
             <TdContent
               tdProps={{
                 title: dataHead[1],
-                value: convertAndFormat(BigNumber.from(item.balance)),
+                value: `${convertAndFormat(
+                  BigNumber.from(item.balance)
+                )} EVMOS`,
               }}
             />
           </td>

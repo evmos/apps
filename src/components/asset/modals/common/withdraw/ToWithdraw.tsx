@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
 import { checkFormatAddress } from "../../../../../internal/asset/style/format";
@@ -26,6 +26,26 @@ const ToWithdraw = ({
   const [showInput, setShowInput] = useState(false);
   const [showEditButton, setShowEditButton] = useState(true);
   const [prefix, setPrefix] = useState("");
+
+  useEffect(() => {
+    const getPrefix = () => {
+      let prefix = "";
+      if (token !== undefined) {
+        prefix = token.prefix;
+
+        if (
+          token.symbol === EVMOS_SYMBOL &&
+          dropChainProps.chain !== undefined
+        ) {
+          prefix = dropChainProps.chain.prefix;
+        }
+      }
+      setPrefix(prefix);
+    };
+
+    getPrefix();
+  }, [token, dropChainProps.chain]);
+
   const handleOnClickEdit = () => {
     setShowInput(true);
     setShowEditButton(false);

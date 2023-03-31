@@ -31,7 +31,7 @@ const Modal = dynamic(() => import("../../common/Modal"));
 const Button = dynamic(() => import("../../common/Button"));
 const MessageTable = dynamic(() => import("../../asset/table/MessageTable"));
 
-const dataHead = ["Rank", "Name", "Voting Power", "Staked", "Comission", ""];
+const dataHead = ["Rank", "Name", "Voting Power", "Staked", "Commission", ""];
 
 const Delegations = () => {
   const { delegations } = useStakingInfo();

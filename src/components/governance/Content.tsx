@@ -8,7 +8,7 @@ import {
   NAV_TO_GOVERNANCE,
   NAV_TO_MISSION_CONTROL,
 } from "../common/constants";
-import NavToMissionControl from "../common/navigation/NavToMissionControl";
+import Navigation from "../common/navigation/Navigation";
 import { GOVERNANCE_PATH } from "./common/helpers";
 
 const BannerBlack = dynamic(() => import("../common/banners/BannerBlack"));
@@ -32,7 +32,7 @@ const Content = () => {
       href = GOVERNANCE_PATH;
       text = NAV_TO_GOVERNANCE;
     }
-    return <NavToMissionControl href={href} text={text} />;
+    return <Navigation href={href} text={text} />;
   }, [id]);
 
   return (

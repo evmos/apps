@@ -20,8 +20,10 @@ const FeedItem = ({ annoucement }: { annoucement: RecordsResponse }) => {
       rel="noopener noreferrer"
     >
       <div className="space-y-2 text-pearl">
-        <p className="text-xl font-bold ">{annoucement.fields.Name}</p>
-        <p>{annoucement.fields.Description}</p>
+        <p className="text-lg font-bold font-[GreyCliff]">
+          {annoucement.fields.Name}
+        </p>
+        <p className="text-sm">{annoucement.fields.Description}</p>
         <div className="flex items-center space-x-2">
           <p
             className={`${getColor()} uppercase text-[10px] px-4 py-0.5 rounded font-bold`}

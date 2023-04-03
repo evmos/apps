@@ -21,7 +21,7 @@ export const tabsContent = [
     content: <Validators />,
   },
   {
-    title: "pending",
+    title: "Undelegations",
     id: "tab3",
     content: <Undelegations />,
   },

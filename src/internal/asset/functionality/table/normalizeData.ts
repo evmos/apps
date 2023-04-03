@@ -29,7 +29,6 @@ export function normalizeAssetsData(data: ERC20BalanceResponse | undefined) {
   const temp: TableData = { table: [], feeBalance: BIG_ZERO };
   data?.balance.map((item) => {
     if (
-      item.symbol !== "stATOM" &&
       item.symbol !== "REGEN" &&
       // TODO: show USK when erc20 balance bug is fixed
       item.symbol !== "USK"

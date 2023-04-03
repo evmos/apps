@@ -50,7 +50,24 @@ const ContentTable = ({
   const data = useMemo(() => {
     const map = new Map<string, accordionData>();
     tableData?.table.map((e) => {
-      if (map.has(e.tokenIdentifier) === true) {
+      if (
+        e.chainIdentifier === "Stride" &&
+        map.has(e.chainIdentifier) === true
+      ) {
+        const temp = map.get(e.chainIdentifier);
+        if (temp === undefined) {
+          return;
+        }
+        temp.tokens.push(e);
+        temp.total = temp.total.add(e.erc20Balance);
+      } else if (e.chainIdentifier === "Stride") {
+        map.set(e.chainIdentifier, {
+          name: e.chainIdentifier,
+          icon: e.chainIdentifier,
+          total: e.erc20Balance,
+          tokens: [e],
+        });
+      } else if (map.has(e.tokenIdentifier) === true) {
         const temp = map.get(e.tokenIdentifier);
         if (temp === undefined) {
           return;

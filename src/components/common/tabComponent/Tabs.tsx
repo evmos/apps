@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import { tabContent } from "../../staking/Tabs/Content";
+import ValidatorToggle from "../Toggle";
 
 const TabNavItem = dynamic(() => import("./TabNavItem"));
 const TabContent = dynamic(() => import("./TabContent"));
@@ -50,6 +51,7 @@ const Tabs = ({
         <div className="md:hidden ">
           <TabsDropdown content={tabsContent} setActiveTab={setActiveTab} />
         </div>
+        <ValidatorToggle />
         <ul className="hidden w-fit md:flex items-center justify-between border-2 border-pearl rounded ">
           {tabItems}
         </ul>

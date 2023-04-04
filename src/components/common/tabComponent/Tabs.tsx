@@ -47,15 +47,20 @@ const Tabs = ({
       does not appear above the search validators component 
      the value should be lower than the modal z-index
 */}
-      <div className="z-[9] py-2 flex justify-between space-x-2 md:space-x-0 w-full sticky top-0 bg-black">
+      <div className="z-[9] py-2 md:flex-row gap-2 flex flex-col justify-between space-x-2 md:space-x-0 w-full sticky top-0 bg-black">
         <div className="md:hidden ">
           <TabsDropdown content={tabsContent} setActiveTab={setActiveTab} />
         </div>
-        <ValidatorToggle />
+        <div className="md:flex hidden">
+          <ValidatorToggle />
+        </div>
         <ul className="hidden w-fit md:flex items-center justify-between border-2 border-pearl rounded ">
           {tabItems}
         </ul>
         <Search placeholder={placeholder ? placeholder : ""} />
+        <div className="md:hidden">
+          <ValidatorToggle />
+        </div>
       </div>
 
       <div className="text-pearl">{tabContent}</div>

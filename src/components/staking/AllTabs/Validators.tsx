@@ -12,6 +12,10 @@ import {
   SearchContext,
   useSearchContext,
 } from "../../../internal/common/context/SearchContext";
+import {
+  useValidatorContext,
+  ValidatorStateContext,
+} from "../../../internal/common/context/ValidatorStateContext";
 import { useAllValidators } from "../../../internal/staking/functionality/hooks/useAllValidators";
 import { ValidatorsList } from "../../../internal/staking/functionality/types";
 import { StoreType } from "../../../redux/Store";
@@ -58,11 +62,13 @@ const Validators = () => {
   const isLoading = false;
   const error = false;
   const { value } = useSearchContext() as SearchContext;
+  const { value: showInactive } =
+    useValidatorContext() as ValidatorStateContext;
   const [sorting, setSorting] = useState({ column: 0, direction: true });
 
   const filtered = useMemo(() => {
     // it filters by rank or name
-    const filteredData = validators.filter(
+    let filteredData = validators.filter(
       (i) =>
         i.validator.description.moniker
           .toLowerCase()
@@ -70,12 +76,16 @@ const Validators = () => {
         i.validator.rank.toString().includes(value)
     );
 
-    if (value !== "") {
+    if (!showInactive) {
+      filteredData = filteredData.filter((i) => i.validator.rank <= 150);
+    }
+
+    if (value !== "" || !showInactive) {
       return filteredData;
     }
 
     return validators;
-  }, [validators, value]);
+  }, [validators, value, showInactive]);
 
   const drawValidators = useMemo(() => {
     if (filtered && filtered.length === 0) {

@@ -1,5 +1,5 @@
 const ErrorMessage = ({ text }: { text: string }) => {
-  return <span className="text-red text-xs italic pl-2">{text}</span>;
+  return <span className="pl-2 text-xs italic text-red">{text}</span>;
 };
 
 export default ErrorMessage;

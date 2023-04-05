@@ -87,7 +87,7 @@ const Convert = ({
     <>
       <ModalTitle title={`Convert ${item.symbol}`} />
       <div className="text-darkGray3">
-        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
+        <div className="space-y-3 rounded-lg bg-skinTan px-8 py-4 ">
           <FromContainer
             fee={{
               fee: BigNumber.from("300000000000000000"),
@@ -128,7 +128,7 @@ const Convert = ({
           </div>
         </div>
         <Arrow />
-        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
+        <div className="mb-8 space-y-5 rounded-lg bg-skinTan px-8 py-4">
           <ToContainer
             token={item.symbol}
             img={`/assets/tokens/${item.symbol.toLowerCase()}.png`}

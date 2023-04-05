@@ -14,7 +14,7 @@ export const Container = ({
       <div className="flex items-center justify-center space-x-2">
         <h5 className="opacity-80">{text}</h5>
       </div>
-      <h2 className="text-2xl font-bold font-[GreyCliff]">{value}</h2>
+      <h2 className="font-[GreyCliff] text-2xl font-bold">{value}</h2>
     </Link>
   );
 };

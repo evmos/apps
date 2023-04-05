@@ -9,7 +9,7 @@ const TopBar = ({ topProps }: { topProps: TopBarProps }) => {
     tableData: topProps.tableData,
   };
   return (
-    <div className="mx-5 xl:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] text-sm px-5 text-white grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 space-y-2 sm:space-y-0 text-center items-center">
+    <div className="mx-5 mb-5 grid grid-cols-1 items-center space-y-2 rounded-2xl bg-darkGray2 p-5 px-5 text-center font-[IBM] text-sm text-white sm:grid-cols-2 sm:space-y-0 md:grid-cols-4 xl:mx-0">
       <Container
         text="Total Assets"
         value={`$${topProps.totalAssets}`}

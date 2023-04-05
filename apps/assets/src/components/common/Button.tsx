@@ -11,7 +11,7 @@ const Button = ({
     <button
       onClick={onClick}
       className={`
-      flex justify-center text-pearl uppercase text-xs font-bold hover:bg-whiteOpacity border border-pearl p-2 rounded" ${
+      rounded" flex justify-center border border-pearl p-2 text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity ${
         disabled ? "disabled rounded" : "rounded"
       } `}
     >

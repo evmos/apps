@@ -9,7 +9,7 @@ export const Description = ({
 }: DescriptionProps) => {
   return (
     <div
-      className={`flex items-center space-x-3 lg:space-x-5 w-[50%] ${
+      className={`flex w-[50%] items-center space-x-3 lg:space-x-5 ${
         subRow ? "pl-5 md:pl-14" : ""
       } `}
     >

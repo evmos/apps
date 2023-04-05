@@ -11,8 +11,8 @@ const Tooltip = ({
     <div className="group relative">
       {element}
       <span
-        className={`group-hover:opacity-100 transition-opacity bg-black px-1 text-white rounded-md absolute left-0 
-        -translate-x-1/2 opacity-0 m-4 mx-auto break-words text-xs z-[40] p-1 font-normal text-center ${
+        className={`absolute left-0 z-[40] m-4 mx-auto -translate-x-1/2 break-words rounded-md 
+        bg-black p-1 px-1 text-center text-xs font-normal text-white opacity-0 transition-opacity group-hover:opacity-100 ${
           className !== undefined ? className : "max-w-[6rem]"
         } `}
       >

@@ -10,7 +10,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="xl:h-32 mb-3 text-white flex flex-col xl:flex-row xl:items-center xl:justify-between mx-5 xl:mx-0">
+    <div className="mx-5 mb-3 flex flex-col text-white xl:mx-0 xl:h-32 xl:flex-row xl:items-center xl:justify-between">
       <div className="flex items-center justify-between xl:justify-start">
         <Link
           href="https://app.evmos.org"
@@ -18,7 +18,7 @@ const Header = () => {
           className="xl:pr-14"
           aria-label="home"
         >
-          <Logo className="w-32 xl:w-36 h-20" />
+          <Logo className="h-20 w-32 xl:w-36" />
         </Link>
         <p className="text-xl font-bold">Assets</p>
       </div>

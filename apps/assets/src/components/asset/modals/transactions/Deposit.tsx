@@ -142,7 +142,7 @@ const Deposit = ({
     <>
       <ModalTitle title={`Deposit ${item.symbol}`} />
       <div className="text-darkGray3">
-        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
+        <div className="space-y-3 rounded-lg bg-skinTan px-8 py-4 ">
           <FromContainer
             fee={{
               fee: BigNumber.from("5000"),
@@ -168,12 +168,12 @@ const Deposit = ({
           />
         </div>
         <Arrow />
-        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
+        <div className="mb-8 space-y-5 rounded-lg bg-skinTan px-8 py-4">
           <ToContainer token="EVMOS" img={`/assets/tokens/evmos.png`} />
           <div className="space-y-3">
-            <div className="pr-5 pl-2 flex items-center space-x-3 bg-white hover:border-black focus-visible:border-black focus-within:border-black border border-darkGray5 rounded-lg">
+            <div className="flex items-center space-x-3 rounded-lg border border-darkGray5 bg-white pr-5 pl-2 focus-within:border-black hover:border-black focus-visible:border-black">
               <input
-                className="w-full p-3 border-none hover:border-none focus-visible:outline-none"
+                className="w-full border-none p-3 hover:border-none focus-visible:outline-none"
                 value={addressTo}
                 onChange={(e) => {
                   setAddressTo(e.target.value);
@@ -183,14 +183,14 @@ const Deposit = ({
             {confirmClicked && addressTo === "" && (
               <ErrorMessage text="Address can not be empty" />
             )}
-            <h6 className="italic text-sm font-bold">
+            <h6 className="text-sm font-bold italic">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
             <AddTokenMetamask token={token} />
 
-            <div className="flex items-center space-x-5 w-full justify-end">
-              <span className="uppercase font-bold">Autofill</span>
+            <div className="flex w-full items-center justify-end space-x-5">
+              <span className="font-bold uppercase">Autofill</span>
               <KeplrIcon
                 width={25}
                 height={25}

@@ -12,14 +12,14 @@ const ButtonsActions = ({ actionsProps }: { actionsProps: actionsProps }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex items-center justify-center sm:justify-end space-x-2">
+    <div className="flex items-center justify-center space-x-2 sm:justify-end">
       <ConfirmButton
         disabled={
           !wallet.active ||
           wallet.extensionName === METAMASK_KEY ||
           wallet.extensionName === WALLECT_CONNECT_KEY
         }
-        className="text-sm w-auto py-3 px-4"
+        className="w-auto py-3 px-4 text-sm"
         text="Deposit"
         onClick={() => {
           actionsProps.setShow(true);
@@ -35,7 +35,7 @@ const ButtonsActions = ({ actionsProps }: { actionsProps: actionsProps }) => {
       />
       <ConfirmButton
         disabled={!wallet.active}
-        className="text-sm w-auto py-3 px-4"
+        className="w-auto py-3 px-4 text-sm"
         text="Withdraw"
         onClick={() => {
           if (wallet.evmosAddressCosmosFormat !== "") {

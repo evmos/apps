@@ -92,7 +92,7 @@ const AmountWithdraw = ({
     return (
       <>
         <input
-          className="w-full border-none hover:border-none focus-visible:outline-none text-right"
+          className="w-full border-none text-right hover:border-none focus-visible:outline-none"
           type="text"
           placeholder="amount"
           value={amountProps.value}
@@ -119,7 +119,7 @@ const AmountWithdraw = ({
     }
     return (
       <>
-        <p className="font-bold text-sm">
+        <p className="text-sm font-bold">
           Available Balance:{" "}
           <span className="font-normal opacity-80">
             {convertAndFormat(

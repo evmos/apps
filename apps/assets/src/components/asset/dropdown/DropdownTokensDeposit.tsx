@@ -37,7 +37,7 @@ const DropdownTokensDeposit = ({
               alt={selectedValue.symbol}
               width={25}
               height={25}
-              className="w-6 h-6"
+              className="h-6 w-6"
             />
             <span> {selectedValue.symbol}</span>
           </div>
@@ -54,19 +54,19 @@ const DropdownTokensDeposit = ({
   };
 
   return (
-    <div className="text-left w-full relative rounded cursor-pointer text-black ">
+    <div className="relative w-full cursor-pointer rounded text-left text-black ">
       <div
         onClick={handleInputClick}
-        className="p-1 flex items-center justify-between select-none"
+        className="flex select-none items-center justify-between p-1"
       >
         {showMenu && (
-          <div className="z-[9999] absolute translate-y-9 -left-4 top-1 w-auto overflow-auto max-h-40 bg-white border border-darkGray2 rounded">
+          <div className="absolute -left-4 top-1 z-[9999] max-h-40 w-auto translate-y-9 overflow-auto rounded border border-darkGray2 bg-white">
             {data?.map((option) => {
               return (
                 <div
                   onClick={() => onItemClick(option)}
                   key={option.symbol}
-                  className={`p-3 cursor-pointer hover:bg-gray flex justify-between space-x-8 font-bold
+                  className={`flex cursor-pointer justify-between space-x-8 p-3 font-bold hover:bg-gray
                   `}
                 >
                   <div className="flex items-center space-x-3">
@@ -75,7 +75,7 @@ const DropdownTokensDeposit = ({
                       alt={option.symbol}
                       width={25}
                       height={25}
-                      className=" w-6 h-6"
+                      className=" h-6 w-6"
                     />
                     <span>{option.symbol}</span>
                   </div>

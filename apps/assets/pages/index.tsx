@@ -107,7 +107,7 @@ export default function Home() {
                 <>
                   <SnackbarsInternal />
                   <Header />
-                  <div className="container mx-auto overflow-auto mb-auto">
+                  <div className="container mx-auto mb-auto overflow-auto">
                     <AssetsTable />
                   </div>
                   <Footer />

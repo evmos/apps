@@ -1,36 +1,54 @@
-# Assets Page
+# Turborepo Tailwind CSS starter
 
-This repo contains the front-end for the assets page: [https://assets.evmos.org/](https://assets.evmos.org/).
+This is an official starter Turborepo.
 
-## Requirements
+## What's inside?
 
-- Node v18.12.0+
+This Turborepo includes the following packages/apps:
 
-## Current implementation
+### Apps and Packages
 
-It uses the [dashboard-backend](https://github.com/tharsis/dashboard-backend) to fetch the information and to create the transactions.
+- `docs`: a [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
+- `web`: another [Next.js](https://nextjs.org/) app with [Tailwind CSS](https://tailwindcss.com/)
+- `ui`: a stub React component library with [Tailwind CSS](https://tailwindcss.com/) shared by both `web` and `docs` applications
+- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
+- `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
-The wallet extensions code is inside the `wallet` folders in `src/internal` and `src/components`, after releasing the v1 of the assets page, the wallet code must be moved to the `react-components` repo created in the `evmos` org in github.
+Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-## Run
+### Building packages/ui
 
-```sh
-git clone https://github.com/tharsis/assetsPage
-cd assetsPage
-yarn install
-yarn run dev
+This example is setup to build `packages/ui` and output the transpiled source and compiled styles to `dist/`. This was chosen to make sharing one `tailwind.config.js` as easy as possible, and to ensure only the CSS that is used by the current application and its dependencies is generated.
+
+Another option is to consume `packages/ui` directly from source without building. If using this option, you will need to update your `tailwind.config.js` to be aware of your package locations, so it can find all usages of the `tailwindcss` class names.
+
+For example, in [tailwind.config.js](packages/tailwind-config/tailwind.config.js):
+
+```js
+  content: [
+    // app content
+    `src/**/*.{js,ts,jsx,tsx}`,
+    // include packages if not transpiling
+    "../../packages/**/*.{js,ts,jsx,tsx}",
+  ],
 ```
 
-## Configuration
+### Utilities
 
-The endpoints used by default are currently stored in `src/internal/wallet/functionality/networkConfig.ts`
+This Turborepo has some additional tools already setup for you:
 
-It's using the default values that should work for most of the cases, but most of the methods that consume the endpoints can overwrite the configuration with optional parameters.
+- [Tailwind CSS](https://tailwindcss.com/) for styles
+- [TypeScript](https://www.typescriptlang.org/) for static type checking
+- [ESLint](https://eslint.org/) for code linting
+- [Prettier](https://prettier.io) for code formatting
 
-## Tests
+## Using this example
 
-The tests can be run using:
+Run the following command:
 
 ```sh
-yarn run test
+npx degit vercel/turbo/examples/with-tailwind with-tailwind
+cd with-tailwind
+pnpm install
+git init . && git add . && git commit -m "Init"
 ```

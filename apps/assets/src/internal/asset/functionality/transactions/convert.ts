@@ -1,15 +1,17 @@
-import { EVMOS_BACKEND, EVMOS_NETWORK_FOR_BACKEND } from "evmos-wallet";
-import { BigNumber } from "@ethersproject/bignumber";
-import { parseEther } from "@ethersproject/units";
-import { Signer } from "evmos-wallet";
-import { IBCTransferResponse, ConvertMsg } from "evmos-wallet";
-import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import {
+  EVMOS_BACKEND,
+  EVMOS_NETWORK_FOR_BACKEND,
+  Signer,
+  IBCTransferResponse,
+  ConvertMsg,
   BROADCASTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
   MODAL_NOTIFICATIONS,
   SIGNING_NOTIFICATIONS,
 } from "evmos-wallet";
+import { BigNumber } from "@ethersproject/bignumber";
+import { parseEther } from "@ethersproject/units";
+import { BIG_ZERO } from "../../../common/math/Bignumbers";
 
 const feeAmountForConvert = BigNumber.from("30000000000000000");
 

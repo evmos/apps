@@ -1,10 +1,16 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getKeplrAddressByChain } from "evmos-wallet";
-import { getWallet } from "evmos-wallet";
-import { EVMOS_CHAIN } from "evmos-wallet";
-import { truncateAddress } from "evmos-wallet";
+import {
+  getKeplrAddressByChain,
+  getWallet,
+  EVMOS_CHAIN,
+  truncateAddress,
+  snackErrorConnectingKeplr,
+  snackErrorConnectingMetaMask,
+  MODAL_NOTIFICATIONS,
+  StoreType,
+} from "evmos-wallet";
 import KeplrIcon from "../../../../common/images/icons/KeplrIcon";
 import MetamaskIcon from "../../../../common/images/icons/MetamaskIcon";
 
@@ -12,19 +18,13 @@ import { ContainerModal } from "../ContainerModal";
 import ErrorMessage from "../ErrorMessage";
 import { TextSmall } from "../TextSmall";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
-import {
-  snackErrorConnectingKeplr,
-  snackErrorConnectingMetaMask,
-} from "evmos-wallet";
 import SmallButton from "../../../../common/SmallButton";
 import ContainerInput from "../ContainerInput";
-import { MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
 import {
   checkFormatAddress,
   checkMetaMaskFormatAddress,
 } from "../../../../../internal/asset/style/format";
-import { StoreType } from "evmos-wallet";
 
 const DepositReceiver = ({
   receiver,

@@ -8,9 +8,8 @@ import {
   safeSubstraction,
   truncateNumber,
 } from "../../../../internal/asset/style/format";
-import { truncateAddress } from "evmos-wallet";
+import { truncateAddress, MODAL_NOTIFICATIONS } from "evmos-wallet";
 import ErrorMessage from "./ErrorMessage";
-import { MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { FromProps } from "./types";
 
 const FromContainer = ({ fee, balance, input, style }: FromProps) => {

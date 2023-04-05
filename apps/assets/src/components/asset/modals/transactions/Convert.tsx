@@ -1,7 +1,19 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
-import { StoreType } from "evmos-wallet";
+import {
+  StoreType,
+  ConvertMsg,
+  addSnackbar,
+  EVMOS_SYMBOL,
+  KEPLR_NOTIFICATIONS,
+  BROADCASTED_NOTIFICATIONS,
+  GENERATING_TX_NOTIFICATIONS,
+  WALLET_NOTIFICATIONS,
+  Token,
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "evmos-wallet";
 import ConfirmButton from "../../../common/ConfirmButton";
 import Arrow from "../common/Arrow";
 import FromContainer from "../common/FromContainer";
@@ -9,25 +21,14 @@ import Tabs from "../common/Tabs";
 import ToContainer from "../common/ToContainer";
 import { parseUnits } from "@ethersproject/units";
 import { BigNumber } from "@ethersproject/bignumber";
-import { ConvertMsg } from "evmos-wallet";
 import { executeConvert } from "../../../../internal/asset/functionality/transactions/convert";
-import { addSnackbar } from "evmos-wallet";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { ModalTitle } from "../../../common/Modal";
 import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
 import { createContract } from "./contracts/contractHelper";
-import { EVMOS_SYMBOL } from "evmos-wallet";
-import { KEPLR_NOTIFICATIONS } from "evmos-wallet";
-import {
-  BROADCASTED_NOTIFICATIONS,
-  GENERATING_TX_NOTIFICATIONS,
-  WALLET_NOTIFICATIONS,
-} from "evmos-wallet";
-import { Token } from "evmos-wallet";
 import AddTokenMetamask from "./AddTokenMetamask";
 import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
-import { SNACKBAR_CONTENT_TYPES, SNACKBAR_TYPES } from "evmos-wallet";
 
 const Convert = ({
   item,

@@ -1,16 +1,16 @@
 import { BigNumber, utils } from "ethers";
-import { EVMOS_NETWORK_FOR_BACKEND } from "evmos-wallet";
-import { Signer } from "evmos-wallet";
-import { feeWithdraw } from "../../Helpers";
-import { checkFormatAddress } from "../../style/format";
 import {
+  EVMOS_NETWORK_FOR_BACKEND,
+  Signer,
   BROADCASTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
   MODAL_NOTIFICATIONS,
   SIGNING_NOTIFICATIONS,
+  IBCChainParams,
 } from "evmos-wallet";
+import { feeWithdraw } from "../../Helpers";
+import { checkFormatAddress } from "../../style/format";
 import { ibcTransferBackendCall } from "./ibcTransfer";
-import { IBCChainParams } from "evmos-wallet";
 
 export async function executeWithdraw(
   pubkey: string,

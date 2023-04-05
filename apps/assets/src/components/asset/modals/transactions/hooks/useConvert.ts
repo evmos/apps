@@ -4,9 +4,9 @@ import {
   snackBroadcastSuccessful,
   snackErrorGeneratingTx,
   snackRequestRejected,
+  StoreType,
 } from "evmos-wallet";
 
-import { StoreType } from "evmos-wallet";
 import { WEVMOS_CONTRACT_ADDRESS } from "../../constants";
 import { createContract } from "../contracts/contractHelper";
 import { WEVMOS } from "../contracts/abis/WEVMOS/WEVMOS";

@@ -3,41 +3,45 @@ import { parseUnits } from "ethers/lib/utils";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import { IBCChainParams } from "evmos-wallet";
-import { StoreType } from "evmos-wallet";
+import {
+  IBCChainParams,
+  StoreType,
+  addSnackbar,
+  getKeplrAddressByChain,
+  getWallet,
+  Token,
+  EVMOS_CHAIN,
+  EVMOS_SYMBOL,
+  BALANCE_NOTIFICATIONS,
+  BROADCASTED_NOTIFICATIONS,
+  EXECUTED_NOTIFICATIONS,
+  WALLET_NOTIFICATIONS,
+  KEPLR_NOTIFICATIONS,
+  METAMASK_NOTIFICATIONS,
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "evmos-wallet";
 import ConfirmButton from "../../../common/ConfirmButton";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
 import { ModalTitle } from "../../../common/Modal";
-import { addSnackbar } from "evmos-wallet";
 import Arrow from "../common/Arrow";
 import ErrorMessage from "../common/ErrorMessage";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
 import { executeDeposit } from "../../../../internal/asset/functionality/transactions/deposit";
-import { getKeplrAddressByChain } from "evmos-wallet";
 import {
   getBalance,
   getEvmosBalanceForDeposit,
 } from "../../../../internal/asset/functionality/fetch";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
-import { getWallet, Token } from "evmos-wallet";
 import { ethToEvmos } from "@evmos/address-converter";
-import { EVMOS_CHAIN, EVMOS_SYMBOL } from "evmos-wallet";
-import {
-  BALANCE_NOTIFICATIONS,
-  BROADCASTED_NOTIFICATIONS,
-  EXECUTED_NOTIFICATIONS,
-  WALLET_NOTIFICATIONS,
-} from "evmos-wallet";
 import {
   snackbarExecutedTx,
   snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
-import { KEPLR_NOTIFICATIONS, METAMASK_NOTIFICATIONS } from "evmos-wallet";
 import AddTokenMetamask from "./AddTokenMetamask";
-import { SNACKBAR_CONTENT_TYPES, SNACKBAR_TYPES } from "evmos-wallet";
 
 const Deposit = ({
   item,

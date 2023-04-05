@@ -3,8 +3,16 @@ import { BigNumber } from "ethers";
 import { parseUnits } from "ethers/lib/utils.js";
 import { useDispatch, useSelector } from "react-redux";
 import { executeDeposit } from "../../../../../internal/asset/functionality/transactions/deposit";
-import { BROADCASTED_NOTIFICATIONS } from "evmos-wallet";
-import { IBCChainParams } from "evmos-wallet";
+import {
+  BROADCASTED_NOTIFICATIONS,
+  IBCChainParams,
+  snackExecuteIBCTransfer,
+  snackIBCInformation,
+  snackRequestRejected,
+  getKeplrAddressByChain,
+  EVMOS_SYMBOL,
+  StoreType,
+} from "evmos-wallet";
 import {
   checkFormatAddress,
   checkMetaMaskFormatAddress,
@@ -14,14 +22,6 @@ import {
   snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../../internal/asset/style/format";
-import {
-  snackExecuteIBCTransfer,
-  snackIBCInformation,
-  snackRequestRejected,
-} from "evmos-wallet";
-import { getKeplrAddressByChain } from "evmos-wallet";
-import { EVMOS_SYMBOL } from "evmos-wallet";
-import { StoreType } from "evmos-wallet";
 import { DepositProps } from "../types";
 
 export const useDeposit = (useDepositProps: DepositProps) => {

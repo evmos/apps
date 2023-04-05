@@ -29,8 +29,6 @@ import {
 } from "../../../internal/asset/style/format";
 import { BigNumber } from "ethers";
 import HeadAssets from "./components/HeadAssets";
-import LeftArrowIcon from "../../common/images/icons/LeftArrowIcon";
-import Link from "next/link";
 import Guide from "./Guide";
 import NavToMissionControl from "../../common/navigation/NavToMissionControl";
 import {

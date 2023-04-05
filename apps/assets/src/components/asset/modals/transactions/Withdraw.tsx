@@ -4,36 +4,37 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { executeWithdraw } from "../../../../internal/asset/functionality/transactions/withdraw";
-import { IBCChainParams } from "evmos-wallet";
+import {
+  IBCChainParams,
+  getKeplrAddressByChain,
+  StoreType,
+  addSnackbar,
+  BROADCASTED_NOTIFICATIONS,
+  EXECUTED_NOTIFICATIONS,
+  MODAL_NOTIFICATIONS,
+  WALLET_NOTIFICATIONS,
+  EVMOS_SYMBOL,
+  KEPLR_NOTIFICATIONS,
+  Token,
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "evmos-wallet";
 import {
   getReservedForFeeText,
   snackbarExecutedTx,
   snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
-import { getKeplrAddressByChain } from "evmos-wallet";
-import { StoreType } from "evmos-wallet";
 import ConfirmButton from "../../../common/ConfirmButton";
 import KeplrIcon from "../../../common/images/icons/KeplrIcon";
 import { ModalTitle } from "../../../common/Modal";
-import { addSnackbar } from "evmos-wallet";
 import Arrow from "../common/Arrow";
 import ErrorMessage from "../common/ErrorMessage";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
-import {
-  BROADCASTED_NOTIFICATIONS,
-  EXECUTED_NOTIFICATIONS,
-  MODAL_NOTIFICATIONS,
-  WALLET_NOTIFICATIONS,
-} from "evmos-wallet";
-import { EVMOS_SYMBOL } from "evmos-wallet";
 import Tabs from "../common/Tabs";
-import { KEPLR_NOTIFICATIONS } from "evmos-wallet";
-import { Token } from "evmos-wallet";
 import AddTokenMetamask from "./AddTokenMetamask";
 import Link from "next/link";
-import { SNACKBAR_CONTENT_TYPES, SNACKBAR_TYPES } from "evmos-wallet";
 
 const Withdraw = ({
   item,

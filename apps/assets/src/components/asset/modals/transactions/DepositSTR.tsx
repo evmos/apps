@@ -4,7 +4,12 @@ import { useDispatch } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import ConfirmButton from "../../../common/ConfirmButton";
 import { ModalTitle } from "../../../common/Modal";
-import { getKeplrAddressByChain } from "evmos-wallet";
+import {
+  getKeplrAddressByChain,
+  snackErrorConnectingKeplr,
+  snackErrorGettingBalanceExtChain,
+  EVMOS_SYMBOL,
+} from "evmos-wallet";
 import {
   getBalance,
   getEvmosBalanceForDeposit,
@@ -13,14 +18,9 @@ import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import DepositReceiver from "../common/deposit/DepositReceiver";
 import AmountDeposit from "../common/deposit/AmountDeposit";
 import DepositSender from "../common/deposit/DepositSender";
-import {
-  snackErrorConnectingKeplr,
-  snackErrorGettingBalanceExtChain,
-} from "evmos-wallet";
 import RedirectLink from "../common/RedirectLink";
 import { ButtonActionsProps } from "./types";
 import { useDeposit } from "./hooks/useDeposit";
-import { EVMOS_SYMBOL } from "evmos-wallet";
 
 export type DepositElement = {
   chain: string;

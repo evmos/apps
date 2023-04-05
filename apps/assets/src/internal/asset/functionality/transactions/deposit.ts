@@ -5,12 +5,12 @@ import {
   GENERATING_TX_NOTIFICATIONS,
   MODAL_NOTIFICATIONS,
   SIGNING_NOTIFICATIONS,
+  IBCChainParams,
+  broadcastAminoBackendTxToBackend,
+  Signer,
+  EVMOS_NETWORK_FOR_BACKEND,
 } from "evmos-wallet";
 import { ibcTransferBackendCall } from "./ibcTransfer";
-import { IBCChainParams } from "evmos-wallet";
-import { broadcastAminoBackendTxToBackend } from "evmos-wallet";
-import { Signer } from "evmos-wallet";
-import { EVMOS_NETWORK_FOR_BACKEND } from "evmos-wallet";
 
 export async function executeDeposit(
   pubkey: string,

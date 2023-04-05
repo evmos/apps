@@ -1,6 +1,9 @@
-import { EVMOS_BACKEND } from "evmos-wallet";
-import { GENERATING_TX_NOTIFICATIONS } from "evmos-wallet";
-import { IBCChainParams, IBCTransferResponse } from "evmos-wallet";
+import {
+  EVMOS_BACKEND,
+  GENERATING_TX_NOTIFICATIONS,
+  IBCChainParams,
+  IBCTransferResponse,
+} from "evmos-wallet";
 
 export async function ibcTransferBackendCall(
   pubkey: string,

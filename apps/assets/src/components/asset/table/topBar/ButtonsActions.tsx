@@ -1,7 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { snackWarningLedger } from "evmos-wallet";
-import { METAMASK_KEY, WALLECT_CONNECT_KEY } from "evmos-wallet";
-import { StoreType } from "evmos-wallet";
+import {
+  snackWarningLedger,
+  METAMASK_KEY,
+  WALLECT_CONNECT_KEY,
+  StoreType,
+} from "evmos-wallet";
 import ConfirmButton from "../../../common/ConfirmButton";
 import DepositSTR from "../../modals/transactions/DepositSTR";
 import WithdrawSTR from "../../modals/transactions/WithdrawSTR";

@@ -1,7 +1,7 @@
-import { fetchWithTimeout } from "evmos-wallet";
-import { EVMOS_BACKEND } from "evmos-wallet";
-import { EXECUTED_NOTIFICATIONS } from "evmos-wallet";
 import {
+  fetchWithTimeout,
+  EVMOS_BACKEND,
+  EXECUTED_NOTIFICATIONS,
   executedTx,
   TransactionStatus,
   txStatusErrorResponse,

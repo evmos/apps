@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { MODAL_NOTIFICATIONS } from "evmos-wallet";
+import { MODAL_NOTIFICATIONS, EVMOS_SYMBOL } from "evmos-wallet";
 import {
   convertAndFormat,
   convertFromAtto,
@@ -8,7 +8,6 @@ import {
   safeSubstraction,
   truncateNumber,
 } from "../../../../../internal/asset/style/format";
-import { EVMOS_SYMBOL } from "evmos-wallet";
 import DropdownTokens from "../../../dropdown/DropdownTokens";
 import SmallButton from "../../../../common/SmallButton";
 import ContainerInput from "../ContainerInput";

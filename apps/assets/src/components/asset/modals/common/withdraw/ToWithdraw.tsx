@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { MODAL_NOTIFICATIONS } from "evmos-wallet";
+import {
+  MODAL_NOTIFICATIONS,
+  snackErrorConnectingKeplr,
+  getKeplrAddressByChain,
+  EVMOS_SYMBOL,
+  truncateAddress,
+} from "evmos-wallet";
 import { checkFormatAddress } from "../../../../../internal/asset/style/format";
-import { snackErrorConnectingKeplr } from "evmos-wallet";
-import { getKeplrAddressByChain } from "evmos-wallet";
-import { EVMOS_SYMBOL } from "evmos-wallet";
-import { truncateAddress } from "evmos-wallet";
 import KeplrIcon from "../../../../common/images/icons/KeplrIcon";
 import SmallButton from "../../../../common/SmallButton";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";

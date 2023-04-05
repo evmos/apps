@@ -1,21 +1,25 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import {
+  KEPLR_KEY,
+  METAMASK_KEY,
+  WALLECT_CONNECT_KEY,
+  EVMOS_SYMBOL,
+  StoreType,
+} from "evmos-wallet";
 
-import { KEPLR_KEY, METAMASK_KEY, WALLECT_CONNECT_KEY } from "evmos-wallet";
 const Button = dynamic(() => import("../../../common/Button"));
 const ExternalLinkIcon = dynamic(
   () => import("../../../common/images/icons/ExternalLink")
 );
 import Withdraw from "../../modals/transactions/Withdraw";
 import Deposit from "../../modals/transactions/Deposit";
-import { EVMOS_SYMBOL } from "evmos-wallet";
 import {
   TableData,
   TableDataElement,
 } from "../../../../internal/asset/functionality/table/normalizeData";
 import { Dispatch, SetStateAction } from "react";
 import { useSelector } from "react-redux";
-import { StoreType } from "evmos-wallet";
 import Convert from "../../modals/transactions/Convert";
 
 type actionsProps = {

@@ -1,6 +1,5 @@
 import { ERC20BalanceResponse } from "../../../components/asset/table/types";
-import { EVMOS_BACKEND } from "evmos-wallet";
-import { BALANCE_NOTIFICATIONS } from "evmos-wallet";
+import { EVMOS_BACKEND, BALANCE_NOTIFICATIONS } from "evmos-wallet";
 
 export const getAssets = async () => {
   const res = await fetch(`${EVMOS_BACKEND}/ERC20ModuleBalance`);

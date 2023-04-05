@@ -1,22 +1,23 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { formatUnits } from "@ethersproject/units";
-import { addSnackbar } from "evmos-wallet";
+import {
+  addSnackbar,
+  EXECUTED_NOTIFICATIONS,
+  INCLUDED_BLOCK_NOTIFICATIONS,
+  TransactionStatus,
+  EVMOS_SYMBOL,
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "evmos-wallet";
 import { BIG_ZERO } from "../../common/math/Bignumbers";
 import {
   TableData,
   TableDataElement,
 } from "../functionality/table/normalizeData";
 import {
-  EXECUTED_NOTIFICATIONS,
-  INCLUDED_BLOCK_NOTIFICATIONS,
-} from "evmos-wallet";
-import {
   checkIBCExecutionStatus,
   checkTxInclusionInABlock,
 } from "../functionality/transactions/executedTx";
-import { TransactionStatus } from "evmos-wallet";
-import { EVMOS_SYMBOL } from "evmos-wallet";
-import { SNACKBAR_CONTENT_TYPES, SNACKBAR_TYPES } from "evmos-wallet";
 export function getReservedForFeeText(
   amount: BigNumber,
   token: string,

@@ -7,8 +7,7 @@ import { ContainerModal } from "../common/ContainerModal";
 import FromConvert from "../common/convert/FromConvert";
 import ToConvert from "../common/convert/ToConvert";
 
-import { Token } from "evmos-wallet";
-import { EVMOS_SYMBOL } from "evmos-wallet";
+import { Token, EVMOS_SYMBOL } from "evmos-wallet";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
 
 import Note from "../common/Note";

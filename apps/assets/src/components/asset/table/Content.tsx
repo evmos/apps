@@ -71,7 +71,7 @@ const Content = ({
             </td>
 
             <td>
-              <div className="flex justify-center space-x-3">
+              <div className="space-x-3 flex justify-center">
                 <ButtonActions actionsProps={actionsProps} />
               </div>
             </td>

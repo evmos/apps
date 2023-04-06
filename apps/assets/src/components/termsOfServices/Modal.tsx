@@ -12,14 +12,14 @@ const ModalTOS = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-blackOpacity">
+    <div className="fixed inset-0 flex items-center justify-center bg-blackOpacity z-50">
       <div
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="relative max-h-[350px] w-[600px] min-w-[300px] overflow-scroll rounded-lg bg-pearl px-5 py-8 text-black sm:max-h-full sm:overflow-auto  sm:px-10"
+        className="max-h-[350px] min-w-[300px] overflow-scroll sm:overflow-auto relative px-5 sm:px-10 py-8 bg-pearl text-black rounded-lg w-[600px]  sm:max-h-full"
       >
-        <div className="mb-4 w-[calc(100%-32px)] text-h5 font-bold text-darkGray3">
+        <div className="w-[calc(100%-32px)] font-bold text-h5 mb-4 text-darkGray3">
           {title}
         </div>
         {children}

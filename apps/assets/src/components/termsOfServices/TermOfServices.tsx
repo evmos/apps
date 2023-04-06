@@ -37,7 +37,7 @@ const TermOfServices = () => {
     <ModalTOS title="Evmos Terms of Services" show={show}>
       <div className="space-y-3">
         <div
-          className="h-80 w-full space-y-3 overflow-y-auto border border-darkGray5 p-4 font-[IBM]"
+          className="overflow-y-auto h-80 w-full border border-darkGray5 p-4 font-[IBM] space-y-3"
           ref={termsRef}
           onScroll={onScroll}
         >

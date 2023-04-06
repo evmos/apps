@@ -1,18 +1,8 @@
 import { ethToEvmos } from "@evmos/address-converter";
 import { BigNumber } from "ethers";
-import { parseUnits } from "ethers/lib/utils.js";
+import { parseUnits } from "@ethersproject/units";
 import { useDispatch, useSelector } from "react-redux";
 import { executeDeposit } from "../../../../../internal/asset/functionality/transactions/deposit";
-import {
-  BROADCASTED_NOTIFICATIONS,
-  IBCChainParams,
-  snackExecuteIBCTransfer,
-  snackIBCInformation,
-  snackRequestRejected,
-  getKeplrAddressByChain,
-  EVMOS_SYMBOL,
-  StoreType,
-} from "evmos-wallet";
 import {
   checkFormatAddress,
   checkMetaMaskFormatAddress,
@@ -23,7 +13,16 @@ import {
   snackbarWaitingBroadcast,
 } from "../../../../../internal/asset/style/format";
 import { DepositProps } from "../types";
-
+import {
+  BROADCASTED_NOTIFICATIONS,
+  IBCChainParams,
+  snackExecuteIBCTransfer,
+  snackIBCInformation,
+  snackRequestRejected,
+  getKeplrAddressByChain,
+  EVMOS_SYMBOL,
+  StoreType,
+} from "evmos-wallet";
 export const useDeposit = (useDepositProps: DepositProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();

@@ -9,7 +9,7 @@ import {
   truncateNumber,
 } from "../../../../../internal/asset/style/format";
 import ErrorMessage from "../ErrorMessage";
-import { MODAL_NOTIFICATIONS } from "evmos-wallet";
+import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
 import { FromProps } from "../types";
 import ContainerInput from "../ContainerInput";
 import SmallButton from "../../../../common/SmallButton";
@@ -31,7 +31,7 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
           />
           <span className="font-bold uppercase">{style.text}</span>
           <input
-            className="w-full border-none text-right hover:border-none focus-visible:outline-none"
+            className="w-full border-none hover:border-none focus-visible:outline-none text-right"
             type="text"
             placeholder="amount"
             value={input.value}
@@ -68,7 +68,7 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
           numericOnly(convertFromAtto(balance.amount, balance.decimals))
         ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
       <div>
-        <p className="text-sm font-bold">
+        <p className="font-bold text-sm">
           Available Balance:{" "}
           <span className="font-normal opacity-80">
             {formatNumber(convertFromAtto(balance.amount, balance.decimals))}{" "}

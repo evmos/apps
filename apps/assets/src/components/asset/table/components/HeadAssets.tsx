@@ -1,9 +1,9 @@
 const HeadAssets = () => {
   return (
-    <div className="hidden w-full items-center font-bold uppercase lg:flex">
+    <div className="hidden lg:flex uppercase w-full font-bold items-center sticky top-0 bg-black">
       <div className="w-[5%]"></div>
-      <div className="w-[50%] space-x-5 py-4 text-left">Asset</div>
-      <div className="mr-8 w-[50%] space-x-5 text-right lg:mr-0 lg:text-left">
+      <div className="text-left py-4 space-x-5 w-[50%]">Asset</div>
+      <div className="text-right mr-8 lg:mr-0 lg:text-left w-[50%] space-x-5">
         Total Balance
       </div>
     </div>

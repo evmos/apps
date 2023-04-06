@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
+
 import {
   KEPLR_KEY,
   METAMASK_KEY,
@@ -7,7 +8,6 @@ import {
   EVMOS_SYMBOL,
   StoreType,
 } from "evmos-wallet";
-
 const Button = dynamic(() => import("../../../common/Button"));
 const ExternalLinkIcon = dynamic(
   () => import("../../../common/images/icons/ExternalLink")
@@ -77,9 +77,9 @@ export const ButtonActions = ({
           }}
         >
           <div className="flex flex-row items-center">
-            <div className="min-h-[9px] min-w-[9px]" />
+            <div className="min-w-[9px] min-h-[9px]" />
             <span className="px-2">Deposit</span>
-            <div className="min-h-[9px] min-w-[9px]" />
+            <div className="min-w-[9px] min-h-[9px]" />
           </div>
         </Button>
       )}
@@ -117,9 +117,9 @@ export const ButtonActions = ({
           }}
         >
           <div className="flex flex-row items-center">
-            <div className="min-h-[9px] min-w-[9px]" />
+            <div className="min-w-[9px] min-h-[9px]" />
             <span className="px-2">Withdraw</span>
-            <div className="min-h-[9px] min-w-[9px]" />
+            <div className="min-w-[9px] min-h-[9px]" />
           </div>
         </Button>
       )}
@@ -142,9 +142,9 @@ export const ButtonActions = ({
         }}
       >
         <div className="flex flex-row items-center">
-          <div className="min-h-[9px] min-w-[9px]" />
+          <div className="min-w-[9px] min-h-[9px]" />
           <span className="px-2">Convert</span>
-          <div className="min-h-[9px] min-w-[9px]" />
+          <div className="min-w-[9px] min-h-[9px]" />
         </div>
       </Button>
     </>

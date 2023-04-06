@@ -1,8 +1,14 @@
-const MessageTable = ({ children }: { children: JSX.Element }) => {
+const MessageTable = ({
+  children,
+  amountCols,
+}: {
+  children: JSX.Element;
+  amountCols: number;
+}) => {
   return (
-    <tr className="assetOneItem">
-      <td colSpan={4}>
-        <div className="flex items-center justify-center space-x-3 font-[GreyCliff] font-bold">
+    <tr className="">
+      <td colSpan={amountCols} className="bg-darkGray2">
+        <div className="flex text-center items-center space-x-3 justify-center font-semibold font-[GreyCliff] my-4">
           {children}
         </div>
       </td>

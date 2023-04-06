@@ -1,3 +1,7 @@
+import { BigNumber } from "@ethersproject/bignumber";
+import { parseEther } from "@ethersproject/units";
+import { BIG_ZERO } from "../../../common/math/Bignumbers";
+
 import {
   EVMOS_BACKEND,
   EVMOS_NETWORK_FOR_BACKEND,
@@ -9,10 +13,6 @@ import {
   MODAL_NOTIFICATIONS,
   SIGNING_NOTIFICATIONS,
 } from "evmos-wallet";
-import { BigNumber } from "@ethersproject/bignumber";
-import { parseEther } from "@ethersproject/units";
-import { BIG_ZERO } from "../../../common/math/Bignumbers";
-
 const feeAmountForConvert = BigNumber.from("30000000000000000");
 
 async function convertCoinBackendCall(

@@ -1,14 +1,5 @@
-import { BigNumber } from "@ethersproject/bignumber";
+import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
 import { formatUnits } from "@ethersproject/units";
-import {
-  addSnackbar,
-  EXECUTED_NOTIFICATIONS,
-  INCLUDED_BLOCK_NOTIFICATIONS,
-  TransactionStatus,
-  EVMOS_SYMBOL,
-  SNACKBAR_CONTENT_TYPES,
-  SNACKBAR_TYPES,
-} from "evmos-wallet";
 import { BIG_ZERO } from "../../common/math/Bignumbers";
 import {
   TableData,
@@ -18,13 +9,26 @@ import {
   checkIBCExecutionStatus,
   checkTxInclusionInABlock,
 } from "../functionality/transactions/executedTx";
+
+import {
+  addSnackbar,
+  EXECUTED_NOTIFICATIONS,
+  INCLUDED_BLOCK_NOTIFICATIONS,
+  TransactionStatus,
+  EVMOS_SYMBOL,
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "evmos-wallet";
+
 export function getReservedForFeeText(
   amount: BigNumber,
   token: string,
   network: string
 ) {
   return `${convertAndFormat(
-    amount
+    amount,
+    18,
+    6
   )} ${token} is reserved for transaction fees on the ${network} network.`;
 }
 
@@ -36,12 +40,14 @@ export function safeSubstraction(amount: BigNumber, fee: BigNumber) {
   return substraction;
 }
 
-export function convertFromAtto(value: BigNumber, exponent = 18) {
+export function convertFromAtto(
+  value: BigNumber | BigNumberish,
+  exponent = 18
+) {
   // Convert to string and truncate past decimal
   // for appropriate conversion
   if (!value) return "0";
   let valueAsString = value.toString();
-
   if (typeof value === "number") {
     // Strip scientific notation
     valueAsString = Number(value).toLocaleString("fullwide", {
@@ -51,8 +57,36 @@ export function convertFromAtto(value: BigNumber, exponent = 18) {
   return formatUnits(valueAsString.split(".")[0], exponent);
 }
 
+export function convertStringFromAtto(value: BigNumberish, exponent = 18) {
+  // value is a string with decimals.
+  // it is the same as convertFromAtto but it receives a string and returns a number
+  if (!value) return 0;
+  let valueAsString = value.toString();
+  if (typeof value === "number") {
+    // Strip scientific notation
+    valueAsString = Number(value).toLocaleString("fullwide", {
+      useGrouping: false,
+    });
+  }
+  return Number(formatUnits(valueAsString.split(".")[0], exponent));
+}
+
+export function formatPercentage(value: string | number) {
+  let valueAsNumber = value;
+  if (typeof valueAsNumber === "string") {
+    valueAsNumber = Number(valueAsNumber);
+  }
+
+  return new Intl.NumberFormat("en-US", {
+    style: "percent",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 2,
+  }).format(valueAsNumber);
+}
+
 export function formatNumber(
   value: string | number | undefined,
+  maxDigits = 2,
   options?: Intl.NumberFormatOptions,
   notation: "standard" | "compact" = "standard"
 ) {
@@ -69,13 +103,17 @@ export function formatNumber(
   return new Intl.NumberFormat("en-US", {
     notation: notation,
     compactDisplay: "short",
-    maximumFractionDigits: 6,
+    maximumFractionDigits: maxDigits,
     ...options,
   }).format(valueAsNumber);
 }
 
-export function convertAndFormat(value: BigNumber, exponent = 18) {
-  return formatNumber(convertFromAtto(value, exponent));
+export function convertAndFormat(
+  value: BigNumber,
+  exponent = 18,
+  maxDigits = 2
+) {
+  return formatNumber(convertFromAtto(value, exponent), maxDigits);
 }
 
 export function amountToDollars(
@@ -83,6 +121,9 @@ export function amountToDollars(
   decimals: number,
   coingeckoPrice: number
 ) {
+  if (!value || !coingeckoPrice) {
+    return "0";
+  }
   return (Number(convertFromAtto(value, decimals)) * coingeckoPrice).toFixed(2);
 }
 
@@ -327,3 +368,14 @@ export const getPrefix = (
   }
   return prefix;
 };
+
+export function formatAttoNumber(
+  // it applies the Millon letter for example
+  value: BigNumberish | BigNumber,
+  options?: Intl.NumberFormatOptions,
+  notation: "standard" | "compact" = "compact",
+  maxDigits = 2
+) {
+  const converted = convertFromAtto(value);
+  return formatNumber(converted, maxDigits, options, notation);
+}

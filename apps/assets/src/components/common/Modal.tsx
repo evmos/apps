@@ -21,18 +21,18 @@ const Modal = ({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-blackOpacity"
+      className="fixed inset-0 flex items-center justify-center bg-blackOpacity z-50"
       onClick={onClose}
     >
       <div
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="relative max-h-[75vh] min-w-[300px] max-w-[600px] overflow-scroll rounded-lg bg-pearl px-5 py-8 text-black sm:max-h-full sm:overflow-auto sm:px-10"
+        className="max-h-[75vh] min-w-[300px] md:min-w-[400px] overflow-scroll sm:overflow-auto relative px-5 sm:px-10 py-8 bg-pearl text-black rounded-lg max-w-[600px] sm:max-h-full"
       >
         <CloseIcon
           onClick={onClose}
-          className="absolute top-3 right-3 z-[99] h-10 w-10 cursor-pointer rounded p-2 transition-colors focus-within:outline-1 focus-within:outline-darkPearl hover:bg-darkPearl"
+          className="absolute top-3 right-3 p-2 w-10 h-10 cursor-pointer rounded z-[99] transition-colors hover:bg-darkPearl focus-within:outline-1 focus-within:outline-darkPearl"
         />
 
         {children}
@@ -43,7 +43,7 @@ const Modal = ({
 
 export function ModalTitle({ title }: { title: string }) {
   return (
-    <div className="mb-4 w-[calc(100%-32px)] text-lg font-bold text-darkGray2">
+    <div className="w-[calc(100%-32px)] font-bold text-lg mb-4 text-darkGray2">
       {title}
     </div>
   );

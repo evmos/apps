@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers";
-import { MODAL_NOTIFICATIONS, EVMOS_SYMBOL } from "evmos-wallet";
 import {
   convertAndFormat,
   convertFromAtto,
@@ -17,6 +16,7 @@ import Note from "../Note";
 import { TextSmall } from "../TextSmall";
 import { AmountWithdrawProps } from "../types";
 import { feeWithdraw } from "../../../../../internal/asset/Helpers";
+import { MODAL_NOTIFICATIONS, EVMOS_SYMBOL } from "evmos-wallet";
 
 const AmountWithdraw = ({
   amountProps,
@@ -91,7 +91,7 @@ const AmountWithdraw = ({
     return (
       <>
         <input
-          className="w-full border-none text-right hover:border-none focus-visible:outline-none"
+          className="w-full border-none hover:border-none focus-visible:outline-none text-right"
           type="text"
           placeholder="amount"
           value={amountProps.value}
@@ -118,7 +118,7 @@ const AmountWithdraw = ({
     }
     return (
       <>
-        <p className="text-sm font-bold">
+        <p className="font-bold text-sm">
           Available Balance:{" "}
           <span className="font-normal opacity-80">
             {convertAndFormat(

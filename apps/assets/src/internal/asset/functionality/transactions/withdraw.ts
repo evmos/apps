@@ -1,4 +1,8 @@
 import { BigNumber, utils } from "ethers";
+import { feeWithdraw } from "../../Helpers";
+import { checkFormatAddress } from "../../style/format";
+
+import { ibcTransferBackendCall } from "./ibcTransfer";
 import {
   EVMOS_NETWORK_FOR_BACKEND,
   Signer,
@@ -8,10 +12,6 @@ import {
   SIGNING_NOTIFICATIONS,
   IBCChainParams,
 } from "evmos-wallet";
-import { feeWithdraw } from "../../Helpers";
-import { checkFormatAddress } from "../../style/format";
-import { ibcTransferBackendCall } from "./ibcTransfer";
-
 export async function executeWithdraw(
   pubkey: string,
   address: string,

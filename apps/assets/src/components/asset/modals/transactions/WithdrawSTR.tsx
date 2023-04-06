@@ -120,7 +120,7 @@ const WithdrawSTR = ({
   return (
     <>
       <ModalTitle title="Withdraw Tokens" />
-      <div className="space-y-3 text-darkGray3">
+      <div className="text-darkGray3 space-y-3">
         <FromWithdraw address={address} />
         <AmountWithdraw amountProps={amountProps} />
         {withdrawDiv()}

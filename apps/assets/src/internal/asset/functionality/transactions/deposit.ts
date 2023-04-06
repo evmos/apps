@@ -1,5 +1,6 @@
 import { BigNumber, utils } from "ethers";
 import { checkFormatAddress } from "../../style/format";
+import { ibcTransferBackendCall } from "./ibcTransfer";
 import {
   BROADCASTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
@@ -10,7 +11,6 @@ import {
   Signer,
   EVMOS_NETWORK_FOR_BACKEND,
 } from "evmos-wallet";
-import { ibcTransferBackendCall } from "./ibcTransfer";
 
 export async function executeDeposit(
   pubkey: string,

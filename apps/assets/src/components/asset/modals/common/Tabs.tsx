@@ -23,13 +23,13 @@ const Tabs = ({
   const v10Link =
     "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
   return (
-    <div className="flex w-full items-center justify-center rounded border border-darkGray1 bg-pearl font-[IBM] font-bold ">
+    <div className="flex items-center w-full border border-darkGray1 bg-pearl justify-center rounded font-bold font-[IBM] ">
       <button
         className={`${
-          isERC20Selected ? " bg-darkGray1 text-pearl" : "text-darkGray1"
+          isERC20Selected ? " text-pearl bg-darkGray1" : "text-darkGray1"
         }
         ${isEvmosToken ? "disabled" : ""}
-        flex h-full w-full flex-col items-center border-r border-darkGray1 px-6 py-2`}
+        border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col items-center`}
         onClick={() => {
           if (!isERC20Selected) {
             setIsERC20Selected(true);
@@ -58,14 +58,14 @@ const Tabs = ({
             }
           />
         </div>
-        <span className="text-xs font-normal">
+        <span className="font-normal text-xs">
           {convertAndFormat(erc20Balance, decimals)}
         </span>
       </button>
       <button
         className={`${
-          !isERC20Selected ? "bg-darkGray1 text-pearl " : "text-darkGray1"
-        } flex h-full w-full flex-col items-center border-r border-darkGray1 px-6 py-2`}
+          !isERC20Selected ? "text-pearl bg-darkGray1 " : "text-darkGray1"
+        } border-r border-darkGray1 w-full h-full px-6 py-2 flex flex-col items-center`}
         onClick={() => {
           if (isERC20Selected) {
             setIsERC20Selected(false);
@@ -73,7 +73,7 @@ const Tabs = ({
         }}
       >
         <span>IBC</span>
-        <span className="text-xs font-normal">
+        <span className="font-normal text-xs">
           {convertAndFormat(cosmosBalance, decimals)}
         </span>
       </button>

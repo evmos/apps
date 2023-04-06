@@ -18,7 +18,7 @@ const ContentCard = ({
   setModalContent: Dispatch<SetStateAction<JSX.Element>>;
 }) => {
   return (
-    <div className="mx-auto w-fit space-y-5">
+    <div className="space-y-5 w-fit mx-auto">
       {tableData?.table.map((item, index: number) => {
         const actionsProps = {
           item: item,
@@ -28,13 +28,13 @@ const ContentCard = ({
         };
         return (
           <div
-            className="w-[350px] space-y-3 rounded-lg bg-darkGray2 p-5 sm:w-[450px] md:w-[600px]"
+            className="p-5 bg-darkGray2 rounded-lg space-y-3 w-[350px] sm:w-[450px] md:w-[600px]"
             key={index}
           >
             <Description symbol={item.symbol} description={item.description} />
             <div className="flex">
-              <p className="w-full opacity-80">ERC-20 Balance</p>
-              <div className="flex w-full justify-between">
+              <p className="opacity-80 w-full">ERC-20 Balance</p>
+              <div className="flex justify-between w-full">
                 <p className="font-bold">
                   {convertAndFormat(item.erc20Balance, item.decimals)}
                 </p>
@@ -50,8 +50,8 @@ const ContentCard = ({
             </div>
             <div className="flex flex-col space-y-2">
               <div className="flex w-full">
-                <p className="w-full opacity-80">IBC Balance</p>
-                <div className="flex w-full justify-between">
+                <p className="opacity-80 w-full">IBC Balance</p>
+                <div className="flex justify-between w-full">
                   <p className="font-bold">
                     {convertAndFormat(item.cosmosBalance, item.decimals)}
                   </p>
@@ -67,7 +67,7 @@ const ContentCard = ({
               </div>
             </div>
 
-            <div className="flex flex-col justify-between space-y-2">
+            <div className="flex justify-between flex-col space-y-2">
               <ButtonActions actionsProps={actionsProps} />
             </div>
           </div>

@@ -13,7 +13,7 @@ const LinkButton = ({
     <Link
       href={href}
       target={target}
-      className="flex items-center rounded border border-darkGray1 px-5 font-bold hover:bg-grayOpacity"
+      className="flex items-center border border-darkGray1 px-5 rounded hover:bg-grayOpacity font-bold"
     >
       {children}
     </Link>

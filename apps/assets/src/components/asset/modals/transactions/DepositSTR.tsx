@@ -5,12 +5,6 @@ import { TableDataElement } from "../../../../internal/asset/functionality/table
 import ConfirmButton from "../../../common/ConfirmButton";
 import { ModalTitle } from "../../../common/Modal";
 import {
-  getKeplrAddressByChain,
-  snackErrorConnectingKeplr,
-  snackErrorGettingBalanceExtChain,
-  EVMOS_SYMBOL,
-} from "evmos-wallet";
-import {
   getBalance,
   getEvmosBalanceForDeposit,
 } from "../../../../internal/asset/functionality/fetch";
@@ -21,7 +15,12 @@ import DepositSender from "../common/deposit/DepositSender";
 import RedirectLink from "../common/RedirectLink";
 import { ButtonActionsProps } from "./types";
 import { useDeposit } from "./hooks/useDeposit";
-
+import {
+  getKeplrAddressByChain,
+  snackErrorConnectingKeplr,
+  snackErrorGettingBalanceExtChain,
+  EVMOS_SYMBOL,
+} from "evmos-wallet";
 export type DepositElement = {
   chain: string;
   elements: TableDataElement[];
@@ -218,7 +217,7 @@ const DepositSTR = ({
   return (
     <>
       <ModalTitle title="Deposit Tokens" />
-      <div className="space-y-3 text-darkGray3">
+      <div className="text-darkGray3 space-y-3">
         <DepositSender
           address={walletToUse}
           dropChainProps={{

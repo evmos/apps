@@ -1,23 +1,23 @@
 const Switch = ({
   checked,
   onChange,
+  label,
 }: {
   checked: boolean;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  label: string;
 }) => {
   return (
-    <div className="mt-3 flex items-center justify-center xl:mt-0">
-      <label className="relative inline-flex cursor-pointer items-center">
+    <div className="items-center mt-3 xl:mt-0 flex justify-center">
+      <label className="inline-flex relative items-center cursor-pointer">
         <input
           type="checkbox"
-          className="peer sr-only"
+          className="sr-only peer"
           onChange={onChange}
           checked={checked}
         />
-        <div className="dark:border-gray-600 h-4 w-10 rounded-full bg-darkGray3 text-white after:absolute after:top-[0px] after:left-[1px] after:h-5 after:w-5 after:rounded-full after:border after:border-white after:bg-white after:transition-all after:content-[''] peer-checked:bg-darkGray3 peer-checked:after:translate-x-full peer-checked:after:border-red peer-checked:after:bg-red"></div>
-        <span className="ml-3 text-sm font-medium text-white">
-          Hide Zero Balance
-        </span>
+        <div className="w-10 h-4 rounded-full text-pearl bg-darkGray3 peer-checked:after:translate-x-full peer-checked:after:border-red peer-checked:after:bg-red after:content-[''] after:absolute after:top-[0px] after:left-[1px] after:bg-white after:border-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-darkGray3"></div>
+        <span className="ml-3 text-sm font-medium text-pearl">{label}</span>
       </label>
     </div>
   );

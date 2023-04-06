@@ -28,7 +28,7 @@ const createSubRow = (
 ) => {
   return (
     <div
-      className="subrow w-full bg-darkGray2"
+      className="bg-darkGray2 w-full subrow"
       key={isIBCBalance ? item.symbol.toLocaleLowerCase() : item.symbol}
     >
       <SubRowContent
@@ -163,7 +163,7 @@ const ContentTable = ({
     return ret;
   }, [data, setModalContent, setShow, tableData.feeBalance]);
 
-  return <div className="flex w-full flex-col">{renderData}</div>;
+  return <div className="flex flex-col w-full">{renderData}</div>;
 };
 
 export default ContentTable;

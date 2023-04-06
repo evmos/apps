@@ -2,18 +2,22 @@ const Button = ({
   children,
   onClick,
   disabled,
+  className,
 }: {
   children: JSX.Element;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
+  className?: string;
 }) => {
   return (
     <button
       onClick={onClick}
       className={`
-      rounded" flex justify-center border border-pearl p-2 text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity ${
+      flex justify-center text-pearl uppercase text-xs font-bold hover:bg-whiteOpacity border border-pearl p-2 rounded font-[GreyCliff]" ${
         disabled ? "disabled rounded" : "rounded"
-      } `}
+      } 
+        ${className !== undefined ? className : ""}
+        `}
     >
       {children}
     </button>

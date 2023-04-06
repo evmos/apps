@@ -36,7 +36,7 @@ const DropdownChainDeposit = ({
             alt={selectedValue.elements[0].chainIdentifier}
             width={25}
             height={25}
-            className="h-6 w-6"
+            className="w-6 h-6"
           />
           <span>
             {getChainIdentifier(selectedValue.elements[0].chainIdentifier)}
@@ -55,20 +55,20 @@ const DropdownChainDeposit = ({
   };
 
   return (
-    <div className="relative w-full cursor-pointer rounded text-left text-black ">
+    <div className="text-left w-full relative rounded cursor-pointer text-black ">
       <div
         onClick={handleInputClick}
-        className="flex select-none items-center justify-between p-1"
+        className="p-1 flex items-center justify-between select-none"
       >
         {showMenu && (
-          <div className="absolute -left-4 top-1 z-[9999] max-h-32 w-auto translate-y-9 overflow-auto rounded border border-darkGray2 bg-white">
+          <div className="z-[9999] absolute translate-y-9 -left-4 top-1 w-auto overflow-auto max-h-32 bg-white border border-darkGray2 rounded">
             {dropChainProps.data.map((option) => {
               if (option.chain !== EVMOS_SYMBOL) {
                 return (
                   <div
                     onClick={() => onItemClick(option)}
                     key={option.chain}
-                    className={`flex cursor-pointer justify-between space-x-8 p-3 font-bold hover:bg-gray
+                    className={`p-3 cursor-pointer hover:bg-gray flex justify-between space-x-8 font-bold
                   `}
                   >
                     <div className="flex items-center space-x-3">
@@ -77,7 +77,7 @@ const DropdownChainDeposit = ({
                         alt={option.chain}
                         width={25}
                         height={25}
-                        className=" h-6 w-6"
+                        className=" w-6 h-6"
                       />
                       <span>{getChainIdentifier(option.chain)}</span>
                     </div>

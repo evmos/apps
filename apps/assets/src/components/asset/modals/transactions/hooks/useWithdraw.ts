@@ -1,15 +1,6 @@
 import { BigNumber } from "ethers";
-import { parseUnits } from "ethers/lib/utils.js";
+import { parseUnits } from "@ethersproject/units";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  BROADCASTED_NOTIFICATIONS,
-  IBCChainParams,
-  snackExecuteIBCTransfer,
-  snackIBCInformation,
-  snackRequestRejected,
-  EVMOS_SYMBOL,
-  StoreType,
-} from "evmos-wallet";
 import { executeWithdraw } from "../../../../../internal/asset/functionality/transactions/withdraw";
 import {
   checkFormatAddress,
@@ -19,7 +10,15 @@ import {
   snackbarWaitingBroadcast,
 } from "../../../../../internal/asset/style/format";
 import { WithdrawProps } from "../types";
-
+import {
+  BROADCASTED_NOTIFICATIONS,
+  IBCChainParams,
+  snackExecuteIBCTransfer,
+  snackIBCInformation,
+  snackRequestRejected,
+  EVMOS_SYMBOL,
+  StoreType,
+} from "evmos-wallet";
 export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();

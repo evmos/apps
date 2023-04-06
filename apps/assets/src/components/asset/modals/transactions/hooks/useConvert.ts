@@ -1,11 +1,5 @@
 import { parseUnits } from "ethers/lib/utils.js";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  snackBroadcastSuccessful,
-  snackErrorGeneratingTx,
-  snackRequestRejected,
-  StoreType,
-} from "evmos-wallet";
 
 import { WEVMOS_CONTRACT_ADDRESS } from "../../constants";
 import { createContract } from "../contracts/contractHelper";
@@ -13,7 +7,12 @@ import { WEVMOS } from "../contracts/abis/WEVMOS/WEVMOS";
 import WETH_ABI from "../contracts/abis/WEVMOS/WEVMOS.json";
 import { ConvertProps } from "../types";
 import { BigNumber } from "ethers";
-
+import {
+  snackBroadcastSuccessful,
+  snackErrorGeneratingTx,
+  snackRequestRejected,
+  StoreType,
+} from "evmos-wallet";
 export const useConvert = (useConvertProps: ConvertProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();

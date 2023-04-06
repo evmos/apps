@@ -1,12 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  MODAL_NOTIFICATIONS,
-  snackErrorConnectingKeplr,
-  getKeplrAddressByChain,
-  EVMOS_SYMBOL,
-  truncateAddress,
-} from "evmos-wallet";
 import { checkFormatAddress } from "../../../../../internal/asset/style/format";
 import KeplrIcon from "../../../../common/images/icons/KeplrIcon";
 import SmallButton from "../../../../common/SmallButton";
@@ -17,6 +10,13 @@ import ErrorMessage from "../ErrorMessage";
 import { TextSmall } from "../TextSmall";
 import { WithdrawReceiverProps } from "../types";
 import ChainContainer from "./ChainContainer";
+import {
+  MODAL_NOTIFICATIONS,
+  snackErrorConnectingKeplr,
+  getKeplrAddressByChain,
+  EVMOS_SYMBOL,
+  truncateAddress,
+} from "evmos-wallet";
 
 const ToWithdraw = ({
   token,
@@ -83,7 +83,7 @@ const ToWithdraw = ({
       <div className="flex items-center space-x-3">
         <TextSmall text="TO" />
         <span>{truncateAddress(receiverAddress)}</span>
-        <div className="flex w-full items-center justify-end space-x-5">
+        <div className="flex items-center space-x-5 w-full justify-end">
           <SmallButton
             className={`${!showEditButton ? "invisible" : ""}`}
             text="EDIT"
@@ -118,7 +118,7 @@ const ToWithdraw = ({
 
   const addMetamaskDiv = () => {
     return (
-      <div className="flex w-full justify-end">
+      <div className="flex justify-end w-full">
         {token !== undefined && (
           <AddTokenMetamask
             token={{
@@ -166,7 +166,7 @@ const ToWithdraw = ({
               />
             </ContainerInput>
 
-            <h6 className="text-xs font-bold italic">
+            <h6 className="italic text-xs font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>

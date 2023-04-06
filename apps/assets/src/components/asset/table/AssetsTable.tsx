@@ -3,11 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "evmos-wallet";
 import { ERC20BalanceResponse } from "./types";
-import {
-  getAssetsForAddress,
-  getTotalStaked,
-  TotalStakedResponse,
-} from "../../../internal/asset/functionality/fetch";
+import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
 
 import dynamic from "next/dynamic";
 
@@ -23,18 +19,12 @@ import {
   TableData,
 } from "../../../internal/asset/functionality/table/normalizeData";
 import HeadTable from "./HeadTable";
-import {
-  convertAndFormat,
-  getTotalAssets,
-} from "../../../internal/asset/style/format";
-import { BigNumber } from "ethers";
+import { getTotalAssets } from "../../../internal/asset/style/format";
 import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
-import NavToMissionControl from "../../common/navigation/NavToMissionControl";
-import {
-  EVMOS_PAGE_URL,
-  NAV_TO_MISSION_CONTROL,
-} from "../modals/common/constants";
+import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
+import Navigation from "../../common/navigation/Navigation";
+import { EVMOS_PAGE_URL, NAV_TO_MISSION_CONTROL } from "../../common/constants";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -42,6 +32,8 @@ const AssetsTable = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
 
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
+
+  const { stakedData } = useStakedEvmos();
 
   const { data, error, isLoading } = useQuery<ERC20BalanceResponse, Error>({
     refetchInterval: 3000,
@@ -55,11 +47,6 @@ const AssetsTable = () => {
         value.evmosAddressCosmosFormat,
         value.evmosAddressEthFormat
       ),
-  });
-
-  const totalStakedResults = useQuery<TotalStakedResponse, Error>({
-    queryKey: ["totalStaked", value.evmosAddressCosmosFormat],
-    queryFn: () => getTotalStaked(value.evmosAddressCosmosFormat),
   });
 
   const [hideZeroBalance, setHideBalance] = useState(false);
@@ -94,25 +81,10 @@ const AssetsTable = () => {
     });
   }, [normalizedAssetsData, hideZeroBalance]);
 
-  const totalStaked = useMemo(() => {
-    let stakedRes = totalStakedResults?.data?.value;
-    if (stakedRes !== "" && stakedRes !== undefined) {
-      stakedRes = convertAndFormat(
-        BigNumber.from(stakedRes),
-        normalizedAssetsData?.table[0]?.decimals
-      );
-    } else {
-      stakedRes = "0";
-    }
-
-    return `${stakedRes} EVMOS`;
-  }, [totalStakedResults, normalizedAssetsData]);
-
   const topProps = {
     evmosPrice: normalizedAssetsData?.table[0]?.coingeckoPrice,
-    totalStaked: totalStaked,
     totalAssets: getTotalAssets(normalizedAssetsData, {
-      total: totalStakedResults?.data ? totalStakedResults?.data?.value : "0",
+      total: stakedData ? stakedData?.value : "0",
       decimals: normalizedAssetsData?.table[0]?.decimals,
       coingeckoPrice: normalizedAssetsData.table[0]?.coingeckoPrice,
     }),
@@ -126,26 +98,24 @@ const AssetsTable = () => {
 
   return (
     <>
-      <NavToMissionControl
-        href={EVMOS_PAGE_URL}
-        text={NAV_TO_MISSION_CONTROL}
-      />
+      <Navigation href={EVMOS_PAGE_URL} text={NAV_TO_MISSION_CONTROL} />
       <TopBar topProps={topProps} />
-      <div className="mx-5 flex flex-col justify-center lg:flex-row lg:justify-between xl:mx-0">
+      <div className="flex flex-col lg:flex-row mx-5 xl:mx-0 justify-center lg:justify-between">
         <Guide />
         <Switch
+          label={"Hide Zero Balance"}
           onChange={() => {
             zeroBalance();
           }}
           checked={hideZeroBalance}
         />
       </div>
-      <div className="xl:scrollbar-hide mt-5 max-h-[33vh] w-full overflow-y-auto font-[IBM] text-white lg:max-h-[43vh]">
+      <div className="mt-5 overflow-y-auto max-h-[33vh] sm:max-h-[36vh] lg:max-h-[46vh] xl:scrollbar-hide text-pearl font-[IBM] w-full">
         <table className="w-full">
           {tableData?.length === 0 && <HeadTable />}
           <tbody>
             {isLoading && (
-              <MessageTable>
+              <MessageTable amountCols={4}>
                 <>
                   <span className="loader"></span>
                   <p>Loading...</p>
@@ -155,14 +125,14 @@ const AssetsTable = () => {
           </tbody>
           {error && !isLoading && tableData?.length === 0 && (
             <tbody>
-              <MessageTable>
+              <MessageTable amountCols={4}>
                 <p>Request failed</p>
               </MessageTable>
             </tbody>
           )}
           {!isLoading && !error && tableData?.length === 0 && (
             <tbody>
-              <MessageTable>
+              <MessageTable amountCols={4}>
                 <p>No results </p>
               </MessageTable>
             </tbody>

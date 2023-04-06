@@ -1,6 +1,21 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import KeplrIcon from "../../../../common/images/icons/KeplrIcon";
+import MetamaskIcon from "../../../../common/images/icons/MetamaskIcon";
+
+import { ContainerModal } from "../ContainerModal";
+import ErrorMessage from "../ErrorMessage";
+import { TextSmall } from "../TextSmall";
+import AddTokenMetamask from "../../transactions/AddTokenMetamask";
+
+import SmallButton from "../../../../common/SmallButton";
+import ContainerInput from "../ContainerInput";
+import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
+import {
+  checkFormatAddress,
+  checkMetaMaskFormatAddress,
+} from "../../../../../internal/asset/style/format";
 import {
   getKeplrAddressByChain,
   getWallet,
@@ -11,21 +26,6 @@ import {
   MODAL_NOTIFICATIONS,
   StoreType,
 } from "evmos-wallet";
-import KeplrIcon from "../../../../common/images/icons/KeplrIcon";
-import MetamaskIcon from "../../../../common/images/icons/MetamaskIcon";
-
-import { ContainerModal } from "../ContainerModal";
-import ErrorMessage from "../ErrorMessage";
-import { TextSmall } from "../TextSmall";
-import AddTokenMetamask from "../../transactions/AddTokenMetamask";
-import SmallButton from "../../../../common/SmallButton";
-import ContainerInput from "../ContainerInput";
-import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
-import {
-  checkFormatAddress,
-  checkMetaMaskFormatAddress,
-} from "../../../../../internal/asset/style/format";
-
 const DepositReceiver = ({
   receiver,
   setReceiver,
@@ -88,7 +88,7 @@ const DepositReceiver = ({
           </div>
         </div>
 
-        <div className="flex w-full items-center justify-end space-x-5">
+        <div className="flex items-center space-x-5 w-full justify-end">
           <SmallButton
             className={`${!showEditButton ? "invisible" : ""}`}
             text="EDIT"
@@ -122,7 +122,7 @@ const DepositReceiver = ({
               />
             </ContainerInput>
 
-            <h6 className="text-xs font-bold italic">
+            <h6 className="italic text-xs font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
@@ -137,7 +137,7 @@ const DepositReceiver = ({
           !checkMetaMaskFormatAddress(receiver) && (
             <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorWrongPrefix} />
           )}
-        <div className="flex w-full justify-end">
+        <div className="flex justify-end w-full">
           {token !== undefined && (
             <AddTokenMetamask
               token={{

@@ -5,6 +5,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { executeWithdraw } from "../../../../internal/asset/functionality/transactions/withdraw";
 import {
+  getReservedForFeeText,
+  snackbarExecutedTx,
+  snackbarIncludedInBlock,
+  snackbarWaitingBroadcast,
+} from "../../../../internal/asset/style/format";
+import ConfirmButton from "../../../common/ConfirmButton";
+import KeplrIcon from "../../../common/images/icons/KeplrIcon";
+import { ModalTitle } from "../../../common/Modal";
+import Arrow from "../common/Arrow";
+import ErrorMessage from "../common/ErrorMessage";
+import FromContainer from "../common/FromContainer";
+import ToContainer from "../common/ToContainer";
+import Tabs from "../common/Tabs";
+
+import AddTokenMetamask from "./AddTokenMetamask";
+import Link from "next/link";
+import {
   IBCChainParams,
   getKeplrAddressByChain,
   StoreType,
@@ -19,23 +36,6 @@ import {
   SNACKBAR_CONTENT_TYPES,
   SNACKBAR_TYPES,
 } from "evmos-wallet";
-import {
-  getReservedForFeeText,
-  snackbarExecutedTx,
-  snackbarIncludedInBlock,
-  snackbarWaitingBroadcast,
-} from "../../../../internal/asset/style/format";
-import ConfirmButton from "../../../common/ConfirmButton";
-import KeplrIcon from "../../../common/images/icons/KeplrIcon";
-import { ModalTitle } from "../../../common/Modal";
-import Arrow from "../common/Arrow";
-import ErrorMessage from "../common/ErrorMessage";
-import FromContainer from "../common/FromContainer";
-import ToContainer from "../common/ToContainer";
-import Tabs from "../common/Tabs";
-import AddTokenMetamask from "./AddTokenMetamask";
-import Link from "next/link";
-
 const Withdraw = ({
   item,
   feeBalance,
@@ -97,7 +97,7 @@ const Withdraw = ({
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
       <div className="text-darkGray3">
-        <p className="max-w-[500px] pb-3 text-sm italic">
+        <p className="text-sm max-w-[500px] pb-3 italic">
           Since Evmos{" "}
           <Link
             className="text-red"
@@ -110,7 +110,7 @@ const Withdraw = ({
           you can withdraw directly your ERC20 balance without previously
           converting it to IBC.
         </p>
-        <div className="space-y-2 rounded-lg bg-skinTan px-8 py-4 ">
+        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
           <FromContainer
             fee={{
               fee,
@@ -148,7 +148,7 @@ const Withdraw = ({
         </div>
         <Arrow />
 
-        <div className="mb-8 space-y-5 rounded-lg bg-skinTan px-8 py-4">
+        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
           <ToContainer
             token={item.symbol === EVMOS_SYMBOL ? "OSMO" : item.symbol}
             img={
@@ -158,9 +158,9 @@ const Withdraw = ({
             }
           />
           <div className="space-y-3">
-            <div className="flex items-center space-x-3 rounded-lg border border-darkGray5 bg-white pr-5 pl-2 focus-within:border-black hover:border-black focus-visible:border-black">
+            <div className="pr-5 pl-2 flex items-center space-x-3 bg-white hover:border-black focus-visible:border-black focus-within:border-black border border-darkGray5 rounded-lg">
               <input
-                className="w-full border-none p-3 hover:border-none focus-visible:outline-none"
+                className="w-full p-3 border-none hover:border-none focus-visible:outline-none"
                 value={addressTo}
                 onChange={(e) => {
                   setAddressTo(e.target.value);
@@ -170,13 +170,13 @@ const Withdraw = ({
             {confirmClicked && addressTo === "" && (
               <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
             )}
-            <h6 className="text-sm font-bold italic">
+            <h6 className="italic text-sm font-bold">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
             <AddTokenMetamask token={token} />
-            <div className="flex w-full items-center justify-end space-x-5">
-              <span className="font-bold uppercase">Autofill</span>
+            <div className="flex items-center space-x-5 w-full justify-end">
+              <span className="uppercase font-bold">Autofill</span>
               <KeplrIcon
                 width={25}
                 height={25}

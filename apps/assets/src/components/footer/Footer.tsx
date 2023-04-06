@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { VERSION_TAG } from "../asset/modals/common/constants";
+import { COMMONWEALTH_URL } from "../../internal/common/links";
+import { VERSION_TAG } from "../common/constants";
 
 const TwitterIcon = dynamic(() => import("./icons/Twitter"));
 const TelegramIcon = dynamic(() => import("./icons/Telegram"));
@@ -10,7 +11,7 @@ const CommonWealthIcon = dynamic(() => import("./icons/CommonWealth"));
 
 const Footer = () => {
   return (
-    <footer className=" mb-10 mt-10 flex w-full flex-col items-center space-y-2 text-pearl xl:justify-between">
+    <footer className=" mb-10 flex xl:justify-between text-pearl w-full mt-10 flex-col items-center space-y-2">
       <div className="flex items-center space-x-5">
         <Link
           target="_blank"
@@ -47,13 +48,13 @@ const Footer = () => {
         <Link
           target="_blank"
           rel="noreferrer"
-          href="https://commonwealth.im/evmos"
+          href={COMMONWEALTH_URL}
           aria-label="commonwealth evmos"
         >
           <CommonWealthIcon />
         </Link>
       </div>
-      <div className="flex w-full items-center justify-center space-x-5 px-2">
+      <div className="flex items-center space-x-5 justify-center w-full px-2">
         <p>Version: {VERSION_TAG}</p>
         <p>
           <Link

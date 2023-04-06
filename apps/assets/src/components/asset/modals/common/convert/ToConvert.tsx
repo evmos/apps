@@ -34,14 +34,14 @@ const ToConvert = ({
           />
           <span className="font-bold">{token}</span>
           <input
-            className="w-full border-none text-right hover:border-none focus-visible:outline-none"
+            className="w-full border-none hover:border-none focus-visible:outline-none text-right"
             type="text"
             disabled
           />
         </>
       </ContainerInput>
-      <div className="flex items-center justify-between">
-        <span className="text-sm font-bold">
+      <div className="flex justify-between items-center">
+        <span className="font-bold text-sm">
           Available Balance:{" "}
           <span className="font-normal opacity-80">
             {formatNumber(convertFromAtto(balance, decimals))}

@@ -1,19 +1,6 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
-import {
-  StoreType,
-  ConvertMsg,
-  addSnackbar,
-  EVMOS_SYMBOL,
-  KEPLR_NOTIFICATIONS,
-  BROADCASTED_NOTIFICATIONS,
-  GENERATING_TX_NOTIFICATIONS,
-  WALLET_NOTIFICATIONS,
-  Token,
-  SNACKBAR_CONTENT_TYPES,
-  SNACKBAR_TYPES,
-} from "evmos-wallet";
 import ConfirmButton from "../../../common/ConfirmButton";
 import Arrow from "../common/Arrow";
 import FromContainer from "../common/FromContainer";
@@ -27,9 +14,23 @@ import { ModalTitle } from "../../../common/Modal";
 import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
 import { createContract } from "./contracts/contractHelper";
+
 import AddTokenMetamask from "./AddTokenMetamask";
 import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 
+import {
+  StoreType,
+  ConvertMsg,
+  addSnackbar,
+  EVMOS_SYMBOL,
+  KEPLR_NOTIFICATIONS,
+  BROADCASTED_NOTIFICATIONS,
+  GENERATING_TX_NOTIFICATIONS,
+  WALLET_NOTIFICATIONS,
+  Token,
+  SNACKBAR_CONTENT_TYPES,
+  SNACKBAR_TYPES,
+} from "evmos-wallet";
 const Convert = ({
   item,
   feeBalance,
@@ -88,7 +89,7 @@ const Convert = ({
     <>
       <ModalTitle title={`Convert ${item.symbol}`} />
       <div className="text-darkGray3">
-        <div className="space-y-3 rounded-lg bg-skinTan px-8 py-4 ">
+        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-3 ">
           <FromContainer
             fee={{
               fee: BigNumber.from("300000000000000000"),
@@ -129,7 +130,7 @@ const Convert = ({
           </div>
         </div>
         <Arrow />
-        <div className="mb-8 space-y-5 rounded-lg bg-skinTan px-8 py-4">
+        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
           <ToContainer
             token={item.symbol}
             img={`/assets/tokens/${item.symbol.toLowerCase()}.png`}

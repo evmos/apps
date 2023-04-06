@@ -181,6 +181,7 @@ tr:last-child td:first-child{
 
 html {
   height: 100%;
+  background-color: #0b0a09;
 }
 
 .markdown {

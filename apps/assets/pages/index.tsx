@@ -29,6 +29,7 @@ function SnackbarsInternal() {
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
 const Footer = dynamic(() => import("../src/components/footer/Footer"));
+
 export default function Home() {
   const queryClient = new QueryClient();
   return (

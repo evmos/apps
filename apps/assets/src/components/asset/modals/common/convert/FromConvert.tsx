@@ -31,7 +31,7 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
           />
           <span className="font-bold uppercase">{style.text}</span>
           <input
-            className="w-full border-none hover:border-none focus-visible:outline-none text-right"
+            className="w-full border-none text-right hover:border-none focus-visible:outline-none"
             type="text"
             placeholder="amount"
             value={input.value}
@@ -68,7 +68,7 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
           numericOnly(convertFromAtto(balance.amount, balance.decimals))
         ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
       <div>
-        <p className="font-bold text-sm">
+        <p className="text-sm font-bold">
           Available Balance:{" "}
           <span className="font-normal opacity-80">
             {formatNumber(convertFromAtto(balance.amount, balance.decimals))}{" "}

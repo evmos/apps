@@ -217,7 +217,7 @@ const DepositSTR = ({
   return (
     <>
       <ModalTitle title="Deposit Tokens" />
-      <div className="text-darkGray3 space-y-3">
+      <div className="space-y-3 text-darkGray3">
         <DepositSender
           address={walletToUse}
           dropChainProps={{

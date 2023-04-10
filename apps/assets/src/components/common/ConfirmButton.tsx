@@ -11,7 +11,7 @@ const ConfirmButton = ({
       onClick={onClick}
       className={`${
         className !== undefined ? className : ""
-      } bg-red text-pearl uppercase w-full rounded px-8 py-2 text-lg font-bold font-[GreyCliff] hover:bg-red1  ${
+      } w-full rounded bg-red px-8 py-2 font-[GreyCliff] text-lg font-bold uppercase text-pearl hover:bg-red1  ${
         disabled ? "disabled" : ""
       }`}
     >

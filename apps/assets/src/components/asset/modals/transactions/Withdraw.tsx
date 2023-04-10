@@ -97,7 +97,7 @@ const Withdraw = ({
     <>
       <ModalTitle title={`Withdraw ${item.symbol}`} />
       <div className="text-darkGray3">
-        <p className="text-sm max-w-[500px] pb-3 italic">
+        <p className="max-w-[500px] pb-3 text-sm italic">
           Since Evmos{" "}
           <Link
             className="text-red"
@@ -110,7 +110,7 @@ const Withdraw = ({
           you can withdraw directly your ERC20 balance without previously
           converting it to IBC.
         </p>
-        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-2 ">
+        <div className="space-y-2 rounded-lg bg-skinTan px-8 py-4 ">
           <FromContainer
             fee={{
               fee,
@@ -148,7 +148,7 @@ const Withdraw = ({
         </div>
         <Arrow />
 
-        <div className="bg-skinTan px-8 py-4 rounded-lg space-y-5 mb-8">
+        <div className="mb-8 space-y-5 rounded-lg bg-skinTan px-8 py-4">
           <ToContainer
             token={item.symbol === EVMOS_SYMBOL ? "OSMO" : item.symbol}
             img={
@@ -158,9 +158,9 @@ const Withdraw = ({
             }
           />
           <div className="space-y-3">
-            <div className="pr-5 pl-2 flex items-center space-x-3 bg-white hover:border-black focus-visible:border-black focus-within:border-black border border-darkGray5 rounded-lg">
+            <div className="flex items-center space-x-3 rounded-lg border border-darkGray5 bg-white pr-5 pl-2 focus-within:border-black hover:border-black focus-visible:border-black">
               <input
-                className="w-full p-3 border-none hover:border-none focus-visible:outline-none"
+                className="w-full border-none p-3 hover:border-none focus-visible:outline-none"
                 value={addressTo}
                 onChange={(e) => {
                   setAddressTo(e.target.value);
@@ -170,13 +170,13 @@ const Withdraw = ({
             {confirmClicked && addressTo === "" && (
               <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
             )}
-            <h6 className="italic text-sm font-bold">
+            <h6 className="text-sm font-bold italic">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>
             <AddTokenMetamask token={token} />
-            <div className="flex items-center space-x-5 w-full justify-end">
-              <span className="uppercase font-bold">Autofill</span>
+            <div className="flex w-full items-center justify-end space-x-5">
+              <span className="font-bold uppercase">Autofill</span>
               <KeplrIcon
                 width={25}
                 height={25}

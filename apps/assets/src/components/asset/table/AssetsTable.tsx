@@ -100,7 +100,7 @@ const AssetsTable = () => {
     <>
       <Navigation href={EVMOS_PAGE_URL} text={NAV_TO_MISSION_CONTROL} />
       <TopBar topProps={topProps} />
-      <div className="flex flex-col lg:flex-row mx-5 xl:mx-0 justify-center lg:justify-between">
+      <div className="mx-5 flex flex-col justify-center lg:flex-row lg:justify-between xl:mx-0">
         <Guide />
         <Switch
           label={"Hide Zero Balance"}
@@ -110,7 +110,7 @@ const AssetsTable = () => {
           checked={hideZeroBalance}
         />
       </div>
-      <div className="mt-5 overflow-y-auto max-h-[33vh] sm:max-h-[36vh] lg:max-h-[46vh] xl:scrollbar-hide text-pearl font-[IBM] w-full">
+      <div className="xl:scrollbar-hide mt-5 max-h-[33vh] w-full overflow-y-auto font-[IBM] text-pearl sm:max-h-[36vh] lg:max-h-[46vh]">
         <table className="w-full">
           {tableData?.length === 0 && <HeadTable />}
           <tbody>

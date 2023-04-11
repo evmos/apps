@@ -10,9 +10,9 @@ const RadioElement = ({
   selected: string;
 }) => {
   return (
-    <div className="px-3 space-x-2 flex items-center bg-white mb-1 text-sm ">
+    <div className="mb-1 flex items-center space-x-2 bg-white px-3 text-sm ">
       <input
-        className="relative h-5 w-5 rounded-full border-2 cursor-pointer checked:border-red checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:content-['']"
+        className="relative h-5 w-5 cursor-pointer rounded-full border-2 checked:border-red checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:content-['']"
         type="radio"
         value={text}
         name={name}
@@ -20,7 +20,7 @@ const RadioElement = ({
         id={text}
         onChange={onChange}
       />
-      <label className="w-full p-3 cursor-pointer" htmlFor={text}>
+      <label className="w-full cursor-pointer p-3" htmlFor={text}>
         {text}
       </label>
     </div>

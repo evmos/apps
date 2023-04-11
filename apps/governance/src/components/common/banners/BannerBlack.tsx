@@ -4,7 +4,7 @@ import ExternalLinkIcon from "../images/icons/ExternalLinkIcon";
 const BannerBlack = ({ text, href }: { text: string; href: string }) => {
   return (
     <Link rel="noopener noreferrer" target="_blank" href={href}>
-      <div className="font-[GreyCliff] items-center flex justify-between bg-black text-pearl border-4 border-darkGray2 font-bold p-5 my-4 mx-4 md:mx-0 rounded-2xl">
+      <div className="my-4 mx-4 flex items-center justify-between rounded-2xl border-4 border-darkGray2 bg-black p-5 font-[GreyCliff] font-bold text-pearl md:mx-0">
         <span>{text}</span>
         <ExternalLinkIcon width={28} height={28} />
       </div>

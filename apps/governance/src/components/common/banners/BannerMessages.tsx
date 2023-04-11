@@ -11,7 +11,7 @@ const BannerMessages = ({
 }) => {
   return (
     <div
-      className={`font-bold font-[GreyCliff] text-pearl md:col-span-2 justify-center mx-5 md:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl text-sm px-5 flex text-center items-center space-x-2 ${
+      className={`mx-5 mb-5 flex items-center justify-center space-x-2 rounded-2xl bg-darkGray2 p-5 px-5 text-center font-[GreyCliff] text-sm font-bold text-pearl md:col-span-2 md:mx-0 ${
         className !== undefined ? className : ""
       }`}
     >

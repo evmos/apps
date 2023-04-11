@@ -1,0 +1,55 @@
+name: 'CodeQL'
+
+on:
+  push:
+    # Action not enabled until we have the security addon on the tharsis org, without that the ci will always fail
+    branches: [nowhere]
+  # push:
+  #   branches: [main]
+  # pull_request:
+  #   # The branches below must be a subset of the branches above
+  #   branches: [main]
+  # schedule:
+  #   - cron: '42 19 * * 6'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['typescript']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - uses: technote-space/get-diff-action@v6.0.1
+        with:
+          PATTERNS: |
+            pages/**/**.tsx
+            pages/**/**.ts
+            src/**/**.tsx
+            src/**/**.ts
+            public/**/**.html
+            package.json
+            yarn.lock
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
+          languages: ${{ matrix.language }}
+        if: env.GIT_DIFF
+
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v1
+        if: env.GIT_DIFF
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+        if: env.GIT_DIFF

@@ -1,0 +1,9 @@
+const ContainerInput = ({ children }: { children: JSX.Element }) => {
+  return (
+    <div className="flex items-center space-x-3 rounded border border-darkGray5 bg-white py-2 pr-5 pl-4 focus-within:border-darkGray5 hover:border-darkGray5 focus-visible:border-darkGray5">
+      {children}
+    </div>
+  );
+};
+
+export default ContainerInput;

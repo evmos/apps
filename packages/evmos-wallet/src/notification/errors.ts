@@ -30,6 +30,7 @@ export const MODAL_NOTIFICATIONS = {
   ErrorAddressEmpty: "Address can not be empty",
   ErrorTokenEmpty: "Please, select a token",
   ErrorWrongPrefix: "Incorrect address",
+  ErrorValidatorEmpty: "Please, select a validator",
 } as const;
 
 export const BALANCE_NOTIFICATIONS = {

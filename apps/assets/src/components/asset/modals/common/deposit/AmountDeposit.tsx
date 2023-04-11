@@ -120,7 +120,11 @@ const AmountDeposit = ({
         <p className="text-sm font-bold">
           Available Balance:{" "}
           <span className="font-normal opacity-80">
-            {convertAndFormat(amountProps.balance, amountProps.token?.decimals)}{" "}
+            {convertAndFormat(
+              amountProps.balance,
+              amountProps.token?.decimals,
+              6
+            )}{" "}
             {amountProps.token?.symbol}
           </span>
         </p>

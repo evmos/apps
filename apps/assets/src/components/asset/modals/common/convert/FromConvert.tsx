@@ -71,7 +71,7 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
         <p className="text-sm font-bold">
           Available Balance:{" "}
           <span className="font-normal opacity-80">
-            {formatNumber(convertFromAtto(balance.amount, balance.decimals))}{" "}
+            {formatNumber(convertFromAtto(balance.amount, balance.decimals), 6)}{" "}
             {style.tokenTo}
           </span>
         </p>

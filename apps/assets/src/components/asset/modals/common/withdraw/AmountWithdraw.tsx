@@ -126,7 +126,8 @@ const AmountWithdraw = ({
               amountProps.token.symbol === EVMOS_SYMBOL
                 ? amountProps.token.cosmosBalance
                 : amountProps.token.erc20Balance,
-              amountProps.token.decimals
+              amountProps.token.decimals,
+              6
             )}{" "}
             {amountProps.token.symbol}
           </span>

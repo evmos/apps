@@ -44,7 +44,7 @@ const ToConvert = ({
         <span className="text-sm font-bold">
           Available Balance:{" "}
           <span className="font-normal opacity-80">
-            {formatNumber(convertFromAtto(balance, decimals))}
+            {formatNumber(convertFromAtto(balance, decimals), 6)}
           </span>
         </span>
         <AddTokenMetamask token={addToken} />

@@ -103,7 +103,7 @@ const AssetsTable = () => {
       <div className="mx-5 flex flex-col justify-center lg:flex-row lg:justify-between xl:mx-0">
         <Guide />
         <Switch
-          label={"Hide Zero Balance"}
+          label="Hide Zero Balance"
           onChange={() => {
             zeroBalance();
           }}

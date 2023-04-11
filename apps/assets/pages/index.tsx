@@ -29,7 +29,6 @@ function SnackbarsInternal() {
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
 const Footer = dynamic(() => import("../src/components/footer/Footer"));
-
 export default function Home() {
   const queryClient = new QueryClient();
   return (
@@ -103,9 +102,9 @@ export default function Home() {
               <TermOfServices />
               <Container>
                 <>
-                <SnackbarsInternal />
+                  <SnackbarsInternal />
                   <Header pageName="Assets" />
-                  <div className="container mx-auto overflow-auto mb-auto">
+                  <div className="container mx-auto mb-auto overflow-auto">
                     <AssetsTable />
                   </div>
                   <Footer />

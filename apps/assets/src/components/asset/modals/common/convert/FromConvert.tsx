@@ -9,7 +9,7 @@ import {
   truncateNumber,
 } from "../../../../../internal/asset/style/format";
 import ErrorMessage from "../ErrorMessage";
-import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
+import { MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { FromProps } from "../types";
 import ContainerInput from "../ContainerInput";
 import SmallButton from "../../../../common/SmallButton";

@@ -1,10 +1,9 @@
-import { ERC20BalanceResponse } from "../../../../components/asset/table/types";
-import { BalanceResponse } from "../../../asset/functionality/fetch";
 import {
   EVMOS_BACKEND,
   EVMOS_MINIMAL_COIN_DENOM,
   EVMOS_SYMBOL,
 } from "evmos-wallet";
+import { BalanceResponse, ERC20BalanceResponse } from "./types";
 
 export const getEvmosBalance = async (address: string) => {
   if (address === "" || address == undefined || address == null) {

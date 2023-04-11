@@ -3,8 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { StoreType } from "evmos-wallet";
 import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import { BigNumber } from "ethers";
-import { BalanceResponse } from "../../../asset/functionality/fetch";
 import { getEvmosBalance } from "./fetch";
+import { BalanceResponse } from "./types";
 export const useEvmosBalance = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
 

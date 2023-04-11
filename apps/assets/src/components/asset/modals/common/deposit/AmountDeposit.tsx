@@ -1,4 +1,4 @@
-import { MODAL_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
+import { MODAL_NOTIFICATIONS } from "evmos-wallet";
 import {
   convertAndFormat,
   convertFromAtto,

@@ -1,4 +1,4 @@
-.PHONY: assetsPage
+.PHONY: governancePage
 
 lint:
 	@yarn lintunix

@@ -1,6 +1,6 @@
 const ContainerId = ({ id }: { id: string }) => {
   return (
-    <div className="bg-black px-3 py-2 rounded-3xl font-bold text-pearl w-fit">
+    <div className="w-fit rounded-3xl bg-black px-3 py-2 font-bold text-pearl">
       #{id}
     </div>
   );

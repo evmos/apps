@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
-import { snackExecuteIBCTransfer } from "../../../../internal/asset/style/snackbars";
 import { executeVote } from "../../../../internal/governance/functionality/transactions/vote";
 import { optionVoteSelected } from "../../../../internal/governance/functionality/types";
 import { VoteProps } from "../types";
+import { snackExecuteIBCTransfer } from "evmos-wallet";
 
 export const useVote = (useVoteProps: VoteProps) => {
   const dispatch = useDispatch();

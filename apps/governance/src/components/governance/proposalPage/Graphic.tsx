@@ -1,6 +1,8 @@
 import { useCallback, useMemo } from "react";
-import { formatAttoNumber } from "../../../internal/asset/style/format";
-import { indexOfMax } from "../../../internal/common/helpers/style";
+import {
+  formatAttoNumber,
+  indexOfMax,
+} from "../../../internal/common/helpers/style";
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
   lookupProposalEndStatus,
@@ -51,7 +53,7 @@ const Graphic = ({
     if (largestWinningBlock === 1 || largestWinningBlock === 3) {
       return (
         <div
-          className={`py-1 px-2 font-bold inset-0 text-pearl absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
+          className={`absolute inset-0 m-auto flex h-1/2 w-1/2 max-w-[50%] flex-col items-center justify-center rounded-[50%] py-1 px-2 text-center font-bold text-pearl
     ${BAR_COLORS.no}
     `}
         >
@@ -62,7 +64,7 @@ const Graphic = ({
     } else {
       return (
         <div
-          className={`py-1 px-2 font-bold inset-0 text-pearl absolute flex flex-col items-center justify-center max-w-[50%] m-auto text-center h-1/2 w-1/2 rounded-[50%]
+          className={`absolute inset-0 m-auto flex h-1/2 w-1/2 max-w-[50%] flex-col items-center justify-center rounded-[50%] py-1 px-2 text-center font-bold text-pearl
       ${BAR_COLORS.yes}
       `}
         >
@@ -80,9 +82,9 @@ const Graphic = ({
     data.total,
   ]);
   return (
-    <section className="space-y-5 mx-5 lg:mx-0 mb-5 bg-darkGray2 p-5 rounded-2xl font-[IBM] h-fit">
+    <section className="mx-5 mb-5 h-fit space-y-5 rounded-2xl bg-darkGray2 p-5 font-[IBM] lg:mx-0">
       {isNotInDepositPeriod && (
-        <div className="text-pearl fonst-bold flex justify-between">
+        <div className="fonst-bold flex justify-between text-pearl">
           <p>Total</p>
           <p>
             {formatAttoNumber(data.total)} {EVMOS_SYMBOL}

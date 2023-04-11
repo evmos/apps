@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { BigNumber } from "ethers";
 import { useMemo } from "react";
-import { formatAttoNumber } from "../../../asset/style/format";
 import {
+  formatAttoNumber,
   formatDate,
   getPercentage,
   isVotingTimeWithinRange,

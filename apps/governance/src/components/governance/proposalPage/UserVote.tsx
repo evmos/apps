@@ -18,7 +18,7 @@ const UserVote = ({ voteRecord }: { voteRecord: Vote | undefined }) => {
   return voteRecord !== undefined &&
     voteRecord?.vote?.options &&
     voteRecord?.vote?.options.length > 0 ? (
-    <p className="px-5 py-2 rounded-3xl text-black bg-pearl text-center ">{`You Voted: ${
+    <p className="rounded-3xl bg-pearl px-5 py-2 text-center text-black ">{`You Voted: ${
       VOTING_LOOKUP[voteRecord?.vote?.options[0].option]
     }`}</p>
   ) : null;

@@ -14,7 +14,7 @@ import {
   wagmiClient,
   StoreType,
   Snackbars,
-  getAllSnackbars
+  getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -28,9 +28,7 @@ function SnackbarsInternal() {
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
 const Footer = dynamic(() => import("../src/components/footer/Footer"));
-const Content = dynamic(
-  () => import("../src/components/governance/Content")
-);
+const Content = dynamic(() => import("../src/components/governance/Content"));
 
 export default function Home() {
   const queryClient = new QueryClient();
@@ -50,7 +48,7 @@ export default function Home() {
                 <>
                   <SnackbarsInternal />
                   <Header pageName="Governance" />
-                  <div className="container mx-auto overflow-auto mb-auto">
+                  <div className="container mx-auto mb-auto overflow-auto">
                     <Content />
                   </div>
                   <Footer />

@@ -2,7 +2,7 @@ import { BAR_COLORS } from "./styles";
 
 const BarWrapper = ({ percents }: { percents: string[] }) => {
   return (
-    <div className="flex w-full h-4 rounded-lg overflow-hidden bg-darkGray1">
+    <div className="flex h-4 w-full overflow-hidden rounded-lg bg-darkGray1">
       <div
         className={`${BAR_COLORS.yes}`}
         style={{ width: `${percents[0]}%` }}

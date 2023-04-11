@@ -1,9 +1,4 @@
 import { useCallback, useState } from "react";
-import { feeVote } from "../../../../internal/asset/Helpers";
-import {
-  convertFromAtto,
-  getReservedForFeeText,
-} from "../../../../internal/asset/style/format";
 import { EVMOS_SYMBOL } from "evmos-wallet";
 import ConfirmButton from "../../../common/ConfirmButton";
 import Modal from "../../../common/Modal";
@@ -13,10 +8,14 @@ import IdContainer from "../../common/IdContainer";
 import { VoteProps } from "../../common/types";
 import RadioElementContainer from "./RadioElementContainer";
 import { useSelector } from "react-redux";
-import { StoreType } from "evmos-wallet";
+import { StoreType, MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { useEvmosBalance } from "../../../../internal/common/functionality/hooks/useEvmosBalance";
-import ErrorMessage from "../../../asset/modals/common/ErrorMessage";
-import { MODAL_NOTIFICATIONS } from "../../../../internal/asset/functionality/transactions/errors";
+import ErrorMessage from "../../../common/ErrorMessage";
+import {
+  convertFromAtto,
+  feeVote,
+  getReservedForFeeText,
+} from "../../../../internal/common/helpers/style";
 
 const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
   const [show, setShow] = useState(false);
@@ -49,7 +48,7 @@ const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
           <p className="font-bold">Your Vote</p>
           <div className="flex items-center space-x-2">
             <IdContainer id={voteProps.id} />
-            <p className="text-sm text-darkGray2 opacity-80 font-bold">
+            <p className="text-sm font-bold text-darkGray2 opacity-80">
               {voteProps.title}
             </p>
           </div>

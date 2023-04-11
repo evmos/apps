@@ -1,6 +1,8 @@
-import { GENERATING_TX_NOTIFICATIONS } from "../../../asset/functionality/transactions/errors";
-import { IBCTransferResponse } from "../../../asset/functionality/transactions/types";
-import { EVMOS_BACKEND } from "evmos-wallet";
+import {
+  EVMOS_BACKEND,
+  GENERATING_TX_NOTIFICATIONS,
+  IBCTransferResponse,
+} from "evmos-wallet";
 
 export async function voteBackendCall(
   pubkey: string,

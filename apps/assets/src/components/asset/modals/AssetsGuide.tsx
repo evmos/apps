@@ -7,7 +7,7 @@ const AssetsGuide = () => {
   const [show, setShow] = useState(false);
   const modalContent = (
     <div className="space-y-5">
-      <h5 className="font-bold text-2xl">Asset Guides</h5>
+      <h5 className="text-2xl font-bold">Asset Guides</h5>
       <p>
         Reference guide on the Evmos Assets Page can be found{" "}
         <a
@@ -36,7 +36,7 @@ const AssetsGuide = () => {
         onClick={() => {
           setShow(true);
         }}
-        className="text-red cursor-pointer"
+        className="cursor-pointer text-red"
       >
         view the assets guide
       </span>

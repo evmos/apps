@@ -83,7 +83,7 @@ const ToWithdraw = ({
       <div className="flex items-center space-x-3">
         <TextSmall text="TO" />
         <span>{truncateAddress(receiverAddress)}</span>
-        <div className="flex items-center space-x-5 w-full justify-end">
+        <div className="flex w-full items-center justify-end space-x-5">
           <SmallButton
             className={`${!showEditButton ? "invisible" : ""}`}
             text="EDIT"
@@ -118,7 +118,7 @@ const ToWithdraw = ({
 
   const addMetamaskDiv = () => {
     return (
-      <div className="flex justify-end w-full">
+      <div className="flex w-full justify-end">
         {token !== undefined && (
           <AddTokenMetamask
             token={{
@@ -166,7 +166,7 @@ const ToWithdraw = ({
               />
             </ContainerInput>
 
-            <h6 className="italic text-xs font-bold">
+            <h6 className="text-xs font-bold italic">
               IMPORTANT: Transferring to an incorrect address will result in
               loss of funds.
             </h6>

@@ -1,10 +1,10 @@
 import {
+  EVMOS_NETWORK_FOR_BACKEND,
   BROADCASTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
   SIGNING_NOTIFICATIONS,
-} from "../../../asset/functionality/transactions/errors";
-import { EVMOS_NETWORK_FOR_BACKEND } from "evmos-wallet";
-import { Signer } from "evmos-wallet";
+  Signer,
+} from "evmos-wallet";
 import { WalletExtension } from "evmos-wallet/src/internal/wallet/functionality/wallet";
 import { voteBackendCall } from "./fetch";
 

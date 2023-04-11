@@ -1,7 +1,4 @@
-import {
-  EVMOS_BACKEND,
-  EVMOS_SYMBOL,
-} from "evmos-wallet";
+import { EVMOS_BACKEND, EVMOS_SYMBOL } from "evmos-wallet";
 
 export type TotalStakedResponse = {
   value: string;

@@ -1,5 +1,5 @@
 const TitleContainer = ({ title }: { title: string }) => {
-  return <div className="text-pearl font-bold text-lg">{title}</div>;
+  return <div className="text-lg font-bold text-pearl">{title}</div>;
 };
 
 export default TitleContainer;

@@ -1,6 +1,6 @@
-# Assets Page
+# Governance Page
 
-This repo contains the front-end for the assets page: [https://assets.evmos.org/](https://assets.evmos.org/).
+This repo contains the front-end for the governance page: [https://governance.evmos.org/](https://governance.evmos.org/).
 
 ## Requirements
 
@@ -15,8 +15,8 @@ The wallet extensions code is inside the `wallet` folders in `src/internal` and 
 ## Run
 
 ```sh
-git clone https://github.com/tharsis/assetsPage
-cd assetsPage
+git clone https://github.com/tharsis/governacePage
+cd governancePage
 yarn install
 yarn run dev
 ```

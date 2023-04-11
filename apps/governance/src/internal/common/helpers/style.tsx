@@ -1,5 +1,8 @@
-import { BigNumber } from "ethers";
+import { BigNumber, BigNumberish } from "ethers";
 import { BIG_ZERO } from "../math/Bignumbers";
+import { formatUnits } from "ethers/lib/utils.js";
+
+export const feeVote = BigNumber.from("6250000000000000");
 
 export const getPercentage = (value: string[]) => {
   // given an array of strings,
@@ -99,3 +102,75 @@ export const isVotingTimeWithinRange = (date: string) => {
     new Date(endPeriodVoteUTC).getTime() > new Date(nowUTC).getTime();
   return canVote;
 };
+
+export function formatNumber(
+  value: string | number | undefined,
+  maxDigits = 2,
+  options?: Intl.NumberFormatOptions,
+  notation: "standard" | "compact" = "standard"
+) {
+  if (value === undefined) {
+    return "--";
+  }
+
+  let valueAsNumber = value;
+
+  if (typeof valueAsNumber === "string") {
+    valueAsNumber = Number(valueAsNumber);
+  }
+
+  return new Intl.NumberFormat("en-US", {
+    notation: notation,
+    compactDisplay: "short",
+    maximumFractionDigits: maxDigits,
+    ...options,
+  }).format(valueAsNumber);
+}
+
+export function convertFromAtto(
+  value: BigNumber | BigNumberish,
+  exponent = 18
+) {
+  // Convert to string and truncate past decimal
+  // for appropriate conversion
+  if (!value) return "0";
+  let valueAsString = value.toString();
+  if (typeof value === "number") {
+    // Strip scientific notation
+    valueAsString = Number(value).toLocaleString("fullwide", {
+      useGrouping: false,
+    });
+  }
+  return formatUnits(valueAsString.split(".")[0], exponent);
+}
+
+export function formatAttoNumber(
+  // it applies the Millon letter for example
+  value: BigNumberish | BigNumber,
+  options?: Intl.NumberFormatOptions,
+  notation: "standard" | "compact" = "compact",
+  maxDigits = 2
+) {
+  const converted = convertFromAtto(value);
+  return formatNumber(converted, maxDigits, options, notation);
+}
+
+export function convertAndFormat(
+  value: BigNumber,
+  exponent = 18,
+  maxDigits = 2
+) {
+  return formatNumber(convertFromAtto(value, exponent), maxDigits);
+}
+
+export function getReservedForFeeText(
+  amount: BigNumber,
+  token: string,
+  network: string
+) {
+  return `${convertAndFormat(
+    amount,
+    18,
+    6
+  )} ${token} is reserved for transaction fees on the ${network} network.`;
+}

@@ -6,21 +6,21 @@ import TitleContainer from "../common/TitleContainer";
 
 const ProposalCard = ({ proposalProps }: { proposalProps: ProposalProps }) => {
   return (
-    <div className="bg-darkGray2 hover:bg-darkGray2Opacity transition-all duration-300 rounded-2xl p-5 space-y-5 cursor-pointer">
-      <div className="flex justify-between font-bold text-pearl font-[IBM]">
+    <div className="hover:bg-darkGray2Opacity cursor-pointer space-y-5 rounded-2xl bg-darkGray2 p-5 transition-all duration-300">
+      <div className="flex justify-between font-[IBM] font-bold text-pearl">
         <IdContainer id={proposalProps.id} />
         <ProposalStatus status={proposalProps.status} />
       </div>
       <TitleContainer title={proposalProps.title} />
       <div className="flex text-pearl">
-        <div className="pr-5 uppercase space-y-1">
-          <p className="font-bold opacity-80 text-sm">
+        <div className="space-y-1 pr-5 uppercase">
+          <p className="text-sm font-bold opacity-80">
             {proposalProps.votingStartTime}
           </p>
           <p className="text-xs">VOTING START</p>
         </div>
-        <div className="px-5 uppercase space-y-1 border-l border-darkGray5">
-          <p className="font-bold opacity-80 text-sm">
+        <div className="space-y-1 border-l border-darkGray5 px-5 uppercase">
+          <p className="text-sm font-bold opacity-80">
             {proposalProps.votingEndTime}
           </p>
           <p className="text-xs">VOTING END</p>

@@ -1,12 +1,6 @@
 import { addSnackbar } from "evmos-wallet";
-import {
-  SNACKBAR_CONTENT_TYPES,
-  SNACKBAR_TYPES,
-} from "evmos-wallet";
-import {
-  KEPLR_NOTIFICATIONS,
-  METAMASK_NOTIFICATIONS,
-} from "evmos-wallet";
+import { SNACKBAR_CONTENT_TYPES, SNACKBAR_TYPES } from "evmos-wallet";
+import { KEPLR_NOTIFICATIONS, METAMASK_NOTIFICATIONS } from "evmos-wallet";
 import {
   BALANCE_NOTIFICATIONS,
   BROADCASTED_NOTIFICATIONS,

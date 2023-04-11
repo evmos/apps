@@ -9,8 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: yarn
-    - name: Run ESLint
-      run: yarn run lint
+      - uses: actions/checkout@v2
+      - name: Install modules
+        run: yarn
+      - name: Build
+        run: yarn run build
+      - name: Run ESLint
+        run: yarn run lint

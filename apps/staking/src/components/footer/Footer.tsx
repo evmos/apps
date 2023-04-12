@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { COMMONWEALTH_URL } from "../../internal/common/helpers/constants";
-import { VERSION_TAG } from "constants-helper";
+import { VERSION_TAG, COMMONWEALTH_URL } from "constants-helper";
 
 const TwitterIcon = dynamic(() => import("./icons/Twitter"));
 const TelegramIcon = dynamic(() => import("./icons/Telegram"));

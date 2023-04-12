@@ -15,7 +15,7 @@ import { ModalDelegate } from "../../../../internal/staking/functionality/types"
 import ConfirmButton from "../../../common/ConfirmButton";
 import SmallButton from "../../../common/SmallButton";
 import { useUndelegation } from "../hooks/useUndelegations";
-import { FEE_STAKING_ACTIONS } from "../../../../internal/common/helpers/constants";
+import { FEE_STAKING_ACTIONS } from "constants-helper";
 import ErrorMessage from "../../../common/ErrorMessage";
 import ContainerInput from "../../../common/ContainerInput";
 

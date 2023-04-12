@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useCallback } from "react";
 import { ProposalProps } from "../../../internal/governance/functionality/types";
 import BannerMessages from "../../common/banners/BannerMessages";
-import { GOVERNANCE_PATH } from "../common/helpers";
 import ProposalCard from "./ProposalCard";
 
 const ContainerProposals = ({
@@ -26,7 +25,7 @@ const ContainerProposals = ({
         <Link
           key={proposal.id}
           href={{
-            pathname: GOVERNANCE_PATH,
+            pathname: "/",
             query: { id: proposal.id },
           }}
         >

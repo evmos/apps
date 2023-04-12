@@ -8,9 +8,8 @@ import { Countdown } from "../../common/Countdown";
 import { useRewards } from "../modals/hooks/useRewards";
 
 import { StoreType } from "evmos-wallet";
-import { FULL_DAY_MINUS_ONE_SECOND } from "../../../internal/common/helpers/constants";
 import { convertFromAtto } from "../../../internal/common/helpers/style";
-
+import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
 const TopBarContainer = dynamic(() => import("../../common/TopBarContainer"));
 const ConfirmButton = dynamic(() => import("../../common/ConfirmButton"));
 

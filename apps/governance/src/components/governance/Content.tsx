@@ -1,15 +1,15 @@
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { COMMONWEALTH_URL } from "../../internal/common/links";
 import { useProposals } from "../../internal/governance/functionality/hooks/useProposals";
 import {
+  NAV_TO_MISSION_CONTROL,
   EVMOS_PAGE_URL,
   NAV_TO_GOVERNANCE,
-  NAV_TO_MISSION_CONTROL,
-} from "../common/constants";
+  COMMONWEALTH_URL,
+} from "constants-helper";
+
 import Navigation from "../common/navigation/Navigation";
-import { GOVERNANCE_PATH } from "./common/helpers";
 
 const BannerBlack = dynamic(() => import("../common/banners/BannerBlack"));
 const ContainerProposals = dynamic(
@@ -29,7 +29,7 @@ const Content = () => {
     let href = EVMOS_PAGE_URL;
     let text = NAV_TO_MISSION_CONTROL;
     if (id !== undefined) {
-      href = GOVERNANCE_PATH;
+      href = "/";
       text = NAV_TO_GOVERNANCE;
     }
     return <Navigation href={href} text={text} />;

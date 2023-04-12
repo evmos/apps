@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { StoreType } from "evmos-wallet";
 import { ERC20BalanceResponse } from "./types";
 import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
-
+import { NAV_TO_MISSION_CONTROL, EVMOS_PAGE_URL } from "constants-helper";
 import dynamic from "next/dynamic";
 
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
@@ -24,7 +24,6 @@ import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
 import Navigation from "../../common/navigation/Navigation";
-import { EVMOS_PAGE_URL, NAV_TO_MISSION_CONTROL } from "../../common/constants";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);

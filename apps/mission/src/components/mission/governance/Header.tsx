@@ -1,5 +1,5 @@
 import Link from "next/link";
-import CommonWealthIcon from "../../footer/icons/CommonWealth";
+import { CommonWealthIcon } from "icons";
 
 const Header = () => {
   return (

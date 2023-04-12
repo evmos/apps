@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { MODAL_NOTIFICATIONS, StoreType } from "evmos-wallet";
 import { useEvmosBalance } from "../../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { ModalDelegate } from "../../../../internal/staking/functionality/types";
-import ConfirmButton from "../../../common/ConfirmButton";
+import { ConfirmButton } from "confirm-button";
 import SmallButton from "../../../common/SmallButton";
 import { useDelegation } from "../hooks/useDelegation";
 import {

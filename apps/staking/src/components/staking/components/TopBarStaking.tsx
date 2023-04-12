@@ -11,7 +11,7 @@ import { StoreType } from "evmos-wallet";
 import { convertFromAtto } from "../../../internal/common/helpers/style";
 import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
 const TopBarContainer = dynamic(() => import("../../common/TopBarContainer"));
-const ConfirmButton = dynamic(() => import("../../common/ConfirmButton"));
+import { ConfirmButton } from "confirm-button";
 
 const TopBarStaking = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);

@@ -2,7 +2,7 @@ import { BigNumber } from "ethers";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import ConfirmButton from "../../../common/ConfirmButton";
+import { ConfirmButton } from "confirm-button";
 import { ModalTitle } from "../../../common/Modal";
 import {
   getBalance,

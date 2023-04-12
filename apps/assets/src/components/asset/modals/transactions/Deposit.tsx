@@ -3,7 +3,7 @@ import { parseUnits } from "@ethersproject/units";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import ConfirmButton from "../../../common/ConfirmButton";
+import { ConfirmButton } from "confirm-button";
 import { KeplrIcon } from "icons";
 import { ModalTitle } from "../../../common/Modal";
 import Arrow from "../common/Arrow";

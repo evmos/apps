@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getReservedForFeeText } from "../../../../internal/asset/style/format";
-import ConfirmButton from "../../../common/ConfirmButton";
+import { ConfirmButton } from "confirm-button";
 import Arrow from "../common/Arrow";
 import FromContainer from "../common/FromContainer";
 import Tabs from "../common/Tabs";

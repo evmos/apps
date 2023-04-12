@@ -18,3 +18,4 @@ export { GrilledSteak } from "./GrilledSteakIcon";
 export { HandShakeIcon } from "./HandShakeIcon";
 export { SearchIcon } from "./SearchIcon";
 export { Logo } from "./Logo";
+export { CommonWealthIcon } from "./CommonWealth";

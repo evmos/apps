@@ -3,7 +3,7 @@ import { ModalTitle } from "../../../common/Modal";
 import FromWithdraw from "../common/withdraw/FromWithdraw";
 import AmountWithdraw from "../common/withdraw/AmountWithdraw";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import ConfirmButton from "../../../common/ConfirmButton";
+import { ConfirmButton } from "confirm-button";
 import ToWithdraw from "../common/withdraw/ToWithdraw";
 import RedirectLink from "../common/RedirectLink";
 import { ButtonActionsProps } from "./types";

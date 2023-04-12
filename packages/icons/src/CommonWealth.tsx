@@ -2,7 +2,7 @@ type CommonWealthIconProps = React.SVGAttributes<SVGElement> & {
   color?: string;
 };
 
-const CommonWealthIcon: React.FC<CommonWealthIconProps> = ({
+export const CommonWealthIcon: React.FC<CommonWealthIconProps> = ({
   width = "24",
   height = "24",
   color = "currentColor",
@@ -84,5 +84,3 @@ const CommonWealthIcon: React.FC<CommonWealthIconProps> = ({
     </svg>
   );
 };
-
-export default CommonWealthIcon;

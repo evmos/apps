@@ -10,7 +10,7 @@ import {
   snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
-import ConfirmButton from "../../../common/ConfirmButton";
+import { ConfirmButton } from "confirm-button";
 import { KeplrIcon } from "icons";
 import { ModalTitle } from "../../../common/Modal";
 import Arrow from "../common/Arrow";

@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 
 const Header = dynamic(() => import("../Header"));
-const Footer = dynamic(() => import("../footer/Footer"));
+import { Footer } from "footer";
 const Content = dynamic(() => import("../mission/Content"));
 const SideBar = dynamic(() => import("./Sidebar/Sidebar"));
 const SidebarMobile = dynamic(() => import("./Sidebar/SidebarMobile"));

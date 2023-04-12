@@ -2,13 +2,13 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { VERSION_TAG, COMMONWEALTH_URL } from "constants-helper";
 
-const TwitterIcon = dynamic(() => import("./icons/Twitter"));
-const TelegramIcon = dynamic(() => import("./icons/Telegram"));
-const GithubIcon = dynamic(() => import("./icons/GitHub"));
-const DiscordIcon = dynamic(() => import("./icons/Discord"));
-const CommonWealthIcon = dynamic(() => import("./icons/CommonWealth"));
+import TwitterIcon from "./icons/Twitter";
+import TelegramIcon from "./icons/Telegram";
+import GithubIcon from "./icons/GitHub";
+import DiscordIcon from "./icons/Discord";
+import CommonWealthIcon from "./icons/CommonWealth";
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className=" mb-10 mt-10 flex w-full flex-col items-center space-y-2 text-pearl xl:justify-between">
       <div className="flex items-center space-x-5">
@@ -89,5 +89,3 @@ const Footer = () => {
     </footer>
   );
 };
-
-export default Footer;

@@ -15,7 +15,7 @@ import {
   StoreType,
   getAllSnackbars,
 } from "evmos-wallet";
-
+import { Footer } from "footer";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import Script from "next/script";
 
@@ -28,7 +28,6 @@ function SnackbarsInternal() {
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
-const Footer = dynamic(() => import("../src/components/footer/Footer"));
 export default function Home() {
   const queryClient = new QueryClient();
   return (

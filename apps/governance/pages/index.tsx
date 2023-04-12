@@ -27,7 +27,7 @@ function SnackbarsInternal() {
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
-const Footer = dynamic(() => import("../src/components/footer/Footer"));
+import { Footer } from "footer";
 const Content = dynamic(() => import("../src/components/governance/Content"));
 
 export default function Home() {

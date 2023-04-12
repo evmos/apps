@@ -1,9 +1,7 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import Container from "../src/components/Container";
-import { WagmiConfig } from "wagmi";
 import { Provider, useDispatch, useSelector } from "react-redux";
-
+import { WagmiConfig } from "wagmi";
 const Web3Modal = dynamic(() =>
   import("@web3modal/react").then((mod) => mod.Web3Modal)
 );
@@ -17,8 +15,9 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Container from "../src/components/Container";
+import MainContainer from "../src/components/mission/MainContainer";
 
-const Header = dynamic(() => import("../src/components/Header"));
 const TermOfServices = dynamic(
   () => import("../src/components/termsOfServices/TermOfServices")
 );
@@ -27,10 +26,7 @@ function SnackbarsInternal() {
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
-const Footer = dynamic(() => import("../src/components/footer/Footer"));
-const Content = dynamic(() => import("../src/components/governance/Content"));
-
-export default function Home() {
+export default function Mission() {
   const queryClient = new QueryClient();
   return (
     <Provider store={store}>
@@ -38,7 +34,7 @@ export default function Home() {
         <WagmiConfig client={wagmiClient}>
           <>
             <Head>
-              <title>Governance Page</title>
+              <title>Mission Control</title>
               <link rel="icon" href="/favicon.ico" />
             </Head>
 
@@ -47,11 +43,7 @@ export default function Home() {
               <Container>
                 <>
                   <SnackbarsInternal />
-                  <Header pageName="Governance" />
-                  <div className="container mx-auto mb-auto overflow-auto">
-                    <Content />
-                  </div>
-                  <Footer />
+                  <MainContainer />
                 </>
               </Container>
             </main>

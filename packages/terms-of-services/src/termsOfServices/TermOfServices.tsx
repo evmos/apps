@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
 
-const LinkButton = dynamic(() => import("./LinkButton"));
-const ModalTOS = dynamic(() => import("./Modal"));
-const ConfirmButton = dynamic(() => import("../common/ConfirmButton"));
+import { LinkButton } from "./LinkButton";
+import { ModalTOS } from "./Modal";
+import { ConfirmButton } from "confirm-button";
 
-const TermOfServices = () => {
+export const TermOfServices = () => {
   const [show, setShow] = useState<boolean>(false);
   useEffect(() => {
     // Execute the hook only once
@@ -976,4 +975,3 @@ const TermOfServices = () => {
     </ModalTOS>
   );
 };
-export default TermOfServices;

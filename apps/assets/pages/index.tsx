@@ -16,13 +16,12 @@ import {
 } from "evmos-wallet";
 import { Footer } from "footer";
 import { Container } from "container";
+import { TermOfServices } from "terms-of-services";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import Script from "next/script";
 
 const Header = dynamic(() => import("../src/components/Header"));
-const TermOfServices = dynamic(
-  () => import("../src/components/termsOfServices/TermOfServices")
-);
+
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();

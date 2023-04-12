@@ -1,4 +1,4 @@
-const ModalTOS = ({
+export const ModalTOS = ({
   title,
   children,
   show,
@@ -27,5 +27,3 @@ const ModalTOS = ({
     </div>
   );
 };
-
-export default ModalTOS;

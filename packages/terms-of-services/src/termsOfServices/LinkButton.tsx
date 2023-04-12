@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const LinkButton = ({
+export const LinkButton = ({
   href,
   target,
   children,
@@ -19,5 +19,3 @@ const LinkButton = ({
     </Link>
   );
 };
-
-export default LinkButton;

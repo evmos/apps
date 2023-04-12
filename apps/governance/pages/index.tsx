@@ -19,9 +19,8 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const Header = dynamic(() => import("../src/components/Header"));
-const TermOfServices = dynamic(
-  () => import("../src/components/termsOfServices/TermOfServices")
-);
+import { TermOfServices } from "terms-of-services";
+
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();

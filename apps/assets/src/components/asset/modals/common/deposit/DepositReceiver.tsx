@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import KeplrIcon from "../../../../common/images/icons/KeplrIcon";
-import MetamaskIcon from "../../../../common/images/icons/MetamaskIcon";
+import { KeplrIcon, MetamaskIcon } from "icons";
 
 import { ContainerModal } from "../ContainerModal";
 import ErrorMessage from "../ErrorMessage";

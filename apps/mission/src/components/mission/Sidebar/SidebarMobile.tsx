@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
-import CloseIcon from "../../common/images/icons/CloseIcon";
+import { CloseIcon } from "icons";
 import Logo from "../../common/images/Logo";
 import SideBar from "./Sidebar";
 

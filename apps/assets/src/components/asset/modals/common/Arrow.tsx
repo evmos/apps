@@ -1,5 +1,4 @@
-import DownArrowHollowIcon from "../../../common/images/icons/DownArrowHollowIcon";
-
+import { DownArrowHollowIcon } from "icons";
 const Arrow = () => {
   return (
     <div className="relative h-5">

@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { useEffect, useMemo, useState } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
 import { EVMOS_SYMBOL } from "evmos-wallet";
-import DropdownArrow from "../../common/images/icons/DropdownArrow";
+import { DropdownArrow } from "icons";
 import { DropdownChainsProps } from "./types";
 const DropdownChains = ({
   dropChainProps,

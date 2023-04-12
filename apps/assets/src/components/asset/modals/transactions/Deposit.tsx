@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import ConfirmButton from "../../../common/ConfirmButton";
-import KeplrIcon from "../../../common/images/icons/KeplrIcon";
+import { KeplrIcon } from "icons";
 import { ModalTitle } from "../../../common/Modal";
 import Arrow from "../common/Arrow";
 import ErrorMessage from "../common/ErrorMessage";
@@ -16,7 +16,7 @@ import {
   getEvmosBalanceForDeposit,
 } from "../../../../internal/asset/functionality/fetch";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
-import MetamaskIcon from "../../../common/images/icons/MetamaskIcon";
+import { MetamaskIcon } from "icons";
 import { ethToEvmos } from "@evmos/address-converter";
 import {
   snackbarExecutedTx,

@@ -9,9 +9,8 @@ import {
   StoreType,
 } from "evmos-wallet";
 const Button = dynamic(() => import("../../../common/Button"));
-const ExternalLinkIcon = dynamic(
-  () => import("../../../common/images/icons/ExternalLink")
-);
+import { ExternalLinkIcon } from "icons";
+
 import Withdraw from "../../modals/transactions/Withdraw";
 import Deposit from "../../modals/transactions/Deposit";
 import {

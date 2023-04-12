@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import React, {
   Dispatch,
   SetStateAction,
@@ -8,7 +7,7 @@ import React, {
 } from "react";
 import { tabContent } from "../../staking/Tabs/Content";
 
-const DropdownArrow = dynamic(() => import("../images/icons/DropdownArrow"));
+import { DropdownArrow } from "icons";
 const TabsDropdown = ({
   content,
   setActiveTab,

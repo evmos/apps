@@ -1,5 +1,5 @@
 import Link from "next/link";
-import QuestionMarkIcon from "../../common/images/icons/QuestionMarkIcon";
+import { QuestionMarkIcon } from "icons";
 import AssetsGuide from "../modals/AssetsGuide";
 
 const Guide = () => {

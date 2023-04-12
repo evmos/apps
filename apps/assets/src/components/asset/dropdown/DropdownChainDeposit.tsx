@@ -2,7 +2,8 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { getChainIdentifier } from "../../../internal/asset/Helpers";
 import { EVMOS_SYMBOL } from "evmos-wallet";
-import DropdownArrow from "../../common/images/icons/DropdownArrow";
+import { DropdownArrow } from "icons";
+
 import { DepositElement } from "../modals/transactions/DepositSTR";
 import { DropdownChainsDepositProps } from "./types";
 const DropdownChainDeposit = ({

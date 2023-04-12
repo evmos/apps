@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ExternalLinkIcon from "../images/icons/ExternalLinkIcon";
+import { ExternalLinkIcon } from "icons";
 
 const BannerBlack = ({ text, href }: { text: string; href: string }) => {
   return (

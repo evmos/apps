@@ -19,6 +19,7 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
+    "icons": "*",
     "@types/react": "^18.0.26",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",

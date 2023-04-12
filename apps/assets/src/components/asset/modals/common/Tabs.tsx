@@ -2,7 +2,7 @@ import { BigNumber } from "@ethersproject/bignumber";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import { convertAndFormat } from "../../../../internal/asset/style/format";
-import QuestionMarkIcon from "../../../common/images/icons/QuestionMarkIcon";
+import { QuestionMarkIcon } from "icons";
 import Tooltip from "../../../common/Tooltip";
 
 const Tabs = ({

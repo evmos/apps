@@ -18,19 +18,22 @@ import {
   GetProviderFromLocalStorage,
   RemoveProviderFromLocalStorage,
 } from "../internal/wallet/functionality/localstorage";
-import MetamaskIcon from "../common/images/icons/MetamaskIcon";
-import KeplrIcon from "../common/images/icons/KeplrIcon";
+import {
+  KeplrIcon,
+  MetamaskIcon,
+  WalletIcon,
+  CopyIcon,
+  WalletConnectIcon,
+} from "icons";
 import Modal, { ModalTitle } from "../common/Modal";
 import ViewExplorer from "../common/ViewExplorer";
-import WalletIcon from "../common/images/icons/WalletIcon";
 import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";
-import WalletConnectIcon from "../common/images/icons/WalletConnectIcon";
+
 import {
   useActivateWalletConnect,
   useWalletConnect,
 } from "../internal/wallet/functionality/walletconnect/walletconnect";
-import CopyIcon from "../common/images/icons/CopyIcon";
 import Tooltip from "../common/Tooltip";
 
 // Components

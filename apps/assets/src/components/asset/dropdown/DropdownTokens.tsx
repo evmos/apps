@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
-import DropdownArrow from "../../common/images/icons/DropdownArrow";
+import { DropdownArrow } from "icons";
 import { DropdownTokensProps } from "./types";
 const DropdownTokens = ({
   placeholder,

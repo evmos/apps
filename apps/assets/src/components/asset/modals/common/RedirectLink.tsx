@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ExternalLinkIcon from "../../../common/images/icons/ExternalLink";
+import { ExternalLinkIcon } from "icons";
 
 const RedirectLink = ({ href, text }: { href: string; text: string }) => {
   return (

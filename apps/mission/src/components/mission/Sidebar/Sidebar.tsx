@@ -1,8 +1,5 @@
 import Link from "next/link";
-import CoinsIcon from "../../common/images/icons/CoinsIcon";
-import GaugeIcon from "../../common/images/icons/GaugeIcon";
-import GrilledSteakIcon from "../../common/images/icons/GrilledSteakIcon";
-import HandShakeIcon from "../../common/images/icons/ShakeIcon";
+import { GaugeIcon, Coins, GrilledSteak, HandShakeIcon } from "icons";
 import SideBarItem, { SideBarEntry } from "./SidebarItem";
 
 const sideBarItems: SideBarEntry[] = [
@@ -13,12 +10,12 @@ const sideBarItems: SideBarEntry[] = [
   },
   {
     title: "Assets",
-    icon: <CoinsIcon height={32} width={32} />,
+    icon: <Coins height={32} width={32} />,
     path: "/assets",
   },
   {
     title: "Staking",
-    icon: <GrilledSteakIcon height={32} width={32} />,
+    icon: <GrilledSteak height={32} width={32} />,
     path: "/staking",
   },
   {

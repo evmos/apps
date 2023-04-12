@@ -1,4 +1,4 @@
-import QuestionMarkIcon from "../common/images/icons/QuestionMarkIcon";
+import { QuestionMarkIcon } from "icons";
 
 const Banner = () => {
   return (

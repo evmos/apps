@@ -11,7 +11,7 @@ import {
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
 import ConfirmButton from "../../../common/ConfirmButton";
-import KeplrIcon from "../../../common/images/icons/KeplrIcon";
+import { KeplrIcon } from "icons";
 import { ModalTitle } from "../../../common/Modal";
 import Arrow from "../common/Arrow";
 import ErrorMessage from "../common/ErrorMessage";

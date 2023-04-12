@@ -11,8 +11,7 @@ import {
 } from "../../../internal/governance/functionality/types";
 import { EVMOS_SYMBOL } from "evmos-wallet";
 import Arc from "../../common/arc/Arc";
-import CheckIcon from "../../common/images/icons/CheckIcon";
-import CloseIcon from "../../common/images/icons/CloseIcon";
+import { CloseIcon, CheckIcon } from "icons";
 import { BAR_COLORS } from "../bar/styles";
 import VotingDetails from "../common/VotingDetails";
 import VoteButton from "./vote/VoteButton";

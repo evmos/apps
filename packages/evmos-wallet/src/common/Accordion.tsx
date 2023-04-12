@@ -1,6 +1,5 @@
 import { useState } from "react";
-import DownArrowIcon from "./images/icons/DownArrow";
-import UpArrowIcon from "./images/icons/UpArrow";
+import { DownArrowIcon, UpArrowIcon } from "icons";
 
 const Accordion = ({
   title,

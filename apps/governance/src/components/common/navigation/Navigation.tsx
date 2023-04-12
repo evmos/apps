@@ -1,5 +1,5 @@
 import Link from "next/link";
-import LeftArrowIcon from "../images/icons/LeftArrowIcon";
+import { LeftArrowIcon } from "icons";
 
 const Navigation = ({ href, text }: { href: string; text: string }) => {
   return (

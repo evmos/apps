@@ -13,7 +13,7 @@ import {
   StoreType,
 } from "evmos-wallet";
 import Button from "../../../common/Button";
-import QuestionMarkIcon from "../../../common/images/icons/QuestionMarkIcon";
+import { QuestionMarkIcon } from "icons";
 import Tooltip from "../../../common/Tooltip";
 import Convert from "../../modals/transactions/Convert";
 import { ConvertSTR } from "../../modals/transactions/ConvertSTR";

@@ -3,8 +3,7 @@ import {
   PROPOSAL_STATUS_PASSED,
   PROPOSAL_STATUS_REJECTED,
 } from "../../../internal/governance/functionality/types";
-import CheckIcon from "../../common/images/icons/CheckIcon";
-import CloseIcon from "../../common/images/icons/CloseIcon";
+import { CloseIcon, CheckIcon } from "icons";
 const ProposalStatus = ({ status }: { status: string }) => {
   const style =
     "text-sm flex items-center space-x-2 px-4 py-2 rounded-3xl opacity-80";

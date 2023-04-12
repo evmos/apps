@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 
-import DropdownArrow from "../../common/images/icons/DropdownArrow";
+import { DropdownArrow } from "icons";
 import { useAllValidators } from "../../../internal/staking/functionality/hooks/useAllValidators";
 import { ValidatorsList } from "../../../internal/staking/functionality/types";
 const ValidatorsDropdown = ({

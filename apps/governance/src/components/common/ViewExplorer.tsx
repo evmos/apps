@@ -1,4 +1,4 @@
-import ExternalLinkIcon from "./images/icons/ExternalLink";
+import { ExternalLinkIcon } from "icons";
 
 const ViewExplorer = ({
   txHash,

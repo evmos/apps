@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ButtonWalletConnection, StoreType } from "evmos-wallet";
 import { Dispatch, SetStateAction, useCallback } from "react";
@@ -6,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Button from "./common/Button";
 
-const Logo = dynamic(() => import("./common/images/Logo"));
+import { Logo } from "icons";
 
 const Header = ({
   pageName,

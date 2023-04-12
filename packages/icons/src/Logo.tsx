@@ -2,7 +2,7 @@ type LogoProps = React.SVGAttributes<SVGElement> & {
   color?: string;
 };
 
-const Logo: React.FC<LogoProps> = ({
+export const Logo: React.FC<LogoProps> = ({
   width = "501",
   height = "111",
   color = "currentColor",
@@ -26,5 +26,3 @@ const Logo: React.FC<LogoProps> = ({
     </svg>
   );
 };
-
-export default Logo;

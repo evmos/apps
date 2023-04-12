@@ -23,7 +23,7 @@ import { getTotalAssets } from "../../../internal/asset/style/format";
 import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
-import Navigation from "../../common/navigation/Navigation";
+import { Navigation } from "navigation";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);

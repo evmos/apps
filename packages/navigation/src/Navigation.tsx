@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { LeftArrowIcon } from "icons";
 
-const Navigation = ({ href, text }: { href: string; text: string }) => {
+export const Navigation = ({ href, text }: { href: string; text: string }) => {
   return (
     <Link
       href={href}
@@ -12,5 +12,3 @@ const Navigation = ({ href, text }: { href: string; text: string }) => {
     </Link>
   );
 };
-
-export default Navigation;

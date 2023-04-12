@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import Container from "../src/components/Container";
-import { store } from "evmos-wallet";
+import { Container } from "container";
 import { WagmiConfig } from "wagmi";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
@@ -15,6 +14,7 @@ import {
   StoreType,
   Snackbars,
   getAllSnackbars,
+  store,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

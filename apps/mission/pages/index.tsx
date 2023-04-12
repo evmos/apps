@@ -15,7 +15,7 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Container from "../src/components/Container";
+import { Container } from "container";
 import MainContainer from "../src/components/mission/MainContainer";
 
 const TermOfServices = dynamic(

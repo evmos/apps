@@ -2,7 +2,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import dynamic from "next/dynamic";
 import Head from "next/head";
 import AssetsTable from "../src/components/asset/table/AssetsTable";
-import Container from "../src/components/Container";
 
 import {
   ethereumClient,
@@ -16,6 +15,7 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { Footer } from "footer";
+import { Container } from "container";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import Script from "next/script";
 

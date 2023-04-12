@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import Link from "next/link";
 import { VERSION_TAG, COMMONWEALTH_URL } from "constants-helper";
 

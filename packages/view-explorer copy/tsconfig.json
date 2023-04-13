@@ -1,5 +1,0 @@
-{
-  "extends": "tsconfig/react-library.json",
-  "include": ["../accordion"],
-  "exclude": ["../accordion/dist", "../accordion/build", "../accordion/node_modules"]
-}

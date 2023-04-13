@@ -4,7 +4,7 @@ import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import useAssets from "../../internal/functionality/hooks/useAssets";
 import { StoreType } from "evmos-wallet";
-import BannerMessages from "../common/banners/BannerMessages";
+import { BannerMessages } from "banner-messages";
 import { Button } from "button";
 import MissionContainer from "./MissionContainer";
 

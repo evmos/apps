@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import BannerMessages from "../../common/banners/BannerMessages";
+import { BannerMessages } from "banner-messages";
 import SimpleTabs from "../../common/tabComponent/SimpleTabs";
 import MissionContainer from "../MissionContainer";
 import { tabsAnnouncements } from "../tabs/Content";

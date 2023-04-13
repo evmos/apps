@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useCallback } from "react";
 import { useProposals } from "../../../internal/functionality/hooks/useProposals";
-import BannerMessages from "../../common/banners/BannerMessages";
+import { BannerMessages } from "banner-messages";
 import MissionContainer from "../MissionContainer";
 import Header from "./Header";
 import ProposalCard from "./ProposalCard";

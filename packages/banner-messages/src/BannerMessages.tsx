@@ -1,6 +1,6 @@
 // use this if you want to show a loading, error,
 // or some message while the data is fetching
-const BannerMessages = ({
+export const BannerMessages = ({
   text,
   spinner,
   className,
@@ -20,4 +20,3 @@ const BannerMessages = ({
     </div>
   );
 };
-export default BannerMessages;

@@ -19,9 +19,8 @@ import {
   convertAndFormat,
   getRemainingTime,
 } from "../../../internal/common/helpers/style";
-import dynamic from "next/dynamic";
 
-const MessageTable = dynamic(() => import("../../common/table/MessageTable"));
+import { MessageTable } from "message-table";
 
 const dataHead = ["Name", "Amount to be undelegated", "Remaining time"];
 

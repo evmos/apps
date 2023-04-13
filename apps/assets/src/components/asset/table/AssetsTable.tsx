@@ -8,7 +8,7 @@ import { NAV_TO_MISSION_CONTROL, EVMOS_PAGE_URL } from "constants-helper";
 import dynamic from "next/dynamic";
 
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
-const MessageTable = dynamic(() => import("./MessageTable"));
+import { MessageTable } from "message-table";
 import { Switch } from "switch";
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));

@@ -1,4 +1,4 @@
-const MessageTable = ({
+export const MessageTable = ({
   children,
   amountCols,
 }: {
@@ -15,5 +15,3 @@ const MessageTable = ({
     </tr>
   );
 };
-
-export default MessageTable;

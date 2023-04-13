@@ -1,5 +1,4 @@
 import { BigNumber } from "ethers";
-import dynamic from "next/dynamic";
 import { useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -30,7 +29,7 @@ import {
 
 import { Modal } from "modal";
 import { Button } from "button";
-const MessageTable = dynamic(() => import("../../common/table/MessageTable"));
+import { MessageTable } from "message-table";
 
 const dataHead = ["Rank", "Name", "Voting Power", "Staked", "Commission", ""];
 

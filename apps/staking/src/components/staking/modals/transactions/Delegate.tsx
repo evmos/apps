@@ -5,7 +5,7 @@ import { MODAL_NOTIFICATIONS, StoreType } from "evmos-wallet";
 import { useEvmosBalance } from "../../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { ModalDelegate } from "../../../../internal/staking/functionality/types";
 import { ConfirmButton } from "confirm-button";
-import SmallButton from "../../../common/SmallButton";
+import { SmallButton } from "small-button";
 import { useDelegation } from "../hooks/useDelegation";
 import {
   convertAndFormat,

@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 
 import { ModalDelegate } from "../../../internal/staking/functionality/types";
 import { ConfirmButton } from "confirm-button";
-import SmallButton from "../../common/SmallButton";
+import { SmallButton } from "small-button";
 import { Delegate } from "./transactions/Delegate";
 import { Redelegate } from "./transactions/Redelegate";
 import { Undelegate } from "./transactions/Undelegate";

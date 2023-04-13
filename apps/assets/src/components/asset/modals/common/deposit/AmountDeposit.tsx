@@ -8,7 +8,7 @@ import {
   truncateNumber,
 } from "../../../../../internal/asset/style/format";
 import DropdownTokensDeposit from "../../../dropdown/DropdownTokensDeposit";
-import SmallButton from "../../../../common/SmallButton";
+import { SmallButton } from "small-button";
 import ContainerInput from "../ContainerInput";
 import { ContainerModal } from "../ContainerModal";
 import ErrorMessage from "../ErrorMessage";

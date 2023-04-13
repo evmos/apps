@@ -8,7 +8,7 @@ import ErrorMessage from "../ErrorMessage";
 import { TextSmall } from "../TextSmall";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
 
-import SmallButton from "../../../../common/SmallButton";
+import { SmallButton } from "small-button";
 import ContainerInput from "../ContainerInput";
 import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
 import {

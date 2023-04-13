@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { checkFormatAddress } from "../../../../../internal/asset/style/format";
 import { KeplrIcon } from "icons";
-import SmallButton from "../../../../common/SmallButton";
+import { SmallButton } from "small-button";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
 import ContainerInput from "../ContainerInput";
 import { ContainerModal } from "../ContainerModal";

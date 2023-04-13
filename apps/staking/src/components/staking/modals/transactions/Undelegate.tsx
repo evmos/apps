@@ -13,7 +13,7 @@ import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import { useEvmosBalance } from "../../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { ModalDelegate } from "../../../../internal/staking/functionality/types";
 import { ConfirmButton } from "confirm-button";
-import SmallButton from "../../../common/SmallButton";
+import { SmallButton } from "small-button";
 import { useUndelegation } from "../hooks/useUndelegations";
 import { FEE_STAKING_ACTIONS } from "constants-helper";
 import ErrorMessage from "../../../common/ErrorMessage";

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import SmallButton from "../../../common/SmallButton";
-
+import { SmallButton } from "small-button";
 import {
   addToken,
   Token,

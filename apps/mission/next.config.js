@@ -6,7 +6,7 @@ const nextConfig = {
     ],
   },
   reactStrictMode: true,
-  basePath: "",
+  basePath: "/mission",
   swcMinify: true,
   i18n: {
     locales: ["en"],

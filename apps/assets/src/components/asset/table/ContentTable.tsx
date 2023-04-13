@@ -7,7 +7,7 @@ import {
   formatNumber,
 } from "../../../internal/asset/style/format";
 import { EVMOS_SYMBOL } from "evmos-wallet";
-import Accordion from "../../common/Accordion";
+import { Accordion } from "accordion";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContent";
 import { ContentTableProps } from "./types";

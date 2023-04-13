@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { DownArrowIcon, UpArrowIcon } from "icons";
 
-const Accordion = ({
+export const Accordion = ({
   title,
   content,
 }: {
@@ -12,14 +12,14 @@ const Accordion = ({
 
   return (
     <div className="accordion">
-      <div className="bg-darkGray2 border-b-2 border-b-black py-5 accordion-item">
+      <div className="accordion-item border-b-2 border-b-black bg-darkGray2 py-5">
         <div
           className={`flex items-center ${
             content !== null ? "cursor-pointer" : "cursor-default"
           } `}
           onClick={() => setIsActive(!isActive)}
         >
-          <div className="w-[5%] flex justify-center mx-4 lg:mx-0">
+          <div className="mx-4 flex w-[5%] justify-center lg:mx-0">
             {content !== null ? (
               isActive ? (
                 <UpArrowIcon />
@@ -33,13 +33,11 @@ const Accordion = ({
           {title}
         </div>
         {content !== null && isActive && (
-          <div className="border-t-2 border-t-black pt-5 mt-5 flex ">
-            <div className="flex justify-between w-full">{content}</div>
+          <div className="mt-5 flex border-t-2 border-t-black pt-5 ">
+            <div className="flex w-full justify-between">{content}</div>
           </div>
         )}
       </div>
     </div>
   );
 };
-
-export default Accordion;

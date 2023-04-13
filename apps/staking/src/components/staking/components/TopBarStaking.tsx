@@ -3,7 +3,7 @@ import { useEpochDay } from "../../../internal/common/api/hooks/useEpochDay";
 import { useEvmosBalance } from "../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
 import { Container } from "../../common/topBar/Container";
-import { Countdown } from "../../common/Countdown";
+import { Countdown } from "countdown";
 import { useRewards } from "../modals/hooks/useRewards";
 
 import { StoreType } from "evmos-wallet";

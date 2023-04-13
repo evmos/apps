@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import { convertAndFormat } from "../../../../internal/asset/style/format";
 import { QuestionMarkIcon } from "icons";
-import Tooltip from "../../../common/Tooltip";
+import { Tooltip } from "tooltip";
 
 const Tabs = ({
   cosmosBalance,

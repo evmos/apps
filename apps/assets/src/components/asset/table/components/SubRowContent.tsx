@@ -14,7 +14,7 @@ import {
 } from "evmos-wallet";
 import { Button } from "button";
 import { QuestionMarkIcon } from "icons";
-import Tooltip from "../../../common/Tooltip";
+import { Tooltip } from "tooltip";
 import Convert from "../../modals/transactions/Convert";
 import { ConvertSTR } from "../../modals/transactions/ConvertSTR";
 import { Description } from "./Description";

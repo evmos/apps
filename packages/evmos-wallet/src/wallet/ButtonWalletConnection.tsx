@@ -34,7 +34,7 @@ import {
   useActivateWalletConnect,
   useWalletConnect,
 } from "../internal/wallet/functionality/walletconnect/walletconnect";
-import Tooltip from "../common/Tooltip";
+import { Tooltip } from "tooltip";
 
 // Components
 import { Button } from "button";

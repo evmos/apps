@@ -26,7 +26,7 @@ import {
   WalletConnectIcon,
 } from "icons";
 import { Modal, ModalTitle } from "modal";
-import ViewExplorer from "../common/ViewExplorer";
+import { ViewExplorer } from "view-explorer";
 import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";
 

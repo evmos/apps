@@ -30,6 +30,7 @@ export default defineConfig((options: Options) => ({
     "modal",
     "button",
     "tooltip",
+    "view-explorer",
   ],
   ...options,
 }));

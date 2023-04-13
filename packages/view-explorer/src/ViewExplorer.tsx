@@ -1,6 +1,6 @@
 import { ExternalLinkIcon } from "icons";
 
-const ViewExplorer = ({
+export const ViewExplorer = ({
   txHash,
   explorerTxUrl,
   text,
@@ -21,5 +21,3 @@ const ViewExplorer = ({
     </a>
   );
 };
-
-export default ViewExplorer;

@@ -29,6 +29,7 @@
     "top-bar-item": "*",
     "banner-messages": "*",
     "tab-component": "*",
+    "voting-bar": "*",
     "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",
     "@evmos/proto": "^0.1.26",

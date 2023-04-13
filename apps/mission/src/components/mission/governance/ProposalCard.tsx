@@ -4,7 +4,7 @@ import {
   PROPOSAL_STATUS_REJECTED,
   ProposalProps,
 } from "../../../internal/types";
-import BarContainer from "../../common/bar/BarContainer";
+import { BarContainer } from "voting-bar";
 
 const ProposalCard = ({ proposalProps }: { proposalProps: ProposalProps }) => {
   function getPropStatus(): string {

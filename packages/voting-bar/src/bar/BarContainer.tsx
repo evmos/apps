@@ -1,8 +1,8 @@
-import BarWrapper from "./BarWrapper";
+import { BarWrapper } from "./BarWrapper";
 import { BAR_COLORS, VOTE_TYPES } from "./styles";
-import VotingDetail from "./VotingDetail";
+import { VotingDetail } from "./VotingDetail";
 
-const BarContainer = ({ percents }: { percents: string[] }) => {
+export const BarContainer = ({ percents }: { percents: string[] }) => {
   return (
     <div className="flex flex-col space-y-3">
       <BarWrapper percents={percents} />
@@ -39,5 +39,3 @@ const BarContainer = ({ percents }: { percents: string[] }) => {
     </div>
   );
 };
-
-export default BarContainer;

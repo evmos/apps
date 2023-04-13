@@ -1,6 +1,6 @@
 import { BAR_COLORS } from "./styles";
 
-const BarWrapper = ({ percents }: { percents: string[] }) => {
+export const BarWrapper = ({ percents }: { percents: string[] }) => {
   return (
     <div className="flex h-4 w-full overflow-hidden rounded-lg bg-darkGray1">
       <div
@@ -22,5 +22,3 @@ const BarWrapper = ({ percents }: { percents: string[] }) => {
     </div>
   );
 };
-
-export default BarWrapper;

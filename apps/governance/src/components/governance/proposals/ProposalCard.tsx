@@ -1,5 +1,5 @@
 import { ProposalProps } from "../../../internal/governance/functionality/types";
-import BarContainer from "./bar/BarContainer";
+import { BarContainer } from "voting-bar";
 import ProposalStatus from "./ProposalStatus";
 import IdContainer from "../common/IdContainer";
 import TitleContainer from "../common/TitleContainer";

@@ -1,6 +1,14 @@
-import { VotingDetail } from "./types";
+type VotingDetail = {
+  bgColor: string;
+  type: string;
+  percent: string;
+};
 
-const VotingDetail = ({ votingProps }: { votingProps: VotingDetail }) => {
+export const VotingDetail = ({
+  votingProps,
+}: {
+  votingProps: VotingDetail;
+}) => {
   return (
     <div className="flex items-center space-x-2 font-[IBM] text-sm">
       <div className={`${votingProps.bgColor} h-4 w-4 rounded-lg`}></div>
@@ -11,5 +19,3 @@ const VotingDetail = ({ votingProps }: { votingProps: VotingDetail }) => {
     </div>
   );
 };
-
-export default VotingDetail;

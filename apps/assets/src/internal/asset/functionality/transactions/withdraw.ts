@@ -1,5 +1,5 @@
 import { BigNumber, utils } from "ethers";
-import { feeWithdraw } from "../../Helpers";
+import { FEE_WITHDRAW } from "constants-helper";
 import { checkFormatAddress } from "helpers";
 
 import { ibcTransferBackendCall } from "./ibcTransfer";
@@ -21,7 +21,7 @@ export async function executeWithdraw(
   prefix: string,
   useERC20Denom: boolean
 ) {
-  if (feeBalance.lt(feeWithdraw)) {
+  if (feeBalance.lt(BigNumber.from(FEE_WITHDRAW))) {
     return {
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext,

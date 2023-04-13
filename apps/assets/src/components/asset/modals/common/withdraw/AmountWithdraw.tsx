@@ -17,7 +17,7 @@ import { ErrorMessage } from "error-message";
 import Note from "../Note";
 import { TextSmall } from "../TextSmall";
 import { AmountWithdrawProps } from "../types";
-import { feeWithdraw } from "../../../../../internal/asset/Helpers";
+import { FEE_WITHDRAW } from "constants-helper";
 import { MODAL_NOTIFICATIONS, EVMOS_SYMBOL } from "evmos-wallet";
 
 const AmountWithdraw = ({
@@ -39,7 +39,7 @@ const AmountWithdraw = ({
           numericOnly(convertFromAtto(balance, amountProps.token.decimals))
         );
       } else {
-        const val = safeSubstraction(balance, feeWithdraw);
+        const val = safeSubstraction(balance, BigNumber.from(FEE_WITHDRAW));
         amountProps.setValue(
           numericOnly(convertFromAtto(val, amountProps.token.decimals))
         );
@@ -136,7 +136,7 @@ const AmountWithdraw = ({
         </p>
         <Note
           text={getReservedForFeeText(
-            BigNumber.from(feeWithdraw),
+            BigNumber.from(FEE_WITHDRAW),
             EVMOS_SYMBOL,
             EVMOS_SYMBOL
           )}

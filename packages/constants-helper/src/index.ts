@@ -6,3 +6,4 @@ export { NAV_TO_GOVERNANCE } from "./constants";
 export { FULL_DAY_MINUS_ONE_SECOND } from "./constants";
 export { FEE_STAKING_ACTIONS } from "./constants";
 export { FEE_VOTE } from "./constants";
+export { FEE_WITHDRAW } from "./constants";

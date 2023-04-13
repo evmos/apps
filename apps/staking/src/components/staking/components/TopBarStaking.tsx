@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useEpochDay } from "../../../internal/common/api/hooks/useEpochDay";
 import { useEvmosBalance } from "../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
-import { Container } from "../../common/topBar/Container";
+import { TopBarItem } from "top-bar-item";
 import { Countdown } from "countdown";
 import { useRewards } from "../modals/hooks/useRewards";
 
@@ -23,23 +23,23 @@ const TopBarStaking = () => {
   return (
     <TopBarContainer>
       <>
-        <Container
+        <TopBarItem
           text="Available"
           value={`${Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS`}
         />
-        <Container
+        <TopBarItem
           text="Total Staked"
           value={`${Number(convertFromAtto(totalDelegations)).toFixed(
             2
           )} EVMOS`}
         />
-        <Container
+        <TopBarItem
           text="Total Unstaked"
           value={`${Number(convertFromAtto(totalUndelegations)).toFixed(
             2
           )} EVMOS`}
         />
-        <Container
+        <TopBarItem
           text="Reward Distribution"
           value={
             <Countdown

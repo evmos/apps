@@ -10,7 +10,7 @@ import RadioElementContainer from "./RadioElementContainer";
 import { useSelector } from "react-redux";
 import { StoreType, MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { useEvmosBalance } from "../../../../internal/common/functionality/hooks/useEvmosBalance";
-import ErrorMessage from "../../../common/ErrorMessage";
+import { ErrorMessage } from "error-message";
 import {
   convertFromAtto,
   feeVote,

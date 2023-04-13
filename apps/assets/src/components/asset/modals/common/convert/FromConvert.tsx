@@ -8,7 +8,7 @@ import {
   safeSubstraction,
   truncateNumber,
 } from "../../../../../internal/asset/style/format";
-import ErrorMessage from "../ErrorMessage";
+import { ErrorMessage } from "error-message";
 import { MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { FromProps } from "../types";
 import ContainerInput from "../ContainerInput";

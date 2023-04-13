@@ -14,7 +14,7 @@ import { ConfirmButton } from "confirm-button";
 import { KeplrIcon } from "icons";
 import { ModalTitle } from "modal";
 import Arrow from "../common/Arrow";
-import ErrorMessage from "../common/ErrorMessage";
+import { ErrorMessage } from "error-message";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
 import Tabs from "../common/Tabs";

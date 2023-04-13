@@ -16,7 +16,7 @@ import {
   truncateNumber,
 } from "../../../../internal/common/helpers/style";
 import { FEE_STAKING_ACTIONS } from "constants-helper";
-import ErrorMessage from "../../../common/ErrorMessage";
+import { ErrorMessage } from "error-message";
 import ContainerInput from "../../../common/ContainerInput";
 
 export const Delegate = ({

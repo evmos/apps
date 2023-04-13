@@ -11,7 +11,7 @@ import DropdownTokens from "../../../dropdown/DropdownTokens";
 import { SmallButton } from "small-button";
 import ContainerInput from "../ContainerInput";
 import { ContainerModal } from "../ContainerModal";
-import ErrorMessage from "../ErrorMessage";
+import { ErrorMessage } from "error-message";
 import Note from "../Note";
 import { TextSmall } from "../TextSmall";
 import { AmountWithdrawProps } from "../types";

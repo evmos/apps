@@ -6,7 +6,7 @@ import { SmallButton } from "small-button";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
 import ContainerInput from "../ContainerInput";
 import { ContainerModal } from "../ContainerModal";
-import ErrorMessage from "../ErrorMessage";
+import { ErrorMessage } from "error-message";
 import { TextSmall } from "../TextSmall";
 import { WithdrawReceiverProps } from "../types";
 import ChainContainer from "./ChainContainer";

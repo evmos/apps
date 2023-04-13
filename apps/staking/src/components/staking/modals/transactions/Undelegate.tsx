@@ -16,7 +16,7 @@ import { ConfirmButton } from "confirm-button";
 import { SmallButton } from "small-button";
 import { useUndelegation } from "../hooks/useUndelegations";
 import { FEE_STAKING_ACTIONS } from "constants-helper";
-import ErrorMessage from "../../../common/ErrorMessage";
+import { ErrorMessage } from "error-message";
 import ContainerInput from "../../../common/ContainerInput";
 
 export const Undelegate = ({

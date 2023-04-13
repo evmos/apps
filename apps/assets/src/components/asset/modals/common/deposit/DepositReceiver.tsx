@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { KeplrIcon, MetamaskIcon } from "icons";
 
 import { ContainerModal } from "../ContainerModal";
-import ErrorMessage from "../ErrorMessage";
+import { ErrorMessage } from "error-message";
 import { TextSmall } from "../TextSmall";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
 

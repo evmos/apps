@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import dynamic from "next/dynamic";
 import Head from "next/head";
 import AssetsTable from "../src/components/asset/table/AssetsTable";
 
@@ -20,8 +19,7 @@ import { TermOfServices } from "terms-of-services";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import Script from "next/script";
 
-const Header = dynamic(() => import("../src/components/Header"));
-
+import { StatefulHeader } from "../src/StatefulHeader";
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();
@@ -101,7 +99,7 @@ export default function Home() {
               <Container>
                 <>
                   <SnackbarsInternal />
-                  <Header pageName="Assets" />
+                  <StatefulHeader pageName="Assets" />
                   <div className="container mx-auto mb-auto overflow-auto">
                     <AssetsTable />
                   </div>

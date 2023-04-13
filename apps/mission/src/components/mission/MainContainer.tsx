@@ -1,17 +1,22 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
-const Header = dynamic(() => import("../Header"));
+// const Header = dynamic(() => import("../Header"));
 import { Footer } from "footer";
 const Content = dynamic(() => import("../mission/Content"));
 const SideBar = dynamic(() => import("./Sidebar/Sidebar"));
 const SidebarMobile = dynamic(() => import("./Sidebar/SidebarMobile"));
-
+import { StatefulHeader } from "./StatefulHeader";
 const MainContainer = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+
   return (
     <>
-      <Header pageName="Mission Control " setShowSidebar={setShowSidebar} />
+      <StatefulHeader
+        pageName="Mission Control"
+        setShowSidebar={setShowSidebar}
+      />
+
       <div className="block lg:hidden ">
         <SidebarMobile
           showSidebar={showSidebar}

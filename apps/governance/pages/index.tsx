@@ -18,7 +18,6 @@ import {
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const Header = dynamic(() => import("../src/components/Header"));
 import { TermOfServices } from "terms-of-services";
 
 function SnackbarsInternal() {
@@ -27,6 +26,7 @@ function SnackbarsInternal() {
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
 import { Footer } from "footer";
+import { StatefulHeader } from "../src/components/StatefulHeader";
 const Content = dynamic(() => import("../src/components/governance/Content"));
 
 export default function Home() {
@@ -46,7 +46,7 @@ export default function Home() {
               <Container>
                 <>
                   <SnackbarsInternal />
-                  <Header pageName="Governance" />
+                  <StatefulHeader pageName="Governance" />
                   <div className="container mx-auto mb-auto overflow-auto">
                     <Content />
                   </div>

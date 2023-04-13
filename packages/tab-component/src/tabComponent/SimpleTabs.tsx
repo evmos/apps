@@ -1,8 +1,6 @@
-import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
-
-const TabNavItemWithBorder = dynamic(() => import("./TabNewItemWithBorder"));
-const TabContent = dynamic(() => import("./TabContent"));
+import { TabNavItemWithBorder } from "./TabNewItemWithBorder";
+import { TabContent } from "./TabContent";
 
 type tabContent = {
   title: string;
@@ -10,7 +8,7 @@ type tabContent = {
   content: JSX.Element;
 };
 
-const SimpleTabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
+export const SimpleTabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
   const [activeTab, setActiveTab] = useState(tabsContent[0].id);
 
   const tabItems = useMemo(() => {
@@ -53,5 +51,3 @@ const SimpleTabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
     </div>
   );
 };
-
-export default SimpleTabs;

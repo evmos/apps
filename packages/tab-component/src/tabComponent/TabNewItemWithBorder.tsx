@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 
 // this is used on the news feed on mission control page
-const TabNavItemWithBorder = ({
+export const TabNavItemWithBorder = ({
   id,
   title,
   activeTab,
@@ -29,4 +29,3 @@ const TabNavItemWithBorder = ({
     </li>
   );
 };
-export default TabNavItemWithBorder;

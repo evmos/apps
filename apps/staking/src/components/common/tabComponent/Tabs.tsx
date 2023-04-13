@@ -2,9 +2,8 @@ import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import { tabContent } from "../../staking/Tabs/Content";
 import ValidatorToggle from "../Toggle";
-
+import { TabContent } from "tab-component";
 const TabNavItem = dynamic(() => import("./TabNavItem"));
-const TabContent = dynamic(() => import("./TabContent"));
 const Search = dynamic(() => import("../searchBar/Search"));
 const TabsDropdown = dynamic(() => import("./TabsDropdown"));
 

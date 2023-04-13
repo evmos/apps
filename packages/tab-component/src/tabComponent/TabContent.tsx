@@ -1,4 +1,4 @@
-const TabContent = ({
+export const TabContent = ({
   id,
   activeTab,
   children,
@@ -9,5 +9,3 @@ const TabContent = ({
 }) => {
   return activeTab === id ? <div className="">{children}</div> : null;
 };
-
-export default TabContent;

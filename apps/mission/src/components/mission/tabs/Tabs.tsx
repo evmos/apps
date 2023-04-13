@@ -1,13 +1,7 @@
-import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
 import { tabContent } from "./Content";
 
-const TabNavItemWithBorder = dynamic(
-  () => import("../../common/tabComponent/TabNewItemWithBorder")
-);
-const TabContent = dynamic(
-  () => import("../../common/tabComponent/TabContent")
-);
+import { TabNavItemWithBorder, TabContent } from "tab-component";
 
 const Tabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
   const [activeTab, setActiveTab] = useState(tabsContent[0].id);

@@ -28,6 +28,7 @@ export default defineConfig((options: Options) => ({
     "@hanchon/signature-to-pubkey",
     "icons",
     "modal",
+    "button",
   ],
   ...options,
 }));

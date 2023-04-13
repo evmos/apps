@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import useAssets from "../../internal/functionality/hooks/useAssets";
 import { StoreType } from "evmos-wallet";
 import BannerMessages from "../common/banners/BannerMessages";
-import Button from "../common/Button";
+import { Button } from "button";
 import MissionContainer from "./MissionContainer";
 
 const Assets = () => {

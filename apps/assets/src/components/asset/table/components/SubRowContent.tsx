@@ -12,7 +12,7 @@ import {
   KEPLR_KEY,
   StoreType,
 } from "evmos-wallet";
-import Button from "../../../common/Button";
+import { Button } from "button";
 import { QuestionMarkIcon } from "icons";
 import Tooltip from "../../../common/Tooltip";
 import Convert from "../../modals/transactions/Convert";

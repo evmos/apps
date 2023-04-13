@@ -1,4 +1,4 @@
-const Button = ({
+export const Button = ({
   children,
   onClick,
   disabled,
@@ -13,7 +13,7 @@ const Button = ({
     <button
       onClick={onClick}
       className={`
-      font-[GreyCliff]" flex justify-center rounded border border-pearl p-2 text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity ${
+      font-[GreyCliff] flex justify-center rounded border border-pearl p-2 text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity ${
         disabled ? "disabled rounded" : "rounded"
       } 
         ${className !== undefined ? className : ""}
@@ -23,5 +23,3 @@ const Button = ({
     </button>
   );
 };
-
-export default Button;

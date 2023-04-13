@@ -37,7 +37,7 @@ import {
 import Tooltip from "../common/Tooltip";
 
 // Components
-import Button from "../common/Button";
+import { Button } from "button";
 
 export const ButtonWalletConnection = ({
   walletExtension,

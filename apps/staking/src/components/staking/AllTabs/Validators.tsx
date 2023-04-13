@@ -33,7 +33,7 @@ import {
 } from "../../../internal/common/helpers/style";
 
 import { Modal } from "modal";
-const Button = dynamic(() => import("../../common/Button"));
+import { Button } from "button";
 const MessageTable = dynamic(() => import("../../common/table/MessageTable"));
 
 const dataHead = ["Rank", "Name", "Voting Power", "Staked", "Commission", ""];

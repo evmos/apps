@@ -3,7 +3,7 @@ import { ButtonWalletConnection, StoreType } from "evmos-wallet";
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import Button from "./common/Button";
+import { Button } from "button";
 
 import { Logo } from "icons";
 

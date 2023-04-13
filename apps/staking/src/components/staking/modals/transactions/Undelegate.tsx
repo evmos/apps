@@ -17,7 +17,7 @@ import { SmallButton } from "small-button";
 import { useUndelegation } from "../hooks/useUndelegations";
 import { FEE_STAKING_ACTIONS } from "constants-helper";
 import { ErrorMessage } from "error-message";
-import ContainerInput from "../../../common/ContainerInput";
+import { ContainerInput } from "container-input";
 
 export const Undelegate = ({
   item,

@@ -4,7 +4,7 @@ import { checkFormatAddress } from "../../../../../internal/asset/style/format";
 import { KeplrIcon } from "icons";
 import { SmallButton } from "small-button";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
-import ContainerInput from "../ContainerInput";
+import { ContainerInput } from "container-input";
 import { ContainerModal } from "../ContainerModal";
 import { ErrorMessage } from "error-message";
 import { TextSmall } from "../TextSmall";

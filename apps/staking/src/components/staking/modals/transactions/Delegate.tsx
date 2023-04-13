@@ -17,7 +17,7 @@ import {
 } from "../../../../internal/common/helpers/style";
 import { FEE_STAKING_ACTIONS } from "constants-helper";
 import { ErrorMessage } from "error-message";
-import ContainerInput from "../../../common/ContainerInput";
+import { ContainerInput } from "container-input";
 
 export const Delegate = ({
   item,

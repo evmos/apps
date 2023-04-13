@@ -18,7 +18,7 @@ import ValidatorsDropdown from "../../dropdown/ValidatorsDropdown";
 import { useRedelegation } from "../hooks/useRedelegation";
 import { FEE_STAKING_ACTIONS } from "constants-helper";
 import { ErrorMessage } from "error-message";
-import ContainerInput from "../../../common/ContainerInput";
+import { ContainerInput } from "container-input";
 
 export const Redelegate = ({
   item,

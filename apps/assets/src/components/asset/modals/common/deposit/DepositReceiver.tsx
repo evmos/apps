@@ -9,7 +9,7 @@ import { TextSmall } from "../TextSmall";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
 
 import { SmallButton } from "small-button";
-import ContainerInput from "../ContainerInput";
+import { ContainerInput } from "container-input";
 import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
 import {
   checkFormatAddress,

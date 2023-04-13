@@ -6,7 +6,7 @@ import {
 } from "../../../../../internal/asset/style/format";
 import { Token } from "evmos-wallet";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
-import ContainerInput from "../ContainerInput";
+import { ContainerInput } from "container-input";
 
 const ToConvert = ({
   token,

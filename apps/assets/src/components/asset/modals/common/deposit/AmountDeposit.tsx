@@ -9,7 +9,7 @@ import {
 } from "../../../../../internal/asset/style/format";
 import DropdownTokensDeposit from "../../../dropdown/DropdownTokensDeposit";
 import { SmallButton } from "small-button";
-import ContainerInput from "../ContainerInput";
+import { ContainerInput } from "container-input";
 import { ContainerModal } from "../ContainerModal";
 import { ErrorMessage } from "error-message";
 import Note from "../Note";

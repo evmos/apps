@@ -35,6 +35,7 @@
     "top-bar-item": "*",
     "error-message": "*",
     "message-table": "*",
+    "container-input": "*",
     "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",
     "@evmos/proto": "^0.1.26",

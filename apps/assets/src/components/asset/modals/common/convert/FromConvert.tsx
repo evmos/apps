@@ -11,7 +11,7 @@ import {
 import { ErrorMessage } from "error-message";
 import { MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { FromProps } from "../types";
-import ContainerInput from "../ContainerInput";
+import { ContainerInput } from "container-input";
 import { SmallButton } from "small-button";
 
 const FromConvert = ({ fee, balance, input, style }: FromProps) => {

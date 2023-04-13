@@ -1,4 +1,4 @@
-const Switch = ({
+export const Switch = ({
   checked,
   onChange,
   label,
@@ -22,4 +22,3 @@ const Switch = ({
     </div>
   );
 };
-export default Switch;

@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
 const MessageTable = dynamic(() => import("./MessageTable"));
-const Switch = dynamic(() => import("../utils/Switch"));
+import { Switch } from "switch";
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));
 

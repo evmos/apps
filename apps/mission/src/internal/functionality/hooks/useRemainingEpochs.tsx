@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { RemainingEpochsResponse, getRemainingEpochs } from "../../fetch";
+
+import { RemainingEpochsResponse, getRemainingEpochs } from "services";
 
 export const useRemainingEpochs = () => {
   const remainingEpochs = useQuery<RemainingEpochsResponse, Error>({

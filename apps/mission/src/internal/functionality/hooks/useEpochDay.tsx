@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { EpochsResponse, getEpochs } from "../../fetch";
+import { EpochsResponse, getEpochs } from "services";
 
 export const useEpochDay = () => {
   const epochs = useQuery<EpochsResponse, Error>({

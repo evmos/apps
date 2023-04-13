@@ -1,6 +1,5 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { ERC20BalanceResponse } from "../../../../components/asset/table/types";
-import { BIG_ZERO } from "../../../common/math/Bignumbers";
 
 export type TableDataElement = {
   name: string;
@@ -26,7 +25,7 @@ export type TableData = {
 };
 
 export function normalizeAssetsData(data: ERC20BalanceResponse | undefined) {
-  const temp: TableData = { table: [], feeBalance: BIG_ZERO };
+  const temp: TableData = { table: [], feeBalance: BigNumber.from(0) };
   data?.balance.map((item) => {
     if (
       item.symbol !== "REGEN" &&

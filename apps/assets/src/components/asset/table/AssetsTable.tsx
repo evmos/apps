@@ -13,7 +13,6 @@ import { Switch } from "switch";
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));
 
-import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
   normalizeAssetsData,
   TableData,
@@ -24,6 +23,7 @@ import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
 import { Navigation } from "navigation";
+import { BigNumber } from "ethers";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -71,8 +71,8 @@ const AssetsTable = () => {
     return normalizedAssetsData?.table.filter((asset) => {
       if (
         hideZeroBalance === true &&
-        asset.erc20Balance.eq(BIG_ZERO) &&
-        asset.cosmosBalance.eq(BIG_ZERO)
+        asset.erc20Balance.eq(BigNumber.from(0)) &&
+        asset.cosmosBalance.eq(BigNumber.from(0))
       ) {
         return false;
       }

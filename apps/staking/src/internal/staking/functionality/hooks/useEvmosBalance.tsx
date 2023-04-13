@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getEvmosBalance } from "../fetch";
 import { StoreType } from "evmos-wallet";
 import { BalanceResponse } from "../types";
-import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import { BigNumber } from "ethers";
 
 export const useEvmosBalance = () => {
@@ -15,7 +14,7 @@ export const useEvmosBalance = () => {
     refetchInterval: 3000,
   });
 
-  let balance = BIG_ZERO;
+  let balance = BigNumber.from(0);
   if (evmosBalance.data !== undefined) {
     const amount = evmosBalance.data.balance.amount;
     if (amount !== "") {

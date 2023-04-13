@@ -6,7 +6,6 @@ import { StoreType } from "evmos-wallet";
 import { ERC20BalanceResponse } from "../../types";
 import { getAssetsForAddress } from "../../fetch";
 import { addAssets, addDollarAssets, amountToDollars } from "helpers";
-import { BIG_ZERO } from "../../common/math/Bignumbers";
 
 const useAssetsTopBar = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
@@ -89,7 +88,7 @@ const useAssetsTopBar = () => {
 
   const getTotalEvmos = useMemo(() => {
     // returns the amount of evmos and wrap evmos
-    let total = BIG_ZERO;
+    let total = BigNumber.from(0);
 
     if (assets.data === undefined || assets.data.balance.length === 0) {
       return total;

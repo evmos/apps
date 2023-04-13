@@ -9,7 +9,6 @@ import {
   splitString,
   sumBigNumber,
 } from "helpers";
-import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import { getProposals } from "../fetch";
 import { ProposalDetailProps, ProposalProps } from "../types";
 
@@ -68,7 +67,7 @@ export const useProposals = (pid?: string) => {
       submitTime: "--",
       depositEndTime: "--",
       description: "",
-      total: BIG_ZERO,
+      total: BigNumber.from(0),
       isVotingTimeWithinRange: false,
     };
     if (proposalsResponse.data !== undefined) {

@@ -15,7 +15,6 @@ import {
   getBalance,
   getEvmosBalanceForDeposit,
 } from "../../../../internal/asset/functionality/fetch";
-import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import { MetamaskIcon } from "icons";
 import { ethToEvmos } from "@evmos/address-converter";
 import {
@@ -61,7 +60,7 @@ const Deposit = ({
 
   const dispatch = useDispatch();
 
-  const [balance, setBalance] = useState(BIG_ZERO);
+  const [balance, setBalance] = useState(BigNumber.from(0));
   const [walletToUse, setWalletToUse] = useState("");
   const [disabled, setDisabled] = useState(false);
 

@@ -1,6 +1,5 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { parseEther } from "@ethersproject/units";
-import { BIG_ZERO } from "../../../common/math/Bignumbers";
 
 import {
   EVMOS_BACKEND,
@@ -127,7 +126,7 @@ export async function executeConvert(
     };
   }
 
-  if (parseEther(params.amount).lte(BIG_ZERO)) {
+  if (parseEther(params.amount).lte(BigNumber.from(0))) {
     return {
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext,

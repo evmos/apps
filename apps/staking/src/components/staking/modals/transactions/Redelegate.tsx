@@ -11,7 +11,6 @@ import {
   truncateNumber,
 } from "helpers";
 
-import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import { useEvmosBalance } from "../../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { ModalDelegate } from "../../../../internal/staking/functionality/types";
 import { ConfirmButton } from "confirm-button";
@@ -70,7 +69,9 @@ export const Redelegate = ({
               text="MAX"
               onClick={() => {
                 const val =
-                  item.balance !== "" ? BigNumber.from(item.balance) : BIG_ZERO;
+                  item.balance !== ""
+                    ? BigNumber.from(item.balance)
+                    : BigNumber.from(0);
                 setValue(numericOnly(convertFromAtto(val, 18)));
               }}
             />
@@ -86,7 +87,7 @@ export const Redelegate = ({
           safeSubstraction(
             evmosBalance,
             BigNumber.from(FEE_STAKING_ACTIONS)
-          ).lte(BIG_ZERO) && (
+          ).lte(BigNumber.from(0)) && (
             <ErrorMessage
               text={MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext}
             />
@@ -95,7 +96,9 @@ export const Redelegate = ({
           truncateNumber(
             numericOnly(
               convertFromAtto(
-                item.balance !== "" ? BigNumber.from(item.balance) : BIG_ZERO,
+                item.balance !== ""
+                  ? BigNumber.from(item.balance)
+                  : BigNumber.from(0),
                 18
               )
             )

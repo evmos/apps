@@ -1,6 +1,5 @@
 import { useCallback, useMemo } from "react";
 import { formatAttoNumber, indexOfMax } from "helpers";
-import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
   lookupProposalEndStatus,
   ProposalDetailProps,
@@ -12,6 +11,7 @@ import { CloseIcon, CheckIcon } from "icons";
 import { BAR_COLORS } from "../bar/styles";
 import VotingDetails from "../common/VotingDetails";
 import VoteButton from "./vote/VoteButton";
+import { BigNumber } from "ethers";
 const Graphic = ({
   data,
   loading,
@@ -41,7 +41,7 @@ const Graphic = ({
     }
 
     // avoid showing circle with data if total is 0
-    if (data.total.eq(BIG_ZERO)) {
+    if (data.total.eq(BigNumber.from(0))) {
       return null;
     }
     // 1 indicates that the majority of the votes were NO
@@ -91,7 +91,7 @@ const Graphic = ({
       <div className="relative">
         {drawContentCircle()}
 
-        {!data.total.eq(BIG_ZERO) && (
+        {!data.total.eq(BigNumber.from(0)) && (
           <Arc
             range={360}
             items={[

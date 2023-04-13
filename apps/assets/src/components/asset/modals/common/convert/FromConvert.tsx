@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+
 import {
   convertFromAtto,
   createBigNumber,
@@ -7,7 +8,8 @@ import {
   numericOnly,
   safeSubstraction,
   truncateNumber,
-} from "../../../../../internal/asset/style/format";
+} from "helpers";
+
 import { ErrorMessage } from "error-message";
 import { MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { FromProps } from "../types";

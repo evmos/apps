@@ -12,7 +12,7 @@ import {
   isVotingTimeWithinRange,
   splitString,
   sumBigNumber,
-} from "../../common/helpers/style";
+} from "helpers";
 
 export const useProposals = (pid?: string) => {
   const proposalsResponse = useQuery({

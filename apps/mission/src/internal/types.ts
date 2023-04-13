@@ -148,16 +148,6 @@ export type BalanceResponse = {
   };
 };
 
-export type addAssetsType = {
-  cosmosBalance: BigNumber;
-  decimals: number;
-  erc20Balance: BigNumber;
-};
-
-export interface addDolarsAssetsType extends addAssetsType {
-  coingeckoPrice: number;
-}
-
 type AmountProposal = {
   denom: string;
   amount: string;

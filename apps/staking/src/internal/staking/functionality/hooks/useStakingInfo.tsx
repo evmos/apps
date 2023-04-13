@@ -10,7 +10,7 @@ import {
 import { useMemo } from "react";
 import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import { BigNumber } from "ethers";
-import { convertStringFromAtto } from "../../../common/helpers/style";
+import { convertStringFromAtto } from "helpers";
 
 export const useStakingInfo = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);

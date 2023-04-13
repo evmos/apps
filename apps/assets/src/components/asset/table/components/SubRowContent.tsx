@@ -1,10 +1,7 @@
 import { BigNumber } from "ethers";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  amountToDollars,
-  convertAndFormat,
-} from "../../../../internal/asset/style/format";
+import { amountToDollars, convertAndFormat } from "helpers";
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import {
   snackWarningLedger,

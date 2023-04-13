@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useCallback } from "react";
-import { formatDate } from "../../../internal/common/helpers/style";
+import { formatDate } from "helpers";
 import { RecordsResponse } from "../../../internal/types";
 
 const FeedItem = ({ annoucement }: { annoucement: RecordsResponse }) => {

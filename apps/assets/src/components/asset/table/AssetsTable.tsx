@@ -19,7 +19,7 @@ import {
   TableData,
 } from "../../../internal/asset/functionality/table/normalizeData";
 import HeadTable from "./HeadTable";
-import { getTotalAssets } from "../../../internal/asset/style/format";
+import { getTotalAssets } from "helpers";
 import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";

@@ -1,4 +1,4 @@
-import { getPercentage } from "./style";
+import { getPercentage } from "helpers";
 
 describe("Test For Helpers", () => {
   it("getPercentage", () => {

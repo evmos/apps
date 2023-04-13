@@ -1,12 +1,14 @@
 import { MODAL_NOTIFICATIONS } from "evmos-wallet";
+
 import {
-  convertAndFormat,
   convertFromAtto,
+  convertAndFormat,
   createBigNumber,
   numericOnly,
   safeSubstraction,
   truncateNumber,
-} from "../../../../../internal/asset/style/format";
+} from "helpers";
+
 import DropdownTokensDeposit from "../../../dropdown/DropdownTokensDeposit";
 import { SmallButton } from "small-button";
 import { ContainerInput } from "container-input";

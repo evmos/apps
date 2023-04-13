@@ -4,14 +4,16 @@ import { parseUnits } from "@ethersproject/units";
 import { useDispatch, useSelector } from "react-redux";
 import { executeDeposit } from "../../../../../internal/asset/functionality/transactions/deposit";
 import {
-  checkFormatAddress,
-  checkMetaMaskFormatAddress,
-  getChainIds,
-  getPrefix,
   snackbarExecutedTx,
   snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../../internal/asset/style/format";
+import {
+  checkFormatAddress,
+  checkMetaMaskFormatAddress,
+  getChainIds,
+  getPrefix,
+} from "helpers";
 import { DepositProps } from "../types";
 import {
   BROADCASTED_NOTIFICATIONS,

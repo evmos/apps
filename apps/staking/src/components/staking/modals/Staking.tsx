@@ -8,10 +8,7 @@ import { SmallButton } from "small-button";
 import { Delegate } from "./transactions/Delegate";
 import { Redelegate } from "./transactions/Redelegate";
 import { Undelegate } from "./transactions/Undelegate";
-import {
-  convertAndFormat,
-  formatPercentage,
-} from "../../../internal/common/helpers/style";
+import { convertAndFormat, formatPercentage } from "helpers";
 
 const Staking = ({
   item,

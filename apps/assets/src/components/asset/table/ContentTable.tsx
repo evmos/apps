@@ -1,11 +1,7 @@
 import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction, useMemo } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
-import {
-  addAssets,
-  addDolarAssets,
-  formatNumber,
-} from "../../../internal/asset/style/format";
+import { addAssets, addDollarAssets, formatNumber } from "helpers";
 import { EVMOS_SYMBOL } from "evmos-wallet";
 import { Accordion } from "accordion";
 import { RowContent } from "./components/RowContent";
@@ -133,7 +129,7 @@ const ContentTable = ({
           decimals: e.decimals,
           cosmosBalance: e.cosmosBalance,
         });
-        valueInDollars += addDolarAssets({
+        valueInDollars += addDollarAssets({
           erc20Balance: e.erc20Balance,
           decimals: e.decimals,
           coingeckoPrice: e.coingeckoPrice,

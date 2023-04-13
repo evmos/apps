@@ -1,6 +1,6 @@
 import { BigNumber, utils } from "ethers";
 import { feeWithdraw } from "../../Helpers";
-import { checkFormatAddress } from "../../style/format";
+import { checkFormatAddress } from "helpers";
 
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import {

@@ -7,7 +7,7 @@ import { Countdown } from "countdown";
 import { useRewards } from "../modals/hooks/useRewards";
 
 import { StoreType } from "evmos-wallet";
-import { convertFromAtto } from "../../../internal/common/helpers/style";
+import { convertFromAtto } from "helpers";
 import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
 import { TopBarContainer } from "top-bar-container";
 import { ConfirmButton } from "confirm-button";

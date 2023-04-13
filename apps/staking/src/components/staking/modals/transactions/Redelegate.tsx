@@ -2,13 +2,15 @@ import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useSelector } from "react-redux";
 import { MODAL_NOTIFICATIONS, StoreType } from "evmos-wallet";
+
 import {
   convertFromAtto,
   getReservedForFeeText,
   numericOnly,
   safeSubstraction,
   truncateNumber,
-} from "../../../../internal/common/helpers/style";
+} from "helpers";
+
 import { BIG_ZERO } from "../../../../internal/common/math/Bignumbers";
 import { useEvmosBalance } from "../../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { ModalDelegate } from "../../../../internal/staking/functionality/types";

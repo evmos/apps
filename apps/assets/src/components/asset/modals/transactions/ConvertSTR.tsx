@@ -8,7 +8,7 @@ import FromConvert from "../common/convert/FromConvert";
 import ToConvert from "../common/convert/ToConvert";
 
 import { Token, EVMOS_SYMBOL } from "evmos-wallet";
-import { getReservedForFeeText } from "../../../../internal/asset/style/format";
+import { getReservedForFeeText } from "helpers";
 
 import Note from "../common/Note";
 import { useConvert } from "./hooks/useConvert";

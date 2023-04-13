@@ -1,5 +1,5 @@
 import { BigNumber, utils } from "ethers";
-import { checkFormatAddress } from "../../style/format";
+import { checkFormatAddress } from "helpers";
 import { ibcTransferBackendCall } from "./ibcTransfer";
 import {
   BROADCASTED_NOTIFICATIONS,

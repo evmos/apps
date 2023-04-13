@@ -1,4 +1,4 @@
-import { formatAttoNumber } from "../../../internal/common/helpers/style";
+import { formatAttoNumber } from "helpers";
 import { VotingDetail } from "./types";
 
 const VotingDetail = ({ votingProps }: { votingProps: VotingDetail }) => {

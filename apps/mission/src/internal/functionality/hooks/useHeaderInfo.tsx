@@ -3,7 +3,7 @@ import { BigNumber } from "ethers";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "evmos-wallet";
-import { convertStringFromAtto } from "../../common/helpers/style";
+import { convertStringFromAtto } from "helpers";
 import { BIG_ZERO } from "../../common/math/Bignumbers";
 import { StakingInfoResponse } from "../../types";
 import { getStakingInfo } from "../../fetch";

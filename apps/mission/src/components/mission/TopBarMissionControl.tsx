@@ -1,10 +1,8 @@
 import { TopBarContainer } from "top-bar-container";
 import { TopBarItem } from "top-bar-item";
 
-import {
-  amountToDollars,
-  convertFromAtto,
-} from "../../internal/common/helpers/style";
+import { convertFromAtto, amountToDollars } from "helpers";
+
 import { useHeaderInfo } from "../../internal/functionality/hooks/useHeaderInfo";
 import useAssetsTopBar from "../../internal/functionality/hooks/useAssetsTopBar";
 

@@ -11,12 +11,10 @@ import { useSelector } from "react-redux";
 import { StoreType, MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { useEvmosBalance } from "../../../../internal/common/functionality/hooks/useEvmosBalance";
 import { ErrorMessage } from "error-message";
-import {
-  convertFromAtto,
-  feeVote,
-  getReservedForFeeText,
-} from "../../../../internal/common/helpers/style";
 
+import { convertFromAtto, getReservedForFeeText } from "helpers";
+import { FEE_VOTE } from "constants-helper";
+import { BigNumber } from "ethers";
 const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
   const [show, setShow] = useState(false);
   const [selected, setSelected] = useState("");
@@ -57,7 +55,13 @@ const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
             setSelected={setSelected}
           />
 
-          <p>{getReservedForFeeText(feeVote, EVMOS_SYMBOL, EVMOS_SYMBOL)}</p>
+          <p>
+            {getReservedForFeeText(
+              BigNumber.from(FEE_VOTE),
+              EVMOS_SYMBOL,
+              EVMOS_SYMBOL
+            )}
+          </p>
           {isSmallBalance && (
             <ErrorMessage
               text={MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext}

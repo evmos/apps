@@ -5,11 +5,7 @@ import { useSelector } from "react-redux";
 import { StoreType } from "evmos-wallet";
 import { ERC20BalanceResponse } from "../../types";
 import { getAssetsForAddress } from "../../fetch";
-import {
-  addAssets,
-  addDolarAssets,
-  amountToDollars,
-} from "../../common/helpers/style";
+import { addAssets, addDollarAssets, amountToDollars } from "helpers";
 import { BIG_ZERO } from "../../common/math/Bignumbers";
 
 const useAssetsTopBar = () => {
@@ -42,7 +38,7 @@ const useAssetsTopBar = () => {
           decimals: Number(item.decimals),
           cosmosBalance: BigNumber.from(item.cosmosBalance),
         }).toFixed(2),
-        valueInDollars: addDolarAssets({
+        valueInDollars: addDollarAssets({
           erc20Balance: BigNumber.from(item.erc20Balance),
           decimals: Number(item.decimals),
           coingeckoPrice: Number(item.coingeckoPrice),

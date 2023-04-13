@@ -1,12 +1,14 @@
 import { BigNumber } from "ethers";
+
 import {
-  convertAndFormat,
   convertFromAtto,
+  convertAndFormat,
   getReservedForFeeText,
   numericOnly,
   safeSubstraction,
   truncateNumber,
-} from "../../../../../internal/asset/style/format";
+} from "helpers";
+
 import DropdownTokens from "../../../dropdown/DropdownTokens";
 import { SmallButton } from "small-button";
 import { ContainerInput } from "container-input";

@@ -3,12 +3,11 @@ import { parseUnits } from "@ethersproject/units";
 import { useDispatch, useSelector } from "react-redux";
 import { executeWithdraw } from "../../../../../internal/asset/functionality/transactions/withdraw";
 import {
-  checkFormatAddress,
-  getPrefix,
   snackbarExecutedTx,
   snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../../internal/asset/style/format";
+import { checkFormatAddress, getPrefix } from "helpers";
 import { WithdrawProps } from "../types";
 import {
   BROADCASTED_NOTIFICATIONS,

@@ -8,13 +8,13 @@ import { ConfirmButton } from "confirm-button";
 import { SmallButton } from "small-button";
 import { useDelegation } from "../hooks/useDelegation";
 import {
-  convertAndFormat,
   convertFromAtto,
+  convertAndFormat,
   getReservedForFeeText,
   numericOnly,
   safeSubstraction,
   truncateNumber,
-} from "../../../../internal/common/helpers/style";
+} from "helpers";
 import { FEE_STAKING_ACTIONS } from "constants-helper";
 import { ErrorMessage } from "error-message";
 import { ContainerInput } from "container-input";

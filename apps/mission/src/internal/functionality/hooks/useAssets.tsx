@@ -4,7 +4,7 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "evmos-wallet";
 import { ERC20BalanceResponse } from "../../types";
-import { addAssets, addDolarAssets } from "../../common/helpers/style";
+import { addAssets, addDollarAssets } from "helpers";
 import { getAssetsForAddress } from "../../fetch";
 
 const useAssets = () => {
@@ -37,7 +37,7 @@ const useAssets = () => {
           decimals: Number(item.decimals),
           cosmosBalance: BigNumber.from(item.cosmosBalance),
         }).toFixed(2),
-        valueInDollars: addDolarAssets({
+        valueInDollars: addDollarAssets({
           erc20Balance: BigNumber.from(item.erc20Balance),
           decimals: Number(item.decimals),
           coingeckoPrice: Number(item.coingeckoPrice),

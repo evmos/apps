@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { executeWithdraw } from "../../../../internal/asset/functionality/transactions/withdraw";
 import {
-  getReservedForFeeText,
   snackbarExecutedTx,
   snackbarIncludedInBlock,
   snackbarWaitingBroadcast,
 } from "../../../../internal/asset/style/format";
+import { getReservedForFeeText } from "helpers";
 import { ConfirmButton } from "confirm-button";
 import { KeplrIcon } from "icons";
 import { ModalTitle } from "modal";

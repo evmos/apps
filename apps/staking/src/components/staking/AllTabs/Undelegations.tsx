@@ -15,11 +15,8 @@ import {
   trBodyStyle,
 } from "../../common/table/tablesStyles";
 import { TdContent } from "../../common/table/TdContent";
-import {
-  convertAndFormat,
-  getRemainingTime,
-} from "../../../internal/common/helpers/style";
 
+import { convertAndFormat, getRemainingTime } from "helpers";
 import { MessageTable } from "message-table";
 
 const dataHead = ["Name", "Amount to be undelegated", "Remaining time"];

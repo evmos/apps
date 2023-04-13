@@ -1,8 +1,5 @@
 import { useCallback, useMemo } from "react";
-import {
-  formatAttoNumber,
-  indexOfMax,
-} from "../../../internal/common/helpers/style";
+import { formatAttoNumber, indexOfMax } from "helpers";
 import { BIG_ZERO } from "../../../internal/common/math/Bignumbers";
 import {
   lookupProposalEndStatus,

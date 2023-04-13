@@ -8,7 +8,7 @@ import {
   isVotingTimeWithinRange,
   splitString,
   sumBigNumber,
-} from "../../../common/helpers/style";
+} from "helpers";
 import { BIG_ZERO } from "../../../common/math/Bignumbers";
 import { getProposals } from "../fetch";
 import { ProposalDetailProps, ProposalProps } from "../types";

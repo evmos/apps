@@ -1,9 +1,7 @@
 import Link from "next/link";
 
-import {
-  convertFromAtto,
-  formatNumber,
-} from "../../../internal/common/helpers/style";
+import { convertFromAtto, formatNumber } from "helpers";
+
 import { DelegationsResponse, rewardsResponse } from "../../../internal/types";
 
 const EmptyDelegations = () => {

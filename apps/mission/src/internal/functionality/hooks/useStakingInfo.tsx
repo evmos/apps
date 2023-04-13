@@ -10,7 +10,7 @@ import {
   StakingInfoResponse,
   UndelegationsResponse,
 } from "../../types";
-import { convertStringFromAtto } from "../../common/helpers/style";
+import { convertStringFromAtto } from "helpers";
 import { getStakingInfo } from "../../fetch";
 
 export const useStakingInfo = () => {

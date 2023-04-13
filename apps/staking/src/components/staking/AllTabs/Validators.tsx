@@ -29,7 +29,7 @@ import {
   convertStringFromAtto,
   formatNumber,
   formatPercentage,
-} from "../../../internal/common/helpers/style";
+} from "helpers";
 
 import { Modal } from "modal";
 import { Button } from "button";

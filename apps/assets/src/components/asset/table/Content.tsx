@@ -1,8 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import {
-  amountToDollars,
-  convertAndFormat,
-} from "../../../internal/asset/style/format";
+import { amountToDollars, convertAndFormat } from "helpers";
 import { TableData } from "../../../internal/asset/functionality/table/normalizeData";
 import { Description } from "./components/Description";
 import { ButtonActions } from "./components/ButtonActions";

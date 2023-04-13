@@ -11,10 +11,7 @@ import AddTokenMetamask from "../../transactions/AddTokenMetamask";
 import { SmallButton } from "small-button";
 import { ContainerInput } from "container-input";
 import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
-import {
-  checkFormatAddress,
-  checkMetaMaskFormatAddress,
-} from "../../../../../internal/asset/style/format";
+import { checkFormatAddress, checkMetaMaskFormatAddress } from "helpers";
 import {
   getKeplrAddressByChain,
   getWallet,

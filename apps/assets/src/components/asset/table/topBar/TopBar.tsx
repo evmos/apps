@@ -1,4 +1,4 @@
-import TopBarContainer from "../../../common/TopBarContainer";
+import { TopBarContainer } from "top-bar-container";
 import ButtonsActions from "./ButtonsActions";
 import { Container } from "../../../common/topBar/Container";
 import { TopBarProps } from "./types";

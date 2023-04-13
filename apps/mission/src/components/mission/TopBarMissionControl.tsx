@@ -1,4 +1,4 @@
-import TopBarContainer from "../common/TopBarContainer";
+import { TopBarContainer } from "top-bar-container";
 import { Container } from "../common/topBar/Container";
 
 import {

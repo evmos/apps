@@ -1,4 +1,3 @@
-import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { useEpochDay } from "../../../internal/common/api/hooks/useEpochDay";
 import { useEvmosBalance } from "../../../internal/staking/functionality/hooks/useEvmosBalance";
@@ -10,7 +9,7 @@ import { useRewards } from "../modals/hooks/useRewards";
 import { StoreType } from "evmos-wallet";
 import { convertFromAtto } from "../../../internal/common/helpers/style";
 import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
-const TopBarContainer = dynamic(() => import("../../common/TopBarContainer"));
+import { TopBarContainer } from "top-bar-container";
 import { ConfirmButton } from "confirm-button";
 
 const TopBarStaking = () => {

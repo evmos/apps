@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { ConfirmButton } from "confirm-button";
 import { KeplrIcon } from "icons";
-import { ModalTitle } from "../../../common/Modal";
+import { ModalTitle } from "modal";
 import Arrow from "../common/Arrow";
 import ErrorMessage from "../common/ErrorMessage";
 import FromContainer from "../common/FromContainer";

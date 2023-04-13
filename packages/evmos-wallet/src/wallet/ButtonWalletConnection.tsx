@@ -25,7 +25,7 @@ import {
   CopyIcon,
   WalletConnectIcon,
 } from "icons";
-import Modal, { ModalTitle } from "../common/Modal";
+import { Modal, ModalTitle } from "modal";
 import ViewExplorer from "../common/ViewExplorer";
 import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";

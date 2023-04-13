@@ -27,6 +27,7 @@ export default defineConfig((options: Options) => ({
     "@evmos/transactions",
     "@hanchon/signature-to-pubkey",
     "icons",
+    "modal",
   ],
   ...options,
 }));

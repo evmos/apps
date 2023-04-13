@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import { EVMOS_SYMBOL } from "evmos-wallet";
 import { ConfirmButton } from "confirm-button";
-import Modal from "../../../common/Modal";
+import { Modal } from "modal";
 import { useVote } from "../../modals/hooks/useVote";
 import IdContainer from "../../common/IdContainer";
 

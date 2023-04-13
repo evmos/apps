@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { ConfirmButton } from "confirm-button";
-import { ModalTitle } from "../../../common/Modal";
+import { ModalTitle } from "modal";
 import {
   getBalance,
   getEvmosBalanceForDeposit,

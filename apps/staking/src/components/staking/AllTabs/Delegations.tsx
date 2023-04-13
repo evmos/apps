@@ -28,7 +28,7 @@ import {
   formatPercentage,
 } from "../../../internal/common/helpers/style";
 
-const Modal = dynamic(() => import("../../common/Modal"));
+import { Modal } from "modal";
 const Button = dynamic(() => import("../../common/Button"));
 const MessageTable = dynamic(() => import("../../common/table/MessageTable"));
 

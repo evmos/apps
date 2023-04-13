@@ -10,7 +10,7 @@ import { parseUnits } from "@ethersproject/units";
 import { BigNumber } from "@ethersproject/bignumber";
 import { executeConvert } from "../../../../internal/asset/functionality/transactions/convert";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import { ModalTitle } from "../../../common/Modal";
+import { ModalTitle } from "modal";
 import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
 import { createContract } from "./contracts/contractHelper";

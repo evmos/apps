@@ -1,4 +1,4 @@
-import Modal from "../../common/Modal";
+import { Modal } from "modal";
 
 const ModalAsset = ({
   show,

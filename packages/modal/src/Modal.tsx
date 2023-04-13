@@ -1,7 +1,7 @@
-import useEventListener from "../../hooks/useEventListener";
+import useEventListener from "./useEventListener";
 import { CloseIcon } from "icons";
 
-const Modal = ({
+export const Modal = ({
   children,
   show,
   onClose,
@@ -48,5 +48,3 @@ export function ModalTitle({ title }: { title: string }) {
     </div>
   );
 }
-
-export default Modal;

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ModalTitle } from "../../../common/Modal";
+import { ModalTitle } from "modal";
 import FromWithdraw from "../common/withdraw/FromWithdraw";
 import AmountWithdraw from "../common/withdraw/AmountWithdraw";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";

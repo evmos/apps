@@ -44,7 +44,7 @@ const Assets = () => {
               <div className="grid w-full grid-cols-2 ">
                 <div className="flex items-center space-x-5">
                   <Image
-                    src={`/tokens/${item.symbol.toLocaleLowerCase()}.png`}
+                    src={`/mission/tokens/${item.symbol.toLocaleLowerCase()}.png`}
                     alt={item.symbol}
                     width={30}
                     height={30}

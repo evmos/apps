@@ -45,8 +45,6 @@
     "prettier": "^2.8.1"
   },
   "depedencies": {
-    "ui-helpers": "*",
-    "icons": "*",
     "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",
     "@evmos/proto": "^0.1.26",
@@ -70,7 +68,9 @@
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
     "typescript": "4.9.4",
-    "wagmi": "=0.10.10"
+    "wagmi": "=0.10.10",
+    "icons": "*",
+    "ui-helpers": "*"
   },
   "browserslist": [
     "last 3 chrome version",

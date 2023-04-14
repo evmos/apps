@@ -2,8 +2,19 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
-    "build": {
-      "dependsOn": ["^build"],
+    "eslint-config-custom#build": {},
+    "tailwind-config#build": {},
+    "tsconfig#build": {},
+    "constants-helper#build": {},
+    "icons#build": {},
+    "helpers#build": {},
+    "services#build": {},
+    "ui-helpers#build": {
+      "dependsOn": ["icons#build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "evmos-wallet#build": {
+      "dependsOn": ["icons#build", "ui-helpers#build"],
       "outputs": ["dist/**", ".next/**"]
     },
     "lint": {},

@@ -1,6 +1,5 @@
-import { TopBarContainer } from "top-bar-container";
+import { TopBarContainer, TopBarItem } from "ui-helpers";
 import ButtonsActions from "./ButtonsActions";
-import { TopBarItem } from "top-bar-item";
 import { TopBarProps } from "./types";
 
 const TopBar = ({ topProps }: { topProps: TopBarProps }) => {

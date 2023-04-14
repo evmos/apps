@@ -10,11 +10,9 @@ import {
   truncateNumber,
 } from "helpers";
 
-import { ErrorMessage } from "error-message";
+import { ErrorMessage, ContainerInput, SmallButton } from "ui-helpers";
 import { MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { FromProps } from "../types";
-import { ContainerInput } from "container-input";
-import { SmallButton } from "small-button";
 
 const FromConvert = ({ fee, balance, input, style }: FromProps) => {
   const feeDeposit = "5000";

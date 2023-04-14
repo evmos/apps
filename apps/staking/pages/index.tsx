@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic";
 import Head from "next/head";
-import { Container } from "container";
 import { WagmiConfig } from "wagmi";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
@@ -18,15 +17,14 @@ import {
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { TermOfServices } from "terms-of-services";
+import { TermOfServices, Footer, Container } from "ui-helpers";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
-import { Footer } from "footer";
-import { StatefulHeader } from "../src/StatefulHeader";
+// import { StatefulHeader } from "../src/StatefulHeader";
 const Content = dynamic(() => import("../src/components/staking/Content"));
 
 export default function Home() {
@@ -46,7 +44,7 @@ export default function Home() {
               <Container>
                 <>
                   <SnackbarsInternal />
-                  <StatefulHeader pageName="Staking" />
+                  {/* <StatefulHeader pageName="Staking" /> */}
                   <div className="container mx-auto mb-auto overflow-auto">
                     <Content />
                   </div>

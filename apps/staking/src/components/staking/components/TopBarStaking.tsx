@@ -2,15 +2,17 @@ import { useSelector } from "react-redux";
 import { useEpochDay } from "../../../internal/common/api/hooks/useEpochDay";
 import { useEvmosBalance } from "../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
-import { TopBarItem } from "top-bar-item";
-import { Countdown } from "countdown";
+import {
+  TopBarItem,
+  Countdown,
+  TopBarContainer,
+  ConfirmButton,
+} from "ui-helpers";
 import { useRewards } from "../modals/hooks/useRewards";
 
 import { StoreType } from "evmos-wallet";
 import { convertFromAtto } from "helpers";
 import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
-import { TopBarContainer } from "top-bar-container";
-import { ConfirmButton } from "confirm-button";
 
 const TopBarStaking = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);

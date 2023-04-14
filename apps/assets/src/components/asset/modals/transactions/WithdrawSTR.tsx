@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { ModalTitle } from "modal";
 import FromWithdraw from "../common/withdraw/FromWithdraw";
 import AmountWithdraw from "../common/withdraw/AmountWithdraw";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import { ConfirmButton } from "confirm-button";
+import { ConfirmButton, ModalTitle } from "ui-helpers";
 import ToWithdraw from "../common/withdraw/ToWithdraw";
 import RedirectLink from "../common/RedirectLink";
 import { ButtonActionsProps } from "./types";

@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { tabContent } from "./Content";
 
-import { TabNavItemWithBorder, TabContent } from "tab-component";
+import { TabNavItemWithBorder, TabContent } from "ui-helpers";
 
 const Tabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
   const [activeTab, setActiveTab] = useState(tabsContent[0].id);

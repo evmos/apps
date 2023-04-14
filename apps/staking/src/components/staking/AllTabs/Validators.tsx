@@ -31,9 +31,7 @@ import {
   formatPercentage,
 } from "helpers";
 
-import { Modal } from "modal";
-import { Button } from "button";
-import { MessageTable } from "message-table";
+import { Modal, Button, MessageTable } from "ui-helpers";
 
 const dataHead = ["Rank", "Name", "Voting Power", "Staked", "Commission", ""];
 

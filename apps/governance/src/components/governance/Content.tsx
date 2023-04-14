@@ -9,7 +9,7 @@ import {
   COMMONWEALTH_URL,
 } from "constants-helper";
 
-import { Navigation } from "navigation";
+import { Navigation } from "ui-helpers";
 
 const BannerBlack = dynamic(() => import("../common/banners/BannerBlack"));
 const ContainerProposals = dynamic(

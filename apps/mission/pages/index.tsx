@@ -15,10 +15,8 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Container } from "container";
+import { Container, TermOfServices } from "ui-helpers";
 import MainContainer from "../src/components/mission/MainContainer";
-
-import { TermOfServices } from "terms-of-services";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));

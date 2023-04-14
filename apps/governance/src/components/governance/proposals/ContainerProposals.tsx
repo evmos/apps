@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useCallback } from "react";
 import { ProposalProps } from "../../../internal/governance/functionality/types";
-import { BannerMessages } from "banner-messages";
+import { BannerMessages } from "ui-helpers";
 import ProposalCard from "./ProposalCard";
 
 const ContainerProposals = ({

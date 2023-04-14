@@ -17,7 +17,7 @@ import {
 import { TdContent } from "../../common/table/TdContent";
 
 import { convertAndFormat, getRemainingTime } from "helpers";
-import { MessageTable } from "message-table";
+import { MessageTable } from "ui-helpers";
 
 const dataHead = ["Name", "Amount to be undelegated", "Remaining time"];
 

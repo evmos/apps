@@ -1,7 +1,7 @@
 import ProposalDescription from "./ProposalDescription";
 import Graphic from "./Graphic";
 import { useCallback } from "react";
-import { BannerMessages } from "banner-messages";
+import { BannerMessages } from "ui-helpers";
 import { ProposalDetailProps } from "../../../internal/governance/functionality/types";
 import UserVote from "./UserVote";
 import { useVote } from "../../../internal/governance/functionality/hooks/useVote";

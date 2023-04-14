@@ -1,6 +1,5 @@
 import { useCallback } from "react";
-import { BannerMessages } from "banner-messages";
-import { SimpleTabs } from "tab-component";
+import { BannerMessages, SimpleTabs } from "ui-helpers";
 import MissionContainer from "../MissionContainer";
 import { tabsAnnouncements } from "../tabs/Content";
 import { useAnnouncements } from "../../../internal/functionality/hooks/useAnnoucements";

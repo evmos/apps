@@ -1,5 +1,4 @@
-import { TopBarContainer } from "top-bar-container";
-import { TopBarItem } from "top-bar-item";
+import { TopBarContainer, TopBarItem } from "ui-helpers";
 
 import { convertFromAtto, amountToDollars } from "helpers";
 

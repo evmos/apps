@@ -1,6 +1,6 @@
 import { StoreType } from "evmos-wallet";
 import { useDispatch, useSelector } from "react-redux";
-import { Header } from "header";
+import { Header } from "ui-helpers";
 import { Dispatch, SetStateAction } from "react";
 export const StatefulHeader = ({
   pageName,

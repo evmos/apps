@@ -8,7 +8,7 @@ import {
   safeSubstraction,
   truncateNumber,
 } from "helpers";
-import { ErrorMessage } from "error-message";
+import { ErrorMessage } from "ui-helpers";
 import { FromProps } from "./types";
 import { truncateAddress, MODAL_NOTIFICATIONS } from "evmos-wallet";
 

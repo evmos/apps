@@ -5,7 +5,7 @@ import {
   WALLECT_CONNECT_KEY,
   StoreType,
 } from "evmos-wallet";
-import { ConfirmButton } from "confirm-button";
+import { ConfirmButton } from "ui-helpers";
 import DepositSTR from "../../modals/transactions/DepositSTR";
 import WithdrawSTR from "../../modals/transactions/WithdrawSTR";
 import { actionsProps } from "./types";

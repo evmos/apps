@@ -10,10 +10,8 @@ import {
 } from "helpers";
 
 import DropdownTokens from "../../../dropdown/DropdownTokens";
-import { SmallButton } from "small-button";
-import { ContainerInput } from "container-input";
+import { SmallButton, ContainerInput, ErrorMessage } from "ui-helpers";
 import { ContainerModal } from "../ContainerModal";
-import { ErrorMessage } from "error-message";
 import Note from "../Note";
 import { TextSmall } from "../TextSmall";
 import { AmountWithdrawProps } from "../types";

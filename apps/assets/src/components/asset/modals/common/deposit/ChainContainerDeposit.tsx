@@ -1,6 +1,6 @@
 import DropdownChainDeposit from "../../../dropdown/DropdownChainDeposit";
 import { DropdownChainsDepositProps } from "../../../dropdown/types";
-import { ContainerInput } from "container-input";
+import { ContainerInput } from "ui-helpers";
 import { TextSmall } from "../TextSmall";
 
 const ChainContainerDeposit = ({

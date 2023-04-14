@@ -5,7 +5,7 @@ import { convertFromAtto, formatNumber } from "helpers";
 
 import { Token } from "evmos-wallet";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
-import { ContainerInput } from "container-input";
+import { ContainerInput } from "ui-helpers";
 
 const ToConvert = ({
   token,

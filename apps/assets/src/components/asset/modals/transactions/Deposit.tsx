@@ -3,11 +3,9 @@ import { parseUnits } from "@ethersproject/units";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import { ConfirmButton } from "confirm-button";
-import { KeplrIcon } from "icons";
-import { ModalTitle } from "modal";
+import { ConfirmButton, ModalTitle, ErrorMessage } from "ui-helpers";
+import { KeplrIcon, MetamaskIcon } from "icons";
 import Arrow from "../common/Arrow";
-import { ErrorMessage } from "error-message";
 import FromContainer from "../common/FromContainer";
 import ToContainer from "../common/ToContainer";
 import { executeDeposit } from "../../../../internal/asset/functionality/transactions/deposit";
@@ -15,7 +13,6 @@ import {
   getBalance,
   getEvmosBalanceForDeposit,
 } from "../../../../internal/asset/functionality/fetch";
-import { MetamaskIcon } from "icons";
 import { ethToEvmos } from "@evmos/address-converter";
 import {
   snackbarExecutedTx,

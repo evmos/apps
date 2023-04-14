@@ -1,1 +1,0 @@
-export { MessageTable } from "./MessageTable";

@@ -2,14 +2,10 @@ import Image from "next/image";
 import { Dispatch, SetStateAction, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { KeplrIcon, MetamaskIcon } from "icons";
-
 import { ContainerModal } from "../ContainerModal";
-import { ErrorMessage } from "error-message";
+import { ErrorMessage, ContainerInput, SmallButton } from "ui-helpers";
 import { TextSmall } from "../TextSmall";
 import AddTokenMetamask from "../../transactions/AddTokenMetamask";
-
-import { SmallButton } from "small-button";
-import { ContainerInput } from "container-input";
 import { TableDataElement } from "../../../../../internal/asset/functionality/table/normalizeData";
 import { checkFormatAddress, checkMetaMaskFormatAddress } from "helpers";
 import {

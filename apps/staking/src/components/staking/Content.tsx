@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { SearchWrapper } from "../../internal/common/context/SearchContext";
 import { ValidatorStateWrapper } from "../../internal/common/context/ValidatorStateContext";
-import { Navigation } from "navigation";
+import { Navigation } from "ui-helpers";
 import { tabsContent } from "./Tabs/Content";
 import { NAV_TO_MISSION_CONTROL, EVMOS_PAGE_URL } from "constants-helper";
 const TopBarStaking = dynamic(() => import("./components/TopBarStaking"));

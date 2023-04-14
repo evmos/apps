@@ -3,8 +3,7 @@ import Link from "next/link";
 import { Dispatch, SetStateAction, useState } from "react";
 
 import { ModalDelegate } from "../../../internal/staking/functionality/types";
-import { ConfirmButton } from "confirm-button";
-import { SmallButton } from "small-button";
+import { SmallButton, ConfirmButton } from "ui-helpers";
 import { Delegate } from "./transactions/Delegate";
 import { Redelegate } from "./transactions/Redelegate";
 import { Undelegate } from "./transactions/Undelegate";

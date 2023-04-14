@@ -7,7 +7,7 @@ import {
   EVMOS_SYMBOL,
   StoreType,
 } from "evmos-wallet";
-import { Button } from "button";
+import { Button } from "ui-helpers";
 import { ExternalLinkIcon } from "icons";
 
 import Withdraw from "../../modals/transactions/Withdraw";

@@ -19,3 +19,7 @@ export { HandShakeIcon } from "./HandShakeIcon";
 export { SearchIcon } from "./SearchIcon";
 export { Logo } from "./Logo";
 export { CommonWealthIcon } from "./CommonWealth";
+export { TwitterIcon } from "./Twitter";
+export { TelegramIcon } from "./Telegram";
+export { GithubIcon } from "./GitHub";
+export { DiscordIcon } from "./Discord";

@@ -8,8 +8,7 @@ import { NAV_TO_MISSION_CONTROL, EVMOS_PAGE_URL } from "constants-helper";
 import dynamic from "next/dynamic";
 
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
-import { MessageTable } from "message-table";
-import { Switch } from "switch";
+import { MessageTable, Switch, Navigation } from "ui-helpers";
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));
 
@@ -22,7 +21,6 @@ import { getTotalAssets } from "helpers";
 import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
-import { Navigation } from "navigation";
 import { BigNumber } from "ethers";
 
 const AssetsTable = () => {

@@ -8,9 +8,8 @@ import {
   KEPLR_KEY,
   StoreType,
 } from "evmos-wallet";
-import { Button } from "button";
+import { Button, Tooltip } from "ui-helpers";
 import { QuestionMarkIcon } from "icons";
-import { Tooltip } from "tooltip";
 import Convert from "../../modals/transactions/Convert";
 import { ConvertSTR } from "../../modals/transactions/ConvertSTR";
 import { Description } from "./Description";

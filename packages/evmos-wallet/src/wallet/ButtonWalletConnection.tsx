@@ -25,19 +25,18 @@ import {
   CopyIcon,
   WalletConnectIcon,
 } from "icons";
-import { Modal, ModalTitle } from "modal";
-import { ViewExplorer } from "view-explorer";
+import { Modal, ModalTitle } from "ui-helpers";
+import { ViewExplorer } from "ui-helpers";
 import ButtonWallet from "./ButtonWallet";
 import ContentModalConnect from "./ContentModalConnect";
-
 import {
   useActivateWalletConnect,
   useWalletConnect,
 } from "../internal/wallet/functionality/walletconnect/walletconnect";
-import { Tooltip } from "tooltip";
+import { Tooltip } from "ui-helpers";
 
 // Components
-import { Button } from "button";
+import { Button } from "ui-helpers";
 
 export const ButtonWalletConnection = ({
   walletExtension,

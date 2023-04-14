@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Countdown } from "countdown";
+import { Countdown } from "ui-helpers";
 import { useEpochDay } from "../../internal/functionality/hooks/useEpochDay";
 import { useRemainingEpochs } from "../../internal/functionality/hooks/useRemainingEpochs";
 

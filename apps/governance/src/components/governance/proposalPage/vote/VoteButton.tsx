@@ -1,20 +1,17 @@
 import { useCallback, useState } from "react";
 import { EVMOS_SYMBOL } from "evmos-wallet";
-import { ConfirmButton } from "confirm-button";
-import { Modal } from "modal";
+import { Modal, ErrorMessage, ConfirmButton } from "ui-helpers";
 import { useVote } from "../../modals/hooks/useVote";
 import IdContainer from "../../common/IdContainer";
-
 import { VoteProps } from "../../common/types";
 import RadioElementContainer from "./RadioElementContainer";
 import { useSelector } from "react-redux";
 import { StoreType, MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { useEvmosBalance } from "../../../../internal/common/functionality/hooks/useEvmosBalance";
-import { ErrorMessage } from "error-message";
-
 import { convertFromAtto, getReservedForFeeText } from "helpers";
 import { FEE_VOTE } from "constants-helper";
 import { BigNumber } from "ethers";
+
 const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
   const [show, setShow] = useState(false);
   const [selected, setSelected] = useState("");

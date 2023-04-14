@@ -4,7 +4,7 @@ import DescriptionItem from "./DescriptionItem";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 import { ProposalDetailProps } from "../../../internal/governance/functionality/types";
-import { BannerMessages } from "banner-messages";
+import { BannerMessages } from "ui-helpers";
 
 const ProposalDescription = ({
   loading,

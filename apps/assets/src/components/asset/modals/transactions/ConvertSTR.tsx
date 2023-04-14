@@ -1,8 +1,7 @@
 import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction, useState } from "react";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
-import { ConfirmButton } from "confirm-button";
-import { ModalTitle } from "modal";
+import { ConfirmButton, ModalTitle } from "ui-helpers";
 import { ContainerModal } from "../common/ContainerModal";
 import FromConvert from "../common/convert/FromConvert";
 import ToConvert from "../common/convert/ToConvert";

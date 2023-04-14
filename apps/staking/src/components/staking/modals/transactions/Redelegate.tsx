@@ -13,13 +13,15 @@ import {
 
 import { useEvmosBalance } from "../../../../internal/staking/functionality/hooks/useEvmosBalance";
 import { ModalDelegate } from "../../../../internal/staking/functionality/types";
-import { ConfirmButton } from "confirm-button";
-import { SmallButton } from "small-button";
 import ValidatorsDropdown from "../../dropdown/ValidatorsDropdown";
 import { useRedelegation } from "../hooks/useRedelegation";
 import { FEE_STAKING_ACTIONS } from "constants-helper";
-import { ErrorMessage } from "error-message";
-import { ContainerInput } from "container-input";
+import {
+  ContainerInput,
+  ErrorMessage,
+  SmallButton,
+  ConfirmButton,
+} from "ui-helpers";
 
 export const Redelegate = ({
   item,

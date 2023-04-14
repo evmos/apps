@@ -1,5 +1,7 @@
-import { EVMOS_BACKEND, EVMOS_SYMBOL } from "evmos-wallet";
 import { TotalStakedResponse } from "./types";
+
+const EVMOS_BACKEND = "https://goapi.evmos.org";
+const EVMOS_SYMBOL = "EVMOS";
 
 export const getTotalStaked = async (address: string) => {
   if (address === "" || address == undefined || address == null) {

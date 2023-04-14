@@ -2,6 +2,14 @@
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
   "pipeline": {
+    "ui-helpers#build": {
+      "dependsOn": ["icons#build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
+    "evmos-wallet#build": {
+      "dependsOn": ["icons#build", "ui-helpers#build"],
+      "outputs": ["dist/**", ".next/**"]
+    },
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]

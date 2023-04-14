@@ -24,7 +24,7 @@ function SnackbarsInternal() {
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
-// import { StatefulHeader } from "../src/StatefulHeader";
+import { StatefulHeader } from "../src/StatefulHeader";
 const Content = dynamic(() => import("../src/components/staking/Content"));
 
 export default function Home() {
@@ -44,7 +44,7 @@ export default function Home() {
               <Container>
                 <>
                   <SnackbarsInternal />
-                  {/* <StatefulHeader pageName="Staking" /> */}
+                  <StatefulHeader pageName="Staking" />
                   <div className="container mx-auto mb-auto overflow-auto">
                     <Content />
                   </div>

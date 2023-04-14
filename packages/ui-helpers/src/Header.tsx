@@ -1,8 +1,8 @@
 import Link from "next/link";
-// import { ButtonWalletConnection } from "evmos-wallet";
+import { ButtonWalletConnection } from "evmos-wallet";
 import { Dispatch, SetStateAction, useCallback } from "react";
 import { Logo } from "icons";
-// import { WalletExtension } from "evmos-wallet/src/internal/wallet/functionality/wallet";
+import { WalletExtension } from "evmos-wallet/src/internal/wallet/functionality/wallet";
 import { Button } from "./Button";
 export const Header = ({
   pageName,
@@ -12,7 +12,7 @@ export const Header = ({
 }: {
   pageName: string;
   setShowSidebar?: Dispatch<SetStateAction<boolean>>;
-  wallet?: any;
+  wallet: WalletExtension;
   dispatch: any;
 }) => {
   const handleClick = useCallback(() => {
@@ -41,7 +41,7 @@ export const Header = ({
           )}
         </div>
       </div>
-      {/* <ButtonWalletConnection walletExtension={wallet} dispatch={dispatch} /> */}
+      <ButtonWalletConnection walletExtension={wallet} dispatch={dispatch} />
     </div>
   );
 };

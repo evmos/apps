@@ -43,6 +43,7 @@
     "prettier": "^2.8.1"
   },
   "depedencies": {
+    "evmos-wallet": "*",
     "icons": "*",
     "@types/node": "18.11.14",
     "@types/react": "18.0.26",

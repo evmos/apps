@@ -17,7 +17,7 @@ import { Footer, Container, TermOfServices } from "ui-helpers";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import Script from "next/script";
 
-// import { StatefulHeader } from "../src/StatefulHeader";
+import { StatefulHeader } from "../src/StatefulHeader";
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();
@@ -97,7 +97,7 @@ export default function Home() {
               <Container>
                 <>
                   <SnackbarsInternal />
-                  {/* <StatefulHeader pageName="Assets" /> */}
+                  <StatefulHeader pageName="Assets" />
                   <div className="container mx-auto mb-auto overflow-auto">
                     <AssetsTable />
                   </div>

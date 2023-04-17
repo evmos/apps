@@ -1,0 +1,29 @@
+[context.t.environment]
+
+[context.PROD_BRANCH_MAINNET.environment]
+
+[context.main.environment]
+  
+[context.deploy-preview.environment]
+
+[[redirects]]
+    from = "/assets/*"
+    to = "https://evmos-assets.netlify.app/assets/:splat"
+    status = 200
+    force = true
+
+[[redirects]]
+    from = "/staking/*"
+    to = "https://evmos-staking.netlify.app/staking/:splat"
+    status = 200
+    force = true
+
+[[redirects]]
+    from = "/governance/*"
+    to = "https://evmos-governance.netlify.app/governance/:splat"
+    status = 200
+    force = true
+
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

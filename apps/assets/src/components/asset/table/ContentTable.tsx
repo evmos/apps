@@ -44,6 +44,7 @@ const ContentTable = ({
   setModalContent,
 }: ContentTableProps) => {
   const data = useMemo(() => {
+    // TODO: We'll use the Evmos price for stEvmos until they add it on Coingecko
     const map = new Map<string, accordionData>();
     tableData?.table.map((e) => {
       if (
@@ -54,7 +55,13 @@ const ContentTable = ({
         if (temp === undefined) {
           return;
         }
-        temp.tokens.push(e);
+        // TODO: remove this condition when stEvmos price is available on coingecko
+        if (e.symbol.toLowerCase() === "stevmos") {
+          const evmosCoingeckoPrice = tableData?.table[0].coingeckoPrice;
+          temp.tokens.push({ ...e, coingeckoPrice: evmosCoingeckoPrice });
+        } else {
+          temp.tokens.push(e);
+        }
         temp.total = temp.total.add(e.erc20Balance);
       } else if (e.chainIdentifier === "Stride") {
         map.set(e.chainIdentifier, {

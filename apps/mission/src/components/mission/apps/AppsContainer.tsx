@@ -21,7 +21,7 @@ const AppsContainer = () => {
             width={44}
             height={44}
             className="rounded-full"
-            alt="app"
+            alt={a.name}
             src={a.image}
           />
           <div className="flex flex-col">

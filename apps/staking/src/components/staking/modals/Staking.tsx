@@ -114,7 +114,7 @@ const Staking = ({
             onClick={() => {
               setShowDelegate(true);
             }}
-            className="w-fit py-1 text-[0.75rem]"
+            className="w-fit py-1 text-sm"
           />
 
           {item.balance !== "" && (
@@ -123,7 +123,7 @@ const Staking = ({
               onClick={() => {
                 setShowRedelegate(true);
               }}
-              className="w-fit py-1 text-[0.75rem]"
+              className="w-fit py-1 text-sm"
             />
           )}
         </div>

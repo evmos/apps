@@ -226,10 +226,7 @@ const Withdraw = ({
               setShow(false);
               return;
             }
-            const amount = parseUnits(
-              inputValue,
-              BigNumber.from(item.decimals)
-            );
+
             if (
               inputValue === undefined ||
               inputValue === null ||
@@ -237,8 +234,16 @@ const Withdraw = ({
               addressTo === undefined ||
               addressTo === null ||
               addressTo === "" ||
-              amount.gt(typeSelected.amount)
+              Number(inputValue) === 0
             ) {
+              return;
+            }
+
+            const amount = parseUnits(
+              inputValue,
+              BigNumber.from(item.decimals)
+            );
+            if (amount.gt(typeSelected.amount)) {
               return;
             }
 

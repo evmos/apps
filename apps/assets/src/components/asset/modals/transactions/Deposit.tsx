@@ -263,10 +263,7 @@ const Deposit = ({
               setShow(false);
               return;
             }
-            const amount = parseUnits(
-              inputValue,
-              BigNumber.from(item.decimals)
-            );
+
             if (
               inputValue === undefined ||
               inputValue === null ||
@@ -274,8 +271,15 @@ const Deposit = ({
               addressTo === undefined ||
               addressTo === null ||
               addressTo === "" ||
-              amount.gt(balance)
+              Number(inputValue) === 0
             ) {
+              return;
+            }
+            const amount = parseUnits(
+              inputValue,
+              BigNumber.from(item.decimals)
+            );
+            if (amount.gt(balance)) {
               return;
             }
             const keplrAddress = await getKeplrAddressByChain(chainId);

@@ -115,3 +115,9 @@ export type ModalDelegate = {
   website: string;
   validatorAddress: string;
 };
+
+export type ModalCancelUndelegations = {
+  creationHeight: string;
+  validatorAddress: string;
+  balance: string;
+};

@@ -1,5 +1,5 @@
 import { BigNumber } from "ethers";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
 import {
   SearchContext,
   useSearchContext,
@@ -17,19 +17,35 @@ import {
 import { TdContent } from "../../common/table/TdContent";
 
 import { convertAndFormat, getRemainingTime } from "helpers";
-import { MessageTable } from "ui-helpers";
+import { MessageTable, Modal } from "ui-helpers";
+import { CancelUndelegation } from "../modals/transactions/CancelUndelegation";
+import { CloseIcon } from "icons";
 
-const dataHead = ["Name", "Amount to be undelegated", "Remaining time"];
+const dataHead = [
+  "Name",
+  "Amount to be undelegated",
+  "Remaining time",
+  "Cancel Undelegation",
+];
 
-type undelegationData = {
+export type undelegationData = {
   rank: number;
   moniker: string;
   balance: string;
   completionTime: string;
+  creationHeight: string;
+  validatorAddress: string;
 };
 
 const Undelegations = () => {
   const { undelegations } = useStakingInfo();
+
+  const [show, setShow] = useState(false);
+  const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
+  const handleOnClick = useCallback((item: undelegationData) => {
+    setShow(true);
+    setModalContent(<CancelUndelegation item={item} setShow={setShow} />);
+  }, []);
 
   const { value } = useSearchContext() as SearchContext;
   const filtered = useMemo(() => {
@@ -64,6 +80,8 @@ const Undelegations = () => {
           moniker: item.validator.description.moniker,
           balance: entry.balance,
           completionTime: entry.completion_time,
+          creationHeight: entry.creation_height,
+          validatorAddress: item.validator_address,
         });
       });
     });
@@ -119,15 +137,23 @@ const Undelegations = () => {
               }}
             />
           </td>
+          <td className={`${tdBodyStyle}`}>
+            <CloseIcon
+              className="h-5 w-5 cursor-pointer rounded-full bg-red text-black"
+              onClick={() => {
+                handleOnClick(item);
+              }}
+            />
+          </td>
         </tr>
       );
     });
-  }, [filtered, sorting]);
+  }, [filtered, sorting, handleOnClick]);
 
   const dataForBody = () => {
     if (isLoading) {
       return (
-        <MessageTable amountCols={3}>
+        <MessageTable amountCols={4}>
           <>
             <span className="loader"></span>
             <p>Loading...</p>
@@ -137,7 +163,7 @@ const Undelegations = () => {
     }
     if (error && !isLoading && undelegations.length === 0) {
       return (
-        <MessageTable amountCols={3}>
+        <MessageTable amountCols={4}>
           <p>Request failed</p>
         </MessageTable>
       );
@@ -145,7 +171,7 @@ const Undelegations = () => {
 
     if (!error && !isLoading && undelegations.length === 0) {
       return (
-        <MessageTable amountCols={3}>
+        <MessageTable amountCols={4}>
           <p>You don&apos;t have anything undelegated at the moment! </p>
         </MessageTable>
       );
@@ -172,7 +198,19 @@ const Undelegations = () => {
     sorting,
   };
 
-  return <Table tableProps={tableProps} />;
+  return (
+    <>
+      <Table tableProps={tableProps} />
+      <Modal
+        show={show}
+        onClose={() => {
+          setShow(false);
+        }}
+      >
+        {modalContent}
+      </Modal>
+    </>
+  );
 };
 
 export default Undelegations;

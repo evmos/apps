@@ -14,6 +14,7 @@ import Convert from "../../modals/transactions/Convert";
 import { ConvertSTR } from "../../modals/transactions/ConvertSTR";
 import { Description } from "./Description";
 import { SubRowProps } from "./types";
+import { useCallback } from "react";
 
 export const SubRowContent = ({
   item,
@@ -138,6 +139,16 @@ export const SubRowContent = ({
   };
   const v10Link =
     "https://commonwealth.im/evmos/discussion/8501-evmos-software-upgrade-v10";
+
+  const createCoingeckoAlert = useCallback(() => {
+    return (
+      <Tooltip
+        className="w-24 text-xs normal-case"
+        element={<QuestionMarkIcon width={16} height={16} />}
+        text="This value is calculated based on the price of Evmos"
+      />
+    );
+  }, []);
   return (
     <div className="mr-8 flex w-full flex-col lg:mr-0 lg:flex-row">
       <div className="md:w-[5%]"></div>
@@ -173,7 +184,7 @@ export const SubRowContent = ({
               item.symbol === EVMOS_SYMBOL
                 ? "hidden"
                 : ""
-            } flex items-center justify-end font-bold lg:justify-start `}
+            } flex items-center justify-end font-bold lg:justify-start`}
           >
             <div className="block pr-1 lg:hidden">{createV10Tooltip()}</div>
             <Tooltip
@@ -189,9 +200,25 @@ export const SubRowContent = ({
           </div>
 
           {/* displays erc20 tokens in dollars */}
-          <span className="text-xs text-darkGray5">
-            ${amountToDollars(balance, item.decimals, item.coingeckoPrice)}
-          </span>
+          {/* stevmos uses evmos price until they add it on coingecko. 
+          TODO: remove tooltips once stevmos is added to coingecko */}
+          <div className="flex items-center justify-end font-bold lg:justify-start">
+            {item.symbol.toLowerCase() === "stevmos" && (
+              <div className="block pr-1 lg:hidden">
+                {createCoingeckoAlert()}
+              </div>
+            )}
+
+            <span className="text-xs text-darkGray5">
+              ${amountToDollars(balance, item.decimals, item.coingeckoPrice)}
+            </span>
+
+            {item.symbol.toLowerCase() === "stevmos" && (
+              <div className="hidden pl-1 lg:block">
+                {createCoingeckoAlert()}
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="hidden lg:block">

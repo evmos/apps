@@ -44,7 +44,7 @@ const TopBarMissionControl = () => {
           value={`${totalRewards.toFixed(2)} EVMOS`}
         />
 
-        <TopBarItem text="EVMOS Price" value={evmosPrice} />
+        <TopBarItem text="EVMOS Price" value={`$${evmosPrice}`} />
       </>
     </TopBarContainer>
   );

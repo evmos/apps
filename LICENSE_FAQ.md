@@ -1,3 +1,5 @@
+# License FAQ
+
 **Q: How do I apply for a commercial use permit or obtain different licensing terms or inquire about terms of this license?**
 
 A: You may contact the legal department of licensor: <legal@thars.is>. They may be able to partner with you to answer your questions and figure out what will work best for you and your needs. You only need this kind of permit if you cannot meet the limitations of ENCL-1.0.

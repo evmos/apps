@@ -65,3 +65,7 @@ For additional instructions, standards and style guides, please refer to the [Co
 ## Careers
 
 See our open positions on [Greenhouse](https://boards.eu.greenhouse.io/evmos).
+
+## License
+
+Evmos Apps Frontend is licensed under the [ENCL-1.0](./LICENSE) license.

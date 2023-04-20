@@ -57,7 +57,7 @@ A: Yes, as long as you don’t include any of the ENCL code in the code for the 
 
 **Q: I have written a code patch to an ENCL-1.0 project and would like the ENCL-1.0 vendor to maintain the code as part of the ENCL-1.0 project. How do I contribute it?**
 
-A: First, a big thank you! You can contribute the code to the official Evmos Apps [repository](https://github.com/evmos/apps) by following the contributing guidelines and the official [Code of Conduct](https://github.com/evmos/apps/blob/main/CODE_OF_CONDUCT.md) (see [CONTRIBUTING](https://github.com/evmos/apps/blob/main/CONTRIBUTING.md)). You will need to sign a Contributor License Agreement (CLA) before your contribution is peer-reviewed and accepted. A bot has been implemented to assist you through the signing process when contributing.
+A: First, a big thank you! You can contribute the code to the official Evmos Apps [repository](https://github.com/evmos/apps) by following the contributing guidelines and the official [Code of Conduct](https://github.com/evmos/evmos/blob/main/CODE_OF_CONDUCT.md) (see [CONTRIBUTING](https://github.com/evmos/apps/blob/main/CONTRIBUTING.md)). You will need to sign a Contributor License Agreement (CLA) before your contribution is peer-reviewed and accepted. A bot has been implemented to assist you through the signing process when contributing.
 
 **Q: Can I backport any ENCL-1.0 code to an older, open source, version of the same software?**
 

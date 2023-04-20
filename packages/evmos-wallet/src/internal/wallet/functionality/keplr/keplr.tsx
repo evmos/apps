@@ -80,7 +80,7 @@ export class Keplr {
     } else {
       console.log("Document.readyState !== complete", document.readyState);
     }
-
+    console.log(window.keplr, "window.keplr");
     if (!window.keplr) {
       console.log("connect handler !window.keplr");
       this.reset();

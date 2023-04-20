@@ -30,4 +30,4 @@ To “use” means any use, modification, distribution or other exploitation of 
 
 ---
 
-For more information, please refer to the official ENCL-1.0 FAQ (https://github.com/evmos/apps/blob/main/LICENSE_FAQ).
+For more information, please refer to the official ENCL-1.0 FAQ (https://github.com/evmos/apps/blob/main/LICENSE_FAQ.md).

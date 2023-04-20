@@ -57,6 +57,7 @@ export class Keplr {
   disconnect() {
     this.reset();
     unsubscribeToKeplrEvents();
+    console.log("Keplr disconnect");
     RemoveProviderFromLocalStorage();
     return { result: true, message: KEPLR_SUCCESS_MESSAGES.Disconnected };
   }
@@ -69,6 +70,7 @@ export class Keplr {
     this.evmosPubkey = null;
     this.cosmosPubkey = null;
     store.dispatch(resetWallet());
+    console.log("Keplr reset");
     RemoveProviderFromLocalStorage();
   }
 

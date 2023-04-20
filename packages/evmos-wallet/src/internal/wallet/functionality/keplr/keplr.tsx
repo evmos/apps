@@ -74,7 +74,37 @@ export class Keplr {
     RemoveProviderFromLocalStorage();
   }
 
+  async getKeplr() {
+    // Promise<Keplr | undefined>
+    console.log("inside getKeplr");
+    if (window.keplr) {
+      console.log("window.keplr inside getKeplr");
+      return window.keplr;
+    }
+
+    if (document.readyState === "complete") {
+      console.log('document.readyState === "complete" inside getKeplr');
+      return window.keplr;
+    }
+
+    return new Promise((resolve) => {
+      console.log("inside new promise");
+      const documentStateChange = (event: Event) => {
+        if (
+          event.target &&
+          (event.target as Document).readyState === "complete"
+        ) {
+          resolve(window.keplr);
+          document.removeEventListener("readystatechange", documentStateChange);
+        }
+      };
+
+      document.addEventListener("readystatechange", documentStateChange);
+    });
+  }
+
   async connectHandler() {
+    console.log(await this.getKeplr(), "this.getKpelr");
     if (document.readyState === "complete") {
       console.log("Document.readyState === complete", document.readyState);
     } else {

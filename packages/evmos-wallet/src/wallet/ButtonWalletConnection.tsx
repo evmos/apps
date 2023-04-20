@@ -74,7 +74,6 @@ export const ButtonWalletConnection = ({
         await wallet.connect();
       } else {
         // Invalid provider is set, remove it
-        console.log("ButtonWalletConnection", provider);
         RemoveProviderFromLocalStorage();
       }
     }

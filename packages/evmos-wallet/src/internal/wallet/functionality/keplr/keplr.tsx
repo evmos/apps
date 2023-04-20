@@ -57,7 +57,6 @@ export class Keplr {
   disconnect() {
     this.reset();
     unsubscribeToKeplrEvents();
-    console.log("Keplr disconnect");
     RemoveProviderFromLocalStorage();
     return { result: true, message: KEPLR_SUCCESS_MESSAGES.Disconnected };
   }
@@ -70,25 +69,20 @@ export class Keplr {
     this.evmosPubkey = null;
     this.cosmosPubkey = null;
     store.dispatch(resetWallet());
-    console.log("Keplr reset");
     RemoveProviderFromLocalStorage();
   }
 
   async getKeplr() {
     // Promise<Keplr | undefined>
-    console.log("inside getKeplr");
     if (window.keplr) {
-      console.log("window.keplr inside getKeplr");
       return window.keplr;
     }
 
     if (document.readyState === "complete") {
-      console.log('document.readyState === "complete" inside getKeplr');
       return window.keplr;
     }
 
     return new Promise((resolve) => {
-      console.log("inside new promise");
       const documentStateChange = (event: Event) => {
         if (
           event.target &&
@@ -104,15 +98,8 @@ export class Keplr {
   }
 
   async connectHandler() {
-    console.log(await this.getKeplr(), "this.getKpelr");
-    if (document.readyState === "complete") {
-      console.log("Document.readyState === complete", document.readyState);
-    } else {
-      console.log("Document.readyState !== complete", document.readyState);
-    }
-    console.log(window.keplr, "window.keplr");
+    await this.getKeplr();
     if (!window.keplr) {
-      console.log("connect handler !window.keplr");
       this.reset();
       // ExtensionNotFound
       NotifyError(
@@ -244,7 +231,6 @@ export class Keplr {
 
     const ok = await this.connectHandler();
     if (!ok) {
-      console.log("!ok");
       this.reset();
       return {
         result: false,

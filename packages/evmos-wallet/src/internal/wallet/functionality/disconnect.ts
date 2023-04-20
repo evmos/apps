@@ -9,7 +9,6 @@ export function disconnectWallets(
     type: "walletSlice/resetWallet";
   }>
 ) {
-  console.log("disconnect wallets");
   unsubscribeToEvents();
   unsubscribeToKeplrEvents();
   dispatch(resetWallet());

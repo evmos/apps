@@ -76,6 +76,11 @@ export class Keplr {
   }
 
   async connectHandler() {
+    if (document.readyState === "complete") {
+      console.log("document ready State", document.readyState);
+      return window.keplr;
+    }
+
     if (!window.keplr) {
       console.log("connect handler !window.keplr");
       this.reset();

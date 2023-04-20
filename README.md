@@ -1,5 +1,5 @@
 <div align="center">
-  <h1> Evmos Dashboard Applications </h1>
+  <h1> Evmos Apps Frontend </h1>
 </div>
 
 <div align="center">
@@ -18,8 +18,8 @@ The frontend Evmos Dashboard Applications. It contains apps to manage assets, st
 
 ## Repositories
 
-- [Evmos Dashboard Frontend](https://github.com/evmos/apps)
-- [Evmos Dashboard Backend](https://github.com/evmos/backend)
+- [Evmos Apps Frontend](https://github.com/evmos/apps)
+- [Evmos Apps Backend](https://github.com/evmos/backend)
 
 ## Documentation
 

@@ -76,9 +76,9 @@ Evmos Apps Frontend is licensed under the [ENCL-1.0](./LICENSE.md) license.
 
 Find below an overview of Permissions and Limitations of the Evmos Non-Commercial License 1.0. For more information, check out the full ENCL-1.0 FAQ [here](/LICENSE_FAQ.md).
 
-| Permissions                                                                                                                                                        | Prohibited                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
-| Private Use, including distribution and modification<br>Commercial use on designated blockchains<br>Commercial use with Evmos permit (to be separately negotiated) | Commercial use, other than on designated blockchains, without Evmos permit |
+| Permissions                                                                                                                                                          | Prohibited                                                                 |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| Private Use, including distribution and modification&#10;Commercial use on designated blockchains&#10;Commercial use with Evmos permit (to be separately negotiated) | Commercial use, other than on designated blockchains, without Evmos permit |
 
 ## Disclaimer
 

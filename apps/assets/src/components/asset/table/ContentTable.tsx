@@ -55,20 +55,19 @@ const ContentTable = ({
         if (temp === undefined) {
           return;
         }
-        // TODO: remove this condition when stEvmos price is available on coingecko
-        if (e.symbol.toLowerCase() === "stevmos") {
-          const evmosCoingeckoPrice = tableData?.table[0].coingeckoPrice;
-          temp.tokens.push({ ...e, coingeckoPrice: evmosCoingeckoPrice });
-        } else {
-          temp.tokens.push(e);
-        }
+        temp.tokens.push(e);
         temp.total = temp.total.add(e.erc20Balance);
       } else if (e.chainIdentifier === "Stride") {
         map.set(e.chainIdentifier, {
           name: e.chainIdentifier,
           icon: e.chainIdentifier,
           total: e.erc20Balance,
-          tokens: [e],
+          tokens:
+            // TODO: remove this condition when stEvmos price is available on coingecko
+            e.symbol.toLowerCase() === "stevmos"
+              ? // it uses the evmos price for stEvmos
+                [{ ...e, coingeckoPrice: tableData?.table[0].coingeckoPrice }]
+              : [e],
         });
       } else if (map.has(e.tokenIdentifier) === true) {
         const temp = map.get(e.tokenIdentifier);

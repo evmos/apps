@@ -16,6 +16,8 @@
 
 The frontend Evmos Dashboard Applications. It contains apps to manage assets, staking and governance.
 
+> https://apps.evmos.org
+
 ## Repositories
 
 - [Evmos Apps Frontend](https://github.com/evmos/apps)

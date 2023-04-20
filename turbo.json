@@ -14,7 +14,7 @@
     "helpers#build": {},
     "services#build": {},
     "ui-helpers#build": {
-      "dependsOn": ["icons#build"],
+      "dependsOn": ["icons#build", "constants-helper#build"],
       "outputs": ["dist/**", ".next/**"]
     },
     "evmos-wallet#build": {

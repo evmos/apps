@@ -36,7 +36,7 @@ const TopBarMissionControl = () => {
           text="Total Staked"
           value={`
           ${Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS`}
-          href="https://app.evmos.org/staking"
+          href="/staking"
         />
         {/* displays the total rewards availables */}
         <TopBarItem

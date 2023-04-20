@@ -9,6 +9,6 @@ export default defineConfig((options: Options) => ({
   dts: true,
   minify: true,
   clean: true,
-  external: ["next", "react", "react-dom", "icons"],
+  external: ["next", "react", "react-dom", "icons", "constants-helper"],
   ...options,
 }));

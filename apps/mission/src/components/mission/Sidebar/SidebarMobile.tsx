@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import { CloseIcon, Logo } from "icons";
 import SideBar from "./Sidebar";
-
+import { EVMOS_PAGE_URL } from "constants-helper";
 const SidebarMobile = ({
   showSidebar,
   setShowSidebar,
@@ -22,7 +22,7 @@ const SidebarMobile = ({
       <div className=" w-full bg-darkGray1 p-5 ">
         <div className="flex items-center justify-between">
           <Link
-            href="https://app.evmos.org"
+            href={EVMOS_PAGE_URL}
             rel="noreferrer"
             className="xl:pr-14"
             aria-label="home"

@@ -55,6 +55,7 @@ export class Keplr {
   }
 
   disconnect() {
+    console.log("first line disconnect");
     this.reset();
     unsubscribeToKeplrEvents();
     console.log("Keplr disconnect");
@@ -76,6 +77,7 @@ export class Keplr {
 
   async connectHandler() {
     if (!window.keplr) {
+      console.log("connect handler !window.keplr");
       this.reset();
       // ExtensionNotFound
       NotifyError(
@@ -129,6 +131,7 @@ export class Keplr {
           }
           // TODO: catch wallet not unlocked
           // TODO: catch wallet not allowed to connect to evmos/osmosis
+          console.log("sginer osmosis");
           this.reset();
           return false;
         }
@@ -137,6 +140,7 @@ export class Keplr {
       const accountName = (await window.keplr.getKey("osmosis-1")).name || null;
       if (!accountsOsmosis || accountsOsmosis.length === 0) {
         // Could not get accounts information
+        console.log("account osmosis could not get accounts inofr");
         this.reset();
         return false;
       }
@@ -195,6 +199,7 @@ export class Keplr {
       }
       // TODO: catch wallet not unlocked
       // TODO: catch wallet not allowed to connect to evmos/osmosis
+      console.log("catch wallet not allowed to connect to evmos/osmosis");
       this.reset();
       return false;
     }
@@ -207,6 +212,7 @@ export class Keplr {
 
     const ok = await this.connectHandler();
     if (!ok) {
+      console.log("!ok");
       this.reset();
       return {
         result: false,

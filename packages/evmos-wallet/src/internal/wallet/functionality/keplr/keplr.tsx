@@ -55,7 +55,6 @@ export class Keplr {
   }
 
   disconnect() {
-    console.log("first line disconnect");
     this.reset();
     unsubscribeToKeplrEvents();
     console.log("Keplr disconnect");
@@ -77,9 +76,9 @@ export class Keplr {
 
   async connectHandler() {
     if (document.readyState === "complete") {
-      console.log("documnet ready state complet", document.readyState);
+      console.log("Document.readyState === complete", document.readyState);
     } else {
-      console.log("!!!documnet ready state complet", document.readyState);
+      console.log("Document.readyState !== complete", document.readyState);
     }
 
     if (!window.keplr) {
@@ -137,7 +136,6 @@ export class Keplr {
           }
           // TODO: catch wallet not unlocked
           // TODO: catch wallet not allowed to connect to evmos/osmosis
-          console.log("sginer osmosis");
           this.reset();
           return false;
         }
@@ -146,7 +144,6 @@ export class Keplr {
       const accountName = (await window.keplr.getKey("osmosis-1")).name || null;
       if (!accountsOsmosis || accountsOsmosis.length === 0) {
         // Could not get accounts information
-        console.log("account osmosis could not get accounts inofr");
         this.reset();
         return false;
       }
@@ -205,7 +202,6 @@ export class Keplr {
       }
       // TODO: catch wallet not unlocked
       // TODO: catch wallet not allowed to connect to evmos/osmosis
-      console.log("catch wallet not allowed to connect to evmos/osmosis");
       this.reset();
       return false;
     }

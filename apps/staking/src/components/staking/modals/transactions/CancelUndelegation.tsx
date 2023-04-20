@@ -112,7 +112,7 @@ export const CancelUndelegation = ({
         </p>
       </div>
       <p className="text-sm font-bold">
-        Are you sure? You can&apos;t revert this decision
+        Are you sure? You can&apos;t revert this decision.
       </p>
       <div className="flex justify-end space-x-2">
         <ConfirmButton

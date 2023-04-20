@@ -77,8 +77,9 @@ export class Keplr {
 
   async connectHandler() {
     if (document.readyState === "complete") {
-      console.log("document ready State", document.readyState);
-      return window.keplr;
+      console.log("documnet ready state complet", document.readyState);
+    } else {
+      console.log("!!!documnet ready state complet", document.readyState);
     }
 
     if (!window.keplr) {

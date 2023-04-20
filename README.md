@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <a href="https://github.com/evmos/apps/blob/main/LICENSE">
+  <a href="https://github.com/evmos/apps/blob/main/LICENSE.md">
     <img alt="License: ENCL-1.0" src="https://img.shields.io/badge/license-ENCL--1.0-orange" />
   </a>
   <a href="https://discord.gg/evmos">
@@ -68,4 +68,4 @@ See our open positions on [Greenhouse](https://boards.eu.greenhouse.io/evmos).
 
 ## License
 
-Evmos Apps Frontend is licensed under the [ENCL-1.0](./LICENSE) license.
+Evmos Apps Frontend is licensed under the [ENCL-1.0](./LICENSE.md) license.

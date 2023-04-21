@@ -70,7 +70,8 @@ If you open a PR on the Evmos repo, it is mandatory to update the relevant docum
 the docs subdirectory and make changes accordingly. Prior to approval, the Code owners/approvers may request some
 updates to specific docs.
 
-### <span id="commit_messages">Commit messages</span>
+## <span id="commit_messages">Commit messages</span>
+
 
 Commit messages should be written in a short, descriptive manner
 and be prefixed with tags for the change type and scope (if possible)

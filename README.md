@@ -14,7 +14,7 @@
   </a>
 </div>
 
-The frontend of Evmos Dashboard Apps. It contains apps to manage assets, staking and governance.
+The frontend of [Evmos Dashboard Apps](https://app.evmos.org). It contains apps to manage assets, staking and governance.
 
 > https://app.evmos.org
 

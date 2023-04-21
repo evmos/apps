@@ -5,7 +5,7 @@
 - [General Procedure](#general_procedure)
 - [Testing](#testing)
 - [Updating Documentation](#updating_doc)
-_ [Commit messages](#commit_messages)
+- [Commit messages](#commit_messages)
 _ [PR Targeting](#pr_targeting)
 _ [Pull Requests](#pull_requests)
 _ [Process for reviewing PRs](#reviewing_prs)

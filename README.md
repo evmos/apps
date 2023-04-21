@@ -80,8 +80,10 @@ Starting from April 21th, 2023, this repository will update its license to Evmos
 
 The following header including a license identifier in SPDX short form has been added in all ENCL-1.0 files:
 
+```js
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+```
 
 ### License FAQ
 

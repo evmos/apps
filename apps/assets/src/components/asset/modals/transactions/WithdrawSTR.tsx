@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { useState } from "react";
 import FromWithdraw from "../common/withdraw/FromWithdraw";
 import AmountWithdraw from "../common/withdraw/AmountWithdraw";

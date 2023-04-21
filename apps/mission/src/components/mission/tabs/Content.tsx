@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import Discussions from "./allTabs/Discussions";
 import Guides from "./allTabs/Guides";
 import News from "./allTabs/News";

@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 export const VERSION_TAG = "c549d8f" as const;
 export const COMMONWEALTH_URL = "https://commonwealth.im/evmos";
 export const EVMOS_PAGE_URL =

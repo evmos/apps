@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 const HeadAssets = () => {
   return (
     <div className="sticky top-0 z-[1] hidden w-full items-center bg-black font-bold uppercase lg:flex">

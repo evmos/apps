@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { ButtonWalletConnection, StoreType } from "evmos-wallet";
 import { useDispatch, useSelector } from "react-redux";
 import { Header } from "ui-helpers";

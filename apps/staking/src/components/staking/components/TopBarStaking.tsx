@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { useSelector } from "react-redux";
 import { useEpochDay } from "../../../internal/common/api/hooks/useEpochDay";
 import { useEvmosBalance } from "../../../internal/staking/functionality/hooks/useEvmosBalance";

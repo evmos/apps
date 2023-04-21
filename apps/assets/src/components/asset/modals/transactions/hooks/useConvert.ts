@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { parseUnits } from "ethers/lib/utils.js";
 import { useDispatch, useSelector } from "react-redux";
 

@@ -76,10 +76,17 @@ The software is provided “as is”, without warranty of any kind, express or i
 
 Starting from April 20th, 2023, this repository will update its license to Evmos Non-Commercial License 1.0 (ENCL-1.0). For more information see [LICENSE](/LICENSE).
 
+### SPDX Identifier
+
+The following header including a license identifier in SPDX short form has been added in all ENCL-1.0 files:
+
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 ### License FAQ
 
 Find below an overview of Permissions and Limitations of the Evmos Non-Commercial License 1.0. For more information, check out the full ENCL-1.0 FAQ [here](/LICENSE_FAQ.md).
 
-| Permissions                                                  | Prohibited                                                   |
-| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Permissions                                                                                                                                                                  | Prohibited                                                                 |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | - Private Use, including distribution and modification<br />- Commercial use on designated blockchains<br />- Commercial use with Evmos permit (to be separately negotiated) | Commercial use, other than on designated blockchains, without Evmos permit |

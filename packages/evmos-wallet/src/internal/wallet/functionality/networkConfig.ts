@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 export const EVMOS_RPC_URL = "https://eth.bd.evmos.org:8545/";
 export const EVMOS_GRPC_URL = "https://rest.bd.evmos.org:1317/";
 export const EVMOS_CHAIN_NAME = "Evmos";

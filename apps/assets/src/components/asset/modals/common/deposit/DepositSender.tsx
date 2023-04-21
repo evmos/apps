@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { truncateAddress } from "evmos-wallet";
 import { DropdownChainsDepositProps } from "../../../dropdown/types";
 import { ContainerModal } from "../ContainerModal";

@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { addSnackbar } from "../../../notification/redux/notificationSlice";
 import { SNACKBAR_TYPES } from "../../../notification/types";
 import { ReduxWalletStore } from "../../../wallet/redux/WalletSlice";

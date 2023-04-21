@@ -74,7 +74,7 @@ The software is provided “as is”, without warranty of any kind, express or i
 
 ## Licensing
 
-Starting from April 20th, 2023, this repository will update its license to Evmos Non-Commercial License 1.0 (ENCL-1.0). For more information see [LICENSE](/LICENSE).
+Starting from April 21th, 2023, this repository will update its license to Evmos Non-Commercial License 1.0 (ENCL-1.0). For more information see [LICENSE](/LICENSE).
 
 ### SPDX Identifier
 

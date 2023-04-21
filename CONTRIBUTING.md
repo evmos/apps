@@ -6,10 +6,10 @@
 - [Testing](#testing)
 - [Updating Documentation](#updating_doc)
 - [Commit messages](#commit_messages)
-_ [PR Targeting](#pr_targeting)
-_ [Pull Requests](#pull_requests)
-_ [Process for reviewing PRs](#reviewing_prs)
-<!-- markdown-link-check-enable -->
+  - [PR Targeting](#pr_targeting)
+  - [Pull Requests](#pull_requests)
+  - [Process for reviewing PRs](#reviewing_prs)
+  <!-- markdown-link-check-enable -->
 
 ## <span id="general_procedure">General Procedure</span>
 
@@ -71,7 +71,6 @@ the docs subdirectory and make changes accordingly. Prior to approval, the Code 
 updates to specific docs.
 
 ## <span id="commit_messages">Commit messages</span>
-
 
 Commit messages should be written in a short, descriptive manner
 and be prefixed with tags for the change type and scope (if possible)

@@ -234,7 +234,7 @@ export class Signer {
       this.currentExtension === METAMASK_KEY ||
       this.currentExtension === WALLECT_CONNECT_KEY
     ) {
-      if (this.metamaskBackendData == null) {
+      if (this.metamaskBackendData === null) {
         return {
           error: true,
           message: `There is no transaction to be signed`,

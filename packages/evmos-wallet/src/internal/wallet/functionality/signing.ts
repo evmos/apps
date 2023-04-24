@@ -142,11 +142,11 @@ export async function broadcastSignedTxToGRPC(
 
     // Error
     if (response.tx_response.code !== 0) {
-      return Promise.reject({
+      return {
         error: true,
         message: `Transaction Failed ${response.tx_response.raw_log}`,
         txhash: `0x0`,
-      });
+      };
     }
 
     // Success
@@ -156,13 +156,13 @@ export async function broadcastSignedTxToGRPC(
       txhash: response.tx_response.txhash,
     };
   } catch (e) {
-    return Promise.reject({
+    return {
       error: true,
       // Disabled until catching all the possible errors
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
-    });
+    };
   }
 }
 
@@ -194,11 +194,11 @@ export async function broadcastEip712BackendTxToBackend(
 
     const response = (await postBroadcast.json()) as BroadcastToBackendResponse;
     if (response.error) {
-      return Promise.reject({
+      return {
         error: true,
         message: `Transaction Failed ${response.error}`,
         txhash: `0x0`,
-      });
+      };
     }
 
     return {
@@ -207,13 +207,13 @@ export async function broadcastEip712BackendTxToBackend(
       txhash: response.tx_hash,
     };
   } catch (e) {
-    return Promise.reject({
+    return {
       error: true,
       // Disabled until catching all the possible errors
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
-    });
+    };
   }
 }
 

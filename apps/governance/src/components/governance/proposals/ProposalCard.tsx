@@ -9,7 +9,7 @@ import TitleContainer from "../common/TitleContainer";
 
 const ProposalCard = ({ proposalProps }: { proposalProps: ProposalProps }) => {
   return (
-    <div className="cursor-pointer space-y-5 rounded-2xl bg-darkGray2 p-5 transition-all h-full justify-between flex flex-col duration-300 hover:bg-darkGray2Opacity">
+    <div className="flex h-full cursor-pointer flex-col justify-between space-y-5 rounded-2xl bg-darkGray2 p-5 transition-all duration-300 hover:bg-darkGray2Opacity">
       <div className="flex justify-between font-[IBM] font-bold text-pearl">
         <IdContainer id={proposalProps.id} />
         <ProposalStatus status={proposalProps.status} />

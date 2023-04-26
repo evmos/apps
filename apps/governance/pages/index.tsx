@@ -19,7 +19,7 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
+import Script from "next/script";
 import { TermOfServices, Container, Footer } from "ui-helpers";
 
 function SnackbarsInternal() {
@@ -41,7 +41,19 @@ export default function Home() {
               <title>Governance Page</title>
               <link rel="icon" href="/favicon.ico" />
             </Head>
-
+            <Script
+              id="google-analytics"
+              strategy="lazyOnload"
+              src={`https://www.googletagmanager.com/gtag/js?id=G-TBJ303M1SC`}
+            />
+            <Script id="google-analytics-lz" strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-TBJ303M1SC');
+              `}
+            </Script>
             <main>
               <TermOfServices />
               <Container>

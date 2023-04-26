@@ -21,6 +21,7 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { TermOfServices, Footer, Container } from "ui-helpers";
+import Script from "next/script";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -41,7 +42,20 @@ export default function Home() {
               <title>Staking Page</title>
               <link rel="icon" href="/favicon.ico" />
             </Head>
-
+            {/* Google tag (gtag.js)  */}
+            <Script
+              id="google-analytics"
+              strategy="lazyOnload"
+              src={`https://www.googletagmanager.com/gtag/js?id=G-TBJ303M1SC`}
+            />
+            <Script id="google-analytics-lz" strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-TBJ303M1SC');
+              `}
+            </Script>
             <main>
               <TermOfServices />
               <Container>

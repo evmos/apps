@@ -89,11 +89,11 @@ export default function Home() {
             />
             <Script id="google-analytics-lz" strategy="lazyOnload">
               {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-TBJ303M1SC');
-        `}
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-TBJ303M1SC');
+              `}
             </Script>
             <main>
               <TermOfServices />

@@ -46,7 +46,6 @@ export default function Home() {
                 name="viewport"
                 content="width=device-width, initial-scale=1"
               />
-              {/* TODO: what keywords do we want for staking ? */}
               <meta
                 name="keywords"
                 content="evmos, evmos dApp, staking, validator, delegate, undelegate, unstake, redelegate, rewards"
@@ -71,13 +70,11 @@ export default function Home() {
               <meta name="twitter:card" content="summary_large_image" />
 
               {/* <!--  Non-Essential, But Recommended --> */}
-              {/* TODO: update description */}
               <meta
                 property="og:description"
                 content="Evmos Staking is the official Evmos dApp to stake/unstake your Evmos tokens, claim your rewards, and watch your stake grow."
               />
               <meta property="og:site_name" content="Evmos Staking" />
-              {/* TODO: update description */}
               <meta
                 name="twitter:description"
                 content="Evmos Staking is the official Evmos dApp to stake/unstake your Evmos tokens, claim your rewards, and watch your stake grow."

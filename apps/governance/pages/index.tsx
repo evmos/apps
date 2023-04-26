@@ -46,7 +46,6 @@ export default function Home() {
                 name="viewport"
                 content="width=device-width, initial-scale=1"
               />
-              {/* TODO: what keywords do we want for governance ? */}
               <meta
                 name="keywords"
                 content="evmos, evmos dApp, voting, governance, proposal"
@@ -75,13 +74,11 @@ export default function Home() {
               <meta name="twitter:card" content="summary_large_image" />
 
               {/* <!--  Non-Essential, But Recommended --> */}
-              {/* TODO: update description */}
               <meta
                 property="og:description"
                 content="Evmos Governance is the official Evmos dApp to view and vote on Evmos governance proposals."
               />
               <meta property="og:site_name" content="Evmos Governance" />
-              {/* TODO: update description */}
               <meta
                 name="twitter:description"
                 content="Evmos Governance is the official Evmos dApp to view and vote on Evmos governance proposals."

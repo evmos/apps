@@ -42,7 +42,6 @@ export default function Mission() {
                 name="viewport"
                 content="width=device-width, initial-scale=1"
               />
-              {/* TODO: what keywords do we want for mission control ? */}
               <meta
                 name="keywords"
                 content="evmos, landing page, portfolio, overview, assets, stake, governance, vote"
@@ -67,14 +66,12 @@ export default function Mission() {
               <meta name="twitter:card" content="summary_large_image" />
 
               {/* <!--  Non-Essential, But Recommended --> */}
-              {/* TODO: update description */}
 
               <meta
                 property="og:description"
                 content="Mission Control is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team."
               />
               <meta property="og:site_name" content="Evmos Mission Control" />
-              {/* TODO: update description */}
               <meta
                 name="twitter:description"
                 content="Mission Control is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team."

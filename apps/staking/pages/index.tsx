@@ -49,7 +49,7 @@ export default function Home() {
               {/* TODO: what keywords do we want for staking ? */}
               <meta
                 name="keywords"
-                content="assets, evmos, evm, evm on cosmos, fast finality, delegated proof-of-stake, single-token representation, erc20 assets"
+                content="evmos, evmos dApp, staking, validator, delegate, undelegate, unstake, redelegate, rewards"
               />
               <link rel="canonical" href="https://app.evmos.org/staking" />
 
@@ -74,13 +74,13 @@ export default function Home() {
               {/* TODO: update description */}
               <meta
                 property="og:description"
-                content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
+                content="Evmos Staking is the official Evmos dApp to stake/unstake your Evmos tokens, claim your rewards, and watch your stake grow."
               />
               <meta property="og:site_name" content="Evmos Staking" />
               {/* TODO: update description */}
               <meta
                 name="twitter:description"
-                content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
+                content="Evmos Staking is the official Evmos dApp to stake/unstake your Evmos tokens, claim your rewards, and watch your stake grow."
               />
               <meta name="twitter:site" content="@EvmosOrg" />
 

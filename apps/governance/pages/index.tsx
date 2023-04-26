@@ -49,7 +49,7 @@ export default function Home() {
               {/* TODO: what keywords do we want for governance ? */}
               <meta
                 name="keywords"
-                content="assets, evmos, evm, evm on cosmos, fast finality, delegated proof-of-stake, single-token representation, erc20 assets"
+                content="evmos, evmos dApp, voting, governance, proposal"
               />
               <link rel="canonical" href="https://app.evmos.org/governance" />
 
@@ -78,13 +78,13 @@ export default function Home() {
               {/* TODO: update description */}
               <meta
                 property="og:description"
-                content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
+                content="Evmos Governance is the official Evmos dApp to view and vote on Evmos governance proposals."
               />
               <meta property="og:site_name" content="Evmos Governance" />
               {/* TODO: update description */}
               <meta
                 name="twitter:description"
-                content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
+                content="Evmos Governance is the official Evmos dApp to view and vote on Evmos governance proposals."
               />
               <meta name="twitter:site" content="@EvmosOrg" />
 

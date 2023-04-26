@@ -45,7 +45,7 @@ export default function Mission() {
               {/* TODO: what keywords do we want for mission control ? */}
               <meta
                 name="keywords"
-                content="assets, evmos, evm, evm on cosmos, fast finality, delegated proof-of-stake, single-token representation, erc20 assets"
+                content="evmos, landing page, portfolio, overview, assets, stake, governance, vote"
               />
               <link rel="canonical" href="https://app.evmos.org/" />
 
@@ -71,13 +71,13 @@ export default function Mission() {
 
               <meta
                 property="og:description"
-                content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
+                content="Mission Control is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team."
               />
               <meta property="og:site_name" content="Evmos Mission Control" />
               {/* TODO: update description */}
               <meta
                 name="twitter:description"
-                content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
+                content="Mission Control is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team."
               />
               <meta name="twitter:site" content="@EvmosOrg" />
 

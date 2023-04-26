@@ -44,7 +44,7 @@ export default function Home() {
               />
               <meta
                 name="keywords"
-                content="assets, evmos, evm, evm on cosmos, fast finality, delegated proof-of-stake, single-token representation, erc20 assets"
+                content="assets, evmos, evm, evm on cosmos, fast finality, delegated proof-of-stake, single-token representation, erc20 assets, (new) evmos dApp"
               />
               <link rel="canonical" href="https://app.evmos.org/assets" />
 
@@ -68,12 +68,12 @@ export default function Home() {
               {/* <!--  Non-Essential, But Recommended --> */}
               <meta
                 property="og:description"
-                content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
+                content="Evmos Assets is the official Evmos dApp to withdraw, deposit and convert your Evmos assets."
               />
               <meta property="og:site_name" content="Evmos Assets" />
               <meta
                 name="twitter:description"
-                content="EVMOS Assets is the official place to withdraw, deposit and convert your Evmos assets."
+                content="Evmos Assets is the official Evmos dApp to withdraw, deposit and convert your Evmos assets."
               />
               <meta name="twitter:site" content="@EvmosOrg" />
 

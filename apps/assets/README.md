@@ -52,4 +52,4 @@ In order to get on this list, this is the following process:
 
 4. Full-Stack will approve the PR once all parameters are filled out correctly.
 
-5. It takes 24 hours to get the token to show up on our Assets list because the existing cache needs to be updated. - in cases of absolute urgency, we can also manually refresh the cache to show the token in a few seconds.
+5. It takes 24 hours to get the token to show up on our Assets list because the existing cache needs to be updated - in cases of absolute urgency, we can also manually refresh the cache to show the token in a few seconds.

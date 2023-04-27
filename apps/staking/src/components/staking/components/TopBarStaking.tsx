@@ -10,6 +10,7 @@ import {
   Countdown,
   TopBarContainer,
   ConfirmButton,
+  Tooltip,
 } from "ui-helpers";
 import { useRewards } from "../modals/hooks/useRewards";
 
@@ -30,19 +31,58 @@ const TopBarStaking = () => {
       <>
         <TopBarItem
           text="Available"
-          value={`${Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS`}
+          value={
+            <Tooltip
+              className="left-1/2 top-5"
+              element={
+                <p className="cursor-default">
+                  {Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS
+                </p>
+              }
+              text={
+                <p className="text-sm opacity-80">
+                  {Number(convertFromAtto(evmosBalance)).toFixed(6)} EVMOS
+                </p>
+              }
+            />
+          }
         />
         <TopBarItem
           text="Total Staked"
-          value={`${Number(convertFromAtto(totalDelegations)).toFixed(
-            2
-          )} EVMOS`}
+          value={
+            <Tooltip
+              className="left-1/2 top-5"
+              element={
+                <p className="cursor-default">
+                  {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
+                </p>
+              }
+              text={
+                <p className="text-sm opacity-80">
+                  {Number(convertFromAtto(totalDelegations)).toFixed(6)} EVMOS
+                </p>
+              }
+            />
+          }
         />
+
         <TopBarItem
           text="Total Unstaked"
-          value={`${Number(convertFromAtto(totalUndelegations)).toFixed(
-            2
-          )} EVMOS`}
+          value={
+            <Tooltip
+              className="left-1/2 top-5"
+              element={
+                <p className="cursor-default">
+                  {Number(convertFromAtto(totalUndelegations)).toFixed(2)} EVMOS
+                </p>
+              }
+              text={
+                <p className="text-sm opacity-80">
+                  {Number(convertFromAtto(totalUndelegations)).toFixed(6)} EVMOS
+                </p>
+              }
+            />
+          }
         />
         <TopBarItem
           text="Reward Distribution"

@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { TopBarContainer, TopBarItem } from "ui-helpers";
+import { Tooltip, TopBarContainer, TopBarItem } from "ui-helpers";
 
 import { convertFromAtto, amountToDollars } from "helpers";
 
@@ -31,20 +31,61 @@ const TopBarMissionControl = () => {
         <TopBarItem
           // it shows the total amount of evmos + wevmos + stakedEvmos
           text="Total EVMOS"
-          value={`${Number(convertFromAtto(totalEvmos)).toFixed(2)} EVMOS`}
+          value={
+            <Tooltip
+              className="left-1/2 top-5"
+              element={
+                <p className="cursor-default">
+                  {Number(convertFromAtto(totalEvmos)).toFixed(2)} EVMOS
+                </p>
+              }
+              text={
+                <p className="text-sm opacity-80">
+                  {Number(convertFromAtto(totalEvmos)).toFixed(6)} EVMOS
+                </p>
+              }
+            />
+          }
         />
 
         <TopBarItem
           // it shows the total amount of delegations
           text="Total Staked"
-          value={`
-          ${Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS`}
-          href="/staking"
+          value={
+            <Tooltip
+              className="left-1/2 top-5"
+              element={
+                <p className="cursor-default">
+                  {Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS
+                </p>
+              }
+              text={
+                <p className="text-sm opacity-80">
+                  {Number(convertFromAtto(totalStaked)).toFixed(6)} EVMOS
+                </p>
+              }
+            />
+          }
         />
+
         {/* displays the total rewards availables */}
         <TopBarItem
           text="Total Rewards Available"
-          value={`${totalRewards.toFixed(2)} EVMOS`}
+          value={
+            <Tooltip
+              className="left-1/2 top-5"
+              element={
+                <p className="cursor-default">
+                  {totalRewards.toFixed(2)} EVMOS
+                </p>
+              }
+              text={
+                <p className="text-sm opacity-80">
+                  {totalRewards.toFixed(6)} EVMOS
+                </p>
+              }
+            />
+          }
         />
 
         <TopBarItem text="EVMOS Price" value={`$${evmosPrice}`} />

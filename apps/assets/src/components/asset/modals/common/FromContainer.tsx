@@ -82,15 +82,14 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
         ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
       <div>
         <span className="font-bold">Balance: </span>
-        {convertAndFormat(balance.amount, balance.decimals)} {style.tokenTo}
+        {convertAndFormat(balance.amount, balance.decimals, 6)} {style.tokenTo}
       </div>
       {!fee.fee.eq(createBigNumber(feeDeposit)) && (
         <div>
           <span className="font-bold">
             Fee denom ({fee.feeDenom}) Balance:{" "}
           </span>
-          {convertAndFormat(fee.feeBalance)}
-          {fee.feeDenom}
+          {convertAndFormat(fee.feeBalance)} {fee.feeDenom}
         </div>
       )}
       {fee.fee.eq(createBigNumber(feeDeposit)) && maxClicked && (

@@ -178,7 +178,7 @@ export const SubRowContent = ({
         <div className="mr-8 flex w-full flex-col lg:mr-0">
           {/* displays erc20 balance */}
           <span className="break-all text-sm font-bold">
-            {convertAndFormat(balance, item.decimals)}
+            {convertAndFormat(balance, item.decimals, 6)}
           </span>
           {/* displays ibc balance */}
           <div

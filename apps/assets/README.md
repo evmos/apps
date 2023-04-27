@@ -45,8 +45,9 @@ In order to get on this list, this is the following process:
 1. Create a PR in our Chain Token Registry [repository](https://github.com/evmos/chain-token-registry/).
 
 2. Fill out the parameters as indicated in the PR, one of which includes submitting and ERC-20 address.
-    1. Note: if there is no ERC-20 representation of the token, it is necessary to submit a governance proposal to register the token.
-    For more information on how to register a token please visit evmos [docs](https://docs.evmos.org/protocol/modules/erc20#registercoinproposal)
+
+   1. Note: if there is no ERC-20 representation of the token, it is necessary to submit a governance proposal to register the token.
+      For more information on how to register a token please visit evmos [docs](https://docs.evmos.org/protocol/modules/erc20#registercoinproposal)
 
 3. Once the PR is submitted, our internal team (typically Full-Stack) will manually review the PR.
 

@@ -31,6 +31,8 @@ import { HeadComponent } from "../src/components/governance/HeadComponent";
 const Content = dynamic(() => import("../src/components/governance/Content"));
 
 export default function Home() {
+  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+
   const queryClient = new QueryClient();
   return (
     <Provider store={store}>
@@ -41,14 +43,14 @@ export default function Home() {
             <Script
               id="google-analytics"
               strategy="lazyOnload"
-              src={`https://www.googletagmanager.com/gtag/js?id=G-TBJ303M1SC`}
+              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
             />
             <Script id="google-analytics-lz" strategy="lazyOnload">
               {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', 'G-TBJ303M1SC');
+                gtag('config', '${gaId}');
               `}
             </Script>
             <main>

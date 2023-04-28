@@ -4,7 +4,10 @@
   "pipeline": {
     "build": {
       "dependsOn": ["evmos-wallet#build"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**", ".next/**"],
+      "env": [
+        "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID"
+      ]
     },
     "eslint-config-custom#build": {},
     "tailwind-config#build": {},

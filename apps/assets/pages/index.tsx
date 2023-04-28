@@ -27,7 +27,7 @@ function SnackbarsInternal() {
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
 export default function Home() {
-  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "";
 
   const queryClient = new QueryClient();
   return (

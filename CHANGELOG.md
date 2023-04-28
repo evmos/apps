@@ -36,8 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
-...
+- (bug fixes) #fse-481 | evmos-wallet 1.0.1 | Show connected snackbar only if the user clicks on Connect Wallet
 
 ## 1.0.0 - 2023-04-28
 
-- (chore) #fse-306 | (apps|packages)/\* 1.0.0 | Adding changelog file, updating Licenses and versions in each packages
+- (chore) #fse-306 | apps/_ 1.0.0 packages/_ 1.0.0 | Adding changelog file, updating Licenses and versions in each packages

@@ -45,7 +45,10 @@ const TopBarStaking = () => {
                 }
                 text={
                   <p className="text-sm opacity-80">
-                    {Number(convertFromAtto(evmosBalance)).toFixed(6)} EVMOS
+                    {Number(convertFromAtto(evmosBalance))
+                      .toFixed(6)
+                      .replace(/\.?0+$/, "")}{" "}
+                    EVMOS
                   </p>
                 }
               />
@@ -69,7 +72,10 @@ const TopBarStaking = () => {
                 }
                 text={
                   <p className="text-sm opacity-80">
-                    {Number(convertFromAtto(totalDelegations)).toFixed(6)} EVMOS
+                    {Number(convertFromAtto(totalDelegations))
+                      .toFixed(6)
+                      .replace(/\.?0+$/, "")}{" "}
+                    EVMOS
                   </p>
                 }
               />
@@ -95,7 +101,9 @@ const TopBarStaking = () => {
                 }
                 text={
                   <p className="text-sm opacity-80">
-                    {Number(convertFromAtto(totalUndelegations)).toFixed(6)}{" "}
+                    {Number(convertFromAtto(totalUndelegations))
+                      .toFixed(6)
+                      .replace(/\.?0+$/, "")}{" "}
                     EVMOS
                   </p>
                 }

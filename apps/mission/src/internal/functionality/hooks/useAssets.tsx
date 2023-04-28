@@ -39,7 +39,9 @@ const useAssets = () => {
           erc20Balance: BigNumber.from(item.erc20Balance),
           decimals: Number(item.decimals),
           cosmosBalance: BigNumber.from(item.cosmosBalance),
-        }).toFixed(6),
+        })
+          .toFixed(6)
+          .replace(/\.?0+$/, ""),
         valueInDollars: addDollarAssets({
           erc20Balance: BigNumber.from(item.erc20Balance),
           decimals: Number(item.decimals),

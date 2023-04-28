@@ -82,7 +82,11 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
         ) && <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorsAmountGt} />}
       <div>
         <span className="font-bold">Balance: </span>
-        {convertAndFormat(balance.amount, balance.decimals, 6)} {style.tokenTo}
+        {convertAndFormat(balance.amount, balance.decimals, 6).replace(
+          /\.?0+$/,
+          ""
+        )}{" "}
+        {style.tokenTo}
       </div>
       {!fee.fee.eq(createBigNumber(feeDeposit)) && (
         <div>

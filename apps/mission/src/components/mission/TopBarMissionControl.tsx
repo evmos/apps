@@ -45,7 +45,10 @@ const TopBarMissionControl = () => {
                 }
                 text={
                   <p className="text-sm opacity-80">
-                    {Number(convertFromAtto(totalEvmos)).toFixed(6)} EVMOS
+                    {Number(convertFromAtto(totalEvmos))
+                      .toFixed(6)
+                      .replace(/\.?0+$/, "")}{" "}
+                    EVMOS
                   </p>
                 }
               />
@@ -69,7 +72,10 @@ const TopBarMissionControl = () => {
                 }
                 text={
                   <p className="text-sm opacity-80">
-                    {Number(convertFromAtto(totalStaked)).toFixed(6)} EVMOS
+                    {Number(convertFromAtto(totalStaked))
+                      .toFixed(6)
+                      .replace(/\.?0+$/, "")}{" "}
+                    EVMOS
                   </p>
                 }
               />
@@ -93,7 +99,7 @@ const TopBarMissionControl = () => {
                 }
                 text={
                   <p className="text-sm opacity-80">
-                    {totalRewards.toFixed(6)} EVMOS
+                    {totalRewards.toFixed(6).replace(/\.?0+$/, "")} EVMOS
                   </p>
                 }
               />

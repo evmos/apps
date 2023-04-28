@@ -17,6 +17,7 @@ import { useRewards } from "../modals/hooks/useRewards";
 import { StoreType } from "evmos-wallet";
 import { convertFromAtto } from "helpers";
 import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
+import { BigNumber } from "ethers";
 
 const TopBarStaking = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
@@ -32,56 +33,74 @@ const TopBarStaking = () => {
         <TopBarItem
           text="Available"
           value={
-            <Tooltip
-              className="left-1/2 top-5"
-              element={
-                <p className="cursor-default">
-                  {Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS
-                </p>
-              }
-              text={
-                <p className="text-sm opacity-80">
-                  {Number(convertFromAtto(evmosBalance)).toFixed(6)} EVMOS
-                </p>
-              }
-            />
+            evmosBalance.eq(BigNumber.from("0")) ? (
+              <p> {Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS </p>
+            ) : (
+              <Tooltip
+                className="left-1/2 top-5"
+                element={
+                  <p className="cursor-default">
+                    {Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS
+                  </p>
+                }
+                text={
+                  <p className="text-sm opacity-80">
+                    {Number(convertFromAtto(evmosBalance)).toFixed(6)} EVMOS
+                  </p>
+                }
+              />
+            )
           }
         />
         <TopBarItem
           text="Total Staked"
           value={
-            <Tooltip
-              className="left-1/2 top-5"
-              element={
-                <p className="cursor-default">
-                  {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
-                </p>
-              }
-              text={
-                <p className="text-sm opacity-80">
-                  {Number(convertFromAtto(totalDelegations)).toFixed(6)} EVMOS
-                </p>
-              }
-            />
+            totalDelegations.eq(BigNumber.from("0")) ? (
+              <p>
+                {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
+              </p>
+            ) : (
+              <Tooltip
+                className="left-1/2 top-5"
+                element={
+                  <p className="cursor-default">
+                    {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
+                  </p>
+                }
+                text={
+                  <p className="text-sm opacity-80">
+                    {Number(convertFromAtto(totalDelegations)).toFixed(6)} EVMOS
+                  </p>
+                }
+              />
+            )
           }
         />
 
         <TopBarItem
           text="Total Unstaked"
           value={
-            <Tooltip
-              className="left-1/2 top-5"
-              element={
-                <p className="cursor-default">
-                  {Number(convertFromAtto(totalUndelegations)).toFixed(2)} EVMOS
-                </p>
-              }
-              text={
-                <p className="text-sm opacity-80">
-                  {Number(convertFromAtto(totalUndelegations)).toFixed(6)} EVMOS
-                </p>
-              }
-            />
+            totalUndelegations.eq(BigNumber.from("0")) ? (
+              <p>
+                {Number(convertFromAtto(totalUndelegations)).toFixed(2)} EVMOS
+              </p>
+            ) : (
+              <Tooltip
+                className="left-1/2 top-5"
+                element={
+                  <p className="cursor-default">
+                    {Number(convertFromAtto(totalUndelegations)).toFixed(2)}{" "}
+                    EVMOS
+                  </p>
+                }
+                text={
+                  <p className="text-sm opacity-80">
+                    {Number(convertFromAtto(totalUndelegations)).toFixed(6)}{" "}
+                    EVMOS
+                  </p>
+                }
+              />
+            )
           }
         />
         <TopBarItem

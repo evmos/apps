@@ -7,6 +7,7 @@ import { convertFromAtto, amountToDollars } from "helpers";
 
 import { useHeaderInfo } from "../../internal/functionality/hooks/useHeaderInfo";
 import useAssetsTopBar from "../../internal/functionality/hooks/useAssetsTopBar";
+import { BigNumber } from "ethers";
 
 const TopBarMissionControl = () => {
   const { totalStaked, totalRewards } = useHeaderInfo();
@@ -32,19 +33,23 @@ const TopBarMissionControl = () => {
           // it shows the total amount of evmos + wevmos + stakedEvmos
           text="Total EVMOS"
           value={
-            <Tooltip
-              className="left-1/2 top-5"
-              element={
-                <p className="cursor-default">
-                  {Number(convertFromAtto(totalEvmos)).toFixed(2)} EVMOS
-                </p>
-              }
-              text={
-                <p className="text-sm opacity-80">
-                  {Number(convertFromAtto(totalEvmos)).toFixed(6)} EVMOS
-                </p>
-              }
-            />
+            totalEvmos.eq(BigNumber.from("0")) ? (
+              <p> {Number(convertFromAtto(totalEvmos)).toFixed(2)} EVMOS </p>
+            ) : (
+              <Tooltip
+                className="left-1/2 top-5"
+                element={
+                  <p className="cursor-default">
+                    {Number(convertFromAtto(totalEvmos)).toFixed(2)} EVMOS
+                  </p>
+                }
+                text={
+                  <p className="text-sm opacity-80">
+                    {Number(convertFromAtto(totalEvmos)).toFixed(6)} EVMOS
+                  </p>
+                }
+              />
+            )
           }
         />
 
@@ -52,19 +57,23 @@ const TopBarMissionControl = () => {
           // it shows the total amount of delegations
           text="Total Staked"
           value={
-            <Tooltip
-              className="left-1/2 top-5"
-              element={
-                <p className="cursor-default">
-                  {Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS
-                </p>
-              }
-              text={
-                <p className="text-sm opacity-80">
-                  {Number(convertFromAtto(totalStaked)).toFixed(6)} EVMOS
-                </p>
-              }
-            />
+            totalStaked.eq(BigNumber.from("0")) ? (
+              <p> {Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS </p>
+            ) : (
+              <Tooltip
+                className="left-1/2 top-5"
+                element={
+                  <p className="cursor-default">
+                    {Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS
+                  </p>
+                }
+                text={
+                  <p className="text-sm opacity-80">
+                    {Number(convertFromAtto(totalStaked)).toFixed(6)} EVMOS
+                  </p>
+                }
+              />
+            )
           }
         />
 
@@ -72,19 +81,23 @@ const TopBarMissionControl = () => {
         <TopBarItem
           text="Total Rewards Available"
           value={
-            <Tooltip
-              className="left-1/2 top-5"
-              element={
-                <p className="cursor-default">
-                  {totalRewards.toFixed(2)} EVMOS
-                </p>
-              }
-              text={
-                <p className="text-sm opacity-80">
-                  {totalRewards.toFixed(6)} EVMOS
-                </p>
-              }
-            />
+            totalRewards === 0 ? (
+              <p> {totalRewards.toFixed(2)} EVMOS </p>
+            ) : (
+              <Tooltip
+                className="left-1/2 top-5"
+                element={
+                  <p className="cursor-default">
+                    {totalRewards.toFixed(2)} EVMOS
+                  </p>
+                }
+                text={
+                  <p className="text-sm opacity-80">
+                    {totalRewards.toFixed(6)} EVMOS
+                  </p>
+                }
+              />
+            )
           }
         />
 

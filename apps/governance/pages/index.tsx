@@ -2,7 +2,6 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import { WagmiConfig } from "wagmi";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
@@ -19,7 +18,6 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import { TermOfServices, Container, Footer } from "ui-helpers";
 
 function SnackbarsInternal() {
@@ -28,6 +26,8 @@ function SnackbarsInternal() {
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
 import { StatefulHeader } from "../src/components/StatefulHeader";
+import { HeadComponent } from "../src/components/governance/HeadComponent";
+import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
 const Content = dynamic(() => import("../src/components/governance/Content"));
 
 export default function Home() {
@@ -37,11 +37,8 @@ export default function Home() {
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
           <>
-            <Head>
-              <title>Governance Page</title>
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
-
+            <HeadComponent />
+            <GoogleAnalytics />
             <main>
               <TermOfServices />
               <Container>

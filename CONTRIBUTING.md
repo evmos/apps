@@ -9,6 +9,10 @@
   - [PR Targeting](#pr_targeting)
   - [Pull Requests](#pull_requests)
   - [Process for reviewing PRs](#reviewing_prs)
+- [Branching](#branching)
+- [Versioning](#versioning)
+  - [Packages & Apps](#packages)
+  - [Changelog](#changelog)
   <!-- markdown-link-check-enable -->
 
 ## <span id="general_procedure">General Procedure</span>
@@ -34,19 +38,19 @@ the following general procedure for contributing has been established:
       However, if you are eager and do not get a prompt response, feel free to dive on in!
    4. Follow standard Github best practices:
       1. Fork the repo
-      2. Branch from the HEAD of `development`(For core developers working within the evmos repo, to ensure a
-         clear ownership of branches, branches must be named with the convention `{moniker}/{issue#}-branch-name`).
+      2. Branch from the HEAD of `main`(For core developers working within the evmos repo, to ensure a
+         clear ownership of branches, branches must be named with the convention `{username}/{issue#}-branch-name`).
       3. Make commits
-      4. Submit a PR to `development`
+      4. Submit a PR to `main`
    5. Be sure to submit the PR in `Draft` mode.
       Submit your PR early, even if it's incomplete as this indicates to the community you're working on something
       and allows them to provide comments early in the development process.
    6. When the code is complete it can be marked `Ready for Review`.
    7. Be sure to include a relevant change log entry in the `Unreleased` section of `CHANGELOG.md`
-      (see file for log format).
-   8. Please make sure to run `make format` before every commit -
+      (see [file](https://github.com/evmos/apps/blob/main/CHANGELOG.md) for log format).
+   8. Please make sure to run `yarn format` before every commit -
       the easiest way to do this is having your editor run it for you upon saving a file.
-      Additionally, please ensure that your code is lint compliant by running `make lint`.
+      Additionally, please ensure that your code is lint compliant by running `yarn lint`.
       There are CI tests built into the Evmos repository
       and all PR’s will require that these tests pass
       before they can be merged.
@@ -81,9 +85,9 @@ For example, a new change to the `bank` module might have the following message:
 
 ### <span id="pr_targeting">PR Targeting</span>
 
-Ensure that you base and target your PR on the `development` branch.
+Ensure that you base and target your PR on the `main` branch.
 
-All feature additions should be targeted against `development`.
+All feature additions should be targeted against `main`.
 Bug fixes for an outstanding release candidate should be
 targeted against the release candidate branch.
 
@@ -110,3 +114,35 @@ All PRs require two Reviews before merge. When reviewing PRs, please use the fol
      (e.g. not importing testing modules in production code, or including example code modules in production code).
    - If you approve of the PR, you are responsible for fixing any of the issues mentioned here.
 3. If you are only making "surface level" reviews, submit any notes as `Comments` without adding a review.
+
+## <span id="branching">Branching</span>
+
+This repository will follow the [GitLab Flow](https://about.gitlab.com/topics/version-control/what-is-gitlab-flow/) branching strategy:
+
+- All the development will be merged to `main`
+  - `main` will be deployed to the staging environment
+- Once tested and ready to be deployed main will be merged to the branch `production`
+  - `production` will be deployed to the production environment
+
+Any development will be branched from main and be named `{username}/{issue#}-branch-name`
+
+## <span id="versioning">Versioning</span>
+
+The repository will use [semantic versioning](https://semver.org/), in short:
+
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+- MAJOR version when you make incompatible API changes
+- MINOR version when you add functionality in a backwards compatible manner
+- PATCH version when you make backwards compatible bug fixes
+
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+
+### <span id="packages">Packages & Apps</span>
+
+Because of the mono repository structure each of the packages, and apps have its own `package.json` and own version. Therefore each package will have its own version and should also follow the semantic versioning.
+
+### <span id="changelog">Changelog</span>
+
+In order to track the updates each contributor will update the changelog and specify the version of each package.
+Use `Unreleased` section to track changes that are not yet released.

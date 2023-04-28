@@ -2,7 +2,6 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import { WagmiConfig } from "wagmi";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
@@ -28,6 +27,8 @@ function SnackbarsInternal() {
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
 import { StatefulHeader } from "../src/StatefulHeader";
+import { HeadComponent } from "../src/components/staking/HeadComponent";
+import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
 const Content = dynamic(() => import("../src/components/staking/Content"));
 
 export default function Home() {
@@ -37,11 +38,8 @@ export default function Home() {
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
           <>
-            <Head>
-              <title>Staking Page</title>
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
-
+            <HeadComponent />
+            <GoogleAnalytics />
             <main>
               <TermOfServices />
               <Container>

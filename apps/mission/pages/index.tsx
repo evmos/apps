@@ -2,7 +2,6 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { WagmiConfig } from "wagmi";
 const Web3Modal = dynamic(() =>
@@ -20,6 +19,8 @@ import {
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Container, TermOfServices } from "ui-helpers";
 import MainContainer from "../src/components/mission/MainContainer";
+import { HeadComponent } from "../src/components/mission/HeadComponent";
+import { GoogleAnalytics } from "../src/components/mission/GoogleAnalytics";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -33,11 +34,8 @@ export default function Mission() {
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
           <>
-            <Head>
-              <title>Mission Control</title>
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
-
+            <HeadComponent />
+            <GoogleAnalytics />
             <main>
               <TermOfServices />
               <Container>

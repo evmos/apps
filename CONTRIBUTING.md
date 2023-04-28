@@ -85,9 +85,9 @@ For example, a new change to the `bank` module might have the following message:
 
 ### <span id="pr_targeting">PR Targeting</span>
 
-Ensure that you base and target your PR on the `development` branch.
+Ensure that you base and target your PR on the `main` branch.
 
-All feature additions should be targeted against `development`.
+All feature additions should be targeted against `main`.
 Bug fixes for an outstanding release candidate should be
 targeted against the release candidate branch.
 

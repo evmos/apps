@@ -36,7 +36,12 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
-...
+- (bug fixes) #fse-142 | apps/assets 1.0.1 | Change amount of decimals displayed: 6 instead of 2
+- (bug fixes) #fse-142 | apps/mission 1.0.1 | Display tooltip on topBarMissionControl with 6 decimals amount if amount is bigger than 0
+- (bug fixes) #fse-142 | apps/mission 1.0.1 | Change amount of decimals displayed: 6 instead of 2
+- (bug fixes) #fse-142 | apps/staking 1.0.1 | Change amount of decimals displayed: 6 instead of 2
+- (bug fixes) #fse-142 | apps/staking 1.0.1 | Display tooltip on topBarStaking with 6 decimals amount if amount is bigger than 0
+- (chore) #fse-142 | evmos-wallet 1.0.2 | Export EVMOS_DECIMALS
 
 ## 1.0.0 - 2023-04-28
 

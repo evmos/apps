@@ -18,7 +18,6 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import { TermOfServices, Container, Footer } from "ui-helpers";
 
 function SnackbarsInternal() {
@@ -28,6 +27,7 @@ function SnackbarsInternal() {
 }
 import { StatefulHeader } from "../src/components/StatefulHeader";
 import { HeadComponent } from "../src/components/governance/HeadComponent";
+import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
 const Content = dynamic(() => import("../src/components/governance/Content"));
 
 export default function Home() {
@@ -38,6 +38,7 @@ export default function Home() {
         <WagmiConfig client={wagmiClient}>
           <>
             <HeadComponent />
+            <GoogleAnalytics />
             <main>
               <TermOfServices />
               <Container>

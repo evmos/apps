@@ -28,6 +28,7 @@ function SnackbarsInternal() {
 }
 import { StatefulHeader } from "../src/StatefulHeader";
 import { HeadComponent } from "../src/components/staking/HeadComponent";
+import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
 const Content = dynamic(() => import("../src/components/staking/Content"));
 
 export default function Home() {
@@ -38,6 +39,7 @@ export default function Home() {
         <WagmiConfig client={wagmiClient}>
           <>
             <HeadComponent />
+            <GoogleAnalytics />
             <main>
               <TermOfServices />
               <Container>

@@ -20,6 +20,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Container, TermOfServices } from "ui-helpers";
 import MainContainer from "../src/components/mission/MainContainer";
 import { HeadComponent } from "../src/components/mission/HeadComponent";
+import { GoogleAnalytics } from "../src/components/mission/GoogleAnalytics";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -34,6 +35,7 @@ export default function Mission() {
         <WagmiConfig client={wagmiClient}>
           <>
             <HeadComponent />
+            <GoogleAnalytics />
             <main>
               <TermOfServices />
               <Container>

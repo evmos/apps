@@ -1,6 +1,6 @@
 {
   "name": "evmos-wallet",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "sideEffects": [
     "**/*.css"
   ],
@@ -9,7 +9,7 @@
     ".": "./dist",
     "./styles.css": "./dist/index.css"
   },
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

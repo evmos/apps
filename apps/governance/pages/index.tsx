@@ -18,7 +18,6 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Script from "next/script";
 import { TermOfServices, Container, Footer } from "ui-helpers";
 
 function SnackbarsInternal() {
@@ -28,11 +27,10 @@ function SnackbarsInternal() {
 }
 import { StatefulHeader } from "../src/components/StatefulHeader";
 import { HeadComponent } from "../src/components/governance/HeadComponent";
+import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
 const Content = dynamic(() => import("../src/components/governance/Content"));
 
 export default function Home() {
-  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "";
-
   const queryClient = new QueryClient();
   return (
     <Provider store={store}>
@@ -40,19 +38,7 @@ export default function Home() {
         <WagmiConfig client={wagmiClient}>
           <>
             <HeadComponent />
-            <Script
-              id="google-analytics"
-              strategy="lazyOnload"
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            />
-            <Script id="google-analytics-lz" strategy="lazyOnload">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaId}');
-              `}
-            </Script>
+            <GoogleAnalytics />
             <main>
               <TermOfServices />
               <Container>

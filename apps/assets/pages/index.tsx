@@ -17,18 +17,16 @@ import {
 } from "evmos-wallet";
 import { Footer, Container, TermOfServices } from "ui-helpers";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import Script from "next/script";
 
 import { StatefulHeader } from "../src/StatefulHeader";
 import { HeadComponent } from "../src/components/asset/HeadComponent";
+import { GoogleAnalytics } from "../src/components/asset/GoogleAnalytics";
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
 export default function Home() {
-  const gaId = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || "";
-
   const queryClient = new QueryClient();
   return (
     <Provider store={store}>
@@ -36,20 +34,7 @@ export default function Home() {
         <WagmiConfig client={wagmiClient}>
           <>
             <HeadComponent />
-            {/* Google tag (gtag.js)  */}
-            <Script
-              id="google-analytics"
-              strategy="lazyOnload"
-              src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-            />
-            <Script id="google-analytics-lz" strategy="lazyOnload">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${gaId}');
-              `}
-            </Script>
+            <GoogleAnalytics />
             <main>
               <TermOfServices />
               <Container>

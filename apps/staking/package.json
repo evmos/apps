@@ -9,7 +9,7 @@
     "lint": "next lint",
     "lintunix": "next lint --format unix",
     "prepare": "husky install",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [

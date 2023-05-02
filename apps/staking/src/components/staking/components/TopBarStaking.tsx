@@ -15,7 +15,7 @@ import {
 import { useRewards } from "../modals/hooks/useRewards";
 
 import { StoreType } from "evmos-wallet";
-import { convertFromAtto } from "helpers";
+import { convertFromAtto, displayTopBarTooltip } from "helpers";
 import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
 import { BigNumber } from "ethers";
 
@@ -33,7 +33,7 @@ const TopBarStaking = () => {
         <TopBarItem
           text="Available"
           value={
-            evmosBalance.eq(BigNumber.from("0")) ? (
+            !displayTopBarTooltip(evmosBalance) ? (
               <p> {Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS </p>
             ) : (
               <Tooltip
@@ -58,7 +58,7 @@ const TopBarStaking = () => {
         <TopBarItem
           text="Total Staked"
           value={
-            totalDelegations.eq(BigNumber.from("0")) ? (
+            !displayTopBarTooltip(totalDelegations) ? (
               <p>
                 {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
               </p>
@@ -86,7 +86,7 @@ const TopBarStaking = () => {
         <TopBarItem
           text="Total Unstaked"
           value={
-            totalUndelegations.eq(BigNumber.from("0")) ? (
+            !displayTopBarTooltip(totalUndelegations) ? (
               <p>
                 {Number(convertFromAtto(totalUndelegations)).toFixed(2)} EVMOS
               </p>

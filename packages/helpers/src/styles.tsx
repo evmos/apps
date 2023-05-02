@@ -410,3 +410,13 @@ export const getRemainingTime = (date: string) => {
     </>
   );
 };
+
+export const displayTopBarTooltip = (value: BigNumber) => {
+  if (value.eq(BigNumber.from("0"))) {
+    return false;
+  }
+  if (convertFromAtto(value).split(".")[1].length === 2) {
+    return false;
+  }
+  return true;
+};

@@ -3,7 +3,11 @@
 
 import { Tooltip, TopBarContainer, TopBarItem } from "ui-helpers";
 
-import { convertFromAtto, amountToDollars } from "helpers";
+import {
+  convertFromAtto,
+  amountToDollars,
+  displayTopBarTooltip,
+} from "helpers";
 
 import { useHeaderInfo } from "../../internal/functionality/hooks/useHeaderInfo";
 import useAssetsTopBar from "../../internal/functionality/hooks/useAssetsTopBar";
@@ -33,7 +37,7 @@ const TopBarMissionControl = () => {
           // it shows the total amount of evmos + wevmos + stakedEvmos
           text="Total EVMOS"
           value={
-            totalEvmos.eq(BigNumber.from("0")) ? (
+            !displayTopBarTooltip(totalEvmos) ? (
               <p> {Number(convertFromAtto(totalEvmos)).toFixed(2)} EVMOS </p>
             ) : (
               <Tooltip
@@ -60,7 +64,7 @@ const TopBarMissionControl = () => {
           // it shows the total amount of delegations
           text="Total Staked"
           value={
-            totalStaked.eq(BigNumber.from("0")) ? (
+            !displayTopBarTooltip(totalStaked) ? (
               <p> {Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS </p>
             ) : (
               <Tooltip
@@ -87,7 +91,8 @@ const TopBarMissionControl = () => {
         <TopBarItem
           text="Total Rewards Available"
           value={
-            totalRewards === 0 ? (
+            totalRewards === 0 ||
+            totalRewards.toString().split(".")[1].length === 2 ? (
               <p> {totalRewards.toFixed(2)} EVMOS </p>
             ) : (
               <Tooltip

@@ -36,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (ci) #fse-413 | (apps)/_ 1.0.x | Adding CI/CD pipeline for apps
 ...
 
 ## 1.0.0 - 2023-04-28

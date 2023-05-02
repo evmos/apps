@@ -11,7 +11,6 @@ import {
 
 import { useHeaderInfo } from "../../internal/functionality/hooks/useHeaderInfo";
 import useAssetsTopBar from "../../internal/functionality/hooks/useAssetsTopBar";
-import { BigNumber } from "ethers";
 
 const TopBarMissionControl = () => {
   const { totalStaked, totalRewards } = useHeaderInfo();

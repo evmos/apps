@@ -17,7 +17,6 @@ import { useRewards } from "../modals/hooks/useRewards";
 import { StoreType } from "evmos-wallet";
 import { convertFromAtto, displayTopBarTooltip } from "helpers";
 import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
-import { BigNumber } from "ethers";
 
 const TopBarStaking = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);

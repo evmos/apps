@@ -35,7 +35,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 # Changelog
 
 ## Unreleased
-- (bug) #fse-400 | root config | Updating the dev workflow to avoid errors when running `yarn dev` 
+
+- (bug) #fse-400 | root config | Updating the dev workflow to avoid errors when running `yarn dev`
 
 ...
 

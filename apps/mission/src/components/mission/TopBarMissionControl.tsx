@@ -7,7 +7,9 @@ import { convertFromAtto, amountToDollars } from "helpers";
 
 import { useHeaderInfo } from "../../internal/functionality/hooks/useHeaderInfo";
 import useAssetsTopBar from "../../internal/functionality/hooks/useAssetsTopBar";
-
+import { useCallback } from "react";
+import metrics from "./LocalTracker";
+import { MC_TOTAL_STAKED } from "tracker";
 const TopBarMissionControl = () => {
   const { totalStaked, totalRewards } = useHeaderInfo();
   const { totalAssets, evmosPrice, totalEvmosAsset } = useAssetsTopBar();
@@ -18,6 +20,10 @@ const TopBarMissionControl = () => {
     18,
     Number(evmosPrice)
   );
+
+  const handlePreClickAction = useCallback(() => {
+    return metrics?.track(MC_TOTAL_STAKED);
+  }, []);
   return (
     <TopBarContainer>
       <>
@@ -40,6 +46,7 @@ const TopBarMissionControl = () => {
           value={`
           ${Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS`}
           href="/staking"
+          onClick={handlePreClickAction}
         />
         {/* displays the total rewards availables */}
         <TopBarItem

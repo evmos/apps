@@ -8,10 +8,16 @@ import NewsFeed from "./feeds/NewsFeed";
 import Governance from "./governance/Governance";
 import Staking from "./staking/Staking";
 import EvmosApps from "./apps/EvmosApps";
+import { useCallback } from "react";
+import metrics from "./LocalTracker";
+import { MC_HALF_LIFE } from "tracker";
 
 const TopBarMissionControl = dynamic(() => import("./TopBarMissionControl"));
 
 const Content = () => {
+  const handlePreClickAction = useCallback(() => {
+    return metrics?.track(MC_HALF_LIFE);
+  }, []);
   return (
     <div className="flex flex-col pt-4">
       <TopBarMissionControl />
@@ -22,7 +28,7 @@ const Content = () => {
           <Staking />
         </div>
         <div className="col-span-6 flex flex-col space-y-5 lg:col-span-2">
-          <HalfLifeContainer />
+          <HalfLifeContainer handlePreClickAction={handlePreClickAction} />
           <NewsFeed />
           <EvmosApps />
         </div>

@@ -4,10 +4,40 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MISSION_CONTROL_DATA } from "./AppsData";
+import { useEffect, useRef } from "react";
+import metrics from "../LocalTracker";
+import { MC_SCROLL_ECOSYSTEM } from "tracker";
 
 const AppsContainer = () => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (divRef.current === null) {
+        return;
+      }
+
+      const { scrollTop, scrollHeight, clientHeight } = divRef.current;
+      const percentageScrolled = Math.floor(
+        (scrollTop / (scrollHeight - clientHeight)) * 100
+      );
+
+      metrics?.track(MC_SCROLL_ECOSYSTEM, { percentageScrolled });
+    }
+
+    if (divRef.current !== null) {
+      divRef.current.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (divRef.current !== null) {
+        divRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
   return (
     <div
+      ref={divRef}
       style={{ maxHeight: "225px", overflowY: "auto" }}
       className="flex flex-col gap-4"
     >

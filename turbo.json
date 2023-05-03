@@ -12,6 +12,7 @@
     "eslint-config-custom#build": {},
     "tailwind-config#build": {},
     "tsconfig#build": {},
+    "jest-config-evmos#build": {},
     "constants-helper#build": {},
     "icons#build": {},
     "helpers#build": {},

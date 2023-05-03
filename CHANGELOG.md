@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (tests) #fse-509 | (apps|packages)/\_ 1.0.x | Adding shared package for jest related configuration
+
 - (bug) #fse-400 | root config | Updating the dev workflow to avoid errors when running `yarn dev`
 
 - (ci) #fse-413 | (apps)/\_ 1.0.x | Adding CI/CD pipeline for apps

@@ -15,12 +15,11 @@ jobs:
         id: git_diff
         with:
           PATTERNS: |
-            pages/**/**.tsx
-            pages/**/**.ts
-            src/**/**.tsx
-            src/**/**.ts
-            package.json
-            yarn.lock
+            **/*.js
+            **/*.jsx
+            **/*.json
+            **/*.ts
+            **/*.tsx
 
       - name: Install modules
         run: yarn install

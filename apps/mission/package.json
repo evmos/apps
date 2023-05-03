@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --port 3004",
-    "build": "next build",
+    "build": "sh setup-redirects.sh && next build",
     "start": "next start",
     "lint": "next lint",
     "lintunix": "next lint --format unix",

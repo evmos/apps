@@ -1,4 +1,4 @@
-import { 
+import {
   getPercentage,
   convertFromAtto,
   amountToDollars,
@@ -9,7 +9,7 @@ import {
   getTotalAssets,
   numericOnly,
   safeSubstraction,
-  truncateNumber
+  truncateNumber,
 } from "../index";
 import { BigNumber } from "ethers";
 import { parseUnits } from "@ethersproject/units";
@@ -267,7 +267,6 @@ describe("parseUnits function", () => {
     expect(value.toString()).toBe("10100000000000000000");
   });
 });
-
 
 describe("Test For Helpers", () => {
   it("getPercentage", () => {

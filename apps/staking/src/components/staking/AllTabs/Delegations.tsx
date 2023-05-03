@@ -11,7 +11,7 @@ import {
 } from "../../../internal/common/context/SearchContext";
 import { useStakingInfo } from "../../../internal/staking/functionality/hooks/useStakingInfo";
 import { DelegationsResponse } from "../../../internal/staking/functionality/types";
-import { StoreType } from "evmos-wallet";
+import { StoreType, EVMOS_DECIMALS } from "evmos-wallet";
 import { Table } from "../../common/table/Table";
 import {
   tableStyle,
@@ -164,7 +164,11 @@ const Delegations = () => {
             <TdContent
               tdProps={{
                 title: dataHead[3],
-                value: convertAndFormat(BigNumber.from(item.balance.amount)),
+                value: convertAndFormat(
+                  BigNumber.from(item.balance.amount),
+                  EVMOS_DECIMALS,
+                  6
+                ),
               }}
             />
           </td>

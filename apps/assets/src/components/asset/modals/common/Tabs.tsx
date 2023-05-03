@@ -62,7 +62,7 @@ const Tabs = ({
           />
         </div>
         <span className="text-xs font-normal">
-          {convertAndFormat(erc20Balance, decimals)}
+          {convertAndFormat(erc20Balance, decimals, 6).replace(/\.?0+$/, "")}
         </span>
       </button>
       <button
@@ -77,7 +77,7 @@ const Tabs = ({
       >
         <span>IBC</span>
         <span className="text-xs font-normal">
-          {convertAndFormat(cosmosBalance, decimals)}
+          {convertAndFormat(cosmosBalance, decimals, 6).replace(/\.?0+$/, "")}
         </span>
       </button>
     </div>

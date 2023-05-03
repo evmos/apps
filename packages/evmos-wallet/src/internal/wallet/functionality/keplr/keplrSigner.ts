@@ -45,6 +45,13 @@ export async function signBackendTxWithKeplr(
       signature: null,
     };
   }
+  if (EVMOS_CHAIN.cosmosChainId === tx.chainId) {
+    window.keplr.defaultOptions = {
+      sign: {
+        preferNoSetFee: true,
+      },
+    };
+  }
 
   const key = await window.keplr.getKey(tx.chainId);
   if (key.isNanoLedger) {

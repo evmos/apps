@@ -15,7 +15,7 @@ import {
 } from "../../../internal/common/context/ValidatorStateContext";
 import { useAllValidators } from "../../../internal/staking/functionality/hooks/useAllValidators";
 import { ValidatorsList } from "../../../internal/staking/functionality/types";
-import { StoreType } from "evmos-wallet";
+import { StoreType, EVMOS_DECIMALS } from "evmos-wallet";
 import { Table } from "../../common/table/Table";
 import {
   tableStyle,
@@ -174,7 +174,9 @@ const Validators = () => {
                 value:
                   item.balance.balance.amount !== ""
                     ? convertAndFormat(
-                        BigNumber.from(item.balance.balance.amount)
+                        BigNumber.from(item.balance.balance.amount),
+                        EVMOS_DECIMALS,
+                        6
                       )
                     : "--",
               }}

@@ -18,7 +18,7 @@ import {
   trBodyStyle,
 } from "../../common/table/tablesStyles";
 import { TdContent } from "../../common/table/TdContent";
-
+import { EVMOS_DECIMALS } from "evmos-wallet";
 import { convertAndFormat, getRemainingTime } from "helpers";
 import { MessageTable, Modal } from "ui-helpers";
 import { CancelUndelegation } from "../modals/transactions/CancelUndelegation";
@@ -125,7 +125,9 @@ const Undelegations = () => {
               tdProps={{
                 title: dataHead[1],
                 value: `${convertAndFormat(
-                  BigNumber.from(item.balance)
+                  BigNumber.from(item.balance),
+                  EVMOS_DECIMALS,
+                  6
                 )} EVMOS`,
               }}
             />

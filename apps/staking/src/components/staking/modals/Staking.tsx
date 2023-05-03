@@ -11,6 +11,7 @@ import { Delegate } from "./transactions/Delegate";
 import { Redelegate } from "./transactions/Redelegate";
 import { Undelegate } from "./transactions/Undelegate";
 import { convertAndFormat, formatPercentage } from "helpers";
+import { EVMOS_DECIMALS } from "evmos-wallet";
 
 const Staking = ({
   item,
@@ -57,7 +58,7 @@ const Staking = ({
         )}
         <p>
           {item.balance !== ""
-            ? convertAndFormat(BigNumber.from(item.balance))
+            ? convertAndFormat(BigNumber.from(item.balance), EVMOS_DECIMALS, 6)
             : "0"}{" "}
           EVMOS
         </p>

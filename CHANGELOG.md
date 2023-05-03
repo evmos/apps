@@ -38,10 +38,11 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 - (bug) #fse-400 | root config | Updating the dev workflow to avoid errors when running `yarn dev`
 
+- (chore) #fse-503 | (/) Add production build script | (apps|mission) add script to copy _redirects file depending on environment
+
 ...
 
 ## 1.0.0 - 2023-04-28
 
 - (chore) #fse-306 | (apps|packages)/\* 1.0.0 | Adding changelog file, updating Licenses and versions in each packages
 
-- (chore) #fse-503 | (/) Add production build script | (apps|mission) add script to copy _redirects file depending on environment

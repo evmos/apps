@@ -24,6 +24,19 @@
       "dependsOn": ["icons#build", "ui-helpers#build"],
       "outputs": ["dist/**", ".next/**"]
     },
+    "eslint-config-custom#dev": {},
+    "tailwind-config#dev": {},
+    "tsconfig#dev": {},
+    "constants-helper#dev": {},
+    "icons#dev": {},
+    "helpers#dev": {},
+    "services#dev": {},
+    "ui-helpers#dev": {
+      "dependsOn": ["icons#dev", "constants-helper#dev"]
+    },
+    "evmos-wallet#dev": {
+      "dependsOn": ["icons#dev", "ui-helpers#dev"]
+    },
     "lint": {},
     "check-types": {},
     "dev": {
@@ -31,6 +44,10 @@
       "persistent": true
     },
     "clean": {
+      "cache": false
+    },
+    "test": {},
+    "test:watch": {
       "cache": false
     }
   }

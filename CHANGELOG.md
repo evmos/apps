@@ -42,9 +42,14 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (bug fixes) #fse-142 | apps/staking 1.0.1 | Change amount of decimals displayed: 6 instead of 2
 - (bug fixes) #fse-142 | apps/staking 1.0.1 | Display tooltip on topBarStaking with 6 decimals amount if amount is bigger than 0
 - (bug fixes) #fse-142 | packages/helpers 1.0.1 | Create function for display TopBar Tooltip
-
 - (chore) #fse-142 | evmos-wallet 1.0.2 | Export EVMOS_DECIMALS
+- (bug) #fse-400 | root config | Updating the dev workflow to avoid errors when running `yarn dev` 
+- (bug fixes) #fse-481 | evmos-wallet 1.0.1 | Show connected snackbar only if the user clicks on Connect Wallet
+- (ci) #fse-413 | (apps)/_ 1.0.x | Adding CI/CD pipeline for apps
+...
+
+
 
 ## 1.0.0 - 2023-04-28
 
-- (chore) #fse-306 | (apps|packages)/\* 1.0.0 | Adding changelog file, updating Licenses and versions in each packages
+- (chore) #fse-306 | apps/_ 1.0.0 packages/_ 1.0.0 | Adding changelog file, updating Licenses and versions in each packages

@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { getPercentage } from "helpers";
+import { getPercentage } from "../../../../../../packages/helpers/src"; // temporary fix, this test need to be moved to helpers package
 
 describe("Test For Helpers", () => {
   it("getPercentage", () => {

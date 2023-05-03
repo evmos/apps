@@ -27,3 +27,4 @@ export { checkFormatAddress } from "./styles";
 export { checkMetaMaskFormatAddress } from "./styles";
 export { indexOfMax } from "./styles";
 export { getRemainingTime } from "./styles";
+export { displayTopBarTooltip } from "./styles";

@@ -53,6 +53,7 @@ export { ButtonWalletConnection } from "./wallet/ButtonWalletConnection";
 
 // configs
 export { EVMOS_SYMBOL } from "./internal/wallet/functionality/networkConfig";
+export { EVMOS_DECIMALS } from "./internal/wallet/functionality/networkConfig";
 export { EVMOS_BACKEND } from "./internal/wallet/functionality/networkConfig";
 export { EVMOS_NETWORK_FOR_BACKEND } from "./internal/wallet/functionality/networkConfig";
 export { EVMOS_CHAIN } from "./internal/wallet/functionality/networkConfig";

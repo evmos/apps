@@ -17,6 +17,7 @@ import {
   ResultMessage,
 } from "../errors";
 import {
+  GetProviderFromLocalStorage,
   RemoveProviderFromLocalStorage,
   SaveProviderToLocalStorate,
 } from "../localstorage";
@@ -78,6 +79,7 @@ export class Metamask {
   }
 
   async connectHandler(addresses: Maybe<string[]>) {
+    const providerLocalStorage = GetProviderFromLocalStorage();
     if (addresses === undefined || addresses === null) {
       this.reset();
       return;
@@ -113,6 +115,11 @@ export class Metamask {
           accountName: null,
         })
       );
+      SaveProviderToLocalStorate(METAMASK_KEY);
+      // show the connect snackbar only if the user clicks on connect wallet
+      if (providerLocalStorage === METAMASK_KEY) {
+        return;
+      }
       NotifySuccess(
         {
           type: SNACKBAR_CONTENT_TYPES.TEXT,

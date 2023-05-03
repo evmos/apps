@@ -36,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (design) #229 | apps/staking apps/assets | Making design fixes so we don't have extra scrollbars
 - (bug) #fse-400 | root config | Updating the dev workflow to avoid errors when running `yarn dev`
 
 ...

@@ -36,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (workflow) #fse-512 | githug/workflows | Adding codeball
 - (improvements) #fse-487 | evmos-wallet 1.0.3 | Use preferNoSetFee while signing with Keplr and chain is Evmos
 - (bug fixes) #fse-142 | apps/assets 1.0.1 | Change amount of decimals displayed: 6 instead of 2
 - (bug fixes) #fse-142 | apps/mission 1.0.1 | Display tooltip on topBarMissionControl with 6 decimals amount if amount is bigger than 0
@@ -47,10 +48,6 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (bug) #fse-400 | root config | Updating the dev workflow to avoid errors when running `yarn dev` 
 - (bug fixes) #fse-481 | evmos-wallet 1.0.1 | Show connected snackbar only if the user clicks on Connect Wallet
 - (ci) #fse-413 | (apps)/_ 1.0.x | Adding CI/CD pipeline for apps
-...
-
-
-
 
 ## 1.0.0 - 2023-04-28
 

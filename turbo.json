@@ -1,12 +1,23 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
   "pipeline": {
     "build": {
       "dependsOn": ["evmos-wallet#build"],
       "outputs": ["dist/**", ".next/**"],
       "env": [
-        "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID"
+        "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
+        "NEXT_PUBLIC_EVMOS_RPC_URL",
+        "NEXT_PUBLIC_EVMOS_GRPC_URL",
+        "NEXT_PUBLIC_EVMOS_CHAIN_NAME",
+        "NEXT_PUBLIC_EVMOS_SYMBOL",
+        "NEXT_PUBLIC_EVMOS_DECIMALS",
+        "NEXT_PUBLIC_EVMOS_COSMOS_EXPLORER",
+        "NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID",
+        "NEXT_PUBLIC_EVMOS_NETWORK_FOR_BACKEND",
+        "NEXT_PUBLIC_EVMOS_BACKEND",
+        "NEXT_PUBLIC_OSMOSIS_CHAIN_ID",
+        "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
+        "NEXT_PUBLIC_EVMOS_CHAIN"
       ]
     },
     "eslint-config-custom#build": {},
@@ -23,7 +34,35 @@
     },
     "evmos-wallet#build": {
       "dependsOn": ["icons#build", "ui-helpers#build"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["dist/**", ".next/**"],
+      "env": [
+        "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
+        "NEXT_PUBLIC_EVMOS_RPC_URL",
+        "NEXT_PUBLIC_EVMOS_GRPC_URL",
+        "NEXT_PUBLIC_EVMOS_CHAIN_NAME",
+        "NEXT_PUBLIC_EVMOS_SYMBOL",
+        "NEXT_PUBLIC_EVMOS_DECIMALS",
+        "NEXT_PUBLIC_EVMOS_COSMOS_EXPLORER",
+        "NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID",
+        "NEXT_PUBLIC_EVMOS_NETWORK_FOR_BACKEND",
+        "NEXT_PUBLIC_EVMOS_BACKEND",
+        "NEXT_PUBLIC_OSMOSIS_CHAIN_ID",
+        "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
+        "NEXT_PUBLIC_EVMOS_CHAIN"
+      ]
+    },
+    "eslint-config-custom#dev": {},
+    "tailwind-config#dev": {},
+    "tsconfig#dev": {},
+    "constants-helper#dev": {},
+    "icons#dev": {},
+    "helpers#dev": {},
+    "services#dev": {},
+    "ui-helpers#dev": {
+      "dependsOn": ["icons#dev", "constants-helper#dev"]
+    },
+    "evmos-wallet#dev": {
+      "dependsOn": ["icons#dev", "ui-helpers#dev"]
     },
     "eslint-config-custom#dev": {},
     "tailwind-config#dev": {},

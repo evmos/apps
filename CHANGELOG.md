@@ -49,7 +49,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (bug fixes) #fse-481 | evmos-wallet 1.0.1 | Show connected snackbar only if the user clicks on Connect Wallet
 - (ci) #fse-413 | (apps)/_ 1.0.x | Adding CI/CD pipeline for apps
 - (chore) #fse-503 | (/) Add production build script | (apps|mission) add script to copy _redirects file depending on environment
-
+- (chore) #fse-498 | evmos-wallet 1.0.5 load constant in networkConfig.ts from environment variables & use default fallback values
 ...
 
 

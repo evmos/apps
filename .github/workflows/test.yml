@@ -28,13 +28,3 @@ jobs:
       - name: Run tests
         run: yarn test:coverage
         if: env.GIT_DIFF
-
-      - name: Merge coverage reports
-        id: coverage
-        uses: selfagency/merge-coverage@v1.1.2
-        with:
-          source: ${{ github.workspace }}/${{ inputs.package }}
-          coverage-reports: ${{ github.workspace }}/${{ inputs.package }}/coverage
-          output-folder: ${{ github.workspace }}/${{ inputs.package }}/coverage-reports
-          formats: html
-          artifacts: true

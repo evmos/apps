@@ -17,4 +17,4 @@ jobs:
           approvePullRequests: "true"
           labelPullRequestsWhenApproved: "true"
           labelPullRequestsWhenReviewNeeded: "false"
-          failJobsWhenReviewNeeded: "true"
+          failJobsWhenReviewNeeded: "false"

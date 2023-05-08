@@ -181,6 +181,7 @@ export const ButtonWalletConnection = ({
               className="w-full rounded font-bold uppercase border border-darkPearl hover:bg-grayOpacity p-3 mt-3"
               onClick={() => {
                 trackClickDisconnectWallet();
+                RemoveProviderFromLocalStorage();
                 disconnectWallets(dispatch);
                 setShow(false);
                 setIsCopied(false);

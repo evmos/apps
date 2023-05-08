@@ -42,7 +42,7 @@ export const useHeaderInfo = () => {
         }
       }
     }
-    return convertStringFromAtto(total);
+    return Number(convertStringFromAtto(total));
   }, [stakingInfo]);
 
   return { totalStaked, totalRewards };

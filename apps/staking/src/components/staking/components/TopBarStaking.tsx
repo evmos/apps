@@ -10,11 +10,12 @@ import {
   Countdown,
   TopBarContainer,
   ConfirmButton,
+  Tooltip,
 } from "ui-helpers";
 import { useRewards } from "../modals/hooks/useRewards";
 
 import { StoreType } from "evmos-wallet";
-import { convertFromAtto } from "helpers";
+import { convertFromAtto, displayTopBarTooltip } from "helpers";
 import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
 
 const TopBarStaking = () => {
@@ -29,19 +30,84 @@ const TopBarStaking = () => {
       <>
         <TopBarItem
           text="Available"
-          value={`${Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS`}
+          value={
+            !displayTopBarTooltip(evmosBalance) ? (
+              <p> {Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS </p>
+            ) : (
+              <Tooltip
+                className="left-1/2 top-5"
+                element={
+                  <p className="cursor-default">
+                    {Number(convertFromAtto(evmosBalance)).toFixed(2)} EVMOS
+                  </p>
+                }
+                text={
+                  <p className="text-sm opacity-80">
+                    {Number(convertFromAtto(evmosBalance))
+                      .toFixed(6)
+                      .replace(/\.?0+$/, "")}{" "}
+                    EVMOS
+                  </p>
+                }
+              />
+            )
+          }
         />
         <TopBarItem
           text="Total Staked"
-          value={`${Number(convertFromAtto(totalDelegations)).toFixed(
-            2
-          )} EVMOS`}
+          value={
+            !displayTopBarTooltip(totalDelegations) ? (
+              <p>
+                {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
+              </p>
+            ) : (
+              <Tooltip
+                className="left-1/2 top-5"
+                element={
+                  <p className="cursor-default">
+                    {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
+                  </p>
+                }
+                text={
+                  <p className="text-sm opacity-80">
+                    {Number(convertFromAtto(totalDelegations))
+                      .toFixed(6)
+                      .replace(/\.?0+$/, "")}{" "}
+                    EVMOS
+                  </p>
+                }
+              />
+            )
+          }
         />
+
         <TopBarItem
           text="Total Unstaked"
-          value={`${Number(convertFromAtto(totalUndelegations)).toFixed(
-            2
-          )} EVMOS`}
+          value={
+            !displayTopBarTooltip(totalUndelegations) ? (
+              <p>
+                {Number(convertFromAtto(totalUndelegations)).toFixed(2)} EVMOS
+              </p>
+            ) : (
+              <Tooltip
+                className="left-1/2 top-5"
+                element={
+                  <p className="cursor-default">
+                    {Number(convertFromAtto(totalUndelegations)).toFixed(2)}{" "}
+                    EVMOS
+                  </p>
+                }
+                text={
+                  <p className="text-sm opacity-80">
+                    {Number(convertFromAtto(totalUndelegations))
+                      .toFixed(6)
+                      .replace(/\.?0+$/, "")}{" "}
+                    EVMOS
+                  </p>
+                }
+              />
+            )
+          }
         />
         <TopBarItem
           text="Reward Distribution"

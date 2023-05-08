@@ -35,6 +35,7 @@ import {
   KEPLR_SUCCESS_MESSAGES,
   ResultMessage,
 } from "../errors";
+import { GetProviderFromLocalStorage } from "../localstorage";
 
 export class Keplr {
   active = false;
@@ -101,6 +102,7 @@ export class Keplr {
   }
 
   async connectHandler() {
+    const providerLocalStorage = GetProviderFromLocalStorage();
     await this.getKeplr();
     if (!window.keplr) {
       this.reset();
@@ -194,6 +196,10 @@ export class Keplr {
         })
       );
       SaveProviderToLocalStorate(KEPLR_KEY);
+      // show the connect snackbar only if the user clicks on connect wallet
+      if (providerLocalStorage === KEPLR_KEY) {
+        return true;
+      }
       NotifySuccess(
         {
           type: SNACKBAR_CONTENT_TYPES.TEXT,

@@ -17,6 +17,8 @@ import {
   CLICK_BUTTON_MANAGE_REDELEGATE,
   useTracker,
 } from "tracker";
+import { EVMOS_DECIMALS } from "evmos-wallet";
+
 const Staking = ({
   item,
   setShow,
@@ -79,7 +81,7 @@ const Staking = ({
         )}
         <p>
           {item.balance !== ""
-            ? convertAndFormat(BigNumber.from(item.balance))
+            ? convertAndFormat(BigNumber.from(item.balance), EVMOS_DECIMALS, 6)
             : "0"}{" "}
           EVMOS
         </p>

@@ -53,19 +53,27 @@ const DropdownChainDeposit = ({
     return dropChainProps.placeholder;
   };
 
-  // TODO: it gets the prev value instead of the current
-  const { handlePreClickAction } = useTracker(CLICK_DEPOSIT_CHOOSE_FROM_CHAIN, {
-    chain: selectedValue?.chain,
-  });
+  function trackDepositChooseChain() {
+    const { handlePreClickAction } = useTracker(
+      CLICK_DEPOSIT_CHOOSE_FROM_CHAIN,
+      {
+        chain: selectedValue?.chain,
+      }
+    );
+    useEffect(() => {
+      if (selectedValue !== null) {
+        handlePreClickAction();
+      }
+    }, [selectedValue]);
+  }
 
-  // TODO: remove this @ts-ignore: Unreachable code error
-  // @ts-ignore: Unreachable code error
+  trackDepositChooseChain();
+
   const onItemClick = (option: DepositElement) => {
     setSelectedValue(option);
     dropChainProps.setChain(option);
     dropChainProps.setAddress("");
     dropChainProps.setToken(undefined);
-    handlePreClickAction();
   };
 
   return (

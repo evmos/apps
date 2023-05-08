@@ -27,7 +27,7 @@ export const CLICK_FEEDBACK_FOOTER = "Click on Footer Feedback";
 // assets
 export const CLICK_DEPOSIT_CHOOSE_FROM_CHAIN = "Deposit from chain";
 export const CLICK_DEPOSIT_CONFIRM_BUTTON = "Deposit confirm button";
-export const CLICK_WITHDRAW_TOKEN = "Withdraw token";
+export const CLICK_WITHDRAW_CHOOSE_TOKEN = "Withdraw token chosen";
 export const CLICK_WITHDRAW_CONFIRM_BUTTON = "Withdraw confirm button";
 export const CLICK_HIDE_ZERO_BALANCE = "Hide Zero Balance";
 export const CLICK_CTA_LINKS_REGISTER_TOKEN = "CTA Links > Register your token";

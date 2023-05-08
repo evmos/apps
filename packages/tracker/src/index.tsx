@@ -21,7 +21,7 @@ export { CLICK_FEEDBACK_FOOTER } from "./constants";
 // assets
 export { CLICK_DEPOSIT_CHOOSE_FROM_CHAIN } from "./constants";
 export { CLICK_DEPOSIT_CONFIRM_BUTTON } from "./constants";
-export { CLICK_WITHDRAW_TOKEN } from "./constants";
+export { CLICK_WITHDRAW_CHOOSE_TOKEN } from "./constants";
 export { CLICK_WITHDRAW_CONFIRM_BUTTON } from "./constants";
 export { CLICK_HIDE_ZERO_BALANCE } from "./constants";
 export { CLICK_CTA_LINKS_REGISTER_TOKEN } from "./constants";

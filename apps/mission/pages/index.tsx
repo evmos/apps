@@ -33,8 +33,10 @@ export default function Mission() {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
-          {/* TODO: add env variable */}
-          <MixpanelProvider config={{ debug: true, ip: false }} token="">
+          <MixpanelProvider
+            config={{ debug: true, ip: false }}
+            token={process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? ""}
+          >
             <>
               <HeadComponent />
               <GoogleAnalytics />

@@ -6,7 +6,8 @@
       "dependsOn": ["evmos-wallet#build"],
       "outputs": ["dist/**", ".next/**"],
       "env": [
-        "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID"
+        "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
+        "NEXT_PUBLIC_MIXPANEL_TOKEN"
       ]
     },
     "eslint-config-custom#build": {},

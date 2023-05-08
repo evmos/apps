@@ -8,13 +8,14 @@ export const useTracker = (event: string, properties?: Dict) => {
   const mixpanel = useMixpanel();
 
   const handlePreClickAction = () => {
+    // if mixpanel is not set, config will not exist. Avoid undefined error adding ?
     // TODO: remove this @ts-ignore: Unreachable code error
     // @ts-ignore: Unreachable code error
-    if (mixpanel.config.token) {
+    if (mixpanel?.config?.token) {
       // Check that a token was provided (useful if you have environments without Mixpanel)
       // TODO: remove this @ts-ignore: Unreachable code error
       // @ts-ignore: Unreachable code error
-      mixpanel.track(event, properties);
+      mixpanel?.track(event, properties);
     }
     return;
   };

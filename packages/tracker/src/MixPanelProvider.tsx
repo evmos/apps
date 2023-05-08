@@ -10,7 +10,7 @@ export const MixpanelProvider = ({
   children,
   config,
   //   name,
-  token = "",
+  token,
 }: {
   children: JSX.Element;
   config: any;
@@ -20,7 +20,6 @@ export const MixpanelProvider = ({
   config = Object.assign({}, defaults, config);
 
   mixpanel.init(token, config);
-  //   || process.env.REACT_APP_MIXPANEL_TOKEN
 
   return <Provider value={mixpanel}>{children}</Provider>;
 };

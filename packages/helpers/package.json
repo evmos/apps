@@ -1,6 +1,6 @@
 {
   "name": "helpers",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "sideEffects": [
     "**/*.css"
   ],
@@ -23,7 +23,6 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.26",
-    "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
     "postcss": "^8.4.20",
     "react": "^18.2.0",
@@ -32,21 +31,13 @@
     "jest-config-custom": "*",
     "tsup": "^6.1.3",
     "typescript": "^4.9.4",
-    "@typescript-eslint/eslint-plugin": "^5.46.1",
-    "@typescript-eslint/parser": "^5.46.1",
     "autoprefixer": "^10.4.13",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-jest": "^27.1.6",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-react": "^7.31.11",
     "prettier": "^2.8.1"
   },
   "depedencies": {
     "@types/node": "18.11.14",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
-    "eslint": "8.29.0",
-    "eslint-config-next": "13.0.6",
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",

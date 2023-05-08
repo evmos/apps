@@ -1,4 +1,3 @@
-
 <!--
 Guiding Principles:
 
@@ -37,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (workflow) #fse-512 | githug/workflows | Adding codeball
 - (tests) #fse-509 | apps/assets 1.0.2 apps/governance 1.0.2 apps/staking 1.0.2 packages/evmos-wallet 1.0.4 packages/helpers 1.0.2 packages/services 1.0.1 packages/ui-helpers 1.0.1 | Adding shared package for jest related configuration
 - (design) #229 | apps/staking 1.0.1 apps/assets 1.0.1 | Making design fixes so we don't have extra scrollbars
 - (improvements) #fse-487 | evmos-wallet 1.0.3 | Use preferNoSetFee while signing with Keplr and chain is Evmos

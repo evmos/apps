@@ -57,7 +57,7 @@ const StakingTable = ({
               {d.delegation.validator.description.moniker}
             </td>
             <td className="cols-span-1 font-light">
-              {formatNumber(convertFromAtto(d.balance.amount))} EVMOS
+              {formatNumber(convertFromAtto(d.balance.amount), 6)} EVMOS
             </td>
             <td className="cols-span-1 font-light">
               {formatNumber(
@@ -69,7 +69,8 @@ const StakingTable = ({
                         d.delegation.validator_address.toLowerCase()
                     )?.reward[0]?.amount ?? 0
                   )
-                )
+                ),
+                6
               )}{" "}
               EVMOS
             </td>

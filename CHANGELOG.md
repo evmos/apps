@@ -1,3 +1,4 @@
+
 <!--
 Guiding Principles:
 
@@ -37,12 +38,22 @@ Ref: https://keepachangelog.com/en/1.0.0/
 ## Unreleased
 
 - (design) #229 | apps/staking 1.0.1 apps/assets 1.0.1 | Making design fixes so we don't have extra scrollbars
-- (ci) #fse-413 | (apps)/_ 1.0.x | Adding CI/CD pipeline for apps
+- (tests) #fse-509 | apps/assets 1.0.2 apps/governance 1.0.2 apps/staking 1.0.2 packages/evmos-wallet 1.0.4 packages/helpers 1.0.2 packages/services 1.0.1 packages/ui-helpers 1.0.1 | Adding shared package for jest related configuration
+- (improvements) #fse-487 | evmos-wallet 1.0.3 | Use preferNoSetFee while signing with Keplr and chain is Evmos
+- (bug fixes) #fse-142 | apps/assets 1.0.1 | Change amount of decimals displayed: 6 instead of 2
+- (bug fixes) #fse-142 | apps/mission 1.0.1 | Display tooltip on topBarMissionControl with 6 decimals amount if amount is bigger than 0
+- (bug fixes) #fse-142 | apps/mission 1.0.1 | Change amount of decimals displayed: 6 instead of 2
+- (bug fixes) #fse-142 | apps/staking 1.0.1 | Change amount of decimals displayed: 6 instead of 2
+- (bug fixes) #fse-142 | apps/staking 1.0.1 | Display tooltip on topBarStaking with 6 decimals amount if amount is bigger than 0
+- (bug fixes) #fse-142 | packages/helpers 1.0.1 | Create function for display TopBar Tooltip
+- (chore) #fse-142 | evmos-wallet 1.0.2 | Export EVMOS_DECIMALS
 - (bug) #fse-400 | root config | Updating the dev workflow to avoid errors when running `yarn dev`
+- (bug fixes) #fse-481 | evmos-wallet 1.0.1 | Show connected snackbar only if the user clicks on Connect Wallet
+- (ci) #fse-413 | (apps)/_ 1.0.x | Adding CI/CD pipeline for apps
+- (chore) #fse-503 | (/) Add production build script | (apps|mission) add script to copy _redirects file depending on environment
 
-...
+
 
 ## 1.0.0 - 2023-04-28
 
-- (chore) #fse-306 | (apps|packages)/\* 1.0.0 | Adding changelog file, updating Licenses and versions in each packages
-
+- (chore) #fse-306 | apps/_ 1.0.0 packages/_ 1.0.0 | Adding changelog file, updating Licenses and versions in each packages

@@ -52,28 +52,14 @@ const DropdownChainDeposit = ({
     }
     return dropChainProps.placeholder;
   };
-
-  function trackDepositChooseChain() {
-    const { handlePreClickAction } = useTracker(
-      CLICK_DEPOSIT_CHOOSE_FROM_CHAIN,
-      {
-        chain: selectedValue?.chain,
-      }
-    );
-    useEffect(() => {
-      if (selectedValue !== null) {
-        handlePreClickAction();
-      }
-    }, [selectedValue]);
-  }
-
-  trackDepositChooseChain();
+  const { handlePreClickAction } = useTracker(CLICK_DEPOSIT_CHOOSE_FROM_CHAIN);
 
   const onItemClick = (option: DepositElement) => {
     setSelectedValue(option);
     dropChainProps.setChain(option);
     dropChainProps.setAddress("");
     dropChainProps.setToken(undefined);
+    handlePreClickAction({ chain: option.chain });
   };
 
   return (

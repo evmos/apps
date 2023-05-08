@@ -50,18 +50,7 @@ const DropdownTokens = ({
     return placeholder;
   };
 
-  function trackChosenToken() {
-    const { handlePreClickAction } = useTracker(CLICK_WITHDRAW_CHOOSE_TOKEN, {
-      tokenSelected: selectedValue?.symbol,
-    });
-    useEffect(() => {
-      if (selectedValue !== null) {
-        handlePreClickAction();
-      }
-    }, [selectedValue]);
-  }
-
-  trackChosenToken();
+  const { handlePreClickAction } = useTracker(CLICK_WITHDRAW_CHOOSE_TOKEN);
 
   const onItemClick = (option: TableDataElement) => {
     setSelectedValue(option);
@@ -70,6 +59,7 @@ const DropdownTokens = ({
     setValue("");
     // TODO: is it right to set as undefined?
     setChain(undefined);
+    handlePreClickAction({ tokenSelected: selectedValue?.symbol });
   };
 
   return (

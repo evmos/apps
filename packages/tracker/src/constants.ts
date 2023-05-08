@@ -23,6 +23,7 @@ export const CLICK_WC_CONNECTED_WITH = "Wallet Connection - Connected with";
 export const CLICK_BACK_TO_MC = "Back to Mission Control";
 export const CLICK_EVMOS_LOGO = "Click on Evmos Logo";
 export const CLICK_FEEDBACK_FOOTER = "Click on Footer Feedback";
+export const SWITCH_BETWEEN_WALLETS = "Switching between wallets";
 
 // assets
 export const CLICK_DEPOSIT_CHOOSE_FROM_CHAIN = "Deposit from chain";

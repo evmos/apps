@@ -12,7 +12,7 @@ import {
   COMMONWEALTH_URL,
 } from "constants-helper";
 import { Navigation } from "ui-helpers";
-import { CLICK_BACK_TO_MC, CLICK_BACK_TO_GOVERNANCE } from "tracker";
+import { CLICK_BACK_TO_MC } from "tracker";
 import { useTracker } from "tracker";
 
 const BannerBlack = dynamic(() => import("../common/banners/BannerBlack"));
@@ -29,20 +29,19 @@ const Content = () => {
     id !== undefined ? (id as string) : ""
   );
 
+  const { handlePreClickAction } = useTracker(CLICK_BACK_TO_MC);
+
   const drawNavigation = useCallback(() => {
     let href = EVMOS_PAGE_URL;
     let text = NAV_TO_MISSION_CONTROL;
-    let eventName = CLICK_BACK_TO_MC;
     if (id !== undefined) {
       href = "/";
       text = NAV_TO_GOVERNANCE;
-      eventName = CLICK_BACK_TO_GOVERNANCE;
     }
-    const { handlePreClickAction } = useTracker(eventName);
     return (
       <Navigation href={href} text={text} onClick={handlePreClickAction} />
     );
-  }, [id]);
+  }, [id, handlePreClickAction]);
 
   return (
     <div>

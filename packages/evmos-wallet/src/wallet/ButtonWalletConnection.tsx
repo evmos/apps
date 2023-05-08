@@ -41,6 +41,7 @@ import {
   CLICK_WC_CONNECT_WALLET_BUTTON,
   CLICK_WC_DISCONNECT_WALLET_BUTTON,
   CLICK_WC_CONNECTED_WITH,
+  SWITCH_BETWEEN_WALLETS,
   useTracker,
 } from "tracker";
 // Components
@@ -108,6 +109,36 @@ export const ButtonWalletConnection = ({
   const { handlePreClickAction: trackConnectedWithWallet } = useTracker(
     CLICK_WC_CONNECTED_WITH
   );
+
+  const { handlePreClickAction: trackChangeWallet } = useTracker(
+    SWITCH_BETWEEN_WALLETS
+  );
+  // TODO: Shouldn't trigger this if it's the first load or if it's the same address as the last time
+  const [currentWallet, setCurrentWallet] = useState("");
+
+  useEffect(() => {
+    // tracking address changes
+    if (METAMASK_KEY === GetProviderFromLocalStorage()) {
+      if (walletExtension.evmosAddressEthFormat !== currentWallet) {
+        trackChangeWallet({
+          provider: walletExtension.extensionName,
+          wallet: walletExtension.evmosAddressEthFormat,
+        });
+        setCurrentWallet(walletExtension.evmosAddressEthFormat);
+      }
+    }
+
+    if (KEPLR_KEY === GetProviderFromLocalStorage()) {
+      if (walletExtension.evmosAddressEthFormat !== currentWallet) {
+        trackChangeWallet({
+          provider: walletExtension.extensionName,
+          wallet: walletExtension.evmosAddressEthFormat,
+        });
+        setCurrentWallet(walletExtension.evmosAddressEthFormat);
+      }
+    }
+  }, [walletExtension]);
+
   return walletExtension.active === true ? (
     <>
       <button

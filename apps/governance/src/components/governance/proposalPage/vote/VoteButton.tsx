@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { EVMOS_SYMBOL } from "evmos-wallet";
 import { Modal, ErrorMessage, ConfirmButton } from "ui-helpers";
 import { useVote } from "../../modals/hooks/useVote";

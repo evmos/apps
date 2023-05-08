@@ -17,6 +17,8 @@ const ContainerProposals = ({
   loading: boolean;
   error: unknown;
 }) => {
+  const { handlePreClickAction } = useTracker(CLICK_GOVERNANCE_PROPOSAL);
+
   const drawProposals = useCallback(() => {
     if (loading) {
       return <BannerMessages text="Loading..." spinner={true} />;
@@ -25,9 +27,6 @@ const ContainerProposals = ({
       return <BannerMessages text="No results" />;
     }
     return proposals.map((proposal) => {
-      const { handlePreClickAction } = useTracker(CLICK_GOVERNANCE_PROPOSAL, {
-        proposal_id: proposal.id,
-      });
       return (
         <Link
           key={proposal.id}
@@ -35,13 +34,17 @@ const ContainerProposals = ({
             pathname: "/",
             query: { id: proposal.id },
           }}
-          onClick={handlePreClickAction}
+          onClick={() => {
+            handlePreClickAction({
+              proposal_id: proposal.id,
+            });
+          }}
         >
           <ProposalCard proposalProps={proposal} />
         </Link>
       );
     });
-  }, [proposals, loading, error]);
+  }, [proposals, loading, error, handlePreClickAction]);
 
   return (
     <section className="grid grid-flow-row grid-cols-1 gap-4 px-4 md:px-0 lg:grid-cols-2">

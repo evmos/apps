@@ -17,6 +17,6 @@ export const useRewards = (value: WalletExtension, totalRewards: number) => {
     handlePreClickAction();
     const res = await executeRewards(value);
     dispatch(snackExecuteIBCTransfer(res));
-  }, [dispatch, value, totalRewards]);
+  }, [dispatch, value, handlePreClickAction]);
   return { handleConfirmButton };
 };

@@ -1,8 +1,7 @@
-import React, { createContext, useContext } from "react";
-// TODO: que valor por defecto le pongo?
-// TODO: remove this @ts-ignore: Unreachable code error
-// @ts-ignore: Unreachable code error
-const context = createContext();
+import { OverridedMixpanel } from "mixpanel-browser";
+import { createContext, useContext } from "react";
+
+const context = createContext<OverridedMixpanel | null>(null);
 export default context;
 
 export const Consumer = context.Consumer;

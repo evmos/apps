@@ -1,4 +1,4 @@
-import mixpanel from "mixpanel-browser";
+import mixpanel, { Config } from "mixpanel-browser";
 
 import { Provider } from "./context/mixpanel";
 
@@ -9,12 +9,10 @@ const defaults = {
 export const MixpanelProvider = ({
   children,
   config,
-  //   name,
   token,
 }: {
   children: JSX.Element;
-  config: any;
-  //   name: string;
+  config: Partial<Config>;
   token: string;
 }) => {
   config = Object.assign({}, defaults, config);

@@ -38,7 +38,7 @@ const AppsContainer = () => {
         divRefCurrent.removeEventListener("scroll", handleScroll);
       }
     };
-  }, [percentageScrolled]);
+  }, [percentageScrolled, handlePreClickAction]);
   return (
     <div
       ref={divRef}

@@ -51,23 +51,15 @@ const TabsDropdown = ({
     );
   }, [content, selectedValue]);
 
-  function trackChosenTab() {
-    const { handlePreClickAction } = useTracker(CLICK_TABS_STAKING_OPTIONS, {
-      tabSelected: selectedValue,
-    });
-    useEffect(() => {
-      if (selectedValue !== null) {
-        handlePreClickAction();
-      }
-    }, [selectedValue]);
-  }
-
-  trackChosenTab();
+  const { handlePreClickAction } = useTracker(CLICK_TABS_STAKING_OPTIONS);
 
   const onItemClick = useCallback(
     (option: tabContent) => {
       setSelectedValue(option.title);
       setActiveTab(option.id);
+      handlePreClickAction({
+        tabSelected: selectedValue,
+      });
     },
     [setActiveTab]
   );

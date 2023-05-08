@@ -38,7 +38,9 @@
     "evmos-wallet#dev": {
       "dependsOn": ["icons#dev", "ui-helpers#dev"]
     },
-    "lint": {},
+    "lint": {
+      "cache": false
+    },
     "check-types": {},
     "dev": {
       "cache": false,

@@ -6,9 +6,4 @@ const shared = require("./shared");
 /** @type {import('eslint').Linter} */
 module.exports = {
   ...shared,
-  parserOptions: {
-      babelOptions: {
-          presets: [require.resolve("next/babel")],
-      },
-  },
 };

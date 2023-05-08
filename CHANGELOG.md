@@ -36,7 +36,6 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
-- (workflow) #fse-511 | github/workflows | removing build from linting
 - (workflow) #fse-511 | apps/mission 1.0.3 | Ignoring _redirects from git
 - (workflow) #fse-512 | github/workflows | Adding codeball
 - (tests) #fse-509 | apps/assets 1.0.2 apps/governance 1.0.2 apps/staking 1.0.2 packages/evmos-wallet 1.0.4 packages/helpers 1.0.2 packages/services 1.0.1 packages/ui-helpers 1.0.1 | Adding shared package for jest related configuration

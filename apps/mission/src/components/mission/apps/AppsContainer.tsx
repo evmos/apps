@@ -4,37 +4,41 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MISSION_CONTROL_DATA } from "./AppsData";
-import { useEffect, useRef } from "react";
-import metrics from "../LocalTracker";
-import { MC_SCROLL_ECOSYSTEM } from "tracker";
+import { useEffect, useRef, useState } from "react";
+import { LISTEN_MC_SCROLL_ECOSYSTEM, useTracker } from "tracker";
 
 const AppsContainer = () => {
   const divRef = useRef<HTMLDivElement>(null);
-
+  const [percentageScrolled, setPercentageScrolled] = useState(0);
+  const { handlePreClickAction } = useTracker(LISTEN_MC_SCROLL_ECOSYSTEM, {
+    percentageScrolled: percentageScrolled,
+  });
   useEffect(() => {
+    const divRefCurrent = divRef.current;
     function handleScroll() {
-      if (divRef.current === null) {
+      if (divRefCurrent === null) {
         return;
       }
 
-      const { scrollTop, scrollHeight, clientHeight } = divRef.current;
+      const { scrollTop, scrollHeight, clientHeight } = divRefCurrent;
       const percentageScrolled = Math.floor(
         (scrollTop / (scrollHeight - clientHeight)) * 100
       );
+      setPercentageScrolled(percentageScrolled);
 
-      metrics?.track(MC_SCROLL_ECOSYSTEM, { percentageScrolled });
+      handlePreClickAction();
     }
 
-    if (divRef.current !== null) {
-      divRef.current.addEventListener("scroll", handleScroll);
+    if (divRefCurrent !== null) {
+      divRefCurrent.addEventListener("scroll", handleScroll);
     }
 
     return () => {
-      if (divRef.current !== null) {
-        divRef.current.removeEventListener("scroll", handleScroll);
+      if (divRefCurrent !== null) {
+        divRefCurrent.removeEventListener("scroll", handleScroll);
       }
     };
-  }, []);
+  }, [percentageScrolled]);
   return (
     <div
       ref={divRef}

@@ -4,11 +4,11 @@
 import dynamic from "next/dynamic";
 import { useState } from "react";
 
-import { Footer } from "ui-helpers";
 const Content = dynamic(() => import("../mission/Content"));
 const SideBar = dynamic(() => import("./Sidebar/Sidebar"));
 const SidebarMobile = dynamic(() => import("./Sidebar/SidebarMobile"));
 import { StatefulHeader } from "./StatefulHeader";
+import { StatefulFooter } from "./StatefulFooter";
 const MainContainer = () => {
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -33,7 +33,7 @@ const MainContainer = () => {
           <div className="container mx-auto mb-auto overflow-auto">
             <Content />
           </div>
-          <Footer />
+          <StatefulFooter />
         </div>
       </div>
     </>

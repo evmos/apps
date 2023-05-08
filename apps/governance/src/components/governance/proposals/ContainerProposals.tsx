@@ -6,6 +6,7 @@ import { useCallback } from "react";
 import { ProposalProps } from "../../../internal/governance/functionality/types";
 import { BannerMessages } from "ui-helpers";
 import ProposalCard from "./ProposalCard";
+import { CLICK_GOVERNANCE_PROPOSAL, useTracker } from "tracker";
 
 const ContainerProposals = ({
   proposals,
@@ -24,6 +25,9 @@ const ContainerProposals = ({
       return <BannerMessages text="No results" />;
     }
     return proposals.map((proposal) => {
+      const { handlePreClickAction } = useTracker(CLICK_GOVERNANCE_PROPOSAL, {
+        proposal_id: proposal.id,
+      });
       return (
         <Link
           key={proposal.id}
@@ -31,6 +35,7 @@ const ContainerProposals = ({
             pathname: "/",
             query: { id: proposal.id },
           }}
+          onClick={handlePreClickAction}
         >
           <ProposalCard proposalProps={proposal} />
         </Link>

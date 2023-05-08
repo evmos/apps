@@ -9,6 +9,8 @@ import { DropdownArrow } from "icons";
 
 import { DepositElement } from "../modals/transactions/DepositSTR";
 import { DropdownChainsDepositProps } from "./types";
+import { CLICK_DEPOSIT_CHOOSE_FROM_CHAIN, useTracker } from "tracker";
+
 const DropdownChainDeposit = ({
   dropChainProps,
 }: {
@@ -51,11 +53,19 @@ const DropdownChainDeposit = ({
     return dropChainProps.placeholder;
   };
 
+  // TODO: it gets the prev value instead of the current
+  const { handlePreClickAction } = useTracker(CLICK_DEPOSIT_CHOOSE_FROM_CHAIN, {
+    chain: selectedValue?.chain,
+  });
+
+  // TODO: remove this @ts-ignore: Unreachable code error
+  // @ts-ignore: Unreachable code error
   const onItemClick = (option: DepositElement) => {
     setSelectedValue(option);
     dropChainProps.setChain(option);
     dropChainProps.setAddress("");
     dropChainProps.setToken(undefined);
+    handlePreClickAction();
   };
 
   return (
@@ -70,7 +80,9 @@ const DropdownChainDeposit = ({
               if (option.chain !== EVMOS_SYMBOL) {
                 return (
                   <div
-                    onClick={() => onItemClick(option)}
+                    onClick={() => {
+                      onItemClick(option);
+                    }}
                     key={option.chain}
                     className={`flex cursor-pointer justify-between space-x-8 p-3 font-bold hover:bg-gray
                   `}

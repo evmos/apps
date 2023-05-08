@@ -28,11 +28,14 @@ import {
   EVMOS_SYMBOL,
   StoreType,
 } from "evmos-wallet";
+import { CLICK_DEPOSIT_CONFIRM_BUTTON, useTracker } from "tracker";
 export const useDeposit = (useDepositProps: DepositProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
+  const { handlePreClickAction } = useTracker(CLICK_DEPOSIT_CONFIRM_BUTTON);
 
   const handleConfirmButton = async () => {
+    handlePreClickAction();
     useDepositProps.setConfirmClicked(true);
     if (wallet.osmosisPubkey === null) {
       dispatch(snackRequestRejected());

@@ -5,6 +5,7 @@ import { ButtonWalletConnection, StoreType } from "evmos-wallet";
 import { useDispatch, useSelector } from "react-redux";
 import { Header } from "ui-helpers";
 import { Dispatch, SetStateAction } from "react";
+import { CLICK_EVMOS_LOGO, useTracker } from "tracker";
 export const StatefulHeader = ({
   pageName,
   setShowSidebar,
@@ -14,6 +15,8 @@ export const StatefulHeader = ({
 }) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
+
+  const { handlePreClickAction } = useTracker(CLICK_EVMOS_LOGO);
   return (
     <Header
       pageName={pageName}
@@ -21,6 +24,7 @@ export const StatefulHeader = ({
       walletConnectionButton={
         <ButtonWalletConnection walletExtension={wallet} dispatch={dispatch} />
       }
+      onClick={handlePreClickAction}
     />
   );
 };

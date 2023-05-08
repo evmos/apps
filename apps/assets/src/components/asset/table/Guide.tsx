@@ -5,7 +5,9 @@ import Link from "next/link";
 import { QuestionMarkIcon } from "icons";
 import AssetsGuide from "../modals/AssetsGuide";
 
+import { CLICK_CTA_LINKS_REGISTER_TOKEN, useTracker } from "tracker";
 const Guide = () => {
+  const { handlePreClickAction } = useTracker(CLICK_CTA_LINKS_REGISTER_TOKEN);
   return (
     <div className="flex items-center space-x-3 text-pearl">
       <QuestionMarkIcon width={20} height={20} />
@@ -16,6 +18,7 @@ const Guide = () => {
           rel="noopener noreferrer"
           className="text-red"
           target="_blank"
+          onClick={handlePreClickAction}
         >
           register your token
         </Link>{" "}

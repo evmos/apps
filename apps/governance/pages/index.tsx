@@ -18,7 +18,7 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TermOfServices, Container, Footer } from "ui-helpers";
+import { TermOfServices, Container } from "ui-helpers";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -28,31 +28,35 @@ function SnackbarsInternal() {
 import { StatefulHeader } from "../src/components/StatefulHeader";
 import { HeadComponent } from "../src/components/governance/HeadComponent";
 import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
+import { StatefulFooter } from "../src/components/StatefulFooter";
 const Content = dynamic(() => import("../src/components/governance/Content"));
-
+import { MixpanelProvider } from "tracker";
 export default function Home() {
   const queryClient = new QueryClient();
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
-          <>
-            <HeadComponent />
-            <GoogleAnalytics />
-            <main>
-              <TermOfServices />
-              <Container>
-                <>
-                  <SnackbarsInternal />
-                  <StatefulHeader pageName="Governance" />
-                  <div className="container mx-auto mb-auto overflow-auto">
-                    <Content />
-                  </div>
-                  <Footer />
-                </>
-              </Container>
-            </main>
-          </>
+          {/* TODO: add env variable */}
+          <MixpanelProvider config={{ debug: true, ip: false }} token="">
+            <>
+              <HeadComponent />
+              <GoogleAnalytics />
+              <main>
+                <TermOfServices />
+                <Container>
+                  <>
+                    <SnackbarsInternal />
+                    <StatefulHeader pageName="Governance" />
+                    <div className="container mx-auto mb-auto overflow-auto">
+                      <Content />
+                    </div>
+                    <StatefulFooter />
+                  </>
+                </Container>
+              </main>
+            </>
+          </MixpanelProvider>
         </WagmiConfig>
       </QueryClientProvider>
       <Web3Modal

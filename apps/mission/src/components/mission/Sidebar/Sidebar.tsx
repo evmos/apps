@@ -4,41 +4,27 @@
 import Link from "next/link";
 import { GaugeIcon, Coins, GrilledSteak, HandShakeIcon } from "icons";
 import SideBarItem, { SideBarEntry } from "./SidebarItem";
-import metrics from "../LocalTracker";
-import { REDIRECTS_MC } from "tracker";
 
 const sideBarItems: SideBarEntry[] = [
   {
     title: "Mission Control",
     icon: <GaugeIcon height={32} width={32} />,
     path: "/",
-    handlePreClickAction: () => {
-      return metrics?.track(REDIRECTS_MC, { page: "/" });
-    },
   },
   {
     title: "Assets",
     icon: <Coins height={32} width={32} />,
     path: "/assets",
-    handlePreClickAction: () => {
-      return metrics?.track(REDIRECTS_MC, { page: "/assets" });
-    },
   },
   {
     title: "Staking",
     icon: <GrilledSteak height={32} width={32} />,
     path: "/staking",
-    handlePreClickAction: () => {
-      return metrics?.track(REDIRECTS_MC, { page: "/staking" });
-    },
   },
   {
     title: "Governance",
     icon: <HandShakeIcon height={32} width={32} />,
     path: "/governance",
-    handlePreClickAction: () => {
-      return metrics?.track(REDIRECTS_MC, { page: "/governance" });
-    },
   },
 ];
 

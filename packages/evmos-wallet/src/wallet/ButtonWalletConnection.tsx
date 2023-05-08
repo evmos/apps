@@ -37,7 +37,12 @@ import {
   useWalletConnect,
 } from "../internal/wallet/functionality/walletconnect/walletconnect";
 import { Tooltip } from "ui-helpers";
-
+import {
+  CLICK_WC_CONNECT_WALLET_BUTTON,
+  CLICK_WC_DISCONNECT_WALLET_BUTTON,
+  CLICK_WC_CONNECTED_WITH,
+  useTracker,
+} from "tracker";
 // Components
 import { Button } from "ui-helpers";
 
@@ -92,6 +97,17 @@ export const ButtonWalletConnection = ({
 
   const [isCopied, setIsCopied] = useState(false);
 
+  const { handlePreClickAction: trackClickConnectWallet } = useTracker(
+    CLICK_WC_CONNECT_WALLET_BUTTON
+  );
+  const { handlePreClickAction: trackClickDisconnectWallet } = useTracker(
+    CLICK_WC_DISCONNECT_WALLET_BUTTON,
+    { provider: walletExtension.extensionName }
+  );
+
+  const { handlePreClickAction: trackConnectedWithWallet } = useTracker(
+    CLICK_WC_CONNECTED_WITH
+  );
   return walletExtension.active === true ? (
     <>
       <button
@@ -164,6 +180,7 @@ export const ButtonWalletConnection = ({
             <button
               className="w-full rounded font-bold uppercase border border-darkPearl hover:bg-grayOpacity p-3 mt-3"
               onClick={() => {
+                trackClickDisconnectWallet();
                 disconnectWallets(dispatch);
                 setShow(false);
                 setIsCopied(false);
@@ -177,7 +194,12 @@ export const ButtonWalletConnection = ({
     </>
   ) : (
     <div className="flex justify-center">
-      <Button onClick={open}>
+      <Button
+        onClick={() => {
+          setShow(true);
+          trackClickConnectWallet();
+        }}
+      >
         <div className="flex items-center space-x-2 ">
           <WalletIcon />
           <span>Connect wallet</span>
@@ -195,6 +217,8 @@ export const ButtonWalletConnection = ({
                 disconnectWallets(dispatch);
                 const keplr = new Keplr(store);
                 await keplr.connect();
+                // TODO: how do I pass the provider?
+                trackConnectedWithWallet();
               }}
             >
               <ContentModalConnect>
@@ -209,6 +233,8 @@ export const ButtonWalletConnection = ({
                 disconnectWallets(dispatch);
                 const metamask = new Metamask(store);
                 await metamask.connect();
+                // TODO: how do I pass the provider?
+                trackConnectedWithWallet();
               }}
             >
               <ContentModalConnect>
@@ -221,6 +247,8 @@ export const ButtonWalletConnection = ({
               onClick={async () => {
                 setShow(false);
                 await useWC.connect();
+                // TODO: how do I pass the provider?
+                trackConnectedWithWallet();
               }}
             >
               <ContentModalConnect>

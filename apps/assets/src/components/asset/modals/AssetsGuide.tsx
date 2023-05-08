@@ -3,11 +3,12 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
-
+import { CLICK_CTA_LINKS_ASSETS_GUIDE, useTracker } from "tracker";
 const ModalAsset = dynamic(() => import("./ModalAsset"));
 
 const AssetsGuide = () => {
   const [show, setShow] = useState(false);
+  const { handlePreClickAction } = useTracker(CLICK_CTA_LINKS_ASSETS_GUIDE);
   const modalContent = (
     <div className="space-y-5">
       <h5 className="text-2xl font-bold">Asset Guides</h5>
@@ -38,6 +39,7 @@ const AssetsGuide = () => {
       <span
         onClick={() => {
           setShow(true);
+          handlePreClickAction();
         }}
         className="cursor-pointer text-red"
       >

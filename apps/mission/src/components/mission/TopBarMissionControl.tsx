@@ -7,9 +7,7 @@ import { convertFromAtto, amountToDollars } from "helpers";
 
 import { useHeaderInfo } from "../../internal/functionality/hooks/useHeaderInfo";
 import useAssetsTopBar from "../../internal/functionality/hooks/useAssetsTopBar";
-import { useCallback } from "react";
-import metrics from "./LocalTracker";
-import { MC_TOTAL_STAKED } from "tracker";
+import { CLICK_MC_TOTAL_STAKED_TOPBAR, useTracker } from "tracker";
 const TopBarMissionControl = () => {
   const { totalStaked, totalRewards } = useHeaderInfo();
   const { totalAssets, evmosPrice, totalEvmosAsset } = useAssetsTopBar();
@@ -21,9 +19,8 @@ const TopBarMissionControl = () => {
     Number(evmosPrice)
   );
 
-  const handlePreClickAction = useCallback(() => {
-    return metrics?.track(MC_TOTAL_STAKED);
-  }, []);
+  const { handlePreClickAction } = useTracker(CLICK_MC_TOTAL_STAKED_TOPBAR);
+
   return (
     <TopBarContainer>
       <>

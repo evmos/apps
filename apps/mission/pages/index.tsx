@@ -21,7 +21,7 @@ import { Container, TermOfServices } from "ui-helpers";
 import MainContainer from "../src/components/mission/MainContainer";
 import { HeadComponent } from "../src/components/mission/HeadComponent";
 import { GoogleAnalytics } from "../src/components/mission/GoogleAnalytics";
-
+import { MixpanelProvider } from "tracker";
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();
@@ -33,19 +33,22 @@ export default function Mission() {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
-          <>
-            <HeadComponent />
-            <GoogleAnalytics />
-            <main>
-              <TermOfServices />
-              <Container>
-                <>
-                  <SnackbarsInternal />
-                  <MainContainer />
-                </>
-              </Container>
-            </main>
-          </>
+          {/* TODO: add env variable */}
+          <MixpanelProvider config={{ debug: true, ip: false }} token="">
+            <>
+              <HeadComponent />
+              <GoogleAnalytics />
+              <main>
+                <TermOfServices />
+                <Container>
+                  <>
+                    <SnackbarsInternal />
+                    <MainContainer />
+                  </>
+                </Container>
+              </main>
+            </>
+          </MixpanelProvider>
         </WagmiConfig>
       </QueryClientProvider>
       <Web3Modal

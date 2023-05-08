@@ -3,21 +3,23 @@
 
 import Link from "next/link";
 import { CommonWealthIcon } from "icons";
-import { MC_DISCUSSION, MC_DOCS, MC_VOTE } from "tracker";
-import { useCallback } from "react";
-import metrics from "../LocalTracker";
+import {
+  CLICK_MC_GOVERNANCE_DISCUSSION_BUTTON,
+  CLICK_MC_GOVERNANCE_DOCS_BUTTON,
+  CLICK_MC_GOVERNANCE_VOTE_BUTTON,
+  useTracker,
+} from "tracker";
+
 const Header = () => {
-  const votePreClickAction = useCallback(() => {
-    return metrics?.track(MC_VOTE);
-  }, []);
-
-  const docsPreClickAction = useCallback(() => {
-    return metrics?.track(MC_DOCS);
-  }, []);
-
-  const discussionPreClickAction = useCallback(() => {
-    return metrics?.track(MC_DISCUSSION);
-  }, []);
+  const { handlePreClickAction: trackVoteClick } = useTracker(
+    CLICK_MC_GOVERNANCE_VOTE_BUTTON
+  );
+  const { handlePreClickAction: trackDocsClick } = useTracker(
+    CLICK_MC_GOVERNANCE_DOCS_BUTTON
+  );
+  const { handlePreClickAction: trackDiscussionClick } = useTracker(
+    CLICK_MC_GOVERNANCE_DISCUSSION_BUTTON
+  );
 
   return (
     <div className="mb-6 flex w-full justify-between">
@@ -33,7 +35,7 @@ const Header = () => {
           {/* TODO: use button component */}
           <div
             className="flex justify-center rounded border border-pearl p-2 font-[GreyCliff] text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity"
-            onClick={votePreClickAction}
+            onClick={trackVoteClick}
           >
             <span>VOTE</span>
           </div>
@@ -47,7 +49,7 @@ const Header = () => {
           {/* TODO: use button component */}
           <div
             className="flex justify-center rounded border border-pearl p-2 font-[GreyCliff] text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity"
-            onClick={docsPreClickAction}
+            onClick={trackDocsClick}
           >
             <span>DOCS</span>
           </div>
@@ -61,7 +63,7 @@ const Header = () => {
           {/* TODO: use button component */}
           <div
             className="flex justify-center rounded border border-pearl p-2 font-[GreyCliff] text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity"
-            onClick={discussionPreClickAction}
+            onClick={trackDiscussionClick}
           >
             <CommonWealthIcon width={16} height={16} />
             <span>DISCUSSION</span>

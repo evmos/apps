@@ -12,7 +12,11 @@ import {
   CommonWealthIcon,
 } from "icons";
 
-export const Footer = () => {
+export const Footer = ({
+  onClickFeedback,
+}: {
+  onClickFeedback?: React.MouseEventHandler<HTMLAnchorElement>;
+}) => {
   return (
     <footer className=" mb-10 mt-10 flex w-full flex-col items-center space-y-2 text-pearl xl:justify-between">
       <div className="flex items-center space-x-5">
@@ -85,6 +89,7 @@ export const Footer = () => {
             rel="noreferrer"
             href="https://evmos.canny.io/feedback"
             aria-label="feedback"
+            onClick={onClickFeedback}
           >
             Feedback
           </Link>

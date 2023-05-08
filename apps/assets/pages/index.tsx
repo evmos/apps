@@ -15,12 +15,14 @@ import {
   StoreType,
   getAllSnackbars,
 } from "evmos-wallet";
-import { Footer, Container, TermOfServices } from "ui-helpers";
+import { Container, TermOfServices } from "ui-helpers";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
 import { StatefulHeader } from "../src/StatefulHeader";
 import { HeadComponent } from "../src/components/asset/HeadComponent";
 import { GoogleAnalytics } from "../src/components/asset/GoogleAnalytics";
+import { StatefulFooter } from "../src/StatefulFooter";
+import { MixpanelProvider } from "tracker";
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();
@@ -32,23 +34,26 @@ export default function Home() {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
-          <>
-            <HeadComponent />
-            <GoogleAnalytics />
-            <main>
-              <TermOfServices />
-              <Container>
-                <>
-                  <SnackbarsInternal />
-                  <StatefulHeader pageName="Assets" />
-                  <div className="container mx-auto mb-auto overflow-auto">
-                    <AssetsTable />
-                  </div>
-                  <Footer />
-                </>
-              </Container>
-            </main>
-          </>
+          {/* TODO: add env variable */}
+          <MixpanelProvider config={{ debug: true, ip: false }} token="">
+            <>
+              <HeadComponent />
+              <GoogleAnalytics />
+              <main>
+                <TermOfServices />
+                <Container>
+                  <>
+                    <SnackbarsInternal />
+                    <StatefulHeader pageName="Assets" />
+                    <div className="container mx-auto mb-auto overflow-auto">
+                      <AssetsTable />
+                    </div>
+                    <StatefulFooter />
+                  </>
+                </Container>
+              </main>
+            </>
+          </MixpanelProvider>
         </WagmiConfig>
       </QueryClientProvider>
 

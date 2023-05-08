@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 import { CloseIcon, Logo } from "icons";
 import SideBar from "./Sidebar";
 import { EVMOS_PAGE_URL } from "constants-helper";
+import { useTracker, CLICK_EVMOS_LOGO } from "tracker";
 const SidebarMobile = ({
   showSidebar,
   setShowSidebar,
@@ -16,6 +17,7 @@ const SidebarMobile = ({
   const handleOnClick = () => {
     setShowSidebar(false);
   };
+  const { handlePreClickAction } = useTracker(CLICK_EVMOS_LOGO);
   return (
     <div
       className={`fixed inset-0 z-50 bg-blackOpacity ${
@@ -29,6 +31,7 @@ const SidebarMobile = ({
             rel="noreferrer"
             className="xl:pr-14"
             aria-label="home"
+            onClick={handlePreClickAction}
           >
             <Logo className="h-20 w-32 text-pearl xl:w-36" />
           </Link>

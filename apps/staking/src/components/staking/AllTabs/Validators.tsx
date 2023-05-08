@@ -56,6 +56,7 @@ const Validators = () => {
           validatorAddress: item.validator.operator_address,
         }}
         setShow={setShow}
+        tab="Validators"
       />
     );
   }, []);

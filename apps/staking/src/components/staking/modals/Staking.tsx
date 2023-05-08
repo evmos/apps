@@ -11,17 +11,39 @@ import { Delegate } from "./transactions/Delegate";
 import { Redelegate } from "./transactions/Redelegate";
 import { Undelegate } from "./transactions/Undelegate";
 import { convertAndFormat, formatPercentage } from "helpers";
-
+import {
+  CLICK_BUTTON_MANAGE_DELEGATE,
+  CLICK_BUTTON_MANAGE_UNDELEGATE,
+  CLICK_BUTTON_MANAGE_REDELEGATE,
+  useTracker,
+} from "tracker";
 const Staking = ({
   item,
   setShow,
+  tab,
 }: {
   item: ModalDelegate;
   setShow: Dispatch<SetStateAction<boolean>>;
+  tab: string;
 }) => {
   const [showDelegate, setShowDelegate] = useState(false);
   const [showRedelegate, setShowRedelegate] = useState(false);
   const [showUndelegate, setShowUndelegate] = useState(false);
+
+  const { handlePreClickAction: trackClickManageUndelegate } = useTracker(
+    CLICK_BUTTON_MANAGE_UNDELEGATE,
+    { tabSelected: tab }
+  );
+
+  const { handlePreClickAction: trackClickManageDelegate } = useTracker(
+    CLICK_BUTTON_MANAGE_DELEGATE,
+    { tabSelected: tab }
+  );
+
+  const { handlePreClickAction: trackClickManageRedelegate } = useTracker(
+    CLICK_BUTTON_MANAGE_REDELEGATE,
+    { tabSelected: tab }
+  );
   return (
     <div className="space-y-4">
       <div>
@@ -108,6 +130,7 @@ const Staking = ({
           <SmallButton
             text="UNDELEGATE"
             onClick={() => {
+              trackClickManageUndelegate();
               setShowUndelegate(true);
             }}
             className="w-fit text-xs"
@@ -115,6 +138,7 @@ const Staking = ({
           <ConfirmButton
             text="Delegate"
             onClick={() => {
+              trackClickManageDelegate();
               setShowDelegate(true);
             }}
             className="w-fit py-1 text-sm"
@@ -124,6 +148,7 @@ const Staking = ({
             <ConfirmButton
               text="Redelegate"
               onClick={() => {
+                trackClickManageRedelegate();
                 setShowRedelegate(true);
               }}
               className="w-fit py-1 text-sm"

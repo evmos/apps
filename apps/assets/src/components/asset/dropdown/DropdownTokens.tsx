@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
 import { DropdownArrow } from "icons";
 import { DropdownTokensProps } from "./types";
+import { CLICK_WITHDRAW_TOKEN, useTracker } from "tracker";
 const DropdownTokens = ({
   placeholder,
   data,
@@ -49,6 +50,12 @@ const DropdownTokens = ({
     return placeholder;
   };
 
+  const { handlePreClickAction } = useTracker(CLICK_WITHDRAW_TOKEN, {
+    token: selectedValue?.symbol,
+  });
+
+  // TODO: remove this @ts-ignore: Unreachable code error
+  // @ts-ignore: Unreachable code error
   const onItemClick = (option: TableDataElement) => {
     setSelectedValue(option);
     setToken(option);
@@ -56,6 +63,7 @@ const DropdownTokens = ({
     setValue("");
     // TODO: is it right to set as undefined?
     setChain(undefined);
+    handlePreClickAction();
   };
 
   return (

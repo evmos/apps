@@ -14,6 +14,7 @@ import { useEvmosBalance } from "../../../../internal/common/functionality/hooks
 import { convertFromAtto, getReservedForFeeText } from "helpers";
 import { FEE_VOTE } from "constants-helper";
 import { BigNumber } from "ethers";
+import { CLICK_VOTE_BUTTON, useTracker } from "tracker";
 
 const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
   const [show, setShow] = useState(false);
@@ -28,20 +29,25 @@ const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
     wallet,
   };
 
-  const close = useCallback(() => setShow(false), []);
-  const open = useCallback(() => setShow(true), []);
   const { handleConfirmButton } = useVote(useVoteProps);
-
+  const { handlePreClickAction } = useTracker(CLICK_VOTE_BUTTON);
   const isSmallBalance = Number(convertFromAtto(evmosBalance)) < 0.0001;
-
   return (
     <>
       <ConfirmButton
         text="Vote"
-        onClick={open}
+        onClick={() => {
+          setShow(true);
+          handlePreClickAction();
+        }}
         disabled={!wallet.active || !voteProps.isVotingTimeWithinRange}
       />
-      <Modal show={show} onClose={close}>
+      <Modal
+        show={show}
+        onClose={() => {
+          setShow(false);
+        }}
+      >
         <div className="space-y-4">
           <p className="font-bold">Your Vote</p>
           <div className="flex items-center space-x-2">

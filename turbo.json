@@ -16,6 +16,7 @@
     "icons#build": {},
     "helpers#build": {},
     "services#build": {},
+    "tracker#build": {},
     "ui-helpers#build": {
       "dependsOn": ["icons#build", "constants-helper#build"],
       "outputs": ["dist/**", ".next/**"]
@@ -31,6 +32,7 @@
     "icons#dev": {},
     "helpers#dev": {},
     "services#dev": {},
+    "tracker#dev": {},
     "ui-helpers#dev": {
       "dependsOn": ["icons#dev", "constants-helper#dev"]
     },

@@ -19,8 +19,8 @@ import {
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-import { TermOfServices, Footer, Container } from "ui-helpers";
-
+import { TermOfServices, Container } from "ui-helpers";
+import { MixpanelProvider } from "tracker";
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ function SnackbarsInternal() {
 import { StatefulHeader } from "../src/StatefulHeader";
 import { HeadComponent } from "../src/components/staking/HeadComponent";
 import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
+import { StatefulFooter } from "../src/StatefulFooter";
 const Content = dynamic(() => import("../src/components/staking/Content"));
 
 export default function Home() {
@@ -37,23 +38,26 @@ export default function Home() {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
-          <>
-            <HeadComponent />
-            <GoogleAnalytics />
-            <main>
-              <TermOfServices />
-              <Container>
-                <>
-                  <SnackbarsInternal />
-                  <StatefulHeader pageName="Staking" />
-                  <div className="container mx-auto mb-auto overflow-auto">
-                    <Content />
-                  </div>
-                  <Footer />
-                </>
-              </Container>
-            </main>
-          </>
+          {/* TODO: add env variable */}
+          <MixpanelProvider config={{ debug: true, ip: false }} token="">
+            <>
+              <HeadComponent />
+              <GoogleAnalytics />
+              <main>
+                <TermOfServices />
+                <Container>
+                  <>
+                    <SnackbarsInternal />
+                    <StatefulHeader pageName="Staking" />
+                    <div className="container mx-auto mb-auto overflow-auto">
+                      <Content />
+                    </div>
+                    <StatefulFooter />
+                  </>
+                </Container>
+              </main>
+            </>
+          </MixpanelProvider>
         </WagmiConfig>
       </QueryClientProvider>
       <Web3Modal

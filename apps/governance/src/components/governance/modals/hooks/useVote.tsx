@@ -6,10 +6,15 @@ import { executeVote } from "../../../../internal/governance/functionality/trans
 import { optionVoteSelected } from "../../../../internal/governance/functionality/types";
 import { VoteProps } from "../types";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
+import { CLICK_CONFIRM_VOTE_BUTTON } from "tracker";
+import { useTracker } from "tracker";
 
 export const useVote = (useVoteProps: VoteProps) => {
   const dispatch = useDispatch();
+  const { handlePreClickAction } = useTracker(CLICK_CONFIRM_VOTE_BUTTON);
+
   const handleConfirmButton = async () => {
+    handlePreClickAction();
     if (
       useVoteProps.option === undefined ||
       useVoteProps.option === null ||

@@ -21,6 +21,7 @@ const EmptyDelegations = () => {
         className="text-red"
         target="_blank"
         rel="noreferrer"
+        // eslint-disable-next-line no-secrets/no-secrets
         href="https://www.notion.so/Staking-Guides-689ba0acb01a4e01be30c4cf144da81f"
         aria-label="discord telegram"
       >

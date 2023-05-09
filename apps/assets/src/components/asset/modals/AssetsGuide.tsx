@@ -23,7 +23,7 @@ const AssetsGuide = () => {
         .
       </p>
       Axelar-based assets workflow can be found{" "}
-      <a
+      <a // eslint-disable-next-line no-secrets/no-secrets
         href="https://www.notion.so/How-to-Deposit-or-Withdraw-Axelar-Assets-on-the-Evmos-Assets-Page-2ef683c3bec745eda4cc1b894ce165b8"
         target="_blank"
         rel="noopener noreferrer"

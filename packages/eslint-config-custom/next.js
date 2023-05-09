@@ -14,29 +14,8 @@ module.exports = {
     JSX: true,
   },
   extends: [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react/recommended",
     "plugin:jest/recommended",
     "next/core-web-vitals",
   ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    tsconfigRootDir: ".",
-    project: ["./tsconfig.json"],
-  },
-  rules: {
-    "@typescript-eslint/no-unused-vars": ["error"],
-    "@typescript-eslint/no-misused-promises": [
-      "error",
-      {
-        checksVoidReturn: false,
-      },
-    ],
-  },
-  settings: {
-    "import/resolver": {
-      typescript: {},
-    },
-  },
 };

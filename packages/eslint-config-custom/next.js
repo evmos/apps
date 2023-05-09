@@ -17,5 +17,5 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:jest/recommended",
     "next/core-web-vitals",
-  ],
+  ]
 };

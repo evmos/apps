@@ -6,4 +6,15 @@ const shared = require("./shared");
 /** @type {import('eslint').Linter} */
 module.exports = {
   ...shared,
+  parserOptions: {
+    tsconfigRootDir: ".",
+    project: ["./tsconfig.json"],
+  },
+  ignorePatterns: [
+    "dist/*",
+    "*.d.ts",
+    "postcss.config.js",
+    "jest.config.js",
+    "tailwind.config.js"
+  ]
 };

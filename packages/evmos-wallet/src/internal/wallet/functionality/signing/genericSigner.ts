@@ -76,6 +76,7 @@ export class Signer {
     };
   }
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   async signBackendTx(
     sender: string,
     tx: TxGeneratedByBackend,

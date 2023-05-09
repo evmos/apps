@@ -61,12 +61,8 @@ export async function queryPubKey(evmosEndpoint: string, address: string) {
       }
     }
 
-    if (base != null) {
-      if (base.pub_key) {
-        if (base.pub_key !== null) {
-          return base.pub_key.key as string;
-        }
-      }
+    if (base != null && base.pub_key && base.pub_key !== null) {
+      return base.pub_key.key as string;
     }
   } catch (e) {
     return null;

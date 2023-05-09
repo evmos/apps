@@ -140,7 +140,7 @@ export class Metamask {
   async connect(): Promise<ResultMessage> {
     // TODO: call disconnect from the previous connected extension (if different from us)
     // Make sure that we are on the evmos chain
-    if ((await changeNetworkToEvmosMainnet()) == false) {
+    if (!(await changeNetworkToEvmosMainnet())) {
       this.reset();
 
       NotifyError(

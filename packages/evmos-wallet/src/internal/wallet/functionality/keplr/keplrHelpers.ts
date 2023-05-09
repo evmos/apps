@@ -78,6 +78,7 @@ const networkInfo = async (network: string) => {
   return chainInfo;
 };
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export async function getKeplrAddressByChain(
   chainId: string,
   network?: string

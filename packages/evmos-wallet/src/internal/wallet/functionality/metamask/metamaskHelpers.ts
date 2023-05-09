@@ -116,11 +116,9 @@ export async function getWallet() {
       method: "eth_requestAccounts",
       params: [],
     });
-    if (accounts) {
+    if (accounts && (accounts as string[]).length > 0) {
       // NOTE: it always return string[] but the type is defined as unknown
-      if ((accounts as string[]).length > 0) {
-        return (accounts as string[])[0];
-      }
+      return (accounts as string[])[0];
     }
     return null;
   } catch (e) {

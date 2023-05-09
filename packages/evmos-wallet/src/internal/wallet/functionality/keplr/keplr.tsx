@@ -77,7 +77,6 @@ export class Keplr {
   }
 
   async getKeplr() {
-    // Promise<Keplr | undefined>
     if (window.keplr) {
       return window.keplr;
     }
@@ -101,6 +100,7 @@ export class Keplr {
     });
   }
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   async connectHandler() {
     const providerLocalStorage = GetProviderFromLocalStorage();
     await this.getKeplr();

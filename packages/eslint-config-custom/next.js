@@ -6,45 +6,37 @@ const shared = require("./shared");
 /** @type {import('eslint').Linter} */
 module.exports = {
   ...shared,
-   "env": {
-    "jest/globals": true
+  env: {
+    "jest/globals": true,
   },
-  "globals": {
-    "React": true,
-    "JSX": true
+  globals: {
+    React: true,
+    JSX: true,
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:jest/recommended",
-    "plugin:prettier/recommended",
+  extends: [
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "next/core-web-vitals"
+    "plugin:react/recommended",
+    "plugin:jest/recommended",
+    "next/core-web-vitals",
   ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "tsconfigRootDir": ".",
-    "project": [
-      "./tsconfig.json"
-    ]
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    tsconfigRootDir: ".",
+    project: ["./tsconfig.json"],
   },
-  "rules": {
-    "prettier/prettier": "error",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "error"
-    ],
+  rules: {
+    "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/no-misused-promises": [
       "error",
       {
-        "checksVoidReturn": false
-      }
-    ]
+        checksVoidReturn: false,
+      },
+    ],
   },
-  "settings": {
+  settings: {
     "import/resolver": {
-      "typescript": {}
-    }
-  }
+      typescript: {},
+    },
+  },
 };

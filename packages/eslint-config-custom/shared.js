@@ -3,5 +3,9 @@
 
 /** @type {import('eslint').Linter} */
 module.exports = {
-    extends: ["turbo", "prettier"]
+    extends: ["turbo", "prettier", "eslint:recommended", "plugin:prettier/recommended"],
+    rules: {
+        "prettier/prettier": "error",
+        "no-unused-vars": "off"
+    }
 };

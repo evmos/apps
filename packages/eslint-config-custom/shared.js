@@ -20,6 +20,7 @@ module.exports = {
   rules: {
     "prettier/prettier": "error",
     "no-unused-vars": "off",
+    "@typescript-eslint/restrict-template-expressions": "error",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/no-misused-promises": [
       "error",

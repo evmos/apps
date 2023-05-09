@@ -16,7 +16,8 @@
     "check-types": "tsc --noEmit",
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --passWithNoTests"
+    "test:coverage": "jest --coverage --passWithNoTests",
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "react": "^18.2.0"

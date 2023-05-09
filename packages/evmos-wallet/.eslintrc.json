@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "custom"
+  ],
+  "plugins": ["@typescript-eslint", "prettier"]
+}

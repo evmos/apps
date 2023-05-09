@@ -8,18 +8,12 @@ import NewsFeed from "./feeds/NewsFeed";
 import Governance from "./governance/Governance";
 import Staking from "./staking/Staking";
 import EvmosApps from "./apps/EvmosApps";
-import { InformationBanner } from "ui-helpers";
 
 const TopBarMissionControl = dynamic(() => import("./TopBarMissionControl"));
 
 const Content = () => {
   return (
     <div className="flex flex-col pt-4">
-      <InformationBanner
-        dismissible={true}
-        localStorageId="dora-hacks-banner"
-        text="Extend the EVM with Dorahacks - live until June 2! Build now 🚀"
-      />
       <TopBarMissionControl />
       <div className="mx-5 grid grid-cols-6 gap-6 xl:mx-0">
         <div className="col-span-6 flex flex-col gap-4 lg:col-span-4">

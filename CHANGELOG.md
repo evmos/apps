@@ -34,6 +34,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
+## UNRELEASED
+
+- (chore) #fse-537 | packages/ui-helpers 1.0.2 | Add reusable dismissible announcement banner for DoraHacks
+
 ## 1.0.1 - 2023-05-09
 
 - (workflow) #fse-512 | githug/workflows | Adding codeball
@@ -49,10 +53,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (chore) #fse-142 | evmos-wallet 1.0.2 | Export EVMOS_DECIMALS
 - (bug) #fse-400 | root config | Updating the dev workflow to avoid errors when running `yarn dev`
 - (bug fixes) #fse-481 | evmos-wallet 1.0.1 | Show connected snackbar only if the user clicks on Connect Wallet
-- (ci) #fse-413 | (apps)/_ 1.0.x | Adding CI/CD pipeline for apps
-- (chore) #fse-503 | (/) Add production build script | (apps|mission) add script to copy _redirects file depending on environment
-
-
+- (ci) #fse-413 | (apps)/\_ 1.0.x | Adding CI/CD pipeline for apps
+- (chore) #fse-503 | (/) Add production build script | (apps|mission) add script to copy \_redirects file depending on environment
 
 ## 1.0.0 - 2023-04-28
 

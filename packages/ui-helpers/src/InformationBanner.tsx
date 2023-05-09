@@ -11,7 +11,7 @@ export const InformationBanner = ({
   className,
   localStorageId,
 }: {
-  text: string;
+  text: string | React.ReactNode;
   title?: string;
   dismissible?: boolean;
   className?: string;
@@ -29,7 +29,7 @@ export const InformationBanner = ({
 
   function handleOnClick() {
     saveDismissInLocalStorage();
-    setIsDismissed(true)
+    setIsDismissed(true);
   }
 
   useEffect(() => {
@@ -37,24 +37,22 @@ export const InformationBanner = ({
     setIsDismissed(_isDismissed);
   }, []);
 
-  console.log("is dis", isDismissed);
-
   return isDismissed ? null : (
     <div
-      className={`mx-5 mb-5 flex items-center justify-between space-x-2 rounded-2xl bg-red p-5 px-5 font-[GreyCliff] text-sm font-medium text-pearl md:col-span-2 md:mx-0 ${
+      className={`rounded-md flex items-center justify-between space-x-2 bg-pearl p-3 px-5 font-[GreyCliff] text-sm font-medium text-black ${
         className !== undefined ? className : ""
       }`}
     >
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-1 self-center text-center flex-col gap-2">
         {title && <span className="font-bold">{title}</span>}
-        <p>{text}</p>
+        {typeof text === "string" ? <p>{text}</p> : text}
       </div>
 
       <CloseIcon
-        height={20}
-        width={20}
+        height={22}
+        width={22}
         onClick={handleOnClick}
-        className="cursor-pointer text-pearl"
+        className="cursor-pointer self-end text-black"
       />
     </div>
   );

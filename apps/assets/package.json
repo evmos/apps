@@ -13,12 +13,6 @@
     "test:coverage": "jest --coverage --passWithNoTests"
   },
   "dependencies": {
-    "evmos-wallet": "*",
-    "constants-helper": "*",
-    "icons": "*",
-    "ui-helpers": "*",
-    "helpers": "*",
-    "services": "*",
     "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",
     "@evmos/proto": "^0.1.26",
@@ -31,15 +25,21 @@
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.9",
     "@web3modal/ethereum": "=2.0.0-rc.2",
-    "@web3modal/standalone": "=2.0.0-rc.2",
     "@web3modal/react": "=2.0.0-rc.2",
+    "@web3modal/standalone": "=2.0.0-rc.2",
+    "constants-helper": "*",
     "ethers": "^5.7.2",
+    "evmos-wallet": "*",
+    "helpers": "*",
+    "icons": "*",
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
+    "services": "*",
     "typescript": "4.9.4",
+    "ui-helpers": "*",
     "wagmi": "=0.10.10"
   },
   "devDependencies": {
@@ -48,10 +48,10 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.20",
-    "tailwindcss": "^3.2.4",
+    "eslint-config-custom": "*",
     "jest-config-custom": "*",
-    "eslint-config-custom": "*"
+    "postcss": "^8.4.20",
+    "tailwindcss": "^3.2.4"
   },
   "browserslist": [
     "last 3 chrome version",

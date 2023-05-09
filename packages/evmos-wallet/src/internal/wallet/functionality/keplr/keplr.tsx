@@ -177,8 +177,6 @@ export class Keplr {
         "base64"
       );
 
-      // let name = (await window.keplr.getKey(EVMOS_CHAIN.cosmosChainId)).name;
-
       this.active = true;
       store.dispatch(
         setWallet({

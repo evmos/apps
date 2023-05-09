@@ -105,6 +105,7 @@ export async function broadcastSignedTxToBackend(
     return {
       error: true,
       // Disabled until catching all the possible errors
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
     };
@@ -158,6 +159,7 @@ export async function broadcastSignedTxToGRPC(
     return {
       error: true,
       // Disabled until catching all the possible errors
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
     };
@@ -208,6 +210,7 @@ export async function broadcastEip712BackendTxToBackend(
     return {
       error: true,
       // Disabled until catching all the possible errors
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
     };
@@ -301,6 +304,7 @@ export async function broadcastAminoBackendTxToBackend(
     return {
       error: true,
       // Disabled until catching all the possible errors
+      // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,
     };

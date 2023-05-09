@@ -45,7 +45,8 @@ export async function queryPubKey(evmosEndpoint: string, address: string) {
       return null;
     }
 
-    let base = null;
+    let base: EndpointAccountResponse["account"]["base_account"] = null;
+
     if (resp.account) {
       if (resp.account.base_vesting_account) {
         base = resp.account.base_vesting_account.base_account;
@@ -57,7 +58,7 @@ export async function queryPubKey(evmosEndpoint: string, address: string) {
     if (base != null) {
       if (base.pub_key) {
         if (base.pub_key !== null) {
-          return base.pub_key.key as string;
+          return base.pub_key.key;
         }
       }
     }

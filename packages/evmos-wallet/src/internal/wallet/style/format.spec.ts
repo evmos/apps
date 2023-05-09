@@ -20,7 +20,7 @@ describe("Test format", () => {
     expect(truncate).toBe("0xC1d...bF0f");
   });
   it("undefined", () => {
-    const hexAddress = undefined;
+    const hexAddress = undefined as string | undefined;
     const truncate = truncateAddress(hexAddress);
     expect(truncate).toBe("");
   });

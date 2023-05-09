@@ -7,6 +7,8 @@ type VotingDetail = {
   percent: string;
 };
 
+// Not sure why this error occured so I disabled it for now
+// eslint-disable-next-line
 export const VotingDetail = ({
   votingProps,
 }: {

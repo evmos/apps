@@ -28,3 +28,4 @@ export { Footer } from "./Footer";
 export { ViewExplorer } from "./ViewExplorer";
 export { BarContainer } from "./votingBar/BarContainer";
 export { Header } from "./Header";
+export { InformationBanner } from "./InformationBanner";

@@ -13,7 +13,10 @@ export const useUndelegation = (useUndelegateProps: UndelegateProps) => {
   const dispatch = useDispatch();
   const { handlePreClickAction } = useTracker(CLICK_BUTTON_CONFIRM_UNDELEGATE);
   const handleConfirmButton = async () => {
-    handlePreClickAction();
+    handlePreClickAction({
+      wallet: useUndelegateProps?.wallet?.evmosAddressEthFormat,
+      provider: useUndelegateProps?.wallet?.extensionName,
+    });
     useUndelegateProps.setConfirmClicked(true);
     if (
       useUndelegateProps.value === undefined ||

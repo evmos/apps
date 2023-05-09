@@ -39,7 +39,13 @@ const Content = () => {
       text = NAV_TO_GOVERNANCE;
     }
     return (
-      <Navigation href={href} text={text} onClick={handlePreClickAction} />
+      <Navigation
+        href={href}
+        text={text}
+        onClick={() => {
+          handlePreClickAction();
+        }}
+      />
     );
   }, [id, handlePreClickAction]);
 

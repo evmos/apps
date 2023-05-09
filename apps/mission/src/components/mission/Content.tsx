@@ -26,7 +26,11 @@ const Content = () => {
           <Staking />
         </div>
         <div className="col-span-6 flex flex-col space-y-5 lg:col-span-2">
-          <HalfLifeContainer handlePreClickAction={handlePreClickAction} />
+          <HalfLifeContainer
+            onClick={() => {
+              handlePreClickAction();
+            }}
+          />
           <NewsFeed />
           <EvmosApps />
         </div>

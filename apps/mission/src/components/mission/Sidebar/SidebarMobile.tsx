@@ -31,7 +31,9 @@ const SidebarMobile = ({
             rel="noreferrer"
             className="xl:pr-14"
             aria-label="home"
-            onClick={handlePreClickAction}
+            onClick={() => {
+              handlePreClickAction();
+            }}
           >
             <Logo className="h-20 w-32 text-pearl xl:w-36" />
           </Link>

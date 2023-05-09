@@ -35,7 +35,9 @@ const Header = () => {
           {/* TODO: use button component */}
           <div
             className="flex justify-center rounded border border-pearl p-2 font-[GreyCliff] text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity"
-            onClick={trackVoteClick}
+            onClick={() => {
+              trackVoteClick();
+            }}
           >
             <span>VOTE</span>
           </div>
@@ -49,7 +51,9 @@ const Header = () => {
           {/* TODO: use button component */}
           <div
             className="flex justify-center rounded border border-pearl p-2 font-[GreyCliff] text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity"
-            onClick={trackDocsClick}
+            onClick={() => {
+              trackDocsClick();
+            }}
           >
             <span>DOCS</span>
           </div>
@@ -63,7 +67,9 @@ const Header = () => {
           {/* TODO: use button component */}
           <div
             className="flex justify-center rounded border border-pearl p-2 font-[GreyCliff] text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity"
-            onClick={trackDiscussionClick}
+            onClick={() => {
+              trackDiscussionClick();
+            }}
           >
             <CommonWealthIcon width={16} height={16} />
             <span>DISCUSSION</span>

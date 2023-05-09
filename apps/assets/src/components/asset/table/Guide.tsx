@@ -18,7 +18,9 @@ const Guide = () => {
           rel="noopener noreferrer"
           className="text-red"
           target="_blank"
-          onClick={handlePreClickAction}
+          onClick={() => {
+            handlePreClickAction();
+          }}
         >
           register your token
         </Link>{" "}

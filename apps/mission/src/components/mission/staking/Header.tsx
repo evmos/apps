@@ -20,7 +20,9 @@ const Header = () => {
           {/* TODO: use button component */}
           <div
             className="flex justify-center rounded border border-pearl p-2 font-[GreyCliff] text-xs font-bold uppercase text-pearl hover:bg-whiteOpacity"
-            onClick={handlePreClickAction}
+            onClick={() => {
+              handlePreClickAction();
+            }}
           >
             <span>VIEW STAKING</span>
           </div>

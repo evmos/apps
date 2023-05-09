@@ -13,7 +13,10 @@ export const useDelegation = (useDelegateProps: DelegateProps) => {
   const dispatch = useDispatch();
   const { handlePreClickAction } = useTracker(CLICK_BUTTON_CONFIRM_DELEGATE);
   const handleConfirmButton = async () => {
-    handlePreClickAction();
+    handlePreClickAction({
+      wallet: useDelegateProps?.wallet?.evmosAddressEthFormat,
+      provider: useDelegateProps?.wallet?.extensionName,
+    });
     useDelegateProps.setConfirmClicked(true);
     if (
       useDelegateProps.value === undefined ||

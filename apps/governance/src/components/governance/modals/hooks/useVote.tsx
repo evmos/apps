@@ -14,7 +14,10 @@ export const useVote = (useVoteProps: VoteProps) => {
   const { handlePreClickAction } = useTracker(CLICK_CONFIRM_VOTE_BUTTON);
 
   const handleConfirmButton = async () => {
-    handlePreClickAction();
+    handlePreClickAction({
+      wallet: useVoteProps?.wallet?.evmosAddressEthFormat,
+      provider: useVoteProps?.wallet?.extensionName,
+    });
     if (
       useVoteProps.option === undefined ||
       useVoteProps.option === null ||

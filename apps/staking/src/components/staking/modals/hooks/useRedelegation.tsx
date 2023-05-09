@@ -13,7 +13,10 @@ export const useRedelegation = (useRedelegateProps: RedelegateProps) => {
 
   const { handlePreClickAction } = useTracker(CLICK_BUTTON_CONFIRM_REDELEGATE);
   const handleConfirmButton = async () => {
-    handlePreClickAction();
+    handlePreClickAction({
+      wallet: useRedelegateProps?.wallet?.evmosAddressEthFormat,
+      provider: useRedelegateProps?.wallet?.extensionName,
+    });
     useRedelegateProps.setConfirmClicked(true);
     if (
       useRedelegateProps.value === undefined ||

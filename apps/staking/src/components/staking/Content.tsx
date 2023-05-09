@@ -20,7 +20,9 @@ const Content = () => {
           <Navigation
             href={EVMOS_PAGE_URL}
             text={NAV_TO_MISSION_CONTROL}
-            onClick={handlePreClickAction}
+            onClick={() => {
+              handlePreClickAction();
+            }}
           />
           <TopBarStaking />
           <div className=" xl:scrollbar-hide mt-5 max-h-[33vh] w-full overflow-y-auto px-2 font-[IBM] text-pearl sm:max-h-[45vh] lg:max-h-[53vh]">

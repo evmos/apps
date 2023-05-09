@@ -29,7 +29,10 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
   const { handlePreClickAction } = useTracker(CLICK_WITHDRAW_CONFIRM_BUTTON);
 
   const handleConfirmButton = async () => {
-    handlePreClickAction();
+    handlePreClickAction({
+      wallet: wallet?.evmosAddressEthFormat,
+      provider: wallet?.extensionName,
+    });
     useWithdrawProps.setConfirmClicked(true);
     if (wallet.evmosPubkey === null) {
       dispatch(snackRequestRejected());

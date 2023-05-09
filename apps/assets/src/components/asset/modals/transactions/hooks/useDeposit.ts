@@ -35,7 +35,10 @@ export const useDeposit = (useDepositProps: DepositProps) => {
   const { handlePreClickAction } = useTracker(CLICK_DEPOSIT_CONFIRM_BUTTON);
 
   const handleConfirmButton = async () => {
-    handlePreClickAction();
+    handlePreClickAction({
+      wallet: wallet?.evmosAddressEthFormat,
+      provider: wallet?.extensionName,
+    });
     useDepositProps.setConfirmClicked(true);
     if (wallet.osmosisPubkey === null) {
       dispatch(snackRequestRejected());

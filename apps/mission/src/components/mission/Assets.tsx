@@ -71,8 +71,8 @@ const Assets = () => {
   }, [error, loading, value, assets]);
 
   const { handlePreClickAction } = useTracker(CLICK_MC_VIEW_ASSETS_BUTTON, {
-    wallet: value.evmosAddressCosmosFormat,
-    provider: value.extensionName,
+    wallet: value?.evmosAddressCosmosFormat,
+    provider: value?.extensionName,
   });
   return (
     <MissionContainer>

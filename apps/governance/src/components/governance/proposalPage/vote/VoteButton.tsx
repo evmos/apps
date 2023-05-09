@@ -38,7 +38,10 @@ const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {
         text="Vote"
         onClick={() => {
           setShow(true);
-          handlePreClickAction();
+          handlePreClickAction({
+            wallet: wallet?.evmosAddressEthFormat,
+            provider: wallet?.extensionName,
+          });
         }}
         disabled={!wallet.active || !voteProps.isVotingTimeWithinRange}
       />

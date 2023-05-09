@@ -7,9 +7,9 @@ import { useEpochDay } from "../../internal/functionality/hooks/useEpochDay";
 import { useRemainingEpochs } from "../../internal/functionality/hooks/useRemainingEpochs";
 import { ExternalLinkIcon } from "icons";
 const HalfLifeContainer = ({
-  handlePreClickAction,
+  onClick,
 }: {
-  handlePreClickAction?: React.MouseEventHandler<HTMLAnchorElement>;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }) => {
   const { epochs } = useEpochDay();
   const { remainingEpochs } = useRemainingEpochs();
@@ -21,7 +21,7 @@ const HalfLifeContainer = ({
       rel="noreferrer"
       href="https://medium.com/evmos/the-evmos-token-model-edc07014978b#:~:text=Evmos%20is%20highly,deemed%20too%20low"
       aria-label="half life"
-      onClick={handlePreClickAction}
+      onClick={onClick}
     >
       <div className="flex items-center justify-between rounded-2xl border border-pearl bg-darkGray2 p-5 font-[GreyCliff] text-2xl font-bold text-pearl">
         <div className=" flex flex-col  ">

@@ -18,7 +18,9 @@ const SideBarItem = ({ item }: { item: SideBarEntry }) => {
     <Link
       href={item.path}
       className="flex justify-center lg:justify-start"
-      onClick={handlePreClickAction}
+      onClick={() => {
+        handlePreClickAction();
+      }}
     >
       <div
         className={`flex  w-fit cursor-pointer items-center rounded-full px-4 py-3 hover:bg-white hover:bg-opacity-10

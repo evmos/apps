@@ -65,7 +65,9 @@ const TopBarMissionControl = () => {
         <TopBarItem
           // it shows the total amount of delegations
           text="Total Staked"
-          onClick={handlePreClickAction}
+          onClick={() => {
+            handlePreClickAction();
+          }}
           value={
             !displayTopBarTooltip(totalStaked) ? (
               <p> {Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS </p>

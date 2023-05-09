@@ -24,7 +24,7 @@
       "outputs": ["dist/**", ".next/**"]
     },
     "evmos-wallet#build": {
-      "dependsOn": ["icons#build", "ui-helpers#build"],
+      "dependsOn": ["icons#build", "ui-helpers#build", "tracker#build"],
       "outputs": ["dist/**", ".next/**"]
     },
     "eslint-config-custom#dev": {},

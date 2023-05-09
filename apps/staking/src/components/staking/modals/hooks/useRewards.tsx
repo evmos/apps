@@ -14,7 +14,10 @@ export const useRewards = (value: WalletExtension, totalRewards: number) => {
     amount: totalRewards,
   });
   const handleConfirmButton = useCallback(async () => {
-    handlePreClickAction();
+    handlePreClickAction({
+      wallet: value?.evmosAddressEthFormat,
+      provider: value?.extensionName,
+    });
     const res = await executeRewards(value);
     dispatch(snackExecuteIBCTransfer(res));
   }, [dispatch, value, handlePreClickAction]);

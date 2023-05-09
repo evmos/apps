@@ -18,7 +18,10 @@ export const useCancelUndelegations = (
   );
   //   async
   const handleConfirmButton = async () => {
-    handlePreClickAction();
+    handlePreClickAction({
+      wallet: useCancelUndelegationProps?.wallet?.evmosAddressEthFormat,
+      provider: useCancelUndelegationProps?.wallet?.extensionName,
+    });
     useCancelUndelegationProps.setConfirmClicked(true);
     if (
       useCancelUndelegationProps.value === undefined ||

@@ -25,7 +25,13 @@ export const StatefulHeader = ({
       walletConnectionButton={
         <ButtonWalletConnection walletExtension={wallet} dispatch={dispatch} />
       }
-      onClick={handlePreClickAction}
+      onClick={() => {
+        handlePreClickAction({
+          wallet: wallet?.evmosAddressEthFormat,
+          provider: wallet?.extensionName,
+          page: pageName,
+        });
+      }}
     />
   );
 };

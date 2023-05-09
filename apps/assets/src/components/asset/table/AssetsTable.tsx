@@ -62,7 +62,11 @@ const AssetsTable = () => {
 
   const { handlePreClickAction: handleZeroBalance } = useTracker(
     CLICK_HIDE_ZERO_BALANCE,
-    { status: !hideZeroBalance }
+    {
+      status: !hideZeroBalance,
+      wallet: value?.evmosAddressEthFormat,
+      provider: value?.extensionName,
+    }
   );
   const zeroBalance = () => {
     localStorage.setItem("zeroBalance", String(!hideZeroBalance));
@@ -109,7 +113,9 @@ const AssetsTable = () => {
       <Navigation
         href={EVMOS_PAGE_URL}
         text={NAV_TO_MISSION_CONTROL}
-        onClick={handlePreClickAction}
+        onClick={() => {
+          handlePreClickAction();
+        }}
       />
       <TopBar topProps={topProps} />
       <div className="mx-5 flex flex-col justify-center lg:flex-row lg:justify-between xl:mx-0">

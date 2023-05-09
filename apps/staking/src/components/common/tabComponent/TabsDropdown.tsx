@@ -58,10 +58,10 @@ const TabsDropdown = ({
       setSelectedValue(option.title);
       setActiveTab(option.id);
       handlePreClickAction({
-        tabSelected: selectedValue,
+        tabSelected: option.title,
       });
     },
-    [setActiveTab]
+    [setActiveTab, handlePreClickAction]
   );
 
   return (

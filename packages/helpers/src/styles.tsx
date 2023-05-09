@@ -206,8 +206,10 @@ export const isVotingTimeWithinRange = (date: string) => {
     endPeriodVote.getUTCMinutes(),
     endPeriodVote.getUTCSeconds()
   );
+
   const canVote =
     new Date(endPeriodVoteUTC).getTime() > new Date(nowUTC).getTime();
+
   return canVote;
 };
 
@@ -245,6 +247,7 @@ export const getPercentage = (value: string[]) => {
   if (total === 0) {
     total = 1;
   }
+
   const percents = value.map((item) => {
     return (Number(item) * 100) / total;
   });

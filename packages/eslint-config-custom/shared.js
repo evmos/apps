@@ -10,9 +10,10 @@ module.exports = {
     "plugin:prettier/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:security/recommended"
+    "plugin:security/recommended",
+    "plugin:sonarjs/recommended"
   ],
-  plugins: ["@typescript-eslint", "prettier"],
+  plugins: ["@typescript-eslint", "prettier", "sonarjs"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     tsconfigRootDir: ".",

@@ -4653,6 +4653,11 @@ eslint-plugin-security@^1.7.1:
   dependencies:
     safe-regex "^2.1.1"
 
+eslint-plugin-sonarjs@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-sonarjs/-/eslint-plugin-sonarjs-0.19.0.tgz#6654bc1c6d24c2183891b8bfe1175004dbba1e3c"
+  integrity sha512-6+s5oNk5TFtVlbRxqZN7FIGmjdPCYQKaTzFPmqieCmsU1kBYDzndTeQav0xtQNwZJWu5awWfTGe8Srq9xFOGnw==
+
 eslint-plugin-turbo@1.8.8:
   version "1.8.8"
   resolved "https://registry.yarnpkg.com/eslint-plugin-turbo/-/eslint-plugin-turbo-1.8.8.tgz#10844428fea929270b3bca07092ec030ef80cd3d"

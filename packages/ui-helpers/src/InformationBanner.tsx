@@ -47,13 +47,14 @@ export const InformationBanner = ({
         {title && <span className="font-bold">{title}</span>}
         {typeof text === "string" ? <p>{text}</p> : text}
       </div>
-
-      <CloseIcon
-        height={22}
-        width={22}
-        onClick={handleOnClick}
-        className="cursor-pointer self-end text-black"
-      />
+      {dismissible && (
+        <CloseIcon
+          height={22}
+          width={22}
+          onClick={handleOnClick}
+          className="cursor-pointer self-end text-black"
+        />
+      )}
     </div>
   );
 };

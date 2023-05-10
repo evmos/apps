@@ -17,7 +17,8 @@
         "NEXT_PUBLIC_EVMOS_BACKEND",
         "NEXT_PUBLIC_OSMOSIS_CHAIN_ID",
         "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
-        "NEXT_PUBLIC_EVMOS_CHAIN"
+        "NEXT_PUBLIC_EVMOS_CHAIN",
+        "NEXT_PUBLIC_EVMOS_PAGE_URL"
       ]
     },
     "eslint-config-custom#build": {},
@@ -48,34 +49,9 @@
         "NEXT_PUBLIC_EVMOS_BACKEND",
         "NEXT_PUBLIC_OSMOSIS_CHAIN_ID",
         "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
-        "NEXT_PUBLIC_EVMOS_CHAIN"
+        "NEXT_PUBLIC_EVMOS_CHAIN",
+        "NEXT_PUBLIC_EVMOS_PAGE_URL"
       ]
-    },
-    "eslint-config-custom#dev": {},
-    "tailwind-config#dev": {},
-    "tsconfig#dev": {},
-    "constants-helper#dev": {},
-    "icons#dev": {},
-    "helpers#dev": {},
-    "services#dev": {},
-    "ui-helpers#dev": {
-      "dependsOn": ["icons#dev", "constants-helper#dev"]
-    },
-    "evmos-wallet#dev": {
-      "dependsOn": ["icons#dev", "ui-helpers#dev"]
-    },
-    "eslint-config-custom#dev": {},
-    "tailwind-config#dev": {},
-    "tsconfig#dev": {},
-    "constants-helper#dev": {},
-    "icons#dev": {},
-    "helpers#dev": {},
-    "services#dev": {},
-    "ui-helpers#dev": {
-      "dependsOn": ["icons#dev", "constants-helper#dev"]
-    },
-    "evmos-wallet#dev": {
-      "dependsOn": ["icons#dev", "ui-helpers#dev"]
     },
     "eslint-config-custom#dev": {},
     "tailwind-config#dev": {},

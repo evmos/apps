@@ -36,6 +36,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## UNRELEASED
 
+## 1.0.3 - 2023-05-10
+- (chore) #fse-142 | evmos-wallet 1.0.6 | Env vars prefixes
+
+
 ## 1.0.2 - 2023-05-10
 
 - (workflow) #fse-510 | github actions | Removing unused legacy codeql workflow
@@ -60,7 +64,6 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (bug fixes) #fse-481 | evmos-wallet 1.0.1 | Show connected snackbar only if the user clicks on Connect Wallet
 - (ci) #fse-413 | (apps)/\_ 1.0.x | Adding CI/CD pipeline for apps
 - (chore) #fse-503 | (/) Add production build script | (apps|mission) add script to copy \_redirects file depending on environment
-
 
 ## 1.0.0 - 2023-04-28
 

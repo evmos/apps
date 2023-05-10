@@ -36,6 +36,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## UNRELEASED
 
+## 1.0.3 - 2023-05-10
+- (chore) #fse-142 | evmos-wallet 1.0.6 | Env vars prefixes
+
+
 ## 1.0.2 - 2023-05-10
 
 - (workflow) #fse-510 | github actions | Removing unused legacy codeql workflow

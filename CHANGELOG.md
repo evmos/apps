@@ -40,7 +40,6 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (chore) #fse-537 | packages/ui-helpers 1.0.2 | Add reusable dismissible announcement banner for DoraHacks
 - (chore) #fse-498 | evmos-wallet 1.0.5 load constant in networkConfig.ts from environment variables & use default fallback values
 
-
 ## 1.0.1 - 2023-05-09
 
 - (workflow) #fse-512 | githug/workflows | Adding codeball

@@ -41,6 +41,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (workflow) #fse-510 | github actions | Removing unused legacy codeql workflow
 - (chore) #fse-537 | packages/ui-helpers 1.0.2 | Add reusable dismissible announcement banner for DoraHacks
 - (chore) #fse-498 | evmos-wallet 1.0.5 load constant in networkConfig.ts from environment variables & use default fallback values
+- (fix) #fse-503 | (apps|mission) change environment variable to build \_redirects file
 
 ## 1.0.1 - 2023-05-09
 

@@ -20,7 +20,7 @@
     "services#build": {},
     "tracker#build": {},
     "ui-helpers#build": {
-      "dependsOn": ["icons#build", "constants-helper#build"],
+      "dependsOn": ["icons#build", "constants-helper#build", "tracker#build"],
       "outputs": ["dist/**", ".next/**"]
     },
     "evmos-wallet#build": {
@@ -36,10 +36,10 @@
     "services#dev": {},
     "tracker#dev": {},
     "ui-helpers#dev": {
-      "dependsOn": ["icons#dev", "constants-helper#dev"]
+      "dependsOn": ["icons#dev", "constants-helper#dev", "tracker#build"]
     },
     "evmos-wallet#dev": {
-      "dependsOn": ["icons#dev", "ui-helpers#dev"]
+      "dependsOn": ["icons#dev", "ui-helpers#dev", "tracker#build"]
     },
     "lint": {},
     "check-types": {},

@@ -17,7 +17,8 @@
         "NEXT_PUBLIC_EVMOS_BACKEND",
         "NEXT_PUBLIC_OSMOSIS_CHAIN_ID",
         "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
-        "NEXT_PUBLIC_EVMOS_CHAIN"
+        "NEXT_PUBLIC_EVMOS_CHAIN",
+        "NEXT_PUBLIC_EVMOS_PAGE_URL"
       ]
     },
     "eslint-config-custom#build": {},
@@ -48,7 +49,8 @@
         "NEXT_PUBLIC_EVMOS_BACKEND",
         "NEXT_PUBLIC_OSMOSIS_CHAIN_ID",
         "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
-        "NEXT_PUBLIC_EVMOS_CHAIN"
+        "NEXT_PUBLIC_EVMOS_CHAIN",
+        "NEXT_PUBLIC_EVMOS_PAGE_URL"
       ]
     },
     "eslint-config-custom#dev": {},

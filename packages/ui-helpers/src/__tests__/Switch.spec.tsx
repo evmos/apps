@@ -10,6 +10,7 @@ import "@testing-library/jest-dom";
 import { CLICK_HIDE_ZERO_BALANCE, MixpanelProvider, useTracker } from "tracker";
 import { Switch } from "../Switch";
 import { useState } from "react";
+import { CONFIG, TOKEN, eventTriggerByCheckbox } from "./testConstants";
 
 describe("Testing for Switch", () => {
   beforeEach(() => {
@@ -30,14 +31,9 @@ describe("Testing for Switch", () => {
 
     render(<Wrap />);
     const checkboxElement = screen.getByRole("checkbox") as HTMLInputElement;
-    fireEvent.click(checkboxElement);
-    expect(checkboxElement.checked).toBe(true);
-
-    const token = "testToken";
-    const config = { debug: true, ip: false };
-
+    eventTriggerByCheckbox(checkboxElement);
     const wrapper = ({ children }: { children: JSX.Element }) => (
-      <MixpanelProvider token={token} config={config}>
+      <MixpanelProvider token={TOKEN} config={CONFIG}>
         {children}
       </MixpanelProvider>
     );

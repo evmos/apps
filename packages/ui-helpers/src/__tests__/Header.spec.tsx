@@ -9,6 +9,7 @@ import {
 import "@testing-library/jest-dom";
 import { CLICK_EVMOS_LOGO, MixpanelProvider, useTracker } from "tracker";
 import { Header } from "../Header";
+import { CONFIG, TOKEN, eventTriggerByText } from "./testConstants";
 
 describe("Testing for Header", () => {
   beforeEach(() => {
@@ -16,16 +17,12 @@ describe("Testing for Header", () => {
   });
 
   const myFunction = (pageName: string) => {
-    const token = "testToken";
-    const config = { debug: true, ip: false };
     render(<Header pageName={pageName} />);
     const expectedText = pageName;
-    const textElement = screen.getByText(expectedText);
-    expect(textElement).toBeInTheDocument();
-    fireEvent.click(textElement);
+    eventTriggerByText(expectedText);
 
     const wrapper = ({ children }: { children: JSX.Element }) => (
-      <MixpanelProvider token={token} config={config}>
+      <MixpanelProvider token={TOKEN} config={CONFIG}>
         {children}
       </MixpanelProvider>
     );

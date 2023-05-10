@@ -10,6 +10,7 @@ import "@testing-library/jest-dom";
 import { CLICK_BACK_TO_MC, MixpanelProvider, useTracker } from "tracker";
 import { Navigation } from "../Navigation";
 import { NAV_TO_MISSION_CONTROL, EVMOS_PAGE_URL } from "constants-helper";
+import { CONFIG, TOKEN, eventTriggerByText } from "./testConstants";
 describe("Testing for Navigation", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -20,12 +21,10 @@ describe("Testing for Navigation", () => {
     const config = { debug: true, ip: false };
     render(<Navigation href={EVMOS_PAGE_URL} text={NAV_TO_MISSION_CONTROL} />);
     const expectedText = NAV_TO_MISSION_CONTROL;
-    const textElement = screen.getByText(expectedText);
-    expect(textElement).toBeInTheDocument();
-    fireEvent.click(textElement);
+    eventTriggerByText(expectedText);
 
     const wrapper = ({ children }: { children: JSX.Element }) => (
-      <MixpanelProvider token={token} config={config}>
+      <MixpanelProvider token={TOKEN} config={CONFIG}>
         {children}
       </MixpanelProvider>
     );

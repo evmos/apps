@@ -6,6 +6,7 @@ export const CONFIG = { ip: false };
 export const eventTriggerByText = (expectedText: string) => {
   const textElement = screen.getByText(expectedText);
   expect(textElement).toBeInTheDocument();
+  // TODO: use userEvent.click instead of fireEvent
   fireEvent.click(textElement);
 };
 

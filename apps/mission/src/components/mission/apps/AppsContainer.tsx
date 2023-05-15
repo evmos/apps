@@ -5,14 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { MISSION_CONTROL_DATA } from "./AppsData";
 import { useEffect, useRef, useState } from "react";
-import { LISTEN_MC_SCROLL_ECOSYSTEM, useTracker } from "tracker";
+import { LISTEN_MISSION_CONTROL_SCROLL_ECOSYSTEM, useTracker } from "tracker";
 
 const AppsContainer = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const [percentageScrolled, setPercentageScrolled] = useState(0);
-  const { handlePreClickAction } = useTracker(LISTEN_MC_SCROLL_ECOSYSTEM, {
-    percentageScrolled: percentageScrolled,
-  });
+  const { handlePreClickAction } = useTracker(
+    LISTEN_MISSION_CONTROL_SCROLL_ECOSYSTEM,
+    {
+      percentageScrolled: percentageScrolled,
+    }
+  );
   useEffect(() => {
     const divRefCurrent = divRef.current;
     function handleScroll() {

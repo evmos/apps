@@ -4,21 +4,21 @@
 import Link from "next/link";
 import { CommonWealthIcon } from "icons";
 import {
-  CLICK_MC_GOVERNANCE_DISCUSSION_BUTTON,
-  CLICK_MC_GOVERNANCE_DOCS_BUTTON,
-  CLICK_MC_GOVERNANCE_VOTE_BUTTON,
+  CLICK_MISSION_CONTROL_GOVERNANCE_DISCUSSION_BUTTON,
+  CLICK_MISSION_CONTROL_GOVERNANCE_DOCS_BUTTON,
+  CLICK_MISSION_CONTROL_GOVERNANCE_VOTE_BUTTON,
   useTracker,
 } from "tracker";
 
 const Header = () => {
   const { handlePreClickAction: trackVoteClick } = useTracker(
-    CLICK_MC_GOVERNANCE_VOTE_BUTTON
+    CLICK_MISSION_CONTROL_GOVERNANCE_VOTE_BUTTON
   );
   const { handlePreClickAction: trackDocsClick } = useTracker(
-    CLICK_MC_GOVERNANCE_DOCS_BUTTON
+    CLICK_MISSION_CONTROL_GOVERNANCE_DOCS_BUTTON
   );
   const { handlePreClickAction: trackDiscussionClick } = useTracker(
-    CLICK_MC_GOVERNANCE_DISCUSSION_BUTTON
+    CLICK_MISSION_CONTROL_GOVERNANCE_DISCUSSION_BUTTON
   );
 
   return (

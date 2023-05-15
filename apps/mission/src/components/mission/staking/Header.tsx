@@ -2,10 +2,12 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import Link from "next/link";
-import { CLICK_MC_VIEW_STAKING_BUTTON, useTracker } from "tracker";
+import { CLICK_MISSION_CONTROL_VIEW_STAKING_BUTTON, useTracker } from "tracker";
 
 const Header = () => {
-  const { handlePreClickAction } = useTracker(CLICK_MC_VIEW_STAKING_BUTTON);
+  const { handlePreClickAction } = useTracker(
+    CLICK_MISSION_CONTROL_VIEW_STAKING_BUTTON
+  );
   return (
     <div className="mb-6 flex w-full justify-between">
       <span className="font-[GreyCliff] text-xl font-bold text-pearl">

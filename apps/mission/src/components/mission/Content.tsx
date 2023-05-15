@@ -9,12 +9,12 @@ import Governance from "./governance/Governance";
 import Staking from "./staking/Staking";
 import EvmosApps from "./apps/EvmosApps";
 
-import { CLICK_MC_HALF_LIFE, useTracker } from "tracker";
+import { CLICK_MISSION_CONTROL_HALF_LIFE, useTracker } from "tracker";
 
 const TopBarMissionControl = dynamic(() => import("./TopBarMissionControl"));
 
 const Content = () => {
-  const { handlePreClickAction } = useTracker(CLICK_MC_HALF_LIFE);
+  const { handlePreClickAction } = useTracker(CLICK_MISSION_CONTROL_HALF_LIFE);
 
   return (
     <div className="flex flex-col pt-4">

@@ -11,7 +11,7 @@ import {
 
 import { useHeaderInfo } from "../../internal/functionality/hooks/useHeaderInfo";
 import useAssetsTopBar from "../../internal/functionality/hooks/useAssetsTopBar";
-import { CLICK_MC_TOTAL_STAKED_TOPBAR, useTracker } from "tracker";
+import { CLICK_MISSION_CONTROL_TOTAL_STAKED_TOPBAR, useTracker } from "tracker";
 const TopBarMissionControl = () => {
   const { totalStaked, totalRewards } = useHeaderInfo();
   const { totalAssets, evmosPrice, totalEvmosAsset } = useAssetsTopBar();
@@ -23,7 +23,9 @@ const TopBarMissionControl = () => {
     Number(evmosPrice)
   );
 
-  const { handlePreClickAction } = useTracker(CLICK_MC_TOTAL_STAKED_TOPBAR);
+  const { handlePreClickAction } = useTracker(
+    CLICK_MISSION_CONTROL_TOTAL_STAKED_TOPBAR
+  );
 
   return (
     <TopBarContainer>

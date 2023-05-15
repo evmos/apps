@@ -1,14 +1,14 @@
 // mission control
-export { CLICK_REDIRECTS_MC_SIDEBAR } from "./constants";
-export { CLICK_MC_HALF_LIFE } from "./constants";
-export { CLICK_MC_VIEW_ASSETS_BUTTON } from "./constants";
-export { CLICK_MC_GOVERNANCE_VOTE_BUTTON } from "./constants";
-export { CLICK_MC_GOVERNANCE_DOCS_BUTTON } from "./constants";
-export { CLICK_MC_GOVERNANCE_DISCUSSION_BUTTON } from "./constants";
-export { CLICK_MC_ECOSYSTEM_BUTTON } from "./constants";
-export { LISTEN_MC_SCROLL_ECOSYSTEM } from "./constants";
-export { CLICK_MC_VIEW_STAKING_BUTTON } from "./constants";
-export { CLICK_MC_TOTAL_STAKED_TOPBAR } from "./constants";
+export { CLICK_REDIRECTS_MISSION_CONTROL_SIDEBAR } from "./constants";
+export { CLICK_MISSION_CONTROL_HALF_LIFE } from "./constants";
+export { CLICK_MISSION_CONTROL_VIEW_ASSETS_BUTTON } from "./constants";
+export { CLICK_MISSION_CONTROL_GOVERNANCE_VOTE_BUTTON } from "./constants";
+export { CLICK_MISSION_CONTROL_GOVERNANCE_DOCS_BUTTON } from "./constants";
+export { CLICK_MISSION_CONTROL_GOVERNANCE_DISCUSSION_BUTTON } from "./constants";
+export { CLICK_MISSION_CONTROL_ECOSYSTEM_BUTTON } from "./constants";
+export { LISTEN_MISSION_CONTROL_SCROLL_ECOSYSTEM } from "./constants";
+export { CLICK_MISSION_CONTROL_VIEW_STAKING_BUTTON } from "./constants";
+export { CLICK_MISSION_CONTROL_TOTAL_STAKED_TOPBAR } from "./constants";
 
 // generics
 export { CLICK_WC_CONNECT_WALLET_BUTTON } from "./constants";

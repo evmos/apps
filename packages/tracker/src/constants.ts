@@ -1,18 +1,25 @@
 // mission control
 
 // add the action on the name and in the description
-export const CLICK_REDIRECTS_MC_SIDEBAR = "Mission control > dApps";
-export const CLICK_MC_HALF_LIFE = "Mission Control > Half-Life";
-export const CLICK_MC_VIEW_ASSETS_BUTTON = "Mission Control > View All Assets";
-export const CLICK_MC_GOVERNANCE_VOTE_BUTTON = "Mission Control > Vote";
-export const CLICK_MC_GOVERNANCE_DOCS_BUTTON = "Mission Control > Docs";
-export const CLICK_MC_GOVERNANCE_DISCUSSION_BUTTON =
+export const CLICK_REDIRECTS_MISSION_CONTROL_SIDEBAR =
+  "Mission control > dApps";
+export const CLICK_MISSION_CONTROL_HALF_LIFE = "Mission Control > Half-Life";
+export const CLICK_MISSION_CONTROL_VIEW_ASSETS_BUTTON =
+  "Mission Control > View All Assets";
+export const CLICK_MISSION_CONTROL_GOVERNANCE_VOTE_BUTTON =
+  "Mission Control > Vote";
+export const CLICK_MISSION_CONTROL_GOVERNANCE_DOCS_BUTTON =
+  "Mission Control > Docs";
+export const CLICK_MISSION_CONTROL_GOVERNANCE_DISCUSSION_BUTTON =
   "Mission Control > Discussion";
-export const CLICK_MC_ECOSYSTEM_BUTTON = "Mission Control > Ecosystem";
-export const LISTEN_MC_SCROLL_ECOSYSTEM =
+export const CLICK_MISSION_CONTROL_ECOSYSTEM_BUTTON =
+  "Mission Control > Ecosystem";
+export const LISTEN_MISSION_CONTROL_SCROLL_ECOSYSTEM =
   "Mission Control > Scroll through Ecosystem";
-export const CLICK_MC_VIEW_STAKING_BUTTON = "Mission Control > View Staking";
-export const CLICK_MC_TOTAL_STAKED_TOPBAR = "Mission Control > “Total Staked”";
+export const CLICK_MISSION_CONTROL_VIEW_STAKING_BUTTON =
+  "Mission Control > View Staking";
+export const CLICK_MISSION_CONTROL_TOTAL_STAKED_TOPBAR =
+  "Mission Control > “Total Staked”";
 
 // generics
 export const CLICK_WC_CONNECT_WALLET_BUTTON =

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import Link from "next/link";
-import { useTracker, CLICK_REDIRECTS_MC_SIDEBAR } from "tracker";
+import { useTracker, CLICK_REDIRECTS_MISSION_CONTROL_SIDEBAR } from "tracker";
 export type SideBarEntry = {
   title: string;
   path: string;
@@ -10,9 +10,12 @@ export type SideBarEntry = {
 };
 
 const SideBarItem = ({ item }: { item: SideBarEntry }) => {
-  const { handlePreClickAction } = useTracker(CLICK_REDIRECTS_MC_SIDEBAR, {
-    page: item.path,
-  });
+  const { handlePreClickAction } = useTracker(
+    CLICK_REDIRECTS_MISSION_CONTROL_SIDEBAR,
+    {
+      page: item.path,
+    }
+  );
   const isActive = item.title.includes("Mission");
   return (
     <Link

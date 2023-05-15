@@ -26,11 +26,11 @@
     "tailwind-config#build": {},
     "tsconfig#build": {},
     "jest-config-evmos#build": {},
+    "tracker#build": {},
     "constants-helper#build": {},
     "icons#build": {},
     "helpers#build": {},
     "services#build": {},
-    "tracker#build": {},
     "ui-helpers#build": {
       "dependsOn": ["icons#build", "constants-helper#build", "tracker#build"],
       "outputs": ["dist/**", ".next/**"]
@@ -59,16 +59,16 @@
     "eslint-config-custom#dev": {},
     "tailwind-config#dev": {},
     "tsconfig#dev": {},
+    "tracker#dev": {},
     "constants-helper#dev": {},
     "icons#dev": {},
     "helpers#dev": {},
     "services#dev": {},
-    "tracker#dev": {},
     "ui-helpers#dev": {
-      "dependsOn": ["icons#dev", "constants-helper#dev", "tracker#build"]
+      "dependsOn": ["icons#dev", "constants-helper#dev", "tracker#dev"]
     },
     "evmos-wallet#dev": {
-      "dependsOn": ["icons#dev", "ui-helpers#dev", "tracker#build"]
+      "dependsOn": ["icons#dev", "ui-helpers#dev", "tracker#dev"]
     },
     "lint": {},
     "check-types": {},

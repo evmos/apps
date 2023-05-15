@@ -37,7 +37,7 @@ export default function Home() {
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
           <MixpanelProvider
-            config={{ debug: true, ip: false }}
+            config={{ ip: false }}
             token={process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? ""}
           >
             <>

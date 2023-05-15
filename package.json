@@ -9,8 +9,8 @@
   ],
   "private": true,
   "scripts": {
-    "build:production": "EVMOS_APP_ENV=production turbo run build",
-    "build": "turbo run build",
+    "build:production": "npm run clear-cache && EVMOS_APP_ENV=production turbo run build",
+    "build": "npm run clear-cache && turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
@@ -18,7 +18,8 @@
     "test:watch": "turbo run test:watch",
     "test:coverage": "turbo run test:coverage",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "clear-cache": "sh ./clear-cache.sh"
   },
   "devDependencies": {
     "husky": "^8.0.3",

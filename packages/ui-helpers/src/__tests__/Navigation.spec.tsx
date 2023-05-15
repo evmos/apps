@@ -17,8 +17,6 @@ describe("Testing for Navigation", () => {
   });
 
   const myFunction = () => {
-    const token = "testToken";
-    const config = { debug: true, ip: false };
     render(<Navigation href={EVMOS_PAGE_URL} text={NAV_TO_MISSION_CONTROL} />);
     const expectedText = NAV_TO_MISSION_CONTROL;
     eventTriggerByText(expectedText);

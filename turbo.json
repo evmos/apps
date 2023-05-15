@@ -20,7 +20,8 @@
         "NEXT_PUBLIC_EVMOS_CHAIN",
         "NEXT_PUBLIC_EVMOS_PAGE_URL",
         "NEXT_PUBLIC_MIXPANEL_TOKEN"
-      ]
+      ],
+      "cache": false
     },
     "eslint-config-custom#build": {},
     "tailwind-config#build": {},

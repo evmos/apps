@@ -19,7 +19,9 @@ const Search = ({ placeholder }: { placeholder: string }) => {
         value={value}
         className="w-full bg-transparent text-pearl placeholder:text-darkGray3 focus-visible:outline-none"
         placeholder={placeholder}
-        onClick={handlePreClickAction}
+        onClick={() => {
+          handlePreClickAction();
+        }}
       />
       <SearchIcon className="h-10 w-10 text-darkGray3" />
     </div>

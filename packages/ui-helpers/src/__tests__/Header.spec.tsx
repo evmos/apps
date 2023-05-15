@@ -30,7 +30,7 @@
 //     return wrapper;
 //   };
 
-//   it("Header in Governance: clicks on Logo and triggers the tracker action", () => {
+//   it("Header in Governance: should trigger the tracker action when clicking on..", () => {
 //     const pageName = "Governance";
 //     const localProps = {
 //       pageName: pageName,

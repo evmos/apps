@@ -15,7 +15,7 @@
 //     jest.clearAllMocks();
 //   });
 
-//   it("calls Mixpanel functions without token", () => {
+//   it("should calls Mixpanel functions without token", () => {
 //     const wrapper = ({ children }: { children: JSX.Element }) => (
 //       <MixpanelProvider token={EMPTY_TOKEN} config={CONFIG}>
 //         {children}

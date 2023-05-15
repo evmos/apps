@@ -55,7 +55,8 @@
       "cache": false
     },
     "test:coverage": {
-      "cache": false
+      "cache": false,
+      "outputs": ["coverage/**"]
     }
   }
 }

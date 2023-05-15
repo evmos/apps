@@ -1,12 +1,12 @@
 name: Test
 on:
   push:
-    branches: [main]
+    branches: [main, production]
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [main]
+    branches: [main, production]
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -25,10 +25,6 @@ jobs:
         run: yarn install
         if: env.GIT_DIFF
 
-      - name: Yarn build is needed because the packages inter-dependencies
-        run: yarn build
-        if: env.GIT_DIFF
-
       - name: Run tests
-        run: yarn test
+        run: yarn test:coverage
         if: env.GIT_DIFF

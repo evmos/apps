@@ -25,7 +25,7 @@ const Content = () => {
             }}
           />
           <TopBarStaking />
-          <div className=" xl:scrollbar-hide mt-5 max-h-[33vh] w-full overflow-y-auto px-2 font-[IBM] text-pearl sm:max-h-[45vh] lg:max-h-[53vh]">
+          <div className=" xl:scrollbar-hide mt-5 w-full px-2 font-[IBM] text-pearl">
             <Tabs
               tabsContent={tabsContent}
               placeholder="Search Validators..."

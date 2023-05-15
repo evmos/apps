@@ -36,7 +36,9 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (workflow) #fse-512 | githug/workflows | Adding codeball
 - (tests) #fse-509 | apps/assets 1.0.2 apps/governance 1.0.2 apps/staking 1.0.2 packages/evmos-wallet 1.0.4 packages/helpers 1.0.2 packages/services 1.0.1 packages/ui-helpers 1.0.1 | Adding shared package for jest related configuration
+- (design) #229 | apps/staking 1.0.1 apps/assets 1.0.1 | Making design fixes so we don't have extra scrollbars
 - (improvements) #fse-487 | evmos-wallet 1.0.3 | Use preferNoSetFee while signing with Keplr and chain is Evmos
 - (bug fixes) #fse-142 | apps/assets 1.0.1 | Change amount of decimals displayed: 6 instead of 2
 - (bug fixes) #fse-142 | apps/mission 1.0.1 | Display tooltip on topBarMissionControl with 6 decimals amount if amount is bigger than 0
@@ -49,9 +51,6 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (bug fixes) #fse-481 | evmos-wallet 1.0.1 | Show connected snackbar only if the user clicks on Connect Wallet
 - (ci) #fse-413 | (apps)/_ 1.0.x | Adding CI/CD pipeline for apps
 - (chore) #fse-503 | (/) Add production build script | (apps|mission) add script to copy _redirects file depending on environment
-
-...
-
 
 
 

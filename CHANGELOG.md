@@ -40,6 +40,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (workflow) #fse-511 | apps/assets 1.0.3 apps/governance 1.0.3 apps/staking 1.0.3 apps/mission 1.0.3 | Moving husky to the mono repo level
 - (workflow) #fse-511 | husky, package | Updating husky so it can work again
 - (workflow) #fse-511 | apps/mission 1.0.3 | Ignoring \_redirects from git
+- (refactor) #fse-514 | github actions | Removing unused folder
 
 ## 1.0.3 - 2023-05-10
 

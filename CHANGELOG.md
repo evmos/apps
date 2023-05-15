@@ -36,14 +36,14 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## UNRELEASED
 
-- (workflow) #fse-511 | packages/constants-helper 1.0.1 packages/eslint-config-custom 1.0.1 packages/evmos-wallet 1.0.5 packages/helpers 1.0.3 packages/icons 1.0.1 packages/services 1.0.2 packages/ui-helpers 1.0.2  | Deleting eslint related dependencies, setting new linting rules, fixing linting issues
-- (workflow) #fse-511 | apps/assets 1.0.3 apps/governance 1.0.3 apps/staking 1.0.3 apps/mission 1.0.4 | Moving husky to the mono repo level
+- (workflow) #fse-511 | packages/constants-helper 1.0.1 packages/eslint-config-custom 1.0.1 packages/evmos-wallet 1.0.5 packages/helpers 1.0.3 packages/icons 1.0.1 packages/services 1.0.2 packages/ui-helpers 1.0.2 | Deleting eslint related dependencies, setting new linting rules, fixing linting issues
+- (workflow) #fse-511 | apps/assets 1.0.3 apps/governance 1.0.3 apps/staking 1.0.3 apps/mission 1.0.3 | Moving husky to the mono repo level
 - (workflow) #fse-511 | husky, package | Updating husky so it can work again
-- (workflow) #fse-511 | apps/mission 1.0.3 | Ignoring _redirects from git
+- (workflow) #fse-511 | apps/mission 1.0.3 | Ignoring \_redirects from git
 
 ## 1.0.3 - 2023-05-10
-- (chore) #fse-142 | evmos-wallet 1.0.6 | Env vars prefixes
 
+- (chore) #fse-142 | evmos-wallet 1.0.6 | Env vars prefixes
 
 ## 1.0.2 - 2023-05-10
 

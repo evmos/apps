@@ -41,12 +41,12 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (workflow) #fse-511 | apps/assets 1.0.3 apps/governance 1.0.3 apps/staking 1.0.3 apps/mission 1.0.3 | Moving husky to the mono repo level
 - (workflow) #fse-511 | husky, package | Updating husky so it can work again
 - (workflow) #fse-511 | apps/mission 1.0.3 | Ignoring \_redirects from git
-- (workflow) #fse-531 | script | Adding script to clear cache and fixing cache issue in the build process
 - (refactor) #fse-514 | github actions | Removing unused folder
 
 
 ## 1.0.4 - 2023-05-19
 - (chore) #fse-581 | apps/assets 1.0.4 | add images for new assets & group quicksilver assets
+- (workflow) #fse-531 | script | Adding script to clear cache and fixing cache issue in the build process
 
 ## 1.0.3 - 2023-05-10
 - (chore) #fse-142 | evmos-wallet 1.0.6 | Env vars prefixes

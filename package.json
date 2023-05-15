@@ -9,8 +9,8 @@
   ],
   "private": true,
   "scripts": {
-    "build:production": "npm run clear-cache && EVMOS_APP_ENV=production turbo run build",
-    "build": "npm run clear-cache && turbo run build",
+    "build:production": "EVMOS_APP_ENV=production turbo run build",
+    "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "clean": "turbo run clean",

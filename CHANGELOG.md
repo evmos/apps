@@ -36,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## UNRELEASED
 
+- (workflow) #fse-531 | script | Adding script to clear cache
 - (refactor) #fse-514 | github actions | Removing unused folder
 
 ## 1.0.3 - 2023-05-10

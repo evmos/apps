@@ -4,6 +4,7 @@
 import dynamic from "next/dynamic";
 import { WagmiConfig } from "wagmi";
 import { Provider, useDispatch, useSelector } from "react-redux";
+import { InformationBanner } from "ui-helpers";
 
 const Web3Modal = dynamic(() =>
   import("@web3modal/react").then((mod) => mod.Web3Modal)
@@ -46,6 +47,23 @@ export default function Home() {
               <GoogleAnalytics />
               <main>
                 <TermOfServices />
+                <InformationBanner
+                  dismissible={true}
+                  localStorageId="dora-hacks-banner"
+                  text={
+                    <div className="text-base">
+                      Extend the EVM with DoraHacks - live until June 2!{" "}
+                      <a
+                        href="https://dorahacks.io/hackathon/EVM/detail"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-2.5 rounded bg-red p-5 py-1.5 font-semibold text-pearl"
+                      >
+                        Build Now 🚀
+                      </a>
+                    </div>
+                  }
+                />
                 <Container>
                   <>
                     <SnackbarsInternal />

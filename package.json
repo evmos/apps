@@ -1,6 +1,6 @@
 {
   "name": "evmos-apps",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "license": "SEE LICENSE IN LICENSE",
   "author": "Tharsis Labs Ltd.(Evmos)",
   "workspaces": [
@@ -9,7 +9,7 @@
   ],
   "private": true,
   "scripts": {
-    "build:production": "NODE_ENV=production turbo run build",
+    "build:production": "EVMOS_APP_ENV=production turbo run build",
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",

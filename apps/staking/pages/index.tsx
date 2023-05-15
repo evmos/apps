@@ -30,6 +30,7 @@ import { StatefulHeader } from "../src/StatefulHeader";
 import { HeadComponent } from "../src/components/staking/HeadComponent";
 import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
 import { StatefulFooter } from "../src/StatefulFooter";
+import { InformationBanner } from "ui-helpers";
 const Content = dynamic(() => import("../src/components/staking/Content"));
 
 export default function Home() {
@@ -47,6 +48,23 @@ export default function Home() {
               <GoogleAnalytics />
               <main>
                 <TermOfServices />
+                <InformationBanner
+                  dismissible={true}
+                  localStorageId="dora-hacks-banner"
+                  text={
+                    <div className="text-base">
+                      Extend the EVM with DoraHacks - live until June 2!{" "}
+                      <a
+                        href="https://dorahacks.io/hackathon/EVM/detail"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-2.5 rounded bg-red p-5 py-1.5 font-semibold text-pearl"
+                      >
+                        Build Now 🚀
+                      </a>
+                    </div>
+                  }
+                />
                 <Container>
                   <>
                     <SnackbarsInternal />

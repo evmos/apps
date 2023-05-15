@@ -11,6 +11,8 @@ import React, {
 import { tabContent } from "../../staking/Tabs/Content";
 
 import { DropdownArrow } from "icons";
+import { CLICK_TABS_STAKING_OPTIONS, useTracker } from "tracker";
+
 const TabsDropdown = ({
   content,
   setActiveTab,
@@ -49,17 +51,22 @@ const TabsDropdown = ({
     );
   }, [content, selectedValue]);
 
+  const { handlePreClickAction } = useTracker(CLICK_TABS_STAKING_OPTIONS);
+
   const onItemClick = useCallback(
     (option: tabContent) => {
       setSelectedValue(option.title);
       setActiveTab(option.id);
+      handlePreClickAction({
+        tabSelected: option.title,
+      });
     },
-    [setActiveTab]
+    [setActiveTab, handlePreClickAction]
   );
 
   return (
     <div
-      className={`relative w-full cursor-pointer rounded bg-white px-3 py-2 text-left text-black ${
+      className={`relative z-[9999] w-full cursor-pointer rounded bg-white px-3 py-2 text-left text-black ${
         showMenu ? "rounded-b-none" : ""
       }`}
     >

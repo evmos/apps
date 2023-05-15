@@ -8,10 +8,15 @@ import { BigNumber } from "ethers";
 import { executeUndelegate } from "../../../../internal/staking/functionality/transactions/undelegate";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
 
+import { CLICK_BUTTON_CONFIRM_UNDELEGATE, useTracker } from "tracker";
 export const useUndelegation = (useUndelegateProps: UndelegateProps) => {
   const dispatch = useDispatch();
-
+  const { handlePreClickAction } = useTracker(CLICK_BUTTON_CONFIRM_UNDELEGATE);
   const handleConfirmButton = async () => {
+    handlePreClickAction({
+      wallet: useUndelegateProps?.wallet?.evmosAddressEthFormat,
+      provider: useUndelegateProps?.wallet?.extensionName,
+    });
     useUndelegateProps.setConfirmClicked(true);
     if (
       useUndelegateProps.value === undefined ||

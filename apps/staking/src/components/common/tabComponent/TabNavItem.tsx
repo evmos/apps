@@ -2,6 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { Dispatch, SetStateAction } from "react";
+import { CLICK_TABS_STAKING_OPTIONS, useTracker } from "tracker";
 
 const TabNavItem = ({
   id,
@@ -14,7 +15,11 @@ const TabNavItem = ({
   activeTab: string;
   setActiveTab: Dispatch<SetStateAction<string>>;
 }) => {
+  const { handlePreClickAction } = useTracker(CLICK_TABS_STAKING_OPTIONS, {
+    tabSelected: title,
+  });
   const handleClick = () => {
+    handlePreClickAction();
     setActiveTab(id);
   };
 

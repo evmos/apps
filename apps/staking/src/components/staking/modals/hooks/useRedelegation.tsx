@@ -7,12 +7,16 @@ import { parseUnits } from "@ethersproject/units";
 import { BigNumber } from "ethers";
 import { executeRedelegate } from "../../../../internal/staking/functionality/transactions/redelegate";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
-
+import { CLICK_BUTTON_CONFIRM_REDELEGATE, useTracker } from "tracker";
 export const useRedelegation = (useRedelegateProps: RedelegateProps) => {
   const dispatch = useDispatch();
 
-  //   async
+  const { handlePreClickAction } = useTracker(CLICK_BUTTON_CONFIRM_REDELEGATE);
   const handleConfirmButton = async () => {
+    handlePreClickAction({
+      wallet: useRedelegateProps?.wallet?.evmosAddressEthFormat,
+      provider: useRedelegateProps?.wallet?.extensionName,
+    });
     useRedelegateProps.setConfirmClicked(true);
     if (
       useRedelegateProps.value === undefined ||

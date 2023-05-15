@@ -9,6 +9,8 @@ import { DropdownArrow } from "icons";
 
 import { DepositElement } from "../modals/transactions/DepositSTR";
 import { DropdownChainsDepositProps } from "./types";
+import { CLICK_DEPOSIT_CHOOSE_FROM_CHAIN, useTracker } from "tracker";
+
 const DropdownChainDeposit = ({
   dropChainProps,
 }: {
@@ -50,12 +52,14 @@ const DropdownChainDeposit = ({
     }
     return dropChainProps.placeholder;
   };
+  const { handlePreClickAction } = useTracker(CLICK_DEPOSIT_CHOOSE_FROM_CHAIN);
 
   const onItemClick = (option: DepositElement) => {
     setSelectedValue(option);
     dropChainProps.setChain(option);
     dropChainProps.setAddress("");
     dropChainProps.setToken(undefined);
+    handlePreClickAction({ chain: option.chain });
   };
 
   return (
@@ -70,7 +74,9 @@ const DropdownChainDeposit = ({
               if (option.chain !== EVMOS_SYMBOL) {
                 return (
                   <div
-                    onClick={() => onItemClick(option)}
+                    onClick={() => {
+                      onItemClick(option);
+                    }}
                     key={option.chain}
                     className={`flex cursor-pointer justify-between space-x-8 p-3 font-bold hover:bg-gray
                   `}

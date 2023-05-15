@@ -31,6 +31,7 @@ export default defineConfig((options: Options) => ({
     "@hanchon/signature-to-pubkey",
     "icons",
     "ui-helpers",
+    "tracker",
   ],
   ...options,
 }));

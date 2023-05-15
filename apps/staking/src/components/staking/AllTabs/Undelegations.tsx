@@ -23,7 +23,7 @@ import { convertAndFormat, getRemainingTime } from "helpers";
 import { MessageTable, Modal } from "ui-helpers";
 import { CancelUndelegation } from "../modals/transactions/CancelUndelegation";
 import { CloseIcon } from "icons";
-
+import { CLICK_CANCEL_UNDELEGATION_BUTTON, useTracker } from "tracker";
 const dataHead = [
   "Name",
   "Amount to be undelegated",
@@ -45,10 +45,15 @@ const Undelegations = () => {
 
   const [show, setShow] = useState(false);
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
-  const handleOnClick = useCallback((item: undelegationData) => {
-    setShow(true);
-    setModalContent(<CancelUndelegation item={item} setShow={setShow} />);
-  }, []);
+  const { handlePreClickAction } = useTracker(CLICK_CANCEL_UNDELEGATION_BUTTON);
+  const handleOnClick = useCallback(
+    (item: undelegationData) => {
+      handlePreClickAction();
+      setShow(true);
+      setModalContent(<CancelUndelegation item={item} setShow={setShow} />);
+    },
+    [handlePreClickAction]
+  );
 
   const { value } = useSearchContext() as SearchContext;
   const filtered = useMemo(() => {

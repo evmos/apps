@@ -19,6 +19,7 @@
     "constants-helper": "*",
     "icons": "*",
     "helpers": "*",
+    "tracker": "*",
     "services": "*",
     "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",

@@ -7,10 +7,12 @@ export const TopBarItem = ({
   text,
   value,
   href,
+  onClick,
 }: {
   text: string;
   value: string | JSX.Element;
   href?: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }) => {
   const drawDiv = () => (
     <div>
@@ -23,7 +25,11 @@ export const TopBarItem = ({
 
   return (
     <>
-      {href !== undefined && <Link href={href}>{drawDiv()}</Link>}
+      {href !== undefined && (
+        <Link href={href} onClick={onClick}>
+          {drawDiv()}
+        </Link>
+      )}
       {href === undefined && drawDiv()}
     </>
   );

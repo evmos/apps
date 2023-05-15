@@ -19,7 +19,10 @@ import { Keplr } from "../internal/wallet/functionality/keplr/keplr";
 import { disconnectWallets } from "../internal/wallet/functionality/disconnect";
 import {
   GetProviderFromLocalStorage,
+  GetWalletFromLocalStorage,
   RemoveProviderFromLocalStorage,
+  RemoveWalletFromLocalStorage,
+  SaveWalletToLocalStorage,
 } from "../internal/wallet/functionality/localstorage";
 import {
   KeplrIcon,
@@ -37,7 +40,13 @@ import {
   useWalletConnect,
 } from "../internal/wallet/functionality/walletconnect/walletconnect";
 import { Tooltip } from "ui-helpers";
-
+import {
+  CLICK_WC_CONNECT_WALLET_BUTTON,
+  CLICK_WC_DISCONNECT_WALLET_BUTTON,
+  CLICK_WC_CONNECTED_WITH,
+  SWITCH_BETWEEN_WALLETS,
+  useTracker,
+} from "tracker";
 // Components
 import { Button } from "ui-helpers";
 
@@ -91,6 +100,63 @@ export const ButtonWalletConnection = ({
   });
 
   const [isCopied, setIsCopied] = useState(false);
+
+  const { handlePreClickAction: trackClickConnectWallet } = useTracker(
+    CLICK_WC_CONNECT_WALLET_BUTTON
+  );
+  const { handlePreClickAction: trackClickDisconnectWallet } = useTracker(
+    CLICK_WC_DISCONNECT_WALLET_BUTTON
+  );
+
+  const { handlePreClickAction: trackConnectedWithWallet } = useTracker(
+    CLICK_WC_CONNECTED_WITH
+  );
+
+  const { handlePreClickAction: trackChangeWallet } = useTracker(
+    SWITCH_BETWEEN_WALLETS
+  );
+
+  useEffect(() => {
+    function trackWallet() {
+      const walletLocalStorage = GetWalletFromLocalStorage();
+      // walletExtension is not set
+      if (walletExtension.evmosAddressEthFormat === "") {
+        return;
+      }
+      // walletLocalStorage is not set
+      if (walletLocalStorage === null) {
+        return;
+      }
+      // track the wallet change if the wallets are different
+      if (walletExtension.evmosAddressEthFormat !== walletLocalStorage) {
+        trackChangeWallet({
+          provider: walletExtension.extensionName,
+          wallet: walletExtension.evmosAddressEthFormat,
+        });
+        SaveWalletToLocalStorage(walletExtension.evmosAddressEthFormat);
+      }
+    }
+    // tracking address changes
+    if (METAMASK_KEY === GetProviderFromLocalStorage()) {
+      trackWallet();
+    }
+
+    if (KEPLR_KEY === GetProviderFromLocalStorage()) {
+      trackWallet();
+    }
+  }, [walletExtension]);
+
+  useEffect(() => {
+    const walletLocalStorage = GetWalletFromLocalStorage();
+    // avoid saving the evmos address if it is empty or is already stored.
+    if (walletExtension.evmosAddressEthFormat === "") {
+      return;
+    }
+    if (walletLocalStorage === walletExtension.evmosAddressEthFormat) {
+      return;
+    }
+    SaveWalletToLocalStorage(walletExtension.evmosAddressEthFormat);
+  }, [walletExtension]);
 
   return walletExtension.active === true ? (
     <>
@@ -164,6 +230,11 @@ export const ButtonWalletConnection = ({
             <button
               className="w-full rounded font-bold uppercase border border-darkPearl hover:bg-grayOpacity p-3 mt-3"
               onClick={() => {
+                trackClickDisconnectWallet({
+                  wallet: walletExtension?.evmosAddressEthFormat,
+                  provider: walletExtension?.extensionName,
+                });
+                RemoveWalletFromLocalStorage();
                 RemoveProviderFromLocalStorage();
                 disconnectWallets(dispatch);
                 setShow(false);
@@ -178,7 +249,12 @@ export const ButtonWalletConnection = ({
     </>
   ) : (
     <div className="flex justify-center">
-      <Button onClick={open}>
+      <Button
+        onClick={() => {
+          setShow(true);
+          trackClickConnectWallet();
+        }}
+      >
         <div className="flex items-center space-x-2 ">
           <WalletIcon />
           <span>Connect wallet</span>
@@ -196,6 +272,10 @@ export const ButtonWalletConnection = ({
                 disconnectWallets(dispatch);
                 const keplr = new Keplr(store);
                 await keplr.connect();
+                trackConnectedWithWallet({
+                  wallet: GetWalletFromLocalStorage(),
+                  provider: GetProviderFromLocalStorage(),
+                });
               }}
             >
               <ContentModalConnect>
@@ -210,6 +290,10 @@ export const ButtonWalletConnection = ({
                 disconnectWallets(dispatch);
                 const metamask = new Metamask(store);
                 await metamask.connect();
+                trackConnectedWithWallet({
+                  wallet: GetWalletFromLocalStorage(),
+                  provider: GetProviderFromLocalStorage(),
+                });
               }}
             >
               <ContentModalConnect>
@@ -222,6 +306,11 @@ export const ButtonWalletConnection = ({
               onClick={async () => {
                 setShow(false);
                 await useWC.connect();
+                // TODO: how do I pass the provider?
+                trackConnectedWithWallet({
+                  wallet: GetWalletFromLocalStorage(),
+                  provider: GetProviderFromLocalStorage(),
+                });
               }}
             >
               <ContentModalConnect>

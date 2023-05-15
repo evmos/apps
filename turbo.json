@@ -22,6 +22,7 @@
         "NEXT_PUBLIC_CHAIN_ID",
         "NEXT_PUBLIC_COSMOS_CHAIN_ID",
         "NEXT_PUBLIC_EVMOS_PAGE_URL"
+        "NEXT_PUBLIC_MIXPANEL_TOKEN"
       ],
       "cache": false
     },
@@ -29,16 +30,17 @@
     "tailwind-config#build": {},
     "tsconfig#build": {},
     "jest-config-evmos#build": {},
+    "tracker#build": {},
     "constants-helper#build": {},
     "icons#build": {},
     "helpers#build": {},
     "services#build": {},
     "ui-helpers#build": {
-      "dependsOn": ["icons#build", "constants-helper#build"],
+      "dependsOn": ["icons#build", "constants-helper#build", "tracker#build"],
       "outputs": ["dist/**", ".next/**"]
     },
     "evmos-wallet#build": {
-      "dependsOn": ["icons#build", "ui-helpers#build"],
+      "dependsOn": ["icons#build", "ui-helpers#build", "tracker#build"],
       "outputs": ["dist/**", ".next/**"],
       "env": [
         "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
@@ -57,20 +59,22 @@
         "NEXT_PUBLIC_EVMOS_PAGE_URL",
         "NEXT_PUBLIC_CHAIN_ID",
         "NEXT_PUBLIC_COSMOS_CHAIN_ID"
+        "NEXT_PUBLIC_MIXPANEL_TOKEN"
       ]
     },
     "eslint-config-custom#dev": {},
     "tailwind-config#dev": {},
     "tsconfig#dev": {},
+    "tracker#dev": {},
     "constants-helper#dev": {},
     "icons#dev": {},
     "helpers#dev": {},
     "services#dev": {},
     "ui-helpers#dev": {
-      "dependsOn": ["icons#dev", "constants-helper#dev"]
+      "dependsOn": ["icons#dev", "constants-helper#dev", "tracker#dev"]
     },
     "evmos-wallet#dev": {
-      "dependsOn": ["icons#dev", "ui-helpers#dev"]
+      "dependsOn": ["icons#dev", "ui-helpers#dev", "tracker#dev"]
     },
     "lint": {
       "cache": false

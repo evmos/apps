@@ -44,7 +44,8 @@
     "react-dom": "18.2.0",
     "typescript": "4.9.4",
     "icons": "*",
-    "constants-helper": "*"
+    "constants-helper": "*",
+    "tracker": "*"
   },
   "browserslist": [
     "last 3 chrome version",

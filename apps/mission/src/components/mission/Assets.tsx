@@ -9,7 +9,7 @@ import useAssets from "../../internal/functionality/hooks/useAssets";
 import { StoreType } from "evmos-wallet";
 import { BannerMessages, Button } from "ui-helpers";
 import MissionContainer from "./MissionContainer";
-
+import { CLICK_MISSION_CONTROL_VIEW_ASSETS_BUTTON, useTracker } from "tracker";
 const Assets = () => {
   const router = useRouter();
   const value = useSelector((state: StoreType) => state.wallet.value);
@@ -69,6 +69,14 @@ const Assets = () => {
       </div>
     );
   }, [error, loading, value, assets]);
+
+  const { handlePreClickAction } = useTracker(
+    CLICK_MISSION_CONTROL_VIEW_ASSETS_BUTTON,
+    {
+      wallet: value?.evmosAddressCosmosFormat,
+      provider: value?.extensionName,
+    }
+  );
   return (
     <MissionContainer>
       <section>
@@ -78,6 +86,7 @@ const Assets = () => {
           </span>
           <Button
             onClick={async () => {
+              handlePreClickAction();
               await router.push("/assets");
             }}
           >

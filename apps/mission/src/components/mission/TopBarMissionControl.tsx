@@ -11,7 +11,7 @@ import {
 
 import { useHeaderInfo } from "../../internal/functionality/hooks/useHeaderInfo";
 import useAssetsTopBar from "../../internal/functionality/hooks/useAssetsTopBar";
-
+import { CLICK_MISSION_CONTROL_TOTAL_STAKED_TOPBAR, useTracker } from "tracker";
 const TopBarMissionControl = () => {
   const { totalStaked, totalRewards } = useHeaderInfo();
   const { totalAssets, evmosPrice, totalEvmosAsset } = useAssetsTopBar();
@@ -22,6 +22,11 @@ const TopBarMissionControl = () => {
     18,
     Number(evmosPrice)
   );
+
+  const { handlePreClickAction } = useTracker(
+    CLICK_MISSION_CONTROL_TOTAL_STAKED_TOPBAR
+  );
+
   return (
     <TopBarContainer>
       <>
@@ -62,6 +67,9 @@ const TopBarMissionControl = () => {
         <TopBarItem
           // it shows the total amount of delegations
           text="Total Staked"
+          onClick={() => {
+            handlePreClickAction();
+          }}
           value={
             !displayTopBarTooltip(totalStaked) ? (
               <p> {Number(convertFromAtto(totalStaked)).toFixed(2)} EVMOS </p>

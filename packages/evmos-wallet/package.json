@@ -61,7 +61,8 @@
     "typescript": "4.9.4",
     "wagmi": "=0.10.10",
     "icons": "*",
-    "ui-helpers": "*"
+    "ui-helpers": "*",
+    "tracker": "*"
   },
   "browserslist": [
     "last 3 chrome version",

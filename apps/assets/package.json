@@ -13,6 +13,13 @@
     "test:coverage": "jest --coverage --passWithNoTests"
   },
   "dependencies": {
+    "evmos-wallet": "*",
+    "constants-helper": "*",
+    "icons": "*",
+    "ui-helpers": "*",
+    "helpers": "*",
+    "tracker": "*",
+    "services": "*",
     "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",
     "@evmos/proto": "^0.1.26",
@@ -27,19 +34,13 @@
     "@web3modal/ethereum": "=2.0.0-rc.2",
     "@web3modal/react": "=2.0.0-rc.2",
     "@web3modal/standalone": "=2.0.0-rc.2",
-    "constants-helper": "*",
     "ethers": "^5.7.2",
-    "evmos-wallet": "*",
-    "helpers": "*",
-    "icons": "*",
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
-    "services": "*",
     "typescript": "4.9.4",
-    "ui-helpers": "*",
     "wagmi": "=0.10.10"
   },
   "devDependencies": {

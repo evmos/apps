@@ -7,14 +7,21 @@ import { parseUnits } from "@ethersproject/units";
 import { BigNumber } from "ethers";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
 import { executeCancelUndelegations } from "../../../../internal/staking/functionality/transactions/cancelUndelegations";
+import { CLICK_CONFIRM_CANCEL_UNDELEGATION_BUTTON, useTracker } from "tracker";
 
 export const useCancelUndelegations = (
   useCancelUndelegationProps: CancelUndelegationsProps
 ) => {
   const dispatch = useDispatch();
-
+  const { handlePreClickAction } = useTracker(
+    CLICK_CONFIRM_CANCEL_UNDELEGATION_BUTTON
+  );
   //   async
   const handleConfirmButton = async () => {
+    handlePreClickAction({
+      wallet: useCancelUndelegationProps?.wallet?.evmosAddressEthFormat,
+      provider: useCancelUndelegationProps?.wallet?.extensionName,
+    });
     useCancelUndelegationProps.setConfirmClicked(true);
     if (
       useCancelUndelegationProps.value === undefined ||

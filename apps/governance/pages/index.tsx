@@ -19,7 +19,7 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TermOfServices, Container, Footer } from "ui-helpers";
+import { TermOfServices, Container } from "ui-helpers";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -29,48 +29,54 @@ function SnackbarsInternal() {
 import { StatefulHeader } from "../src/components/StatefulHeader";
 import { HeadComponent } from "../src/components/governance/HeadComponent";
 import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
+import { StatefulFooter } from "../src/components/StatefulFooter";
 const Content = dynamic(() => import("../src/components/governance/Content"));
-
+import { MixpanelProvider } from "tracker";
 export default function Home() {
   const queryClient = new QueryClient();
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
-          <>
-            <HeadComponent />
-            <GoogleAnalytics />
-            <main>
-              <TermOfServices />
-              <InformationBanner
-                dismissible={true}
-                localStorageId="dora-hacks-banner"
-                text={
-                  <div className="text-base">
-                    Extend the EVM with DoraHacks - live until June 2!{" "}
-                    <a
-                      href="https://dorahacks.io/hackathon/EVM/detail"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ml-2.5 rounded bg-red p-5 py-1.5 font-semibold text-pearl"
-                    >
-                      Build Now 🚀
-                    </a>
-                  </div>
-                }
-              />
-              <Container>
-                <>
-                  <SnackbarsInternal />
-                  <StatefulHeader pageName="Governance" />
-                  <div className="container mx-auto mb-auto overflow-auto">
-                    <Content />
-                  </div>
-                  <Footer />
-                </>
-              </Container>
-            </main>
-          </>
+          <MixpanelProvider
+            config={{ ip: false }}
+            token={process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? ""}
+          >
+            <>
+              <HeadComponent />
+              <GoogleAnalytics />
+              <main>
+                <TermOfServices />
+                <InformationBanner
+                  dismissible={true}
+                  localStorageId="dora-hacks-banner"
+                  text={
+                    <div className="text-base">
+                      Extend the EVM with DoraHacks - live until June 2!{" "}
+                      <a
+                        href="https://dorahacks.io/hackathon/EVM/detail"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-2.5 rounded bg-red p-5 py-1.5 font-semibold text-pearl"
+                      >
+                        Build Now 🚀
+                      </a>
+                    </div>
+                  }
+                />
+                <Container>
+                  <>
+                    <SnackbarsInternal />
+                    <StatefulHeader pageName="Governance" />
+                    <div className="container mx-auto mb-auto overflow-auto">
+                      <Content />
+                    </div>
+                    <StatefulFooter />
+                  </>
+                </Container>
+              </main>
+            </>
+          </MixpanelProvider>
         </WagmiConfig>
       </QueryClientProvider>
       <Web3Modal

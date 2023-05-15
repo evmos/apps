@@ -21,6 +21,7 @@ import { Container, TermOfServices } from "ui-helpers";
 import MainContainer from "../src/components/mission/MainContainer";
 import { HeadComponent } from "../src/components/mission/HeadComponent";
 import { GoogleAnalytics } from "../src/components/mission/GoogleAnalytics";
+import { MixpanelProvider } from "tracker";
 import { InformationBanner } from "ui-helpers";
 
 function SnackbarsInternal() {
@@ -34,36 +35,41 @@ export default function Mission() {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
-          <>
-            <HeadComponent />
-            <GoogleAnalytics />
-            <main>
-              <TermOfServices />
-              <InformationBanner
-                dismissible={true}
-                localStorageId="dora-hacks-banner"
-                text={
-                  <div className="text-base">
-                    Extend the EVM with DoraHacks - live until June 2!{" "}
-                    <a
-                      href="https://dorahacks.io/hackathon/EVM/detail"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ml-2.5 rounded bg-red p-5 py-1.5 font-semibold text-pearl"
-                    >
-                      Build Now 🚀
-                    </a>
-                  </div>
-                }
-              />
-              <Container>
-                <>
-                  <SnackbarsInternal />
-                  <MainContainer />
-                </>
-              </Container>
-            </main>
-          </>
+          <MixpanelProvider
+            config={{ ip: false }}
+            token={process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? ""}
+          >
+            <>
+              <HeadComponent />
+              <GoogleAnalytics />
+              <main>
+                <TermOfServices />
+                <InformationBanner
+                  dismissible={true}
+                  localStorageId="dora-hacks-banner"
+                  text={
+                    <div className="text-base">
+                      Extend the EVM with DoraHacks - live until June 2!{" "}
+                      <a
+                        href="https://dorahacks.io/hackathon/EVM/detail"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-2.5 rounded bg-red p-5 py-1.5 font-semibold text-pearl"
+                      >
+                        Build Now 🚀
+                      </a>
+                    </div>
+                  }
+                />
+                <Container>
+                  <>
+                    <SnackbarsInternal />
+                    <MainContainer />
+                  </>
+                </Container>
+              </main>
+            </>
+          </MixpanelProvider>
         </WagmiConfig>
       </QueryClientProvider>
       <Web3Modal

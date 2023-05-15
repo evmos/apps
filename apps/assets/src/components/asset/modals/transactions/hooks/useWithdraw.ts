@@ -21,10 +21,18 @@ import {
   EVMOS_SYMBOL,
   StoreType,
 } from "evmos-wallet";
+import { CLICK_WITHDRAW_CONFIRM_BUTTON, useTracker } from "tracker";
+
 export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
+  const { handlePreClickAction } = useTracker(CLICK_WITHDRAW_CONFIRM_BUTTON);
+
   const handleConfirmButton = async () => {
+    handlePreClickAction({
+      wallet: wallet?.evmosAddressEthFormat,
+      provider: wallet?.extensionName,
+    });
     useWithdrawProps.setConfirmClicked(true);
     if (wallet.evmosPubkey === null) {
       dispatch(snackRequestRejected());

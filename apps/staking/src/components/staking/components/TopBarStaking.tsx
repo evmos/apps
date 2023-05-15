@@ -24,8 +24,7 @@ const TopBarStaking = () => {
     useStakingInfo();
   const { evmosBalance } = useEvmosBalance();
   const { epochs } = useEpochDay();
-  const { handleConfirmButton } = useRewards(value);
-
+  const { handleConfirmButton } = useRewards(value, totalRewards);
   return (
     <TopBarContainer>
       <>

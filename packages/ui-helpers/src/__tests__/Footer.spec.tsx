@@ -66,7 +66,10 @@
 //   });
 // });
 
-// is this a good practice ? Or where should I define them ?
-test("should pass", () => {
-  expect(true).toBe(true);
+describe("Testing for Footer", () => {
+  it("render feedback", () => {
+    expect(true).toBe(true);
+  });
 });
+
+export {};

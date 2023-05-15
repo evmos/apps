@@ -61,6 +61,7 @@
 //     act(() => {
 //       result.current.handlePreClickAction();
 //     });
+// eslint-disable-next-line no-secrets/no-secrets
 //     expect(mixpanel.track).toHaveBeenCalledWith(CLICK_FEEDBACK_FOOTER, {});
 //     expect(mixpanel.track).toHaveBeenCalledTimes(1);
 //   });

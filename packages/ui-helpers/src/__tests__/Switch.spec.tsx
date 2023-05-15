@@ -40,6 +40,7 @@
 
 //     const { result, rerender } = renderHook(
 //       () =>
+// eslint-disable-next-line no-secrets/no-secrets
 //         useTracker(CLICK_HIDE_ZERO_BALANCE, {
 //           status: checkboxElement.checked,
 //         }),
@@ -56,7 +57,7 @@
 //     act(() => {
 //       result.current.handlePreClickAction();
 //     });
-
+// eslint-disable-next-line no-secrets/no-secrets
 //     expect(mixpanel.track).toHaveBeenCalledWith(CLICK_HIDE_ZERO_BALANCE, {
 //       status: checkboxElement.checked,
 //     });
@@ -69,7 +70,7 @@
 //     act(() => {
 //       result.current.handlePreClickAction();
 //     });
-
+// eslint-disable-next-line no-secrets/no-secrets
 //     expect(mixpanel.track).toHaveBeenCalledWith(CLICK_HIDE_ZERO_BALANCE, {
 //       status: checkboxElement.checked,
 //     });

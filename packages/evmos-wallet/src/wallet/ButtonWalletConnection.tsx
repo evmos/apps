@@ -55,7 +55,7 @@ export const ButtonWalletConnection = ({
   dispatch,
 }: {
   walletExtension: WalletExtension;
-  dispatch: Dispatch<AnyAction>;
+  dispatch: Dispatch<AnyAction>; // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
   const [show, setShow] = useState(false);
 

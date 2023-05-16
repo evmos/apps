@@ -592,7 +592,7 @@ const Content = () => {
         limitation may not apply to personal injury claims.
       </p>
       <p>
-        <b>14. Modifications to the Service</b>{" "}
+        <b>13. Modifications to the Service</b>{" "}
       </p>
       <p>
         You agree that Evmos reserves the right in our sole discretion to
@@ -604,7 +604,7 @@ const Content = () => {
         outside the limited scope of liability set forth in this Agreement.
       </p>
       <p>
-        <b>15. Dispute Resolution</b>
+        <b>14. Dispute Resolution</b>
       </p>
       <p>
         Arbitration Dispute Resolution. Please read the following arbitration
@@ -725,7 +725,7 @@ const Content = () => {
         legal@thars.is.
       </p>
       <p>
-        <b>16. Governing Law and Venue</b>{" "}
+        <b>15. Governing Law and Venue</b>{" "}
       </p>
       <p>
         Except as otherwise expressly stated herein, these Terms and your access
@@ -740,7 +740,7 @@ const Content = () => {
         in such courts.
       </p>
       <p>
-        <b>17. Termination </b>
+        <b>16. Termination </b>
       </p>
       <p>
         If you breach any of the provisions of these Terms, all licenses granted
@@ -754,7 +754,7 @@ const Content = () => {
         already paid to us.
       </p>
       <p>
-        <b>18. Severability</b>{" "}
+        <b>17. Severability</b>{" "}
       </p>
       <p>
         If any term, clause, or provision of these Terms is held invalid or
@@ -764,7 +764,7 @@ const Content = () => {
         term, clause, or provision of these Terms.
       </p>
       <p>
-        <b>19. Injunctive Relief</b>{" "}
+        <b>18. Injunctive Relief</b>{" "}
       </p>
       <p>
         You agree that a breach of these Terms will cause irreparable injury to
@@ -774,7 +774,7 @@ const Content = () => {
         of damages.
       </p>
       <p>
-        <b>20. Export Laws</b>{" "}
+        <b>19. Export Laws</b>{" "}
       </p>
       <p>
         You agree that you will not export or re-export, directly or indirectly,
@@ -795,7 +795,7 @@ const Content = () => {
         laws and regulations.
       </p>
       <p>
-        <b>21. Survival</b>{" "}
+        <b>20. Survival</b>{" "}
       </p>
       <p>
         All sections which by their nature should survive the termination of
@@ -805,7 +805,7 @@ const Content = () => {
         remedies at law or in equity.
       </p>
       <p>
-        <b>22. Miscellaneous</b>{" "}
+        <b>21. Miscellaneous</b>{" "}
       </p>
       <p>
         These Terms constitute the entire agreement between you and Evmos
@@ -826,7 +826,7 @@ const Content = () => {
         other person or entity.
       </p>
       <p>
-        <b>23. Disclaimer for staking of Evmos tokens</b>
+        <b>22. Disclaimer for staking of Evmos tokens</b>
       </p>
       <p>
         The Evmos protocol is a decentralized peer-to-peer blockchain that

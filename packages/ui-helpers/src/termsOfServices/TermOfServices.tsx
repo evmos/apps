@@ -5,6 +5,7 @@ import { ModalTOS } from "./Modal";
 import { ConfirmButton } from "../ConfirmButton";
 import Content from "./Content";
 import CheckboxTOS from "./CheckboxTOS";
+import ConsentModal from "./ConsentModal";
 export const TermOfServices = () => {
   const [show, setShow] = useState<boolean>(false);
   useEffect(() => {
@@ -46,15 +47,9 @@ export const TermOfServices = () => {
           <Content />
         </div>
         <div className="space-y-3">
-          {/* <b>
-            <p>
-              By accepting and continuing, you agree to the Evmos terms and
-              conditions.
-            </p>
-          </b> */}
+          <ConsentModal />
           <CheckboxTOS
             label="I acknowledge to the Terms of Service"
-            // checked={acknowledgeTOS}
             disabled={isDisabled}
           />
 
@@ -64,10 +59,6 @@ export const TermOfServices = () => {
                 I want to share usage data. <b>More information</b>
               </>
             }
-            // onClick={() => {
-            //   setAcknowledgeTOS(!acknowledgeTOS);
-            // }}
-            // checked={acknowledgeTOS}
             disabled={isDisabled}
           />
 

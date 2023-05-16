@@ -7,7 +7,7 @@ export const useTracker = (event: string, properties?: Dict) => {
   const handlePreClickAction = (extraProperties?: Dict) => {
     if (
       mixpanel !== null &&
-      Object.prototype.hasOwnProperty.call(mixpanel, "get_config")
+      Object.prototype.hasOwnProperty.call(mixpanel, "config")
     ) {
       mixpanel.track(event, { ...properties, ...extraProperties });
     }

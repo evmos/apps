@@ -50,6 +50,25 @@ export { CLICK_GOVERNANCE_PROPOSAL } from "./constants";
 export { CLICK_VOTE_BUTTON } from "./constants";
 export { CLICK_CONFIRM_VOTE_BUTTON } from "./constants";
 
+// tracker
 export { MixpanelProvider } from "./MixPanelProvider";
 export { useMixpanel } from "./context/mixpanel";
 export { useTracker } from "./useTracker";
+
+// track un/successful transactions
+export { SUCCESSFUL_TX_DEPOSIT } from "./constants";
+export { UNSUCCESSFUL_TX_DEPOSIT } from "./constants";
+export { SUCCESSFUL_TX_WITHDRAW } from "./constants";
+export { UNSUCCESSFUL_TX_WITHDRAW } from "./constants";
+export { SUCCESSFUL_TX_VOTE } from "./constants";
+export { UNSUCCESSFUL_TX_VOTE } from "./constants";
+export { SUCCESSFUL_TX_DELEGATE } from "./constants";
+export { UNSUCCESSFUL_TX_DELEGATE } from "./constants";
+export { SUCCESSFUL_TX_UNDELEGATE } from "./constants";
+export { UNSUCCESSFUL_TX_UNDELEGATE } from "./constants";
+export { SUCCESSFUL_TX_REDELEGATE } from "./constants";
+export { UNSUCCESSFUL_TX_REDELEGATE } from "./constants";
+export { SUCCESSFUL_TX_CANCEL_UNDELEGATION } from "./constants";
+export { UNSUCCESSFUL_TX_CANCEL_UNDELEGATION } from "./constants";
+export { SUCCESSFUL_TX_CLAIM_REWARDS } from "./constants";
+export { UNSUCCESSFUL_TX_CLAIM_REWARDS } from "./constants";

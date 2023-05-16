@@ -64,3 +64,28 @@ export const CLICK_COMMONWEALTH_OUTLINK = "Commonwealth outlink";
 export const CLICK_GOVERNANCE_PROPOSAL = "Governance Proposal";
 export const CLICK_VOTE_BUTTON = "Vote button";
 export const CLICK_CONFIRM_VOTE_BUTTON = "Confirm vote button";
+
+// track un/successful transactions
+export const SUCCESSFUL_TX_DEPOSIT = "DEPOSIT -> Successful transaction";
+export const UNSUCCESSFUL_TX_DEPOSIT = "DEPOSIT -> Unsuccessful transaction";
+export const SUCCESSFUL_TX_WITHDRAW = "WITHDRAW -> Successful transaction";
+export const UNSUCCESSFUL_TX_WITHDRAW = "WITHDRAW -> Unsuccessful transaction";
+export const SUCCESSFUL_TX_VOTE = "VOTE -> Successful transaction";
+export const UNSUCCESSFUL_TX_VOTE = "VOTE -> Unsuccessful transaction";
+
+export const SUCCESSFUL_TX_DELEGATE = "DELEGATE -> Successful transaction";
+export const UNSUCCESSFUL_TX_DELEGATE = "DELEGATE -> Unsuccessful transaction";
+export const SUCCESSFUL_TX_UNDELEGATE = "UNDELEGATE -> Successful transaction";
+export const UNSUCCESSFUL_TX_UNDELEGATE =
+  "UNDELEGATE -> Unsuccessful transaction";
+export const SUCCESSFUL_TX_REDELEGATE = "REDELEGATE -> Successful transaction";
+export const UNSUCCESSFUL_TX_REDELEGATE =
+  "REDELEGATE -> Unsuccessful transaction";
+export const SUCCESSFUL_TX_CANCEL_UNDELEGATION =
+  "CANCEL_UNDELEGATION -> Successful transaction";
+export const UNSUCCESSFUL_TX_CANCEL_UNDELEGATION =
+  "CANCEL_UNDELEGATION -> Unsuccessful transaction";
+export const SUCCESSFUL_TX_CLAIM_REWARDS =
+  "CLAIM_REWARDS -> Successful transaction";
+export const UNSUCCESSFUL_TX_CLAIM_REWARDS =
+  "CLAIM_REWARDS -> Unsuccessful transaction";

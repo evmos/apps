@@ -22,7 +22,8 @@
         "NEXT_PUBLIC_CHAIN_ID",
         "NEXT_PUBLIC_COSMOS_CHAIN_ID",
         "NEXT_PUBLIC_EVMOS_PAGE_URL",
-        "NEXT_PUBLIC_MIXPANEL_TOKEN"
+        "NEXT_PUBLIC_MIXPANEL_TOKEN",
+        "NEXT_PUBLIC_EVMOS_APP_ENV"
       ],
       "cache": false
     },
@@ -59,7 +60,8 @@
         "NEXT_PUBLIC_EVMOS_PAGE_URL",
         "NEXT_PUBLIC_CHAIN_ID",
         "NEXT_PUBLIC_COSMOS_CHAIN_ID",
-        "NEXT_PUBLIC_MIXPANEL_TOKEN"
+        "NEXT_PUBLIC_MIXPANEL_TOKEN",
+        "NEXT_PUBLIC_EVMOS_APP_ENV"
       ]
     },
     "eslint-config-custom#dev": {},

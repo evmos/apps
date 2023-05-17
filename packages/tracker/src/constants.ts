@@ -3,7 +3,8 @@
 // add the action on the name and in the description
 export const CLICK_REDIRECTS_MISSION_CONTROL_SIDEBAR =
   "Go on a dApp page from Mission Control";
-export const CLICK_MISSION_CONTROL_HALF_LIFE = "Click on Half-Life from Mission Control";
+export const CLICK_MISSION_CONTROL_HALF_LIFE =
+  "Click on Half-Life from Mission Control";
 export const CLICK_MISSION_CONTROL_VIEW_ASSETS_BUTTON =
   "Click on View All Assets from Mission Control";
 export const CLICK_MISSION_CONTROL_GOVERNANCE_VOTE_BUTTON =
@@ -22,10 +23,8 @@ export const CLICK_MISSION_CONTROL_TOTAL_STAKED_TOPBAR =
   "Click on Total Staked from Mission Control”";
 
 // generics
-export const CLICK_WC_CONNECT_WALLET_BUTTON =
-  "Connect wallet";
-export const CLICK_WC_DISCONNECT_WALLET_BUTTON =
-  "Disconnect wallet";
+export const CLICK_WC_CONNECT_WALLET_BUTTON = "Connect wallet";
+export const CLICK_WC_DISCONNECT_WALLET_BUTTON = "Disconnect wallet";
 export const CLICK_WC_CONNECTED_WITH = "Connect Wallet with a specific Wallet";
 export const CLICK_BACK_TO_MC = "Click “Back to Mission Control”";
 export const CLICK_EVMOS_LOGO = "Click on Evmos Logo";
@@ -38,8 +37,10 @@ export const CLICK_DEPOSIT_CONFIRM_BUTTON = "Confirm deposit transaction";
 export const CLICK_WITHDRAW_CHOOSE_TOKEN = "Choose a token to withdraw";
 export const CLICK_WITHDRAW_CONFIRM_BUTTON = "Confirm withdraw transaction";
 export const CLICK_HIDE_ZERO_BALANCE = "Hide Zero Balance";
-export const CLICK_CTA_LINKS_REGISTER_TOKEN = "Click on CTA link to register token";
-export const CLICK_CTA_LINKS_ASSETS_GUIDE = "Click on CTA link to view assets guide";
+export const CLICK_CTA_LINKS_REGISTER_TOKEN =
+  "Click on CTA link to register token";
+export const CLICK_CTA_LINKS_ASSETS_GUIDE =
+  "Click on CTA link to view assets guide";
 
 // staking
 export const CLICK_CLAIM_REWARDS_TOPBAR = "Claim Evmos Rewards";
@@ -47,14 +48,15 @@ export const CLICK_SHOW_INACTIVE_TOGGLE = "Show inactive";
 export const CLICK_SEARCH_VALIDATORS_INPUT = "Search for a validator";
 export const CLICK_TABS_STAKING_OPTIONS = "Click on a tab on the staking menu";
 export const CLICK_BUTTON_MANAGE_DELEGATE = "Choose to delegate to a validator";
-export const CLICK_BUTTON_MANAGE_UNDELEGATE = "Choose to undelegate to a validator";
-export const CLICK_BUTTON_MANAGE_REDELEGATE = "Choose to redelegate to a validator";
+export const CLICK_BUTTON_MANAGE_UNDELEGATE =
+  "Choose to undelegate to a validator";
+export const CLICK_BUTTON_MANAGE_REDELEGATE =
+  "Choose to redelegate to a validator";
 export const CLICK_BUTTON_CONFIRM_DELEGATE = "Confirm Delegate transation";
 export const CLICK_BUTTON_CONFIRM_UNDELEGATE = "Confirm Undelegate transaction";
 export const CLICK_BUTTON_CONFIRM_REDELEGATE = "Confirm Redelegate transaction";
 export const CLICK_SORT_VALIDATORS = "Sort through Validators";
-export const CLICK_CANCEL_UNDELEGATION_BUTTON =
-  "Choose to cancel undelegation";
+export const CLICK_CANCEL_UNDELEGATION_BUTTON = "Choose to cancel undelegation";
 export const CLICK_CONFIRM_CANCEL_UNDELEGATION_BUTTON =
   "Confirm cancel undelegation";
 

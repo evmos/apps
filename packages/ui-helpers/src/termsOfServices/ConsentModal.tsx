@@ -1,4 +1,5 @@
 import { COOKIE_POLICY_URL, PRIVACY_POLICY_URL } from "constants-helper";
+import "./styles.css";
 const ConsentModal = () => {
   return (
     <>
@@ -56,15 +57,6 @@ const ConsentModal = () => {
                       cookie policy
                     </a>
                     .
-                  </p>
-                  <p className="iub-p">
-                    You can freely give, deny, or withdraw your consent at any
-                    time.
-                  </p>
-                  <p className="iub-p"></p>
-                  <p className="iub-p">
-                    Use the “Accept” button to consent. Use the “Reject” button
-                    to continue without accepting.
                   </p>
                 </div>
               </div>

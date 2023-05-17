@@ -52,7 +52,7 @@ export const CLICK_BUTTON_MANAGE_UNDELEGATE =
   "Choose to undelegate to a validator";
 export const CLICK_BUTTON_MANAGE_REDELEGATE =
   "Choose to redelegate to a validator";
-export const CLICK_BUTTON_CONFIRM_DELEGATE = "Confirm Delegate transation";
+export const CLICK_BUTTON_CONFIRM_DELEGATE = "Confirm Delegate transaction";
 export const CLICK_BUTTON_CONFIRM_UNDELEGATE = "Confirm Undelegate transaction";
 export const CLICK_BUTTON_CONFIRM_REDELEGATE = "Confirm Redelegate transaction";
 export const CLICK_SORT_VALIDATORS = "Sort through Validators";

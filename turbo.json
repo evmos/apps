@@ -19,7 +19,8 @@
         "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
         "NEXT_PUBLIC_EVMOS_CHAIN",
         "NEXT_PUBLIC_EVMOS_PAGE_URL"
-      ]
+      ],
+      "cache": false
     },
     "eslint-config-custom#build": {},
     "tailwind-config#build": {},

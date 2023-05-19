@@ -5,9 +5,11 @@ import { ModalTOS } from "./Modal";
 import { ConfirmButton } from "../ConfirmButton";
 import Content from "./Content";
 import CheckboxTOS from "./CheckboxTOS";
-import ConsentModal from "./ConsentModal";
+
+import Consent from "./Consent";
 export const TermOfServices = () => {
   const [show, setShow] = useState<boolean>(false);
+  // const [showIubenda, setShowIubenda] = useState(false);
   useEffect(() => {
     // Execute the hook only once
     if (localStorage.getItem("evmos-TOS") === null) {
@@ -19,6 +21,15 @@ export const TermOfServices = () => {
     localStorage.setItem("evmos-TOS", "true");
     setShow(false);
   };
+
+  useEffect(() => {
+    const consentModal = document.querySelector(
+      "#iubenda-cs-banner"
+    ) as HTMLElement;
+    if (consentModal !== null) {
+      consentModal.style.visibility = "hidden";
+    }
+  }, []);
 
   const [isDisabled, setIsDisabled] = useState(true);
   const termsRef = useRef<HTMLDivElement>(null);
@@ -35,6 +46,7 @@ export const TermOfServices = () => {
   };
 
   // const [acknowledgeTOS, setAcknowledgeTOS] = useState(false);
+  // const [showIubenda, setShowIubenda] = useState(true);
 
   return (
     <ModalTOS title="Evmos Terms of Service" show={show}>
@@ -46,8 +58,8 @@ export const TermOfServices = () => {
         >
           <Content />
         </div>
+
         <div className="space-y-3">
-          <ConsentModal />
           <CheckboxTOS
             label="I acknowledge to the Terms of Service"
             disabled={isDisabled}
@@ -60,8 +72,10 @@ export const TermOfServices = () => {
               </>
             }
             disabled={isDisabled}
+            // setShowIubenda={setShowIubenda}
           />
-
+          <Consent />
+          {/*  showIubenda={showIubenda} */}
           <div className="inline-flex space-x-7">
             <ConfirmButton
               onClick={acceptTOS}

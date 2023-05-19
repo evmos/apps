@@ -62,7 +62,10 @@ const ContentTable = ({
         }
         temp.tokens.push(e);
         temp.total = temp.total.add(e.erc20Balance);
-      } else if (e.chainIdentifier === "Stride" || e.chainIdentifier === "Quicksilver") {
+      } else if (
+        e.chainIdentifier === "Stride" ||
+        e.chainIdentifier === "Quicksilver"
+      ) {
         map.set(e.chainIdentifier, {
           name: e.chainIdentifier,
           icon: e.chainIdentifier,

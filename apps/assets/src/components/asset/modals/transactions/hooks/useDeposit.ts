@@ -28,12 +28,22 @@ import {
   EVMOS_SYMBOL,
   StoreType,
 } from "evmos-wallet";
-import { CLICK_DEPOSIT_CONFIRM_BUTTON, useTracker } from "tracker";
+import {
+  CLICK_DEPOSIT_CONFIRM_BUTTON,
+  useTracker,
+  SUCCESSFUL_TX_DEPOSIT,
+  UNSUCCESSFUL_TX_DEPOSIT,
+} from "tracker";
 export const useDeposit = (useDepositProps: DepositProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
   const { handlePreClickAction } = useTracker(CLICK_DEPOSIT_CONFIRM_BUTTON);
-
+  const { handlePreClickAction: successfulTx } = useTracker(
+    SUCCESSFUL_TX_DEPOSIT
+  );
+  const { handlePreClickAction: unsuccessfulTx } = useTracker(
+    UNSUCCESSFUL_TX_DEPOSIT
+  );
   const handleConfirmButton = async () => {
     handlePreClickAction({
       wallet: wallet?.evmosAddressEthFormat,
@@ -132,6 +142,13 @@ export const useDeposit = (useDepositProps: DepositProps) => {
     );
 
     dispatch(snackExecuteIBCTransfer(res));
+    if (res.error) {
+      unsuccessfulTx({
+        errorMessage: res.message,
+        wallet: wallet?.evmosAddressEthFormat,
+        provider: wallet?.extensionName,
+      });
+    }
     useDepositProps.setShow(false);
     // check if tx is executed
     if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
@@ -150,6 +167,11 @@ export const useDeposit = (useDepositProps: DepositProps) => {
           chainIds.chainIdentifier.toUpperCase()
         )
       );
+      successfulTx({
+        txHash: res.txHash,
+        wallet: wallet?.evmosAddressEthFormat,
+        provider: wallet?.extensionName,
+      });
     }
   };
 

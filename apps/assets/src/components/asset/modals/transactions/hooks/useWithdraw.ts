@@ -21,13 +21,23 @@ import {
   EVMOS_SYMBOL,
   StoreType,
 } from "evmos-wallet";
-import { CLICK_WITHDRAW_CONFIRM_BUTTON, useTracker } from "tracker";
+import {
+  CLICK_WITHDRAW_CONFIRM_BUTTON,
+  useTracker,
+  SUCCESSFUL_TX_WITHDRAW,
+  UNSUCCESSFUL_TX_WITHDRAW,
+} from "tracker";
 
 export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
   const { handlePreClickAction } = useTracker(CLICK_WITHDRAW_CONFIRM_BUTTON);
-
+  const { handlePreClickAction: successfulTx } = useTracker(
+    SUCCESSFUL_TX_WITHDRAW
+  );
+  const { handlePreClickAction: unsuccessfulTx } = useTracker(
+    UNSUCCESSFUL_TX_WITHDRAW
+  );
   const handleConfirmButton = async () => {
     handlePreClickAction({
       wallet: wallet?.evmosAddressEthFormat,
@@ -116,6 +126,13 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
     );
 
     dispatch(snackExecuteIBCTransfer(res));
+    if (res.error) {
+      unsuccessfulTx({
+        errorMessage: res.message,
+        wallet: wallet?.evmosAddressEthFormat,
+        provider: wallet?.extensionName,
+      });
+    }
     useWithdrawProps.setShow(false);
     // check if tx is executed
     if (res.title === BROADCASTED_NOTIFICATIONS.SuccessTitle) {
@@ -128,6 +145,11 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
         )
       );
       dispatch(await snackbarExecutedTx(res.txHash, EVMOS_SYMBOL));
+      successfulTx({
+        txHash: res.txHash,
+        wallet: wallet?.evmosAddressEthFormat,
+        provider: wallet?.extensionName,
+      });
     }
   };
   return { handleConfirmButton };

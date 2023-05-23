@@ -8,10 +8,21 @@ import { BigNumber } from "ethers";
 import { executeUndelegate } from "../../../../internal/staking/functionality/transactions/undelegate";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
 
-import { CLICK_BUTTON_CONFIRM_UNDELEGATE, useTracker } from "tracker";
+import {
+  CLICK_BUTTON_CONFIRM_UNDELEGATE,
+  useTracker,
+  SUCCESSFUL_TX_UNDELEGATE,
+  UNSUCCESSFUL_TX_UNDELEGATE,
+} from "tracker";
 export const useUndelegation = (useUndelegateProps: UndelegateProps) => {
   const dispatch = useDispatch();
   const { handlePreClickAction } = useTracker(CLICK_BUTTON_CONFIRM_UNDELEGATE);
+  const { handlePreClickAction: successfulTx } = useTracker(
+    SUCCESSFUL_TX_UNDELEGATE
+  );
+  const { handlePreClickAction: unsuccessfulTx } = useTracker(
+    UNSUCCESSFUL_TX_UNDELEGATE
+  );
   const handleConfirmButton = async () => {
     handlePreClickAction({
       wallet: useUndelegateProps?.wallet?.evmosAddressEthFormat,
@@ -40,6 +51,19 @@ export const useUndelegation = (useUndelegateProps: UndelegateProps) => {
       amount
     );
     dispatch(snackExecuteIBCTransfer(res));
+    if (res.error === true) {
+      unsuccessfulTx({
+        errorMessage: res.message,
+        wallet: useUndelegateProps.wallet?.evmosAddressEthFormat,
+        provider: useUndelegateProps.wallet?.extensionName,
+      });
+    } else {
+      successfulTx({
+        txHash: res.txHash,
+        wallet: useUndelegateProps.wallet?.evmosAddressEthFormat,
+        provider: useUndelegateProps.wallet?.extensionName,
+      });
+    }
     useUndelegateProps.setShow(false);
   };
 

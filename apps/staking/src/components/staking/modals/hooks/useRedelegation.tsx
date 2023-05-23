@@ -7,11 +7,22 @@ import { parseUnits } from "@ethersproject/units";
 import { BigNumber } from "ethers";
 import { executeRedelegate } from "../../../../internal/staking/functionality/transactions/redelegate";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
-import { CLICK_BUTTON_CONFIRM_REDELEGATE, useTracker } from "tracker";
+import {
+  CLICK_BUTTON_CONFIRM_REDELEGATE,
+  useTracker,
+  SUCCESSFUL_TX_REDELEGATE,
+  UNSUCCESSFUL_TX_REDELEGATE,
+} from "tracker";
 export const useRedelegation = (useRedelegateProps: RedelegateProps) => {
   const dispatch = useDispatch();
 
   const { handlePreClickAction } = useTracker(CLICK_BUTTON_CONFIRM_REDELEGATE);
+  const { handlePreClickAction: successfulTx } = useTracker(
+    SUCCESSFUL_TX_REDELEGATE
+  );
+  const { handlePreClickAction: unsuccessfulTx } = useTracker(
+    UNSUCCESSFUL_TX_REDELEGATE
+  );
   const handleConfirmButton = async () => {
     handlePreClickAction({
       wallet: useRedelegateProps?.wallet?.evmosAddressEthFormat,
@@ -43,6 +54,19 @@ export const useRedelegation = (useRedelegateProps: RedelegateProps) => {
       useRedelegateProps.validatorDst
     );
     dispatch(snackExecuteIBCTransfer(res));
+    if (res.error === true) {
+      unsuccessfulTx({
+        errorMessage: res.message,
+        wallet: useRedelegateProps.wallet?.evmosAddressEthFormat,
+        provider: useRedelegateProps.wallet?.extensionName,
+      });
+    } else {
+      successfulTx({
+        txHash: res.txHash,
+        wallet: useRedelegateProps.wallet?.evmosAddressEthFormat,
+        provider: useRedelegateProps.wallet?.extensionName,
+      });
+    }
     useRedelegateProps.setShow(false);
   };
 

@@ -30,7 +30,7 @@ import { StatefulHeader } from "../src/StatefulHeader";
 import { HeadComponent } from "../src/components/staking/HeadComponent";
 import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
 import { StatefulFooter } from "../src/StatefulFooter";
-import { InformationBanner } from "ui-helpers";
+import { InformationBanner, Consent } from "ui-helpers";
 const Content = dynamic(() => import("../src/components/staking/Content"));
 
 export default function Home() {
@@ -47,6 +47,7 @@ export default function Home() {
               <HeadComponent />
               <GoogleAnalytics />
               <main>
+                <Consent />
                 <TermOfServices />
                 <InformationBanner
                   dismissible={true}

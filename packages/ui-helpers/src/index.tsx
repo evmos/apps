@@ -30,3 +30,4 @@ export { BarContainer } from "./votingBar/BarContainer";
 export { Header } from "./Header";
 export { InformationBanner } from "./InformationBanner";
 export { Consent } from "./termsOfServices/Consent";
+export { useConsent } from "./termsOfServices/useConsent";

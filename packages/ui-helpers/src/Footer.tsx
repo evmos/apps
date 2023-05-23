@@ -15,8 +15,10 @@ import { PRIVACY_POLICY_URL } from "constants-helper";
 
 export const Footer = ({
   onClickFeedback,
+  handleCookies,
 }: {
   onClickFeedback?: React.MouseEventHandler<HTMLAnchorElement>;
+  handleCookies?: React.MouseEventHandler<HTMLButtonElement>;
 }) => {
   return (
     <footer className=" mb-10 mt-10 flex w-full flex-col items-center space-y-2 text-pearl xl:justify-between">
@@ -95,6 +97,7 @@ export const Footer = ({
             Feedback
           </Link>
         </p>
+        <button onClick={handleCookies}>Cookies Settings</button>
       </div>
     </footer>
   );

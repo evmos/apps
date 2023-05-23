@@ -20,13 +20,13 @@ export const TermOfServices = () => {
   const { enableMixpanel } = useTracker(ENABLE_MIXPANEL_TRACKER);
   useEffect(() => {
     // Execute the hook only once
-    if (localStorage.getItem("evmos-TOS") === null) {
+    if (localStorage.getItem("evmos-TOS-v2") === null) {
       setShow(true);
     }
   }, []);
 
   const acceptTOS = () => {
-    localStorage.setItem("evmos-TOS", "true");
+    localStorage.setItem("evmos-TOS-v2", "true");
     setShow(false);
 
     if (!consent) {
@@ -58,13 +58,12 @@ export const TermOfServices = () => {
     <a href="https://evmos.org/cookie-policy" class="iubenda-cs-cookie-policy-lnk" target="_blank" 
     rel="noopener">cookie policy</a>.</p></div></div><div class="iubenda-cs-opt-group" style="color:#FBF6EF!important;">
     <div class="iubenda-cs-opt-group-consent">
-    <button onclick="(function(){ _iub.cs.api.acceptAll(); setAction(true); var elem = document.querySelector('#iubenda-cs-banner');
-    elem.parentNode.removeChild(elem); _iub.cs.api.resetCookies();})();" class="iubenda-cs-accept-btn iubenda-cs-btn-primary" tabindex="0" 
+    <button onclick="(function(){setAction(true); var elem = document.querySelector('#iubenda-cs-banner');
+    elem.parentNode.removeChild(elem);})();" class="iubenda-cs-accept-btn iubenda-cs-btn-primary" tabindex="0" 
   role="button" aria-pressed="false">Accept</button>
     <button class="iubenda-cs-reject-btn iub-prevent-consent iubenda-cs-btn-primary" tabindex="0" role="button" aria-pressed="false" 
-    onclick="(function(){setAction(false); _iub.cs.api.resetCookies();
+    onclick="(function(){setAction(false);
     var elem = document.querySelector('#iubenda-cs-banner'); elem.parentNode.removeChild(elem);})();">Reject</button>
-    
   </div></div></div></div></div></div></div>`;
     document
       .querySelector("body")

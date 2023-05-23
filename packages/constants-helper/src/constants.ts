@@ -13,3 +13,4 @@ export const FEE_VOTE = "6250000000000000";
 export const FEE_WITHDRAW = "4600000000000000";
 export const PRIVACY_POLICY_URL = "https://evmos.org/privacy-policy";
 export const COOKIE_POLICY_URL = "https://evmos.org/cookie-policy";
+export const EVMOS_TOS_VERSION = "evmos-TOS-v2";

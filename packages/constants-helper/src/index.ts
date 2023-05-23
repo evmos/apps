@@ -12,3 +12,4 @@ export { FEE_VOTE } from "./constants";
 export { FEE_WITHDRAW } from "./constants";
 export { PRIVACY_POLICY_URL } from "./constants";
 export { COOKIE_POLICY_URL } from "./constants";
+export { EVMOS_TOS_VERSION } from "./constants";

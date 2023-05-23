@@ -6,9 +6,7 @@ export const useTracker = (event: string, properties?: Dict) => {
   const mixpanel = useMixpanel();
 
   const handlePreClickAction = (extraProperties?: Dict) => {
-    // if mixpanel is not set, config will not exist. Avoid undefined error adding ?
     if (
-      // mixpanel?.get_config("token") &&
       mixpanel !== null &&
       Object.prototype.hasOwnProperty.call(mixpanel, "config") &&
       (localStorage.getItem(DISABLE_TRACKER_LOCALSTORAGE) === null ||

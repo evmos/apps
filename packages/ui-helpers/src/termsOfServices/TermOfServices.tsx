@@ -10,6 +10,7 @@ import {
   DISABLE_MIXPANEL_TRACKER,
   ENABLE_MIXPANEL_TRACKER,
 } from "tracker";
+import { EVMOS_TOS_VERSION } from "constants-helper";
 interface BrowserWindow {
   setAction: (consent: boolean) => void;
 }
@@ -20,13 +21,13 @@ export const TermOfServices = () => {
   const { enableMixpanel } = useTracker(ENABLE_MIXPANEL_TRACKER);
   useEffect(() => {
     // Execute the hook only once
-    if (localStorage.getItem("evmos-TOS-v2") === null) {
+    if (localStorage.getItem(EVMOS_TOS_VERSION) === null) {
       setShow(true);
     }
   }, []);
 
   const acceptTOS = () => {
-    localStorage.setItem("evmos-TOS-v2", "true");
+    localStorage.setItem(EVMOS_TOS_VERSION, "true");
     setShow(false);
 
     if (!consent) {
@@ -41,8 +42,10 @@ export const TermOfServices = () => {
 
   const handleConsentClick = () => {
     setConsent(!consent);
-    document.cookie =
-      "_iub_cs-69051412=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    if (process.env.NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA !== undefined) {
+      const name = `_iub_cs-${process.env.NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA}`;
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
     const browserWindow = window as unknown as BrowserWindow;
     browserWindow.setAction = setConsent;
     const htmlContent = `<div id="iubenda-cs-banner-tos" style="z-index:99999998 !important;" class="iubenda-cs-default-floating iubenda-cs-center 

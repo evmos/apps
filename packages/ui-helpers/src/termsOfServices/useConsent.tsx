@@ -14,18 +14,31 @@ style="display:none!important;">×</button>
 rel="noopener">cookie policy</a>.</p></div></div><div class="iubenda-cs-opt-group" style="color:#FBF6EF!important;">
 <div class="iubenda-cs-opt-group-consent">
 <button onclick="(function(){var elem = document.querySelector('#iubenda-cs-banner');
-elem.parentNode.removeChild(elem); localStorage.setItem('disableTracker', 'false')})();" class="iubenda-cs-accept-btn iubenda-cs-btn-primary" tabindex="0" 
+elem.parentNode.removeChild(elem); localStorage.setItem(disableTracker, 'false')})();" class="iubenda-cs-accept-btn iubenda-cs-btn-primary" tabindex="0" 
 role="button" aria-pressed="false">Accept</button>
 <button class="iubenda-cs-reject-btn iub-prevent-consent iubenda-cs-btn-primary" tabindex="0" role="button" aria-pressed="false" 
 onclick="(function(){
-var elem = document.querySelector('#iubenda-cs-banner'); elem.parentNode.removeChild(elem);  localStorage.setItem('disableTracker', 'true')})();">Reject</button>
+var elem = document.querySelector('#iubenda-cs-banner'); elem.parentNode.removeChild(elem);  localStorage.setItem(disableTracker, 'true')})();">Reject</button>
 
 </div></div></div></div></div></div></div>`;
 /* eslint-enable no-secrets/no-secrets */
+
+interface BrowserConsentWindow {
+  disableTracker: string;
+}
+import { useEffect } from "react";
+import { DISABLE_TRACKER_LOCALSTORAGE } from "tracker";
 export const useConsent = () => {
+  useEffect(() => {
+    const browserWindow = window as unknown as BrowserConsentWindow;
+    browserWindow.disableTracker = DISABLE_TRACKER_LOCALSTORAGE;
+  }, []);
+
   const showConsent = () => {
-    document.cookie =
-      "_iub_cs-69051412=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    if (process.env.NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA !== undefined) {
+      const name = `_iub_cs-${process.env.NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA}`;
+      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
     const htmlContent = CONSENT_EVMOS;
     document
       .querySelector("body")

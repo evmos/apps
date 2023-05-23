@@ -22,7 +22,10 @@
         "NEXT_PUBLIC_CHAIN_ID",
         "NEXT_PUBLIC_COSMOS_CHAIN_ID",
         "NEXT_PUBLIC_EVMOS_PAGE_URL",
-        "NEXT_PUBLIC_MIXPANEL_TOKEN"
+        "NEXT_PUBLIC_MIXPANEL_TOKEN",
+        "NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA",
+        "NEXT_PUBLIC_SITE_ID_IUBENDA"
+
       ],
       "cache": false
     },
@@ -59,7 +62,9 @@
         "NEXT_PUBLIC_EVMOS_PAGE_URL",
         "NEXT_PUBLIC_CHAIN_ID",
         "NEXT_PUBLIC_COSMOS_CHAIN_ID",
-        "NEXT_PUBLIC_MIXPANEL_TOKEN"
+        "NEXT_PUBLIC_MIXPANEL_TOKEN",
+        "NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA",
+        "NEXT_PUBLIC_SITE_ID_IUBENDA"
       ]
     },
     "eslint-config-custom#dev": {},

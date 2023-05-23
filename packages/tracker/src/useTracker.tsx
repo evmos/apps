@@ -1,5 +1,6 @@
 import { Dict } from "mixpanel-browser";
 import { useMixpanel } from "./context/mixpanel";
+import { DISABLE_TRACKER_LOCALSTORAGE } from "./constants";
 
 export const useTracker = (event: string, properties?: Dict) => {
   const mixpanel = useMixpanel();
@@ -10,8 +11,8 @@ export const useTracker = (event: string, properties?: Dict) => {
       // mixpanel?.get_config("token") &&
       mixpanel !== null &&
       Object.prototype.hasOwnProperty.call(mixpanel, "config") &&
-      (localStorage.getItem("disableTracker") === null ||
-        localStorage.getItem("disableTracker") === "false")
+      (localStorage.getItem(DISABLE_TRACKER_LOCALSTORAGE) === null ||
+        localStorage.getItem(DISABLE_TRACKER_LOCALSTORAGE) === "false")
     ) {
       // Check that a token was provided (useful if you have environments without Mixpanel)
       mixpanel?.track(event, { ...properties, ...extraProperties });
@@ -19,11 +20,11 @@ export const useTracker = (event: string, properties?: Dict) => {
   };
 
   const disableMixpanel = () => {
-    localStorage.setItem("disableTracker", "true");
+    localStorage.setItem(DISABLE_TRACKER_LOCALSTORAGE, "true");
   };
 
   const enableMixpanel = () => {
-    localStorage.setItem("disableTracker", "false");
+    localStorage.setItem(DISABLE_TRACKER_LOCALSTORAGE, "false");
   };
 
   return {

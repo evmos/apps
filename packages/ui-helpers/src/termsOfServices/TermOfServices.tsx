@@ -5,14 +5,19 @@ import { ConfirmButton } from "../ConfirmButton";
 import Content from "./Content";
 import CheckboxTOS from "./CheckboxTOS";
 
-import { useTracker } from "tracker";
+import {
+  useTracker,
+  DISABLE_MIXPANEL_TRACKER,
+  ENABLE_MIXPANEL_TRACKER,
+} from "tracker";
 interface BrowserWindow {
   setAction: (consent: boolean) => void;
 }
 
 export const TermOfServices = () => {
   const [show, setShow] = useState<boolean>(false);
-  const { disableMixpanel } = useTracker("DISABLE");
+  const { disableMixpanel } = useTracker(DISABLE_MIXPANEL_TRACKER);
+  const { enableMixpanel } = useTracker(ENABLE_MIXPANEL_TRACKER);
   useEffect(() => {
     // Execute the hook only once
     if (localStorage.getItem("evmos-TOS") === null) {
@@ -27,7 +32,7 @@ export const TermOfServices = () => {
     if (!consent) {
       disableMixpanel();
     } else {
-      localStorage.setItem("disableTracker", "false");
+      enableMixpanel();
     }
   };
 

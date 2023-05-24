@@ -43,6 +43,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (workflow) #fse-511 | apps/mission 1.0.3 | Ignoring \_redirects from git
 - (workflow) #fse-531 | script | Adding script to clear cache and fixing cache issue in the build process
 - (refactor) #fse-514 | github actions | Removing unused folder
+- (chore) #fse-551 | apps/assets 1.0.4 apps/governance 1.0.4 apps/staking 1.0.4 apps/mission 1.0.4 packages/ui-helpers 1.0.3 | add correct env and app version in footer
 - (chore) #fse-581 | apps/assets 1.0.4 | add images for new assets & group quicksilver assets
 
 - (chore) #fse-519 | apps/assets 1.0.5 apps/governance 1.0.4 apps/staking 1.0.4 apps/mission 1.0.4 | Set up a consent modal for users to opt-in/opt-out to tracking

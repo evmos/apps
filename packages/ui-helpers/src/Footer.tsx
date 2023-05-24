@@ -2,7 +2,6 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import Link from "next/link";
-const VERSION_TAG = "c549d8f";
 const COMMONWEALTH_URL = "https://commonwealth.im/evmos";
 import {
   TwitterIcon,
@@ -16,10 +15,20 @@ import { PRIVACY_POLICY_URL } from "constants-helper";
 export const Footer = ({
   onClickFeedback,
   handleCookies,
+  version,
 }: {
   onClickFeedback?: React.MouseEventHandler<HTMLAnchorElement>;
   handleCookies?: React.MouseEventHandler<HTMLButtonElement>;
+  version: string;
 }) => {
+  function getVersion() {
+    const app_env = process.env.NEXT_PUBLIC_EVMOS_APP_ENV ?? "staging";
+    if (app_env === "production") {
+      return version;
+    }
+    return "main - " + version;
+  }
+
   return (
     <footer className=" mb-10 mt-10 flex w-full flex-col items-center space-y-2 text-pearl xl:justify-between">
       <div className="flex items-center space-x-5">
@@ -65,7 +74,7 @@ export const Footer = ({
         </Link>
       </div>
       <div className="flex w-full items-center justify-center space-x-5 px-2">
-        <p>Version: {VERSION_TAG}</p>
+        <p>Version: {getVersion()}</p>
         <p>
           <Link
             target="_blank"

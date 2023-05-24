@@ -11,3 +11,6 @@ export const FULL_DAY_MINUS_ONE_SECOND = 86399000;
 export const FEE_STAKING_ACTIONS = "8049999999999999";
 export const FEE_VOTE = "6250000000000000";
 export const FEE_WITHDRAW = "4600000000000000";
+export const PRIVACY_POLICY_URL = "https://evmos.org/privacy-policy";
+export const COOKIE_POLICY_URL = "https://evmos.org/cookie-policy";
+export const EVMOS_TOS_VERSION = "evmos-TOS-v2";

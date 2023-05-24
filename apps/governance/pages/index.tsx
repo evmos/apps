@@ -19,7 +19,7 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TermOfServices, Container } from "ui-helpers";
+import { TermOfServices, Container, Consent } from "ui-helpers";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -46,6 +46,7 @@ export default function Home() {
               <HeadComponent />
               <GoogleAnalytics />
               <main>
+                <Consent />
                 <TermOfServices />
                 <InformationBanner
                   dismissible={true}

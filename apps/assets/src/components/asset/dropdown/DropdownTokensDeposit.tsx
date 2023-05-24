@@ -40,7 +40,7 @@ const DropdownTokensDeposit = ({
               alt={selectedValue.symbol}
               width={25}
               height={25}
-              className="h-6 w-6"
+              className="h-6 w-6 rounded-full"
             />
             <span> {selectedValue.symbol}</span>
           </div>
@@ -78,7 +78,7 @@ const DropdownTokensDeposit = ({
                       alt={option.symbol}
                       width={25}
                       height={25}
-                      className=" h-6 w-6"
+                      className="h-6 w-6 rounded-full"
                     />
                     <span>{option.symbol}</span>
                   </div>

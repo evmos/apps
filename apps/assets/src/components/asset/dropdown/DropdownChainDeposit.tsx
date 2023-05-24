@@ -87,7 +87,7 @@ const DropdownChainDeposit = ({
                         alt={option.chain}
                         width={25}
                         height={25}
-                        className=" h-6 w-6"
+                        className="h-6 w-6 rounded-full"
                       />
                       <span>{getChainIdentifier(option.chain)}</span>
                     </div>

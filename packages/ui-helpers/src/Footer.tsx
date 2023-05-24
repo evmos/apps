@@ -10,12 +10,15 @@ import {
   DiscordIcon,
   CommonWealthIcon,
 } from "icons";
+import { PRIVACY_POLICY_URL } from "constants-helper";
 
 export const Footer = ({
   onClickFeedback,
+  handleCookies,
   version,
 }: {
   onClickFeedback?: React.MouseEventHandler<HTMLAnchorElement>;
+  handleCookies?: React.MouseEventHandler<HTMLButtonElement>;
   version: string;
 }) => {
   function getVersion() {
@@ -86,7 +89,7 @@ export const Footer = ({
           <Link
             target="_blank"
             rel="noreferrer"
-            href="https://evmos.org/privacy-policy"
+            href={PRIVACY_POLICY_URL}
             aria-label="privacy policy"
           >
             Privacy Policy
@@ -103,6 +106,7 @@ export const Footer = ({
             Feedback
           </Link>
         </p>
+        <button onClick={handleCookies}>Cookies Settings</button>
       </div>
     </footer>
   );

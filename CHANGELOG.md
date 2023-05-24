@@ -45,6 +45,19 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (refactor) #fse-514 | github actions | Removing unused folder
 - (chore) #fse-581 | apps/assets 1.0.4 | add images for new assets & group quicksilver assets
 
+- (chore) #fse-519 | apps/assets 1.0.5 apps/governance 1.0.4 apps/staking 1.0.4 apps/mission 1.0.4 | Set up a consent modal for users to opt-in/opt-out to tracking
+- (chore) #fse-519 | packages/evmos-wallet 1.0.7 | Get, set and remove WALLET_KEY and use it for wallet connection tracking
+- (chore) #fse-519 | packages/tracker 1.0.0 | Create tracker package
+- (chore) #fse-519 | packages/ui-helpers 1.0.3 | Update jest configuration. Add onClick function to the components in order to track the events.
+- (workflow) #fse-519 | turbo.json | Add tracker package and NEXT_PUBLIC_MIXPANEL_TOKEN variable
+- (workflow) #fse-519 | package.json 1.0.4 | Add --force --no-cache to build script
+- (chore) #fse-522 | apps/assets 1.0.6 apps/governance 1.0.5 apps/mission 1.0.5 apps/staking 1.0.5 | Add consent modal
+- (chore) #fse-522 | packages/ui-helpers 1.0.4 | Add new constants for privacy policy, cookies policy and TOS version. Add consent modal for TOS.
+- (chore) #fse-522 | packages/tracker 1.0.1 | Enable/disable tracking if DISABLE_TRACKER_LOCALSTORAGE is set
+- (chore) #fse-521 | apps/assets 1.0.7 apps/governance 1.0.6 apps/mission 1.0.6 apps/staking 1.0.6 | Reuse consent modal on footer to allow users to change their opt-in/opt-out preferences
+- (chore) #fse-521 | packages/ui-helpers 1.0.5 | Add Cookies settings button so the user can change their cookies preferences
+- (workflow) #fse-521 | turbo.json | Add NEXT_PUBLIC_MIXPANEL_TOKEN, NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA, NEXT_PUBLIC_SITE_ID_IUBENDA
+
 ## 1.0.3 - 2023-05-10
 
 - (chore) #fse-142 | evmos-wallet 1.0.6 | Env vars prefixes

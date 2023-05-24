@@ -26,6 +26,11 @@ import { EVMOS_GRPC_URL } from "../networkConfig";
 import type { Logger } from "ethers/lib/utils.js";
 import { generatePubkeyFromSignatureWalletConnect } from "./walletconnectHelpers";
 import { SNACKBAR_CONTENT_TYPES } from "../../../../notification/types";
+import {
+  SUCCESSFUL_WALLET_CONNECTION,
+  UNSUCCESSFUL_WALLET_CONNECTION,
+  useTracker,
+} from "tracker";
 
 // Ethers does not have an error type so we can use this for casting
 // https://github.com/ethers-io/ethers.js/blob/main/packages/logger/src.ts/index.ts#L268
@@ -87,11 +92,17 @@ export function useActivateWalletConnect(
     return pubkey;
   }
 
+  const { handlePreClickAction: trackSuccessfulWalletConnection } = useTracker(
+    SUCCESSFUL_WALLET_CONNECTION
+  );
+
+  const { handlePreClickAction: trackUnsuccessfulWalletConnection } =
+    useTracker(UNSUCCESSFUL_WALLET_CONNECTION);
+
   useEffect(() => {
     async function execute() {
       if (!isDisconnected && extensionName !== WALLECT_CONNECT_KEY) {
         disconnect();
-        return;
       }
 
       if (address) {
@@ -108,7 +119,11 @@ export function useActivateWalletConnect(
             store,
             notificationsEnabled
           );
-          return;
+
+          trackUnsuccessfulWalletConnection({
+            message:
+              "You must sign the generate pubkey message to use the dashboard",
+          });
         }
 
         store.dispatch(
@@ -132,6 +147,8 @@ export function useActivateWalletConnect(
           store,
           notificationsEnabled
         );
+
+        trackSuccessfulWalletConnection();
       }
     }
 

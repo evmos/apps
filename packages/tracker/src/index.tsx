@@ -76,3 +76,6 @@ export { UNSUCCESSFUL_TX_CLAIM_REWARDS } from "./constants";
 export { DISABLE_TRACKER_LOCALSTORAGE } from "./constants";
 export { DISABLE_MIXPANEL_TRACKER } from "./constants";
 export { ENABLE_MIXPANEL_TRACKER } from "./constants";
+
+export { SUCCESSFUL_WALLET_CONNECTION } from "./constants";
+export { UNSUCCESSFUL_WALLET_CONNECTION } from "./constants";

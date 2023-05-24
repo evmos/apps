@@ -47,6 +47,8 @@ import {
   CLICK_WC_DISCONNECT_WALLET_BUTTON,
   CLICK_WC_CONNECTED_WITH,
   SWITCH_BETWEEN_WALLETS,
+  SUCCESSFUL_WALLET_CONNECTION,
+  UNSUCCESSFUL_WALLET_CONNECTION,
   useTracker,
 } from "tracker";
 // Components
@@ -118,6 +120,12 @@ export const ButtonWalletConnection = ({
     SWITCH_BETWEEN_WALLETS
   );
 
+  const { handlePreClickAction: trackSuccessfulWalletConnection } = useTracker(
+    SUCCESSFUL_WALLET_CONNECTION
+  );
+
+  const { handlePreClickAction: trackUnsuccessfulWalletConnection } =
+    useTracker(UNSUCCESSFUL_WALLET_CONNECTION);
   useEffect(() => {
     function trackWallet() {
       const walletLocalStorage = GetWalletFromLocalStorage();
@@ -274,10 +282,17 @@ export const ButtonWalletConnection = ({
                 setShow(false);
                 disconnectWallets(dispatch);
                 const keplr = new Keplr(store);
-                await keplr.connect();
+                const resultConnect = await keplr.connect();
+                if (resultConnect.result) {
+                  trackSuccessfulWalletConnection();
+                } else {
+                  trackUnsuccessfulWalletConnection({
+                    message: resultConnect.message,
+                  });
+                }
                 trackConnectedWithWallet({
                   wallet: GetWalletFromLocalStorage(),
-                  provider: GetProviderFromLocalStorage(),
+                  provider: KEPLR_KEY,
                 });
               }}
             >
@@ -292,10 +307,17 @@ export const ButtonWalletConnection = ({
                 setShow(false);
                 disconnectWallets(dispatch);
                 const metamask = new Metamask(store);
-                await metamask.connect();
+                const resultConnect = await metamask.connect();
+                if (resultConnect.result) {
+                  trackSuccessfulWalletConnection();
+                } else {
+                  trackUnsuccessfulWalletConnection({
+                    message: resultConnect.message,
+                  });
+                }
                 trackConnectedWithWallet({
                   wallet: GetWalletFromLocalStorage(),
-                  provider: GetProviderFromLocalStorage(),
+                  provider: METAMASK_KEY,
                 });
               }}
             >
@@ -311,7 +333,7 @@ export const ButtonWalletConnection = ({
                 await useWC.connect();
                 trackConnectedWithWallet({
                   wallet: GetWalletFromLocalStorage(),
-                  provider: "wallet Connect",
+                  provider: WALLECT_CONNECT_KEY,
                   walletSelected: GetProviderWalletConnectFromLocalStorage(),
                 });
               }}

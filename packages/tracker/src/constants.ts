@@ -95,3 +95,6 @@ export const UNSUCCESSFUL_TX_CLAIM_REWARDS =
 export const DISABLE_TRACKER_LOCALSTORAGE = "disableTracker";
 export const DISABLE_MIXPANEL_TRACKER = "Disable mixpanel tracker";
 export const ENABLE_MIXPANEL_TRACKER = "Enable mixpanel tracker";
+
+export const SUCCESSFUL_WALLET_CONNECTION = "Successful wallet connection";
+export const UNSUCCESSFUL_WALLET_CONNECTION = "Unsuccessful wallet connection";

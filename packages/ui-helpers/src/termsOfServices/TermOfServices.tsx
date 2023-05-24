@@ -64,7 +64,7 @@ export const TermOfServices = () => {
 
         <div className="space-y-3">
           <CheckboxTOS
-            label="I acknowledge to the Terms of Service"
+            label="I acknowledge to the Terms of Service."
             onClick={() => {
               setAcknowledgeTOS(!acknowledgeTOS);
             }}
@@ -74,7 +74,7 @@ export const TermOfServices = () => {
           <CheckboxTOS
             label={
               <>
-                I want to share usage data. <b>More information</b>
+                I want to share usage data. <b>More information</b>.
               </>
             }
             onClick={handleConsentClick}

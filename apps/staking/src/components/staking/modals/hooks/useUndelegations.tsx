@@ -56,12 +56,14 @@ export const useUndelegation = (useUndelegateProps: UndelegateProps) => {
         errorMessage: res.message,
         wallet: useUndelegateProps.wallet?.evmosAddressEthFormat,
         provider: useUndelegateProps.wallet?.extensionName,
+        transaction: "unsuccessful",
       });
     } else {
       successfulTx({
         txHash: res.txHash,
         wallet: useUndelegateProps.wallet?.evmosAddressEthFormat,
         provider: useUndelegateProps.wallet?.extensionName,
+        transaction: "successful",
       });
     }
     useUndelegateProps.setShow(false);

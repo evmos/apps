@@ -147,6 +147,7 @@ export const useDeposit = (useDepositProps: DepositProps) => {
         errorMessage: res.message,
         wallet: wallet?.evmosAddressEthFormat,
         provider: wallet?.extensionName,
+        transaction: "unsuccessful",
       });
     }
     useDepositProps.setShow(false);
@@ -171,6 +172,7 @@ export const useDeposit = (useDepositProps: DepositProps) => {
         txHash: res.txHash,
         wallet: wallet?.evmosAddressEthFormat,
         provider: wallet?.extensionName,
+        transaction: "successful",
       });
     }
   };

@@ -57,12 +57,14 @@ export const useDelegation = (useDelegateProps: DelegateProps) => {
         errorMessage: res.message,
         wallet: useDelegateProps.wallet?.evmosAddressEthFormat,
         provider: useDelegateProps.wallet?.extensionName,
+        transaction: "unsuccessful",
       });
     } else {
       successfulTx({
         txHash: res.txHash,
         wallet: useDelegateProps.wallet?.evmosAddressEthFormat,
         provider: useDelegateProps.wallet?.extensionName,
+        transaction: "successful",
       });
     }
     useDelegateProps.setShow(false);

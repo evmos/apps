@@ -45,12 +45,14 @@ export const useVote = (useVoteProps: VoteProps) => {
         errorMessage: res.message,
         wallet: useVoteProps.wallet?.evmosAddressEthFormat,
         provider: useVoteProps.wallet?.extensionName,
+        transaction: "unsuccessful",
       });
     } else {
       successfulTx({
         txHash: res.txHash,
         wallet: useVoteProps.wallet?.evmosAddressEthFormat,
         provider: useVoteProps.wallet?.extensionName,
+        transaction: "successful",
       });
     }
     useVoteProps.setShow(false);

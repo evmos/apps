@@ -131,6 +131,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
         errorMessage: res.message,
         wallet: wallet?.evmosAddressEthFormat,
         provider: wallet?.extensionName,
+        transaction: "unsuccessful",
       });
     }
     useWithdrawProps.setShow(false);
@@ -149,6 +150,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
         txHash: res.txHash,
         wallet: wallet?.evmosAddressEthFormat,
         provider: wallet?.extensionName,
+        transaction: "successful",
       });
     }
   };

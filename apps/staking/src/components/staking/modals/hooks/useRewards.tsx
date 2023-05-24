@@ -35,12 +35,14 @@ export const useRewards = (value: WalletExtension, totalRewards: number) => {
         errorMessage: res.message,
         wallet: value?.evmosAddressEthFormat,
         provider: value?.extensionName,
+        transaction: "unsuccessful",
       });
     } else {
       successfulTx({
         txHash: res.txHash,
         wallet: value?.evmosAddressEthFormat,
         provider: value?.extensionName,
+        transaction: "successful",
       });
     }
     dispatch(snackExecuteIBCTransfer(res));

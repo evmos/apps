@@ -59,12 +59,14 @@ export const useRedelegation = (useRedelegateProps: RedelegateProps) => {
         errorMessage: res.message,
         wallet: useRedelegateProps.wallet?.evmosAddressEthFormat,
         provider: useRedelegateProps.wallet?.extensionName,
+        transaction: "unsuccessful",
       });
     } else {
       successfulTx({
         txHash: res.txHash,
         wallet: useRedelegateProps.wallet?.evmosAddressEthFormat,
         provider: useRedelegateProps.wallet?.extensionName,
+        transaction: "successful",
       });
     }
     useRedelegateProps.setShow(false);

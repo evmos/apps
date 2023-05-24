@@ -64,12 +64,14 @@ export const useCancelUndelegations = (
         errorMessage: res.message,
         wallet: useCancelUndelegationProps.wallet?.evmosAddressEthFormat,
         provider: useCancelUndelegationProps.wallet?.extensionName,
+        transaction: "unsuccessful",
       });
     } else {
       successfulTx({
         txHash: res.txHash,
         wallet: useCancelUndelegationProps.wallet?.evmosAddressEthFormat,
         provider: useCancelUndelegationProps.wallet?.extensionName,
+        transaction: "successful",
       });
     }
     useCancelUndelegationProps.setShow(false);

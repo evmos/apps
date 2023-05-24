@@ -16,7 +16,10 @@ import {
 } from "../../../../wallet/redux/WalletSlice";
 import { truncateAddress } from "../../style/format";
 import { WALLECT_CONNECT_KEY } from "../wallet";
-import { SaveProviderToLocalStorate } from "../localstorage";
+import {
+  SaveProviderToLocalStorate,
+  SaveProviderWalletConnectToLocalStorage,
+} from "../localstorage";
 import { ethToEvmos } from "@evmos/address-converter";
 import { queryPubKey } from "../pubkey";
 import { EVMOS_GRPC_URL } from "../networkConfig";
@@ -33,7 +36,7 @@ export type EthersError = Error & {
 
 export function useWalletConnect(reduxStore: ReduxWalletStore) {
   const { open } = useWeb3Modal();
-  const { address } = useAccount();
+  const { address, connector } = useAccount();
 
   async function connect() {
     await open({ route: "ConnectWallet" });
@@ -55,6 +58,12 @@ export function useWalletConnect(reduxStore: ReduxWalletStore) {
       SaveProviderToLocalStorate(WALLECT_CONNECT_KEY);
     }
   }, [address]);
+
+  useEffect(() => {
+    if (connector) {
+      SaveProviderWalletConnectToLocalStorage(connector.name);
+    }
+  }, [connector]);
 
   return { connect, address };
 }

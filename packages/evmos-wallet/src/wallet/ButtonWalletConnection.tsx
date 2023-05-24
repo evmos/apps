@@ -19,8 +19,10 @@ import { Keplr } from "../internal/wallet/functionality/keplr/keplr";
 import { disconnectWallets } from "../internal/wallet/functionality/disconnect";
 import {
   GetProviderFromLocalStorage,
+  GetProviderWalletConnectFromLocalStorage,
   GetWalletFromLocalStorage,
   RemoveProviderFromLocalStorage,
+  RemoveProviderWalletConnectToLocalStorage,
   RemoveWalletFromLocalStorage,
   SaveWalletToLocalStorage,
 } from "../internal/wallet/functionality/localstorage";
@@ -236,6 +238,7 @@ export const ButtonWalletConnection = ({
                 });
                 RemoveWalletFromLocalStorage();
                 RemoveProviderFromLocalStorage();
+                RemoveProviderWalletConnectToLocalStorage();
                 disconnectWallets(dispatch);
                 setShow(false);
                 setIsCopied(false);
@@ -306,10 +309,10 @@ export const ButtonWalletConnection = ({
               onClick={async () => {
                 setShow(false);
                 await useWC.connect();
-                // TODO: how do I pass the provider?
                 trackConnectedWithWallet({
                   wallet: GetWalletFromLocalStorage(),
-                  provider: GetProviderFromLocalStorage(),
+                  provider: "wallet Connect",
+                  walletSelected: GetProviderWalletConnectFromLocalStorage(),
                 });
               }}
             >

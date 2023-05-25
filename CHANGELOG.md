@@ -59,8 +59,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (workflow) #fse-521 | turbo.json | Add NEXT_PUBLIC_MIXPANEL_TOKEN, NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA, NEXT_PUBLIC_SITE_ID_IUBENDA
 
 ## 1.0.4 - 2023-05-19
+
 - (chore) #fse-581 | apps/assets 1.0.4 | add images for new assets & group quicksilver assets
 - (workflow) #fse-531 | script | Adding script to clear cache and fixing cache issue in the build process
+
 ## 1.0.3 - 2023-05-10
 
 - (chore) #fse-142 | evmos-wallet 1.0.6 | Env vars prefixes
@@ -71,15 +73,6 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (workflow) #fse-511 | husky, package | Updating husky so it can work again
 - (workflow) #fse-511 | apps/mission 1.0.3 | Ignoring \_redirects from git
 - (refactor) #fse-514 | github actions | Removing unused folder
-
-
-## 1.0.4 - 2023-05-19
-- (chore) #fse-581 | apps/assets 1.0.4 | add images for new assets & group quicksilver assets
-- (workflow) #fse-531 | script | Adding script to clear cache and fixing cache issue in the build process
-
-## 1.0.3 - 2023-05-10
-- (chore) #fse-142 | evmos-wallet 1.0.6 | Env vars prefixes
-
 
 ## 1.0.2 - 2023-05-10
 

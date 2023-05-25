@@ -17,6 +17,8 @@ import {
 import { truncateAddress } from "../../style/format";
 import { WALLECT_CONNECT_KEY } from "../wallet";
 import {
+  GetProviderFromLocalStorage,
+  GetProviderWalletConnectFromLocalStorage,
   SaveProviderToLocalStorate,
   SaveProviderWalletConnectToLocalStorage,
 } from "../localstorage";
@@ -123,6 +125,8 @@ export function useActivateWalletConnect(
           trackUnsuccessfulWalletConnection({
             message:
               "You must sign the generate pubkey message to use the dashboard",
+            provider: GetProviderFromLocalStorage(),
+            walletSelected: GetProviderWalletConnectFromLocalStorage() ?? "",
           });
         }
 
@@ -148,7 +152,10 @@ export function useActivateWalletConnect(
           notificationsEnabled
         );
 
-        trackSuccessfulWalletConnection();
+        trackSuccessfulWalletConnection({
+          provider: GetProviderFromLocalStorage(),
+          walletSelected: GetProviderWalletConnectFromLocalStorage() ?? "",
+        });
       }
     }
 

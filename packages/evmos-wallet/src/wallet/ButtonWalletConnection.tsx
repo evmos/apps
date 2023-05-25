@@ -283,17 +283,20 @@ export const ButtonWalletConnection = ({
                 disconnectWallets(dispatch);
                 const keplr = new Keplr(store);
                 const resultConnect = await keplr.connect();
-                if (resultConnect.result) {
-                  trackSuccessfulWalletConnection();
-                } else {
-                  trackUnsuccessfulWalletConnection({
-                    message: resultConnect.message,
-                  });
-                }
                 trackConnectedWithWallet({
                   wallet: GetWalletFromLocalStorage(),
                   provider: KEPLR_KEY,
                 });
+                if (resultConnect.result) {
+                  trackSuccessfulWalletConnection({
+                    provider: KEPLR_KEY,
+                  });
+                } else {
+                  trackUnsuccessfulWalletConnection({
+                    message: resultConnect.message,
+                    provider: KEPLR_KEY,
+                  });
+                }
               }}
             >
               <ContentModalConnect>
@@ -308,17 +311,20 @@ export const ButtonWalletConnection = ({
                 disconnectWallets(dispatch);
                 const metamask = new Metamask(store);
                 const resultConnect = await metamask.connect();
-                if (resultConnect.result) {
-                  trackSuccessfulWalletConnection();
-                } else {
-                  trackUnsuccessfulWalletConnection({
-                    message: resultConnect.message,
-                  });
-                }
                 trackConnectedWithWallet({
                   wallet: GetWalletFromLocalStorage(),
                   provider: METAMASK_KEY,
                 });
+                if (resultConnect.result) {
+                  trackSuccessfulWalletConnection({
+                    provider: METAMASK_KEY,
+                  });
+                } else {
+                  trackUnsuccessfulWalletConnection({
+                    message: resultConnect.message,
+                    provider: METAMASK_KEY,
+                  });
+                }
               }}
             >
               <ContentModalConnect>

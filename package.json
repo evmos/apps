@@ -9,7 +9,7 @@
   ],
   "private": true,
   "scripts": {
-    "build:production": "npm run clear-cache && EVMOS_APP_ENV=production turbo run build --force --no-cache",
+    "build:production": "npm run clear-cache && NEXT_PUBLIC_EVMOS_APP_ENV=production turbo run build --force --no-cache",
     "build": "npm run clear-cache && turbo run build --force --no-cache",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
@@ -18,14 +18,14 @@
     "test:watch": "turbo run test:watch",
     "test:coverage": "turbo run test:coverage",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky install",
     "clear-cache": "sh ./clear-cache.sh"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
+    "husky": "^8.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.11",
-    "turbo": "latest",
-    "eslint-config-turbo": "latest"
+    "turbo": "latest"
   },
   "packageManager": "yarn@1.22.17",
   "browserslist": [

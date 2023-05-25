@@ -7,11 +7,27 @@ import { useDispatch } from "react-redux";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
 import { executeDelegate } from "../../../../internal/staking/functionality/transactions/delegate";
 import { DelegateProps } from "../types";
+import {
+  CLICK_BUTTON_CONFIRM_DELEGATE,
+  useTracker,
+  SUCCESSFUL_TX_DELEGATE,
+  UNSUCCESSFUL_TX_DELEGATE,
+} from "tracker";
 
 export const useDelegation = (useDelegateProps: DelegateProps) => {
   const dispatch = useDispatch();
-
+  const { handlePreClickAction } = useTracker(CLICK_BUTTON_CONFIRM_DELEGATE);
+  const { handlePreClickAction: successfulTx } = useTracker(
+    SUCCESSFUL_TX_DELEGATE
+  );
+  const { handlePreClickAction: unsuccessfulTx } = useTracker(
+    UNSUCCESSFUL_TX_DELEGATE
+  );
   const handleConfirmButton = async () => {
+    handlePreClickAction({
+      wallet: useDelegateProps?.wallet?.evmosAddressEthFormat,
+      provider: useDelegateProps?.wallet?.extensionName,
+    });
     useDelegateProps.setConfirmClicked(true);
     if (
       useDelegateProps.value === undefined ||
@@ -36,6 +52,21 @@ export const useDelegation = (useDelegateProps: DelegateProps) => {
     );
 
     dispatch(snackExecuteIBCTransfer(res));
+    if (res.error === true) {
+      unsuccessfulTx({
+        errorMessage: res.message,
+        wallet: useDelegateProps.wallet?.evmosAddressEthFormat,
+        provider: useDelegateProps.wallet?.extensionName,
+        transaction: "unsuccessful",
+      });
+    } else {
+      successfulTx({
+        txHash: res.txHash,
+        wallet: useDelegateProps.wallet?.evmosAddressEthFormat,
+        provider: useDelegateProps.wallet?.extensionName,
+        transaction: "successful",
+      });
+    }
     useDelegateProps.setShow(false);
   };
   return { handleConfirmButton };

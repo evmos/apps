@@ -8,7 +8,7 @@ export default defineConfig((options: Options) => ({
   splitting: true,
   entry: ["src/**/*.ts"],
   format: ["esm"],
-  target: "ES2020",
+  target: "es2020",
   dts: true,
   minify: true,
   clean: true,

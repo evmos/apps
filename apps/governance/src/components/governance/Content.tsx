@@ -11,8 +11,9 @@ import {
   NAV_TO_GOVERNANCE,
   COMMONWEALTH_URL,
 } from "constants-helper";
-
 import { Navigation } from "ui-helpers";
+import { CLICK_BACK_TO_MC } from "tracker";
+import { useTracker } from "tracker";
 
 const BannerBlack = dynamic(() => import("../common/banners/BannerBlack"));
 const ContainerProposals = dynamic(
@@ -28,6 +29,8 @@ const Content = () => {
     id !== undefined ? (id as string) : ""
   );
 
+  const { handlePreClickAction } = useTracker(CLICK_BACK_TO_MC);
+
   const drawNavigation = useCallback(() => {
     let href = EVMOS_PAGE_URL;
     let text = NAV_TO_MISSION_CONTROL;
@@ -35,8 +38,16 @@ const Content = () => {
       href = "/";
       text = NAV_TO_GOVERNANCE;
     }
-    return <Navigation href={href} text={text} />;
-  }, [id]);
+    return (
+      <Navigation
+        href={href}
+        text={text}
+        onClick={() => {
+          handlePreClickAction();
+        }}
+      />
+    );
+  }, [id, handlePreClickAction]);
 
   return (
     <div>

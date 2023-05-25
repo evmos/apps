@@ -65,6 +65,8 @@ type BroadcastToBackendResponse = {
   tx_hash: string;
 };
 
+const headers = { "Content-Type": "application/json" };
+
 export async function broadcastSignedTxToBackend(
   rawTx: {
     message: protoTxNamespace.txn.TxRaw;
@@ -77,7 +79,7 @@ export async function broadcastSignedTxToBackend(
   try {
     const postOptions = {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers,
       body: `{ "txBytes": [${rawTx.message
         .serializeBinary()
         .toString()}], "sender": "${sender}", "network": "${network}" }`,
@@ -129,7 +131,7 @@ export async function broadcastSignedTxToGRPC(
 ) {
   const postOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers,
     body: generatePostBodyBroadcast(rawTx, BroadcastMode.Sync),
   };
 
@@ -188,7 +190,7 @@ export async function broadcastEip712BackendTxToBackend(
       {
         method: "post",
         body: JSON.stringify(txBody),
-        headers: { "Content-Type": "application/json" },
+        headers,
       }
     );
 
@@ -283,7 +285,7 @@ export async function broadcastAminoBackendTxToBackend(
     const postBroadcast = await fetchWithTimeout(`${endpoint}/broadcastAmino`, {
       method: "post",
       body: JSON.stringify(txBody),
-      headers: { "Content-Type": "application/json" },
+      headers,
     });
 
     const response = (await postBroadcast.json()) as BroadcastToBackendResponse;

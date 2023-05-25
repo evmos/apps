@@ -6,6 +6,7 @@ import { useCallback } from "react";
 import { ProposalProps } from "../../../internal/governance/functionality/types";
 import { BannerMessages } from "ui-helpers";
 import ProposalCard from "./ProposalCard";
+import { CLICK_GOVERNANCE_PROPOSAL, useTracker } from "tracker";
 
 const ContainerProposals = ({
   proposals,
@@ -16,6 +17,8 @@ const ContainerProposals = ({
   loading: boolean;
   error: unknown;
 }) => {
+  const { handlePreClickAction } = useTracker(CLICK_GOVERNANCE_PROPOSAL);
+
   const drawProposals = useCallback(() => {
     if (loading) {
       return <BannerMessages text="Loading..." spinner={true} />;
@@ -31,12 +34,17 @@ const ContainerProposals = ({
             pathname: "/",
             query: { id: proposal.id },
           }}
+          onClick={() => {
+            handlePreClickAction({
+              proposal_id: proposal.id,
+            });
+          }}
         >
           <ProposalCard proposalProps={proposal} />
         </Link>
       );
     });
-  }, [proposals, loading, error]);
+  }, [proposals, loading, error, handlePreClickAction]);
 
   return (
     <section className="grid grid-flow-row grid-cols-1 gap-4 px-4 md:px-0 lg:grid-cols-2">

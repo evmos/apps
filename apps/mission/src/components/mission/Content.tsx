@@ -9,9 +9,13 @@ import Governance from "./governance/Governance";
 import Staking from "./staking/Staking";
 import EvmosApps from "./apps/EvmosApps";
 
+import { CLICK_MISSION_CONTROL_HALF_LIFE, useTracker } from "tracker";
+
 const TopBarMissionControl = dynamic(() => import("./TopBarMissionControl"));
 
 const Content = () => {
+  const { handlePreClickAction } = useTracker(CLICK_MISSION_CONTROL_HALF_LIFE);
+
   return (
     <div className="flex flex-col pt-4">
       <TopBarMissionControl />
@@ -22,7 +26,11 @@ const Content = () => {
           <Staking />
         </div>
         <div className="col-span-6 flex flex-col space-y-5 lg:col-span-2">
-          <HalfLifeContainer />
+          <HalfLifeContainer
+            onClick={() => {
+              handlePreClickAction();
+            }}
+          />
           <NewsFeed />
           <EvmosApps />
         </div>

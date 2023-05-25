@@ -9,13 +9,21 @@ import { tabsContent } from "./Tabs/Content";
 import { NAV_TO_MISSION_CONTROL, EVMOS_PAGE_URL } from "constants-helper";
 const TopBarStaking = dynamic(() => import("./components/TopBarStaking"));
 const Tabs = dynamic(() => import("../common/tabComponent/Tabs"));
+import { CLICK_BACK_TO_MC, useTracker } from "tracker";
 
 const Content = () => {
+  const { handlePreClickAction } = useTracker(CLICK_BACK_TO_MC);
   return (
     <SearchWrapper>
       <ValidatorStateWrapper>
         <div className="">
-          <Navigation href={EVMOS_PAGE_URL} text={NAV_TO_MISSION_CONTROL} />
+          <Navigation
+            href={EVMOS_PAGE_URL}
+            text={NAV_TO_MISSION_CONTROL}
+            onClick={() => {
+              handlePreClickAction();
+            }}
+          />
           <TopBarStaking />
           <div className=" xl:scrollbar-hide mt-5 w-full px-2 font-[IBM] text-pearl">
             <Tabs

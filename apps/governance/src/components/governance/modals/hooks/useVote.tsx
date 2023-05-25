@@ -6,10 +6,24 @@ import { executeVote } from "../../../../internal/governance/functionality/trans
 import { optionVoteSelected } from "../../../../internal/governance/functionality/types";
 import { VoteProps } from "../types";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
+import {
+  CLICK_CONFIRM_VOTE_BUTTON,
+  SUCCESSFUL_TX_VOTE,
+  UNSUCCESSFUL_TX_VOTE,
+} from "tracker";
+import { useTracker } from "tracker";
 
 export const useVote = (useVoteProps: VoteProps) => {
   const dispatch = useDispatch();
+  const { handlePreClickAction } = useTracker(CLICK_CONFIRM_VOTE_BUTTON);
+  const { handlePreClickAction: successfulTx } = useTracker(SUCCESSFUL_TX_VOTE);
+  const { handlePreClickAction: unsuccessfulTx } =
+    useTracker(UNSUCCESSFUL_TX_VOTE);
   const handleConfirmButton = async () => {
+    handlePreClickAction({
+      wallet: useVoteProps?.wallet?.evmosAddressEthFormat,
+      provider: useVoteProps?.wallet?.extensionName,
+    });
     if (
       useVoteProps.option === undefined ||
       useVoteProps.option === null ||
@@ -26,6 +40,21 @@ export const useVote = (useVoteProps: VoteProps) => {
 
     const res = await executeVote(useVoteProps.wallet, useVoteProps.id, option);
     dispatch(snackExecuteIBCTransfer(res));
+    if (res.error === true) {
+      unsuccessfulTx({
+        errorMessage: res.message,
+        wallet: useVoteProps.wallet?.evmosAddressEthFormat,
+        provider: useVoteProps.wallet?.extensionName,
+        transaction: "unsuccessful",
+      });
+    } else {
+      successfulTx({
+        txHash: res.txHash,
+        wallet: useVoteProps.wallet?.evmosAddressEthFormat,
+        provider: useVoteProps.wallet?.extensionName,
+        transaction: "successful",
+      });
+    }
     useVoteProps.setShow(false);
   };
 

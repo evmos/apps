@@ -12,6 +12,13 @@ export default defineConfig((options: Options) => ({
   dts: true,
   minify: true,
   clean: true,
-  external: ["next", "react", "react-dom", "icons", "constants-helper"],
+  external: [
+    "next",
+    "react",
+    "react-dom",
+    "icons",
+    "constants-helper",
+    "tracker",
+  ],
   ...options,
 }));

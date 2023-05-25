@@ -33,6 +33,15 @@ import {
   SNACKBAR_CONTENT_TYPES,
   SNACKBAR_TYPES,
 } from "evmos-wallet";
+import {
+  useTracker,
+  CLICK_BUTTON_CONFIRM_CONVERT_AXELAR_BASED_TX,
+  SUCCESSFUL_CONVERT_AXELAR_BASED_TX,
+  UNSUCCESSFUL_CONVERT_AXELAR_BASED_TX,
+} from "tracker";
+
+const IBC_ERC20 = "IBC<>ERC-20";
+const ERC20_IBC = "ERC-20 <> IBC";
 const Convert = ({
   item,
   feeBalance,
@@ -87,6 +96,19 @@ const Convert = ({
     decimals: item.decimals,
     img: item.pngSrc,
   };
+
+  const { handlePreClickAction: clickConfirmConvertTx } = useTracker(
+    CLICK_BUTTON_CONFIRM_CONVERT_AXELAR_BASED_TX
+  );
+
+  const { handlePreClickAction: successfulTx } = useTracker(
+    SUCCESSFUL_CONVERT_AXELAR_BASED_TX
+  );
+
+  const { handlePreClickAction: unsuccessfulTx } = useTracker(
+    UNSUCCESSFUL_CONVERT_AXELAR_BASED_TX
+  );
+
   return (
     <>
       <ModalTitle title={`Convert ${item.symbol}`} />
@@ -143,6 +165,11 @@ const Convert = ({
         <ConfirmButton
           disabled={disabled}
           onClick={async () => {
+            clickConfirmConvertTx({
+              convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
+              wallet: wallet?.evmosAddressEthFormat,
+              provider: wallet?.extensionName,
+            });
             setConfirmClicked(true);
             if (wallet.evmosPubkey === null) {
               dispatch(
@@ -216,6 +243,24 @@ const Convert = ({
                       : SNACKBAR_TYPES.SUCCESS,
                 })
               );
+
+              if (res.error) {
+                unsuccessfulTx({
+                  errorMessage: res.message,
+                  wallet: wallet?.evmosAddressEthFormat,
+                  provider: wallet?.extensionName,
+                  transaction: "unsuccessful",
+                  convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
+                });
+              } else {
+                successfulTx({
+                  txHash: res.txHash,
+                  wallet: wallet?.evmosAddressEthFormat,
+                  provider: wallet?.extensionName,
+                  transaction: "successful",
+                  convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
+                });
+              }
             } else {
               if (isERC20Selected) {
                 try {

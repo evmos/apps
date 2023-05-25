@@ -44,7 +44,6 @@ export const HeadComponent = () => {
       <meta name="twitter:site" content="@EvmosOrg" />
 
       <link rel="icon" href="/favicon.ico" />
-      {/* <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" /> */}
       <link rel="manifest" href="/manifest.json" />
     </Head>
   );

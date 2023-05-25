@@ -10,10 +10,12 @@ export const Header = ({
   pageName,
   setShowSidebar,
   walletConnectionButton,
+  onClick,
 }: {
   pageName: string;
   setShowSidebar?: Dispatch<SetStateAction<boolean>>;
   walletConnectionButton?: JSX.Element;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }) => {
   const handleClick = useCallback(() => {
     if (setShowSidebar !== undefined) {
@@ -29,6 +31,7 @@ export const Header = ({
           rel="noreferrer"
           className="xl:pr-14"
           aria-label="home"
+          onClick={onClick}
         >
           <Logo className="h-20 w-32 xl:w-36" />
         </Link>

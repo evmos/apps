@@ -7,14 +7,32 @@ import { parseUnits } from "@ethersproject/units";
 import { BigNumber } from "ethers";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
 import { executeCancelUndelegations } from "../../../../internal/staking/functionality/transactions/cancelUndelegations";
+import {
+  CLICK_CONFIRM_CANCEL_UNDELEGATION_BUTTON,
+  useTracker,
+  SUCCESSFUL_TX_CANCEL_UNDELEGATION,
+  UNSUCCESSFUL_TX_CANCEL_UNDELEGATION,
+} from "tracker";
 
 export const useCancelUndelegations = (
   useCancelUndelegationProps: CancelUndelegationsProps
 ) => {
   const dispatch = useDispatch();
-
+  const { handlePreClickAction } = useTracker(
+    CLICK_CONFIRM_CANCEL_UNDELEGATION_BUTTON
+  );
+  const { handlePreClickAction: successfulTx } = useTracker(
+    SUCCESSFUL_TX_CANCEL_UNDELEGATION
+  );
+  const { handlePreClickAction: unsuccessfulTx } = useTracker(
+    UNSUCCESSFUL_TX_CANCEL_UNDELEGATION
+  );
   //   async
   const handleConfirmButton = async () => {
+    handlePreClickAction({
+      wallet: useCancelUndelegationProps?.wallet?.evmosAddressEthFormat,
+      provider: useCancelUndelegationProps?.wallet?.extensionName,
+    });
     useCancelUndelegationProps.setConfirmClicked(true);
     if (
       useCancelUndelegationProps.value === undefined ||
@@ -41,6 +59,21 @@ export const useCancelUndelegations = (
       useCancelUndelegationProps.item.creationHeight
     );
     dispatch(snackExecuteIBCTransfer(res));
+    if (res.error === true) {
+      unsuccessfulTx({
+        errorMessage: res.message,
+        wallet: useCancelUndelegationProps.wallet?.evmosAddressEthFormat,
+        provider: useCancelUndelegationProps.wallet?.extensionName,
+        transaction: "unsuccessful",
+      });
+    } else {
+      successfulTx({
+        txHash: res.txHash,
+        wallet: useCancelUndelegationProps.wallet?.evmosAddressEthFormat,
+        provider: useCancelUndelegationProps.wallet?.extensionName,
+        transaction: "successful",
+      });
+    }
     useCancelUndelegationProps.setShow(false);
   };
 

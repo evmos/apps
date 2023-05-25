@@ -214,6 +214,7 @@ describe("getTotalAssets function", () => {
 describe("checkFormatAddress function", () => {
   it("Case format address is true", () => {
     const value = checkFormatAddress(
+      // eslint-disable-next-line no-secrets/no-secrets
       "evmos1c8wgcmqde5jzymrjrflpp8j20ss000c00zd0ak",
       "EVMOS"
     );
@@ -222,6 +223,7 @@ describe("checkFormatAddress function", () => {
 
   it("Case format address is false by address", () => {
     const value = checkFormatAddress(
+      // eslint-disable-next-line no-secrets/no-secrets
       "osmo1j30xhsxcqss0n662wrma0vqw4zcx285munun8a",
       "EVMOS"
     );

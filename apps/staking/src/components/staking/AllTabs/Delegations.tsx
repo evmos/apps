@@ -70,6 +70,7 @@ const Delegations = () => {
           validatorAddress: item.delegation.validator_address,
         }}
         setShow={setShow}
+        tab="Delegations"
       />
     );
   }, []);

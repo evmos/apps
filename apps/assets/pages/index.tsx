@@ -15,13 +15,15 @@ import {
   StoreType,
   getAllSnackbars,
 } from "evmos-wallet";
-import { Footer, Container, TermOfServices } from "ui-helpers";
+import { Container, TermOfServices } from "ui-helpers";
 import { Provider, useDispatch, useSelector } from "react-redux";
 
 import { StatefulHeader } from "../src/StatefulHeader";
 import { HeadComponent } from "../src/components/asset/HeadComponent";
 import { GoogleAnalytics } from "../src/components/asset/GoogleAnalytics";
-import { InformationBanner } from "ui-helpers";
+import { StatefulFooter } from "../src/StatefulFooter";
+import { MixpanelProvider } from "tracker";
+import { InformationBanner, Consent } from "ui-helpers";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -34,40 +36,46 @@ export default function Home() {
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <WagmiConfig client={wagmiClient}>
-          <>
-            <HeadComponent />
-            <GoogleAnalytics />
-            <main>
-              <TermOfServices />
-              <InformationBanner
-                dismissible={true}
-                localStorageId="dora-hacks-banner"
-                text={
-                  <div className="text-base">
-                    Extend the EVM with DoraHacks - live until June 2!{" "}
-                    <a
-                      href="https://dorahacks.io/hackathon/EVM/detail"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="ml-2.5 rounded bg-red p-5 py-1.5 font-semibold text-pearl"
-                    >
-                      Build Now 🚀
-                    </a>
-                  </div>
-                }
-              />
-              <Container>
-                <>
-                  <SnackbarsInternal />
-                  <StatefulHeader pageName="Assets" />
-                  <div className="container mx-auto mb-auto overflow-auto">
-                    <AssetsTable />
-                  </div>
-                  <Footer />
-                </>
-              </Container>
-            </main>
-          </>
+          <MixpanelProvider
+            config={{ ip: false }}
+            token={process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? ""}
+          >
+            <>
+              <HeadComponent />
+              <GoogleAnalytics />
+              <main>
+                <Consent />
+                <TermOfServices />
+                <InformationBanner
+                  dismissible={true}
+                  localStorageId="dora-hacks-banner"
+                  text={
+                    <div className="text-base">
+                      Extend the EVM with DoraHacks - live until June 2!{" "}
+                      <a
+                        href="https://dorahacks.io/hackathon/EVM/detail"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="ml-2.5 rounded bg-red p-5 py-1.5 font-semibold text-pearl"
+                      >
+                        Build Now 🚀
+                      </a>
+                    </div>
+                  }
+                />
+                <Container>
+                  <>
+                    <SnackbarsInternal />
+                    <StatefulHeader pageName="Assets" />
+                    <div className="container mx-auto mb-auto overflow-auto">
+                      <AssetsTable />
+                    </div>
+                    <StatefulFooter />
+                  </>
+                </Container>
+              </main>
+            </>
+          </MixpanelProvider>
         </WagmiConfig>
       </QueryClientProvider>
 

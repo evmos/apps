@@ -18,7 +18,7 @@ import { ConvertSTR } from "../../modals/transactions/ConvertSTR";
 import { Description } from "./Description";
 import { SubRowProps } from "./types";
 import { useCallback } from "react";
-
+import { CLICK_BUTTON_CONVERT_AXELAR_BASED, useTracker } from "tracker";
 export const SubRowContent = ({
   item,
   setShow,
@@ -55,8 +55,12 @@ export const SubRowContent = ({
     );
   };
 
+  const { handlePreClickAction: clickConvertAxelarBased } = useTracker(
+    CLICK_BUTTON_CONVERT_AXELAR_BASED
+  );
   const openModalConvert = () => {
     if (wallet.evmosAddressCosmosFormat !== "") {
+      clickConvertAxelarBased();
       setShow(true);
       setModalContent(
         <Convert

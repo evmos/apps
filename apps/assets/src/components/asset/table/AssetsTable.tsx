@@ -25,6 +25,7 @@ import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
 import { BigNumber } from "ethers";
+import { CLICK_BACK_TO_MC, CLICK_HIDE_ZERO_BALANCE, useTracker } from "tracker";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -59,9 +60,18 @@ const AssetsTable = () => {
     }
   }, []);
 
+  const { handlePreClickAction: handleZeroBalance } = useTracker(
+    CLICK_HIDE_ZERO_BALANCE,
+    {
+      status: !hideZeroBalance,
+      wallet: value?.evmosAddressEthFormat,
+      provider: value?.extensionName,
+    }
+  );
   const zeroBalance = () => {
     localStorage.setItem("zeroBalance", String(!hideZeroBalance));
     setHideBalance(!hideZeroBalance);
+    handleZeroBalance();
   };
 
   const normalizedAssetsData = useMemo<TableData>(() => {
@@ -96,9 +106,17 @@ const AssetsTable = () => {
     },
   };
 
+  const { handlePreClickAction } = useTracker(CLICK_BACK_TO_MC);
+
   return (
     <>
-      <Navigation href={EVMOS_PAGE_URL} text={NAV_TO_MISSION_CONTROL} />
+      <Navigation
+        href={EVMOS_PAGE_URL}
+        text={NAV_TO_MISSION_CONTROL}
+        onClick={() => {
+          handlePreClickAction();
+        }}
+      />
       <TopBar topProps={topProps} />
       <div className="mx-5 flex flex-col justify-center lg:flex-row lg:justify-between xl:mx-0">
         <Guide />

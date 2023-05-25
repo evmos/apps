@@ -16,12 +16,37 @@ import {
   snackRequestRejected,
   StoreType,
 } from "evmos-wallet";
+import {
+  useTracker,
+  CLICK_BUTTON_CONFIRM_WRAP_TX,
+  SUCCESSFUL_WRAP_TX,
+  UNSUCCESSFUL_WRAP_TX,
+} from "tracker";
+import { GENERATING_TX_NOTIFICATIONS } from "../../../../../internal/asset/functionality/transactions/errors";
+
+const wrapEvmos = "EVMOS <> WEVMOS";
+const unwrapEvmos = "WEVMOS <> EVMOS";
 export const useConvert = (useConvertProps: ConvertProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
   const WEVMOS = WEVMOS_CONTRACT_ADDRESS;
 
+  const { handlePreClickAction: clickConfirmWrapTx } = useTracker(
+    CLICK_BUTTON_CONFIRM_WRAP_TX
+  );
+
+  const { handlePreClickAction: successfulTx } = useTracker(SUCCESSFUL_WRAP_TX);
+
+  const { handlePreClickAction: unsuccessfulTx } =
+    useTracker(UNSUCCESSFUL_WRAP_TX);
+
   const handleConfirmButton = async () => {
+    clickConfirmWrapTx({
+      convert: useConvertProps.balance.isIBCBalance ? wrapEvmos : unwrapEvmos,
+      wallet: wallet?.evmosAddressEthFormat,
+      provider: wallet?.extensionName,
+    });
+
     useConvertProps.setConfirmClicked(true);
     if (wallet.evmosPubkey === null) {
       dispatch(snackRequestRejected());
@@ -53,6 +78,13 @@ export const useConvert = (useConvertProps: ConvertProps) => {
         if (contract === null) {
           dispatch(snackErrorGeneratingTx());
           useConvertProps.setShow(false);
+          unsuccessfulTx({
+            errorMessage: "contract is null",
+            wallet: wallet?.evmosAddressEthFormat,
+            provider: wallet?.extensionName,
+            transaction: "unsuccessful",
+            convert: wrapEvmos,
+          });
           return;
         }
         useConvertProps.setDisabled(true);
@@ -62,9 +94,23 @@ export const useConvert = (useConvertProps: ConvertProps) => {
         dispatch(
           snackBroadcastSuccessful(res.hash, "www.mintscan.io/evmos/txs/")
         );
+        successfulTx({
+          txHash: res.hash,
+          wallet: wallet?.evmosAddressEthFormat,
+          provider: wallet?.extensionName,
+          transaction: "successful",
+          convert: wrapEvmos,
+        });
       } catch (e) {
         // TODO: Add Sentry here!
         dispatch(snackErrorGeneratingTx());
+        unsuccessfulTx({
+          errorMessage: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+          wallet: wallet?.evmosAddressEthFormat,
+          provider: wallet?.extensionName,
+          transaction: "unsuccessful",
+          convert: wrapEvmos,
+        });
       }
     } else {
       try {
@@ -76,6 +122,13 @@ export const useConvert = (useConvertProps: ConvertProps) => {
         if (contract === null) {
           dispatch(snackErrorGeneratingTx());
           useConvertProps.setShow(false);
+          unsuccessfulTx({
+            errorMessage: "contract is null",
+            wallet: wallet?.evmosAddressEthFormat,
+            provider: wallet?.extensionName,
+            transaction: "unsuccessful",
+            convert: unwrapEvmos,
+          });
           return;
         }
         useConvertProps.setDisabled(true);
@@ -83,9 +136,23 @@ export const useConvert = (useConvertProps: ConvertProps) => {
         dispatch(
           snackBroadcastSuccessful(res.hash, "www.mintscan.io/evmos/txs/")
         );
+        successfulTx({
+          txHash: res.hash,
+          wallet: wallet?.evmosAddressEthFormat,
+          provider: wallet?.extensionName,
+          transaction: "successful",
+          convert: unwrapEvmos,
+        });
       } catch (e) {
         // TODO: Add Sentry here!
         dispatch(snackErrorGeneratingTx());
+        unsuccessfulTx({
+          errorMessage: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
+          wallet: wallet?.evmosAddressEthFormat,
+          provider: wallet?.extensionName,
+          transaction: "unsuccessful",
+          convert: unwrapEvmos,
+        });
       }
     }
     useConvertProps.setShow(false);

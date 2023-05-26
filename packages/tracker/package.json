@@ -1,6 +1,7 @@
 {
   "name": "tracker",
   "version": "1.0.1",
+  "main": "src/index.tsx",
   "sideEffects": [
     "**/*.css"
   ],

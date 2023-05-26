@@ -40,6 +40,9 @@ yarn install
 
 ```bash
 yarn dev
+
+# in case of issue use the following command
+yarn dev:no-cache
 ```
 
 ### Build

@@ -54,6 +54,7 @@ export const TermOfServices = () => {
         <div className="h-80 w-full space-y-3 overflow-y-auto border border-darkGray5 p-4 font-[IBM]">
           <Content />
         </div>
+
         <div className="space-y-3">
           <CheckboxTOS
             label="I acknowledge to the Terms of Service."

@@ -27,12 +27,6 @@ export const MISSION_CONTROL_DATA: appsOnEvmos = {
       category: "DeFi",
     },
     {
-      name: "Coslend",
-      twitter: "https://twitter.com/coslend",
-      image: "/twitter/Coslend.jpeg",
-      category: "DeFi",
-    },
-    {
       name: "Band Protocol",
       twitter: "https://twitter.com/BandProtocol",
       image: "/twitter/BandProtocol.jpeg",

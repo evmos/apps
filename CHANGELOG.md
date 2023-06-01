@@ -34,6 +34,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
+## 1.0.7 - 2023-06-01
+
+- (fix) #fse-593 | apps/assets 1.0.9 apps/governance 1.0.8 apps/mission 1.0.8 apps/staking 1.0.8 packages/ui-helpers 1.0.6 | Fix consent modal to work in every browser
+
 ## 1.0.6 - 2023-06-01
 
 - (chore) #fse-600 | apps/assets 1.0.8 apps/governance 1.0.7 apps/mission 1.0.7 apps/staking 1.0.7 | Updating dora hacks date

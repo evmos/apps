@@ -31,7 +31,7 @@ export const Footer = ({
 
   return (
     <footer className=" mb-10 mt-10 flex w-full flex-col items-center space-y-2 text-pearl xl:justify-between">
-      <div className="flex items-center space-x-5">
+      <div className="flex items-center space-x-5 ">
         <Link
           target="_blank"
           rel="noreferrer"

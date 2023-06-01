@@ -6,7 +6,7 @@ import getConfig from "next/config";
 
 export const StatefulFooter = () => {
   const { publicRuntimeConfig } = getConfig();
-
+  // should I create the same tests for all the stateful footers and header?
   const { handlePreClickAction } = useTracker(CLICK_FEEDBACK_FOOTER);
   const { showConsent } = useConsent();
   return (

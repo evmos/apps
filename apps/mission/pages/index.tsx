@@ -22,7 +22,7 @@ import MainContainer from "../src/components/mission/MainContainer";
 import { HeadComponent } from "../src/components/mission/HeadComponent";
 import { GoogleAnalytics } from "../src/components/mission/GoogleAnalytics";
 import { MixpanelProvider } from "tracker";
-import { InformationBanner, Consent } from "ui-helpers";
+import { InformationBanner } from "ui-helpers";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -43,7 +43,6 @@ export default function Mission() {
               <HeadComponent />
               <GoogleAnalytics />
               <main>
-                <Consent />
                 <TermOfServices />
                 <InformationBanner
                   dismissible={true}

@@ -54,7 +54,7 @@ export default function Home() {
                   localStorageId="dora-hacks-banner"
                   text={
                     <div className="text-base">
-                      Extend the EVM with DoraHacks - live until June 2!{" "}
+                      Extend the EVM with DoraHacks - live until June 15!{" "}
                       <a
                         href="https://dorahacks.io/hackathon/EVM/detail"
                         target="_blank"

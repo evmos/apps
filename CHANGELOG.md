@@ -34,6 +34,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
+## Unreleased
+
+- (chore) #fse-600 | apps/assets 1.0.8 apps/governance 1.0.7 apps/mission 1.0.7 apps/staking 1.0.7 | Updating dora hacks date
+
 ## 1.0.5 - 2023-05-24
 
 - (workflow) #fse-511 | packages/tracker 1.0.1 | Adding lint

@@ -9,3 +9,9 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "09:00" # Check for npm updates at 9am UTC
+    assignees:
+      - "sandoche"
+    open-pull-requests-limit: 10
+    

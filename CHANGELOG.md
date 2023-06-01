@@ -34,9 +34,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
-## Unreleased
+## 1.0.6 - 2023-06-01
 
 - (chore) #fse-600 | apps/assets 1.0.8 apps/governance 1.0.7 apps/mission 1.0.7 apps/staking 1.0.7 | Updating dora hacks date
+- (chore) #fse-601 | apps/assets 1.0.8 | Fix broken images
 
 ## 1.0.5 - 2023-05-24
 
@@ -61,7 +62,6 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (chore) #fse-521 | apps/assets 1.0.7 apps/governance 1.0.6 apps/mission 1.0.6 apps/staking 1.0.6 | Reuse consent modal on footer to allow users to change their opt-in/opt-out preferences
 - (chore) #fse-521 | packages/ui-helpers 1.0.5 | Add Cookies settings button so the user can change their cookies preferences
 - (workflow) #fse-521 | turbo.json | Add NEXT_PUBLIC_MIXPANEL_TOKEN, NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA, NEXT_PUBLIC_SITE_ID_IUBENDA
-- (chore) #fse-601 | apps/assets 1.0.8 | Fix broken images
 
 ## 1.0.4 - 2023-05-19
 

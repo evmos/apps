@@ -19,7 +19,7 @@ import {
   getAllSnackbars,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TermOfServices, Container, Consent } from "ui-helpers";
+import { TermOfServices, Container } from "ui-helpers";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -46,14 +46,13 @@ export default function Home() {
               <HeadComponent />
               <GoogleAnalytics />
               <main>
-                <Consent />
                 <TermOfServices />
                 <InformationBanner
                   dismissible={true}
                   localStorageId="dora-hacks-banner"
                   text={
                     <div className="text-base">
-                      Extend the EVM with DoraHacks - live until June 2!{" "}
+                      Extend the EVM with DoraHacks - live until June 15!{" "}
                       <a
                         href="https://dorahacks.io/hackathon/EVM/detail"
                         target="_blank"

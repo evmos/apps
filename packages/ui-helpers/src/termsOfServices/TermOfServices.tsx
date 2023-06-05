@@ -11,10 +11,8 @@ import {
   ENABLE_MIXPANEL_TRACKER,
 } from "tracker";
 import { EVMOS_TOS_VERSION } from "constants-helper";
-import { createHtmlContent } from "./helper";
-interface BrowserWindow {
-  setAction: (consent: boolean) => void;
-}
+import { Modal } from "../Modal";
+import { ConsentModal } from "./ConsentModal";
 
 export const TermOfServices = () => {
   const [show, setShow] = useState<boolean>(false);
@@ -40,19 +38,14 @@ export const TermOfServices = () => {
 
   const [acknowledgeTOS, setAcknowledgeTOS] = useState(false);
   const [consent, setConsent] = useState(false);
-
+  const [showConsent, setShowConsent] = useState(false);
+  const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
   const handleConsentClick = () => {
     setConsent(!consent);
-    if (process.env.NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA !== undefined) {
-      const name = `_iub_cs-${process.env.NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA}`;
-      document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    }
-    const browserWindow = window as unknown as BrowserWindow;
-    browserWindow.setAction = setConsent;
-    const htmlContent = createHtmlContent(true);
-    document
-      .querySelector("body")
-      ?.insertAdjacentHTML("beforeend", htmlContent);
+    setShowConsent(true);
+    setModalContent(
+      <ConsentModal setShow={setShowConsent} setConsent={setConsent} />
+    );
   };
 
   return (
@@ -61,7 +54,6 @@ export const TermOfServices = () => {
         <div className="h-80 w-full space-y-3 overflow-y-auto border border-darkGray5 p-4 font-[IBM]">
           <Content />
         </div>
-
         <div className="space-y-3">
           <CheckboxTOS
             label="I acknowledge to the Terms of Service."
@@ -86,6 +78,14 @@ export const TermOfServices = () => {
             disabled={!acknowledgeTOS}
           />
         </div>
+        <Modal
+          show={showConsent}
+          onClose={() => {
+            setShowConsent(false);
+          }}
+        >
+          {modalContent}
+        </Modal>
       </div>
     </ModalTOS>
   );

@@ -22,7 +22,7 @@ import MainContainer from "../src/components/mission/MainContainer";
 import { HeadComponent } from "../src/components/mission/HeadComponent";
 import { GoogleAnalytics } from "../src/components/mission/GoogleAnalytics";
 import { MixpanelProvider } from "tracker";
-import { InformationBanner, Consent } from "ui-helpers";
+import { InformationBanner } from "ui-helpers";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -43,14 +43,13 @@ export default function Mission() {
               <HeadComponent />
               <GoogleAnalytics />
               <main>
-                <Consent />
                 <TermOfServices />
                 <InformationBanner
                   dismissible={true}
                   localStorageId="dora-hacks-banner"
                   text={
                     <div className="text-base">
-                      Extend the EVM with DoraHacks - live until June 2!{" "}
+                      Extend the EVM with DoraHacks - live until June 15!{" "}
                       <a
                         href="https://dorahacks.io/hackathon/EVM/detail"
                         target="_blank"

@@ -34,6 +34,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
+## 1.0.8 - 2023-06-07
+
+- (chore) #fse-624 | apps/assets 1.0.10 apps/governance 1.0.9 apps/mission 1.0.9 apps/staking 1.0.9 packages/ui-helpers 1.0.7 | Add system error banner for ledger + keplr
+
 ## 1.0.7 - 2023-06-01
 
 - (fix) #fse-593 | apps/assets 1.0.9 apps/governance 1.0.8 apps/mission 1.0.8 apps/staking 1.0.8 packages/ui-helpers 1.0.6 | Fix consent modal to work in every browser

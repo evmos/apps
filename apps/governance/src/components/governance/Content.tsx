@@ -11,7 +11,7 @@ import {
   NAV_TO_GOVERNANCE,
   COMMONWEALTH_URL,
 } from "constants-helper";
-import { Navigation } from "ui-helpers";
+import { Navigation, SystemErrorBanner } from "ui-helpers";
 import { CLICK_BACK_TO_MC } from "tracker";
 import { useTracker } from "tracker";
 
@@ -52,6 +52,9 @@ const Content = () => {
   return (
     <div>
       {drawNavigation()}
+      <div className="mb-4">
+        <SystemErrorBanner text="We are currently experiencing issues with Ledger-related transactions. We're on it!" />
+      </div>
       {id === undefined && (
         <BannerBlack
           text="Have you ever wondered where proposals come from? Join us in our open

@@ -11,7 +11,12 @@ import { NAV_TO_MISSION_CONTROL, EVMOS_PAGE_URL } from "constants-helper";
 import dynamic from "next/dynamic";
 
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
-import { MessageTable, Switch, Navigation } from "ui-helpers";
+import {
+  MessageTable,
+  Switch,
+  Navigation,
+  SystemErrorBanner,
+} from "ui-helpers";
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));
 
@@ -117,6 +122,9 @@ const AssetsTable = () => {
           handlePreClickAction();
         }}
       />
+      <div className="mb-4">
+        <SystemErrorBanner text="We are currently experiencing issues with Ledger-related transactions. We're on it!" />
+      </div>
       <TopBar topProps={topProps} />
       <div className="mx-5 flex flex-col justify-center lg:flex-row lg:justify-between xl:mx-0">
         <Guide />

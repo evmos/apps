@@ -1,6 +1,6 @@
 {
   "name": "evmos-apps",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "license": "SEE LICENSE IN LICENSE",
   "author": "Tharsis Labs Ltd.(Evmos)",
   "workspaces": [

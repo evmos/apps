@@ -1,6 +1,7 @@
 {
   "name": "services",
   "version": "1.0.2",
+  "main": "src/index.tsx",
   "sideEffects": [
     "**/*.css"
   ],

@@ -11,7 +11,7 @@ import {
   isVotingTimeWithinRange,
   splitString,
   sumBigNumber,
-} from "helpers";
+} from "../../../../../../../packages/helpers";
 import { getProposals } from "../fetch";
 import { ProposalDetailProps, ProposalProps } from "../types";
 

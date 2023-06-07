@@ -1,8 +1,11 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+import * as toolkitRaw from "@reduxjs/toolkit";
+const { createSlice } = ((toolkitRaw as any).default ??
+  toolkitRaw) as typeof toolkitRaw;
+import { AnyAction, ThunkMiddleware } from "@reduxjs/toolkit";
 
-import { AnyAction, createSlice, ThunkMiddleware } from "@reduxjs/toolkit";
-import { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
+import type { ToolkitStore } from "@reduxjs/toolkit/dist/configureStore";
 import { WalletExtension } from "../../internal/wallet/functionality/wallet";
 
 export declare type ReduxWalletStore = ToolkitStore<

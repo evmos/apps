@@ -1,6 +1,7 @@
 {
   "name": "evmos-wallet",
   "version": "1.0.7",
+  "main":  "src/index.tsx",
   "sideEffects": [
     "**/*.css"
   ],

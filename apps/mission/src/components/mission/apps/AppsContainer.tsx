@@ -44,6 +44,7 @@ const AppsContainer = () => {
   }, [percentageScrolled, handlePreClickAction]);
   return (
     <div
+      aria-label="mili"
       ref={divRef}
       style={{ maxHeight: "225px", overflowY: "auto" }}
       className="flex flex-col gap-4"

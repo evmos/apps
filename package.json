@@ -33,5 +33,9 @@
     "last 3 chrome version",
     "last 3 firefox version",
     "last 3 safari version"
-  ]
+  ],
+  "dependencies": {
+    "next-router-mock": "^0.9.3",
+    "whatwg-fetch": "^3.6.2"
+  }
 }

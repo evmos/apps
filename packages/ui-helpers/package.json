@@ -1,6 +1,7 @@
 {
   "name": "ui-helpers",
   "version": "1.0.6",
+  "main": "src/index.tsx",
   "sideEffects": [
     "**/*.css"
   ],

@@ -5,9 +5,11 @@ import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { SimpleSnackbar } from "./content/SimpleSnackbar";
 import { ViewExplorerSnackbar } from "./content/ViexExplorerSnackbar";
-import ExclamationIcon from "./icons/ExclamationIcon";
-import SuccessIcon from "./icons/SuccessIcon";
-import TriangleHazardIcon from "./icons/TriangleHazardIcon";
+// TODO: move this ones to icons package and call them from there
+// import SuccessIcon from "./icons/SuccessIcon";
+// import ExclamationIcon from "./icons/ExclamationIcon";
+// import TriangleHazardIcon from "./icons/TriangleHazardIcon";
+import { CheckIcon } from "icons";
 import { removeSnackbar } from "./redux/notificationSlice";
 import { SNACKBAR_CONTENT_TYPES, SNACKBAR_TYPES } from "./types";
 
@@ -30,11 +32,11 @@ const Snackbar = ({
 }) => {
   let icon;
   if (type === SNACKBAR_TYPES.DEFAULT) {
-    icon = <ExclamationIcon />;
+    icon = <CheckIcon />;
   } else if (type === SNACKBAR_TYPES.ERROR) {
-    icon = <TriangleHazardIcon color="white" />;
+    icon = <CheckIcon color="white" />;
   } else if (type === SNACKBAR_TYPES.SUCCESS) {
-    icon = <SuccessIcon color="white" />;
+    icon = <CheckIcon color="white" />;
   }
 
   return (

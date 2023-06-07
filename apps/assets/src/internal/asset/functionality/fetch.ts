@@ -2,8 +2,13 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { ERC20BalanceResponse } from "../../../components/asset/table/types";
-import { EVMOS_BACKEND, BALANCE_NOTIFICATIONS } from "evmos-wallet";
+// import { EVMOS_BACKEND, BALANCE_NOTIFICATIONS } from "evmos-wallet";
 
+const BALANCE_NOTIFICATIONS = {
+  ErrorGetBalance: "Error getting balance, please try again later",
+  ErrorGetBalanceExtChain: "Error getting balance from external chain",
+};
+const EVMOS_BACKEND = "https://goapi.evmos.org";
 export const getAssets = async () => {
   const res = await fetch(`${EVMOS_BACKEND}/ERC20ModuleBalance`);
   return res.json() as Promise<ERC20BalanceResponse>;

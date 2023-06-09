@@ -4,7 +4,7 @@
 import dynamic from "next/dynamic";
 import { SearchWrapper } from "../../internal/common/context/SearchContext";
 import { ValidatorStateWrapper } from "../../internal/common/context/ValidatorStateContext";
-import { Navigation, SystemErrorBanner } from "ui-helpers";
+import { Navigation } from "ui-helpers";
 import { tabsContent } from "./Tabs/Content";
 import { NAV_TO_MISSION_CONTROL, EVMOS_PAGE_URL } from "constants-helper";
 const TopBarStaking = dynamic(() => import("./components/TopBarStaking"));
@@ -24,9 +24,6 @@ const Content = () => {
               handlePreClickAction();
             }}
           />
-          <div className="mb-4">
-            <SystemErrorBanner text="We are currently experiencing issues with Ledger-related transactions. We're on it!" />
-          </div>
           <TopBarStaking />
           <div className=" xl:scrollbar-hide mt-5 w-full px-2 font-[IBM] text-pearl">
             <Tabs

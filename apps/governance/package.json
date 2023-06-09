@@ -1,7 +1,7 @@
 {
   "name": "governance-page",
 
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3001",

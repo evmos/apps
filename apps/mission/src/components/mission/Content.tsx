@@ -8,7 +8,6 @@ import NewsFeed from "./feeds/NewsFeed";
 import Governance from "./governance/Governance";
 import Staking from "./staking/Staking";
 import EvmosApps from "./apps/EvmosApps";
-import { SystemErrorBanner } from "ui-helpers";
 import { CLICK_MISSION_CONTROL_HALF_LIFE, useTracker } from "tracker";
 
 const TopBarMissionControl = dynamic(() => import("./TopBarMissionControl"));
@@ -18,9 +17,6 @@ const Content = () => {
 
   return (
     <div className="flex flex-col pt-4">
-      <div className="mb-4">
-        <SystemErrorBanner text="We are currently experiencing issues with Ledger-related transactions. We're on it!" />
-      </div>
       <TopBarMissionControl />
 
       <div className="mx-5 grid grid-cols-6 gap-6 xl:mx-0">

@@ -21,7 +21,7 @@
     "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",
     "@evmos/proto": "^0.1.26",
-    "@evmos/provider": "^0.2.8",
+    "@evmos/provider": "^0.3.1",
     "@evmos/transactions": "^0.2.12",
     "@hanchon/signature-to-pubkey": "^1.0.1",
     "@reduxjs/toolkit": "^1.9.1",

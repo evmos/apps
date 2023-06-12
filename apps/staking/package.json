@@ -41,7 +41,7 @@
     "redux": "^4.2.0",
     "remark-gfm": "^3.0.1",
     "typescript": "4.9.4",
-    "wagmi": "=0.10.10"
+    "wagmi": "=0.12.13"
   },
   "devDependencies": {
     "@keplr-wallet/types": "^0.11.26",

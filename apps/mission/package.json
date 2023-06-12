@@ -27,7 +27,7 @@
     "@evmos/provider": "^0.2.8",
     "@evmos/transactions": "^0.2.12",
     "@hanchon/signature-to-pubkey": "^1.0.1",
-    "@reduxjs/toolkit": "^1.9.1",
+    "@reduxjs/toolkit": "^1.9.5",
     "@tanstack/react-query": "^4.20.4",
     "@types/node": "18.11.14",
     "@types/react": "18.0.26",

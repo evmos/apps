@@ -13,3 +13,4 @@ export { FEE_WITHDRAW } from "./constants";
 export { PRIVACY_POLICY_URL } from "./constants";
 export { COOKIE_POLICY_URL } from "./constants";
 export { EVMOS_TOS_VERSION } from "./constants";
+export { NAV_TO_VESTING } from "./constants";

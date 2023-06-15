@@ -31,3 +31,4 @@ export { Header } from "./Header";
 export { InformationBanner } from "./InformationBanner";
 export { ConsentModal } from "./termsOfServices/ConsentModal";
 export { SystemErrorBanner } from "./SystemErrorBanner";
+export { Search } from "./Search";

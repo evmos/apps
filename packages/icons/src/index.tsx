@@ -26,3 +26,4 @@ export { TwitterIcon } from "./Twitter";
 export { TelegramIcon } from "./Telegram";
 export { GithubIcon } from "./GitHub";
 export { DiscordIcon } from "./Discord";
+export { ExclamationIcon } from "./ExclamationIcon";

@@ -1,6 +1,6 @@
 {
   "name": "evmos-apps",
-  "version": "1.0.8",
+  "version": "1.0.10",
   "license": "SEE LICENSE IN LICENSE",
   "author": "Tharsis Labs Ltd.(Evmos)",
   "workspaces": [
@@ -32,5 +32,10 @@
     "last 3 chrome version",
     "last 3 firefox version",
     "last 3 safari version"
-  ]
+  ],
+  "dependencies": {
+    "@hookform/resolvers": "^3.1.0",
+    "react-hook-form": "^7.44.3",
+    "zod": "^3.21.4"
+  }
 }

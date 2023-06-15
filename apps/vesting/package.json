@@ -1,9 +1,10 @@
 {
-  "name": "staking-page",
-  "version": "1.0.11",
+  "name": "vesting-page",
+
+  "version": "1.0.9",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3003",
+    "dev": "next dev --port 3005",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -15,9 +16,10 @@
   "dependencies": {
     "evmos-wallet": "*",
     "constants-helper": "*",
+    "icons": "*",
     "ui-helpers": "*",
     "helpers": "*",
-    "services": "*",
+    "tracker": "*",
     "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",
     "@evmos/proto": "^0.1.26",

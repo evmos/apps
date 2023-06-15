@@ -5,7 +5,7 @@ import { Dispatch } from "react";
 import { AnyAction } from "redux";
 import { SimpleSnackbar } from "./content/SimpleSnackbar";
 import { ViewExplorerSnackbar } from "./content/ViexExplorerSnackbar";
-import ExclamationIcon from "./icons/ExclamationIcon";
+import { ExclamationIcon } from "icons";
 import SuccessIcon from "./icons/SuccessIcon";
 import TriangleHazardIcon from "./icons/TriangleHazardIcon";
 import { removeSnackbar } from "./redux/notificationSlice";

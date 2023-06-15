@@ -5,7 +5,7 @@ type ExclamationIconProps = React.SVGAttributes<SVGElement> & {
   color?: string;
 };
 
-const ExclamationIcon: React.FC<ExclamationIconProps> = ({
+export const ExclamationIcon: React.FC<ExclamationIconProps> = ({
   width = "18",
   height = "18",
   color = "currentColor",
@@ -24,5 +24,3 @@ const ExclamationIcon: React.FC<ExclamationIconProps> = ({
     </svg>
   );
 };
-
-export default ExclamationIcon;

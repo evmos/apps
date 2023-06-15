@@ -9,30 +9,28 @@ const Web3Modal = dynamic(() =>
   import("@web3modal/react").then((mod) => mod.Web3Modal)
 );
 import {
+  store,
   ethereumClient,
   projectId,
   wagmiClient,
   StoreType,
   Snackbars,
   getAllSnackbars,
-  store,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import { TermOfServices, Container } from "ui-helpers";
-import { MixpanelProvider } from "tracker";
+
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
-import { StatefulHeader } from "../src/StatefulHeader";
-import { HeadComponent } from "../src/components/staking/HeadComponent";
+import { StatefulHeader } from "../src/components/StatefulHeader";
+import { HeadComponent } from "../src/components/vesting/HeadComponent";
 import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
-import { StatefulFooter } from "../src/StatefulFooter";
-
-const Content = dynamic(() => import("../src/components/staking/Content"));
-
+import { StatefulFooter } from "../src/components/StatefulFooter";
+const Content = dynamic(() => import("../src/components/vesting/Content"));
+import { MixpanelProvider } from "tracker";
 export default function Home() {
   const queryClient = new QueryClient();
   return (
@@ -51,7 +49,7 @@ export default function Home() {
                 <Container>
                   <>
                     <SnackbarsInternal />
-                    <StatefulHeader pageName="Staking" />
+                    <StatefulHeader pageName="Vesting" />
                     <div className="container mx-auto mb-auto overflow-auto">
                       <Content />
                     </div>

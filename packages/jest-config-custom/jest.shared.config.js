@@ -11,7 +11,7 @@ module.exports = {
   },
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/dist/"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  extensionsToTreatAsEsm: [".ts", ".tsx"],
+  // extensionsToTreatAsEsm: [".ts", ".tsx"],
   moduleNameMapper: {
     tracker: "<rootDir>/../../packages/tracker",
     "ui-helper": "<rootDir>/../../packages/ui-helpers",

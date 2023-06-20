@@ -13,7 +13,7 @@ const createJestConfig = nextJest({
 /** @type {import('jest').Config} */
 const customJestConfig = {
   ...appsConfig,
-  // extensionsToTreatAsEsm: [".ts", ".tsx"],
+  extensionsToTreatAsEsm: [".ts", ".tsx"],
 };
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

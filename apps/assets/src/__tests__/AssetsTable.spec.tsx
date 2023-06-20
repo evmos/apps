@@ -1,3 +1,4 @@
+import "./matchMedia.mock";
 import "@testing-library/jest-dom";
 import {
   CLICK_HIDE_ZERO_BALANCE,
@@ -8,6 +9,9 @@ import {
 import AssetsTable from "../components/asset/table/AssetsTable";
 import { successfullMixpanelEvent } from "../test-utils/utils";
 import { NAV_TO_MISSION_CONTROL } from "constants-helper";
+import { jest } from "@jest/globals";
+
+
 describe("Testing Assets Table", () => {
   beforeEach(() => {
     jest.clearAllMocks();

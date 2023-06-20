@@ -1,3 +1,4 @@
+import "./matchMedia.mock";
 import "@testing-library/jest-dom";
 import { CLICK_FEEDBACK_FOOTER } from "tracker";
 import { StatefulFooter } from "../StatefulFooter";
@@ -6,10 +7,11 @@ import {
   enableCookiesAndSuccessfullMixpanelEvent,
   successfullMixpanelEvent,
 } from "../test-utils/utils";
+import { jest } from "@jest/globals";
 
 describe("Testing for Footer", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    // jest.clearAllMocks();
     window.localStorage.clear();
     jest.spyOn(window.localStorage.__proto__, "setItem");
     jest.spyOn(window.localStorage.__proto__, "getItem");

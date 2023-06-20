@@ -71,6 +71,7 @@ const getElement = (
 };
 
 export const successfullMixpanelEvent = async (props: MixpanelEvent) => {
+  console.log(props.comp)
   const { getByText, getByRole } = render(props.comp, {
     wrapper: wrapper,
   });

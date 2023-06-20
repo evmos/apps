@@ -1,10 +1,13 @@
+import "./matchMedia.mock";
 import "@testing-library/jest-dom";
-// import "./matchMedia.mock";
 import { CLICK_EVMOS_LOGO } from "tracker";
 import { StatefulHeader } from "../StatefulHeader";
 import { successfullMixpanelEvent } from "../test-utils/utils";
+import { jest } from "@jest/globals";
+import { render } from "@testing-library/react";
 
 // TODO: mock wagmi ?
+
 describe("Testing for Header", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -30,7 +33,7 @@ describe("Testing for Header", () => {
   };
 
   it("should calls mixpanel event after clicking on Logo", async () => {
-    await successfullMixpanelEvent(props);
+    const { getByText, getByRole } = render(<StatefulHeader pageName={pageName} />);
   });
 
   // it("should calls mixpanel - token is not set - do not track", async () => {

@@ -5,13 +5,13 @@ module.exports = {
   ],
   moduleDirectories: ["node_modules", "<rootDir>/"],
   testEnvironment: "jest-environment-jsdom",
-  preset: 'ts-jest/presets/default-esm',
+  // preset: "ts-jest/presets/default-esm",
   transform: {
-    '^.+\\.(ts|tsx)?$': ['ts-jest', { useESM: true }]
+    "^.+\\.(ts|tsx)?$": ["ts-jest", { useESM: true }],
   },
   testPathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/dist/"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  extensionsToTreatAsEsm: [".ts", ".tsx"],
+  // extensionsToTreatAsEsm: [".ts", ".tsx"],
   moduleNameMapper: {
     tracker: "<rootDir>/../../packages/tracker",
     "ui-helper": "<rootDir>/../../packages/ui-helpers",

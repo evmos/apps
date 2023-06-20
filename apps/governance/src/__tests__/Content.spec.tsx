@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { NAV_TO_MISSION_CONTROL } from "constants-helper";
 import Content from "../components/governance/Content";
 import { successfullMixpanelEvent } from "../test-utils/utils";
-
+// import { jest } from "@jest/globals";
 // import createMockRouter from "../test-utils";
 // import { RouterContext } from "next/dist/shared/lib/router-context";
 // import mockRouter from "next-router-mock";

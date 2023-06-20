@@ -42,7 +42,6 @@ export async function checkIBCState(txHash: string, network: string) {
         title: EXECUTED_NOTIFICATIONS.ErrorTitle,
       };
     } else {
-      console.error(e);
       return {
         error: true,
         message: EXECUTED_NOTIFICATIONS.UnexpectedSubtext,

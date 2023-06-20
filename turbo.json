@@ -94,7 +94,9 @@
     "clean": {
       "cache": false
     },
-    "test": {},
+    "test": {
+      "cache": false
+    },
     "test:watch": {
       "cache": false
     },

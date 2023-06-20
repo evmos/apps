@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import dynamic from "next/dynamic";
-// import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { useProposals } from "../../internal/governance/functionality/hooks/useProposals";
 import {
@@ -22,9 +22,9 @@ const ContainerProposals = dynamic(
 const ContentProposal = dynamic(() => import("./proposalPage/ContentProposal"));
 
 const Content = () => {
-  // const router = useRouter();
-  // const { id } = router.query;
-  const id = undefined;
+  const router = useRouter();
+  const { id } = router.query;
+  // const id = undefined;
   const { proposals, loading, error, proposalDetail } = useProposals(
     id !== undefined ? (id as string) : ""
   );

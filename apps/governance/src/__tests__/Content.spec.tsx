@@ -1,3 +1,4 @@
+// import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import {
   CLICK_BACK_TO_MC,
@@ -5,10 +6,12 @@ import {
   // CLICK_GOVERNANCE_PROPOSAL,
 } from "tracker";
 import { useRouter } from "next/router";
-import Content from "../components/governance/Content";
+
 // import { RouterContext } from "next/dist/shared/lib/router-context";
 import { NAV_TO_MISSION_CONTROL } from "constants-helper";
+import Content from "../components/governance/Content";
 import { successfullMixpanelEvent } from "../test-utils/utils";
+
 // import createMockRouter from "../test-utils";
 // import { RouterContext } from "next/dist/shared/lib/router-context";
 // import mockRouter from "next-router-mock";
@@ -16,9 +19,15 @@ import { successfullMixpanelEvent } from "../test-utils/utils";
 // import createMockRouter from "../mockRouter";
 
 jest.mock("next/router", () => ({
-  useRouter: jest.fn(),
+  useRouter() {
+    return {
+      route: "/",
+      pathname: "",
+      query: { id: undefined },
+      asPath: "",
+    };
+  },
 }));
-
 describe("Testing Content governance", () => {
   // let router = createMockRouter({}, { id: "147" });
   beforeEach(() => {

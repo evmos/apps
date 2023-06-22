@@ -1,30 +1,28 @@
-import { test } from 'vitest'
-import { render } from '@testing-library/react'
-import Content from '../Content'
-import { vi } from 'vitest'
+import { test } from "vitest";
+import { render } from "@testing-library/react";
+import Content from "../Content";
+import { vi } from "vitest";
 
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const queryClient = new QueryClient();
 
-const queryClient = new QueryClient()
-
-vi.mock('next/router', async () => {
+vi.mock("next/router", async () => {
   return {
     useRouter() {
       return {
         query: {
-          id: '1',
+          id: "1",
         },
-      }
+      };
     },
-  }
-})
+  };
+});
 
-test('home', () => {
-  const {debug} = render(
+test("temporary test", () => {
+  render(
     <QueryClientProvider client={queryClient}>
       <Content />
-       
-       </QueryClientProvider>)
-  debug()
-})
+    </QueryClientProvider>
+  );
+});

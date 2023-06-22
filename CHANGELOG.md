@@ -35,9 +35,12 @@ Ref: https://keepachangelog.com/en/1.0.0/
 # Changelog
 
 ## Unreleased
-- (tests) | packages/constants-helper 1.0.2 packages/evmos-wallet 1.0.8  packages/helpers 1.0.4 packages/icons 1.0.2 packages/services 1.0.3 packages/trackers 1.0.2 packages/ui-helpers 1.0.8 | Update package.json to make the tests work with vitest
+
+- (tests) | apps/assets 1.0.14 | Apps and packages migrated to vitest
+- (tests) | packages/constants-helper 1.0.2 packages/evmos-wallet 1.0.8 packages/helpers 1.0.4 packages/icons 1.0.2 packages/services 1.0.3 packages/trackers 1.0.2 packages/ui-helpers 1.0.8 | Update package.json to make the tests work with vitest
 
 ## 1.0.10 - 2023-06-15
+
 - (chore) #fse-566 | apps/assets 1.0.12 apps/governance 1.0.11 apps/mission 1.0.11 apps/staking 1.0.11 | Remove hackathon information banner
 
 ## 1.0.9 - 2023-06-09

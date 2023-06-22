@@ -1,6 +1,6 @@
 {
-  "name": "assets-page",
-  "version": "1.0.12",
+  "name": "assets",
+  "version": "1.0.14",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3002",
@@ -8,9 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "lintunix": "next lint --format unix",
-    "test": "vitest",
-    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
-    "test:coverage": "jest --coverage --passWithNoTests"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@ethersproject/bignumber": "^5.7.0",
@@ -48,7 +48,6 @@
     "@metamask/providers": "^10.2.1",
     "autoprefixer": "^10.4.13",
     "eslint-config-custom": "*",
-    "jest-config-custom": "*",
     "vitest-config-custom": "*",
     "postcss": "^8.4.20",
     "tailwindcss": "^3.2.4"

@@ -1,7 +1,7 @@
-import { test } from 'vitest'
-import { render } from '@testing-library/react'
-import {StatefulFooter} from '../StatefulFooter'
+import { test } from "vitest";
+import { render } from "@testing-library/react";
+import { StatefulFooter } from "../StatefulFooter";
 
-test('home', () => {
-  const {debug} = render(<StatefulFooter />)
-})
+test("temporary test", () => {
+  render(<StatefulFooter />);
+});

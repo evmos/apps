@@ -1,14 +1,10 @@
 import { defineConfig } from 'vitest/config'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { sharedConfig } from 'vitest-config-custom'
 
 export default defineConfig({
-  plugins: [react()],
+  ...sharedConfig,
   test: {
-    environment: 'jsdom',
+    ...sharedConfig.test,
     setupFiles: ['vitest.setup.ts'],
-    deps: {
-      moduleDirectories: [path.resolve('../../packages'), 'node_modules'],
-    }
   },
 })

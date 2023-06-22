@@ -1,9 +1,10 @@
 {
   "name": "icons",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "sideEffects": [
     "**/*.css"
   ],
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist",

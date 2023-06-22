@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "lintunix": "next lint --format unix",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
+    "test": "vitest",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "test:coverage": "jest --coverage --passWithNoTests"
   },

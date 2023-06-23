@@ -1,18 +1,38 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from "@playwright/test";
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.beforeEach(async ({ page }) => {
+  await page.goto("http://localhost:3001/governance");
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
+  await page
+    .locator("div")
+    .filter({ hasText: /^I acknowledge to the Terms of Service\.$/ })
+    .getByRole("checkbox")
+    .check();
+  await page
+    .locator("div")
+    .filter({
+      hasText: /^I want to share usage data\. More information\.$/,
+    })
+    .getByRole("checkbox")
+    .check();
+  await page.getByRole("button", { name: "Accept", exact: true }).click();
+  await page.getByRole("button", { name: /accept and proceed/i }).click();
 });
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test.describe("Governance page", () => {
+  test("should redirect on the right proposal when clicking", async ({
+    page,
+  }) => {
+    const thirdProposal = await page.getByTestId("proposal").nth(3);
+    const proposalTitleLink = await thirdProposal
+      .getByTestId("proposal-title")
+      .allInnerTexts();
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
+    await thirdProposal.click();
+    const proposalTitle = await page
+      .getByTestId("proposal-title")
+      .allInnerTexts();
 
-  // Expects the URL to contain intro.
-  await expect(page).toHaveURL(/.*intro/);
+    expect(proposalTitleLink).toEqual(proposalTitle);
+  });
 });

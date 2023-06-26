@@ -1,7 +1,6 @@
-import { test } from "vitest";
+import { test, vi } from "vitest";
 import { render } from "@testing-library/react";
 import Content from "../Content";
-import { vi } from "vitest";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 

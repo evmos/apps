@@ -10,8 +10,9 @@ module.exports = {
     React: true,
     JSX: true,
   },
-  extends: [
-    "plugin:react/recommended",
-    "next/core-web-vitals",
-  ]
+  extends: ["plugin:react/recommended", "next/core-web-vitals"],
+  parserOptions: {
+    tsconfigRootDir: ".",
+    project: [path.join(__dirname, "tsconfig.json")],
+  },
 };

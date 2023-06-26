@@ -1,3 +1,4 @@
+import { describe, expect, it } from "vitest";
 // import mixpanel from "mixpanel-browser";
 // import { Footer } from "../Footer";
 // import { render, renderHook, act } from "@testing-library/react";

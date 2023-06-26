@@ -99,6 +99,7 @@
     "test:coverage": {
       "cache": false,
       "outputs": ["coverage/**"]
-    }
+    },
+    "test:e2e": {}
   }
 }

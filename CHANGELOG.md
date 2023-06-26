@@ -34,7 +34,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
+- (tests) #fse-665 | apps/assets 1.0.14 apps/governance 1.0.12 apps/mission 1.0.13 apps/staking 1.0.12 apps/vesting 1.0.10 | Adding playwright everywhere
+
 ## 1.0.10 - 2023-06-15
+
 - (chore) #fse-566 | apps/assets 1.0.12 apps/governance 1.0.11 apps/mission 1.0.11 apps/staking 1.0.11 | Remove hackathon information banner
 
 ## 1.0.9 - 2023-06-09

@@ -19,6 +19,12 @@ vi.mock("next/router", async () => {
   };
 });
 
+vi.mock("evmos-wallet", async () => {
+  return {
+    StoreType: vi.fn(),
+  };
+});
+
 test("temporary test", () => {
   render(
     <QueryClientProvider client={queryClient}>

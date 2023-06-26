@@ -1,6 +1,8 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
+const path = require("path");
+
 /** @type {import('eslint').Linter} */
 module.exports = {
   extends: [
@@ -12,13 +14,19 @@ module.exports = {
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:security/recommended",
     "plugin:sonarjs/recommended",
-    "plugin:vitest/recommended"
+    "plugin:vitest/recommended",
   ],
-  plugins: ["@typescript-eslint", "prettier", "sonarjs", "no-secrets", "vitest"],
+  plugins: [
+    "@typescript-eslint",
+    "prettier",
+    "sonarjs",
+    "no-secrets",
+    "vitest",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     tsconfigRootDir: ".",
-    project: ["./tsconfig.json"],
+    project: [path.join(__dirname, "tsconfig.json")],
   },
   rules: {
     "prettier/prettier": "error",
@@ -31,7 +39,7 @@ module.exports = {
         checksVoidReturn: false,
       },
     ],
-    "no-secrets/no-secrets":["error",{"tolerance": 4.1}],
+    "no-secrets/no-secrets": ["error", { tolerance: 4.1 }],
     "sonarjs/prefer-single-boolean-return": "off",
     "sonarjs/prefer-immediate-return": "off",
   },

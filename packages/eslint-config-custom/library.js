@@ -8,13 +8,12 @@ module.exports = {
   ...shared,
   parserOptions: {
     tsconfigRootDir: ".",
-    project: ["./tsconfig.json"],
   },
   ignorePatterns: [
     "dist/*",
     "*.d.ts",
     "postcss.config.js",
     "vitest.config.ts",
-    "tailwind.config.js"
-  ]
+    "tailwind.config.js",
+  ],
 };

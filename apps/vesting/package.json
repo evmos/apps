@@ -1,7 +1,6 @@
 {
   "name": "vesting-page",
-
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3005",
@@ -11,7 +10,9 @@
     "lintunix": "next lint --format unix",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
-    "test:coverage": "jest --coverage --passWithNoTests"
+    "test:coverage": "jest --coverage --passWithNoTests",
+    "test:e2e": "playwright test --pass-with-no-tests",
+    "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "evmos-wallet": "*",
@@ -52,7 +53,8 @@
     "postcss": "^8.4.20",
     "tailwindcss": "^3.2.4",
     "jest-config-custom": "*",
-    "eslint-config-custom": "*"
+    "eslint-config-custom": "*",
+    "playwright-config-custom": "*"
   },
   "browserslist": [
     "last 3 chrome version",

@@ -22,6 +22,7 @@
     "clear-cache": "sh ./clear-cache.sh"
   },
   "devDependencies": {
+    "@testing-library/user-event": "^14.4.3",
     "husky": "^8.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.11",

@@ -36,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (chore) #fse-669 | apps/assets 1.0.15 | Add convert button for gravity assets
 - (config) | .vscode | Adding default vscode formatting settings
 - (tests) | apps/assets 1.0.14 apps/governance 1.0.12 apps/mission 1.0.12 apps/staking apps/vesting | Apps and packages migrated to vitest
 - (tests) | packages/constants-helper 1.0.2 packages/evmos-wallet 1.0.8 packages/helpers 1.0.4 packages/icons 1.0.2 packages/services 1.0.3 packages/trackers 1.0.2 packages/ui-helpers 1.0.8 | Update package.json to make the tests work with vitest

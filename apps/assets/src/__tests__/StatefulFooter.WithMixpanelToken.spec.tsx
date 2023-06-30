@@ -29,38 +29,10 @@ describe("Testing Footer", () => {
     const element = getByText("Feedback");
     expect(element).toBeDefined();
     await userEvent.click(element);
-
     expect(mixpanel.init).toHaveBeenCalledOnce();
-    console.log(mixpanel.track);
     expect(mixpanel.track).toHaveBeenCalledWith(
       "Click on Give Feedback on Footer",
       {}
     );
   });
-
-  // test("track without token", async () => {
-  //   const wrapperWithoutToken = ({ children }: { children: JSX.Element }) => {
-  //     console.log("wrapper without token");
-  //     return (
-  //       <MixpanelProvider token="" config={{ ip: false }}>
-  //         {children}
-  //       </MixpanelProvider>
-  //     );
-  //   };
-  //   // const spyTrack = vi.spyOn(mixpanel, "track");
-  //   const spy = vi.spyOn(mixpanel, "init");
-  //   const spyTrack = vi.spyOn(mixpanel, "track");
-  //   const { getByText } = render(<StatefulFooter />, {
-  //     wrapper: wrapperWithoutToken,
-  //   });
-
-  //   // spy.mockClear();
-  //   // console.log(mixpanel);
-  //   const element = getByText("Feedback");
-  //   expect(element).toBeDefined();
-  //   await userEvent.click(element);
-  //   // spy.mockReset();
-  //   expect(spy).toHaveBeenCalledOnce();
-  //   expect(spyTrack).not.toHaveBeenCalled();
-  // });
 });

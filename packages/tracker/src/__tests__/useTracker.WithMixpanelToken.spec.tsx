@@ -14,7 +14,7 @@ vi.mock("mixpanel-browser", () => {
   };
 });
 
-describe("useTracker", () => {
+describe("useTracker with the mixpanel token set", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return (
       <MixpanelProvider token="testToken" config={{ ip: false }}>

@@ -107,6 +107,14 @@ export const SUCCESSFUL_CONVERT_AXELAR_BASED_TX =
 export const UNSUCCESSFUL_CONVERT_AXELAR_BASED_TX =
   "Unsuccessful convert for Axelar-based token";
 
+export const CLICK_BUTTON_CONVERT_GRAVITY_BASED = "Convert Gravity-based token";
+export const CLICK_BUTTON_CONFIRM_CONVERT_GRAVITY_BASED_TX =
+  "Confirm Convert Transaction for Gravity-based token";
+export const SUCCESSFUL_CONVERT_GRAVITY_BASED_TX =
+  "Successful convert for Gravity-based token";
+export const UNSUCCESSFUL_CONVERT_GRAVITY_BASED_TX =
+  "Unsuccessful convert for Gravity-based token";
+
 export const CLICK_BUTTON_CONFIRM_WRAP_TX = "Confirm wrap transaction";
 export const SUCCESSFUL_WRAP_TX = "Successful wrap transaction";
 export const UNSUCCESSFUL_WRAP_TX = "Unsuccessful wrap transaction";

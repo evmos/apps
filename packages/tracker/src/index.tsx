@@ -85,6 +85,11 @@ export { CLICK_BUTTON_CONFIRM_CONVERT_AXELAR_BASED_TX } from "./constants";
 export { SUCCESSFUL_CONVERT_AXELAR_BASED_TX } from "./constants";
 export { UNSUCCESSFUL_CONVERT_AXELAR_BASED_TX } from "./constants";
 
+export { CLICK_BUTTON_CONVERT_GRAVITY_BASED } from "./constants";
+export { CLICK_BUTTON_CONFIRM_CONVERT_GRAVITY_BASED_TX } from "./constants";
+export { SUCCESSFUL_CONVERT_GRAVITY_BASED_TX } from "./constants";
+export { UNSUCCESSFUL_CONVERT_GRAVITY_BASED_TX } from "./constants";
+
 export { CLICK_BUTTON_CONFIRM_WRAP_TX } from "./constants";
 export { SUCCESSFUL_WRAP_TX } from "./constants";
 export { UNSUCCESSFUL_WRAP_TX } from "./constants";

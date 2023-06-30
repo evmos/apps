@@ -35,12 +35,9 @@ import {
 } from "evmos-wallet";
 import {
   useTracker,
-  CLICK_BUTTON_CONFIRM_CONVERT_AXELAR_BASED_TX,
-  CLICK_BUTTON_CONFIRM_CONVERT_GRAVITY_BASED_TX,
-  SUCCESSFUL_CONVERT_AXELAR_BASED_TX,
-  SUCCESSFUL_CONVERT_GRAVITY_BASED_TX,
-  UNSUCCESSFUL_CONVERT_AXELAR_BASED_TX,
-  UNSUCCESSFUL_CONVERT_GRAVITY_BASED_TX,
+  CLICK_BUTTON_CONFIRM_CONVERT_TX,
+  SUCCESSFUL_CONVERT_TX,
+  UNSUCCESSFUL_CONVERT_TX,
 } from "tracker";
 
 const IBC_ERC20 = "IBC<>ERC-20";
@@ -101,27 +98,15 @@ const Convert = ({
   };
 
   const { handlePreClickAction: clickConfirmConvertTx } = useTracker(
-    CLICK_BUTTON_CONFIRM_CONVERT_AXELAR_BASED_TX
+    CLICK_BUTTON_CONFIRM_CONVERT_TX
   );
 
   const { handlePreClickAction: successfulTx } = useTracker(
-    SUCCESSFUL_CONVERT_AXELAR_BASED_TX
+    SUCCESSFUL_CONVERT_TX
   );
 
   const { handlePreClickAction: unsuccessfulTx } = useTracker(
-    UNSUCCESSFUL_CONVERT_AXELAR_BASED_TX
-  );
-
-  const { handlePreClickAction: clickConfirmConvertGravityTx } = useTracker(
-    CLICK_BUTTON_CONFIRM_CONVERT_GRAVITY_BASED_TX
-  );
-
-  const { handlePreClickAction: successfulGravityTx } = useTracker(
-    SUCCESSFUL_CONVERT_GRAVITY_BASED_TX
-  );
-
-  const { handlePreClickAction: unsuccessfulGravityTx } = useTracker(
-    UNSUCCESSFUL_CONVERT_GRAVITY_BASED_TX
+    UNSUCCESSFUL_CONVERT_TX
   );
 
   return (
@@ -180,21 +165,12 @@ const Convert = ({
         <ConfirmButton
           disabled={disabled}
           onClick={async () => {
-            if (item.chainIdentifier === "Axelar") {
-              clickConfirmConvertTx({
-                convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
-                wallet: wallet?.evmosAddressEthFormat,
-                provider: wallet?.extensionName,
-              });
-            }
-
-            if (item.chainIdentifier === "Gravity") {
-              clickConfirmConvertGravityTx({
-                convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
-                wallet: wallet?.evmosAddressEthFormat,
-                provider: wallet?.extensionName,
-              });
-            }
+            clickConfirmConvertTx({
+              convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
+              wallet: wallet?.evmosAddressEthFormat,
+              provider: wallet?.extensionName,
+              chain: item.chainIdentifier,
+            });
 
             setConfirmClicked(true);
             if (wallet.evmosPubkey === null) {
@@ -271,43 +247,23 @@ const Convert = ({
               );
 
               if (res.error) {
-                if (item.chainIdentifier === "Gravity") {
-                  unsuccessfulGravityTx({
-                    errorMessage: res.message,
-                    wallet: wallet?.evmosAddressEthFormat,
-                    provider: wallet?.extensionName,
-                    transaction: "unsuccessful",
-                    convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
-                  });
-                }
-                if (item.chainIdentifier === "Axelar") {
-                  unsuccessfulTx({
-                    errorMessage: res.message,
-                    wallet: wallet?.evmosAddressEthFormat,
-                    provider: wallet?.extensionName,
-                    transaction: "unsuccessful",
-                    convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
-                  });
-                }
+                unsuccessfulTx({
+                  errorMessage: res.message,
+                  wallet: wallet?.evmosAddressEthFormat,
+                  provider: wallet?.extensionName,
+                  transaction: "unsuccessful",
+                  convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
+                  chain: item.chainIdentifier,
+                });
               } else {
-                if (item.chainIdentifier === "Gravity") {
-                  successfulGravityTx({
-                    txHash: res.txHash,
-                    wallet: wallet?.evmosAddressEthFormat,
-                    provider: wallet?.extensionName,
-                    transaction: "successful",
-                    convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
-                  });
-                }
-                if (item.chainIdentifier === "Axelar") {
-                  successfulTx({
-                    txHash: res.txHash,
-                    wallet: wallet?.evmosAddressEthFormat,
-                    provider: wallet?.extensionName,
-                    transaction: "successful",
-                    convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
-                  });
-                }
+                successfulTx({
+                  txHash: res.txHash,
+                  wallet: wallet?.evmosAddressEthFormat,
+                  provider: wallet?.extensionName,
+                  transaction: "successful",
+                  convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
+                  chain: item.chainIdentifier,
+                });
               }
             } else {
               if (isERC20Selected) {

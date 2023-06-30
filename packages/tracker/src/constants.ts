@@ -99,21 +99,11 @@ export const ENABLE_MIXPANEL_TRACKER = "Enable mixpanel tracker";
 export const SUCCESSFUL_WALLET_CONNECTION = "Successful wallet connection";
 export const UNSUCCESSFUL_WALLET_CONNECTION = "Unsuccessful wallet connection";
 
-export const CLICK_BUTTON_CONVERT_AXELAR_BASED = "Convert Axelar-based token";
-export const CLICK_BUTTON_CONFIRM_CONVERT_AXELAR_BASED_TX =
-  "Confirm Convert Transaction for Axelar-based token";
-export const SUCCESSFUL_CONVERT_AXELAR_BASED_TX =
-  "Successful convert for Axelar-based token";
-export const UNSUCCESSFUL_CONVERT_AXELAR_BASED_TX =
-  "Unsuccessful convert for Axelar-based token";
-
-export const CLICK_BUTTON_CONVERT_GRAVITY_BASED = "Convert Gravity-based token";
-export const CLICK_BUTTON_CONFIRM_CONVERT_GRAVITY_BASED_TX =
-  "Confirm Convert Transaction for Gravity-based token";
-export const SUCCESSFUL_CONVERT_GRAVITY_BASED_TX =
-  "Successful convert for Gravity-based token";
-export const UNSUCCESSFUL_CONVERT_GRAVITY_BASED_TX =
-  "Unsuccessful convert for Gravity-based token";
+// TODO: update names
+export const CLICK_BUTTON_CONVERT = "Convert token";
+export const CLICK_BUTTON_CONFIRM_CONVERT_TX = "Confirm Convert Transaction";
+export const SUCCESSFUL_CONVERT_TX = "Successful convert ";
+export const UNSUCCESSFUL_CONVERT_TX = "Unsuccessful convert";
 
 export const CLICK_BUTTON_CONFIRM_WRAP_TX = "Confirm wrap transaction";
 export const SUCCESSFUL_WRAP_TX = "Successful wrap transaction";

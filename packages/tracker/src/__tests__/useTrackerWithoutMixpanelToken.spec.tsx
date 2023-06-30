@@ -26,14 +26,13 @@ describe("useTracker", () => {
       () => useTracker("event", { prop: "value" }),
       { wrapper: wrapper }
     );
-    /* eslint-disable */
+    /* eslint-disable-next-line */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
-    /* eslint-enable */
+
     act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
-    /* eslint-disable */
+    /* eslint-disable-next-line */
     expect(mixpanel.track).not.toHaveBeenCalled();
-    /* eslint-enable */
   });
 });

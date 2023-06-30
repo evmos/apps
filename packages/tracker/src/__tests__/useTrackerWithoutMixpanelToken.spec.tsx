@@ -28,9 +28,12 @@ describe("useTracker", () => {
     );
     /* eslint-disable */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
+    /* eslint-enable */
     act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
+    /* eslint-disable */
     expect(mixpanel.track).not.toHaveBeenCalled();
+    /* eslint-enable */
   });
 });

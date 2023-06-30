@@ -49,14 +49,16 @@ describe("Consent Modal", () => {
     );
     /* eslint-disable */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
-
+    /* eslint-enable */
     act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
+    /* eslint-disable */
     expect(mixpanel.track).toHaveBeenCalledWith("event", {
       prop: "value",
       extraProp: "extraValue",
     });
+    /* eslint-enable */
   });
 
   test("should set localstorage to true when clicks on reject", async () => {
@@ -69,10 +71,15 @@ describe("Consent Modal", () => {
       { wrapper }
     );
 
+    /* eslint-disable */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
+    /* eslint-enable */
+
     act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
+    /* eslint-disable */
     expect(mixpanel.track).not.toHaveBeenCalled();
+    /* eslint-enable */
   });
 });

@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+## 1.0.11 - 2023-07-03
+
 - (chore) #fse-669 | apps/assets 1.0.15 | Add convert button for gravity assets
 - (config) | .vscode | Adding default vscode formatting settings
 - (tests) | apps/assets 1.0.14 apps/governance 1.0.12 apps/mission 1.0.12 apps/staking apps/vesting | Apps and packages migrated to vitest

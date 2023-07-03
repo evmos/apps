@@ -35,9 +35,9 @@ import {
 } from "evmos-wallet";
 import {
   useTracker,
-  CLICK_BUTTON_CONFIRM_CONVERT_AXELAR_BASED_TX,
-  SUCCESSFUL_CONVERT_AXELAR_BASED_TX,
-  UNSUCCESSFUL_CONVERT_AXELAR_BASED_TX,
+  CLICK_BUTTON_CONFIRM_CONVERT_TX,
+  SUCCESSFUL_CONVERT_TX,
+  UNSUCCESSFUL_CONVERT_TX,
 } from "tracker";
 
 const IBC_ERC20 = "IBC<>ERC-20";
@@ -98,15 +98,15 @@ const Convert = ({
   };
 
   const { handlePreClickAction: clickConfirmConvertTx } = useTracker(
-    CLICK_BUTTON_CONFIRM_CONVERT_AXELAR_BASED_TX
+    CLICK_BUTTON_CONFIRM_CONVERT_TX
   );
 
   const { handlePreClickAction: successfulTx } = useTracker(
-    SUCCESSFUL_CONVERT_AXELAR_BASED_TX
+    SUCCESSFUL_CONVERT_TX
   );
 
   const { handlePreClickAction: unsuccessfulTx } = useTracker(
-    UNSUCCESSFUL_CONVERT_AXELAR_BASED_TX
+    UNSUCCESSFUL_CONVERT_TX
   );
 
   return (
@@ -169,7 +169,9 @@ const Convert = ({
               convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
               wallet: wallet?.evmosAddressEthFormat,
               provider: wallet?.extensionName,
+              chain: item.chainIdentifier,
             });
+
             setConfirmClicked(true);
             if (wallet.evmosPubkey === null) {
               dispatch(
@@ -251,6 +253,7 @@ const Convert = ({
                   provider: wallet?.extensionName,
                   transaction: "unsuccessful",
                   convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
+                  chain: item.chainIdentifier,
                 });
               } else {
                 successfulTx({
@@ -259,6 +262,7 @@ const Convert = ({
                   provider: wallet?.extensionName,
                   transaction: "successful",
                   convert: isERC20Selected ? ERC20_IBC : IBC_ERC20,
+                  chain: item.chainIdentifier,
                 });
               }
             } else {

@@ -1,5 +1,4 @@
 import * as z from "zod";
-import { ethToEvmos } from "@evmos/address-converter";
 
 export const getEndDate = (
   date: string | undefined,
@@ -18,14 +17,30 @@ export const getEndDate = (
   return [false, ""];
 };
 
-const VESTING_ACCOUNT_NAME_LOCALSTORAGE = "VESTING_ACCOUNT_NAME";
+const VESTING_ACCOUNTS_NAMES_LOCALSTORAGE = "VESTING_ACCOUNTS_NAMES";
 
-export const setVestingAccountNameLocalstorage = (accountName: string) => {
-  localStorage.setItem(VESTING_ACCOUNT_NAME_LOCALSTORAGE, accountName);
-};
+export function setVestingAccountNameLocalstorage(
+  walletAddress: string,
+  accountName: string
+) {
+  const storedData = localStorage.getItem(VESTING_ACCOUNTS_NAMES_LOCALSTORAGE);
+  let accounts = storedData ? JSON.parse(storedData) : [];
 
-export const getVestingAccountNameLocalstorage = () => {
-  return localStorage.getItem(VESTING_ACCOUNT_NAME_LOCALSTORAGE);
+  accounts.push({ walletAddress, accountName });
+  localStorage.setItem(
+    VESTING_ACCOUNTS_NAMES_LOCALSTORAGE,
+    JSON.stringify(accounts)
+  );
+}
+
+export const getVestingAccountNameLocalstorage = (address: string) => {
+  const accounts = localStorage.getItem(VESTING_ACCOUNTS_NAMES_LOCALSTORAGE);
+  let list: { walletAddress: string; accountName: string }[] = [];
+  if (accounts !== null) {
+    list = JSON.parse(accounts);
+  }
+  const filtered = list.filter((e) => e.walletAddress === address);
+  return filtered[0]?.accountName ?? "";
 };
 
 export enum Duration {
@@ -141,37 +156,13 @@ export interface VestingProps {
   isVesting: boolean;
 }
 
-export const getEvmosAddress = (account: string | undefined) => {
-  if (account !== undefined) {
-    if (account.startsWith("0x")) {
-      // && account.length == 42
-      try {
-        return ethToEvmos(account);
-      } catch (e) {
-        return account;
-      }
-    }
-  }
-  return account;
+export const isEthereumAddressValid = (address: string): boolean => {
+  const ethereumAddressRegex = /^0x[0-9a-fA-F]{40}$/;
+  return ethereumAddressRegex.test(address);
 };
 
-// TODO: this function will change when we use the correct information
-// TODO: see if it is necessary the test for this.
-export const getAccountDetails = (
-  dummyAccountsProps: VestingProps[],
-  account: string | undefined
-) => {
-  const address = getEvmosAddress(account);
-
-  const filteredProps = dummyAccountsProps.filter((e) => {
-    if (e.accountAddress.startsWith("0x")) {
-      return ethToEvmos(e.accountAddress) === address;
-    }
-    if (e.accountAddress.startsWith("evmos")) {
-      return e.accountAddress === address;
-    }
-    return false;
-  });
-
-  return filteredProps;
+export const isEvmosAddressValid = (address: string): boolean => {
+  // TODO: are evmos wallet always 44 characters ?
+  const evmosAddressRegex = /^evmos[0-9a-zA-Z]{39}$/;
+  return evmosAddressRegex.test(address);
 };

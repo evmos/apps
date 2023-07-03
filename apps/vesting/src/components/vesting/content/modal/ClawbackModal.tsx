@@ -1,32 +1,46 @@
 import { ConfirmButton, ModalTitle } from "ui-helpers";
 import { ItemModal } from "./ItemModal";
 import { ExclamationIcon } from "icons";
-const dummyProps = {
-  // eslint-disable-next-line no-secrets/no-secrets
-  address: "evmosc5ljcjw341ls6f7xpfvakm2amg962y84z3kell8ks",
-  totalTokens: "1,000,000",
-  availableClawback: "944,444",
-};
+import { VestingAccountDetail } from "../../../../internal/types";
+import { convertFromAtto, formatNumber } from "helpers";
+
 // TODO: format totalTokens and availableClawback depending on the response
-export const ClawbackModal = () => {
+export const ClawbackModal = ({
+  vestingDetails,
+}: {
+  vestingDetails: VestingAccountDetail;
+}) => {
   const handleOnClick = () => {
     // TODO: logic for clawback
   };
 
+  const totalTokens = () => {
+    return formatNumber(convertFromAtto(vestingDetails.unvestedAmount, 18), 6);
+  };
+
+  const availableClawback = () => {
+    return formatNumber(
+      convertFromAtto(vestingDetails.originalVestingAmount, 18),
+      6
+    );
+  };
   return (
     <div className="space-y-5">
       <ModalTitle title="Clawback Tokens" />
       <div className=" rounded border-2 border-darkGray2 p-4">
         Clawback retrieves all unvested tokens from a vesting account.
       </div>
-      <ItemModal title="Account Address" description={dummyProps.address} />
+      <ItemModal
+        title="Account Address"
+        description={vestingDetails.accountAddress}
+      />
       <ItemModal
         title="Total Vesting Tokens"
-        description={`${dummyProps.totalTokens} EVMOS `}
+        description={`${totalTokens()} EVMOS `}
       />
       <ItemModal
         title="Available for Clawback"
-        description={`${dummyProps.availableClawback} EVMOS `}
+        description={`${availableClawback()} EVMOS `}
       />
       <div>
         <div className="flex items-center space-x-1 ">

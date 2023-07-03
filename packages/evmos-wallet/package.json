@@ -1,9 +1,10 @@
 {
   "name": "evmos-wallet",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "sideEffects": [
     "**/*.css"
   ],
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist",
@@ -14,9 +15,9 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "lint": "eslint ."
   },
   "peerDependencies": {
@@ -35,7 +36,7 @@
     "@metamask/providers": "^10.2.1",
     "autoprefixer": "^10.4.13",
     "prettier": "^2.8.1",
-    "jest-config-custom": "*"
+    "vitest-config-custom": "*"
   },
   "depedencies": {
     "@ethersproject/bignumber": "^5.7.0",

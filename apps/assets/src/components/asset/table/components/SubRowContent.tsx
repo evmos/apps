@@ -18,7 +18,7 @@ import { ConvertSTR } from "../../modals/transactions/ConvertSTR";
 import { Description } from "./Description";
 import { SubRowProps } from "./types";
 import { useCallback } from "react";
-import { CLICK_BUTTON_CONVERT_AXELAR_BASED, useTracker } from "tracker";
+import { CLICK_BUTTON_CONVERT, useTracker } from "tracker";
 export const SubRowContent = ({
   item,
   setShow,
@@ -55,12 +55,14 @@ export const SubRowContent = ({
     );
   };
 
-  const { handlePreClickAction: clickConvertAxelarBased } = useTracker(
-    CLICK_BUTTON_CONVERT_AXELAR_BASED
-  );
+  const { handlePreClickAction: clickConvert } =
+    useTracker(CLICK_BUTTON_CONVERT);
+
   const openModalConvert = () => {
+    clickConvert({
+      chain: item.chainIdentifier,
+    });
     if (wallet.evmosAddressCosmosFormat !== "") {
-      clickConvertAxelarBased();
       setShow(true);
       setModalContent(
         <Convert
@@ -238,8 +240,10 @@ export const SubRowContent = ({
             createConvertButton()}
           {/* to withdraw axelar, the users need to convert
           the erc20 to ibc-balance */}
-          {item.symbol !== EVMOS_SYMBOL &&
-            item.handledByExternalUI !== null &&
+          {((item.symbol !== EVMOS_SYMBOL &&
+            item.handledByExternalUI !== null) ||
+            (item.symbol !== EVMOS_SYMBOL &&
+              item.chainIdentifier?.toLowerCase() === "gravity")) &&
             createConvertButton()}
         </div>
       </div>

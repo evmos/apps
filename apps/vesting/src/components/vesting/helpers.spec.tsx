@@ -1,4 +1,10 @@
-import { Duration, getEndDate, getEvmosAddress } from "./helpers";
+import { describe, expect, it } from "vitest";
+import {
+  Duration,
+  getEndDate,
+  isEthereumAddressValid,
+  isEvmosAddressValid,
+} from "./helpers";
 
 describe("Vesting UI helpers", () => {
   it("should return true and the end date formatted", () => {
@@ -15,31 +21,29 @@ describe("Vesting UI helpers", () => {
     expect(msg).toStrictEqual([false, ""]);
   });
 
-  it("should return the formatted evmos address", () => {
-    // eslint-disable-next-line no-secrets/no-secrets
-    const address = getEvmosAddress(
-      "0xaF3219826Cb708463B3AA3B73c6640A21497AE49"
-    );
-    // eslint-disable-next-line no-secrets/no-secrets
-    expect(address).toBe("evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65");
+  it("should return false - Evmos account with incorrect format", () => {
+    const account = "evmos1c8wg";
+    const address = isEvmosAddressValid(account);
+    expect(address).toBe(false);
   });
 
-  it("should return the same hex address", () => {
-    const address = getEvmosAddress("0xaF3219826Cb70846");
-    expect(address).toBe("0xaF3219826Cb70846");
+  it("should return false - Hex account with incorrect format", () => {
+    const account = "0x123";
+    const address = isEthereumAddressValid(account);
+    expect(address).toBe(false);
   });
 
-  it("should return the same evmos address", () => {
-    const address = getEvmosAddress(
-      // eslint-disable-next-line no-secrets/no-secrets
-      "evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65"
-    );
+  it("should return true - Hex account with correct format", () => {
     // eslint-disable-next-line no-secrets/no-secrets
-    expect(address).toBe("evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65");
+    const account = "0x4b87B15f560a9b77BB9965c49862cfCe720c52Ab";
+    const address = isEthereumAddressValid(account);
+    expect(address).toBe(true);
   });
 
-  it("should return the same empty address", () => {
-    const address = getEvmosAddress("");
-    expect(address).toBe("");
+  it("should return true - Evmos account with correct format", () => {
+    // eslint-disable-next-line no-secrets/no-secrets
+    const account = "evmos1fwrmzh6kp2dh0wuevhzfsck0eeeqc54tpvkvc2";
+    const address = isEvmosAddressValid(account);
+    expect(address).toBe(true);
   });
 });

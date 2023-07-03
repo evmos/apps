@@ -1,7 +1,7 @@
 import { ConfirmButton, Modal } from "ui-helpers";
 import { SearchVesting } from "./SearchVesting";
 import { useSelector } from "react-redux";
-import { StoreType } from "evmos-wallet";
+import { KEPLR_KEY, StoreType } from "evmos-wallet";
 import { useState } from "react";
 import { CreateAccountModal } from "./CreateAccountModal";
 export const Header = () => {
@@ -21,7 +21,7 @@ export const Header = () => {
         className="w-fit"
         text="Create vesting account"
         onClick={handleConfirmClick}
-        disabled={!value.active}
+        disabled={!value.active || value.extensionName === KEPLR_KEY}
       />
       <Modal
         show={showModal}

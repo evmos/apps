@@ -17,8 +17,8 @@ import {
 export const CreateAccountModal = () => {
   const handleOnClick = (d: FieldValues) => {
     // TODO: logic for create account modal
-    if (d.accountName !== "") {
-      setVestingAccountNameLocalstorage(d.accountName);
+    if (d.accountName !== "" && d.address) {
+      setVestingAccountNameLocalstorage(d.address, d.accountName);
     }
   };
   const {
@@ -84,7 +84,7 @@ export const CreateAccountModal = () => {
         </select>
 
         <div className="flex items-center justify-between space-x-2">
-          <div className="flex flex-grow flex-col space-y-2">
+          <div className="flex w-full flex-col space-y-2">
             <label htmlFor="vestingDuration" className="text-xs font-bold">
               VESTING DURATION
             </label>
@@ -103,7 +103,7 @@ export const CreateAccountModal = () => {
             </select>
           </div>
 
-          <div className="flex flex-grow flex-col space-y-2">
+          <div className="flex  w-full  flex-col space-y-2">
             <label htmlFor="vestingCliff" className="text-xs font-bold">
               VESTING CLIFF
             </label>
@@ -123,7 +123,7 @@ export const CreateAccountModal = () => {
         </div>
 
         <div className="flex items-center justify-between space-x-2">
-          <div className="flex flex-grow flex-col space-y-2">
+          <div className="flex  w-full  flex-col space-y-2">
             <label htmlFor="vestingSchedule" className="text-xs font-bold">
               VESTING SCHEDULE
             </label>
@@ -141,7 +141,7 @@ export const CreateAccountModal = () => {
             </select>
           </div>
 
-          <div className="flex flex-grow flex-col space-y-2">
+          <div className="flex  w-full  flex-col space-y-2">
             <label htmlFor="lockupDuration" className="text-xs font-bold">
               LOCKUP DURATION
             </label>

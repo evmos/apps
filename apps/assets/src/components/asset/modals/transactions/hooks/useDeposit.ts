@@ -134,10 +134,8 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       wallet.osmosisPubkey,
       keplrAddress,
       params,
-      chainIds.chainIdentifier.toUpperCase(),
       wallet.extensionName,
       prefix,
-      chainIds.chainId,
       chainIds.chainIdentifier
     );
 

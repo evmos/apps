@@ -105,14 +105,6 @@ export async function signKeplr(
   try {
     const sign = await window.keplr.signDirect(chainId, sender, body);
 
-    if (sign === undefined) {
-      return {
-        result: false,
-        message: `Error signing the tx with keplr`,
-        transaction: null,
-      };
-    }
-
     return {
       result: true,
       message: `Transaction correctly signed`,

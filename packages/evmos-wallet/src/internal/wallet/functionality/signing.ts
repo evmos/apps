@@ -20,6 +20,7 @@ import {
   generateEndpointBroadcast,
   generatePostBodyBroadcast,
 } from "@evmos/provider";
+import { StdSignature, StdSignDoc } from "@keplr-wallet/types";
 
 export declare type TxGeneratedByBackend = {
   signDirect: {
@@ -80,11 +81,13 @@ export async function broadcastSignedTxToBackend(
     const bodyString = `{ "tx_bytes": [${rawTx.message
       .serializeBinary()
       .toString()}], "network": "${network}" }`;
+
     const postOptions = {
       method: "POST",
       headers,
       body: bodyString,
     };
+
     const broadcastPost = await fetchWithTimeout(
       `${endpoint}/v2/tx/broadcast`,
       postOptions
@@ -220,59 +223,9 @@ export async function broadcastEip712BackendTxToBackend(
   }
 }
 
-type PubKeySignature = {
-  type: string;
-  value: string;
-};
-type SignatureAmino = {
-  pub_key: PubKeySignature;
-  signature: string;
-};
-
-type FeeAmountSignedAmino = {
-  denom: string;
-  amount: string;
-};
-type FeeSignedAmino = {
-  amount: readonly FeeAmountSignedAmino[];
-  gas: string;
-};
-
-type TimeoutHeightSignedAmino = {
-  revision_height: string;
-  revision_number: string;
-};
-
-type TokenSignedAmino = {
-  amount: string;
-  denom: string;
-};
-type MsgsValueSignedAmino = {
-  receiver: string;
-  sender: string;
-  source_channel: string;
-  source_port: string;
-  timeout_height: TimeoutHeightSignedAmino;
-  timeout_timestamp: string;
-  token: TokenSignedAmino;
-};
-type MsgsSignedAmino = {
-  type: string;
-  value: MsgsValueSignedAmino;
-};
-
-type SignedAmino = {
-  account_number: string;
-  chain_id: string;
-  fee: FeeSignedAmino;
-  memo: string;
-  msgs: readonly MsgsSignedAmino[];
-  sequence: string;
-};
-
 export async function broadcastAminoBackendTxToBackend(
-  signature: SignatureAmino,
-  signed: SignedAmino,
+  signature: StdSignature,
+  signed: StdSignDoc,
   chainIdentifier: string,
   endpoint: string = EVMOS_BACKEND
 ) {
@@ -280,11 +233,11 @@ export async function broadcastAminoBackendTxToBackend(
     const txBody = {
       signature: signature,
       signed: signed,
-      chainIdentifier: chainIdentifier.toUpperCase(),
+      network: chainIdentifier.toUpperCase(),
     };
 
     const postBroadcast = await fetchWithTimeout(
-      `${endpoint}/v2/tx/broadcast`,
+      `${endpoint}/v2/tx/amino/broadcast`,
       {
         method: "post",
         body: JSON.stringify(txBody),

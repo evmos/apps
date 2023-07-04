@@ -1,0 +1,14 @@
+{
+  "name": "vitest-config-custom",
+  "version": "1.0.0",
+  "description": "Vitest custom config",
+  "main": "index.ts",
+  "private": true,
+  "devDependencies": {
+    "@testing-library/react": "^14.0.0",
+    "@vitejs/plugin-react": "^4.0.1",
+    "@vitest/coverage-v8": "^0.32.2",
+    "jsdom": "^22.1.0",
+    "vitest": "^0.32.2"
+  }
+}

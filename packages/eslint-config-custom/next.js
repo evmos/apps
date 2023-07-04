@@ -6,16 +6,12 @@ const shared = require("./shared");
 /** @type {import('eslint').Linter} */
 module.exports = {
   ...shared,
-  env: {
-    "jest/globals": true,
-  },
   globals: {
     React: true,
     JSX: true,
   },
   extends: [
     "plugin:react/recommended",
-    "plugin:jest/recommended",
     "next/core-web-vitals",
   ]
 };

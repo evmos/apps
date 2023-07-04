@@ -14,7 +14,7 @@ module.exports = {
     "dist/*",
     "*.d.ts",
     "postcss.config.js",
-    "jest.config.js",
+    "vitest.config.ts",
     "tailwind.config.js"
   ]
 };

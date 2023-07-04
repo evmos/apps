@@ -31,7 +31,7 @@
     "eslint-config-custom#build": {},
     "tailwind-config#build": {},
     "tsconfig#build": {},
-    "jest-config-evmos#build": {},
+
     "tracker#build": {},
     "constants-helper#build": {},
     "icons#build": {},
@@ -92,7 +92,9 @@
     "clean": {
       "cache": false
     },
-    "test": {},
+    "test": {
+      "cache": false
+    },
     "test:watch": {
       "cache": false
     },

@@ -44,6 +44,8 @@ export const METAMASK_NOTIFICATIONS = {
   SuccessTitle: "Connected with Metamask",
   PubkeySubtext:
     "Could not get the pubkey, please sign the generate_pubkey message!",
+  ExtensionNotFoundSubtext:
+    "The MetaMask extension could not be found. Try using Copilot to get started!",
   ChangeNetworkSubtext: "Could not change the network to EVMOS",
   AddressSubtext: "Could not get the user address from Metamask",
   DeniedSignatureSubtext: "Transaction was not signed",

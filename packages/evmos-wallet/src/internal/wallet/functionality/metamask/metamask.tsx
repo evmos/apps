@@ -147,7 +147,7 @@ export class Metamask {
         {
           type: SNACKBAR_CONTENT_TYPES.TEXT,
           title: METAMASK_NOTIFICATIONS.ErrorTitle,
-          text: METAMASK_NOTIFICATIONS.PubkeySubtext,
+          text: METAMASK_NOTIFICATIONS.ExtensionNotFoundSubtext,
         },
         store,
         this.notificationsEnabled

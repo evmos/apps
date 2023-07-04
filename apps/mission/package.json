@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --port 3004",
     "build": "sh setup-redirects.sh && next build",
-    "start": "next start",
+    "start": "next start --port 3004",
     "lint": "next lint",
     "lintunix": "next lint --format unix",
     "prepare": "husky install",

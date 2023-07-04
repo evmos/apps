@@ -14,4 +14,12 @@ import { sharedConfig } from "playwright-config-custom";
  */
 export default defineConfig({
   ...sharedConfig,
+  webServer: {
+    command: "yarn start",
+    url: "http://127.0.0.1:3005",
+    reuseExistingServer: !process.env.CI,
+    stdout: "pipe",
+    stderr: "pipe",
+    timeout: 300 * 1000,
+  },
 });

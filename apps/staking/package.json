@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --port 3003",
     "build": "next build",
-    "start": "next start",
+    "start": "next start --port 3003",
     "lint": "next lint",
     "lintunix": "next lint --format unix",
     "test": "vitest run --passWithNoTests",

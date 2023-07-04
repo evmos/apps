@@ -28,7 +28,7 @@ export const ModalWithTransitions = ({
           <div className="bg-gray-500 fixed inset-0 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-10 overflow-y-auto">
+        <div className="fixed inset-0 z-10 overflow-y-auto bg-blackOpacity">
           <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
             <Transition.Child
               as={Fragment}
@@ -39,7 +39,7 @@ export const ModalWithTransitions = ({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-[#FAF8F8] text-left shadow-xl transition-all min-w-[300px] max-w-[600px] md:min-w-[500px]">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-[#FAF8F8] text-left shadow-xl transition-all min-w-[300px] max-w-[700px] md:min-w-[400px]">
                 <div className="absolute right-0 top-0 block pr-4 pt-4">
                   <button
                     type="button"

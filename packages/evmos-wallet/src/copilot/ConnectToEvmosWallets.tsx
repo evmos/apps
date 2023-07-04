@@ -15,8 +15,8 @@ export const ConnectToEvmosWallets = ({
   dispatch: Dispatch<AnyAction>; // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
   return (
-    <div className="md:col-span-2 space-y-3 px-4 md:px-8 pr-2 pb-4 pt-5 sm:p-6 bg-white">
-      <div className="mt-5">
+    <div className="md:col-span-2 space-y-3 px-4 md:px-8 pb-4 pt-5 sm:p-6 bg-white">
+      <div className="md:mt-5">
         <ButtonWallet
           onClick={() => {
             // TODO: open copilot

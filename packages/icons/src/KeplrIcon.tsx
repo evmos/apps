@@ -6,21 +6,21 @@ type KeplrIconProps = React.SVGAttributes<SVGElement> & {
 };
 
 export const KeplrIcon: React.FC<KeplrIconProps> = ({
-  width = "38",
-  height = "38",
+  width = "34",
+  height = "34",
   ...restProps
 }) => {
   return (
     <svg
       width={width}
       height={height}
-      viewBox="0 0 38 38"
+      viewBox="0 0 34 34"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...restProps}
     >
-      <rect width="38" height="38" fill="url(#pattern1)" />
+      <rect width="34" height="34" fill="url(#pattern1)" />
       <defs>
         <pattern
           id="pattern1"

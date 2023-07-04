@@ -54,6 +54,7 @@ import {
 // Components
 import { Button } from "ui-helpers";
 
+// TODO: remove it. Deprecated. Now we are using copilot -> WalletConnection
 export const ButtonWalletConnection = ({
   walletExtension,
   dispatch,

@@ -32,3 +32,6 @@ export { InformationBanner } from "./InformationBanner";
 export { ConsentModal } from "./termsOfServices/ConsentModal";
 export { SystemErrorBanner } from "./SystemErrorBanner";
 export { Search } from "./Search";
+export { DividerWithLabel } from "./divider/DividerWithLabel";
+export { Badge } from "./badges/Badge";
+export { ModalWithTransitions } from "./ModalWithTransitions";

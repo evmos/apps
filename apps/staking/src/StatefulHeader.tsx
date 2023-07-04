@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { ButtonWalletConnection, StoreType } from "evmos-wallet";
+import { StoreType, WalletConnection } from "evmos-wallet";
 import { useDispatch, useSelector } from "react-redux";
 import { Header } from "ui-helpers";
 import { Dispatch, SetStateAction } from "react";
@@ -23,7 +23,7 @@ export const StatefulHeader = ({
       pageName={pageName}
       setShowSidebar={setShowSidebar}
       walletConnectionButton={
-        <ButtonWalletConnection walletExtension={wallet} dispatch={dispatch} />
+        <WalletConnection dispatch={dispatch} walletExtension={wallet} />
       }
       onClick={() => {
         handlePreClickAction({

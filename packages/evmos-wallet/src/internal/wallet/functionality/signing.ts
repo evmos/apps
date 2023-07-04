@@ -61,9 +61,10 @@ export function createEIP712Transaction(
   );
 }
 
-interface BroadcastToBackendResponse {
-  error: string;
+interface BroadcastTxResponse {
+  raw_log: string;
   tx_hash: string;
+  code: string;
 }
 
 const headers = { "Content-Type": "application/json" };
@@ -92,12 +93,12 @@ export async function broadcastSignedTxToBackend(
       `${endpoint}/v2/tx/broadcast`,
       postOptions
     );
-    const response = (await broadcastPost.json()) as BroadcastToBackendResponse;
+    const response = (await broadcastPost.json()) as BroadcastTxResponse;
 
-    if (response.error) {
+    if (response.code !== "0") {
       return {
         error: true,
-        message: `Transaction Failed ${response.error}`,
+        message: `Transaction Failed ${response.raw_log}`,
         txhash: `0x0`,
       };
     }
@@ -172,6 +173,11 @@ export async function broadcastSignedTxToGRPC(
   }
 }
 
+interface BroadcastEip712Response {
+  error: string;
+  tx_hash: string;
+}
+
 export async function broadcastEip712BackendTxToBackend(
   chainId: number,
   feePayer: string,
@@ -198,7 +204,7 @@ export async function broadcastEip712BackendTxToBackend(
       }
     );
 
-    const response = (await postBroadcast.json()) as BroadcastToBackendResponse;
+    const response = (await postBroadcast.json()) as BroadcastEip712Response;
     if (response.error) {
       return {
         error: true,
@@ -223,6 +229,12 @@ export async function broadcastEip712BackendTxToBackend(
   }
 }
 
+interface BroadcastAminoResponse {
+  tx_hash: string;
+  raw_log: string;
+  code: string;
+}
+
 export async function broadcastAminoBackendTxToBackend(
   signature: StdSignature,
   signed: StdSignDoc,
@@ -245,11 +257,11 @@ export async function broadcastAminoBackendTxToBackend(
       }
     );
 
-    const response = (await postBroadcast.json()) as BroadcastToBackendResponse;
-    if (response.error) {
+    const response = (await postBroadcast.json()) as BroadcastAminoResponse;
+    if (response.code !== "0") {
       return {
         error: true,
-        message: `Transaction Failed ${response.error}`,
+        message: `Transaction Failed ${response.raw_log}`,
         txhash: `0x0`,
       };
     }

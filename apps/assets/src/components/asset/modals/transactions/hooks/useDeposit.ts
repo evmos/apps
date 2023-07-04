@@ -131,6 +131,7 @@ export const useDeposit = (useDepositProps: DepositProps) => {
     }
     // create, sign and broadcast tx
     const res = await executeDeposit(
+      chainIds.chainId,
       wallet.osmosisPubkey,
       keplrAddress,
       params,

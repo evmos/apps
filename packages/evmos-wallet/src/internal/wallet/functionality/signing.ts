@@ -60,10 +60,10 @@ export function createEIP712Transaction(
   );
 }
 
-type BroadcastToBackendResponse = {
+interface BroadcastToBackendResponse {
   error: string;
   tx_hash: string;
-};
+}
 
 const headers = { "Content-Type": "application/json" };
 
@@ -72,20 +72,21 @@ export async function broadcastSignedTxToBackend(
     message: protoTxNamespace.txn.TxRaw;
     path: string;
   },
-  sender: string,
+  _: string,
   network: string = EVMOS_NETWORK_FOR_BACKEND,
   endpoint: string = EVMOS_BACKEND
 ) {
   try {
+    const bodyString = `{ "tx_bytes": [${rawTx.message
+      .serializeBinary()
+      .toString()}], "network": "${network}" }`;
     const postOptions = {
       method: "POST",
       headers,
-      body: `{ "txBytes": [${rawTx.message
-        .serializeBinary()
-        .toString()}], "sender": "${sender}", "network": "${network}" }`,
+      body: bodyString,
     };
     const broadcastPost = await fetchWithTimeout(
-      `${endpoint}/broadcast`,
+      `${endpoint}/v2/tx/broadcast`,
       postOptions
     );
     const response = (await broadcastPost.json()) as BroadcastToBackendResponse;
@@ -282,11 +283,14 @@ export async function broadcastAminoBackendTxToBackend(
       chainIdentifier: chainIdentifier.toUpperCase(),
     };
 
-    const postBroadcast = await fetchWithTimeout(`${endpoint}/broadcastAmino`, {
-      method: "post",
-      body: JSON.stringify(txBody),
-      headers,
-    });
+    const postBroadcast = await fetchWithTimeout(
+      `${endpoint}/v2/tx/broadcast`,
+      {
+        method: "post",
+        body: JSON.stringify(txBody),
+        headers,
+      }
+    );
 
     const response = (await postBroadcast.json()) as BroadcastToBackendResponse;
     if (response.error) {

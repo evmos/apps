@@ -23,7 +23,7 @@ export const EVMOS_CHAIN = {
 export const EVMOS_NETWORK_FOR_BACKEND =
   process.env.NEXT_PUBLIC_EVMOS_NETWORK_FOR_BACKEND ?? "EVMOS";
 export const EVMOS_BACKEND =
-  process.env.NEXT_PUBLIC_EVMOS_BACKEND ?? "https://goapi.evmos.org";
+  process.env.NEXT_PUBLIC_EVMOS_BACKEND ?? "http://127.0.0.1/";
 
 export const OSMOSIS_CHAIN_ID =
   process.env.NEXT_PUBLIC_OSMOSIS_CHAIN_ID ?? "osmosis-1";

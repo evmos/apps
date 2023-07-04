@@ -1,4 +1,35 @@
-import { test, expect, type Page } from "@playwright/test";
+import { BrowserContext, test, expect, type Page } from "@playwright/test";
+import dappwright, { Dappwright, MetaMaskWallet } from "@tenkeylabs/dappwright";
+
+// Todo: share this as utils
+export const web3Test = test.extend<{
+  context: BrowserContext;
+  wallet: Dappwright;
+}>({
+  context: async ({}, use) => {
+    const [wallet, _, context] = await dappwright.bootstrap("", {
+      wallet: "metamask",
+      version: MetaMaskWallet.recommendedVersion,
+      seed: "test test test test test test test test test test test junk",
+      headless: false,
+    });
+
+    await wallet.addNetwork({
+      networkName: "Evmos",
+      rpc: "https://evmos-evm.publicnode.com",
+      chainId: 9001,
+      symbol: "EVMOS",
+    });
+
+    await use(context);
+  },
+
+  wallet: async ({ context }, use) => {
+    const metamask = await dappwright.getWallet("metamask", context);
+
+    await use(metamask);
+  },
+});
 
 test.beforeEach(async ({ page }) => {
   await page.goto("/governance");
@@ -37,4 +68,15 @@ test.describe("Governance page", () => {
 
     expect(proposalTitleLink).toEqual(proposalTitle);
   });
+
+  web3Test(
+    "should let the user connect with MetaMask",
+    async ({ page, wallet }) => {
+      await page.getByText("GovernanceConnect wallet").click();
+      await page.getByRole("button", { name: "Connect wallet" }).click();
+      await page.getByRole("button", { name: "MetaMask" }).click();
+      await wallet.approve();
+      await expect(page.getByText(/Connected with Metamask/i)).toBeVisible();
+    }
+  );
 });

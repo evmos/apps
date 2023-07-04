@@ -1808,6 +1808,13 @@
     "@tanstack/query-core" "4.26.1"
     use-sync-external-store "^1.2.0"
 
+"@tenkeylabs/dappwright@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@tenkeylabs/dappwright/-/dappwright-2.3.3.tgz#d84f5d7908c7daad82caba6b33d59010cc329295"
+  integrity sha512-u7kQE4dIQR/0HAyJRWxlp7FWlwH4w9NNoBxzO8kdzCZFBP3XPdF4u3qUdyMBYMTmp6ESFsD2mHQo9u92c1ZdPg==
+  dependencies:
+    node-stream-zip "^1.13.0"
+
 "@testing-library/dom@^9.0.0":
   version "9.3.1"
   resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-9.3.1.tgz#8094f560e9389fb973fe957af41bf766937a9ee9"
@@ -6660,6 +6667,11 @@ node-releases@^2.0.8:
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-2.0.10.tgz#c311ebae3b6a148c89b1813fd7c4d3c024ef537f"
   integrity sha512-5GFldHPXVG/YZmFzJvKK2zDSzPKhEp0+ZR5SVaoSag9fsL5YgHbUHDfnG5494ISANDcK4KwPXAx2xqVEydmd7w==
+
+node-stream-zip@^1.13.0:
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/node-stream-zip/-/node-stream-zip-1.15.0.tgz#158adb88ed8004c6c49a396b50a6a5de3bca33ea"
+  integrity sha512-LN4fydt9TqhZhThkZIVQnF9cwjU3qmUH9h78Mx/K7d3VvfRqqwthLwJEUOEL0QPZ0XQmNN7be5Ggit5+4dq3Bw==
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"

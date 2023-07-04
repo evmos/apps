@@ -39,7 +39,7 @@ export const ModalWithTransitions = ({
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-[#FAF8F8] text-left shadow-xl transition-all sm:w-full sm:max-w-2xl">
+              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-[#FAF8F8] text-left shadow-xl transition-all min-w-[300px] max-w-[600px] md:min-w-[500px]">
                 <div className="absolute right-0 top-0 block pr-4 pt-4">
                   <button
                     type="button"

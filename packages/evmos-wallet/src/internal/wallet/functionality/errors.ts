@@ -57,7 +57,8 @@ export const METAMASK_NOTIFICATIONS = {
 export const KEPLR_NOTIFICATIONS = {
   ErrorTitle: "Error connecting with Keplr",
   SuccessTitle: "Connected with Keplr",
-  ExtensionNotFoundSubtext: "The Keplr extension could not be found",
+  ExtensionNotFoundSubtext:
+    "The Keplr extension could not be found. Try using Copilot to get started!",
   LedgerNotInitSubtext: "Please initialize ethereum app on ledger first",
   RequestRejectedSubtext:
     "Please unlock the extension and allow the app to access your wallet address",

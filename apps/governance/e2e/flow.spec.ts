@@ -14,6 +14,7 @@ export const web3Test = test.extend<{
       headless: false,
     });
 
+    // This needs to be refactored using the default constants
     await wallet.addNetwork({
       networkName: "Evmos",
       rpc: "https://evmos-evm.publicnode.com",

@@ -27,7 +27,7 @@ export const ConnectToEvmosWallets = ({
               <EvmosCopilotIcon />
               <div className="flex flex-col text-sm">
                 <p className="font-bold">Evmos Copilot</p>
-                <p className="">Recommended for first time users</p>
+                <p className="normal-case">Recommended for first time users</p>
               </div>
             </div>
             <Badge text="New" />

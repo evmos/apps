@@ -3,7 +3,7 @@
 
 const ContentModalConnect = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="flex items-center space-x-5 text-lg font-bold">
+    <div className="flex items-center space-x-3 text-lg font-bold">
       {children}
     </div>
   );

@@ -23,7 +23,7 @@ export const ConnectToEvmosWallets = ({
           }}
         >
           <div className="flex items-center justify-between ">
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 text-left">
               <EvmosCopilotIcon />
               <div className="flex flex-col text-sm">
                 <p className="font-bold">Evmos Copilot</p>

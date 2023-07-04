@@ -64,7 +64,7 @@ export function createEIP712Transaction(
 interface BroadcastTxResponse {
   raw_log: string;
   tx_hash: string;
-  code: string;
+  code: number;
 }
 
 const headers = { "Content-Type": "application/json" };
@@ -95,7 +95,7 @@ export async function broadcastSignedTxToBackend(
     );
     const response = (await broadcastPost.json()) as BroadcastTxResponse;
 
-    if (response.code !== "0") {
+    if (response.code !== 0) {
       return {
         error: true,
         message: `Transaction Failed ${response.raw_log}`,
@@ -232,7 +232,7 @@ export async function broadcastEip712BackendTxToBackend(
 interface BroadcastAminoResponse {
   tx_hash: string;
   raw_log: string;
-  code: string;
+  code: number;
 }
 
 export async function broadcastAminoBackendTxToBackend(
@@ -258,7 +258,7 @@ export async function broadcastAminoBackendTxToBackend(
     );
 
     const response = (await postBroadcast.json()) as BroadcastAminoResponse;
-    if (response.code !== "0") {
+    if (response.code !== 0) {
       return {
         error: true,
         message: `Transaction Failed ${response.raw_log}`,

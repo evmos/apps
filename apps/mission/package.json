@@ -1,6 +1,6 @@
 {
   "name": "mission-page",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3004",
@@ -12,7 +12,7 @@
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest --passWithNoTests",
     "test:coverage": "vitest run --coverage --passWithNoTests",
-    "test:e2e": "playwright test --pass-with-no-tests",
+    "test:e2e": "playwright test --headed",
     "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {

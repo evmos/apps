@@ -237,18 +237,17 @@ interface BroadcastAminoResponse {
 export async function broadcastAminoBackendTxToBackend(
   signature: StdSignature,
   signed: StdSignDoc,
-  chainIdentifier: string,
-  endpoint: string = EVMOS_BACKEND
+  network: string
 ) {
   try {
     const txBody = {
       signature: signature,
       signed: signed,
-      network: chainIdentifier.toUpperCase(),
+      network: network.toUpperCase(),
     };
 
     const postBroadcast = await fetchWithTimeout(
-      `${endpoint}/v2/tx/amino/broadcast`,
+      `${EVMOS_BACKEND}/v2/tx/amino/broadcast`,
       {
         method: "post",
         body: JSON.stringify(txBody),

@@ -74,7 +74,6 @@ export async function broadcastSignedTxToBackend(
     message: protoTxNamespace.txn.TxRaw;
     path: string;
   },
-  _: string,
   network: string = EVMOS_NETWORK_FOR_BACKEND,
   endpoint: string = EVMOS_BACKEND
 ) {

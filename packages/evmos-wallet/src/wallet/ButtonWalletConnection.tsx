@@ -53,6 +53,7 @@ import {
 } from "tracker";
 // Components
 import { Button } from "ui-helpers";
+import { ProvidersIcons } from "../copilot/utils";
 
 // TODO: remove it. Deprecated. Now we are using copilot -> WalletConnection
 export const ButtonWalletConnection = ({
@@ -64,7 +65,7 @@ export const ButtonWalletConnection = ({
 }) => {
   const [show, setShow] = useState(false);
 
-  const useWC = useWalletConnect(store);
+  const useWalletConnectHook = useWalletConnect(store);
 
   const close = useCallback(() => setShow(false), []);
   const open = useCallback(() => setShow(true), []);
@@ -175,12 +176,7 @@ export const ButtonWalletConnection = ({
         className="flex items-center space-x-3 justify-center"
         onClick={open}
       >
-        {walletExtension.extensionName === METAMASK_KEY && <MetamaskIcon />}
-        {walletExtension.extensionName === KEPLR_KEY && <KeplrIcon />}
-        {walletExtension.extensionName === WALLECT_CONNECT_KEY && (
-          <WalletConnectIcon />
-        )}
-
+        {ProvidersIcons[walletExtension.extensionName]}
         <span className="text-lg font-bold">
           {formatProviderAddress(walletExtension, true)}
         </span>
@@ -337,7 +333,7 @@ export const ButtonWalletConnection = ({
             <ButtonWallet
               onClick={async () => {
                 setShow(false);
-                await useWC.connect();
+                await useWalletConnectHook.connect();
                 trackConnectedWithWallet({
                   wallet: GetWalletFromLocalStorage(),
                   provider: WALLECT_CONNECT_KEY,

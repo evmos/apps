@@ -1,16 +1,13 @@
 import { Tooltip, ViewExplorer } from "ui-helpers";
-import {
-  KEPLR_KEY,
-  METAMASK_KEY,
-  WALLECT_CONNECT_KEY,
-  WalletExtension,
-} from "../internal/wallet/functionality/wallet";
+import { WalletExtension } from "../internal/wallet/functionality/wallet";
 import { Dispatch, SetStateAction, useState } from "react";
 import { AnyAction } from "redux";
-import { CopyIcon, KeplrIcon, MetamaskIcon, WalletConnectIcon } from "icons";
+import { CopyIcon } from "icons";
 import { truncateAddress } from "../internal/wallet/style/format";
 import { ButtonDisconnect } from "../wallet/buttons/Button.Disconnect";
 import { ModalWithTransitions } from "ui-helpers";
+import { ProvidersIcons } from "./utils";
+
 export const WalletProfileModal = ({
   walletExtension,
   dispatch,
@@ -23,7 +20,6 @@ export const WalletProfileModal = ({
   setShow: Dispatch<SetStateAction<boolean>>;
 }) => {
   const [isCopied, setIsCopied] = useState(false);
-
   const contentModal = (
     <div className="px-4 pr-2 pb-4 pt-5 sm:p-6">
       <h3 className="text-gray-900 text-base font-semibold leading-6">
@@ -32,11 +28,8 @@ export const WalletProfileModal = ({
 
       <div className="space-y-5">
         <div className="flex items-center space-x-5 justify-center">
-          {walletExtension.extensionName === METAMASK_KEY && <MetamaskIcon />}
-          {walletExtension.extensionName === KEPLR_KEY && <KeplrIcon />}
-          {walletExtension.extensionName === WALLECT_CONNECT_KEY && (
-            <WalletConnectIcon />
-          )}
+          {ProvidersIcons[walletExtension.extensionName]}
+
           {walletExtension.evmosAddressCosmosFormat !== "" && (
             <>
               <div className="flex flex-col font-bold ">

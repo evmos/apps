@@ -15,7 +15,7 @@ export const ButtonWalletConnect = ({
 }: {
   setShow: Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const useWC = useWalletConnect(store);
+  const useWalletConnectHook = useWalletConnect(store);
 
   const { handlePreClickAction: trackConnectedWithWallet } = useTracker(
     CLICK_WC_CONNECTED_WITH
@@ -25,7 +25,7 @@ export const ButtonWalletConnect = ({
     <ButtonWallet
       onClick={async () => {
         setShow(false);
-        await useWC.connect();
+        await useWalletConnectHook.connect();
         trackConnectedWithWallet({
           wallet: GetWalletFromLocalStorage(),
           provider: WALLECT_CONNECT_KEY,

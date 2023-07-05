@@ -32,4 +32,4 @@ jobs:
 
       - name: Run tests
         run: yarn test:e2e
-        if: env.GIT_DIFF
+        # if: env.GIT_DIFF

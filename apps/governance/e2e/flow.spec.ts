@@ -11,7 +11,7 @@ export const web3Test = test.extend<{
       wallet: "metamask",
       version: MetaMaskWallet.recommendedVersion,
       seed: "test test test test test test test test test test test junk",
-      headless: true, // add env to disable this
+      headless: false, // add env to disable this
     });
 
     // This needs to be refactored using the default constants

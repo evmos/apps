@@ -11,9 +11,9 @@ export { CLICK_MISSION_CONTROL_VIEW_STAKING_BUTTON } from "./constants";
 export { CLICK_MISSION_CONTROL_TOTAL_STAKED_TOPBAR } from "./constants";
 
 // generics
-export { CLICK_WC_CONNECT_WALLET_BUTTON } from "./constants";
-export { CLICK_WC_DISCONNECT_WALLET_BUTTON } from "./constants";
-export { CLICK_WC_CONNECTED_WITH } from "./constants";
+export { CLICK_CONNECT_WALLET_BUTTON } from "./constants";
+export { CLICK_DISCONNECT_WALLET_BUTTON } from "./constants";
+export { CLICK_CONNECTED_WITH } from "./constants";
 export { CLICK_BACK_TO_MC } from "./constants";
 export { CLICK_EVMOS_LOGO } from "./constants";
 export { CLICK_FEEDBACK_FOOTER } from "./constants";

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { WalletExtension } from "../../internal/wallet/functionality/wallet";
 import { AnyAction } from "redux";
-import { CLICK_WC_DISCONNECT_WALLET_BUTTON, useTracker } from "tracker";
+import { CLICK_DISCONNECT_WALLET_BUTTON, useTracker } from "tracker";
 import {
   RemoveProviderFromLocalStorage,
   RemoveProviderWalletConnectToLocalStorage,
@@ -20,7 +20,7 @@ export const ButtonDisconnect = ({
   setIsCopied: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { handlePreClickAction: trackClickDisconnectWallet } = useTracker(
-    CLICK_WC_DISCONNECT_WALLET_BUTTON
+    CLICK_DISCONNECT_WALLET_BUTTON
   );
   return (
     <button

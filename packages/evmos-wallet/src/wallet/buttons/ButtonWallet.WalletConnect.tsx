@@ -9,7 +9,7 @@ import {
 import { WALLECT_CONNECT_KEY } from "../../internal/wallet/functionality/wallet";
 import ContentModalConnect from "../ContentModalConnect";
 import { WalletConnectIcon } from "icons";
-import { CLICK_WC_CONNECTED_WITH, useTracker } from "tracker";
+import { CLICK_CONNECTED_WITH, useTracker } from "tracker";
 export const ButtonWalletConnect = ({
   setShow,
 }: {
@@ -17,9 +17,8 @@ export const ButtonWalletConnect = ({
 }) => {
   const useWalletConnectHook = useWalletConnect(store);
 
-  const { handlePreClickAction: trackConnectedWithWallet } = useTracker(
-    CLICK_WC_CONNECTED_WITH
-  );
+  const { handlePreClickAction: trackConnectedWithWallet } =
+    useTracker(CLICK_CONNECTED_WITH);
 
   return (
     <ButtonWallet

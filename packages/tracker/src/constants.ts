@@ -23,9 +23,9 @@ export const CLICK_MISSION_CONTROL_TOTAL_STAKED_TOPBAR =
   "Click on Total Staked from Mission Control”";
 
 // generics
-export const CLICK_WC_CONNECT_WALLET_BUTTON = "Connect wallet";
-export const CLICK_WC_DISCONNECT_WALLET_BUTTON = "Disconnect wallet";
-export const CLICK_WC_CONNECTED_WITH = "Connect Wallet with a specific Wallet";
+export const CLICK_CONNECT_WALLET_BUTTON = "Connect wallet";
+export const CLICK_DISCONNECT_WALLET_BUTTON = "Disconnect wallet";
+export const CLICK_CONNECTED_WITH = "Connect Wallet with a specific Wallet";
 export const CLICK_BACK_TO_MC = "Click “Back to Mission Control”";
 export const CLICK_EVMOS_LOGO = "Click on Evmos Logo";
 export const CLICK_FEEDBACK_FOOTER = "Click on Give Feedback on Footer";

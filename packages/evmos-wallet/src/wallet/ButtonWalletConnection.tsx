@@ -43,9 +43,9 @@ import {
 } from "../internal/wallet/functionality/walletconnect/walletconnect";
 import { Tooltip } from "ui-helpers";
 import {
-  CLICK_WC_CONNECT_WALLET_BUTTON,
-  CLICK_WC_DISCONNECT_WALLET_BUTTON,
-  CLICK_WC_CONNECTED_WITH,
+  CLICK_CONNECT_WALLET_BUTTON,
+  CLICK_DISCONNECT_WALLET_BUTTON,
+  CLICK_CONNECTED_WITH,
   SWITCH_BETWEEN_WALLETS,
   SUCCESSFUL_WALLET_CONNECTION,
   UNSUCCESSFUL_WALLET_CONNECTION,
@@ -108,15 +108,14 @@ export const ButtonWalletConnection = ({
   const [isCopied, setIsCopied] = useState(false);
 
   const { handlePreClickAction: trackClickConnectWallet } = useTracker(
-    CLICK_WC_CONNECT_WALLET_BUTTON
+    CLICK_CONNECT_WALLET_BUTTON
   );
   const { handlePreClickAction: trackClickDisconnectWallet } = useTracker(
-    CLICK_WC_DISCONNECT_WALLET_BUTTON
+    CLICK_DISCONNECT_WALLET_BUTTON
   );
 
-  const { handlePreClickAction: trackConnectedWithWallet } = useTracker(
-    CLICK_WC_CONNECTED_WITH
-  );
+  const { handlePreClickAction: trackConnectedWithWallet } =
+    useTracker(CLICK_CONNECTED_WITH);
 
   const { handlePreClickAction: trackChangeWallet } = useTracker(
     SWITCH_BETWEEN_WALLETS

@@ -1,6 +1,6 @@
 import { WalletIcon } from "icons";
 import { Dispatch, SetStateAction } from "react";
-import { CLICK_WC_CONNECT_WALLET_BUTTON, useTracker } from "tracker";
+import { CLICK_CONNECT_WALLET_BUTTON, useTracker } from "tracker";
 import { Button } from "ui-helpers";
 
 export const ButtonConnectWallet = ({
@@ -9,7 +9,7 @@ export const ButtonConnectWallet = ({
   setShow: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { handlePreClickAction: trackClickConnectWallet } = useTracker(
-    CLICK_WC_CONNECT_WALLET_BUTTON
+    CLICK_CONNECT_WALLET_BUTTON
   );
   return (
     <Button

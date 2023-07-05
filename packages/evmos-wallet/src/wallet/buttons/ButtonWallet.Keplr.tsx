@@ -8,7 +8,7 @@ import { KeplrIcon } from "icons";
 import { AnyAction } from "redux";
 import { store } from "../../redux/Store";
 import {
-  CLICK_WC_CONNECTED_WITH,
+  CLICK_CONNECTED_WITH,
   SUCCESSFUL_WALLET_CONNECTION,
   UNSUCCESSFUL_WALLET_CONNECTION,
   useTracker,
@@ -21,9 +21,8 @@ export const ButtonWalletKeplr = ({
   setShow: Dispatch<React.SetStateAction<boolean>>;
   dispatch: Dispatch<AnyAction>; // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
-  const { handlePreClickAction: trackConnectedWithWallet } = useTracker(
-    CLICK_WC_CONNECTED_WITH
-  );
+  const { handlePreClickAction: trackConnectedWithWallet } =
+    useTracker(CLICK_CONNECTED_WITH);
   const { handlePreClickAction: trackSuccessfulWalletConnection } = useTracker(
     SUCCESSFUL_WALLET_CONNECTION
   );

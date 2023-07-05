@@ -7,7 +7,7 @@ import { AnyAction } from "redux";
 import { store } from "../../redux/Store";
 import {
   useTracker,
-  CLICK_WC_CONNECTED_WITH,
+  CLICK_CONNECTED_WITH,
   SUCCESSFUL_WALLET_CONNECTION,
   UNSUCCESSFUL_WALLET_CONNECTION,
 } from "tracker";
@@ -22,9 +22,8 @@ export const ButtonWalletMetaMask = ({
   setShow: Dispatch<React.SetStateAction<boolean>>;
   dispatch: Dispatch<AnyAction>; // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
-  const { handlePreClickAction: trackConnectedWithWallet } = useTracker(
-    CLICK_WC_CONNECTED_WITH
-  );
+  const { handlePreClickAction: trackConnectedWithWallet } =
+    useTracker(CLICK_CONNECTED_WITH);
 
   const { handlePreClickAction: trackSuccessfulWalletConnection } = useTracker(
     SUCCESSFUL_WALLET_CONNECTION

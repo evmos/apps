@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (ci) #fse-673 | .github | Removing codeball from github actions
+
 ## 1.0.11 - 2023-07-03
 
 - (chore) #fse-669 | apps/assets 1.0.15 | Add convert button for gravity assets

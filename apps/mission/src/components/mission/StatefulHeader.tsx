@@ -4,8 +4,9 @@
 import { WalletConnection, StoreType } from "evmos-wallet";
 import { useDispatch, useSelector } from "react-redux";
 import { Header } from "ui-helpers";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { CLICK_EVMOS_LOGO, useTracker } from "tracker";
+import { CopilotModal } from "../copilot/Copilot.Modal";
 
 export const StatefulHeader = ({
   pageName,
@@ -18,20 +19,33 @@ export const StatefulHeader = ({
   const dispatch = useDispatch();
 
   const { handlePreClickAction } = useTracker(CLICK_EVMOS_LOGO);
+  // TODO: delete show and button
+  const [show, setShow] = useState(false);
   return (
-    <Header
-      pageName={pageName}
-      setShowSidebar={setShowSidebar}
-      walletConnectionButton={
-        <WalletConnection dispatch={dispatch} walletExtension={wallet} />
-      }
-      onClick={() => {
-        handlePreClickAction({
-          wallet: wallet?.evmosAddressEthFormat,
-          provider: wallet?.extensionName,
-          page: pageName,
-        });
-      }}
-    />
+    <>
+      <button
+        onClick={() => {
+          setShow(true);
+        }}
+        className="w-fit bg-red"
+      >
+        Copilot
+      </button>
+      <CopilotModal show={show} setShow={setShow} />
+      <Header
+        pageName={pageName}
+        setShowSidebar={setShowSidebar}
+        walletConnectionButton={
+          <WalletConnection dispatch={dispatch} walletExtension={wallet} />
+        }
+        onClick={() => {
+          handlePreClickAction({
+            wallet: wallet?.evmosAddressEthFormat,
+            provider: wallet?.extensionName,
+            page: pageName,
+          });
+        }}
+      />
+    </>
   );
 };

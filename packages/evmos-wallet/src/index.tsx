@@ -78,3 +78,6 @@ export type { executedTx } from "./notification/transactionsTypes";
 export { TransactionStatus } from "./notification/transactionsTypes";
 export type { txStatusErrorResponse } from "./notification/transactionsTypes";
 export type { txStatusResponse } from "./notification/transactionsTypes";
+
+export { disconnectWallets } from "./internal/wallet/functionality/disconnect";
+export { Metamask } from "./internal/wallet/functionality/metamask/metamask";

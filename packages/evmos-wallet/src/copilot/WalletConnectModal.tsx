@@ -14,7 +14,7 @@ export const WalletConnectModal = ({
   setShow: Dispatch<SetStateAction<boolean>>;
 }) => {
   const contentModal = (
-    <div className="grid grid-flow-row-dense grid-rows-1 md:grid-rows-none md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#DBD3D1] text-[#413836]">
+    <div className="grid grid-rows-1 md:grid-rows-none md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#DBD3D1] text-[#413836]">
       <ConnectToEvmos />
       <ConnectToEvmosWallets setShow={setShow} dispatch={dispatch} />
     </div>

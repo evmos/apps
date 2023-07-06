@@ -1,4 +1,5 @@
 name: "Build, Lint & Test"
+
 on:
   push:
     branches: [main, production]
@@ -12,11 +13,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      # - name: Setup NodeJS
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18
-      #     cache: yarn
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies
@@ -36,11 +37,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      # - name: Setup NodeJS
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18
-      #     cache: yarn
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies
@@ -58,7 +59,7 @@ jobs:
           path: |
             **/.next
             **/dist
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}-v1
       - name: Build
         run: yarn build
         if: steps.cache-build.outputs.cache-hit != 'true'
@@ -71,11 +72,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      # - name: Setup NodeJS
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18
-      #     cache: yarn
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies
@@ -93,7 +94,7 @@ jobs:
           path: |
             **/.next
             **/dist
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}-v1
       - name: Build
         run: yarn build
         if: steps.cache-build.outputs.cache-hit != 'true'
@@ -108,11 +109,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      # - name: Setup NodeJS
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18
-      #     cache: yarn
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies
@@ -130,8 +131,7 @@ jobs:
           path: |
             **/.next
             **/dist
-            **/.turbo
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}-v1
       - name: Build
         run: yarn build
         if: steps.cache-build.outputs.cache-hit != 'true'
@@ -146,11 +146,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      # - name: Setup NodeJS
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18
-      #     cache: yarn
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies
@@ -168,10 +168,12 @@ jobs:
           path: |
             **/.next
             **/dist
-            **/.turbo
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}-v1
       - name: Build
         run: yarn build
         if: steps.cache-build.outputs.cache-hit != 'true'
-      - name: Run E2E Tests
-        run: yarn test:e2e
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run tests
+        run: xvfb-run yarn test:e2e
+        if: env.GIT_DIFF

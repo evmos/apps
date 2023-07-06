@@ -141,11 +141,24 @@ jobs:
         if: steps.cache-build.outputs.cache-hit != 'true'
       - name: Run Unit and Integration Tests
         run: yarn test
+      - name: "Report Coverage"
+        if: always()
+        uses: davelosert/vitest-coverage-report-action@v2
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: e2e-tests-results
+          path: |
+            coverage/
 
   playwright:
     name: E2E Tests
     needs: [build]
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
 
     steps:
       - name: Checkout Code
@@ -182,3 +195,9 @@ jobs:
       - name: Run tests
         run: xvfb-run yarn test:e2e
         if: env.GIT_DIFF
+      - uses: actions/upload-artifact@v3
+        with:
+          name: e2e-tests-results
+          if: always()
+          path: |
+            **/playwright-report/

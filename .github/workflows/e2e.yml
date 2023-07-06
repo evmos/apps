@@ -23,7 +23,6 @@ jobs:
 
       - name: Install modules
         run: yarn install
-        if: env.GIT_DIFF
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps

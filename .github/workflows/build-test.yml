@@ -1,4 +1,4 @@
-name: "Build, Lint and Test"
+name: "Build, Lint & Test"
 on:
   push:
     branches: [main, production]
@@ -12,11 +12,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Setup NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies
@@ -35,11 +35,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Setup NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies
@@ -69,11 +69,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Setup NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies
@@ -105,11 +105,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Setup NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies
@@ -141,11 +141,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-      - name: Setup NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: yarn
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
       - name: Cache Dependencies
         uses: actions/cache@v3
         id: cache-dependencies

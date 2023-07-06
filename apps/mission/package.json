@@ -1,6 +1,6 @@
 {
   "name": "mission-page",
-  "version": "1.0.14",
+  "version": "1.0.13",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3004",

@@ -28,7 +28,7 @@ jobs:
         run: yarn install
 
   lint:
-    name: Linting
+    name: Lint
     needs: [install-dependencies]
     runs-on: ubuntu-latest
 
@@ -50,7 +50,7 @@ jobs:
         run: yarn lint
 
   build:
-    name: Linting
+    name: Build
     needs: [install-dependencies]
     runs-on: ubuntu-latest
 

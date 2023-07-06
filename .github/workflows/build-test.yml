@@ -178,7 +178,7 @@ jobs:
         run: yarn build
         if: steps.cache-build.outputs.cache-hit != 'true'
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install chromium
       - name: Run tests
         run: xvfb-run yarn test:e2e
         if: env.GIT_DIFF

@@ -1,0 +1,72 @@
+name: "Build, Lint and Test"
+on:
+  push:
+    branches: [main, production]
+  pull_request:
+    branches: [main, production]
+
+jobs:
+  install-dependencies:
+    name: "Install Dependencies"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        id: cache-deps
+        with:
+          path: node_modules
+          key: cached-deps-${{ hashFiles('**/yarn.lock') }}
+      - name: Install Dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: yarn install
+
+  lint:
+    name: Linting
+    needs: [install-dependencies]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        id: cache-deps
+        with:
+          path: node_modules
+          key: cached-deps-${{ hashFiles('**/yarn.lock') }}
+      - name: Run Linting Checks
+        run: yarn lint
+
+  build:
+    name: Linting
+    needs: [install-dependencies]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: yarn
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        id: cache-deps
+        with:
+          path: node_modules
+          key: cached-deps-${{ hashFiles('**/yarn.lock') }}
+      - name: Build
+        run: yarn build

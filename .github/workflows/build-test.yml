@@ -22,7 +22,7 @@ jobs:
         id: cache-dependencies
         with:
           path: node_modules
-          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/package-lock.json') }}
+          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn install
@@ -45,7 +45,7 @@ jobs:
         id: cache-dependencies
         with:
           path: node_modules
-          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/package-lock.json') }}
+          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn install
@@ -56,7 +56,7 @@ jobs:
           path: |
             **/.next
             **/dist
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
       - name: Build
         run: yarn build
         if: steps.cache-build.outputs.cache-hit != 'true'
@@ -79,7 +79,7 @@ jobs:
         id: cache-dependencies
         with:
           path: node_modules
-          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/package-lock.json') }}
+          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}
       - name: Install Dependencies
         if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: yarn install

@@ -1,4 +1,4 @@
-import Steps from "./Steps";
+import { InstallMetaMask } from "./buttons/InstallMetaMask";
 
 export const SetUpAccount = () => {
   return (
@@ -12,7 +12,7 @@ export const SetUpAccount = () => {
         There are different tools to set up your account such as MetaMask, Keplr
         or WalletConnect. For simplicity, we recommend MetaMask.
       </p>
-      <Steps />
+      <InstallMetaMask />
     </section>
   );
 };

@@ -33,6 +33,7 @@ export const CopilotModal = ({
       show={show}
       setShow={setShow}
       content={contentModal}
+      propClose={true}
     />
   );
 };

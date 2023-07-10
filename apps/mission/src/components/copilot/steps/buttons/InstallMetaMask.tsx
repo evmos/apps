@@ -1,32 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import { ButtonCopilot } from "./ButtonCopilot";
+import { statusProps } from "./utills";
 
-const steps = [
-  {
-    id: "install MM",
-    name: "Install MetaMask",
-    loading: "Waiting for MetaMask Setup",
-    done: "Metamask Installed",
-    href: "https://metamask.io/download/",
-  },
-];
-
-export const InstallMetaMask = () => {
-  const defaultText = steps[0].name;
+export const InstallMetaMask = ({
+  step,
+  index,
+  length,
+}: {
+  step: any;
+  index: number;
+  length: number;
+}) => {
+  const defaultText = step.name;
   const [text, setText] = useState(defaultText);
-  const [status, setStatus] = useState("current");
-
-  const isProviderInstalled = () => {
-    if (window.ethereum && window.ethereum?.isMetaMask) {
-      setText(steps[0].done);
-      setStatus("complete");
-      return true;
-    }
-    return false;
-  };
+  const [status, setStatus] = useState(statusProps.CURRENT);
 
   const firstUpdate = useRef(true);
   useEffect(() => {
+    const isProviderInstalled = () => {
+      if (window.ethereum && window.ethereum?.isMetaMask) {
+        setText(step.done);
+        setStatus(statusProps.DONE);
+        return true;
+      }
+      return false;
+    };
+
     if (firstUpdate.current) {
       isProviderInstalled();
       firstUpdate.current = false;
@@ -42,23 +41,23 @@ export const InstallMetaMask = () => {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, [step]);
 
   const handleClick = async () => {
     if (!isProviderInstalled()) {
-      setStatus("upcoming");
-      setText(steps[0].loading);
-      window.open(steps[0].href, "_blank");
+      setStatus(statusProps.PROCESSING);
+      setText(step.loading[0]);
+      window.open(step.href, "_blank");
     }
   };
 
   return (
     <ButtonCopilot
       props={{
-        id: steps[0].id,
+        id: step.id,
         name: text,
-        index: 1,
-        stepsLength: 1,
+        index,
+        stepsLength: length,
         status: status,
         handleClick: handleClick,
       }}

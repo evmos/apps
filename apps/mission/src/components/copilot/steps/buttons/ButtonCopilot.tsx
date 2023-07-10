@@ -1,4 +1,5 @@
 import { CheckIcon } from "icons";
+import { statusProps } from "./utills";
 // TODO: remove it
 // @ts-ignore
 function classNames(...classes) {
@@ -13,6 +14,25 @@ type ButtonProps = {
   status: string;
   handleClick: any;
 };
+
+const STYLE1 = {
+  [statusProps.CURRENT]: "w-[1px] bg-[#DBD3D1]",
+  [statusProps.DONE]: "w-[1.2px] bg-red",
+  [statusProps.PROCESSING]: "w-[1px] bg-[#DBD3D1]",
+};
+
+const STYLE2 = {
+  [statusProps.CURRENT]: "border border-red bg-white",
+  [statusProps.DONE]: "bg-[#31B886]",
+  [statusProps.PROCESSING]: "border border-[#DBD3D1] bg-white",
+};
+
+const STYLE3 = {
+  [statusProps.CURRENT]: "bg-red hover:bg-red1",
+  [statusProps.DONE]: "pointer-events-none bg-[#31B886]",
+  [statusProps.PROCESSING]: "pointer-events-none bg-red hover:bg-red1",
+};
+
 export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
   return (
     <li
@@ -26,11 +46,7 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
         {props.index !== props.stepsLength - 1 ? (
           <div
             className={`absolute left-4 top-4 -ml-px mt-0.5 h-full ${
-              props.status === "complete"
-                ? " w-[1.2px] bg-red"
-                : props.status === "current"
-                ? " w-[1px] bg-[#DBD3D1]"
-                : "w-[1px] bg-[#DBD3D1]"
+              STYLE1[props.status]
             }`}
             aria-hidden="true"
           />
@@ -39,16 +55,10 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
           <span className="flex h-9 items-center">
             <span
               className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full
-        ${
-          props.status === "complete"
-            ? "bg-[#31B886]"
-            : props.status === "current"
-            ? "border border-red bg-white"
-            : "border border-[#DBD3D1] bg-white"
-        }
+        ${STYLE2[props.status]}
         `}
             >
-              {props.status === "complete" && (
+              {props.status === statusProps.DONE && (
                 <CheckIcon className="h-5 w-5 text-white" aria-hidden="true" />
               )}
             </span>
@@ -57,13 +67,7 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
             onClick={props.handleClick}
             className={`ml-4 w-full rounded-lg px-8 py-2 font-[GreyCliff]
             text-lg font-normal normal-case tracking-wider text-pearl 
-          ${
-            props.status === "complete"
-              ? "pointer-events-none bg-[#31B886]"
-              : props.status === "upcoming"
-              ? "pointer-events-none bg-red hover:bg-red1"
-              : "bg-red hover:bg-red1"
-          }
+          ${STYLE3[props.status]}
           `}
           >
             {props.name}

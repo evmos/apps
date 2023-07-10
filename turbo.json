@@ -102,6 +102,8 @@
       "cache": false,
       "outputs": ["coverage/**"]
     },
-    "test:e2e": {}
+    "test:e2e": {
+      "env": ["CI"]
+    }
   }
 }

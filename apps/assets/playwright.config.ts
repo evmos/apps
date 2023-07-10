@@ -1,6 +1,4 @@
 import { defineConfig } from "@playwright/test";
-
-// @ts-ignore
 import { sharedConfig } from "playwright-config-custom";
 
 /**

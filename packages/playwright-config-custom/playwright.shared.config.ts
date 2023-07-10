@@ -1,6 +1,6 @@
-import { defineConfig, devices } from "@playwright/test";
+import { devices } from "@playwright/test";
 
-module.exports = {
+export const sharedConfig = {
   testDir: "./e2e",
   /* Run tests in files in parallel */
   fullyParallel: true,

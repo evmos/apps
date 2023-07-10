@@ -19,16 +19,8 @@ jobs:
       #   with:
       #     node-version: 18
       #     cache: yarn
-      - name: Cache Dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-v1
-      - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn install
+      - name: Install & Cache Dependencies
+        uses: ./.github/shared/cached-dependencies.yml
 
   build:
     name: Build
@@ -44,16 +36,8 @@ jobs:
       #   with:
       #     node-version: 18
       #     cache: yarn
-      - name: Cache Dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-v1
-      - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn install
+      - name: Install & Cache Dependencies
+        uses: ./.github/shared/cached-dependencies.yml
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3
@@ -80,16 +64,8 @@ jobs:
       #   with:
       #     node-version: 18
       #     cache: yarn
-      - name: Cache Dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-v1
-      - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn install
+      - name: Install & Cache Dependencies
+        uses: ./.github/shared/cached-dependencies.yml
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3
@@ -122,16 +98,8 @@ jobs:
       #   with:
       #     node-version: 18
       #     cache: yarn
-      - name: Cache Dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-v1
-      - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn install
+      - name: Install & Cache Dependencies
+        uses: ./.github/shared/cached-dependencies.yml
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3
@@ -166,16 +134,8 @@ jobs:
       #   with:
       #     node-version: 18
       #     cache: yarn
-      - name: Cache Dependencies
-        uses: actions/cache@v3
-        id: cache-dependencies
-        with:
-          path: |
-            **/node_modules
-          key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-v1
-      - name: Install Dependencies
-        if: steps.cache-dependencies.outputs.cache-hit != 'true'
-        run: yarn install
+      - name: Install & Cache Dependencies
+        uses: ./.github/shared/cached-dependencies.yml
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3

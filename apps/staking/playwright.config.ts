@@ -22,10 +22,10 @@ export default defineConfig({
   webServer: process.env.CI
     ? {
         command: "yarn start",
-        port: PORT,
+        port: PORT as number,
         stdout: "pipe",
         stderr: "pipe",
         timeout: 300 * 1000,
       }
-    : false,
+    : undefined,
 });

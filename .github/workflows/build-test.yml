@@ -145,9 +145,6 @@ jobs:
         if: steps.cache-build.outputs.cache-hit != 'true'
       - name: Run Unit and Integration Tests
         run: yarn test:coverage
-      - name: "Report Coverage"
-        if: always()
-        uses: davelosert/vitest-coverage-report-action@v2
       - uses: actions/upload-artifact@v3
         if: always()
         with:

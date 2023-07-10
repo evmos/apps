@@ -92,12 +92,10 @@
     }
   }
   .loader {
-    width: 20px;
-    height: 20px;
+    width: 15px !important;
+    height: 15px !important;
     border-radius: 50%;
     display: inline-block;
-    border-top: 4px solid #fff;
-    border-right: 4px solid transparent;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
   }
@@ -107,12 +105,13 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 20px;
-    height: 20px;
+    width: 15px !important;
+    height: 15px !important;
     border-radius: 50%;
-    border-left: 4px solid #ff7700;
-    border-bottom: 4px solid transparent;
+    border-left: 4px solid white !important;
+    border-bottom: 4px solid transparent !important;
     animation: rotation 0.5s linear infinite reverse;
+    border-width: 1px !important;
   }
   @keyframes rotation {
     0% {

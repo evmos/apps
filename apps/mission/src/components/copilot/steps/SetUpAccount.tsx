@@ -50,18 +50,16 @@ const steps = [
     ],
     actions: [
       () =>
-        // retorna boolean
-        switchEthereumChain(
-          process.env.NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID ?? "0x2329"
-        ),
-      // retorna boolean
-      () => changeNetworkToEvmosMainnet(),
-      // retorna string o null
+        // switchEthereumChain(
+        //   process.env.NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID ?? "0x2329"
+        // ),
+        () =>
+          changeNetworkToEvmosMainnet(),
       () => getWallet(),
       () => signPubkey(),
     ],
     errors: [
-      "The chain is not Evmos",
+      // "The chain is not Evmos",
       "Approval Rejected, please try again",
       "Get accounts rejected, please try again",
       "Sign rejected, please try again",

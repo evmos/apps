@@ -32,7 +32,13 @@ const STYLE2 = {
 const STYLE3 = {
   [statusProps.CURRENT]: "bg-red hover:bg-red1",
   [statusProps.DONE]: "pointer-events-none bg-[#31B886]",
-  [statusProps.PROCESSING]: "pointer-events-none bg-red hover:bg-red1",
+  [statusProps.PROCESSING]: " bg-red hover:bg-red1",
+};
+
+const icons = {
+  [statusProps.CURRENT]: "",
+  [statusProps.DONE]: "🎉",
+  [statusProps.PROCESSING]: <span className="loader"></span>,
 };
 
 export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
@@ -68,12 +74,16 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
           <button
             // disabled={props.disabled}
             onClick={props.handleClick}
-            className={`ml-4 w-full rounded-lg px-8 py-2 font-[GreyCliff]
-            text-lg font-normal normal-case tracking-wider text-pearl      
+            className={`ml-4 w-full space-x-2 rounded-lg px-8
+            py-2 font-[GreyCliff] text-lg font-normal normal-case tracking-wider text-pearl  
           ${STYLE3[props.status]}
           `}
           >
-            {props.name}
+            {props.status === statusProps.PROCESSING && (
+              <span className="loader"></span>
+            )}
+            <span>{props.name}</span>
+            {props.status === statusProps.DONE && <span>🎉</span>}
           </button>
         </div>
         {props.textError !== "" && (

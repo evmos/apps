@@ -49,6 +49,7 @@ export function isMetamaskInstalled() {
 export async function changeNetworkToEvmosMainnet(): Promise<boolean> {
   if (!window.ethereum) return false;
   const switched = await switchEthereumChain(EVMOS_ETH_CHAIN_ID);
+  console.log("switched", switched);
   if (switched === true) {
     return true;
   }

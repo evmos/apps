@@ -8,7 +8,6 @@ type CloseBorderIconProps = React.SVGAttributes<SVGElement> & {
 export const CloseBorderIcon: React.FC<CloseBorderIconProps> = ({
   width = "17",
   height = "17",
-  color = "currentColor",
   ...restProps
 }) => {
   return (

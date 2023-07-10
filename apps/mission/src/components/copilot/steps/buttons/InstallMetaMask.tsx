@@ -18,7 +18,7 @@ export const InstallMetaMask = ({
 
   const firstUpdate = useRef(true);
 
-  const isActionDone = () => {
+  const isActionDone = useCallback(() => {
     if (step.actions[0]()) {
       setText(step.done);
       setDisable(true);
@@ -27,7 +27,7 @@ export const InstallMetaMask = ({
     }
 
     return false;
-  };
+  }, [step]);
 
   const handleActions = useCallback(() => {
     if (!isActionDone()) {
@@ -37,7 +37,7 @@ export const InstallMetaMask = ({
       window.open(step.href, "_blank");
       return false;
     }
-  }, []);
+  }, [step, isActionDone]);
 
   useEffect(() => {
     if (firstUpdate.current) {

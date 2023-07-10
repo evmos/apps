@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { ButtonCopilot } from "./ButtonCopilot";
 import { statusProps } from "./utills";
-import {
-  changeNetworkToEvmosMainnet,
-  switchEthereumChain,
-  getWallet,
-} from "evmos-wallet";
-import { store, Metamask } from "evmos-wallet";
 export const ConnectMetamask = ({
   step,
   index,
@@ -21,6 +15,38 @@ export const ConnectMetamask = ({
   const [status, setStatus] = useState(statusProps.CURRENT);
   const [disable, setDisable] = useState(false);
   const [textError, setTextError] = useState("");
+
+  const callActions = async () => {
+    setStatus(statusProps.PROCESSING);
+
+    for (let index = 0; index < step.actions.length; index++) {
+      const action = step.actions[index];
+
+      setText(step.loading[index]);
+      setDisable(true);
+      // Why do we need ()() ?
+      if ((await action()()) === false) {
+        setStatus(statusProps.CURRENT);
+        setText("Try again");
+        setTextError(step.errors[index]);
+        setDisable(false);
+        break;
+      }
+
+      if ((await action()()) === null) {
+        setStatus(statusProps.CURRENT);
+        setText("Try again");
+        setTextError(step.errors[index]);
+        setDisable(false);
+        break;
+      }
+    }
+
+    // All actions have returned true
+    // setText(step.done);
+    // setStatus(statusProps.DONE);
+  };
+
   const isMMConnected = async () => {
     if (!(await step.actions[0]())) {
       setStatus(statusProps.PROCESSING);
@@ -57,10 +83,9 @@ export const ConnectMetamask = ({
 
       return true;
     }
-
+    setStatus(statusProps.CURRENT);
     setText("Try again");
     setTextError(step.errors[1]);
-    setStatus(statusProps.CURRENT);
     // setDisable(false);
     return false;
   };
@@ -97,7 +122,8 @@ export const ConnectMetamask = ({
     //   //   window.open(step.href, "_blank");
     // }
     setTextError("");
-    await isMMConnected();
+    // await isMMConnected();
+    await callActions();
   };
 
   return (

@@ -13,6 +13,7 @@ type ButtonProps = {
   stepsLength: number;
   status: string;
   handleClick: any;
+  disabled: boolean;
 };
 
 const STYLE1 = {
@@ -64,9 +65,11 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
             </span>
           </span>
           <button
+            disabled={props.disabled}
             onClick={props.handleClick}
             className={`ml-4 w-full rounded-lg px-8 py-2 font-[GreyCliff]
             text-lg font-normal normal-case tracking-wider text-pearl 
+            ${props.disabled ? "pointer-events-none" : ""}
           ${STYLE3[props.status]}
           `}
           >

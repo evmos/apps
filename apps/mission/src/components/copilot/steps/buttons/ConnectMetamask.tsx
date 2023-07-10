@@ -6,6 +6,7 @@ import {
   switchEthereumChain,
   getWallet,
 } from "evmos-wallet";
+import { store, Metamask } from "evmos-wallet";
 export const ConnectMetamask = ({
   step,
   index,
@@ -15,16 +16,29 @@ export const ConnectMetamask = ({
   index: number;
   length: number;
 }) => {
-  console.log("asd");
   const defaultText = step.name;
   const [text, setText] = useState(defaultText);
   const [status, setStatus] = useState(statusProps.CURRENT);
-
+  const [disable, setDisable] = useState(false);
   const isMMConnected = async () => {
     // How can we difference between Approve and switch network ???
     if (await changeNetworkToEvmosMainnet()) {
       setText(step.loading[1]);
-      await getWallet();
+      setDisable(true);
+      const wallet = await getWallet();
+      if (wallet === null) {
+        console.log(wallet);
+        return;
+        // TODO: show error
+      }
+      const metamask = new Metamask(store);
+      if (metamask === null) {
+        return; // TODO: show error
+      }
+
+      setText(step.loading[2]);
+      await metamask.connectHandler([wallet]);
+
       setText(step.done);
       setStatus(statusProps.DONE);
 
@@ -53,17 +67,19 @@ export const ConnectMetamask = ({
   //   }, []);
 
   const handleClick = async () => {
+    // console.log(ethchain);
     if (
       !(await switchEthereumChain(
         process.env.NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID ?? "0x2329"
       ))
     ) {
       setStatus(statusProps.PROCESSING);
+      setDisable(true);
       setText(step.loading[0]);
-      const connected = await isMMConnected();
 
       //   window.open(step.href, "_blank");
     }
+    await isMMConnected();
   };
 
   return (
@@ -75,6 +91,7 @@ export const ConnectMetamask = ({
         stepsLength: length,
         status: status,
         handleClick: handleClick,
+        disabled: disable,
       }}
     />
   );

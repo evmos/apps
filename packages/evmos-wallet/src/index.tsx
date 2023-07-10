@@ -84,4 +84,5 @@ export { Metamask } from "./internal/wallet/functionality/metamask/metamask";
 export {
   changeNetworkToEvmosMainnet,
   switchEthereumChain,
+  isMetamaskInstalled,
 } from "./internal/wallet/functionality/metamask/metamaskHelpers";

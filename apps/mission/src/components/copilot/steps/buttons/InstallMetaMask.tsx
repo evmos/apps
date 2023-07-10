@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ButtonCopilot } from "./ButtonCopilot";
 import { statusProps } from "./utills";
 
@@ -14,26 +14,40 @@ export const InstallMetaMask = ({
   const defaultText = step.name;
   const [text, setText] = useState(defaultText);
   const [status, setStatus] = useState(statusProps.CURRENT);
+  const [disable, setDisable] = useState(false);
 
   const firstUpdate = useRef(true);
-  useEffect(() => {
-    const isProviderInstalled = () => {
-      if (window.ethereum && window.ethereum?.isMetaMask) {
-        setText(step.done);
-        setStatus(statusProps.DONE);
-        return true;
-      }
-      return false;
-    };
 
+  const isActionDone = () => {
+    if (step.actions[0]()) {
+      setText(step.done);
+      setDisable(true);
+      setStatus(statusProps.DONE);
+      return true;
+    }
+
+    return false;
+  };
+
+  const handleActions = useCallback(() => {
+    if (!isActionDone()) {
+      setStatus(statusProps.PROCESSING);
+      setDisable(true);
+      setText(step.loading[0]);
+      window.open(step.href, "_blank");
+      return false;
+    }
+  }, []);
+
+  useEffect(() => {
     if (firstUpdate.current) {
-      isProviderInstalled();
+      isActionDone();
       firstUpdate.current = false;
     }
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
-        isProviderInstalled();
+        isActionDone();
       }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
@@ -41,15 +55,7 @@ export const InstallMetaMask = ({
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, [step]);
-
-  const handleClick = async () => {
-    if (!isProviderInstalled()) {
-      setStatus(statusProps.PROCESSING);
-      setText(step.loading[0]);
-      window.open(step.href, "_blank");
-    }
-  };
+  }, [isActionDone]);
 
   return (
     <ButtonCopilot
@@ -59,7 +65,8 @@ export const InstallMetaMask = ({
         index,
         stepsLength: length,
         status: status,
-        handleClick: handleClick,
+        handleClick: () => handleActions(),
+        disabled: disable,
       }}
     />
   );

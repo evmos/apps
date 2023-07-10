@@ -142,21 +142,21 @@ export class Metamask {
     // TODO: call disconnect from the previous connected extension (if different from us)
     // Make sure that we are on the evmos chain
 
-    if (!isMetamaskInstalled()) {
-      NotifyError(
-        {
-          type: SNACKBAR_CONTENT_TYPES.TEXT,
-          title: METAMASK_NOTIFICATIONS.ErrorTitle,
-          text: METAMASK_NOTIFICATIONS.ExtensionNotFoundSubtext,
-        },
-        store,
-        this.notificationsEnabled
-      );
-      return {
-        result: false,
-        message: METAMASK_NOTIFICATIONS.ExtensionNotFoundSubtext,
-      };
-    }
+    // if (!isMetamaskInstalled()) {
+    //   NotifyError(
+    //     {
+    //       type: SNACKBAR_CONTENT_TYPES.TEXT,
+    //       title: METAMASK_NOTIFICATIONS.ErrorTitle,
+    //       text: METAMASK_NOTIFICATIONS.ExtensionNotFoundSubtext,
+    //     },
+    //     store,
+    //     this.notificationsEnabled
+    //   );
+    //   return {
+    //     result: false,
+    //     message: METAMASK_NOTIFICATIONS.ExtensionNotFoundSubtext,
+    //   };
+    // }
 
     if (!(await changeNetworkToEvmosMainnet())) {
       this.reset();

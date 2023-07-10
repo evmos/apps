@@ -1,19 +1,63 @@
 import { ConnectMetamask } from "./buttons/ConnectMetamask";
 import { InstallMetaMask } from "./buttons/InstallMetaMask";
+import {
+  Metamask,
+  changeNetworkToEvmosMainnet,
+  getWallet,
+  isMetamaskInstalled,
+  store,
+  switchEthereumChain,
+} from "evmos-wallet";
 
+const getWallets = async () => {
+  const wallet = await getWallet();
+  if (wallet === null) {
+    console.log(wallet);
+    return [false, "No wallet"];
+    // TODO: show error
+  }
+
+  return [true, wallet];
+};
+
+const signPubkey = async () => {
+  const wallet = await getWallets();
+  if (wallet[0]) {
+    const metamask = new Metamask(store);
+    if (metamask === null) {
+      return; // TODO: show error
+    }
+
+    await metamask.connectHandler([wallet[1] as string]);
+  }
+};
 const steps = [
   {
-    id: "install MM",
+    id: "install",
     name: "Install MetaMask",
     loading: ["Waiting for MetaMask Setup"],
     done: "Metamask Installed",
+    actions: [() => isMetamaskInstalled()],
     href: "https://metamask.io/download/",
   },
 
   {
-    id: "Connect MM",
-    name: "Connect MetaMask 2",
-    loading: ["Press Approve on Metamask", "Select accounts and press Connect"],
+    id: "connect",
+    name: "Connect with MetaMask",
+    loading: [
+      "Approve on Metamask",
+      "Select accounts and press Connect",
+      "Press Sign",
+    ],
+    actions: [
+      () =>
+        switchEthereumChain(
+          process.env.NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID ?? "0x2329"
+        ),
+      () => changeNetworkToEvmosMainnet(),
+      () => getWallets(),
+      () => signPubkey(),
+    ],
     done: "Metamask Connected",
   },
 ];
@@ -32,6 +76,7 @@ export const SetUpAccount = () => {
       <nav aria-label="Progress">
         <ol role="list" className="overflow-hidden">
           {steps.map((step, stepIdx) => {
+            // manejar un current para sacar el disabled
             if (stepIdx === 0) {
               return (
                 <InstallMetaMask

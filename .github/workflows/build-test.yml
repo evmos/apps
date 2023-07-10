@@ -20,7 +20,7 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/actions/cached-dependencies
+        uses: ./.github/actions/cache-dependencies
 
   build:
     name: Build
@@ -37,18 +37,9 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/actions/cached-dependencies
-      - name: Cache Build
-        id: cache-build
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/.next
-            **/dist
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}-v1
-      - name: Build
-        run: yarn build
-        if: steps.cache-build.outputs.cache-hit != 'true'
+        uses: ./.github/actions/cache-dependencies
+      - name: Build & Cache
+        uses: ./.github/actions/cache-build
 
   lint:
     name: Lint
@@ -65,18 +56,9 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/actions/cached-dependencies
-      - name: Cache Build
-        id: cache-build
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/.next
-            **/dist
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}-v1
-      - name: Build
-        run: yarn build
-        if: steps.cache-build.outputs.cache-hit != 'true'
+        uses: ./.github/actions/cache-dependencies
+      - name: Build & Cache
+        uses: ./.github/actions/cache-build
       - name: Run Linting Checks
         run: yarn lint
 
@@ -99,18 +81,9 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/actions/cached-dependencies
-      - name: Cache Build
-        id: cache-build
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/.next
-            **/dist
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}-v1
-      - name: Build
-        run: yarn build
-        if: steps.cache-build.outputs.cache-hit != 'true'
+        uses: ./.github/actions/cache-dependencies
+      - name: Build & Cache
+        uses: ./.github/actions/cache-build
       - name: Run Unit and Integration Tests
         run: yarn test:coverage
       - uses: actions/upload-artifact@v3
@@ -135,18 +108,9 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/actions/cached-dependencies
-      - name: Cache Build
-        id: cache-build
-        uses: actions/cache@v3
-        with:
-          path: |
-            **/.next
-            **/dist
-          key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}-v1
-      - name: Build
-        run: yarn build
-        if: steps.cache-build.outputs.cache-hit != 'true'
+        uses: ./.github/actions/cache-dependencies
+      - name: Build & Cache
+        uses: ./.github/actions/cache-build
       - name: Install Playwright Browsers
         run: npx playwright install chromium
       - name: Run tests

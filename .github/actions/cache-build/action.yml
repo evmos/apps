@@ -1,0 +1,16 @@
+name: "Build & Cache"
+runs:
+  using: "composite"
+  steps:
+    - name: Cache Build
+      id: cache-build
+      uses: actions/cache@v3
+      with:
+        path: |
+          **/.next
+          **/dist
+        key: ${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}-v1
+    - name: Build
+      run: yarn build
+      if: steps.cache-build.outputs.cache-hit != 'true'
+      shell: bash

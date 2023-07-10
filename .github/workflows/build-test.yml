@@ -196,4 +196,4 @@ jobs:
         with:
           name: e2e-tests-results
           path: |
-            **/playwright-report/
+            apps/**/playwright-report/

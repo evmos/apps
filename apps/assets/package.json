@@ -1,16 +1,18 @@
 {
   "name": "assets-page",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3002",
     "build": "next build",
-    "start": "next start",
+    "start": "next start --port 3002",
     "lint": "next lint",
     "lintunix": "next lint --format unix",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test --headed --pass-with-no-tests",
+    "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "@ethersproject/bignumber": "^5.7.0",
@@ -50,7 +52,8 @@
     "eslint-config-custom": "*",
     "vitest-config-custom": "*",
     "postcss": "^8.4.20",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "playwright-config-custom": "*"
   },
   "browserslist": [
     "last 3 chrome version",

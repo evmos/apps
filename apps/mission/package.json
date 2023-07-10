@@ -1,17 +1,19 @@
 {
   "name": "mission-page",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3004",
     "build": "sh setup-redirects.sh && next build",
-    "start": "next start",
+    "start": "next start --port 3004",
     "lint": "next lint",
     "lintunix": "next lint --format unix",
     "prepare": "husky install",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest --passWithNoTests",
-    "test:coverage": "vitest run --coverage --passWithNoTests"
+    "test:coverage": "vitest run --coverage --passWithNoTests",
+    "test:e2e": "playwright test --headed --pass-with-no-tests",
+    "test:e2e:debug": "playwright test --debug"
   },
   "dependencies": {
     "evmos-wallet": "*",
@@ -52,8 +54,9 @@
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "tailwindcss": "^3.2.4",
-    "eslint-config-custom": "*",
-    "vitest-config-custom": "*"
+    "playwright-config-custom": "*",
+    "vitest-config-custom": "*",
+    "eslint-config-custom": "*"
   },
   "browserslist": [
     "last 3 chrome version",

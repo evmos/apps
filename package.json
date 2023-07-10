@@ -1,6 +1,6 @@
 {
   "name": "evmos-apps",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "license": "SEE LICENSE IN LICENSE",
   "author": "Tharsis Labs Ltd.(Evmos)",
   "workspaces": [
@@ -17,6 +17,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:e2e": "turbo run test:e2e",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
     "clear-cache": "sh ./clear-cache.sh"
@@ -37,6 +38,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.1.0",
     "@testing-library/user-event": "^14.4.3",
+    "dotenv": "^16.3.1",
     "react-hook-form": "^7.44.3",
     "zod": "^3.21.4"
   }

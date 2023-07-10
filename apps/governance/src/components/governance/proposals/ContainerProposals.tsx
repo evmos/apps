@@ -39,6 +39,7 @@ const ContainerProposals = ({
               proposal_id: proposal.id,
             });
           }}
+          data-testid="proposal"
         >
           <ProposalCard proposalProps={proposal} />
         </Link>

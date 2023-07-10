@@ -6,7 +6,7 @@ steps:
     with:
       path: |
         **/node_modules
-      key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-v1
+      key: dependencies-turbo-${{ hashFiles('**/yarn.lock') }}-v1
   - name: Install Dependencies
     if: steps.cache-dependencies.outputs.cache-hit != 'true'
     run: yarn install

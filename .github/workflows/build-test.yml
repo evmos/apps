@@ -20,7 +20,7 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/shared/cached-dependencies.yml
+        uses: ./.github/actions/cached-dependencies
 
   build:
     name: Build
@@ -37,7 +37,7 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/shared/cached-dependencies.yml
+        uses: ./.github/actions/cached-dependencies
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3
@@ -65,7 +65,7 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/shared/cached-dependencies.yml
+        uses: ./.github/actions/cached-dependencies
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3
@@ -99,7 +99,7 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/shared/cached-dependencies.yml
+        uses: ./.github/actions/cached-dependencies
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3
@@ -135,7 +135,7 @@ jobs:
       #     node-version: 18
       #     cache: yarn
       - name: Install & Cache Dependencies
-        uses: ./.github/shared/cached-dependencies.yml
+        uses: ./.github/actions/cached-dependencies
       - name: Cache Build
         id: cache-build
         uses: actions/cache@v3

@@ -1,5 +1,5 @@
 import { defineConfig } from "vitest/config";
-const sharedConfig = require("vitest-config-custom");
+const { sharedConfig } = require("vitest-config-custom");
 
 export default defineConfig({
   ...sharedConfig,

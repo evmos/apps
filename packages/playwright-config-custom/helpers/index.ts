@@ -1,5 +1,11 @@
 import { BrowserContext, test } from "@playwright/test";
 import dappwright, { Dappwright, MetaMaskWallet } from "@tenkeylabs/dappwright";
+import {
+  EVMOS_RPC_URL,
+  EVMOS_CHAIN,
+  EVMOS_SYMBOL,
+  EVMOS_CHAIN_NAME,
+} from "evmos-wallet";
 
 export const web3Test = test.extend<{
   context: BrowserContext;
@@ -9,16 +15,17 @@ export const web3Test = test.extend<{
     const [wallet, _, context] = await dappwright.bootstrap("", {
       wallet: "metamask",
       version: MetaMaskWallet.recommendedVersion,
-      seed: "test test test test test test test test test test test junk", // could be replaced by a secret seed in the future
-      headless: false, // add env and pass it to the command for now tests are defaulted to headed
+      seed:
+        process.env.E2E_TEST_SEED ??
+        "test test test test test test test test test test test junk",
+      headless: false,
     });
 
-    // This needs to be refactored using the default constants
     await wallet.addNetwork({
-      networkName: "Evmos",
-      rpc: "https://evmos-evm.publicnode.com",
-      chainId: 9001,
-      symbol: "EVMOS",
+      networkName: EVMOS_CHAIN_NAME,
+      rpc: EVMOS_RPC_URL,
+      chainId: EVMOS_CHAIN.chainId,
+      symbol: EVMOS_SYMBOL,
     });
 
     await use(context);

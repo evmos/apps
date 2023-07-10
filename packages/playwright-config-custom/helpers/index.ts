@@ -1,11 +1,14 @@
 import { BrowserContext, test } from "@playwright/test";
 import dappwright, { Dappwright, MetaMaskWallet } from "@tenkeylabs/dappwright";
-import {
-  EVMOS_RPC_URL,
-  EVMOS_CHAIN,
-  EVMOS_SYMBOL,
-  EVMOS_CHAIN_NAME,
-} from "evmos-wallet";
+
+const E2E_TEST_EVMOS_CHAIN_NAME =
+  process.env.E2E_TEST_EVMOS_CHAIN_NAME ?? "Evmos";
+const E2E_TEST_EVMOS_RPC_URL =
+  process.env.E2E_TEST_EVMOS_RPC_URL ?? "https://eth.bd.evmos.org:8545/";
+const E2E_TEST_EVMOS_CHAIN_ID = parseInt(
+  process.env.E2E_TEST_EVMOS_CHAIN_ID ?? "9001"
+);
+const E2E_TEST_EVMOS_SYMBOL = process.env.E2E_TEST_EVMOS_SYMBOL ?? "EVMOS";
 
 export const web3Test = test.extend<{
   context: BrowserContext;
@@ -22,10 +25,10 @@ export const web3Test = test.extend<{
     });
 
     await wallet.addNetwork({
-      networkName: EVMOS_CHAIN_NAME,
-      rpc: EVMOS_RPC_URL,
-      chainId: EVMOS_CHAIN.chainId,
-      symbol: EVMOS_SYMBOL,
+      networkName: E2E_TEST_EVMOS_CHAIN_NAME,
+      rpc: E2E_TEST_EVMOS_RPC_URL,
+      chainId: E2E_TEST_EVMOS_CHAIN_ID,
+      symbol: E2E_TEST_EVMOS_SYMBOL,
     });
 
     await use(context);

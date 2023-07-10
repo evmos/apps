@@ -6,7 +6,6 @@
   "private": true,
   "devDependencies": {
     "@playwright/test": "^1.35.1",
-    "@tenkeylabs/dappwright": "^2.3.3",
-    "evmos-wallet": "*"
+    "@tenkeylabs/dappwright": "^2.3.3"
   }
 }

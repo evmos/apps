@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+## 1.0.12 - 2023-07-10
+
 - (tests) #fse-665 | .github | Adding playwright github action
 - (tests) #fse-665 | apps/assets 1.0.16 apps/governance 1.0.13 apps/mission 1.0.13 apps/staking 1.0.13 apps/vesting 1.0.11 packages/playwright-custom-config 1.0,.0 | Adding playwright everywhere
 - (ci) #fse-673 | .github | Removing codeball from github actions

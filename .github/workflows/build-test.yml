@@ -194,7 +194,6 @@ jobs:
         run: npx playwright install chromium
       - name: Run tests
         run: xvfb-run yarn test:e2e
-        if: env.GIT_DIFF
       - uses: actions/upload-artifact@v3
         if: always()
         with:

@@ -151,7 +151,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: e2e-tests-results
+          name: test-coverage
           path: |
             coverage/
 

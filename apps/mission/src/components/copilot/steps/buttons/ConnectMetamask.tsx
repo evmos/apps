@@ -20,30 +20,48 @@ export const ConnectMetamask = ({
   const [text, setText] = useState(defaultText);
   const [status, setStatus] = useState(statusProps.CURRENT);
   const [disable, setDisable] = useState(false);
+  const [textError, setTextError] = useState("");
   const isMMConnected = async () => {
-    // How can we difference between Approve and switch network ???
-    if (await changeNetworkToEvmosMainnet()) {
+    if (!(await step.actions[0]())) {
+      setStatus(statusProps.PROCESSING);
+      // setDisable(true);
+
+      setText(step.loading[0]);
+    }
+    // change network
+    if (await step.actions[1]()) {
       setText(step.loading[1]);
-      setDisable(true);
-      const wallet = await getWallet();
+      // setDisable(true);
+      // it has two paths to get the value null. Should I change something or always show the same error ?
+
+      // getWAllet
+      const wallet = await step.actions[2]();
+
       if (wallet === null) {
-        console.log(wallet);
+        setText("Try again");
+        setTextError(step.errors[2]);
         return;
         // TODO: show error
       }
-      const metamask = new Metamask(store);
-      if (metamask === null) {
-        return; // TODO: show error
-      }
-
       setText(step.loading[2]);
-      await metamask.connectHandler([wallet]);
+
+      const sign = await step.actions[3]();
+      if (sign === false) {
+        setText("Try again");
+        setTextError(step.errors[3]);
+        return;
+      }
 
       setText(step.done);
       setStatus(statusProps.DONE);
 
       return true;
     }
+
+    setText("Try again");
+    setTextError(step.errors[1]);
+    setStatus(statusProps.CURRENT);
+    // setDisable(false);
     return false;
   };
 
@@ -67,18 +85,18 @@ export const ConnectMetamask = ({
   //   }, []);
 
   const handleClick = async () => {
-    // console.log(ethchain);
-    if (
-      !(await switchEthereumChain(
-        process.env.NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID ?? "0x2329"
-      ))
-    ) {
-      setStatus(statusProps.PROCESSING);
-      setDisable(true);
-      setText(step.loading[0]);
+    // if (
+    //   !(await switchEthereumChain(
+    //     process.env.NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID ?? "0x2329"
+    //   ))
+    // ) {
+    //   setStatus(statusProps.PROCESSING);
+    //   setDisable(true);
+    //   setText(step.loading[0]);
 
-      //   window.open(step.href, "_blank");
-    }
+    //   //   window.open(step.href, "_blank");
+    // }
+    setTextError("");
     await isMMConnected();
   };
 
@@ -92,6 +110,7 @@ export const ConnectMetamask = ({
         status: status,
         handleClick: handleClick,
         disabled: disable,
+        textError,
       }}
     />
   );

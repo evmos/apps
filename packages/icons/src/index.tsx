@@ -29,3 +29,4 @@ export { DiscordIcon } from "./Discord";
 export { ExclamationIcon } from "./ExclamationIcon";
 export { EvmosRedIcon } from "./EvmosRedIcon";
 export { EvmosCopilotIcon } from "./EvmosCopilot";
+export { CloseBorderIcon } from "./CloseBorderIcon";

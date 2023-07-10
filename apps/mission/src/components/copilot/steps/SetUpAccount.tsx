@@ -7,6 +7,7 @@ import {
   isMetamaskInstalled,
   store,
   switchEthereumChain,
+  connectHandler,
 } from "evmos-wallet";
 
 const getWallets = async () => {
@@ -21,15 +22,13 @@ const getWallets = async () => {
 };
 
 const signPubkey = async () => {
-  const wallet = await getWallets();
-  if (wallet[0]) {
-    const metamask = new Metamask(store);
-    if (metamask === null) {
-      return; // TODO: show error
-    }
+  const wallet = await getWallet();
 
-    await metamask.connectHandler([wallet[1] as string]);
+  if (wallet === null) {
+    return false;
   }
+
+  return await connectHandler([wallet]);
 };
 const steps = [
   {
@@ -51,12 +50,21 @@ const steps = [
     ],
     actions: [
       () =>
+        // retorna boolean
         switchEthereumChain(
           process.env.NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID ?? "0x2329"
         ),
+      // retorna boolean
       () => changeNetworkToEvmosMainnet(),
-      () => getWallets(),
+      // retorna string o null
+      () => getWallet(),
       () => signPubkey(),
+    ],
+    errors: [
+      "The chain is not Evmos",
+      "Approval Rejected, please try again",
+      "Get accounts rejected, please try again",
+      "Sign rejected, please try again",
     ],
     done: "Metamask Connected",
   },

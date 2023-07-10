@@ -1,4 +1,4 @@
-import { CheckIcon } from "icons";
+import { CheckIcon, CloseBorderIcon } from "icons";
 import { statusProps } from "./utills";
 // TODO: remove it
 // @ts-ignore
@@ -14,6 +14,7 @@ type ButtonProps = {
   status: string;
   handleClick: any;
   disabled: boolean;
+  textError: string;
 };
 
 const STYLE1 = {
@@ -65,17 +66,22 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
             </span>
           </span>
           <button
-            disabled={props.disabled}
+            // disabled={props.disabled}
             onClick={props.handleClick}
             className={`ml-4 w-full rounded-lg px-8 py-2 font-[GreyCliff]
-            text-lg font-normal normal-case tracking-wider text-pearl 
-            ${props.disabled ? "pointer-events-none" : ""}
+            text-lg font-normal normal-case tracking-wider text-pearl      
           ${STYLE3[props.status]}
           `}
           >
             {props.name}
           </button>
         </div>
+        {props.textError !== "" && (
+          <div className="ml-4 flex items-center space-x-2  px-8 py-2 text-sm text-red">
+            <CloseBorderIcon />
+            <p className=" ">{props.textError}</p>
+          </div>
+        )}
       </>
     </li>
   );

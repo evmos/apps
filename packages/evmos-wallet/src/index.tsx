@@ -85,4 +85,5 @@ export {
   changeNetworkToEvmosMainnet,
   switchEthereumChain,
   isMetamaskInstalled,
+  connectHandler,
 } from "./internal/wallet/functionality/metamask/metamaskHelpers";

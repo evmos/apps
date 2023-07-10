@@ -67,6 +67,7 @@ export const InstallMetaMask = ({
         status: status,
         handleClick: () => handleActions(),
         disabled: disable,
+        textError: "",
       }}
     />
   );

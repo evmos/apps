@@ -1,6 +1,1 @@
-// @ts-ignore
-const sharedConfig = require("./vitest.shared.config.ts");
-
-module.exports = {
-  sharedConfig,
-};
+export { sharedConfig } from "./vitest.shared.config";

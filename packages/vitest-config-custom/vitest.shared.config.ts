@@ -1,7 +1,7 @@
-const react = require("@vitejs/plugin-react");
-const path = require("path");
+import react from "@vitejs/plugin-react";
+import path from "path";
 
-module.exports = {
+export const sharedConfig = {
   plugins: [react()],
   test: {
     environment: "jsdom",

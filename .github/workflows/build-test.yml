@@ -8,7 +8,7 @@ on:
 
 jobs:
   install-dependencies:
-    if: !github.event.pull_request.head.repo.fork
+    if: ${{!github.event.pull_request.head.repo.fork}}
     name: "Install Dependencies"
     runs-on: ubuntu-latest
     steps:
@@ -24,7 +24,7 @@ jobs:
         uses: ./.github/actions/cache-dependencies
 
   build:
-    if: !github.event.pull_request.head.repo.fork
+    if: ${{!github.event.pull_request.head.repo.fork}}
     name: Build
     needs: [install-dependencies]
     runs-on: ubuntu-latest
@@ -44,7 +44,7 @@ jobs:
         uses: ./.github/actions/cache-build
 
   lint:
-    if: !github.event.pull_request.head.repo.fork
+    if: ${{!github.event.pull_request.head.repo.fork}}
     name: Lint
     needs: [build]
     runs-on: ubuntu-latest
@@ -66,7 +66,7 @@ jobs:
         run: yarn lint
 
   vitest:
-    if: !github.event.pull_request.head.repo.fork
+    if: ${{!github.event.pull_request.head.repo.fork}}
     name: Unit & Integration Tests
     needs: [build]
     runs-on: ubuntu-latest
@@ -98,7 +98,7 @@ jobs:
             coverage/
 
   playwright:
-    if: !github.event.pull_request.head.repo.fork
+    if: ${{!github.event.pull_request.head.repo.fork}}
     name: E2E Tests
     needs: [build]
     runs-on: ubuntu-latest

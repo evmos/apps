@@ -106,3 +106,5 @@ Find below an overview of Permissions and Limitations of the Evmos Non-Commercia
 | Permissions                                                                                                                                                                  | Prohibited                                                                 |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | - Private Use, including distribution and modification<br />- Commercial use on designated blockchains<br />- Commercial use with Evmos permit (to be separately negotiated) | Commercial use, other than on designated blockchains, without Evmos permit |
+
+TEST

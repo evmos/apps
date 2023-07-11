@@ -36,7 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
-
+- (ci) #fse-668 | turbo.json | Updating config to be able to do a quick build using --filter for examample `yarn  build --filter mission-page`
 - (ci) #fse-676 | apps/assets 1.0.17 apps/governance 1.0.14 apps/mission 1.0.14 apps/staking 1.0.14 apps/vesting 1.0.12 | Removing linting from build process
 - (ci) #fse-676 | .github | Refactoring and optimizing github actions
 

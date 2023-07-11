@@ -40,22 +40,52 @@ export const InstallMetaMask = ({
   }, [step, isActionDone]);
 
   useEffect(() => {
+    const check = async () => {
+      if (await step.checkAction()) {
+        setText(step.done);
+        setStatus(statusProps.DONE);
+      }
+    };
+
     if (firstUpdate.current) {
-      isActionDone();
+      check();
       firstUpdate.current = false;
     }
 
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        isActionDone();
-      }
-    };
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+    if (step.href !== undefined && status !== statusProps.DONE) {
+      const handleVisibilityChange = async () => {
+        if (document.visibilityState === "visible") {
+          check();
+        }
+      };
+      document.addEventListener("visibilitychange", handleVisibilityChange);
 
-    return () => {
-      document.removeEventListener("visibilitychange", handleVisibilityChange);
-    };
-  }, [isActionDone]);
+      return () => {
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibilityChange
+        );
+      };
+    }
+  }, [step]);
+
+  // useEffect(() => {
+  //   if (firstUpdate.current) {
+  //     isActionDone();
+  //     firstUpdate.current = false;
+  //   }
+
+  //   const handleVisibilityChange = () => {
+  //     if (document.visibilityState === "visible") {
+  //       isActionDone();
+  //     }
+  //   };
+  //   document.addEventListener("visibilitychange", handleVisibilityChange);
+
+  //   return () => {
+  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
+  //   };
+  // }, [isActionDone]);
 
   return (
     <ButtonCopilot

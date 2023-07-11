@@ -33,7 +33,6 @@ import {
   generatePubKey,
   generatePubkeyFromSignature,
   getWallet,
-  isMetamaskInstalled,
   subscribeToAccountChange,
   subscribeToChainChanged,
   unsubscribeToEvents,
@@ -147,14 +146,14 @@ export class Metamask {
     //     {
     //       type: SNACKBAR_CONTENT_TYPES.TEXT,
     //       title: METAMASK_NOTIFICATIONS.ErrorTitle,
-    //       text: METAMASK_NOTIFICATIONS.ExtensionNotFoundSubtext,
+
     //     },
     //     store,
     //     this.notificationsEnabled
     //   );
     //   return {
     //     result: false,
-    //     message: METAMASK_NOTIFICATIONS.ExtensionNotFoundSubtext,
+
     //   };
     // }
 

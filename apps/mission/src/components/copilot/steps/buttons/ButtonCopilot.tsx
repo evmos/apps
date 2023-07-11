@@ -35,12 +35,6 @@ const STYLE3 = {
   [statusProps.PROCESSING]: " bg-red hover:bg-red1",
 };
 
-const icons = {
-  [statusProps.CURRENT]: "",
-  [statusProps.DONE]: "🎉",
-  [statusProps.PROCESSING]: <span className="loader"></span>,
-};
-
 export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
   return (
     <li

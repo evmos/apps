@@ -87,3 +87,5 @@ export {
   isMetamaskInstalled,
   connectHandler,
 } from "./internal/wallet/functionality/metamask/metamaskHelpers";
+
+export { queryPubKey } from "./internal/wallet/functionality/pubkey";

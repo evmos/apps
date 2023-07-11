@@ -1,6 +1,6 @@
 import { ButtonCopilot } from "./ButtonCopilot";
 import { useStep } from "./useStep";
-export const ConnectMetamask = ({
+export const ActionsMetaMask = ({
   step,
   index,
   length,
@@ -9,7 +9,7 @@ export const ConnectMetamask = ({
   index: number;
   length: number;
 }) => {
-  const { text, status, disable, textError, handleClick } = useStep(step);
+  const { text, status, textError, disable, handleClick } = useStep(step);
 
   const props = {
     id: step.id,

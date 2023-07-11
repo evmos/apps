@@ -32,7 +32,7 @@ const STYLE2 = {
 const STYLE3 = {
   [statusProps.CURRENT]: "bg-red hover:bg-red1",
   [statusProps.DONE]: "pointer-events-none bg-[#31B886]",
-  [statusProps.PROCESSING]: " bg-red hover:bg-red1",
+  [statusProps.PROCESSING]: "bg-red hover:bg-red1",
 };
 
 export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
@@ -69,7 +69,7 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
             // disabled={props.disabled}
             onClick={props.handleClick}
             className={`ml-4 w-full space-x-2 rounded-lg px-8
-            py-2 font-[GreyCliff] text-lg font-normal normal-case tracking-wider text-pearl  
+            py-2 font-[GreyCliff] text-lg font-normal normal-case tracking-wider text-pearl 
           ${STYLE3[props.status]}
           `}
           >

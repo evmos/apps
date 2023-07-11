@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { ModalWithTransitions } from "ui-helpers";
 import { Introduction } from "./Introduction";
-import { SetUpAccount } from "./steps/SetUpAccount";
+import { SetUpAccount } from "./steps/setUpAccount/SetUpAccount";
 
 export const CopilotModal = ({
   show,

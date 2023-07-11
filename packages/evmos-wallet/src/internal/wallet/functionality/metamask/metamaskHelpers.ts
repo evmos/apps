@@ -33,12 +33,22 @@ export async function switchEthereumChain(ethChainId: string) {
       method: "wallet_switchEthereumChain",
       params: [{ chainId: ethChainId }],
     });
+    console.log("try true from swith eth chain");
     return true;
   } catch (e) {
+    console.log("catch from swtich eth chain", e);
     return false;
   }
 }
 
+export const isEthChain = () => {
+  if (!window.ethereum) return false;
+  const extension = window.ethereum as unknown as MetaMaskInpageProvider;
+  if (extension.chainId !== EVMOS_ETH_CHAIN_ID) {
+    return false;
+  }
+  return true;
+};
 export function isMetamaskInstalled() {
   if (window.ethereum) {
     return true;
@@ -71,8 +81,10 @@ export async function changeNetworkToEvmosMainnet(): Promise<boolean> {
         },
       ],
     });
+    console.log("return true on changeNetworkToEvmosMainnet");
     return true;
   } catch (e) {
+    console.log("Catch from changeNetworkToEvmosMainnet", e);
     return false;
   }
 }
@@ -121,6 +133,15 @@ export function subscribeToChainChanged(): boolean {
   } catch (e) {
     return false;
   }
+}
+
+export function isWalletSelected() {
+  if (!window.ethereum) return false;
+  const extension = window.ethereum as unknown as MetaMaskInpageProvider;
+  if (extension.selectedAddress === null) {
+    return false;
+  }
+  return true;
 }
 
 export async function getWallet() {

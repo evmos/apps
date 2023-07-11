@@ -28,6 +28,14 @@
       ],
       "cache": false
     },
+    "assets-page#build": {
+      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build"],
+      "cache": false
+    },
+    "governance-page#build": {
+      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build"],
+      "cache": false
+    },
     "eslint-config-custom#build": {},
     "tailwind-config#build": {},
     "tsconfig#build": {},

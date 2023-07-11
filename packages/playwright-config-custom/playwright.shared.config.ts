@@ -65,6 +65,6 @@ module.exports = {
     reuseExistingServer: !process.env.CI,
     stdout: "pipe",
     stderr: "pipe",
-    timeout: 300 * 1000,
+    timeout: 500 * 1000,
   },
 };

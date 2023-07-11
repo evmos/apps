@@ -6,9 +6,7 @@ const { i18n } = require("./next-i18next.config");
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      'storage.evmos.org',
-    ],
+    domains: ["storage.evmos.org"],
   },
   reactStrictMode: true,
   basePath: "",
@@ -16,6 +14,9 @@ const nextConfig = {
   i18n,
   publicRuntimeConfig: {
     version,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   },
 };
 

@@ -22,6 +22,16 @@ import MainContainer from "../src/components/mission/MainContainer";
 import { HeadComponent } from "../src/components/mission/HeadComponent";
 import { GoogleAnalytics } from "../src/components/mission/GoogleAnalytics";
 import { MixpanelProvider } from "tracker";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+
+export async function getStaticProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "home"])),
+      // Will be passed to the page component as props
+    },
+  };
+}
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));

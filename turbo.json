@@ -44,6 +44,10 @@
       "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build"],
       "cache": false
     },
+    "vesting-page#build": {
+      "dependsOn": ["evmos-wallet#build", "helpers#build"],
+      "cache": false
+    },
     "eslint-config-custom#build": {},
     "tailwind-config#build": {},
     "tsconfig#build": {},

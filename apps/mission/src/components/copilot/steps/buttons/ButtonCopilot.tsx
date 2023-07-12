@@ -12,7 +12,7 @@ type ButtonProps = {
   index: number;
   stepsLength: number;
   status: string;
-  handleClick: any;
+  handleClick: () => Promise<void>;
   textError: string;
   statusButton: string;
 };
@@ -70,12 +70,11 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
             className={`ml-4 w-full space-x-2 rounded-lg px-8
             py-2 font-[GreyCliff] text-lg font-normal normal-case tracking-wider text-pearl 
             ${
-              props.statusButton === statusProps.NOT_PROCCESED &&
-              "pointer-events-none opacity-70"
-            }
-            ${
-              props.statusButton === statusProps.DONE &&
-              "pointer-events-none bg-[#31B886]"
+              props.statusButton === statusProps.NOT_PROCCESED
+                ? "pointer-events-none opacity-70"
+                : props.statusButton === statusProps.DONE
+                ? "pointer-events-none bg-[#31B886]"
+                : ""
             }
           ${STYLE3[props.status]}
           `}
@@ -90,7 +89,7 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
         {props.textError !== "" && (
           <div className="ml-4 flex items-center space-x-2  px-8 py-2 text-sm text-red">
             <CloseBorderIcon />
-            <p className=" ">{props.textError}</p>
+            <p>{props.textError}</p>
           </div>
         )}
       </>

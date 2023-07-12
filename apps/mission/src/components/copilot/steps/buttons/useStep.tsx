@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { statusProps } from "./utills";
+import { GroupStateI, SetUpAccountI } from "../types";
 
-export const useStep = (step: any, setGroupState: any) => {
+export const useStep = (
+  step: SetUpAccountI,
+  setGroupState: React.Dispatch<React.SetStateAction<GroupStateI[]>>
+) => {
   const [text, setText] = useState(step.name);
   const [status, setStatus] = useState(statusProps.CURRENT);
   const [textError, setTextError] = useState("");
@@ -23,7 +27,9 @@ export const useStep = (step: any, setGroupState: any) => {
         setStatus(statusProps.CURRENT);
 
         setText("Try again");
-        setTextError(step.errors[index]);
+        if (step.errors) {
+          setTextError(step.errors[index]);
+        }
         break;
       } else {
         if (index === len - 1) {
@@ -83,7 +89,7 @@ export const useStep = (step: any, setGroupState: any) => {
         );
       };
     }
-  }, [step, status]);
+  }, [step, status, setGroupState]);
 
   const handleClick = async () => {
     setTextError("");

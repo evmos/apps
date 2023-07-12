@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { ActionsMetaMask } from "../buttons/ActionsMetaMask";
 import { stepsSetAccount } from "./utils";
+import { GroupStateI } from "../types";
 
-const updateState = (groupState, currentIndex) => {
+const updateState = (groupState: GroupStateI[], currentIndex: number) => {
   const updatedState = [...groupState];
   const nextStep = updatedState[currentIndex - 1];
   if (nextStep && nextStep.status === "done") {

@@ -1,3 +1,4 @@
+import { GroupStateI, SetUpAccountI } from "../types";
 import { ButtonCopilot } from "./ButtonCopilot";
 import { useStep } from "./useStep";
 export const ActionsMetaMask = ({
@@ -7,11 +8,11 @@ export const ActionsMetaMask = ({
   statusButton,
   setGroupState,
 }: {
-  step: any;
+  step: SetUpAccountI;
   index: number;
   length: number;
   statusButton: string;
-  setGroupState: any;
+  setGroupState: React.Dispatch<React.SetStateAction<GroupStateI[]>>;
 }) => {
   const { text, status, textError, handleClick } = useStep(step, setGroupState);
 

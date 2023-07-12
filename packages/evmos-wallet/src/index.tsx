@@ -58,6 +58,8 @@ export { EVMOS_BACKEND } from "./internal/wallet/functionality/networkConfig";
 export { EVMOS_NETWORK_FOR_BACKEND } from "./internal/wallet/functionality/networkConfig";
 export { EVMOS_CHAIN } from "./internal/wallet/functionality/networkConfig";
 export { EVMOS_MINIMAL_COIN_DENOM } from "./internal/wallet/functionality/networkConfig";
+export { EVMOS_RPC_URL } from "./internal/wallet/functionality/networkConfig";
+export { EVMOS_CHAIN_NAME } from "./internal/wallet/functionality/networkConfig";
 
 // utils
 export { truncateAddress } from "./internal/wallet/style/format";

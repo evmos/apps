@@ -3,22 +3,24 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import { useTranslation } from "next-i18next";
 
 const Content = dynamic(() => import("../mission/Content"));
 const SideBar = dynamic(() => import("./Sidebar/Sidebar"));
 const SidebarMobile = dynamic(() => import("./Sidebar/SidebarMobile"));
 import { StatefulHeader } from "./StatefulHeader";
 import { StatefulFooter } from "./StatefulFooter";
+
 const MainContainer = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <>
       <StatefulHeader
-        pageName="Mission Control"
+        pageName={t("appTitle")}
         setShowSidebar={setShowSidebar}
       />
-
       <div className="block lg:hidden ">
         <SidebarMobile
           showSidebar={showSidebar}

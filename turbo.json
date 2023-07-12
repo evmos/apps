@@ -51,7 +51,6 @@
     "eslint-config-custom#build": {},
     "tailwind-config#build": {},
     "tsconfig#build": {},
-
     "tracker#build": {},
     "constants-helper#build": {},
     "icons#build": {},
@@ -122,6 +121,9 @@
       "cache": false,
       "outputs": ["coverage/**"]
     },
-    "test:e2e": {}
+    "test:e2e": {
+      "env": ["CI"],
+      "cache": false
+    }
   }
 }

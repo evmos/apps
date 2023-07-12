@@ -37,6 +37,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 ## Unreleased
 
 - (ci) #fse-668 | turbo.json | Updating config to be able to do a quick build using --filter for examample `yarn  build --filter mission-page`
+- (ci) #fse-675 | packages/playwright-config-custom 1.0.1 packages/vitest-config-custom 1.0.1 apps/assets 1.0.18 apps/governance 1.0.15 apps/mission 1.0.15 apps/staking 1.0.15 apps/vesting 1.0.13 packages/evmos-wallet 1.0.9 apps/helpers 1.0.5 packages/services 1.0.4 packages/tracker 1.0.3 packages/ui-helpers 1.0.9 | Refactoring playwright & vitest config
 - (ci) #fse-676 | apps/assets 1.0.17 apps/governance 1.0.14 apps/mission 1.0.14 apps/staking 1.0.14 apps/vesting 1.0.12 | Removing linting from build process
 - (ci) #fse-676 | .github | Refactoring and optimizing github actions
 

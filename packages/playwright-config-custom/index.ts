@@ -1,6 +1,2 @@
-// @ts-ignore
-const sharedConfig = require("./playwright.shared.config.ts");
-
-module.exports = {
-  sharedConfig,
-};
+export { sharedConfig } from "./playwright.shared.config";
+export { helpers } from "./helpers";

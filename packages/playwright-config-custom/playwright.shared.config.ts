@@ -1,6 +1,6 @@
-import { defineConfig, devices } from "@playwright/test";
+import { devices } from "@playwright/test";
 
-module.exports = {
+export const sharedConfig = {
   testDir: "./e2e",
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -65,6 +65,6 @@ module.exports = {
     reuseExistingServer: !process.env.CI,
     stdout: "pipe",
     stderr: "pipe",
-    timeout: 300 * 1000,
+    timeout: 500 * 1000,
   },
 };

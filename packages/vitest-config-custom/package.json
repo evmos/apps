@@ -1,6 +1,6 @@
 {
   "name": "vitest-config-custom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vitest custom config",
   "main": "index.ts",
   "private": true,

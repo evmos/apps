@@ -320,10 +320,8 @@ const Deposit = ({
               wallet.osmosisPubkey,
               keplrAddress,
               params,
-              chainIdentifier.toUpperCase(),
               wallet.extensionName,
               item.prefix,
-              item.chainId,
               item.chainIdentifier
             );
             dispatch(

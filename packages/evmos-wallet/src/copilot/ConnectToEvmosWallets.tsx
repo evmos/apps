@@ -14,12 +14,13 @@ export const ConnectToEvmosWallets = ({
   setShow: Dispatch<React.SetStateAction<boolean>>;
   dispatch: Dispatch<AnyAction>; // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
+  // const [showCopilot, setShowCopilot] = useState(false);
   return (
     <div className="md:col-span-2 space-y-3 px-4 md:px-8 pb-4 pt-5 sm:p-6 bg-white">
       <div className="md:mt-5">
         <ButtonWallet
           onClick={() => {
-            // TODO: open copilot
+            // setShowCopilot(true);
           }}
         >
           <div className="flex items-center justify-between ">

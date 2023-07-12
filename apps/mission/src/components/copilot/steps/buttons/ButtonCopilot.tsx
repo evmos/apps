@@ -19,7 +19,7 @@ type ButtonProps = {
 
 const STYLE1 = {
   [statusProps.CURRENT]: "w-[1px] bg-[#DBD3D1]",
-  [statusProps.DONE]: "w-[1.2px] bg-red",
+  [statusProps.DONE]: "w-[1.2px] bg-[#31B886]",
   [statusProps.PROCESSING]: "w-[1px] bg-[#DBD3D1]",
 };
 

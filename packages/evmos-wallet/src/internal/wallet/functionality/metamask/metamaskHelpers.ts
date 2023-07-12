@@ -41,14 +41,15 @@ export async function switchEthereumChain(ethChainId: string) {
   }
 }
 
-export const isEthChain = () => {
-  if (!window.ethereum) return false;
-  const extension = window.ethereum as unknown as MetaMaskInpageProvider;
-  if (extension.chainId !== EVMOS_ETH_CHAIN_ID) {
-    return false;
+export const isEvmosChain = async () => {
+  if (!window.ethereum) return;
+  const chainId = await window.ethereum.request({ method: "eth_chainId" });
+  if (chainId === EVMOS_ETH_CHAIN_ID) {
+    return true;
   }
-  return true;
+  return false;
 };
+
 export function isMetamaskInstalled() {
   if (window.ethereum) {
     return true;
@@ -255,6 +256,7 @@ export async function connectHandler(addresses: Maybe<string[]>) {
   const metamask = new Metamask(store);
   const providerLocalStorage = GetProviderFromLocalStorage();
   if (addresses === undefined || addresses === null) {
+    metamask.reset();
     return false;
   }
   if (addresses.length > 0 && addresses[0]) {
@@ -264,6 +266,7 @@ export async function connectHandler(addresses: Maybe<string[]>) {
     // TODO: if the user did not sign the pubkey, pop up a message
     if (metamask.evmosPubkey === null) {
       // eerror
+      metamask.reset();
       return false;
     }
 
@@ -290,4 +293,5 @@ export async function connectHandler(addresses: Maybe<string[]>) {
     SaveProviderToLocalStorate(METAMASK_KEY);
     return true;
   }
+  metamask.reset();
 }

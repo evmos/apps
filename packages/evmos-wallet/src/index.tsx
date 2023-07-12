@@ -87,7 +87,7 @@ export {
   isMetamaskInstalled,
   connectHandler,
   isWalletSelected,
-  isEthChain,
+  isEvmosChain,
 } from "./internal/wallet/functionality/metamask/metamaskHelpers";
 
 export { queryPubKey } from "./internal/wallet/functionality/pubkey";

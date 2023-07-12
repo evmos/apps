@@ -2,7 +2,7 @@ import {
   changeNetworkToEvmosMainnet,
   getWallet,
   isMetamaskInstalled,
-  isEthChain,
+  isEvmosChain,
   connectHandler,
   queryPubKey,
   isWalletSelected,
@@ -31,7 +31,7 @@ const signPubkey = async () => {
 };
 
 const checkConnectionMetamask = async () => {
-  const ethChain = isEthChain();
+  const ethChain = await isEvmosChain();
   if (!ethChain) {
     return false;
   }
@@ -65,26 +65,6 @@ const connectMematMask = (href: string) => {
   return true;
 };
 
-// const setNetwork = async () => {
-//   const switched = await switchEthereumChain("0x2329");
-//   if (switched) {
-//     console.log("entre a switched", switched);
-//     return true;
-//   }
-
-//   const added = await addEthereumChain();
-//   // const changed = await changeNetworkToEvmosMainnet();
-//   if (added) {
-//     console.log("entre a added", added);
-//     return true;
-//   }
-//   return false;
-// };
-
-// if href is defined it means that we are going to redirect to a different page
-// and the useEffect will call the visibilityChange.
-// set it undefined if you don't want to call visibilityChange
-
 export const stepsSetAccount = [
   {
     id: "install",
@@ -102,16 +82,19 @@ export const stepsSetAccount = [
     checkAction: () => checkConnectionMetamask(),
     loading: [
       "Approve on Metamask",
+      "",
       "Select accounts and press Connect",
       "Press Sign",
     ],
     actions: [
       () => changeNetworkToEvmosMainnet(),
+      () => isEvmosChain(),
       () => getWalletLocal(),
       () => signPubkey(),
     ],
     errors: [
       "Approval Rejected, please try again",
+      "You need to switch the network to Evmos, please try again",
       "Get accounts rejected, please try again",
       "Sign rejected, please try again",
     ],

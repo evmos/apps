@@ -16,6 +16,7 @@ export const SetUpAccount = () => {
       <nav aria-label="Progress">
         <ol role="list" className="overflow-hidden">
           {stepsSetAccount.map((step, stepIdx) => {
+            // is this active -> will check the prev one if it is valid.
             return (
               <ActionsMetaMask
                 key={step.id}

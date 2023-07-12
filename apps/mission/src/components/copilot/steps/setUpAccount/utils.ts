@@ -35,7 +35,6 @@ const checkConnectionMetamask = async () => {
   if (!ethChain) {
     return false;
   }
-  //   console.log(ethChain);
   // avoid showing the pop up if the user didn't connect the wallet yet
   const walletSelected = isWalletSelected();
   if (!walletSelected) {
@@ -74,6 +73,7 @@ export const stepsSetAccount = [
     done: "Metamask Installed",
     actions: [() => connectMematMask(metamaskDownloadUrl)],
     href: metamaskDownloadUrl,
+    status: "current",
   },
 
   {
@@ -99,5 +99,6 @@ export const stepsSetAccount = [
       "Sign rejected, please try again",
     ],
     done: "Metamask Connected",
+    status: "not_proccesed",
   },
 ];

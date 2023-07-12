@@ -33,10 +33,8 @@ export async function switchEthereumChain(ethChainId: string) {
       method: "wallet_switchEthereumChain",
       params: [{ chainId: ethChainId }],
     });
-    console.log("try true from swith eth chain");
     return true;
   } catch (e) {
-    console.log("catch from swtich eth chain", e);
     return false;
   }
 }
@@ -60,7 +58,6 @@ export function isMetamaskInstalled() {
 export async function changeNetworkToEvmosMainnet(): Promise<boolean> {
   if (!window.ethereum) return false;
   const switched = await switchEthereumChain(EVMOS_ETH_CHAIN_ID);
-  console.log("switched", switched);
   if (switched === true) {
     return true;
   }
@@ -82,10 +79,8 @@ export async function changeNetworkToEvmosMainnet(): Promise<boolean> {
         },
       ],
     });
-    console.log("return true on changeNetworkToEvmosMainnet");
     return true;
   } catch (e) {
-    console.log("Catch from changeNetworkToEvmosMainnet", e);
     return false;
   }
 }

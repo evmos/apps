@@ -4,12 +4,16 @@ export const ActionsMetaMask = ({
   step,
   index,
   length,
+  statusButton,
+  setGroupState,
 }: {
   step: any;
   index: number;
   length: number;
+  statusButton: string;
+  setGroupState: any;
 }) => {
-  const { text, status, textError, disable, handleClick } = useStep(step);
+  const { text, status, textError, handleClick } = useStep(step, setGroupState);
 
   const props = {
     id: step.id,
@@ -18,8 +22,8 @@ export const ActionsMetaMask = ({
     stepsLength: length,
     status,
     handleClick: handleClick,
-    disabled: disable,
     textError,
+    statusButton,
   };
 
   return <ButtonCopilot props={props} />;

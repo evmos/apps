@@ -1,7 +1,27 @@
+import { useState } from "react";
 import { ActionsMetaMask } from "../buttons/ActionsMetaMask";
 import { stepsSetAccount } from "./utils";
 
+const updateState = (groupState, currentIndex) => {
+  const updatedState = [...groupState];
+  const nextStep = updatedState[currentIndex - 1];
+  if (nextStep && nextStep.status === "done") {
+    const currentStep = updatedState[currentIndex];
+    const updatedStep = { ...currentStep, status: "current" };
+    updatedState[currentIndex] = updatedStep;
+  }
+  return updatedState;
+};
+
 export const SetUpAccount = () => {
+  const [groupState, setGroupState] = useState(
+    stepsSetAccount.map((step, index) => ({
+      id: step.id,
+      index,
+      status: step.status,
+    }))
+  );
+
   return (
     <section className="space-y-3">
       <h3 className="font-bold">Set up your account</h3>
@@ -16,13 +36,14 @@ export const SetUpAccount = () => {
       <nav aria-label="Progress">
         <ol role="list" className="overflow-hidden">
           {stepsSetAccount.map((step, stepIdx) => {
-            // is this active -> will check the prev one if it is valid.
             return (
               <ActionsMetaMask
                 key={step.id}
                 step={step}
                 index={stepIdx}
                 length={stepsSetAccount.length}
+                statusButton={updateState(groupState, stepIdx)[stepIdx].status}
+                setGroupState={setGroupState}
               />
             );
           })}

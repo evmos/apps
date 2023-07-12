@@ -13,8 +13,8 @@ type ButtonProps = {
   stepsLength: number;
   status: string;
   handleClick: any;
-  disabled: boolean;
   textError: string;
+  statusButton: string;
 };
 
 const STYLE1 = {
@@ -66,10 +66,17 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
             </span>
           </span>
           <button
-            // disabled={props.disabled}
             onClick={props.handleClick}
             className={`ml-4 w-full space-x-2 rounded-lg px-8
             py-2 font-[GreyCliff] text-lg font-normal normal-case tracking-wider text-pearl 
+            ${
+              props.statusButton === statusProps.NOT_PROCCESED &&
+              "pointer-events-none opacity-70"
+            }
+            ${
+              props.statusButton === statusProps.DONE &&
+              "pointer-events-none bg-[#31B886]"
+            }
           ${STYLE3[props.status]}
           `}
           >

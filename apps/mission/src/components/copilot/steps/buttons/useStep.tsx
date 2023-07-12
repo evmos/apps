@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { statusProps } from "./utills";
 
-export const useStep = (step: any) => {
+export const useStep = (step: any, setGroupState: any) => {
   const [text, setText] = useState(step.name);
   const [status, setStatus] = useState(statusProps.CURRENT);
-  const [disable, setDisable] = useState(false);
   const [textError, setTextError] = useState("");
 
   const callActions = async () => {
@@ -13,34 +12,34 @@ export const useStep = (step: any) => {
     for (let index = 0; index < len; index++) {
       const action = step.actions[index];
       setText(step.loading[index]);
-      setDisable(true);
-
-      console.log("--- STEP en call actions", step);
 
       //
       if (step.href !== undefined) {
-        console.log("entre a undefined");
         await action();
         break;
       }
-      console.log(index);
-      console.log(step);
       const localAction = await action();
-      console.log("localAction", localAction);
       if (localAction === false) {
-        console.log("entre a false");
         setStatus(statusProps.CURRENT);
 
         setText("Try again");
         setTextError(step.errors[index]);
-        setDisable(false);
         break;
       } else {
         if (index === len - 1) {
           // All actions have returned true
           setText(step.done);
           setStatus(statusProps.DONE);
-          setDisable(true);
+          setGroupState((state) =>
+            state.map((actionGroup) =>
+              actionGroup.id === step.id
+                ? {
+                    ...actionGroup,
+                    status: "done",
+                  }
+                : actionGroup
+            )
+          );
         }
       }
     }
@@ -51,6 +50,16 @@ export const useStep = (step: any) => {
       if (await step.checkAction()) {
         setText(step.done);
         setStatus(statusProps.DONE);
+        setGroupState((state) =>
+          state.map((actionGroup) =>
+            actionGroup.id === step.id
+              ? {
+                  ...actionGroup,
+                  status: "done",
+                }
+              : actionGroup
+          )
+        );
       }
     };
     if (firstUpdate.current) {
@@ -80,5 +89,5 @@ export const useStep = (step: any) => {
     setTextError("");
     await callActions();
   };
-  return { text, status, disable, textError, handleClick };
+  return { text, status, textError, handleClick };
 };

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ActionsMetaMask } from "../buttons/ActionsMetaMask";
 import { stepsSetAccount } from "./utils";
 import { GroupStateI } from "../types";
 import { useTranslation } from "next-i18next";
 import { STEP_STATUS } from "../buttons/utils";
+import { SuccessSetUp } from "./SuccessSetUp";
+import { checkAllDoneStatus } from "../helpers";
 
 const updateState = (groupState: GroupStateI[], currentIndex: number) => {
   const updatedState = [...groupState];
@@ -27,7 +29,11 @@ export const SetUpAccount = () => {
 
   const { t } = useTranslation();
 
-  return (
+  const isSetUpDone = useMemo(() => {
+    return checkAllDoneStatus(groupState);
+  }, [groupState]);
+
+  return isSetUpDone ? (
     <section className="space-y-3">
       <h3 className="font-bold">{t("setupaccount.title")}</h3>
       <p className="font-sm text-[#413836]">{t("setupaccount.description")}</p>
@@ -49,5 +55,7 @@ export const SetUpAccount = () => {
         </ol>
       </nav>
     </section>
+  ) : (
+    <SuccessSetUp />
   );
 };

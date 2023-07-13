@@ -36,7 +36,8 @@
     "@metamask/providers": "^10.2.1",
     "autoprefixer": "^10.4.13",
     "prettier": "^2.8.1",
-    "vitest-config-custom": "*"
+    "vitest-config-custom": "*",
+    "schummar-translate": "^1.18.0"
   },
   "depedencies": {
     "@ethersproject/bignumber": "^5.7.0",

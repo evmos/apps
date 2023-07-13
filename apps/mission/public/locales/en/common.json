@@ -2,5 +2,6 @@
     "appTitle": "Misson Control",
     "setupaccount.title": "Set up your account",
     "setupaccount.description": "Having an account allows you to use your Evmos to interact with any decentralized applications (dApps) on Evmos.",
-    "setupaccount.description2": "There are different tools to set up your account such as MetaMask, Keplr or WalletConnect. For simplicity, we recommend MetaMask."
+    "setupaccount.description2": "There are different tools to set up your account such as MetaMask, Keplr or WalletConnect. For simplicity, we recommend MetaMask.",
+    "setupaccount.action.error": "Try again"
 }

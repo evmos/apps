@@ -274,13 +274,13 @@ export const ButtonWalletConnection = ({
           >
             <div className="flex items-center space-x-2 ">
               <WalletIcon />
-              <span>Connect wallet {t("hello")}</span>
+              <span>{t("button.connect")}</span>
             </div>
           </Button>
 
           <Modal show={show} onClose={close}>
             <>
-              <ModalTitle title="Connect Wallet" />
+              <ModalTitle title={t("modal.title")} />
 
               <div className="flex flex-col space-y-3">
                 <ButtonWallet

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { stepsSetAccount } from "./utils";
 import { SuccessSetUp } from "./SuccessSetUp";
 import { checkAllDoneStatus } from "../helpers";
@@ -17,7 +17,16 @@ export const SetUpAccountContainer = () => {
     return checkAllDoneStatus(groupState);
   }, [groupState]);
 
-  return isSetUpDone ? (
+  const [showComponent, setShowComponent] = useState(false);
+  useEffect(() => {
+    setInterval(() => {
+      if (isSetUpDone) {
+        setShowComponent(true);
+      }
+    }, 4000);
+  }, [isSetUpDone]);
+
+  return isSetUpDone && showComponent ? (
     <SuccessSetUp />
   ) : (
     <SetUpAccount

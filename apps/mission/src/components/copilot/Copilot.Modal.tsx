@@ -12,7 +12,6 @@ export const CopilotModal = ({
 }) => {
   const contentModal = (
     <div className="grid grid-rows-1 divide-y divide-[#DBD3D1] text-[#413836] md:grid-cols-3 md:grid-rows-none md:divide-y-0 md:divide-x">
-      {/* TODO: ??  make this two generic for each part of the modal */}
       <div className="flex h-full flex-col justify-between px-4 pb-4 pt-5 sm:p-10">
         <Introduction />
         <div>

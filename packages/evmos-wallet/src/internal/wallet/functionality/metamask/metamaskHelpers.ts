@@ -260,7 +260,6 @@ export async function connectHandler(addresses: Maybe<string[]>) {
     metamask.evmosPubkey = await generatePubKey(metamask.addressCosmosFormat);
     // TODO: if the user did not sign the pubkey, pop up a message
     if (metamask.evmosPubkey === null) {
-      // eerror
       metamask.reset();
       return false;
     }
@@ -282,8 +281,6 @@ export async function connectHandler(addresses: Maybe<string[]>) {
     if (providerLocalStorage === METAMASK_KEY) {
       return false;
     }
-
-    //  success
 
     SaveProviderToLocalStorate(METAMASK_KEY);
     return true;

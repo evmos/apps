@@ -23,7 +23,6 @@ export const ModalWithTransitions = ({
     return null;
   }
 
-  // TODO: don't use transitions if props is setted
   return (
     <Transition.Root show={show} as={Fragment}>
       <Dialog

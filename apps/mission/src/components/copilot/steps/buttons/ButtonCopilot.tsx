@@ -1,8 +1,7 @@
 import { CheckIcon, CloseBorderIcon } from "icons";
 import { statusProps } from "./utills";
-// TODO: remove it
-// @ts-ignore
-function classNames(...classes) {
+
+function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(" ");
 }
 

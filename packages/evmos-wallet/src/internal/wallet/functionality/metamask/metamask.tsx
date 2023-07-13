@@ -140,23 +140,6 @@ export class Metamask {
   async connect(): Promise<ResultMessage> {
     // TODO: call disconnect from the previous connected extension (if different from us)
     // Make sure that we are on the evmos chain
-
-    // if (!isMetamaskInstalled()) {
-    //   NotifyError(
-    //     {
-    //       type: SNACKBAR_CONTENT_TYPES.TEXT,
-    //       title: METAMASK_NOTIFICATIONS.ErrorTitle,
-
-    //     },
-    //     store,
-    //     this.notificationsEnabled
-    //   );
-    //   return {
-    //     result: false,
-
-    //   };
-    // }
-
     if (!(await changeNetworkToEvmosMainnet())) {
       this.reset();
 
@@ -164,7 +147,7 @@ export class Metamask {
         {
           type: SNACKBAR_CONTENT_TYPES.TEXT,
           title: METAMASK_NOTIFICATIONS.ErrorTitle,
-          text: METAMASK_NOTIFICATIONS.PubkeySubtext,
+          text: METAMASK_NOTIFICATIONS.ExtensionNotFoundSubtext,
         },
         store,
         this.notificationsEnabled

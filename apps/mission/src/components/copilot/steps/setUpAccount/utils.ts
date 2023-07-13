@@ -68,10 +68,10 @@ const connectMematMask = (href: string) => {
 export const stepsSetAccount = [
   {
     id: "install",
-    name: "Install MetaMask",
+    buttonText: "Install MetaMask",
     checkAction: () => isMetamaskInstalled(),
-    loading: ["Waiting for MetaMask Setup"],
-    done: "Metamask Installed",
+    loadingText: ["Waiting for MetaMask Setup"],
+    doneText: "Metamask Installed",
     actions: [() => connectMematMask(metamaskDownloadUrl)],
     href: metamaskDownloadUrl,
     status: STEP_STATUS.CURRENT,
@@ -79,9 +79,9 @@ export const stepsSetAccount = [
 
   {
     id: "connect",
-    name: "Connect with MetaMask",
+    buttonText: "Connect with MetaMask",
     checkAction: () => checkConnectionMetamask(),
-    loading: [
+    loadingText: [
       "Approve on Metamask",
       "",
       "Select accounts and press Connect",
@@ -93,13 +93,13 @@ export const stepsSetAccount = [
       () => getWalletLocal(),
       () => signPubkey(),
     ],
-    errors: [
+    errorsText: [
       "Approval Rejected, please try again",
       "You need to switch the network to Evmos, please try again",
       "Get accounts rejected, please try again",
       "Sign rejected, please try again",
     ],
-    done: "Metamask Connected",
+    doneText: "Metamask Connected",
     status: STEP_STATUS.NOT_PROCCESED,
   },
 ];

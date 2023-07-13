@@ -1,39 +1,19 @@
-import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ActionsMetaMask } from "../buttons/ActionsMetaMask";
-import { stepsSetAccount } from "./utils";
-import { GroupStateI } from "../types";
-import { useTranslation } from "next-i18next";
-import { STEP_STATUS } from "../buttons/utils";
-import { SuccessSetUp } from "./SuccessSetUp";
-import { checkAllDoneStatus } from "../helpers";
+import { updateCurrentStatus } from "../helpers";
+import { GroupStateI, SetUpAccountI } from "../types";
 
-const updateState = (groupState: GroupStateI[], currentIndex: number) => {
-  const updatedState = [...groupState];
-  const nextStep = updatedState[currentIndex - 1];
-  if (nextStep && nextStep.status === STEP_STATUS.DONE) {
-    const currentStep = updatedState[currentIndex];
-    const updatedStep = { ...currentStep, status: STEP_STATUS.CURRENT };
-    updatedState[currentIndex] = updatedStep;
-  }
-  return updatedState;
-};
-
-export const SetUpAccount = () => {
-  const [groupState, setGroupState] = useState(
-    stepsSetAccount.map((step, index) => ({
-      id: step.id,
-      index,
-      status: step.status,
-    }))
-  );
-
+export const SetUpAccount = ({
+  stepsSetAccount,
+  groupState,
+  setGroupState,
+}: {
+  stepsSetAccount: SetUpAccountI[];
+  groupState: GroupStateI[];
+  setGroupState: React.Dispatch<React.SetStateAction<GroupStateI[]>>;
+}) => {
   const { t } = useTranslation();
-
-  const isSetUpDone = useMemo(() => {
-    return checkAllDoneStatus(groupState);
-  }, [groupState]);
-
-  return isSetUpDone ? (
+  return (
     <section className="space-y-3">
       <h3 className="font-bold">{t("setupaccount.title")}</h3>
       <p className="font-sm text-[#413836]">{t("setupaccount.description")}</p>
@@ -47,7 +27,9 @@ export const SetUpAccount = () => {
                 step={step}
                 index={stepIdx}
                 length={stepsSetAccount.length}
-                statusButton={updateState(groupState, stepIdx)[stepIdx].status}
+                statusButton={
+                  updateCurrentStatus(groupState, stepIdx)[stepIdx].status
+                }
                 setGroupState={setGroupState}
               />
             );
@@ -55,7 +37,5 @@ export const SetUpAccount = () => {
         </ol>
       </nav>
     </section>
-  ) : (
-    <SuccessSetUp />
   );
 };

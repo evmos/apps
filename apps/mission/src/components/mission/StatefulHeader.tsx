@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Header } from "ui-helpers";
 import { Dispatch, SetStateAction, useState } from "react";
 import { CLICK_EVMOS_LOGO, useTracker } from "tracker";
-import { CopilotModal } from "../copilot/Copilot.Modal";
+import { CopilotModal } from "../copilot/CopilotModal";
 
 export const StatefulHeader = ({
   pageName,

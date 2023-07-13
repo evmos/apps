@@ -3,6 +3,9 @@
 
 // styles
 import "./styles.css";
+import { setup } from "./setup";
+
+setup();
 
 // libs
 export { WagmiConfig } from "wagmi";
@@ -80,7 +83,3 @@ export type { executedTx } from "./notification/transactionsTypes";
 export { TransactionStatus } from "./notification/transactionsTypes";
 export type { txStatusErrorResponse } from "./notification/transactionsTypes";
 export type { txStatusResponse } from "./notification/transactionsTypes";
-
-import { setup } from "./setup";
-
-setup();

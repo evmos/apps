@@ -53,6 +53,7 @@ import {
 } from "tracker";
 // Components
 import { Button } from "ui-helpers";
+import { useTranslation } from "react-i18next";
 
 export const ButtonWalletConnection = ({
   walletExtension,
@@ -61,6 +62,8 @@ export const ButtonWalletConnection = ({
   walletExtension: WalletExtension;
   dispatch: Dispatch<AnyAction>; // eslint-disable-next-line sonarjs/cognitive-complexity
 }) => {
+  const { t } = useTranslation();
+
   const [show, setShow] = useState(false);
 
   const useWC = useWalletConnect(store);
@@ -268,7 +271,7 @@ export const ButtonWalletConnection = ({
       >
         <div className="flex items-center space-x-2 ">
           <WalletIcon />
-          <span>Connect wallet</span>
+          <span>Connect wallet {t("hello")}</span>
         </div>
       </Button>
 

@@ -32,6 +32,8 @@ export default defineConfig((options: Options) => ({
     "icons",
     "ui-helpers",
     "tracker",
+    "i18next",
+    "react-i18next",
   ],
   ...options,
 }));

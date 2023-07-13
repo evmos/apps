@@ -40,7 +40,7 @@ export async function switchEthereumChain(ethChainId: string) {
 }
 
 export const isEvmosChain = async () => {
-  if (!window.ethereum) return;
+  if (!window.ethereum) return false;
   const chainId = await window.ethereum.request({ method: "eth_chainId" });
   if (chainId === EVMOS_ETH_CHAIN_ID) {
     return true;
@@ -289,4 +289,5 @@ export async function connectHandler(addresses: Maybe<string[]>) {
     return true;
   }
   metamask.reset();
+  return false;
 }

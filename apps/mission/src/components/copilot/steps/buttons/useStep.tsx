@@ -17,7 +17,6 @@ export const useStep = (
       const action = step.actions[index];
       setText(step.loading[index]);
 
-      //
       if (step.href !== undefined) {
         await action();
         break;

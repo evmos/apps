@@ -183,3 +183,8 @@ html {
 .markdown a {
   @apply underline
 }
+
+.markdown ul li {
+  list-style-type: circle;
+  margin-left: 1rem;
+}

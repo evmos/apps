@@ -28,10 +28,29 @@
       ],
       "cache": false
     },
+    "assets-page#build": {
+      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build"],
+      "cache": false
+    },
+    "governance-page#build": {
+      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build"],
+      "cache": false
+    },
+    "mission-page#build": {
+      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build"],
+      "cache": false
+    },
+    "staking-page#build": {
+      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build"],
+      "cache": false
+    },
+    "vesting-page#build": {
+      "dependsOn": ["evmos-wallet#build", "helpers#build"],
+      "cache": false
+    },
     "eslint-config-custom#build": {},
     "tailwind-config#build": {},
     "tsconfig#build": {},
-
     "tracker#build": {},
     "constants-helper#build": {},
     "icons#build": {},
@@ -101,6 +120,10 @@
     "test:coverage": {
       "cache": false,
       "outputs": ["coverage/**"]
+    },
+    "test:e2e": {
+      "env": ["CI"],
+      "cache": false
     }
   }
 }

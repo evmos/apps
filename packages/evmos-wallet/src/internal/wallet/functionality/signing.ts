@@ -20,6 +20,7 @@ import {
   generateEndpointBroadcast,
   generatePostBodyBroadcast,
 } from "@evmos/provider";
+import { StdSignature, StdSignDoc } from "@keplr-wallet/types";
 
 export declare type TxGeneratedByBackend = {
   signDirect: {
@@ -60,10 +61,11 @@ export function createEIP712Transaction(
   );
 }
 
-type BroadcastToBackendResponse = {
-  error: string;
+interface BroadcastTxResponse {
+  raw_log: string;
   tx_hash: string;
-};
+  code: number;
+}
 
 const headers = { "Content-Type": "application/json" };
 
@@ -72,28 +74,30 @@ export async function broadcastSignedTxToBackend(
     message: protoTxNamespace.txn.TxRaw;
     path: string;
   },
-  sender: string,
   network: string = EVMOS_NETWORK_FOR_BACKEND,
   endpoint: string = EVMOS_BACKEND
 ) {
   try {
+    const bodyString = `{ "tx_bytes": [${rawTx.message
+      .serializeBinary()
+      .toString()}], "network": "${network}" }`;
+
     const postOptions = {
       method: "POST",
       headers,
-      body: `{ "txBytes": [${rawTx.message
-        .serializeBinary()
-        .toString()}], "sender": "${sender}", "network": "${network}" }`,
+      body: bodyString,
     };
+
     const broadcastPost = await fetchWithTimeout(
-      `${endpoint}/broadcast`,
+      `${endpoint}/v2/tx/broadcast`,
       postOptions
     );
-    const response = (await broadcastPost.json()) as BroadcastToBackendResponse;
+    const response = (await broadcastPost.json()) as BroadcastTxResponse;
 
-    if (response.error) {
+    if (response.code !== 0) {
       return {
         error: true,
-        message: `Transaction Failed ${response.error}`,
+        message: `Transaction Failed ${response.raw_log}`,
         txhash: `0x0`,
       };
     }
@@ -168,6 +172,11 @@ export async function broadcastSignedTxToGRPC(
   }
 }
 
+interface BroadcastEip712Response {
+  error: string;
+  tx_hash: string;
+}
+
 export async function broadcastEip712BackendTxToBackend(
   chainId: number,
   feePayer: string,
@@ -194,7 +203,7 @@ export async function broadcastEip712BackendTxToBackend(
       }
     );
 
-    const response = (await postBroadcast.json()) as BroadcastToBackendResponse;
+    const response = (await postBroadcast.json()) as BroadcastEip712Response;
     if (response.error) {
       return {
         error: true,
@@ -219,80 +228,38 @@ export async function broadcastEip712BackendTxToBackend(
   }
 }
 
-type PubKeySignature = {
-  type: string;
-  value: string;
-};
-type SignatureAmino = {
-  pub_key: PubKeySignature;
-  signature: string;
-};
-
-type FeeAmountSignedAmino = {
-  denom: string;
-  amount: string;
-};
-type FeeSignedAmino = {
-  amount: readonly FeeAmountSignedAmino[];
-  gas: string;
-};
-
-type TimeoutHeightSignedAmino = {
-  revision_height: string;
-  revision_number: string;
-};
-
-type TokenSignedAmino = {
-  amount: string;
-  denom: string;
-};
-type MsgsValueSignedAmino = {
-  receiver: string;
-  sender: string;
-  source_channel: string;
-  source_port: string;
-  timeout_height: TimeoutHeightSignedAmino;
-  timeout_timestamp: string;
-  token: TokenSignedAmino;
-};
-type MsgsSignedAmino = {
-  type: string;
-  value: MsgsValueSignedAmino;
-};
-
-type SignedAmino = {
-  account_number: string;
-  chain_id: string;
-  fee: FeeSignedAmino;
-  memo: string;
-  msgs: readonly MsgsSignedAmino[];
-  sequence: string;
-};
+interface BroadcastAminoResponse {
+  tx_hash: string;
+  raw_log: string;
+  code: number;
+}
 
 export async function broadcastAminoBackendTxToBackend(
-  signature: SignatureAmino,
-  signed: SignedAmino,
-  chainIdentifier: string,
-  endpoint: string = EVMOS_BACKEND
+  signature: StdSignature,
+  signed: StdSignDoc,
+  network: string
 ) {
   try {
     const txBody = {
       signature: signature,
       signed: signed,
-      chainIdentifier: chainIdentifier.toUpperCase(),
+      network: network.toUpperCase(),
     };
 
-    const postBroadcast = await fetchWithTimeout(`${endpoint}/broadcastAmino`, {
-      method: "post",
-      body: JSON.stringify(txBody),
-      headers,
-    });
+    const postBroadcast = await fetchWithTimeout(
+      `${EVMOS_BACKEND}/v2/tx/amino/broadcast`,
+      {
+        method: "post",
+        body: JSON.stringify(txBody),
+        headers,
+      }
+    );
 
-    const response = (await postBroadcast.json()) as BroadcastToBackendResponse;
-    if (response.error) {
+    const response = (await postBroadcast.json()) as BroadcastAminoResponse;
+    if (response.code !== 0) {
       return {
         error: true,
-        message: `Transaction Failed ${response.error}`,
+        message: `Transaction Failed ${response.raw_log}`,
         txhash: `0x0`,
       };
     }

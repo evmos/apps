@@ -17,6 +17,9 @@ const nextConfig = {
   publicRuntimeConfig: {
     version,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;

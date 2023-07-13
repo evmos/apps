@@ -1,0 +1,128 @@
+name: "Build, Lint & Test"
+
+on:
+  push:
+    branches: [main, production]
+  pull_request:
+    branches: [main, production]
+
+jobs:
+  install-dependencies:
+    if: ${{!github.event.pull_request.head.repo.fork}}
+    name: "Install Dependencies"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      ## Uncomment this section if you want to use a specific version of NodeJS
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
+      - name: Install & Cache Dependencies
+        uses: ./.github/actions/cache-dependencies
+
+  build:
+    if: ${{!github.event.pull_request.head.repo.fork}}
+    name: Build
+    needs: [install-dependencies]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      ## Uncomment this section if you want to use a specific version of NodeJS
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
+      - name: Install & Cache Dependencies
+        uses: ./.github/actions/cache-dependencies
+      - name: Build & Cache
+        uses: ./.github/actions/cache-build
+
+  lint:
+    if: ${{!github.event.pull_request.head.repo.fork}}
+    name: Lint
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      ## Uncomment this section if you want to use a specific version of NodeJS
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
+      - name: Install & Cache Dependencies
+        uses: ./.github/actions/cache-dependencies
+      - name: Build & Cache
+        uses: ./.github/actions/cache-build
+      - name: Run Linting Checks
+        run: yarn lint
+
+  vitest:
+    if: ${{!github.event.pull_request.head.repo.fork}}
+    name: Unit & Integration Tests
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      ## Uncomment this section if you want to use a specific version of NodeJS
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
+      - name: Install & Cache Dependencies
+        uses: ./.github/actions/cache-dependencies
+      - name: Build & Cache
+        uses: ./.github/actions/cache-build
+      - name: Run Unit and Integration Tests
+        run: yarn test:coverage
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-coverage
+          path: |
+            coverage/
+
+  playwright:
+    if: ${{!github.event.pull_request.head.repo.fork}}
+    name: E2E Tests
+    needs: [build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      ## Uncomment this section if you want to use a specific version of NodeJS
+      # - name: Setup NodeJS
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: 18
+      #     cache: yarn
+      - name: Install & Cache Dependencies
+        uses: ./.github/actions/cache-dependencies
+      - name: Build & Cache
+        uses: ./.github/actions/cache-build
+      - name: Install Playwright Browsers
+        run: npx playwright install chromium
+      - name: Run tests
+        run: xvfb-run yarn test:e2e
+      - uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: e2e-tests-results
+          path: |
+            apps/**/playwright-report/

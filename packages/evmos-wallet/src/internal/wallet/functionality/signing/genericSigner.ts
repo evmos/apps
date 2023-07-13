@@ -267,7 +267,6 @@ export class Signer {
         // ProtoTransaction
         return broadcastSignedTxToBackend(
           this.keplrBackendData.tx,
-          this.keplrBackendData.sender,
           this.keplrBackendData.network
         );
       }

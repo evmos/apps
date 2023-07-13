@@ -280,7 +280,7 @@ export const ButtonWalletConnection = ({
 
           <Modal show={show} onClose={close}>
             <>
-              <ModalTitle title={t("modal.title")} />
+              <ModalTitle title={t("modal.title") as string} />
 
               <div className="flex flex-col space-y-3">
                 <ButtonWallet

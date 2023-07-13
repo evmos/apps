@@ -4,7 +4,7 @@ export interface SetUpAccountI {
   checkAction: () => boolean | Promise<boolean>;
   loading: string[];
   done: string;
-  actions: (() => boolean)[];
+  actions: () => Promise<boolean | undefined>[];
   href?: string;
   status: string;
   errors?: string[];

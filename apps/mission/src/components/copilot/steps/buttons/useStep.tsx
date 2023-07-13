@@ -1,17 +1,19 @@
 import { useEffect, useRef, useState } from "react";
-import { statusProps } from "./utills";
+import { STEP_STATUS } from "./utils";
 import { GroupStateI, SetUpAccountI } from "../types";
+import { useTranslation } from "react-i18next";
 
 export const useStep = (
   step: SetUpAccountI,
   setGroupState: React.Dispatch<React.SetStateAction<GroupStateI[]>>
 ) => {
   const [text, setText] = useState(step.name);
-  const [status, setStatus] = useState(statusProps.CURRENT);
+  const [status, setStatus] = useState(STEP_STATUS.CURRENT);
   const [textError, setTextError] = useState("");
+  const { t } = useTranslation();
 
   const callActions = async () => {
-    setStatus(statusProps.PROCESSING);
+    setStatus(STEP_STATUS.PROCESSING);
     const len = step.actions.length;
     for (let index = 0; index < len; index++) {
       const action = step.actions[index];
@@ -23,9 +25,8 @@ export const useStep = (
       }
       const localAction = await action();
       if (localAction === false) {
-        setStatus(statusProps.CURRENT);
-
-        setText("Try again");
+        setStatus(STEP_STATUS.CURRENT);
+        setText(t("setupaccount.action.error"));
         if (step.errors) {
           setTextError(step.errors[index]);
         }
@@ -34,13 +35,13 @@ export const useStep = (
         if (index === len - 1) {
           // All actions have returned true
           setText(step.done);
-          setStatus(statusProps.DONE);
+          setStatus(STEP_STATUS.DONE);
           setGroupState((state) =>
             state.map((actionGroup) =>
               actionGroup.id === step.id
                 ? {
                     ...actionGroup,
-                    status: "done",
+                    status: STEP_STATUS.DONE,
                   }
                 : actionGroup
             )
@@ -54,13 +55,13 @@ export const useStep = (
     const check = async () => {
       if (await step.checkAction()) {
         setText(step.done);
-        setStatus(statusProps.DONE);
+        setStatus(STEP_STATUS.DONE);
         setGroupState((state) =>
           state.map((actionGroup) =>
             actionGroup.id === step.id
               ? {
                   ...actionGroup,
-                  status: "done",
+                  status: STEP_STATUS.DONE,
                 }
               : actionGroup
           )
@@ -73,7 +74,7 @@ export const useStep = (
       firstUpdate.current = false;
     }
 
-    if (step.href !== undefined && status !== statusProps.DONE) {
+    if (step.href !== undefined && status !== STEP_STATUS.DONE) {
       const handleVisibilityChange = async () => {
         if (document.visibilityState === "visible") {
           check();

@@ -1,5 +1,5 @@
 import { CheckIcon, CloseBorderIcon } from "icons";
-import { statusProps } from "./utills";
+import { STEP_STATUS } from "./utils";
 
 function classNames(...classes: string[]): string {
   return classes.filter(Boolean).join(" ");
@@ -17,21 +17,21 @@ type ButtonProps = {
 };
 
 const STYLE1 = {
-  [statusProps.CURRENT]: "w-[1px] bg-[#DBD3D1]",
-  [statusProps.DONE]: "w-[1.2px] bg-[#31B886]",
-  [statusProps.PROCESSING]: "w-[1px] bg-[#DBD3D1]",
+  [STEP_STATUS.CURRENT]: "w-[1px] bg-[#DBD3D1]",
+  [STEP_STATUS.DONE]: "w-[1.2px] bg-[#31B886]",
+  [STEP_STATUS.PROCESSING]: "w-[1px] bg-[#DBD3D1]",
 };
 
 const STYLE2 = {
-  [statusProps.CURRENT]: "border border-red bg-white",
-  [statusProps.DONE]: "bg-[#31B886]",
-  [statusProps.PROCESSING]: "border border-[#DBD3D1] bg-white",
+  [STEP_STATUS.CURRENT]: "border border-red bg-white",
+  [STEP_STATUS.DONE]: "bg-[#31B886]",
+  [STEP_STATUS.PROCESSING]: "border border-[#DBD3D1] bg-white",
 };
 
 const STYLE3 = {
-  [statusProps.CURRENT]: "bg-red hover:bg-red1",
-  [statusProps.DONE]: "pointer-events-none bg-[#31B886]",
-  [statusProps.PROCESSING]: "bg-red hover:bg-red1",
+  [STEP_STATUS.CURRENT]: "bg-red hover:bg-red1",
+  [STEP_STATUS.DONE]: "pointer-events-none bg-[#31B886]",
+  [STEP_STATUS.PROCESSING]: "bg-red hover:bg-red1",
 };
 
 export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
@@ -59,7 +59,7 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
         ${STYLE2[props.status]}
         `}
             >
-              {props.status === statusProps.DONE && (
+              {props.status === STEP_STATUS.DONE && (
                 <CheckIcon className="h-5 w-5 text-white" aria-hidden="true" />
               )}
             </span>
@@ -69,20 +69,20 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
             className={`ml-4 w-full space-x-2 rounded-lg px-8
             py-2 font-[GreyCliff] text-lg font-normal normal-case tracking-wider text-pearl 
             ${
-              props.statusButton === statusProps.NOT_PROCCESED
+              props.statusButton === STEP_STATUS.NOT_PROCCESED
                 ? "pointer-events-none opacity-70"
-                : props.statusButton === statusProps.DONE
+                : props.statusButton === STEP_STATUS.DONE
                 ? "pointer-events-none bg-[#31B886]"
                 : ""
             }
           ${STYLE3[props.status]}
           `}
           >
-            {props.status === statusProps.PROCESSING && (
+            {props.status === STEP_STATUS.PROCESSING && (
               <span className="loader"></span>
             )}
             <span>{props.name}</span>
-            {props.status === statusProps.DONE && <span>🎉</span>}
+            {props.status === STEP_STATUS.DONE && <span>🎉</span>}
           </button>
         </div>
         {props.textError !== "" && (

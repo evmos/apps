@@ -7,6 +7,7 @@ import {
   queryPubKey,
   isWalletSelected,
 } from "evmos-wallet";
+import { STEP_STATUS } from "../buttons/utils";
 
 const metamaskDownloadUrl = "https://metamask.io/download/";
 
@@ -73,7 +74,7 @@ export const stepsSetAccount = [
     done: "Metamask Installed",
     actions: [() => connectMematMask(metamaskDownloadUrl)],
     href: metamaskDownloadUrl,
-    status: "current",
+    status: STEP_STATUS.CURRENT,
   },
 
   {
@@ -99,6 +100,6 @@ export const stepsSetAccount = [
       "Sign rejected, please try again",
     ],
     done: "Metamask Connected",
-    status: "not_proccesed",
+    status: STEP_STATUS.NOT_PROCCESED,
   },
 ];

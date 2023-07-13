@@ -1,4 +1,4 @@
-export const statusProps = {
+export const STEP_STATUS = {
   DONE: "done",
   PROCESSING: "processing",
   CURRENT: "current",

@@ -9,6 +9,7 @@ import {
 import { Button } from "./button/Button";
 import { TitleButton } from "./button/TitleButton";
 import { Dispatch, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 export const NextSteps = ({
   setShow,
@@ -16,7 +17,7 @@ export const NextSteps = ({
   setShow: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { fireworksRef, portalContainer } = useFireworks();
-
+  const { t } = useTranslation();
   return (
     <div className="flex flex-col items-center justify-center space-y-4 text-center">
       {renderFireworksPortal(fireworksRef, portalContainer)}
@@ -25,30 +26,27 @@ export const NextSteps = ({
           🎉
         </span>
       </p>
-      <h1 className="font-bold">Congratulations!</h1>
-      <p className="text-xs">
-        You did it! You&apos;ve successfully created an account on Evmos. Get
-        started with any of the options below!
-      </p>
+      <h1 className="font-bold">{t("nextsteps.title")}</h1>
+      <p className="text-xs">{t("nextsteps.description")}</p>
       <div className="flex w-full items-center justify-between">
         <Button
           handleClick={() => {
-            handleInteractWithdApp(setShow);
+            handleInteractWithdApp(setShow, t("ecosystemUrl"));
           }}
         >
-          <TitleButton text="Interact with a dApp" />
-          <Badge text="Recommended" />
+          <TitleButton text={t("nextsteps.interactWithdApp.title")} />
+          <Badge text={t("nextsteps.interactWithdApp.badge")} />
         </Button>
 
         <Button
           handleClick={() => {
-            handleStakeWithEvmos(setShow);
+            handleStakeWithEvmos(setShow, t("stakingUrl"));
           }}
         >
-          <TitleButton text="Stake your Evmos" />
+          <TitleButton text={t("nextsteps.stakeEvmos.title")} />
 
           <Badge
-            text="Advanced"
+            text={t("nextsteps.stakeEvmos.badge")}
             style="ring-[#F4E5BA] bg-[#FEFCE8] text-[#854D0E]"
           />
         </Button>
@@ -56,10 +54,10 @@ export const NextSteps = ({
       <button
         className="w-full cursor-pointer rounded-lg border border-[#D1D5DB] py-3"
         onClick={() => {
-          handleLearnMore(setShow);
+          handleLearnMore(setShow, t("academyFAQUrl"));
         }}
       >
-        <TitleButton text=" Learn More" />
+        <TitleButton text={t("nextsteps.learnMore.title")} />
       </button>
     </div>
   );

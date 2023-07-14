@@ -1,7 +1,17 @@
 {
     "appTitle": "Misson Control",
+    "ecosystemUrl": "https://evmos.org/ecosystem",
+    "stakingUrl": "https://app.evmos.org/staking",
+    "academyFAQUrl": "https://academy.evmos.org/faq",
     "setupaccount.title": "Set up your account",
     "setupaccount.description": "Having an account allows you to use your Evmos to interact with any decentralized applications (dApps) on Evmos.",
     "setupaccount.description2": "There are different tools to set up your account such as MetaMask, Keplr or WalletConnect. For simplicity, we recommend MetaMask.",
-    "setupaccount.action.error": "Try again"
+    "setupaccount.action.error": "Try again",
+    "nextsteps.title": "Congratulations!",
+    "nextsteps.description": "You did it! You've successfully created an account on Evmos. Get started with any of the options below!",
+    "nextsteps.interactWithdApp.title": "Interact with a dApp",
+    "nextsteps.interactWithdApp.badge": "Recommended",
+    "nextsteps.stakeEvmos.title": "Stake your Evmos",
+    "nextsteps.stakeEvmos.badge": "Advanced",
+    "nextsteps.learnMore.title": "Learn more"
 }

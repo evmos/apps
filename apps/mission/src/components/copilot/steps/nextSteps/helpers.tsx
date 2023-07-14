@@ -3,20 +3,25 @@ import { Fireworks, FireworksHandlers } from "@fireworks-js/react";
 import { Dispatch, SetStateAction } from "react";
 
 export const handleInteractWithdApp = (
-  setShow: Dispatch<SetStateAction<boolean>>
+  setShow: Dispatch<SetStateAction<boolean>>,
+  url: string
 ) => {
   setShow(false);
-  window.open("https://evmos.org/ecosystem", "_blank");
+  window.open(url, "_blank");
 };
 export const handleStakeWithEvmos = (
-  setShow: Dispatch<SetStateAction<boolean>>
+  setShow: Dispatch<SetStateAction<boolean>>,
+  url: string
 ) => {
   setShow(false);
-  window.open("https://app.evmos.org/staking", "_blank");
+  window.open(url, "_blank");
 };
-export const handleLearnMore = (setShow: Dispatch<SetStateAction<boolean>>) => {
+export const handleLearnMore = (
+  setShow: Dispatch<SetStateAction<boolean>>,
+  url: string
+) => {
   setShow(false);
-  window.open("https://academy.evmos.org/faq", "_blank");
+  window.open(url, "_blank");
 };
 
 export const renderFireworksPortal = (

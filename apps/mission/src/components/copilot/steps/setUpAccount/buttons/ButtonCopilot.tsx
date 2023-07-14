@@ -82,7 +82,11 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
               <span className="loader"></span>
             )}
             <span>{props.name}</span>
-            {props.status === STEP_STATUS.DONE && <span>🎉</span>}
+            {props.status === STEP_STATUS.DONE && (
+              <span role="img" aria-label="Celebration icon">
+                🎉
+              </span>
+            )}
           </button>
         </div>
         {props.textError !== "" && (

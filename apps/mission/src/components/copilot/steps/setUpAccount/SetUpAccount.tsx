@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
-import { ActionsMetaMask } from "../buttons/ActionsMetaMask";
-import { updateCurrentStatus } from "../helpers";
-import { GroupStateI, SetUpAccountI } from "../types";
+import { ActionsMetaMask } from "./buttons/ActionsMetaMask";
+import { updateCurrentStatus } from "./helpers";
+import { GroupStateI, SetUpAccountI } from "./types";
 
 export const SetUpAccount = ({
   stepsSetAccount,

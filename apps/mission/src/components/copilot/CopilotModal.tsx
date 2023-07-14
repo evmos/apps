@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import { ModalWithTransitions } from "ui-helpers";
 import { Introduction } from "./Introduction";
-import { SetUpAccountContainer } from "./steps/setUpAccount/SetUpAccountContainer";
+import { NextSteps } from "./steps/nextSteps/NextSteps";
 
 export const CopilotModal = ({
   show,
@@ -22,7 +22,7 @@ export const CopilotModal = ({
         </div>
       </div>
       <div className="space-y-3 bg-white px-4 pb-4 pt-5 sm:p-10 md:col-span-2 md:px-8">
-        <SetUpAccountContainer />
+        <NextSteps />
       </div>
     </div>
   );

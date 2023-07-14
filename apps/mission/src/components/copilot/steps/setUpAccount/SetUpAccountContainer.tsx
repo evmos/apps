@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { stepsSetAccount } from "./utils";
 import { SuccessSetUp } from "./SuccessSetUp";
-import { checkAllDoneStatus } from "../helpers";
+import { checkAllDoneStatus } from "./helpers";
 import { SetUpAccount } from "./SetUpAccount";
 
 export const SetUpAccountContainer = () => {

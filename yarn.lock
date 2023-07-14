@@ -1113,6 +1113,13 @@
     link-module-alias "^1.2.0"
     shx "^0.3.4"
 
+"@fireworks-js/react@^2.10.7":
+  version "2.10.7"
+  resolved "https://registry.yarnpkg.com/@fireworks-js/react/-/react-2.10.7.tgz#8e06a3121f8a4717e7836de95cb0c5045129a281"
+  integrity sha512-hxfEB0vRUX7nNznhc5SEw0W8jamgF32oUiMvd5c8dOAFZgkidF8qylRw/V1Xp6In1QsjUQXnv/gvOKCe2o8JOg==
+  dependencies:
+    fireworks-js "2.10.7"
+
 "@formatjs/ecma402-abstract@1.17.0":
   version "1.17.0"
   resolved "https://registry.yarnpkg.com/@formatjs/ecma402-abstract/-/ecma402-abstract-1.17.0.tgz#2ce191a3bde4c65c6684e03fa247062a4a294b9e"
@@ -4955,6 +4962,11 @@ find-up@^4.1.0:
   dependencies:
     locate-path "^5.0.0"
     path-exists "^4.0.0"
+
+fireworks-js@2.10.7:
+  version "2.10.7"
+  resolved "https://registry.yarnpkg.com/fireworks-js/-/fireworks-js-2.10.7.tgz#eb099652304356aef160ec00869fc60f00c6277a"
+  integrity sha512-FyRNiqlgu9ZeFCjfN0UiGUlj5dUWNYLyFaWN/Q8sOMf0E+KGA4dMROaBZpCtym85fChgCspoa3jHoLTRZiy74A==
 
 flat-cache@^3.0.4:
   version "3.0.4"

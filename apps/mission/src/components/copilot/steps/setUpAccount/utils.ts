@@ -7,7 +7,7 @@ import {
   queryPubKey,
   isWalletSelected,
 } from "evmos-wallet";
-import { STEP_STATUS } from "../buttons/utils";
+import { STEP_STATUS } from "./buttons/utils";
 
 const metamaskDownloadUrl = "https://metamask.io/download/";
 

@@ -3,10 +3,11 @@
 
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
-import { StoreType } from "evmos-wallet";
+import { StoreType } from "../../../../redux/Store";
 import { BigNumber } from "ethers";
-import { getEvmosBalance } from "./fetch";
-import { BalanceResponse } from "./types";
+import { getEvmosBalance } from "../fetch";
+import { BalanceResponse } from "../types";
+
 export const useEvmosBalance = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
 

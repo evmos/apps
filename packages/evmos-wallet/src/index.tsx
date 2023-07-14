@@ -93,3 +93,4 @@ export {
 } from "./internal/wallet/functionality/metamask/metamaskHelpers";
 
 export { queryPubKey } from "./internal/wallet/functionality/pubkey";
+export { useEvmosBalance } from "./internal/wallet/functionality/hooks/useEvmosBalance";

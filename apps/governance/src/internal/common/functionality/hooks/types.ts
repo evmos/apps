@@ -23,10 +23,3 @@ export type ERC20Element = {
 export type ERC20BalanceResponse = {
   balance: ERC20Element[];
 };
-
-export type BalanceResponse = {
-  balance: {
-    amount: string;
-    denom: string;
-  };
-};

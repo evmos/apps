@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { useState } from "react";
-import { EVMOS_SYMBOL } from "evmos-wallet";
+import { EVMOS_SYMBOL, useEvmosBalance } from "evmos-wallet";
 import { Modal, ErrorMessage, ConfirmButton } from "ui-helpers";
 import { useVote } from "../../modals/hooks/useVote";
 import IdContainer from "../../common/IdContainer";
@@ -10,7 +10,6 @@ import { VoteProps } from "../../common/types";
 import RadioElementContainer from "./RadioElementContainer";
 import { useSelector } from "react-redux";
 import { StoreType, MODAL_NOTIFICATIONS } from "evmos-wallet";
-import { useEvmosBalance } from "../../../../internal/common/functionality/hooks/useEvmosBalance";
 import { convertFromAtto, getReservedForFeeText } from "helpers";
 import { FEE_VOTE } from "constants-helper";
 import { BigNumber } from "ethers";

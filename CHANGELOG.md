@@ -36,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (chore) #fse-681 | packages/evmos-wallet 1.0.10 apps/governance 1.0.16 | move useEvmosBalance to evmos-wallet
 - (feat) #fse-495 | packages/evmos-wallet 1.0.10 | Adding i18n with schummar library
 - (ci) #fse-668 | turbo.json | Updating config to be able to do a quick build using --filter for examample `yarn  build --filter mission-page`
 - (ci) #fse-675 | packages/playwright-config-custom 1.0.1 packages/vitest-config-custom 1.0.1 apps/assets 1.0.18 apps/governance 1.0.15 apps/mission 1.0.15 apps/staking 1.0.15 apps/vesting 1.0.13 packages/evmos-wallet 1.0.9 apps/helpers 1.0.5 packages/services 1.0.4 packages/tracker 1.0.3 packages/ui-helpers 1.0.9 | Refactoring playwright & vitest config

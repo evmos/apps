@@ -31,7 +31,9 @@ export const StatefulHeader = ({
       >
         Copilot
       </button>
+
       <CopilotModal show={show} setShow={setShow} />
+
       <Header
         pageName={pageName}
         setShowSidebar={setShowSidebar}

@@ -17,7 +17,15 @@ import { evmosToEth } from "@evmos/address-converter";
 import { queryPubKey } from "../pubkey";
 import { METAMASK_NOTIFICATIONS } from "../errors";
 import { MetaMaskInpageProvider } from "@metamask/providers";
-
+import {
+  GetProviderFromLocalStorage,
+  SaveProviderToLocalStorate,
+} from "../localstorage";
+import { Metamask } from "./metamask";
+import { store } from "../../../../redux/Store";
+import { ethToEvmos } from "@evmos/address-converter";
+import { setWallet } from "../../../../wallet/redux/WalletSlice";
+import { METAMASK_KEY } from "../wallet";
 export async function switchEthereumChain(ethChainId: string) {
   if (!window.ethereum) return false;
   try {
@@ -29,6 +37,22 @@ export async function switchEthereumChain(ethChainId: string) {
   } catch (e) {
     return false;
   }
+}
+
+export const isEvmosChain = async () => {
+  if (!window.ethereum) return false;
+  const chainId = await window.ethereum.request({ method: "eth_chainId" });
+  if (chainId === EVMOS_ETH_CHAIN_ID) {
+    return true;
+  }
+  return false;
+};
+
+export function isMetamaskInstalled() {
+  if (window.ethereum) {
+    return true;
+  }
+  return false;
 }
 
 export async function changeNetworkToEvmosMainnet(): Promise<boolean> {
@@ -105,6 +129,15 @@ export function subscribeToChainChanged(): boolean {
   } catch (e) {
     return false;
   }
+}
+
+export function isWalletSelected() {
+  if (!window.ethereum) return false;
+  const extension = window.ethereum as unknown as MetaMaskInpageProvider;
+  if (extension.selectedAddress === null) {
+    return false;
+  }
+  return true;
 }
 
 export async function getWallet() {
@@ -212,4 +245,46 @@ export async function addToken(token: Token) {
       };
     }
   }
+}
+
+export async function connectHandler(addresses: Maybe<string[]>) {
+  const metamask = new Metamask(store);
+  const providerLocalStorage = GetProviderFromLocalStorage();
+  if (addresses === undefined || addresses === null) {
+    metamask.reset();
+    return false;
+  }
+  if (addresses.length > 0 && addresses[0]) {
+    metamask.addressEthFormat = addresses[0];
+    metamask.addressCosmosFormat = ethToEvmos(addresses[0]);
+    metamask.evmosPubkey = await generatePubKey(metamask.addressCosmosFormat);
+    // TODO: if the user did not sign the pubkey, pop up a message
+    if (metamask.evmosPubkey === null) {
+      metamask.reset();
+      return false;
+    }
+
+    metamask.active = true;
+    store.dispatch(
+      setWallet({
+        active: metamask.active,
+        extensionName: METAMASK_KEY,
+        evmosAddressEthFormat: metamask.addressEthFormat,
+        evmosAddressCosmosFormat: metamask.addressCosmosFormat,
+        evmosPubkey: metamask.evmosPubkey,
+        osmosisPubkey: null,
+        accountName: null,
+      })
+    );
+    SaveProviderToLocalStorate(METAMASK_KEY);
+    // show the connect snackbar only if the user clicks on connect wallet
+    if (providerLocalStorage === METAMASK_KEY) {
+      return false;
+    }
+
+    SaveProviderToLocalStorate(METAMASK_KEY);
+    return true;
+  }
+  metamask.reset();
+  return false;
 }

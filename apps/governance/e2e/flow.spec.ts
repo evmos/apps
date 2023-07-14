@@ -42,9 +42,8 @@ test.describe("Governance page", () => {
   web3Test(
     "should let the user connect with MetaMask",
     async ({ page, wallet }) => {
-      await page.getByText("GovernanceConnect wallet").click();
-      await page.getByRole("button", { name: "Connect wallet" }).click();
-      await page.getByRole("button", { name: "MetaMask" }).click();
+      await page.getByRole("button", { name: /Connect/i }).click();
+      await page.getByRole("button", { name: /MetaMask/i }).click();
       await wallet.approve();
       await expect(page.getByText(/Connected with Metamask/i)).toBeVisible();
     }

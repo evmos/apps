@@ -31,3 +31,5 @@ export { EvmosRedIcon } from "./EvmosRedIcon";
 export { EvmosCopilotIcon } from "./EvmosCopilot";
 export { CreditCardsIcon } from "./CreditCards";
 export { EthereumIcon } from "./Ethereum";
+export { CloseBorderIcon } from "./CloseBorderIcon";
+export { AlertIcon } from "./AlertIcon";

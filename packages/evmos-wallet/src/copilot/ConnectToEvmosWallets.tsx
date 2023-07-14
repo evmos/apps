@@ -19,7 +19,7 @@ export const ConnectToEvmosWallets = ({
       <div className="md:mt-5">
         <ButtonWallet
           onClick={() => {
-            // TODO: open copilot
+            // TODO: open
           }}
         >
           <div className="flex items-center justify-between ">

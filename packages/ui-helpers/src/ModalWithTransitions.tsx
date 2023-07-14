@@ -1,21 +1,38 @@
 import { Dispatch, Fragment, SetStateAction } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CloseIcon } from "icons";
+import useEventListener from "./useEventListener";
 
 export const ModalWithTransitions = ({
   show,
   setShow,
   content,
+  propClose,
 }: {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
   content: React.ReactNode;
+  propClose?: boolean;
 }) => {
-  // TODO: don't use transitions if props is setted.
-  // TODO: don't show close icon if props is setted
+  useEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setShow(false);
+    }
+  });
+  if (!show) {
+    return null;
+  }
+
   return (
     <Transition.Root show={show} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setShow}>
+      <Dialog
+        as="div"
+        className="relative z-10"
+        static
+        onClose={() => {
+          propClose ?? setShow(false);
+        }}
+      >
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -28,8 +45,18 @@ export const ModalWithTransitions = ({
           <div className="bg-gray-500 fixed inset-0 bg-opacity-75 transition-opacity" />
         </Transition.Child>
 
-        <div className="fixed inset-0 z-10 overflow-y-auto bg-blackOpacity">
-          <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+        <div
+          className="fixed inset-0 z-10 overflow-y-auto bg-blackOpacity"
+          onClick={() => {
+            setShow(false);
+          }}
+        >
+          <div
+            className="flex min-h-full items-center justify-center p-4 text-center sm:p-0"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          >
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"

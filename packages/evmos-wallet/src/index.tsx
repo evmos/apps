@@ -80,3 +80,16 @@ export type { executedTx } from "./notification/transactionsTypes";
 export { TransactionStatus } from "./notification/transactionsTypes";
 export type { txStatusErrorResponse } from "./notification/transactionsTypes";
 export type { txStatusResponse } from "./notification/transactionsTypes";
+
+export { disconnectWallets } from "./internal/wallet/functionality/disconnect";
+export { Metamask } from "./internal/wallet/functionality/metamask/metamask";
+export {
+  changeNetworkToEvmosMainnet,
+  switchEthereumChain,
+  isMetamaskInstalled,
+  connectHandler,
+  isWalletSelected,
+  isEvmosChain,
+} from "./internal/wallet/functionality/metamask/metamaskHelpers";
+
+export { queryPubKey } from "./internal/wallet/functionality/pubkey";

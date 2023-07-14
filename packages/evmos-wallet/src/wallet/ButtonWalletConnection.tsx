@@ -54,6 +54,8 @@ import {
 // Components
 import { Button } from "ui-helpers";
 import { ProvidersIcons } from "../copilot/utils";
+import { TranslationContextProvider } from "schummar-translate/react";
+import { t } from "../locales/translate";
 
 // TODO: remove it. Deprecated. Now we are using copilot -> WalletConnection
 export const ButtonWalletConnection = ({
@@ -169,187 +171,194 @@ export const ButtonWalletConnection = ({
     SaveWalletToLocalStorage(walletExtension.evmosAddressEthFormat);
   }, [walletExtension]);
 
-  return walletExtension.active === true ? (
-    <>
-      <button
-        className="flex items-center space-x-3 justify-center"
-        onClick={open}
-      >
-        {ProvidersIcons[walletExtension.extensionName]}
-        <span className="text-lg font-bold">
-          {formatProviderAddress(walletExtension, true)}
-        </span>
-      </button>
-
-      <Modal show={show} onClose={close}>
+  return (
+    <TranslationContextProvider locale="en">
+      {walletExtension.active === true ? (
         <>
-          <ModalTitle title="Wallet" />
+          <button
+            className="flex items-center space-x-3 justify-center"
+            onClick={open}
+          >
+            {ProvidersIcons[walletExtension.extensionName]}
+            <span className="text-lg font-bold">
+              {formatProviderAddress(walletExtension, true)}
+            </span>
+          </button>
 
-          <div className="space-y-5">
-            <div className="flex items-center space-x-5">
-              {walletExtension.extensionName === METAMASK_KEY && (
-                <MetamaskIcon />
-              )}
-              {walletExtension.extensionName === KEPLR_KEY && <KeplrIcon />}
-              {walletExtension.extensionName === WALLECT_CONNECT_KEY && (
-                <WalletConnectIcon />
-              )}
-              {walletExtension.evmosAddressCosmosFormat !== "" && (
-                <>
-                  <div className="flex flex-col font-bold ">
-                    <div className="flex items-center space-x-2">
-                      <p>
-                        {truncateAddress(
-                          walletExtension.evmosAddressCosmosFormat
-                        )}
-                      </p>
-                      <button
-                        className="text-xs font-normal"
-                        onClick={async () => {
-                          await navigator.clipboard.writeText(
-                            walletExtension.evmosAddressCosmosFormat
-                          );
-                          setIsCopied(true);
-                        }}
-                      >
-                        <Tooltip
-                          element={<CopyIcon width={14} height={14} />}
-                          text={isCopied ? "Copied!" : "Copy"}
-                        />
-                      </button>
-                    </div>
-                    <p>
-                      {truncateAddress(walletExtension.evmosAddressEthFormat)}
-                    </p>
-                  </div>
-                  <ViewExplorer
-                    explorerTxUrl="https://www.mintscan.io/evmos/account"
-                    txHash={walletExtension.evmosAddressEthFormat}
-                  />
-                </>
-              )}
-              {walletExtension.evmosAddressCosmosFormat === "" && (
-                <p className="font-bold"> Keplr without EVMOS ledger</p>
-              )}
+          <Modal show={show} onClose={close}>
+            <>
+              <ModalTitle title="Wallet" />
+
+              <div className="space-y-5">
+                <div className="flex items-center space-x-5">
+                  {walletExtension.extensionName === METAMASK_KEY && (
+                    <MetamaskIcon />
+                  )}
+                  {walletExtension.extensionName === KEPLR_KEY && <KeplrIcon />}
+                  {walletExtension.extensionName === WALLECT_CONNECT_KEY && (
+                    <WalletConnectIcon />
+                  )}
+                  {walletExtension.evmosAddressCosmosFormat !== "" && (
+                    <>
+                      <div className="flex flex-col font-bold ">
+                        <div className="flex items-center space-x-2">
+                          <p>
+                            {truncateAddress(
+                              walletExtension.evmosAddressCosmosFormat
+                            )}
+                          </p>
+                          <button
+                            className="text-xs font-normal"
+                            onClick={async () => {
+                              await navigator.clipboard.writeText(
+                                walletExtension.evmosAddressCosmosFormat
+                              );
+                              setIsCopied(true);
+                            }}
+                          >
+                            <Tooltip
+                              element={<CopyIcon width={14} height={14} />}
+                              text={isCopied ? "Copied!" : "Copy"}
+                            />
+                          </button>
+                        </div>
+                        <p>
+                          {truncateAddress(
+                            walletExtension.evmosAddressEthFormat
+                          )}
+                        </p>
+                      </div>
+                      <ViewExplorer
+                        explorerTxUrl="https://www.mintscan.io/evmos/account"
+                        txHash={walletExtension.evmosAddressEthFormat}
+                      />
+                    </>
+                  )}
+                  {walletExtension.evmosAddressCosmosFormat === "" && (
+                    <p className="font-bold"> Keplr without EVMOS ledger</p>
+                  )}
+                </div>
+
+                <button
+                  className="w-full rounded font-bold uppercase border border-darkPearl hover:bg-grayOpacity p-3 mt-3"
+                  onClick={() => {
+                    trackClickDisconnectWallet({
+                      wallet: walletExtension?.evmosAddressEthFormat,
+                      provider: walletExtension?.extensionName,
+                    });
+                    RemoveWalletFromLocalStorage();
+                    RemoveProviderFromLocalStorage();
+                    RemoveProviderWalletConnectToLocalStorage();
+                    disconnectWallets(dispatch);
+                    setShow(false);
+                    setIsCopied(false);
+                  }}
+                >
+                  disconnect
+                </button>
+              </div>
+            </>
+          </Modal>
+        </>
+      ) : (
+        <div className="flex justify-center">
+          <Button
+            onClick={() => {
+              setShow(true);
+              trackClickConnectWallet();
+            }}
+          >
+            <div className="flex items-center space-x-2 ">
+              <WalletIcon />
+              <span>{t("button.connect")}</span>
             </div>
+          </Button>
 
-            <button
-              className="w-full rounded font-bold uppercase border border-darkPearl hover:bg-grayOpacity p-3 mt-3"
-              onClick={() => {
-                trackClickDisconnectWallet({
-                  wallet: walletExtension?.evmosAddressEthFormat,
-                  provider: walletExtension?.extensionName,
-                });
-                RemoveWalletFromLocalStorage();
-                RemoveProviderFromLocalStorage();
-                RemoveProviderWalletConnectToLocalStorage();
-                disconnectWallets(dispatch);
-                setShow(false);
-                setIsCopied(false);
-              }}
-            >
-              disconnect
-            </button>
-          </div>
-        </>
-      </Modal>
-    </>
-  ) : (
-    <div className="flex justify-center">
-      <Button
-        onClick={() => {
-          setShow(true);
-          trackClickConnectWallet();
-        }}
-      >
-        <div className="flex items-center space-x-2 ">
-          <WalletIcon />
-          <span>Connect wallet</span>
+          <Modal show={show} onClose={close}>
+            <>
+              <ModalTitle title={t("modal.title") as string} />
+
+              <div className="flex flex-col space-y-3">
+                <ButtonWallet
+                  onClick={async () => {
+                    setShow(false);
+                    disconnectWallets(dispatch);
+                    const keplr = new Keplr(store);
+                    const resultConnect = await keplr.connect();
+                    trackConnectedWithWallet({
+                      wallet: GetWalletFromLocalStorage(),
+                      provider: KEPLR_KEY,
+                    });
+                    if (resultConnect.result) {
+                      trackSuccessfulWalletConnection({
+                        provider: KEPLR_KEY,
+                      });
+                    } else {
+                      trackUnsuccessfulWalletConnection({
+                        message: resultConnect.message,
+                        provider: KEPLR_KEY,
+                      });
+                    }
+                  }}
+                >
+                  <ContentModalConnect>
+                    <>
+                      <KeplrIcon /> <span>Keplr</span>
+                    </>
+                  </ContentModalConnect>
+                </ButtonWallet>
+                <ButtonWallet
+                  onClick={async () => {
+                    setShow(false);
+                    disconnectWallets(dispatch);
+                    const metamask = new Metamask(store);
+                    const resultConnect = await metamask.connect();
+                    trackConnectedWithWallet({
+                      wallet: GetWalletFromLocalStorage(),
+                      provider: METAMASK_KEY,
+                    });
+                    if (resultConnect.result) {
+                      trackSuccessfulWalletConnection({
+                        provider: METAMASK_KEY,
+                      });
+                    } else {
+                      trackUnsuccessfulWalletConnection({
+                        message: resultConnect.message,
+                        provider: METAMASK_KEY,
+                      });
+                    }
+                  }}
+                >
+                  <ContentModalConnect>
+                    <>
+                      <MetamaskIcon /> <span>MetaMask</span>
+                    </>
+                  </ContentModalConnect>
+                </ButtonWallet>
+                <ButtonWallet
+                  onClick={async () => {
+                    setShow(false);
+                    await useWalletConnectHook.connect();
+                    trackConnectedWithWallet({
+                      wallet: GetWalletFromLocalStorage(),
+                      provider: WALLECT_CONNECT_KEY,
+                      walletSelected:
+                        GetProviderWalletConnectFromLocalStorage(),
+                    });
+                  }}
+                >
+                  <ContentModalConnect>
+                    <>
+                      <WalletConnectIcon />
+                      <span>Wallet Connect </span>
+                    </>
+                  </ContentModalConnect>
+                </ButtonWallet>
+              </div>
+            </>
+          </Modal>
         </div>
-      </Button>
-
-      <Modal show={show} onClose={close}>
-        <>
-          <ModalTitle title="Connect Wallet" />
-
-          <div className="flex flex-col space-y-3">
-            <ButtonWallet
-              onClick={async () => {
-                setShow(false);
-                disconnectWallets(dispatch);
-                const keplr = new Keplr(store);
-                const resultConnect = await keplr.connect();
-                trackConnectedWithWallet({
-                  wallet: GetWalletFromLocalStorage(),
-                  provider: KEPLR_KEY,
-                });
-                if (resultConnect.result) {
-                  trackSuccessfulWalletConnection({
-                    provider: KEPLR_KEY,
-                  });
-                } else {
-                  trackUnsuccessfulWalletConnection({
-                    message: resultConnect.message,
-                    provider: KEPLR_KEY,
-                  });
-                }
-              }}
-            >
-              <ContentModalConnect>
-                <>
-                  <KeplrIcon /> <span>Keplr</span>
-                </>
-              </ContentModalConnect>
-            </ButtonWallet>
-            <ButtonWallet
-              onClick={async () => {
-                setShow(false);
-                disconnectWallets(dispatch);
-                const metamask = new Metamask(store);
-                const resultConnect = await metamask.connect();
-                trackConnectedWithWallet({
-                  wallet: GetWalletFromLocalStorage(),
-                  provider: METAMASK_KEY,
-                });
-                if (resultConnect.result) {
-                  trackSuccessfulWalletConnection({
-                    provider: METAMASK_KEY,
-                  });
-                } else {
-                  trackUnsuccessfulWalletConnection({
-                    message: resultConnect.message,
-                    provider: METAMASK_KEY,
-                  });
-                }
-              }}
-            >
-              <ContentModalConnect>
-                <>
-                  <MetamaskIcon /> <span>MetaMask</span>
-                </>
-              </ContentModalConnect>
-            </ButtonWallet>
-            <ButtonWallet
-              onClick={async () => {
-                setShow(false);
-                await useWalletConnectHook.connect();
-                trackConnectedWithWallet({
-                  wallet: GetWalletFromLocalStorage(),
-                  provider: WALLECT_CONNECT_KEY,
-                  walletSelected: GetProviderWalletConnectFromLocalStorage(),
-                });
-              }}
-            >
-              <ContentModalConnect>
-                <>
-                  <WalletConnectIcon />
-                  <span>Wallet Connect </span>
-                </>
-              </ContentModalConnect>
-            </ButtonWallet>
-          </div>
-        </>
-      </Modal>
-    </div>
+      )}
+    </TranslationContextProvider>
   );
 };

@@ -1,17 +1,22 @@
 import ReactDOM from "react-dom";
 import { Fireworks, FireworksHandlers } from "@fireworks-js/react";
+import { Dispatch, SetStateAction } from "react";
 
-const handleRedirect = (url: string) => {
-  window.open(url, "_blank");
+export const handleInteractWithdApp = (
+  setShow: Dispatch<SetStateAction<boolean>>
+) => {
+  setShow(false);
+  window.open("https://evmos.org/ecosystem", "_blank");
 };
-export const handleInteractWithdApp = () => {
-  handleRedirect("https://evmos.org/ecosystem");
+export const handleStakeWithEvmos = (
+  setShow: Dispatch<SetStateAction<boolean>>
+) => {
+  setShow(false);
+  window.open("https://app.evmos.org/staking", "_blank");
 };
-export const handleStakeWithEvmos = () => {
-  handleRedirect("https://app.evmos.org/staking");
-};
-export const handleLearnMore = () => {
-  handleRedirect("https://academy.evmos.org/faq");
+export const handleLearnMore = (setShow: Dispatch<SetStateAction<boolean>>) => {
+  setShow(false);
+  window.open("https://academy.evmos.org/faq", "_blank");
 };
 
 export const renderFireworksPortal = (

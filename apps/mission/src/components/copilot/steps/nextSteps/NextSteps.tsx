@@ -8,8 +8,13 @@ import {
 } from "./helpers";
 import { Button } from "./button/Button";
 import { TitleButton } from "./button/TitleButton";
+import { Dispatch, SetStateAction } from "react";
 
-export const NextSteps = () => {
+export const NextSteps = ({
+  setShow,
+}: {
+  setShow: Dispatch<SetStateAction<boolean>>;
+}) => {
   const { fireworksRef, portalContainer } = useFireworks();
 
   return (
@@ -26,12 +31,20 @@ export const NextSteps = () => {
         started with any of the options below!
       </p>
       <div className="flex w-full items-center justify-between">
-        <Button handleClick={handleInteractWithdApp}>
+        <Button
+          handleClick={() => {
+            handleInteractWithdApp(setShow);
+          }}
+        >
           <TitleButton text="Interact with a dApp" />
           <Badge text="Recommended" />
         </Button>
 
-        <Button handleClick={handleStakeWithEvmos}>
+        <Button
+          handleClick={() => {
+            handleStakeWithEvmos(setShow);
+          }}
+        >
           <TitleButton text="Stake your Evmos" />
 
           <Badge
@@ -43,7 +56,7 @@ export const NextSteps = () => {
       <button
         className="w-full cursor-pointer rounded-lg border border-[#D1D5DB] py-3"
         onClick={() => {
-          handleLearnMore();
+          handleLearnMore(setShow);
         }}
       >
         <TitleButton text=" Learn More" />

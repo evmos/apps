@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { ModalWithTransitions, SmallButton, ConfirmButton } from "ui-helpers";
+import { ModalWithTransitions, ConfirmButton } from "ui-helpers";
 import { AlertIcon } from "icons";
 
 export const CancelModal = ({
@@ -14,7 +14,7 @@ export const CancelModal = ({
       <div className="items-start justify-start">
         <AlertIcon />
       </div>
-      <div className="m-5 mt-0 space-y-3">
+      <div className="mx-5 mt-0 space-y-3">
         <h3 className="text-gray-900 text-base font-semibold leading-6">
           Exit Account Set up ?
         </h3>
@@ -23,13 +23,14 @@ export const CancelModal = ({
           with Evmos.
         </p>
         <div className="flex justify-end space-x-3">
-          <SmallButton
-            text="Stay"
-            className="px-8 py-2 font-[GreyCliff] text-[1rem] font-normal"
+          <button
             onClick={() => {
               setShow(false);
             }}
-          />
+            className="color-[#D1D5DB] rounded border border-[#D1D5DB] px-8 py-2 font-[GreyCliff] text-[16px] font-normal"
+          >
+            Stay
+          </button>
           <ConfirmButton
             text="Exit"
             onClick={() => {

@@ -24,6 +24,6 @@ export const useFireworks = () => {
     return () => {
       document.body.removeChild(portalContainer);
     };
-  }, []);
+  }, [portalContainer]);
   return { fireworksRef, portalContainer };
 };

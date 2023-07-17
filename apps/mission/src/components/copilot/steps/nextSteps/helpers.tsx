@@ -3,24 +3,24 @@ import { Fireworks, FireworksHandlers } from "@fireworks-js/react";
 import { Dispatch, SetStateAction } from "react";
 
 export const handleInteractWithdApp = (
-  setShow: Dispatch<SetStateAction<boolean>>,
-  url: string
+  url: string,
+  setShow?: Dispatch<SetStateAction<boolean>>
 ) => {
-  setShow(false);
+  setShow && setShow(false);
   window.open(url, "_blank");
 };
 export const handleStakeWithEvmos = (
-  setShow: Dispatch<SetStateAction<boolean>>,
-  url: string
+  url: string,
+  setShow?: Dispatch<SetStateAction<boolean>>
 ) => {
-  setShow(false);
+  setShow && setShow(false);
   window.open(url, "_blank");
 };
 export const handleLearnMore = (
-  setShow: Dispatch<SetStateAction<boolean>>,
-  url: string
+  url: string,
+  setShow?: Dispatch<SetStateAction<boolean>>
 ) => {
-  setShow(false);
+  setShow && setShow(false);
   window.open(url, "_blank");
 };
 

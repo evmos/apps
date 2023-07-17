@@ -69,7 +69,7 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
             className={`ml-4 w-full space-x-2 rounded-lg px-8
             py-2 font-[GreyCliff] text-lg font-normal normal-case tracking-wider text-pearl 
             ${
-              props.statusButton === STEP_STATUS.NOT_PROCCESED
+              props.statusButton === STEP_STATUS.NOT_PROCESSED
                 ? "pointer-events-none opacity-70"
                 : props.statusButton === STEP_STATUS.DONE
                 ? "pointer-events-none bg-[#31B886]"

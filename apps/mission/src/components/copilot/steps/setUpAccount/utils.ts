@@ -100,6 +100,6 @@ export const stepsSetAccount = [
       "Sign rejected, please try again",
     ],
     doneText: "Metamask Connected",
-    status: STEP_STATUS.NOT_PROCCESED,
+    status: STEP_STATUS.NOT_PROCESSED,
   },
 ];

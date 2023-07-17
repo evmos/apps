@@ -3,6 +3,7 @@
 
 import { useTranslation } from "next-i18next";
 import { CheckIcon, CreditCardsIcon, EthereumIcon } from "icons";
+import { SuccessTopUp } from "./SuccessTopUp";
 
 export default function Onboard({
   topUpType,
@@ -47,6 +48,7 @@ export default function Onboard({
         </div>
       </div>
       {children}
+      <SuccessTopUp />
     </section>
   );
 }

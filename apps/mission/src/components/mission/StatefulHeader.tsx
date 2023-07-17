@@ -7,6 +7,7 @@ import { Header } from "ui-helpers";
 import { Dispatch, SetStateAction, useState } from "react";
 import { CLICK_EVMOS_LOGO, useTracker } from "tracker";
 import { CopilotModal } from "../copilot/CopilotModal";
+import { StepsContextProvider } from "../copilot/container/StepsContext";
 
 export const StatefulHeader = ({
   pageName,
@@ -31,8 +32,9 @@ export const StatefulHeader = ({
       >
         Copilot
       </button>
-
-      <CopilotModal show={show} setShow={setShow} />
+      <StepsContextProvider>
+        <CopilotModal show={show} setShow={setShow} />
+      </StepsContextProvider>
 
       <Header
         pageName={pageName}

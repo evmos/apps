@@ -14,7 +14,8 @@ import { useTranslation } from "react-i18next";
 export const NextSteps = ({
   setShow,
 }: {
-  setShow: Dispatch<SetStateAction<boolean>>;
+  // TODO: It shouldn't be optional
+  setShow?: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { fireworksRef, portalContainer } = useFireworks();
   const { t } = useTranslation();
@@ -31,7 +32,7 @@ export const NextSteps = ({
       <div className="flex w-full items-center justify-between">
         <Button
           handleClick={() => {
-            handleInteractWithdApp(setShow, t("ecosystemUrl"));
+            handleInteractWithdApp(t("ecosystemUrl"), setShow);
           }}
         >
           <TitleButton text={t("nextsteps.interactWithdApp.title")} />
@@ -40,7 +41,7 @@ export const NextSteps = ({
 
         <Button
           handleClick={() => {
-            handleStakeWithEvmos(setShow, t("stakingUrl"));
+            handleStakeWithEvmos(t("stakingUrl"), setShow);
           }}
         >
           <TitleButton text={t("nextsteps.stakeEvmos.title")} />
@@ -54,7 +55,7 @@ export const NextSteps = ({
       <button
         className="w-full cursor-pointer rounded-lg border border-[#D1D5DB] py-3"
         onClick={() => {
-          handleLearnMore(setShow, t("academyFAQUrl"));
+          handleLearnMore(t("academyFAQUrl"), setShow);
         }}
       >
         <TitleButton text={t("nextsteps.learnMore.title")} />

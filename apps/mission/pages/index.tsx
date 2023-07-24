@@ -1,20 +1,18 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import dynamic from "next/dynamic";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { WagmiConfig } from "wagmi";
-const Web3Modal = dynamic(() =>
-  import("@web3modal/react").then((mod) => mod.Web3Modal)
-);
+
 import {
+  WagmiConfig,
   store,
   ethereumClient,
   projectId,
-  wagmiClient,
-  StoreType,
   Snackbars,
+  StoreType,
   getAllSnackbars,
+  wagmiConfig,
+  Web3Modal,
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Container, TermOfServices } from "ui-helpers";
@@ -43,7 +41,7 @@ export default function Mission() {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <WagmiConfig client={wagmiClient}>
+        <WagmiConfig config={wagmiConfig}>
           <MixpanelProvider
             config={{ ip: false }}
             token={process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? ""}

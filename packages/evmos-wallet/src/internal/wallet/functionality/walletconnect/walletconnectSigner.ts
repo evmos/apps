@@ -4,25 +4,25 @@
 import { evmosToEth } from "@evmos/address-converter";
 import { Sender, TxGenerated } from "@evmos/transactions";
 import { providers } from "ethers";
-import { ProviderRpcError } from "wagmi";
 import { EVMOS_CHAIN } from "../networkConfig";
 import { createEIP712Transaction, TxGeneratedByBackend } from "../signing";
 import { EthersError } from "./walletconnect";
-import { wagmiClient } from "./walletconnectConstants";
+import { wagmiConfig } from "./walletconnectConstants";
+import { EIPToSign } from "@evmos/transactions";
 
 export async function signEvmosjsTxWithWalletConnect(
   sender: Sender,
   tx: TxGenerated
 ) {
   try {
-    const signer = (await wagmiClient.connector?.getSigner?.({
+    const signer = await wagmiConfig.connector?.getWalletClient({
       chainId: 9001,
-    })) as providers.JsonRpcSigner;
+    });
 
     if (
       signer === undefined ||
       evmosToEth(sender.accountAddress).toLowerCase() !=
-        (await signer.getAddress()).toLowerCase()
+        signer.account.address.toLowerCase()
     ) {
       return {
         result: false,
@@ -32,16 +32,25 @@ export async function signEvmosjsTxWithWalletConnect(
     }
 
     let signature = "";
+    let eip = tx.eipToSign;
     try {
-      signature = (await signer.provider.send("eth_signTypedData_v4", [
-        evmosToEth(sender.accountAddress).toLowerCase(),
-        tx.eipToSign,
-      ])) as string;
+      signature = (await signer.signTypedData({
+        //@ts-ignore
+        account: evmosToEth(sender.accountAddress).toLowerCase(),
+        domain: {
+          name: eip.domain.name,
+          version: eip.domain.version,
+          chainId: 9001,
+          //@ts-ignore
+          verifyingContract: eip.domain.verifyingContract,
+        },
+        //@ts-ignore
+        types: eip.types,
+        //@ts-ignore
+        message: eip.message,
+      })) as string;
     } catch (error) {
-      if (
-        (error as ProviderRpcError).code === 4001 ||
-        (error as EthersError).code === "ACTION_REJECTED"
-      ) {
+      if ((error as EthersError).code === "ACTION_REJECTED") {
         return {
           result: false,
           message: `Error signing the tx: Transaction was not signed.`,
@@ -84,16 +93,17 @@ export async function signBackendTxWithWalletConnect(
   sender: string,
   tx: TxGeneratedByBackend
 ) {
-  const eipToSignUTF8 = Buffer.from(tx.eipToSign, "base64").toString("utf-8");
+  let eipToSignUTF8 = JSON.parse(
+    Buffer.from(tx.eipToSign, "base64").toString("utf-8")
+  ) as EIPToSign;
 
-  const signer = (await wagmiClient.connector?.getSigner?.({
+  const client = await wagmiConfig.connector?.getWalletClient({
     chainId: 9001,
-  })) as providers.JsonRpcSigner;
+  });
 
   if (
-    signer === undefined ||
-    evmosToEth(sender).toLowerCase() !=
-      (await signer.getAddress()).toLowerCase()
+    client === undefined ||
+    evmosToEth(sender).toLowerCase() != client.account.address.toLowerCase()
   ) {
     return {
       result: false,
@@ -101,23 +111,28 @@ export async function signBackendTxWithWalletConnect(
       signature: null,
     };
   }
+  const _provider = new providers.Web3Provider(client?.transport, {
+    chainId: 9001,
+    name: "Evmos",
+  });
+
+  eipToSignUTF8.domain.chainId = 9001;
 
   let signature = "";
   try {
-    signature = (await signer.provider.send("eth_signTypedData_v4", [
-      evmosToEth(sender).toLowerCase(),
-      eipToSignUTF8,
-    ])) as string;
+    signature = (await client.request({
+      method: "eth_signTypedData_v4",
+      //@ts-ignore
+      params: [evmosToEth(sender).toLowerCase(), JSON.stringify(eipToSignUTF8)],
+    })) as string;
+
     return {
       result: true,
       message: "",
       signature: signature,
     };
   } catch (error) {
-    if (
-      (error as ProviderRpcError).code === 4001 ||
-      (error as EthersError).code === "ACTION_REJECTED"
-    ) {
+    if ((error as EthersError).code === "ACTION_REJECTED") {
       return {
         result: false,
         message: `Error signing the tx: Transaction was not signed.`,

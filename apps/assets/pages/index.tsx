@@ -5,15 +5,15 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import AssetsTable from "../src/components/asset/table/AssetsTable";
 
 import {
+  WagmiConfig,
+  store,
   ethereumClient,
   projectId,
-  wagmiClient,
-  WagmiConfig,
-  Web3Modal,
-  store,
   Snackbars,
   StoreType,
   getAllSnackbars,
+  wagmiConfig,
+  Web3Modal,
 } from "evmos-wallet";
 import { Container, TermOfServices } from "ui-helpers";
 import { Provider, useDispatch, useSelector } from "react-redux";
@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <WagmiConfig client={wagmiClient}>
+        <WagmiConfig config={wagmiConfig}>
           <MixpanelProvider
             config={{ ip: false }}
             token={process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? ""}

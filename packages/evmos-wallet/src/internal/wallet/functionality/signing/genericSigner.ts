@@ -24,7 +24,7 @@ import {
   signBackendTxWithWalletConnect,
   signEvmosjsTxWithWalletConnect,
 } from "../walletconnect/walletconnectSigner";
-import { wagmiClient } from "../walletconnect/walletconnectConstants";
+import { wagmiConfig } from "../walletconnect/walletconnectConstants";
 import { providers } from "ethers";
 import { StdSignDoc } from "@keplr-wallet/types";
 
@@ -299,7 +299,7 @@ export class Signer {
       return new Web3Provider(window.ethereum);
     }
     if (currentExtension === WALLECT_CONNECT_KEY) {
-      const connector = wagmiClient.connector;
+      const connector = wagmiConfig.connector;
       if (!connector) {
         return;
       }

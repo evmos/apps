@@ -47,7 +47,7 @@ export { getAllSnackbars } from "./notification/redux/notificationSlice";
 export {
   ethereumClient,
   projectId,
-  wagmiClient,
+  wagmiConfig,
 } from "../src/internal/wallet/functionality/walletconnect/walletconnectConstants";
 export { ButtonWalletConnection } from "./wallet/ButtonWalletConnection";
 

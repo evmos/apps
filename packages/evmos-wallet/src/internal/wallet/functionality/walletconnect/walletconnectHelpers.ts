@@ -3,13 +3,12 @@
 
 import { evmosToEth } from "@evmos/address-converter";
 import { signatureToPubkey } from "@hanchon/signature-to-pubkey";
-import { Signer } from "ethers";
 import { Token } from "../metamask/metamaskHelpers";
-import { wagmiClient } from "./walletconnectConstants";
+import { wagmiConfig } from "./walletconnectConstants";
 
 export async function watchAssetWalletConnect(token: Token) {
   try {
-    const connector = wagmiClient.connector;
+    const connector = wagmiConfig.connector;
     if (connector === undefined) {
       return null;
     }
@@ -30,15 +29,15 @@ export async function watchAssetWalletConnect(token: Token) {
 
 export async function getWalletWalletConnect() {
   try {
-    const signer = (await wagmiClient.connector?.getSigner?.({
+    const signer = await wagmiConfig.connector?.getWalletClient({
       chainId: 9001,
-    })) as Signer;
+    });
 
     if (signer === undefined) {
       return null;
     }
 
-    return await signer.getAddress();
+    return signer.account.address;
   } catch (e) {
     return null;
   }
@@ -50,16 +49,22 @@ export async function generatePubkeyFromSignatureWalletConnect(wallet: string) {
       wallet = evmosToEth(wallet);
     }
 
-    const signer = (await wagmiClient.connector?.getSigner?.({
+    const signer = await wagmiConfig.connector?.getWalletClient({
       chainId: 9001,
-    })) as Signer;
+    });
 
     if (signer === undefined) {
       return null;
     }
 
     // Make the user sign the generate_pubkey message
-    const signature = await signer.signMessage("generate_pubkey");
+    const signature = await signer.signMessage({
+      //@ts-ignore
+      account: wallet,
+      message: "generate_pubkey",
+    });
+
+    console.log("signature checker", signature);
 
     if (signature) {
       // Recover the signature

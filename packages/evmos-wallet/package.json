@@ -24,20 +24,21 @@
     "react": "^18.2.0"
   },
   "devDependencies": {
+    "@keplr-wallet/types": "^0.11.26",
+    "@metamask/providers": "^10.2.1",
     "@types/react": "^18.0.26",
+    "autoprefixer": "^10.4.13",
     "eslint-config-custom": "workspace:*",
     "postcss": "^8.4.20",
+    "prettier": "^2.8.1",
     "react": "^18.2.0",
+    "schummar-translate": "^1.18.0",
     "tailwind-config": "workspace:*",
     "tsconfig": "workspace:*",
     "tsup": "^6.1.3",
-    "typescript": "^4.9.4",
-    "@keplr-wallet/types": "^0.11.26",
-    "@metamask/providers": "^10.2.1",
-    "autoprefixer": "^10.4.13",
-    "prettier": "^2.8.1",
     "vitest-config-custom": "*",
-    "schummar-translate": "^1.18.0"
+    "viem": "^1.3.1",
+    "wagmi": "1.3.9"
   },
   "depedencies": {
     "@ethersproject/bignumber": "^5.7.0",
@@ -60,8 +61,6 @@
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
-    "typescript": "4.9.4",
-    "wagmi": "=0.10.10",
     "icons": "*",
     "ui-helpers": "*",
     "tracker": "*"

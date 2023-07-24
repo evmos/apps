@@ -46,7 +46,7 @@ export function useWalletConnect(reduxStore: ReduxWalletStore) {
   const { address, connector } = useAccount();
 
   async function connect() {
-    await open({ route: "ConnectWallet" });
+    await open();
     reduxStore.dispatch(
       setWallet({
         active: false,

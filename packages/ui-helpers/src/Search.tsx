@@ -12,11 +12,11 @@ interface searchProps {
 
 export const Search = ({ props }: { props: searchProps }) => {
   return (
-    <div className="flex items-center justify-between rounded border border-darkGray3 bg-darkGray3 px-4 font-medium">
+    <div className="border-darkGray3 bg-darkGray3 flex items-center justify-between rounded border px-4 font-medium">
       <input
         onChange={props.handleSetValue}
         value={props.value}
-        className="w-full bg-transparent text-pearl placeholder:text-darkGray5 focus-visible:outline-none"
+        className="text-pearl placeholder:text-darkGray5 w-full bg-transparent focus-visible:outline-none"
         placeholder={props.placeholder}
         onKeyDown={props.handleKeyDown}
       />

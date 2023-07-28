@@ -48,13 +48,13 @@ const Snackbar = ({
     >
       <div
         className={`
-        ${type === SNACKBAR_TYPES.SUCCESS ? "text-white bg-green" : ""}
-        ${type === SNACKBAR_TYPES.ERROR ? "text-white bg-red" : ""}
+        ${type === SNACKBAR_TYPES.SUCCESS ? "bg-green text-white" : ""}
+        ${type === SNACKBAR_TYPES.ERROR ? "bg-red text-white" : ""}
         ${type === SNACKBAR_TYPES.DEFAULT ? "bg-darkPearl text-darkGray2" : ""}
-        inline-flex relative p-2 min-w-[280px] max-w-[360px] overflow-hidden rounded-lg shadow-[0px 4px 8px rgba(0, 0, 0, 0.5)] pointer-events-auto`}
+        shadow-[0px 4px 8px rgba(0, 0, 0, 0.5)] pointer-events-auto relative inline-flex min-w-[280px] max-w-[360px] overflow-hidden rounded-lg p-2`}
       >
-        <div className="space-x-2 flex-auto p-2 self-center w-full">
-          <div className="flex font-bold items-center w-full">
+        <div className="w-full flex-auto space-x-2 self-center p-2">
+          <div className="flex w-full items-center font-bold">
             <div className="pr-3">{icon}</div>
             {content.type === SNACKBAR_CONTENT_TYPES.TEXT && (
               <SimpleSnackbar title={content.title} text={content.text} />

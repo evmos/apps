@@ -12,15 +12,18 @@
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "test:e2e": "playwright test --headed",
-    "test:e2e:debug": "playwright test --debug"
+    "test:e2e:debug": "playwright test --debug",
+    "kill": "kill-port 3001"
   },
-  "dependencies": {
+  "devDependencies": {
     "@ethersproject/bignumber": "^5.7.0",
     "@evmos/address-converter": "^0.1.9",
     "@evmos/proto": "^0.1.26",
     "@evmos/provider": "^0.2.8",
     "@evmos/transactions": "^0.2.12",
     "@hanchon/signature-to-pubkey": "^1.0.1",
+    "@keplr-wallet/types": "^0.11.26",
+    "@metamask/providers": "^10.2.1",
     "@reduxjs/toolkit": "^1.9.1",
     "@tanstack/react-query": "^4.20.4",
     "@types/node": "20.4.1",
@@ -29,37 +32,39 @@
     "@web3modal/ethereum": "=2.0.0-rc.2",
     "@web3modal/react": "=2.0.0-rc.2",
     "@web3modal/standalone": "=2.0.0-rc.2",
+    "autoprefixer": "^10.4.13",
     "constants-helper": "*",
     "copilot": "*",
+    "eslint-config-custom": "*",
     "ethers": "^5.7.2",
     "evmos-wallet": "*",
     "helpers": "*",
     "icons": "*",
     "next": "13.0.6",
+    "playwright-config-custom": "*",
+    "postcss": "^8.4.20",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.5",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
     "remark-gfm": "^3.0.1",
+    "services": "*",
+    "tailwind-config": "*",
+    "tailwindcss": "^3.2.4",
     "tracker": "*",
     "typescript": "4.9.4",
     "ui-helpers": "*",
-    "wagmi": "=0.10.10"
-  },
-  "devDependencies": {
-    "@keplr-wallet/types": "^0.11.26",
-    "@metamask/providers": "^10.2.1",
-    "autoprefixer": "^10.4.13",
-    "postcss": "^8.4.20",
-    "tailwindcss": "^3.2.4",
-    "playwright-config-custom": "*",
     "vitest-config-custom": "*",
-    "eslint-config-custom": "*"
+    "wagmi": "=0.10.10"
   },
   "browserslist": [
     "last 3 chrome version",
     "last 3 firefox version",
     "last 3 safari version"
-  ]
+  ],
+  "dependencies": {
+    "@playwright/test": "^1.36.2",
+    "dotenv": "^16.3.1"
+  }
 }

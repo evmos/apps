@@ -176,7 +176,7 @@ export const ButtonWalletConnection = ({
       {walletExtension.active === true ? (
         <>
           <button
-            className="flex items-center space-x-3 justify-center"
+            className="flex items-center justify-center space-x-3"
             onClick={open}
           >
             {ProvidersIcons[walletExtension.extensionName]}
@@ -240,7 +240,7 @@ export const ButtonWalletConnection = ({
                 </div>
 
                 <button
-                  className="w-full rounded font-bold uppercase border border-darkPearl hover:bg-grayOpacity p-3 mt-3"
+                  className="border-darkPearl hover:bg-grayOpacity mt-3 w-full rounded border p-3 font-bold uppercase"
                   onClick={() => {
                     trackClickDisconnectWallet({
                       wallet: walletExtension?.evmosAddressEthFormat,

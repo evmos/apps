@@ -19,8 +19,8 @@ export const SetUpAccount = ({
     <TranslationContextProvider locale="en">
       <section className="space-y-3">
         <h3 className="font-bold">{t("setupaccount.title")}</h3>
-        <p className="text-sm text-gray1">{t("setupaccount.description")}</p>
-        <p className="text-sm text-gray1">{t("setupaccount.description2")}</p>
+        <p className="text-gray1 text-sm">{t("setupaccount.description")}</p>
+        <p className="text-gray1 text-sm">{t("setupaccount.description2")}</p>
         <nav aria-label="Progress" className="pt-5">
           <ol role="list" className="overflow-hidden">
             {stepsSetAccount.map((step, stepIdx) => {

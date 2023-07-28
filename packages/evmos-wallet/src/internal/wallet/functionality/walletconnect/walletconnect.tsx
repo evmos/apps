@@ -25,7 +25,7 @@ import {
 import { ethToEvmos } from "@evmos/address-converter";
 import { queryPubKey } from "../pubkey";
 import { EVMOS_GRPC_URL } from "../networkConfig";
-import type { Logger } from "ethers/lib/utils.js";
+import type { Logger } from "ethers/lib/utils";
 import { generatePubkeyFromSignatureWalletConnect } from "./walletconnectHelpers";
 import { SNACKBAR_CONTENT_TYPES } from "../../../../notification/types";
 import {

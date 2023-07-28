@@ -2,8 +2,9 @@
   "name": "vitest-config-custom",
   "version": "1.0.1",
   "description": "Vitest custom config",
-  "main": "index.ts",
+  "main": "index.js",
   "private": true,
+  "type": "module",
   "devDependencies": {
     "@testing-library/react": "^14.0.0",
     "@vitejs/plugin-react": "^4.0.1",

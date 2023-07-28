@@ -45,7 +45,7 @@ export const SimpleTabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
      the value should be lower than the modal z-index
 */}
       <div className="sticky top-0 z-[9] flex w-full justify-between space-x-2 overflow-auto py-2 md:space-x-0">
-        <ul className="flex w-fit items-center justify-between rounded text-pearl">
+        <ul className="text-pearl flex w-fit items-center justify-between rounded">
           {tabItems}
         </ul>
       </div>

@@ -19,8 +19,8 @@ export const Switch = ({
           onChange={onChange}
           checked={checked}
         />
-        <div className="dark:border-gray-600 h-4 w-10 rounded-full bg-darkGray3 text-pearl after:absolute after:top-[0px] after:left-[1px] after:h-5 after:w-5 after:rounded-full after:border after:border-white after:bg-white after:transition-all after:content-[''] peer-checked:bg-darkGray3 peer-checked:after:translate-x-full peer-checked:after:border-red peer-checked:after:bg-red"></div>
-        <span className="ml-3 text-sm font-medium text-pearl">{label}</span>
+        <div className="bg-darkGray3 text-pearl peer-checked:bg-darkGray3 peer-checked:after:border-red peer-checked:after:bg-red h-4 w-10 rounded-full after:absolute after:left-[1px] after:top-[0px] after:h-5 after:w-5 after:rounded-full after:border after:border-white after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full dark:border-gray-600"></div>
+        <span className="text-pearl ml-3 text-sm font-medium">{label}</span>
       </label>
     </div>
   );

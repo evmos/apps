@@ -5,11 +5,12 @@ import { createTxRaw } from "@evmos/proto";
 import { EIPToSign, Sender, TxGenerated } from "@evmos/transactions";
 import { EthSignType, StdSignDoc } from "@keplr-wallet/types";
 // eslint-disable-next-line
-import Long from "long";
+
 import { GENERATING_TX_NOTIFICATIONS } from "../../../../notification/errors";
 import { KEPLR_ERRORS, KEPLR_NOTIFICATIONS } from "../errors";
 import { EVMOS_CHAIN } from "../networkConfig";
 import { RawTx, TxGeneratedByBackend } from "../signing";
+import Long from "long";
 
 export async function signEvmosjsTxWithKeplr(
   sender: Sender,

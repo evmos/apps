@@ -3,15 +3,14 @@
 # Find all subdirectories of the 'apps' and 'packages' folders
 subdirs=$(find ./apps ./packages -type d -not -path "*/node_modules/*")
 
+delete_dirs=(".next" "dist" ".turbo")
 # Loop through each subdirectory and delete any '.next' or 'dist' folders within it
 for dir in $subdirs; do
-    if [ -d "$dir/.next" ]; then
-        rm -rf "$dir/.next"
-        echo "$dir/.next removed"
-    fi
-
-    if [ -d "$dir/dist" ]; then
-        rm -rf "$dir/dist"
-        echo "$dir/dist removed"
-    fi
+    for delete_dir in ${delete_dirs[@]}; do
+        echo "$delete_dir"
+        if [ -d "$dir/$delete_dir" ]; then
+            rm -rf "$dir/$delete_dir"
+            echo "$dir/$delete_dir removed"
+        fi
+    done
 done

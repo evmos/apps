@@ -15,7 +15,7 @@ export const Header = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
   return (
-    <header className="flex w-full flex-col items-center space-y-2 lg:flex-row lg:justify-end lg:space-y-0 lg:space-x-2">
+    <header className="flex w-full flex-col items-center space-y-2 lg:flex-row lg:justify-end lg:space-x-2 lg:space-y-0">
       <SearchVesting />
       <ConfirmButton
         className="w-fit"

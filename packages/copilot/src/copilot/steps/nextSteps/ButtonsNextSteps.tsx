@@ -30,7 +30,7 @@ export const ButtonsNextSteps = () => {
   // TODO: use ecosystem, staking and academy link from locales
   return (
     <>
-      <div className="grid w-full grid-cols-1 space-y-3 pt-5 pb-3 md:grid-cols-2 md:space-y-0 md:space-x-4">
+      <div className="grid w-full grid-cols-1 space-y-3 pb-3 pt-5 md:grid-cols-2 md:space-x-4 md:space-y-0">
         <Button
           handleClick={() => {
             handleInteractWithdApp("https://evmos.org/ecosystem", setShowModal);
@@ -58,7 +58,7 @@ export const ButtonsNextSteps = () => {
         </Button>
       </div>
       <button
-        className="w-full cursor-pointer rounded-lg border border-gray300 py-3 shadow transition-all duration-300 hover:shadow-md"
+        className="border-gray300 w-full cursor-pointer rounded-lg border py-3 shadow transition-all duration-300 hover:shadow-md"
         onClick={() => {
           handleLearnMore("https://academy.evmos.org/faq", setShowModal);
           trackLearnMoreClick();

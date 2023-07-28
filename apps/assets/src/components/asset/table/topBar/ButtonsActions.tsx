@@ -25,7 +25,7 @@ const ButtonsActions = ({ actionsProps }: { actionsProps: actionsProps }) => {
           wallet.extensionName === METAMASK_KEY ||
           wallet.extensionName === WALLECT_CONNECT_KEY
         }
-        className="w-auto py-3 px-4 text-sm"
+        className="w-auto px-4 py-3 text-sm"
         text="Deposit"
         onClick={() => {
           actionsProps.setShow(true);
@@ -41,7 +41,7 @@ const ButtonsActions = ({ actionsProps }: { actionsProps: actionsProps }) => {
       />
       <ConfirmButton
         disabled={!wallet.active}
-        className="w-auto py-3 px-4 text-sm"
+        className="w-auto px-4 py-3 text-sm"
         text="Withdraw"
         onClick={() => {
           if (wallet.evmosAddressCosmosFormat !== "") {

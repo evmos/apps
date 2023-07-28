@@ -46,12 +46,12 @@ export const CancelModal = () => {
     setShowModal(false);
   };
   const contentModal = (
-    <div className="flex max-w-[550px] px-4 pr-2 pb-4 pt-5 sm:p-6">
+    <div className="flex max-w-[550px] px-4 pb-4 pr-2 pt-5 sm:p-6">
       <div className="items-start justify-start">
         <span
           role="img"
           aria-label="alert icon"
-          className="flex items-center justify-center rounded-full border border-pink bg-pink p-2"
+          className="border-pink bg-pink flex items-center justify-center rounded-full border p-2"
         >
           <AlertIcon
             width={24}
@@ -62,14 +62,14 @@ export const CancelModal = () => {
         </span>
       </div>
       <div className="mx-5 mt-0 space-y-3">
-        <h3 className="text-gray-900 text-base font-semibold leading-6">
+        <h3 className="text-base font-semibold leading-6 text-gray-900">
           {t("exitcopilot.title")}
         </h3>
         <p className="">{t("exitcopilot.description")}</p>
         <div className="flex justify-end space-x-3">
           <button
             onClick={handleAccept}
-            className="color-gray300 rounded-lg border border-gray300 px-8 py-2 font-normal shadow transition-all duration-300 hover:shadow-md focus-visible:outline-none"
+            className="color-gray300 border-gray300 rounded-lg border px-8 py-2 font-normal shadow transition-all duration-300 hover:shadow-md focus-visible:outline-none"
           >
             {t("exitcopilot.accept")}
           </button>

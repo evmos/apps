@@ -51,7 +51,7 @@ export const TermOfServices = () => {
   return (
     <ModalTOS title="Evmos Terms of Service" show={show}>
       <div className="space-y-3">
-        <div className="h-80 w-full space-y-3 overflow-y-auto border border-darkGray5 p-4 font-[IBM]">
+        <div className="border-darkGray5 h-80 w-full space-y-3 overflow-y-auto border p-4 font-[IBM]">
           <Content />
         </div>
         <div className="space-y-3">

@@ -39,11 +39,11 @@ export const InformationBanner = ({
 
   return isDismissed ? null : (
     <div
-      className={`rounded-md flex items-center justify-between space-x-2 bg-pearl p-3 px-5 font-[GreyCliff] text-sm font-medium text-black ${
+      className={`bg-pearl flex items-center justify-between space-x-2 rounded-md p-3 px-5 font-[GreyCliff] text-sm font-medium text-black ${
         className !== undefined ? className : ""
       }`}
     >
-      <div className="flex flex-1 self-center text-center flex-col gap-2">
+      <div className="flex flex-1 flex-col gap-2 self-center text-center">
         {title && <span className="font-bold">{title}</span>}
         {typeof text === "string" ? <p>{text}</p> : text}
       </div>

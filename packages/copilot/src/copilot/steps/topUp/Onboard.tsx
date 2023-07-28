@@ -21,14 +21,14 @@ export default function Onboard({
             <button
               className={`flex items-center justify-center gap-1 rounded-md px-3 py-1.5 ${
                 topUpType === "card"
-                  ? "border-2 border-red"
-                  : "border border-strokeGrey"
+                  ? "border-red border-2"
+                  : "border-strokeGrey border"
               }`}
             >
               <CreditCardsIcon />
               {t("topup.card.button")}
               {topUpType === "card" && (
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-red text-pearl">
+                <div className="bg-red text-pearl flex h-5 w-5 items-center justify-center rounded-full">
                   <CheckIcon width={"14px"} height={"14px"} color="#fff" />
                 </div>
               )}
@@ -37,8 +37,8 @@ export default function Onboard({
               disabled={true}
               className={`flex items-center justify-center gap-1 rounded-md px-3 py-1.5 opacity-50 ${
                 topUpType === "crypto"
-                  ? "border-2 border-red"
-                  : "border border-strokeGrey"
+                  ? "border-red border-2"
+                  : "border-strokeGrey border"
               }`}
             >
               <EthereumIcon />

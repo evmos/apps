@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "maxNodeModuleJsDepth": 1,
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -15,6 +16,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".eslintrc.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".eslintrc.js",
+    "vitest.config.mts"
+  ],
   "exclude": ["node_modules"]
 }

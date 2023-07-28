@@ -2,8 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { Sender, TxGenerated } from "@evmos/transactions";
-import { Web3Provider } from "@ethersproject/providers";
-
+import { JsonRpcFetchFunc, Web3Provider } from "@ethersproject/providers";
 import {
   signBackendTxWithKeplr,
   signEvmosjsTxWithKeplr,
@@ -25,8 +24,7 @@ import {
   signEvmosjsTxWithWalletConnect,
 } from "../walletconnect/walletconnectSigner";
 import { wagmiClient } from "../walletconnect/walletconnectConstants";
-import { providers } from "ethers";
-import { StdSignDoc } from "@keplr-wallet/types";
+import type { StdSignDoc } from "@keplr-wallet/types";
 
 type EIP712Data = {
   chainId: string;
@@ -306,7 +304,7 @@ export class Signer {
 
       const provider = (await connector.getProvider({
         chainId: 9001,
-      })) as providers.JsonRpcFetchFunc;
+      })) as JsonRpcFetchFunc;
 
       if (!provider) {
         return;

@@ -6,12 +6,11 @@ import { defineConfig, Options } from "tsup";
 export default defineConfig((options: Options) => ({
   treeshake: true,
   splitting: true,
-  entry: ["src/**/*.ts"],
+  entry: ["src/index.ts"],
   format: ["esm"],
   target: "es2020",
   dts: true,
-  minify: true,
-  clean: true,
-  external: [],
+  minify: false,
+  sourcemap: true,
   ...options,
 }));

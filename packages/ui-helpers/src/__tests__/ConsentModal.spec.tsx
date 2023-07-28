@@ -49,7 +49,7 @@ describe("Consent Modal", () => {
     );
     /* eslint-disable-next-line */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
-    act(() => {
+    await act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
     /* eslint-disable-next-line */
@@ -72,7 +72,7 @@ describe("Consent Modal", () => {
     /* eslint-disable-next-line */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
 
-    act(() => {
+    await act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
     /* eslint-disable-next-line */

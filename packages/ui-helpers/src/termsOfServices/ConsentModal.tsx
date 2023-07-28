@@ -35,7 +35,7 @@ export const ConsentModal = ({
         </Link>
         .
       </div>
-      <div className="flex items-center space-x-5 justify-center">
+      <div className="flex items-center justify-center space-x-5">
         <GrayButton
           text={<p>Accept</p>}
           onClick={() => {

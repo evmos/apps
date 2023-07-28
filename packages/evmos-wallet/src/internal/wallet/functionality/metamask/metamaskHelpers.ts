@@ -16,13 +16,14 @@ import { signatureToPubkey } from "@hanchon/signature-to-pubkey";
 import { evmosToEth } from "@evmos/address-converter";
 import { queryPubKey } from "../pubkey";
 import { METAMASK_NOTIFICATIONS } from "../errors";
-import { MetaMaskInpageProvider } from "@metamask/providers";
 import { SaveProviderToLocalStorate } from "../localstorage";
 import { Metamask } from "./metamask";
 import { store } from "../../../../redux/Store";
 import { ethToEvmos } from "@evmos/address-converter";
 import { setWallet } from "../../../../wallet/redux/WalletSlice";
 import { METAMASK_KEY } from "../wallet";
+import type { MetaMaskInpageProvider } from "@metamask/providers";
+
 export async function switchEthereumChain(ethChainId: string) {
   if (!window.ethereum) return false;
   try {

@@ -23,7 +23,7 @@ export const TabNavItemWithBorder = ({
     <li
       onClick={handleClick}
       className={`cursor-pointer px-4 py-2 text-center text-xs uppercase tracking-wider  ${
-        activeTab === id ? "border-b-2 border-pearl" : ""
+        activeTab === id ? "border-pearl border-b-2" : ""
       } 
        
       `}

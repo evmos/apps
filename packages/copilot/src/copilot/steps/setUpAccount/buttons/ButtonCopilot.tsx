@@ -63,7 +63,7 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
               className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full
               ${
                 props.statusButton === STEP_STATUS.NOT_PROCESSED
-                  ? "border border-strokeGrey bg-white"
+                  ? "border-strokeGrey border bg-white"
                   : ""
               }
         ${CIRCLE_STYLES[props.status]}
@@ -76,13 +76,13 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
           </span>
           <button
             onClick={props.handleClick}
-            className={`ml-4 w-full space-x-2 rounded-lg px-8
-            py-2 font-normal normal-case  text-pearl shadow transition-all duration-300 hover:shadow-md
+            className={`text-pearl ml-4 w-full space-x-2 rounded-lg
+            px-8 py-2 font-normal  normal-case shadow transition-all duration-300 hover:shadow-md
             ${
               props.statusButton === STEP_STATUS.NOT_PROCESSED
                 ? "pointer-events-none opacity-70"
                 : props.statusButton === STEP_STATUS.DONE
-                ? "pointer-events-none bg-green1"
+                ? "bg-green1 pointer-events-none"
                 : ""
             }
           ${BUTTON_STYLES[props.status]}
@@ -96,7 +96,7 @@ export const ButtonCopilot = ({ props }: { props: ButtonProps }) => {
           </button>
         </div>
         {props.textError !== "" && (
-          <div className="ml-4 flex items-center space-x-2  px-8 py-2 text-sm text-red">
+          <div className="text-red ml-4 flex items-center  space-x-2 px-8 py-2 text-sm">
             <CloseBorderIcon />
             <p>{props.textError}</p>
           </div>

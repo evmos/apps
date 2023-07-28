@@ -16,7 +16,7 @@ export const Navigation = ({
   return (
     <Link
       href={href}
-      className="mx-5 mb-2 flex w-fit items-center justify-center space-x-3 font-bold text-pearl hover:opacity-80 xl:mx-0 xl:justify-start"
+      className="text-pearl mx-5 mb-2 flex w-fit items-center justify-center space-x-3 font-bold hover:opacity-80 xl:mx-0 xl:justify-start"
       onClick={onClick}
     >
       <LeftArrowIcon width={15} height={15} />

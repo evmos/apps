@@ -26,12 +26,12 @@ export const SuccessTopUp = () => {
     <></>
   ) : (
     <TranslationContextProvider locale="en">
-      <div className="space-y-4 rounded-lg bg-lightYellow2 p-4">
+      <div className="bg-lightYellow2 space-y-4 rounded-lg p-4">
         <div className=" flex items-start space-x-3">
           <span
             role="img"
             aria-label="Confetti icon"
-            className="relative top-1 flex h-5 w-5 items-center justify-center rounded-full border border-lightYellow3 bg-lightYellow3 p-4"
+            className="border-lightYellow3 bg-lightYellow3 relative top-1 flex h-5 w-5 items-center justify-center rounded-full border p-4"
           >
             {Confetti}
           </span>
@@ -42,7 +42,7 @@ export const SuccessTopUp = () => {
             <PrimaryButton
               onClick={handleOnClick}
               text={t("topup.onboard.success.button.text") as string}
-              className="mt-3 ml-0"
+              className="ml-0 mt-3"
             />
           </div>
         </div>

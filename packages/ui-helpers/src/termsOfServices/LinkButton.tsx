@@ -16,7 +16,7 @@ export const LinkButton = ({
     <Link
       href={href}
       target={target}
-      className="flex items-center rounded border border-darkGray1 px-5 font-bold hover:bg-grayOpacity"
+      className="border-darkGray1 hover:bg-grayOpacity flex items-center rounded border px-5 font-bold"
     >
       {children}
     </Link>

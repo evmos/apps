@@ -15,7 +15,7 @@ export const Accordion = ({
 
   return (
     <div className="accordion">
-      <div className="accordion-item border-b-2 border-b-black bg-darkGray2 py-5">
+      <div className="accordion-item bg-darkGray2 border-b-2 border-b-black py-5">
         <div
           className={`flex items-center ${
             content !== null ? "cursor-pointer" : "cursor-default"

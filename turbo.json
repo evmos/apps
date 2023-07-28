@@ -1,128 +1,45 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "NEXT_PUBLIC_CHAIN_ID",
+    "NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA",
+    "NEXT_PUBLIC_COSMOS_CHAIN_ID",
+    "NEXT_PUBLIC_EVMOS_APP_ENV",
+    "NEXT_PUBLIC_EVMOS_BACKEND",
+    "NEXT_PUBLIC_EVMOS_CHAIN_NAME",
+    "NEXT_PUBLIC_EVMOS_CHAIN",
+    "NEXT_PUBLIC_EVMOS_COSMOS_EXPLORER",
+    "NEXT_PUBLIC_EVMOS_DECIMALS",
+    "NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID",
+    "NEXT_PUBLIC_EVMOS_GRPC_URL",
+    "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
+    "NEXT_PUBLIC_EVMOS_NETWORK_FOR_BACKEND",
+    "NEXT_PUBLIC_EVMOS_PAGE_URL",
+    "NEXT_PUBLIC_EVMOS_RPC_URL",
+    "NEXT_PUBLIC_EVMOS_SYMBOL",
+    "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
+    "NEXT_PUBLIC_MIXPANEL_TOKEN",
+    "NEXT_PUBLIC_OSMOSIS_CHAIN_ID",
+    "NEXT_PUBLIC_SITE_ID_IUBENDA",
+    "NEXT_PUBLIC_TRANSAK_API_KEY"
+  ],
   "pipeline": {
     "build": {
-      "dependsOn": ["evmos-wallet#build"],
-      "outputs": ["dist/**", ".next/**"],
-      "env": [
-        "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
-        "NEXT_PUBLIC_EVMOS_RPC_URL",
-        "NEXT_PUBLIC_EVMOS_GRPC_URL",
-        "NEXT_PUBLIC_EVMOS_CHAIN_NAME",
-        "NEXT_PUBLIC_EVMOS_SYMBOL",
-        "NEXT_PUBLIC_EVMOS_DECIMALS",
-        "NEXT_PUBLIC_EVMOS_COSMOS_EXPLORER",
-        "NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID",
-        "NEXT_PUBLIC_EVMOS_NETWORK_FOR_BACKEND",
-        "NEXT_PUBLIC_EVMOS_BACKEND",
-        "NEXT_PUBLIC_OSMOSIS_CHAIN_ID",
-        "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
-        "NEXT_PUBLIC_EVMOS_CHAIN",
-        "NEXT_PUBLIC_EVMOS_PAGE_URL",
-        "NEXT_PUBLIC_CHAIN_ID",
-        "NEXT_PUBLIC_COSMOS_CHAIN_ID",
-        "NEXT_PUBLIC_MIXPANEL_TOKEN",
-        "NEXT_PUBLIC_EVMOS_APP_ENV",
-        "NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA",
-        "NEXT_PUBLIC_SITE_ID_IUBENDA",
-        "NEXT_PUBLIC_TRANSAK_API_KEY"
-      ],
-      "cache": false
-    },
-    "assets-page#build": {
-      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build", "copilot#build"],
-      "cache": false
-    },
-    "governance-page#build": {
-      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build", "copilot#build"],
-      "cache": false
-    },
-    "mission-page#build": {
-      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build", "copilot#build"],
-      "cache": false
-    },
-    "staking-page#build": {
-      "dependsOn": ["evmos-wallet#build", "helpers#build", "services#build", "copilot#build"],
-      "cache": false
-    },
-    "vesting-page#build": {
-      "dependsOn": ["evmos-wallet#build", "helpers#build", "copilot#build"],
-      "cache": false
-    },
-    "eslint-config-custom#build": {},
-    "tailwind-config#build": {},
-    "tsconfig#build": {},
-    "tracker#build": {},
-    "constants-helper#build": {},
-    "icons#build": {},
-    "helpers#build": {},
-    "services#build": {},
-    "ui-helpers#build": {
-      "dependsOn": ["icons#build", "constants-helper#build", "tracker#build"],
+      "dependsOn": ["^build"],
+      "cache": true,
       "outputs": ["dist/**", ".next/**"]
-    },
-    "evmos-wallet#build": {
-      "dependsOn": ["icons#build", "ui-helpers#build", "tracker#build"],
-      "outputs": ["dist/**", ".next/**"],
-      "env": [
-        "NEXT_PUBLIC_GOOGLE_ANALYTICS_ID",
-        "NEXT_PUBLIC_EVMOS_RPC_URL",
-        "NEXT_PUBLIC_EVMOS_GRPC_URL",
-        "NEXT_PUBLIC_EVMOS_CHAIN_NAME",
-        "NEXT_PUBLIC_EVMOS_SYMBOL",
-        "NEXT_PUBLIC_EVMOS_DECIMALS",
-        "NEXT_PUBLIC_EVMOS_COSMOS_EXPLORER",
-        "NEXT_PUBLIC_EVMOS_ETH_CHAIN_ID",
-        "NEXT_PUBLIC_EVMOS_NETWORK_FOR_BACKEND",
-        "NEXT_PUBLIC_EVMOS_BACKEND",
-        "NEXT_PUBLIC_OSMOSIS_CHAIN_ID",
-        "NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM",
-        "NEXT_PUBLIC_EVMOS_CHAIN",
-        "NEXT_PUBLIC_EVMOS_PAGE_URL",
-        "NEXT_PUBLIC_CHAIN_ID",
-        "NEXT_PUBLIC_COSMOS_CHAIN_ID",
-        "NEXT_PUBLIC_MIXPANEL_TOKEN",
-        "NEXT_PUBLIC_EVMOS_APP_ENV",
-        "NEXT_PUBLIC_COOKIE_POLICY_ID_IUBENDA",
-        "NEXT_PUBLIC_SITE_ID_IUBENDA"
-      ]
-    },
-    "copilot#build": {
-      "dependsOn": ["icons#build", "evmos-wallet#build", "tracker#build", "ui-helpers#build"],
-      "outputs": ["dist/**", ".next/**"]
-    },
-    "eslint-config-custom#dev": {},
-    "tailwind-config#dev": {},
-    "tsconfig#dev": {},
-    "tracker#dev": {},
-    "constants-helper#dev": {},
-    "icons#dev": {},
-    "helpers#dev": {},
-    "services#dev": {},
-    "ui-helpers#dev": {
-      "dependsOn": ["icons#dev", "constants-helper#dev", "tracker#dev"]
-    },
-    "evmos-wallet#dev": {
-      "dependsOn": ["icons#dev", "ui-helpers#dev", "tracker#dev"]
-    },
-    "copilot#dev": {
-      "dependsOn": ["icons#dev", "evmos-wallet#dev", "tracker#dev", "ui-helpers#dev"]
-    },
-    "lint": {
-      "cache": false
-    },
-    "check-types": {},
-    "dev": {
-      "cache": false,
-      "persistent": true
     },
     "clean": {
       "cache": false
     },
-    "test": {
-      "cache": false
+    "dev": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
     },
-    "test:watch": {
+    "test": {},
+    "kill": {},
+    "lint": {
       "cache": false
     },
     "test:coverage": {

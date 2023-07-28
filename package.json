@@ -9,9 +9,9 @@
   ],
   "private": true,
   "scripts": {
-    "build:production": "npm run clear-cache && NEXT_PUBLIC_EVMOS_APP_ENV=production turbo run build --force --no-cache",
-    "build": "npm run clear-cache && turbo run build --force --no-cache",
-    "dev": "turbo run dev",
+    "build:production": "NEXT_PUBLIC_EVMOS_APP_ENV=production turbo run build --force --no-cache",
+    "build": "dotenv -- turbo run build",
+    "dev": "dotenv -- turbo run dev --concurrency=20",
     "lint": "turbo run lint",
     "clean": "turbo run clean",
     "test": "vitest run",
@@ -20,14 +20,14 @@
     "test:e2e": "turbo run test:e2e --concurrency 1",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky install",
-    "clear-cache": "sh ./clear-cache.sh"
+    "clear-cache": "sh ./clear-cache.sh",
+    "kill": "turbo run kill"
   },
   "devDependencies": {
     "@testing-library/user-event": "^14.4.3",
     "husky": "^8.0.3",
     "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.11",
-    "turbo": "latest"
+    "prettier-plugin-tailwindcss": "^0.1.11"
   },
   "packageManager": "yarn@1.22.17",
   "browserslist": [
@@ -41,8 +41,13 @@
     "@hookform/resolvers": "^3.1.0",
     "@testing-library/user-event": "^14.4.3",
     "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.2.1",
+    "eslint": "^8.45.0",
+    "kill-port": "^2.0.1",
     "react-confetti-explosion": "^2.1.2",
     "react-hook-form": "^7.44.3",
+    "turbo": "^1.10.12",
+    "vitest": "^0.33.0",
     "zod": "^3.21.4"
   }
 }

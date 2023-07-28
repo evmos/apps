@@ -10,8 +10,8 @@ export const PrimaryButton = ({
   return (
     <button
       onClick={onClick}
-      className={`w-auto space-x-2 rounded-lg bg-red
-    px-8 py-2 font-normal  normal-case text-pearl shadow transition-all duration-300 hover:bg-red1 hover:shadow-md 
+      className={`bg-red text-pearl hover:bg-red1 w-auto
+    space-x-2 rounded-lg px-8  py-2 font-normal normal-case shadow transition-all duration-300 hover:shadow-md 
     ${className ? className : "ml-4"}`}
     >
       {text}

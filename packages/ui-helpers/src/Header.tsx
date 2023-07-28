@@ -24,7 +24,7 @@ export const Header = ({
   }, [setShowSidebar]);
 
   return (
-    <div className="mx-5 mb-3 flex flex-col text-pearl xl:mx-0 xl:h-32 xl:flex-row xl:items-center xl:justify-between">
+    <div className="text-pearl mx-5 mb-3 flex flex-col xl:mx-0 xl:h-32 xl:flex-row xl:items-center xl:justify-between">
       <div className="flex items-center justify-between xl:justify-start">
         <Link
           href={EVMOS_PAGE_URL}

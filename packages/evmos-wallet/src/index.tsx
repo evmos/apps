@@ -4,10 +4,6 @@
 // styles
 import "./styles.css";
 
-// libs
-export { WagmiConfig } from "wagmi";
-export { Web3Modal } from "@web3modal/react";
-
 // snackbars
 export { Snackbars } from "./notification/Snackbars";
 export { addSnackbar } from "./notification/redux/notificationSlice";
@@ -35,7 +31,6 @@ export { snackWarningLedger } from "./notification/helpers";
 
 // redux
 export { store } from "./redux/Store";
-export { Provider } from "react-redux";
 export { KEPLR_KEY } from "./internal/wallet/functionality/wallet";
 export { METAMASK_KEY } from "./internal/wallet/functionality/wallet";
 export { WALLECT_CONNECT_KEY } from "./internal/wallet/functionality/wallet";

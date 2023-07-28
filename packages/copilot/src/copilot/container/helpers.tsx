@@ -12,7 +12,7 @@ export const TEXT_STYLES = {
 
 export const STEPS_CIRCLE_STYLES = {
   [STEP_STATUS.DONE]: (
-    <div className="flex h-4 w-4 items-center justify-center rounded-full bg-red text-pearl">
+    <div className="bg-red text-pearl flex h-4 w-4 items-center justify-center rounded-full">
       <CheckIcon width={"14px"} height={"14px"} color="#fff" />
     </div>
   ),
@@ -21,8 +21,8 @@ export const STEPS_CIRCLE_STYLES = {
       className="flex h-4 w-4 items-center justify-center"
       aria-hidden="true"
     >
-      <span className="absolute h-4 w-4 rounded-full bg-pink" />
-      <span className="relative block h-2 w-2 rounded-full bg-red" />
+      <span className="bg-pink absolute h-4 w-4 rounded-full" />
+      <span className="bg-red relative block h-2 w-2 rounded-full" />
     </span>
   ),
   [STEP_STATUS.NOT_PROCESSED]: (
@@ -30,7 +30,7 @@ export const STEPS_CIRCLE_STYLES = {
       className="relative flex h-4 w-4 items-center justify-center"
       aria-hidden="true"
     >
-      <div className="h-2 w-2 rounded-full bg-strokeGrey" />
+      <div className="bg-strokeGrey h-2 w-2 rounded-full" />
     </div>
   ),
 };

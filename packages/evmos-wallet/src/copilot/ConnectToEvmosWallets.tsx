@@ -17,7 +17,7 @@ export const ConnectToEvmosWallets = ({
   copilotModal?: React.ReactNode;
 }) => {
   return (
-    <div className="md:col-span-2 space-y-3 px-4 md:px-8 pb-4 pt-5 sm:p-6 bg-white">
+    <div className="space-y-3 bg-white px-4 pb-4 pt-5 sm:p-6 md:col-span-2 md:px-8">
       {copilotModal !== undefined && copilotModal}
       <div className="flex flex-col space-y-3">
         <ButtonWalletKeplr setShow={setShow} dispatch={dispatch} />

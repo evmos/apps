@@ -21,7 +21,7 @@ describe("useTracker without the mixpanel token se", () => {
       </MixpanelProvider>
     );
   };
-  test("should not call mixpanel.track", () => {
+  test("should not call mixpanel.track", async () => {
     const { result } = renderHook(
       () => useTracker("event", { prop: "value" }),
       { wrapper: wrapper }
@@ -29,7 +29,7 @@ describe("useTracker without the mixpanel token se", () => {
     /* eslint-disable-next-line */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
 
-    act(() => {
+    await act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
     /* eslint-disable-next-line */

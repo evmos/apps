@@ -3,7 +3,7 @@
 
 import { evmosToEth } from "@evmos/address-converter";
 import { EIPToSign, Sender, TxGenerated } from "@evmos/transactions";
-import { MetaMaskInpageProvider } from "@metamask/providers";
+import type { MetaMaskInpageProvider } from "@metamask/providers";
 import { METAMASK_ERRORS, METAMASK_NOTIFICATIONS } from "../errors";
 import { EVMOS_CHAIN } from "../networkConfig";
 import {

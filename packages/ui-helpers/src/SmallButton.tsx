@@ -15,7 +15,7 @@ export const SmallButton = ({
       onClick={onClick}
       className={`${
         className !== undefined ? className : ""
-      } rounded border border-black py-0.5 px-3 text-xs font-bold text-black opacity-80 hover:opacity-50`}
+      } rounded border border-black px-3 py-0.5 text-xs font-bold text-black opacity-80 hover:opacity-50`}
     >
       {text}
     </button>

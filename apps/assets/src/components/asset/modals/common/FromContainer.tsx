@@ -38,7 +38,7 @@ const FromContainer = ({ fee, balance, input, style }: FromProps) => {
           <span className="opacity-80">{truncateAddress(style.address)}</span>
         )}
       </div>
-      <div className="flex items-center space-x-3 rounded-lg border border-darkGray5 bg-white pr-5 pl-2 focus-within:border-black hover:border-black focus-visible:border-black">
+      <div className="flex items-center space-x-3 rounded-lg border border-darkGray5 bg-white pl-2 pr-5 focus-within:border-black hover:border-black focus-visible:border-black">
         <input
           className="w-full border-none p-3 hover:border-none focus-visible:outline-none"
           type="text"

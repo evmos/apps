@@ -57,7 +57,7 @@ export const ModalWithTransitions = ({
         </Transition.Child>
 
         <div
-          className="fixed inset-0 z-10 overflow-y-auto bg-blackOpacity pt-8 pb-24"
+          className="bg-blackOpacity fixed inset-0 z-10 overflow-y-auto pb-24 pt-8"
           onClick={() => {
             setShow(false);
           }}
@@ -77,7 +77,7 @@ export const ModalWithTransitions = ({
               leaveFrom="transform scale-100 opacity-100"
               leaveTo="transform scale-95 opacity-0"
             >
-              <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-[#FAF8F8] text-left shadow-xl transition-all min-w-[300px] max-w-[700px] md:min-w-[400px]">
+              <Dialog.Panel className="relative min-w-[300px] max-w-[700px] transform overflow-hidden rounded-lg bg-[#FAF8F8] text-left shadow-xl transition-all md:min-w-[400px]">
                 <div className="absolute right-0 top-0 block pr-4 pt-4">
                   {propClose && (
                     <button

@@ -1,13 +1,10 @@
-const react = require("@vitejs/plugin-react");
-const path = require("path");
+import react from "@vitejs/plugin-react";
 
-module.exports = {
+export default {
   plugins: [react()],
   test: {
     environment: "jsdom",
-    deps: {
-      moduleDirectories: [path.resolve("../../packages"), "node_modules"],
-    },
+
     exclude: [
       "**/node_modules/**",
       "**/dist/**",

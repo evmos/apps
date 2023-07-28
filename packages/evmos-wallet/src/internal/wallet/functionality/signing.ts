@@ -20,7 +20,7 @@ import {
   generateEndpointBroadcast,
   generatePostBodyBroadcast,
 } from "@evmos/provider";
-import { StdSignature, StdSignDoc } from "@keplr-wallet/types";
+import type { StdSignature, StdSignDoc } from "@keplr-wallet/types";
 
 export declare type TxGeneratedByBackend = {
   signDirect: {

@@ -159,7 +159,7 @@ const Withdraw = ({
             }
           />
           <div className="space-y-3">
-            <div className="flex items-center space-x-3 rounded-lg border border-darkGray5 bg-white pr-5 pl-2 focus-within:border-black hover:border-black focus-visible:border-black">
+            <div className="flex items-center space-x-3 rounded-lg border border-darkGray5 bg-white pl-2 pr-5 focus-within:border-black hover:border-black focus-visible:border-black">
               <input
                 className="w-full border-none p-3 hover:border-none focus-visible:outline-none"
                 value={addressTo}

@@ -1,15 +1,13 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-const colors = require("tailwindcss/colors");
-
 module.exports = {
   content: [
     // app content
     "src/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{ts,tsx}",
     "./public/**/*.html",
-    "../../packages/**/*.{js,ts,jsx,tsx}",
+    "../../packages/*/src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {

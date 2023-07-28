@@ -15,14 +15,14 @@ export const ModalTOS = ({
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-blackOpacity">
+    <div className="bg-blackOpacity fixed inset-0 z-50 flex items-center justify-center">
       <div
         onClick={(e) => {
           e.stopPropagation();
         }}
-        className="relative max-h-[350px] w-[600px] min-w-[300px] overflow-scroll rounded-lg bg-pearl px-5 py-8 text-black sm:max-h-full sm:overflow-auto  sm:px-10"
+        className="bg-pearl relative max-h-[350px] w-[600px] min-w-[300px] overflow-scroll rounded-lg px-5 py-8 text-black sm:max-h-full sm:overflow-auto  sm:px-10"
       >
-        <div className="mb-4 w-[calc(100%-32px)] text-h5 font-bold text-darkGray3">
+        <div className="text-h5 text-darkGray3 mb-4 w-[calc(100%-32px)] font-bold">
           {title}
         </div>
         {children}

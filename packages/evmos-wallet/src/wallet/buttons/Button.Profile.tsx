@@ -12,7 +12,7 @@ export const ButtonProfile = ({
 }) => {
   return (
     <button
-      className="flex items-center space-x-3 justify-center"
+      className="flex items-center justify-center space-x-3"
       onClick={() => {
         setShow(true);
       }}

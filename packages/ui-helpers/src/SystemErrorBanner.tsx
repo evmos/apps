@@ -8,7 +8,7 @@ export const SystemErrorBanner = ({
 }) => {
   return (
     <div
-      className={`rounded-md text-pearl flex items-center justify-between space-x-2 bg-red p-4 px-5 font-[GreyCliff] font-medium text-black`}
+      className={`text-pearl bg-red flex items-center justify-between space-x-2 rounded-md p-4 px-5 font-[GreyCliff] font-medium text-black`}
     >
       {text}
     </div>

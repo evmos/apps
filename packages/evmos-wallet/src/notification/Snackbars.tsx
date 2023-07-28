@@ -15,7 +15,7 @@ export function Snackbars({
   dispatch: Dispatch<AnyAction>;
 }) {
   return (
-    <div className="fixed left-3 bottom-3 z-[100] space-y-5">
+    <div className="fixed bottom-3 left-3 z-[100] space-y-5">
       {valueRedux.map((e) => {
         return (
           <Snackbar

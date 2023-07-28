@@ -8,13 +8,13 @@ import {
   ethereumClient,
   projectId,
   wagmiClient,
-  WagmiConfig,
-  Web3Modal,
   store,
   Snackbars,
   StoreType,
   getAllSnackbars,
 } from "evmos-wallet";
+import { WagmiConfig } from "wagmi";
+import { Web3Modal } from "@web3modal/react";
 import { Container, TermOfServices } from "ui-helpers";
 import { Provider, useDispatch, useSelector } from "react-redux";
 

@@ -24,13 +24,13 @@ export const WalletProfileModal = ({
 }) => {
   const [isCopied, setIsCopied] = useState(false);
   const contentModal = (
-    <div className="px-4 pr-2 pb-4 pt-5 sm:p-6">
-      <h3 className="text-gray-900 text-base font-semibold leading-6">
+    <div className="px-4 pb-4 pr-2 pt-5 sm:p-6">
+      <h3 className="text-base font-semibold leading-6 text-gray-900">
         Wallet
       </h3>
 
       <div className="space-y-5">
-        <div className="flex items-center space-x-5 justify-center">
+        <div className="flex items-center justify-center space-x-5">
           {ProvidersIcons[walletExtension.extensionName]}
 
           {walletExtension.evmosAddressCosmosFormat !== "" && (

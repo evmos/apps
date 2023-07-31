@@ -24,6 +24,7 @@
     "@hanchon/signature-to-pubkey": "^1.0.1",
     "@keplr-wallet/types": "^0.11.26",
     "@metamask/providers": "^10.2.1",
+    "@playwright/test": "^1.36.2",
     "@reduxjs/toolkit": "^1.9.1",
     "@tanstack/react-query": "^4.20.4",
     "@types/node": "20.4.1",
@@ -40,11 +41,8 @@
     "evmos-wallet": "*",
     "helpers": "*",
     "icons": "*",
-    "next": "13.0.6",
     "playwright-config-custom": "*",
     "postcss": "^8.4.20",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
     "react-markdown": "^8.0.5",
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
@@ -64,7 +62,9 @@
     "last 3 safari version"
   ],
   "dependencies": {
-    "@playwright/test": "^1.36.2",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "next": "13.0.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   }
 }

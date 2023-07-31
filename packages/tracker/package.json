@@ -23,6 +23,7 @@
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
+    "@testing-library/react": "^14.0.0",
     "@types/mixpanel": "2.14.1",
     "@types/mixpanel-browser": "2.38.1",
     "@types/node": "18.11.14",
@@ -36,7 +37,6 @@
     "vitest-config-custom": "*"
   },
   "dependencies": {
-    "@testing-library/react": "^14.0.0",
     "mixpanel-browser": "2.47.0",
     "vitest": "^0.33.0"
   },

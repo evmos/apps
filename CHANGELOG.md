@@ -36,6 +36,14 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+## 1.1.2 - 2023-07-31
+
+- (fix) | packages/copilot 1.0.2 apps/mission 1.0.18 | Fixing ecosystem url
+
+## 1.1.1 - 2023-07-31
+
+- (fix) #fse-657 | packages/copilot 1.0.1 | Fix Transak url
+
 ## 1.1.0 - 2023-07-31
 
 - (feat) #fse-657 | packages/evmos-wallet 1.0.12 packages/ui-helpers 1.0.11 packages/copilot 1.0.0 packages/tailwind-config 1.0.1 apps/assets 1.0.20 apps/governance 1.0.17 apps/mission 1.0.17 apps/staking 1.0.17 apps/vesting 1.0.15 | Add Evmos Copilot for onboarding new users

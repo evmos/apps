@@ -18,7 +18,8 @@ const Header = () => {
         <Link
           target="_blank"
           rel="noreferrer"
-          href="https://evmos.org/ecosystem"
+          // eslint-disable-next-line no-secrets/no-secrets
+          href="https://altiplanic.notion.site/a188bd13dd114a88a7763fd2a8cc601e?v=403420ad21db41ce81f09b7e3f77e4e2"
           aria-label="docs"
         >
           {/* TODO: use button component */}

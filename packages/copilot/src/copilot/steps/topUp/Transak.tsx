@@ -15,7 +15,7 @@ export default function Transak() {
     <div className="relative mx-auto mt-[25px] h-[700px] w-[300px] overflow-hidden rounded-[15px] md:h-[545px] md:w-[400px]">
       <iframe
         // eslint-disable-next-line no-secrets/no-secrets
-        src={`https://global-stg.transak.com?apiKey=${TRANSAK_API_KEY}&themeColor=ed4e33&cryptoCurrencyCode=EVMOS&network=evmos&defaultPaymentMethod=credit_debit_card&disableWalletAddressForm=true&walletAddress=${wallet.evmosAddressEthFormat}`}
+        src={`https://global.transak.com?apiKey=${TRANSAK_API_KEY}&themeColor=ed4e33&cryptoCurrencyCode=EVMOS&network=evmos&defaultPaymentMethod=credit_debit_card&disableWalletAddressForm=true&walletAddress=${wallet.evmosAddressEthFormat}`}
         allow="camera;microphone;fullscreen;payment"
         style={{ height: "100%", width: "100%", border: "none" }}
       ></iframe>

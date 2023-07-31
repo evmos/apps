@@ -33,7 +33,11 @@ export const ButtonsNextSteps = () => {
       <div className="grid w-full grid-cols-1 space-y-3 pb-3 pt-5 md:grid-cols-2 md:space-x-4 md:space-y-0">
         <Button
           handleClick={() => {
-            handleInteractWithdApp("https://evmos.org/ecosystem", setShowModal);
+            handleInteractWithdApp(
+              // eslint-disable-next-line no-secrets/no-secrets
+              "https://altiplanic.notion.site/a188bd13dd114a88a7763fd2a8cc601e?v=403420ad21db41ce81f09b7e3f77e4e2",
+              setShowModal
+            );
             trackInteractWithdAppClick();
             resetSteps();
           }}

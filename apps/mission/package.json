@@ -1,6 +1,6 @@
 {
   "name": "mission-page",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3004",
@@ -25,6 +25,7 @@
     "@hanchon/signature-to-pubkey": "^1.0.1",
     "@keplr-wallet/types": "^0.11.26",
     "@metamask/providers": "^10.2.1",
+    "@playwright/test": "^1.36.2",
     "@reduxjs/toolkit": "^1.9.1",
     "@tanstack/react-query": "^4.20.4",
     "@types/node": "20.4.1",
@@ -42,12 +43,9 @@
     "helpers": "*",
     "i18next": "^23.2.8",
     "icons": "*",
-    "next": "13.0.6",
     "next-i18next": "^14.0.0",
     "playwright-config-custom": "*",
     "postcss": "^8.4.20",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
     "react-i18next": "^13.0.2",
     "react-markdown": "^8.0.5",
     "react-redux": "^8.0.5",
@@ -69,6 +67,9 @@
   ],
   "dependencies": {
     "@playwright/test": "^1.36.2",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "next": "13.0.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   }
 }

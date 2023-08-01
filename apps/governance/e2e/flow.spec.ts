@@ -32,7 +32,7 @@ test.describe("Governance page", () => {
 
     await thirdProposal.click();
 
-    await page.waitForTimeout(100);
+    await page.waitForTimeout(1000);
 
     const proposalTitle = await page
       .getByTestId("proposal-title")

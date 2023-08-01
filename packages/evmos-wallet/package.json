@@ -58,7 +58,7 @@
     "ui-helpers": "*",
     "valtio": "^1.2.0",
     "vitest": "^0.33.0",
-    "wagmi": "=0.10.10"
+    "wagmi": "=0.12.19"
   },
   "browserslist": [
     "last 3 chrome version",

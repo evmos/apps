@@ -31,7 +31,9 @@ test.describe("Governance page", () => {
       .allInnerTexts();
 
     await thirdProposal.click();
-    await page.waitForSelector("h1");
+
+    await page.waitForTimeout(1000);
+
     const proposalTitle = await page
       .getByTestId("proposal-title")
       .allInnerTexts();

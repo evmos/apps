@@ -2,7 +2,7 @@ export default {
   appTitle: "Mission Control",
   "topup.intro.title": "Top up your account",
   "topup.intro.body":
-    "Now that you've set up your account, yo'll need Evmos tokens to access and interact with a huge catalog of decentralized apps (dApps), such as games 🎮, marketplaces 🏪, decentralized finance (DeFi) 💸, and more!",
+    "Now that you've set up your account, you'll need Evmos tokens to access and interact with a huge catalog of decentralized apps (dApps), such as games 🎮, marketplaces 🏪, decentralized finance (DeFi) 💸, and more!",
   "topup.card.button": "Debit/Credit Card",
   "topup.crypto.button": "Cryptocurrencies",
   "topup.intro.crypto.button.comingsoon": "Coming soon",

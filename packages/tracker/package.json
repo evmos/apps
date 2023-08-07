@@ -25,7 +25,7 @@
   "devDependencies": {
     "@types/mixpanel": "2.14.1",
     "@types/mixpanel-browser": "2.38.1",
-    "@types/node": "18.11.14",
+    "@types/node": "20.4.8",
     "@types/react": "^18.0.26",
     "@types/react-dom": "18.0.9",
     "eslint-config-custom": "*",

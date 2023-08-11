@@ -1,5 +1,6 @@
 {
-  "extends": "tsconfig/react-library.json",
-  "include": ["."],
+  "extends": "@evmos-apps/config/ts/react-library.json",
+  "compilerOptions": {},
+  "include": ["./**/*"],
   "exclude": ["dist", "build", "node_modules", ".eslintrc.js"]
 }

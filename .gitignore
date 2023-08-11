@@ -19,6 +19,8 @@ build
 # misc
 .DS_Store
 *.pem
+vitest.config.ts.timestamp-*
+vitest.config.mts.timestamp-*
 
 # debug
 npm-debug.log*

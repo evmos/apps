@@ -12,8 +12,9 @@ import {
   safeSubstraction,
   truncateNumber,
 } from "../index";
-import { BigNumber } from "ethers";
+
 import { parseUnits } from "@ethersproject/units";
+import { BigNumber } from "@ethersproject/bignumber";
 
 describe("Test Styles for Asset", () => {
   it("getReserverdForFee function", () => {

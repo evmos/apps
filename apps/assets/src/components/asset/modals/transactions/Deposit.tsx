@@ -1,7 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { BigNumber } from "ethers";
 import { parseUnits } from "@ethersproject/units";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,6 +41,8 @@ import {
   SNACKBAR_CONTENT_TYPES,
   SNACKBAR_TYPES,
 } from "evmos-wallet";
+import { BigNumber } from "@ethersproject/bignumber";
+
 const Deposit = ({
   item,
   feeBalance,
@@ -320,7 +321,6 @@ const Deposit = ({
               wallet.osmosisPubkey,
               keplrAddress,
               params,
-              wallet.extensionName,
               item.prefix,
               item.chainIdentifier
             );

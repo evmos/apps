@@ -4,7 +4,7 @@
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { StoreType } from "../../../../redux/Store";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { getEvmosBalance } from "../fetch";
 import { BalanceResponse } from "../types";
 

@@ -8,7 +8,9 @@ export const SearchVesting = () => {
   const router = useRouter();
 
   const handleRouting = () => {
-    router.push({ pathname: "/", query: { account: value } });
+    router
+      .push({ pathname: "/", query: { account: value } })
+      .catch(console.error);
   };
   const handleOnClick = () => {
     handleRouting();

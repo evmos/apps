@@ -1,5 +1,5 @@
 {
-  "extends": "tsconfig/base.json",
+  "extends": "@evmos-apps/config/ts/react-library.json",
   "compilerOptions": {
     "noEmit": true
   },

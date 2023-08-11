@@ -1,7 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { BigNumber } from "ethers";
 import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
@@ -22,6 +21,7 @@ import {
   snackErrorGettingBalanceExtChain,
   EVMOS_SYMBOL,
 } from "evmos-wallet";
+import { BigNumber } from "@ethersproject/bignumber";
 export type DepositElement = {
   chain: string;
   elements: TableDataElement[];

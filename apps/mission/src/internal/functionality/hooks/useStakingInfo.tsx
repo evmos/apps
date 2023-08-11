@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { StoreType } from "evmos-wallet";
 
 import { useMemo } from "react";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import {
   DelegationsResponse,
   StakingInfoResponse,

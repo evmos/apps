@@ -1,6 +1,6 @@
 import { ModalTitle } from "ui-helpers";
 import React, { useMemo } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { formatNumber } from "helpers";
 import {
@@ -15,12 +15,6 @@ import {
 } from "../helpers";
 
 export const CreateAccountModal = () => {
-  const handleOnClick = (d: FieldValues) => {
-    // TODO: logic for create account modal
-    if (d.accountName !== "" && d.address) {
-      setVestingAccountNameLocalstorage(d.address, d.accountName);
-    }
-  };
   const {
     register,
     handleSubmit,
@@ -47,8 +41,10 @@ export const CreateAccountModal = () => {
 
       <form
         onSubmit={handleSubmit((d) => {
-          console.log(d);
-          handleOnClick(d);
+          if (d.accountName !== "" && d.address) {
+            // TODO: logic for create account modal
+            setVestingAccountNameLocalstorage(d.address, d.accountName);
+          }
         })}
         className="flex flex-col space-y-3"
       >
@@ -58,9 +54,9 @@ export const CreateAccountModal = () => {
         <select
           id="planType"
           {...planTypeRegister}
-          onChange={(e) => {
+          onChange={async (e) => {
             const planType = e.target.value as "Team" | "Grantee" | "Custom";
-            planTypeRegister.onChange(e); // method from hook form register
+            await planTypeRegister.onChange(e); // method from hook form register
             setValue(
               "vestingDuration",
               vestingSettingsConfig[planType].duration[0]

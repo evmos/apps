@@ -5,193 +5,60 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { parseEther } from "@ethersproject/units";
 
 import {
-  EVMOS_BACKEND,
-  EVMOS_NETWORK_FOR_BACKEND,
-  Signer,
-  IBCTransferResponse,
   ConvertMsg,
   BROADCASTED_NOTIFICATIONS,
-  GENERATING_TX_NOTIFICATIONS,
   MODAL_NOTIFICATIONS,
-  SIGNING_NOTIFICATIONS,
+  WalletExtension,
+  mapExecuteResponse,
+  executeApiTransaction,
+  apiConvertCoin,
+  apiConvertERC20,
 } from "evmos-wallet";
+import { raise } from "helpers";
 const feeAmountForConvert = BigNumber.from("30000000000000000");
 
-async function convertCoinBackendCall(
-  pubkey: string,
-  address: string,
-  params: ConvertMsg
-): Promise<{
-  error: boolean;
-  message: string;
-  data: IBCTransferResponse | null;
-}> {
-  try {
-    const post = await fetch(`${EVMOS_BACKEND}/convertCoin`, {
-      method: "post",
-      body: JSON.stringify({
-        transaction: {
-          pubKey: pubkey,
-          sender: address,
-        },
-        message: {
-          srcChain: params.srcChain.toUpperCase(),
-          sender: params.addressCosmos,
-          receiver: params.addressEth,
-          amount: params.amount,
-          token: params.token,
-        },
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = (await post.json()) as IBCTransferResponse;
-    if ("error" in data) {
-      // TODO: add sentry call here!
-      return {
-        error: true,
-        message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-        data: null,
-      };
-    }
-    return { error: false, message: "", data: data };
-  } catch (e) {
-    // TODO: add sentry call here!
-    return {
-      error: true,
-      message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-      data: null,
-    };
-  }
-}
-
-async function convertERC20BackendCall(
-  pubkey: string,
-  address: string,
-  params: ConvertMsg
-): Promise<{
-  error: boolean;
-  message: string;
-  data: IBCTransferResponse | null;
-}> {
-  try {
-    const post = await fetch(`${EVMOS_BACKEND}/convertERC20`, {
-      method: "post",
-      body: JSON.stringify({
-        transaction: {
-          pubKey: pubkey,
-          sender: address,
-        },
-        message: {
-          srcChain: params.srcChain.toUpperCase(),
-          sender: params.addressEth,
-          receiver: params.addressCosmos,
-          amount: params.amount,
-          token: params.token,
-        },
-      }),
-      headers: { "Content-Type": "application/json" },
-    });
-    const data = (await post.json()) as IBCTransferResponse;
-    if ("error" in data) {
-      // TODO: add sentry call here!
-      return {
-        error: true,
-        message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-        data: null,
-      };
-    }
-    return { error: false, message: "", data };
-  } catch (e) {
-    // TODO: add sentry call here!
-    return {
-      error: true,
-      message: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-      data: null,
-    };
-  }
-}
-
-export async function executeConvert(
-  pubkey: string,
-  address: string,
+export const executeConvert = async (
+  wallet: WalletExtension,
   params: ConvertMsg,
   isERC20Selected: boolean,
-  feeBalance: BigNumber,
-  extension: string
-) {
+  feeBalance: BigNumber
+) => {
   if (feeBalance.lt(feeAmountForConvert)) {
-    return {
+    return mapExecuteResponse({
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorInsufficientFeeSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
-      txHash: "",
-      explorerTxUrl: "",
-    };
+    });
   }
 
   if (parseEther(params.amount).lte(BigNumber.from(0))) {
-    return {
+    return mapExecuteResponse({
       error: true,
       message: MODAL_NOTIFICATIONS.ErrorZeroAmountSubtext,
       title: MODAL_NOTIFICATIONS.ErrorAmountTitle,
-      txHash: "",
-      explorerTxUrl: "",
-    };
+    });
   }
 
-  let tx;
-  if (isERC20Selected) {
-    tx = await convertERC20BackendCall(pubkey, address, params);
-  } else {
-    tx = await convertCoinBackendCall(pubkey, address, params);
-  }
-
-  if (tx.error === true || tx.data === null) {
-    // Error generating the transaction
-    return {
-      error: true,
-      message: tx.message,
-      title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
-      txHash: "",
-      explorerTxUrl: "",
-    };
-  }
-
-  const signer = new Signer();
-  const sign = await signer.signBackendTx(
-    address,
-    tx.data,
-    EVMOS_NETWORK_FOR_BACKEND,
-    extension
+  const apiFn = isERC20Selected ? apiConvertCoin : apiConvertERC20;
+  const { apiResponse, error, hash } = await executeApiTransaction(() =>
+    apiFn({
+      address: wallet.evmosAddressCosmosFormat,
+      pubkey: wallet.evmosPubkey ?? raise("ACCOUNT_NOT_FOUND"),
+      params,
+    })
   );
-  if (sign.result === false) {
-    return {
+  if (error) {
+    return mapExecuteResponse({
       error: true,
-      message: sign.message,
-      title: SIGNING_NOTIFICATIONS.ErrorTitle,
-      txHash: "",
-      explorerTxUrl: "",
-    };
-  }
-
-  const broadcastResponse = await signer.broadcastTxToBackend();
-
-  if (broadcastResponse.error === true) {
-    // TODO: add sentry call here!
-    return {
-      error: true,
-      message: broadcastResponse.message,
+      message: error.message,
       title: BROADCASTED_NOTIFICATIONS.ErrorTitle,
-      txHash: "",
-      explorerTxUrl: "",
-    };
+    });
   }
-
-  return {
+  return mapExecuteResponse({
     error: false,
-    message: `${BROADCASTED_NOTIFICATIONS.SubmitTitle} ${broadcastResponse.txhash}`,
+    message: `${BROADCASTED_NOTIFICATIONS.SubmitTitle} ${hash}`,
     title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
-    txHash: broadcastResponse.txhash,
-    explorerTxUrl: tx?.data?.explorerTxUrl,
-  };
-}
+    txHash: hash,
+    explorerTxUrl: apiResponse.explorerTxUrl,
+  });
+};

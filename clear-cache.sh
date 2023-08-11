@@ -3,7 +3,7 @@
 # Find all subdirectories of the 'apps' and 'packages' folders
 subdirs=$(find ./apps ./packages -type d -not -path "*/node_modules/*")
 
-delete_dirs=(".next" "dist" ".turbo")
+delete_dirs=(".next" "dist" ".turbo" "node_modules")
 # Loop through each subdirectory and delete any '.next' or 'dist' folders within it
 for dir in $subdirs; do
     for delete_dir in ${delete_dirs[@]}; do

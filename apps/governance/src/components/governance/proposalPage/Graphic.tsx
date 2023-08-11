@@ -14,7 +14,7 @@ import { CloseIcon, CheckIcon } from "icons";
 import { BAR_COLORS } from "../bar/styles";
 import VotingDetails from "../common/VotingDetails";
 import VoteButton from "./vote/VoteButton";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 const Graphic = ({
   data,
   loading,

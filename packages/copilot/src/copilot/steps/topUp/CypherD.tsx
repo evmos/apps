@@ -32,7 +32,7 @@ export default function CypherD() {
         parentComponentId: "cypher-onboading-sdk", // Id of the <div> tag inside which the widget is needed
       });
     }
-  }, []);
+  }, [wallet?.evmosAddressEthFormat]);
 
   return (
     <>

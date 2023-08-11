@@ -274,12 +274,9 @@ const Withdraw = ({
             );
             // create, sign and broadcast tx
             const res = await executeWithdraw(
-              wallet.evmosPubkey,
-              wallet.evmosAddressCosmosFormat,
+              wallet,
               params,
               feeBalance,
-              wallet.extensionName,
-              item.prefix,
               isERC20Selected
             );
 

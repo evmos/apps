@@ -3,6 +3,7 @@ import { renderHook, act } from "@testing-library/react";
 import { useTracker } from "../useTracker";
 import { MixpanelProvider } from "../MixPanelProvider";
 import mixpanel from "mixpanel-browser";
+import { CLICK_CONNECT_WALLET_BUTTON } from "../constants";
 
 vi.mock("mixpanel-browser", () => {
   return {
@@ -21,15 +22,15 @@ describe("useTracker without the mixpanel token se", () => {
       </MixpanelProvider>
     );
   };
-  test("should not call mixpanel.track", () => {
+  test("should not call mixpanel.track", async () => {
     const { result } = renderHook(
-      () => useTracker("event", { prop: "value" }),
+      () => useTracker(CLICK_CONNECT_WALLET_BUTTON, { prop: "value" }),
       { wrapper: wrapper }
     );
     /* eslint-disable-next-line */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
 
-    act(() => {
+    await act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
     /* eslint-disable-next-line */

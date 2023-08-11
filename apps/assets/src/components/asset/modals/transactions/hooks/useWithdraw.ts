@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { parseUnits } from "@ethersproject/units";
 import { useDispatch, useSelector } from "react-redux";
 import { executeWithdraw } from "../../../../../internal/asset/functionality/transactions/withdraw";
@@ -116,12 +116,9 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
     }
     // create, sign and broadcast tx
     const res = await executeWithdraw(
-      wallet.evmosPubkey,
-      wallet.evmosAddressCosmosFormat,
+      wallet,
       params,
       useWithdrawProps.feeBalance,
-      wallet.extensionName,
-      prefix,
       useERC20Denom
     );
 

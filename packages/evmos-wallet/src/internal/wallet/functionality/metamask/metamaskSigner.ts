@@ -27,7 +27,11 @@ export declare type BackendTxSignatureResponse = {
 export async function signEvmosjsTxWithMetamask(
   sender: Sender,
   tx: TxGenerated
-) {
+): Promise<{
+  result: boolean;
+  message: string;
+  transaction: RawTx | null;
+}> {
   if (!window.ethereum)
     return {
       result: false,

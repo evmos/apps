@@ -15,7 +15,7 @@ export const web3Test = test.extend<{
   wallet: Dappwright;
 }>({
   context: async ({}, use) => {
-    const [wallet, _, context] = await dappwright.bootstrap("", {
+    const [wallet, , context] = await dappwright.bootstrap("", {
       wallet: "metamask",
       version: MetaMaskWallet.recommendedVersion,
       seed:
@@ -46,7 +46,7 @@ export const web3TestWithoutNetwork = test.extend<{
   wallet: Dappwright;
 }>({
   context: async ({}, use) => {
-    const [wallet, _, context] = await dappwright.bootstrap("", {
+    const [, , context] = await dappwright.bootstrap("", {
       wallet: "metamask",
       version: MetaMaskWallet.recommendedVersion,
       seed:

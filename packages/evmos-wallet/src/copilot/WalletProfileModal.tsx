@@ -7,7 +7,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import { AnyAction } from "redux";
 import { CopyIcon } from "icons";
 import { truncateAddress } from "../internal/wallet/style/format";
-import { ButtonDisconnect } from "../wallet/buttons/Button.Disconnect";
+import { ButtonDisconnect } from "./buttons/Button.Disconnect";
 import { ModalWithTransitions } from "ui-helpers";
 import { ProvidersIcons } from "./utils";
 

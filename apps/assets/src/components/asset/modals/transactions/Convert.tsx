@@ -15,10 +15,8 @@ import { executeConvert } from "../../../../internal/asset/functionality/transac
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { WEVMOS_CONTRACT_ADDRESS } from "../constants";
 import WETH_ABI from "./contracts/abis/WEVMOS/WEVMOS.json";
-import { createContract } from "./contracts/contractHelper";
 
 import AddTokenMetamask from "./AddTokenMetamask";
-import { WEVMOS } from "./contracts/abis/WEVMOS/WEVMOS";
 
 import {
   StoreType,
@@ -39,6 +37,7 @@ import {
   SUCCESSFUL_CONVERT_TX,
   UNSUCCESSFUL_CONVERT_TX,
 } from "tracker";
+import { prepareWriteContract, writeContract } from "@wagmi/core";
 
 const IBC_ERC20 = "IBC<>ERC-20";
 const ERC20_IBC = "ERC-20 <> IBC";
@@ -87,8 +86,6 @@ const Convert = ({
       });
     }
   }, [isERC20Selected, item]);
-
-  const WEVMOS = WEVMOS_CONTRACT_ADDRESS;
 
   const token: Token = {
     erc20Address: item.erc20Address,
@@ -215,12 +212,10 @@ const Convert = ({
               };
               setDisabled(true);
               const res = await executeConvert(
-                wallet.evmosPubkey,
-                wallet.evmosAddressCosmosFormat,
+                wallet,
                 params,
                 isERC20Selected,
-                feeBalance,
-                wallet.extensionName
+                feeBalance
               );
 
               dispatch(
@@ -268,11 +263,13 @@ const Convert = ({
             } else {
               if (isERC20Selected) {
                 try {
-                  const contract = await createContract(
-                    WEVMOS,
-                    WETH_ABI,
-                    wallet.extensionName
-                  );
+                  const contract = await prepareWriteContract({
+                    address: WEVMOS_CONTRACT_ADDRESS,
+                    abi: WETH_ABI,
+                    functionName: "withdraw",
+                    value: amount.toBigInt(),
+                  });
+
                   if (contract === null) {
                     dispatch(
                       addSnackbar({
@@ -288,7 +285,8 @@ const Convert = ({
                     return;
                   }
                   setDisabled(true);
-                  const res = await (contract as WEVMOS).withdraw(amount);
+                  const res = await writeContract(contract);
+                  debugger;
                   dispatch(
                     addSnackbar({
                       id: 0,
@@ -316,11 +314,12 @@ const Convert = ({
                 }
               } else {
                 try {
-                  const contract = await createContract(
-                    WEVMOS,
-                    WETH_ABI,
-                    wallet.extensionName
-                  );
+                  const contract = await prepareWriteContract({
+                    address: WEVMOS_CONTRACT_ADDRESS,
+                    abi: WETH_ABI,
+                    functionName: "deposit",
+                    value: amount.toBigInt(),
+                  });
                   if (contract === null) {
                     dispatch(
                       addSnackbar({
@@ -336,9 +335,7 @@ const Convert = ({
                     return;
                   }
                   setDisabled(true);
-                  const res = await (contract as WEVMOS).deposit({
-                    value: amount,
-                  });
+                  const res = await writeContract(contract);
                   dispatch(
                     addSnackbar({
                       id: 0,

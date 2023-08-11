@@ -4,16 +4,13 @@
 import { Dispatch, SetStateAction } from "react";
 import { ConnectToEvmos } from "./ConnectToEvmos";
 import { ConnectToEvmosWallets } from "./ConnectToEvmosWallets";
-import { AnyAction } from "redux";
 import { ModalWithTransitions } from "ui-helpers";
 
 export const WalletConnectModal = ({
-  dispatch,
   show,
   setShow,
   copilotModal,
 }: {
-  dispatch: Dispatch<AnyAction>; // eslint-disable-next-line sonarjs/cognitive-complexity
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
   copilotModal?: JSX.Element;
@@ -21,11 +18,7 @@ export const WalletConnectModal = ({
   const contentModal = (
     <div className="divide-strokeGrey text-gray1 grid grid-rows-1 divide-y md:grid-cols-3 md:grid-rows-none md:divide-x md:divide-y-0">
       <ConnectToEvmos />
-      <ConnectToEvmosWallets
-        copilotModal={copilotModal}
-        setShow={setShow}
-        dispatch={dispatch}
-      />
+      <ConnectToEvmosWallets copilotModal={copilotModal} setShow={setShow} />
     </div>
   );
 

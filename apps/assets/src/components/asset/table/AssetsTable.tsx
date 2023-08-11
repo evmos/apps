@@ -24,7 +24,7 @@ import { getTotalAssets } from "helpers";
 import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { CLICK_BACK_TO_MC, CLICK_HIDE_ZERO_BALANCE, useTracker } from "tracker";
 
 const AssetsTable = () => {

@@ -49,7 +49,7 @@ export function createEIP712Transaction(
   sender: Sender,
   signature: string,
   tx: TxGenerated
-) {
+): ReturnType<typeof createTxRawEIP712> {
   // The chain and sender objects are the same as the previous example
   const extension = signatureToWeb3Extension(chain, sender, signature);
 
@@ -110,7 +110,6 @@ export async function broadcastSignedTxToBackend(
   } catch (e) {
     return {
       error: true,
-      // Disabled until catching all the possible errors
       // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
       message: `Transaction Failed ${e}`,
       txhash: `0x0`,

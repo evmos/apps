@@ -1,4 +1,4 @@
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 
 import { UnsignedTransaction, ethers } from "ethers";
 import { convertToKeplrTx, signKeplrTx } from "../helpers/keplr_utils";
@@ -40,5 +40,5 @@ export function useContractTransaction() {
 
     return await signAndSubmitKeplr(unsignedTx, customHttpProvider);
   }
-  return { executeKeplr };
+  return { executeKeplr } as const;
 }

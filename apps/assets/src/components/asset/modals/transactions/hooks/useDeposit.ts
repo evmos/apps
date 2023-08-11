@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { ethToEvmos } from "@evmos/address-converter";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { parseUnits } from "@ethersproject/units";
 import { useDispatch, useSelector } from "react-redux";
 import { executeDeposit } from "../../../../../internal/asset/functionality/transactions/deposit";
@@ -134,7 +134,6 @@ export const useDeposit = (useDepositProps: DepositProps) => {
       wallet.osmosisPubkey,
       keplrAddress,
       params,
-      wallet.extensionName,
       prefix,
       chainIds.chainIdentifier
     );

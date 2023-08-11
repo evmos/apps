@@ -14,8 +14,9 @@ export const ConsentModal = ({
     <div className="space-y-5">
       <p className="font-bold">We value your privacy!</p>
       <div>
-        We use cookies to enhance your browsing experience and analyze our
-        traffic. By clicking 'Accept All', you agree to our{" "}
+        {
+          "We use cookies to enhance your browsing experience and analyze our traffic. By clicking 'Accept All', you agree to our "
+        }
         <Link
           className="cursor-pointer underline"
           rel="noopener noreferrer"

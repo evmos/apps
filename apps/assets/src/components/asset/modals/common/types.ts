@@ -1,7 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction } from "react";
 import {
   TableData,
@@ -9,6 +8,7 @@ import {
 } from "../../../../internal/asset/functionality/table/normalizeData";
 import { DropdownChainsProps } from "../../dropdown/types";
 import { DepositElement } from "../transactions/DepositSTR";
+import { BigNumber } from "@ethersproject/bignumber";
 
 export type Fee = {
   fee: BigNumber;

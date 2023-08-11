@@ -3,7 +3,10 @@ import { render } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from "vitest";
 import { ConsentModal } from "../termsOfServices/ConsentModal";
-import { DISABLE_TRACKER_LOCALSTORAGE } from "tracker";
+import {
+  DISABLE_TRACKER_LOCALSTORAGE,
+  CLICK_BACK_TO_GOVERNANCE,
+} from "tracker";
 import { MixpanelProvider, useTracker } from "tracker";
 import { renderHook, act } from "@testing-library/react";
 import mixpanel from "mixpanel-browser";
@@ -40,20 +43,21 @@ describe("Consent Modal", () => {
 
   test("should set localstorage to false when clicks on accept", async () => {
     const button = getByRole("button", { name: /accept/i });
+
     await userEvent.click(button);
     expect(localStorage.getItem(DISABLE_TRACKER_LOCALSTORAGE)).toBe("false");
 
     const { result } = renderHook(
-      () => useTracker("event", { prop: "value" }),
+      () => useTracker(CLICK_BACK_TO_GOVERNANCE, { prop: "value" }),
       { wrapper }
     );
-    /* eslint-disable-next-line */
+
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
-    act(() => {
+    await act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
-    /* eslint-disable-next-line */
-    expect(mixpanel.track).toHaveBeenCalledWith("event", {
+
+    expect(mixpanel.track).toHaveBeenCalledWith(CLICK_BACK_TO_GOVERNANCE, {
       prop: "value",
       extraProp: "extraValue",
     });
@@ -65,14 +69,14 @@ describe("Consent Modal", () => {
     expect(localStorage.getItem(DISABLE_TRACKER_LOCALSTORAGE)).toBe("true");
 
     const { result } = renderHook(
-      () => useTracker("event", { prop: "value" }),
+      () => useTracker(CLICK_BACK_TO_GOVERNANCE, { prop: "value" }),
       { wrapper }
     );
 
     /* eslint-disable-next-line */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
 
-    act(() => {
+    await act(() => {
       result.current.handlePreClickAction({ extraProp: "extraValue" });
     });
     /* eslint-disable-next-line */

@@ -6,7 +6,7 @@ import mixpanel from "mixpanel-browser";
 import { MixpanelProvider } from "tracker";
 
 describe("Testing Footer", () => {
-  vi.mock("mixpanel-browser", async () => {
+  vi.mock("mixpanel-browser", () => {
     return {
       default: {
         init: vi.fn(),

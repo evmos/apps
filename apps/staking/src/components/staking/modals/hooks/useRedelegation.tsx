@@ -4,7 +4,7 @@
 import { useDispatch } from "react-redux";
 import { RedelegateProps } from "../types";
 import { parseUnits } from "@ethersproject/units";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { executeRedelegate } from "../../../../internal/staking/functionality/transactions/redelegate";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
 import {

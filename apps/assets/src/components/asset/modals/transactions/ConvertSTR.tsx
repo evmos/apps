@@ -1,7 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { BigNumber } from "ethers";
 import { Dispatch, SetStateAction, useState } from "react";
 import { TableDataElement } from "../../../../internal/asset/functionality/table/normalizeData";
 import { ConfirmButton, ModalTitle } from "ui-helpers";
@@ -14,6 +13,7 @@ import { getReservedForFeeText } from "helpers";
 
 import Note from "../common/Note";
 import { useConvert } from "./hooks/useConvert";
+import { BigNumber } from "@ethersproject/bignumber";
 
 export const ConvertSTR = ({
   item,

@@ -106,7 +106,7 @@ export function unsubscribeToEvents() {
     // NOTE: we need to convert the provider because wagmi dep is replacing our window type
     const extension = window.ethereum as unknown as MetaMaskInpageProvider;
     extension.removeAllListeners("accountsChanged");
-    // eslint-disable-next-line  @typescript-eslint/no-unsafe-call
+
     extension.removeAllListeners("chainChanged");
     return;
   } catch (e) {

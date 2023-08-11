@@ -2,14 +2,14 @@ name: "Install & Cache Dependencies"
 runs:
   using: "composite"
   steps:
-    - name: Cache Dependencies
-      uses: actions/cache@v3
-      id: cache-dependencies
+    - uses: pnpm/action-setup@v2
       with:
-        path: |
-          **/node_modules
-        key: dependencies-${{ runner.os }}-turbo-${{ hashFiles('**/yarn.lock') }}-v1
-    - name: Install Dependencies
-      if: steps.cache-dependencies.outputs.cache-hit != 'true'
-      run: yarn install
+        version: 8
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20
+        cache: "pnpm"
+    - name: Install dependencies
       shell: bash
+      run: pnpm install

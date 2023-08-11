@@ -1,24 +1,29 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
+import { ComponentProps } from "react";
+import cx from "clsx";
+
 export const ButtonWallet = ({
-  children,
-  onClick,
+  className,
   disabled,
-}: {
-  children: JSX.Element;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-  disabled?: boolean;
-}) => {
+  ...props
+}: ComponentProps<"button">) => {
   return (
     <button
-      onClick={onClick}
-      className={`hover:bg-grayOpacity border-darkPearl w-full rounded border px-4 py-3 capitalize shadow transition-all duration-300 hover:shadow-md ${
-        disabled ? "disabled" : ""
-      }`}
-    >
-      {children}
-    </button>
+      className={cx(
+        className,
+        "flex w-full px-4 py-3",
+        "hover:bg-grayOpacity hover:shadow-md",
+        "border-darkPearl shadow rounded border",
+        "capitalize items-center space-x-3 text-sm font-bold",
+        "transition-all duration-300",
+        {
+          disabled: disabled,
+        }
+      )}
+      {...props}
+    />
   );
 };
 

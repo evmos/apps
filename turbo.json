@@ -23,7 +23,14 @@
     "NEXT_PUBLIC_SITE_ID_IUBENDA",
     "NEXT_PUBLIC_TRANSAK_API_KEY",
     "NEXT_PUBLIC_CYPHERD_KEY",
-    "NEXT_PUBLIC_C14_API_KEY"
+    "NEXT_PUBLIC_C14_API_KEY",
+    "NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID",
+    "E2E_TEST_EVMOS_CHAIN_NAME",
+    "E2E_TEST_EVMOS_RPC_URL",
+    "E2E_TEST_EVMOS_CHAIN_ID",
+    "E2E_TEST_EVMOS_SYMBOL",
+    "E2E_TEST_SEED",
+    "PORT"
   ],
   "pipeline": {
     "build": {
@@ -41,9 +48,7 @@
     },
     "test": {},
     "kill": {},
-    "lint": {
-      "cache": false
-    },
+    "lint": {},
     "test:coverage": {
       "cache": false,
       "outputs": ["coverage/**"]

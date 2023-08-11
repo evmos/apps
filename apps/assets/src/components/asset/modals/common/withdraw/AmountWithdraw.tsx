@@ -1,8 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { BigNumber } from "ethers";
-
 import {
   convertFromAtto,
   convertAndFormat,
@@ -20,6 +18,7 @@ import { TextSmall } from "../TextSmall";
 import { AmountWithdrawProps } from "../types";
 import { FEE_WITHDRAW } from "constants-helper";
 import { MODAL_NOTIFICATIONS, EVMOS_SYMBOL } from "evmos-wallet";
+import { BigNumber } from "@ethersproject/bignumber";
 
 const AmountWithdraw = ({
   amountProps,

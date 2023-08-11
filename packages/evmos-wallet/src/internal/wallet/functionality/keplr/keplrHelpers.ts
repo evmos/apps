@@ -14,21 +14,6 @@ export function unsubscribeToKeplrEvents() {
   }
 }
 
-export function subscribeToKeplrEvents(handler: () => Promise<boolean>) {
-  if (!window.keplr) return;
-  try {
-    const handlerInternal = async () => {
-      await handler();
-      window.addEventListener("cleanUpEvents", () => {
-        window.removeEventListener("keplr_keystorechange", handlerInternal);
-      });
-    };
-    window.addEventListener("keplr_keystorechange", handlerInternal);
-    return;
-  } catch (e) {
-    return;
-  }
-}
 
 const networkInfo = async (network: string) => {
   const networkResponse = await networkConfigByName(network);
@@ -73,7 +58,7 @@ const networkInfo = async (network: string) => {
     stakeCurrency: currencyData,
     feeCurrencies: feeCurrencies,
     bip44: { coinType: Number(networkData?.bip44.coinType) },
-    coinType: Number(networkData?.bip44.coinType),
+    // coinType: Number(networkData?.bip44.coinType),
   };
   return chainInfo;
 };

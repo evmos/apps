@@ -1,8 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { Dict } from "mixpanel-browser";
-
 import {
   GetWalletFromLocalStorage,
   SaveWalletToLocalStorage,
@@ -14,11 +12,11 @@ import {
   WalletExtension,
 } from "../internal/wallet/functionality/wallet";
 import { KeplrIcon, MetamaskIcon, WalletConnectIcon } from "icons";
-import { ButtonProfile } from "../wallet/buttons/Button.Profile";
+import { ButtonProfile } from "./buttons/Button.Profile";
 import { WalletProfileModal } from "./WalletProfileModal";
 import { Dispatch, SetStateAction } from "react";
 import { AnyAction } from "redux";
-import { ButtonConnectWallet } from "../wallet/buttons/Button.ConnectWallet";
+import { ButtonConnectWallet } from "./buttons/Button.ConnectWallet";
 import { WalletConnectModal } from "./WalletConnectModal";
 
 export const ProvidersIcons: { [key: string]: JSX.Element } = {
@@ -29,7 +27,9 @@ export const ProvidersIcons: { [key: string]: JSX.Element } = {
 
 export function trackWallet(
   walletExtension: WalletExtension,
-  trackChangeWallet: (extraProperties?: Dict | undefined) => void
+  trackChangeWallet: (
+    extraProperties?: Record<string, unknown> | undefined
+  ) => void
 ) {
   const walletLocalStorage = GetWalletFromLocalStorage();
   // walletExtension is not set
@@ -115,7 +115,6 @@ export const drawConnectModal = (props: WalletConnectModalProps) => {
               })
             : undefined
         }
-        dispatch={props.dispatch}
         show={props.show}
         setShow={props.setShow}
       />

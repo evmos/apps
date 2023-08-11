@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { Dispatch, SetStateAction, useMemo } from "react";
 import { TableDataElement } from "../../../internal/asset/functionality/table/normalizeData";
 import { addAssets, addDollarAssets, formatNumber } from "helpers";

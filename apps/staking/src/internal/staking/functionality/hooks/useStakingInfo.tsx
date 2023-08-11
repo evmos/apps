@@ -11,7 +11,7 @@ import {
   UndelegationsResponse,
 } from "../types";
 import { useMemo } from "react";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { convertStringFromAtto } from "helpers";
 
 export const useStakingInfo = () => {

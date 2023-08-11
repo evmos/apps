@@ -4,7 +4,7 @@
 import { useDispatch } from "react-redux";
 import { CancelUndelegationsProps } from "../types";
 import { parseUnits } from "@ethersproject/units";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { snackExecuteIBCTransfer } from "evmos-wallet";
 import { executeCancelUndelegations } from "../../../../internal/staking/functionality/transactions/cancelUndelegations";
 import {

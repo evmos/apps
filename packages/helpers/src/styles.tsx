@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
-import { utils } from "ethers";
+import { formatUnits } from "ethers";
 
 export type addAssetsType = {
   cosmosBalance: BigNumber;
@@ -21,6 +21,7 @@ export function convertFromAtto(
   // Convert to string and truncate past decimal
   // for appropriate conversion
   if (!value) return "0";
+  // eslint-disable-next-line @typescript-eslint/no-base-to-string
   let valueAsString = value.toString();
   if (typeof value === "number") {
     // Strip scientific notation
@@ -28,7 +29,7 @@ export function convertFromAtto(
       useGrouping: false,
     });
   }
-  return utils.formatUnits(valueAsString.split(".")[0], exponent);
+  return formatUnits(valueAsString.split(".")[0], exponent);
 }
 
 export function convertAndFormat(
@@ -125,6 +126,7 @@ export function convertStringFromAtto(value: BigNumberish, exponent = 18) {
   // value is a string with decimals.
   // it is the same as convertFromAtto but it receives a string and returns a number
   if (!value) return 0;
+  // eslint-disable-next-line @typescript-eslint/no-base-to-string
   let valueAsString = value.toString();
   if (typeof value === "number") {
     // Strip scientific notation
@@ -132,7 +134,7 @@ export function convertStringFromAtto(value: BigNumberish, exponent = 18) {
       useGrouping: false,
     });
   }
-  return Number(utils.formatUnits(valueAsString.split(".")[0], exponent));
+  return Number(formatUnits(valueAsString.split(".")[0], exponent));
 }
 
 export function amountToDollars(
@@ -387,10 +389,8 @@ export function indexOfMax(arr: number[]) {
   let maxIndex = 0;
 
   for (let i = 1; i < arr.length; i++) {
-    // eslint-disable-next-line security/detect-object-injection
     if (arr[i] > max) {
       maxIndex = i;
-      // eslint-disable-next-line security/detect-object-injection
       max = arr[i];
     }
   }

@@ -1,6 +1,3 @@
-import { defineConfig } from "vitest/config";
-import { sharedConfig } from "vitest-config-custom";
+import sharedConfig from "@evmos-apps/config/vitest/base";
 
-export default defineConfig({
-  ...sharedConfig,
-});
+export default sharedConfig;

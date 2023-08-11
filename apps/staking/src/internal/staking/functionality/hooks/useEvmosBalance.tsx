@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getEvmosBalance } from "../fetch";
 import { StoreType } from "evmos-wallet";
 import { BalanceResponse } from "../types";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 
 export const useEvmosBalance = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);

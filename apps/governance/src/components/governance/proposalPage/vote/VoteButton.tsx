@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { StoreType, MODAL_NOTIFICATIONS } from "evmos-wallet";
 import { convertFromAtto, getReservedForFeeText } from "helpers";
 import { FEE_VOTE } from "constants-helper";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import { CLICK_VOTE_BUTTON, useTracker } from "tracker";
 import { useEvmosBalance } from "./useEvmosBalance";
 const VoteButton = ({ voteProps }: { voteProps: VoteProps }) => {

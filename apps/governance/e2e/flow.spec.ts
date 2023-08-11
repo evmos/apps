@@ -24,7 +24,7 @@ test.describe("Governance page", () => {
   test("should redirect on the right proposal when clicking", async ({
     page,
   }) => {
-    const thirdProposal = await page.getByTestId("proposal").nth(3);
+    const thirdProposal = page.getByTestId("proposal").nth(3);
 
     await thirdProposal.waitFor();
     const proposalTitleLink = await thirdProposal

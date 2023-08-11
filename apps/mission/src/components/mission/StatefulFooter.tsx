@@ -6,7 +6,11 @@ import getConfig from "next/config";
 import { useState } from "react";
 
 export const StatefulFooter = () => {
-  const { publicRuntimeConfig } = getConfig();
+  const config = getConfig() as {
+    publicRuntimeConfig?: {
+      version?: string;
+    };
+  };
 
   const { handlePreClickAction } = useTracker(CLICK_FEEDBACK_FOOTER);
 
@@ -15,7 +19,7 @@ export const StatefulFooter = () => {
   return (
     <>
       <Footer
-        version={publicRuntimeConfig?.version}
+        version={config.publicRuntimeConfig?.version ?? ""}
         onClickFeedback={() => {
           handlePreClickAction();
         }}

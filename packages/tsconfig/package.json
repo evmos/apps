@@ -1,9 +1,0 @@
-{
-  "name": "tsconfig",
-  "version": "1.0.1",
-  "private": true,
-  "license": "SEE LICENSE IN LICENSE",
-  "publishConfig": {
-    "access": "public"
-  }
-}

@@ -1,11 +1,12 @@
 import { defineConfig } from "@playwright/test";
 import { sharedConfig } from "playwright-config-custom";
+import { config } from "dotenv";
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-require("dotenv").config();
+config();
 
 const PORT = process.env.PORT || 3002;
 const baseURL = `http://localhost:${PORT}`;

@@ -24,7 +24,12 @@ export function setVestingAccountNameLocalstorage(
   accountName: string
 ) {
   const storedData = localStorage.getItem(VESTING_ACCOUNTS_NAMES_LOCALSTORAGE);
-  let accounts = storedData ? JSON.parse(storedData) : [];
+  const accounts = storedData
+    ? (JSON.parse(storedData) as {
+        walletAddress: string;
+        accountName: string;
+      }[])
+    : [];
 
   accounts.push({ walletAddress, accountName });
   localStorage.setItem(
@@ -37,7 +42,10 @@ export const getVestingAccountNameLocalstorage = (address: string) => {
   const accounts = localStorage.getItem(VESTING_ACCOUNTS_NAMES_LOCALSTORAGE);
   let list: { walletAddress: string; accountName: string }[] = [];
   if (accounts !== null) {
-    list = JSON.parse(accounts);
+    list = JSON.parse(accounts) as {
+      walletAddress: string;
+      accountName: string;
+    }[];
   }
   const filtered = list.filter((e) => e.walletAddress === address);
   return filtered[0]?.accountName ?? "";

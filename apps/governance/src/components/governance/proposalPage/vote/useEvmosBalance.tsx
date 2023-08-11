@@ -4,7 +4,7 @@
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { StoreType } from "evmos-wallet";
-import { BigNumber } from "ethers";
+import { BigNumber } from "@ethersproject/bignumber";
 import {
   EVMOS_BACKEND,
   EVMOS_MINIMAL_COIN_DENOM,

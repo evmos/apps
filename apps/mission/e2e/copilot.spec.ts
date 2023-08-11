@@ -5,6 +5,7 @@ import {
 } from "playwright-config-custom/helpers";
 
 const BALANCE_ENDPOINT =
+  // eslint-disable-next-line no-secrets/no-secrets
   "*/**/BalanceByDenom/EVMOS/evmos17w0adeg64ky0daxwd2ugyuneellmjgnxpu2u3g/aevmos";
 
 test.beforeEach(async ({ page }) => {
@@ -191,7 +192,7 @@ test.describe("Mission Page - Copilot", () => {
         page.getByRole("button", { name: /Next steps/i })
       ).toBeHidden();
 
-      let c14Widget = page.getByTestId("c14-widget");
+      const c14Widget = page.getByTestId("c14-widget");
       await c14Widget.waitFor();
 
       expect(await c14Widget.count()).toBe(1);
@@ -199,14 +200,14 @@ test.describe("Mission Page - Copilot", () => {
       await page.getByTestId("card-provider-dropdown").click();
       await page.getByRole("button", { name: /Transak/i }).click();
 
-      let transakWidget = page.getByTestId("transak-widget");
+      const transakWidget = page.getByTestId("transak-widget");
       await transakWidget.waitFor();
 
       expect(await transakWidget.count()).toBe(1);
 
       await page.getByRole("button", { name: "Cryptocurrencies" }).click();
 
-      let cypherDWidget = page.getByTestId("cypher-onboading-sdk");
+      const cypherDWidget = page.getByTestId("cypher-onboading-sdk");
       await cypherDWidget.waitFor();
 
       expect(await cypherDWidget.count()).toBe(1);

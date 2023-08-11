@@ -6,14 +6,14 @@ import type { AppProps } from "next/app";
 import { appWithTranslation } from "next-i18next";
 import Script from "next/script";
 
-export default appWithTranslation(function App({
-  Component,
-  pageProps,
-}: AppProps) {
-  return (
-    <>
-      <Script src="https://public.cypherd.io/sdk/cypher-sdk.js" />
-      <Component {...pageProps} />;
-    </>
-  );
-});
+const app: ReturnType<typeof appWithTranslation> = appWithTranslation(
+  function App({ Component, pageProps }: AppProps) {
+    return (
+      <>
+        <Script src="https://public.cypherd.io/sdk/cypher-sdk.js" />
+        <Component {...pageProps} />;
+      </>
+    );
+  }
+);
+export default app;

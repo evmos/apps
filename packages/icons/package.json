@@ -1,17 +1,11 @@
 {
   "name": "icons",
   "version": "1.0.5",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
   "type": "module",
-  "exports": {
-    ".": "./dist",
-    "./styles.css": "./dist/index.css"
-  },
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
     "lint": "eslint ."
   },

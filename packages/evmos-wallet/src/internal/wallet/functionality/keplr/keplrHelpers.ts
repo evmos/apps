@@ -3,17 +3,7 @@
 
 import type { ChainInfo } from "@keplr-wallet/types";
 import { networkConfigByName } from "./fetch";
-
-export function unsubscribeToKeplrEvents() {
-  if (!window.keplr) return;
-  try {
-    window.dispatchEvent(new Event("cleanUpEvents"));
-    return;
-  } catch (e) {
-    return;
-  }
-}
-
+import { getKeplrProvider } from "../../../../wallet";
 
 const networkInfo = async (network: string) => {
   const networkResponse = await networkConfigByName(network);
@@ -68,11 +58,12 @@ export async function getKeplrAddressByChain(
   chainId: string,
   network?: string
 ) {
-  if (!window.keplr) return null;
   let accounts;
   let offlineSigner;
   try {
-    offlineSigner = window.keplr.getOfflineSigner(chainId);
+    const keplr = await getKeplrProvider();
+
+    offlineSigner = keplr.getOfflineSigner(chainId);
     try {
       accounts = await offlineSigner.getAccounts();
     } catch (e) {
@@ -80,9 +71,9 @@ export async function getKeplrAddressByChain(
         const chainInfo = await networkInfo(network.toUpperCase());
         if (chainInfo !== "") {
           try {
-            await window.keplr.experimentalSuggestChain(chainInfo);
+            await keplr.experimentalSuggestChain(chainInfo);
             // NOTE: keplr bug offlineSigner fails after expermintalSuggestChain
-            offlineSigner = window.keplr.getOfflineSignerOnlyAmino(chainId);
+            offlineSigner = keplr.getOfflineSignerOnlyAmino(chainId);
             accounts = await offlineSigner.getAccounts();
           } catch (e) {
             return null;

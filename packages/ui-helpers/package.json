@@ -1,13 +1,11 @@
 {
   "name": "ui-helpers",
   "version": "1.0.12",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -33,10 +31,11 @@
   "dependencies": {
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
+    "@types/mixpanel-browser": "2.47.1",
     "constants-helper": "workspace:*",
     "icons": "workspace:*",
     "mixpanel-browser": "^2.47.0",
-    "next": "^13.4.13",
+    "next": "^13.4.16",
     "tracker": "workspace:*",
     "vitest": "^0.34.1"
   },

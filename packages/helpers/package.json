@@ -1,17 +1,11 @@
 {
   "name": "helpers",
   "version": "1.0.7",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": "./dist",
-    "./styles.css": "./dist/index.css"
-  },
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE",
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
     "check-types": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -19,7 +13,6 @@
     "lint": "eslint ."
   },
   "peerDependencies": {
-    "ethers": "^6.6.5",
     "next": ">=11.0.0",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"

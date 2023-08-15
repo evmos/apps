@@ -4,13 +4,26 @@ import {
   OfflineAminoSigner,
   OfflineDirectSigner,
 } from "@keplr-wallet/types";
-import { Chain, Connector } from "@wagmi/core";
+import { Chain, Connector, getPublicClient } from "@wagmi/core";
 import { getKeplrProvider } from "../utils/keplr";
 import { evmos, evmosTestnet, getEvmosChainInfo } from "./chains";
 import { assertIf, raise } from "helpers";
 
+import { serialize, UnsignedTransaction } from "@ethersproject/transactions";
 import { ethToEvmos, evmosToEth } from "@evmos/address-converter";
-import { Address, createWalletClient, custom, toHex } from "viem";
+import {
+  Address,
+  Hex,
+  TransactionRequest,
+  createWalletClient,
+  custom,
+  http,
+  toHex,
+} from "viem";
+
+import { isHex, parseAccount } from "viem/utils";
+import { isString } from "helpers/src/assertions";
+import { z } from "zod";
 
 const evmosInfo = getEvmosChainInfo();
 
@@ -27,6 +40,63 @@ const ADDRESS_ENCODERS: Record<
 > = {
   [evmos.id]: ethToEvmos,
   [evmosTestnet.id]: ethToEvmos,
+};
+
+const TransactionRequestSchema = z
+  .object({
+    from: z.custom<Hex>(isHex),
+    to: z.custom<Hex>(isHex),
+  })
+  .passthrough();
+
+const prepareTransaction = async (
+  chainId: number,
+  request: TransactionRequest
+): Promise<UnsignedTransaction> => {
+  const client = getPublicClient({
+    chainId,
+  });
+  const account = parseAccount(request.from);
+  const { baseFeePerGas } = await client.getBlock({
+    blockTag: "latest",
+  });
+  const nonce =
+    request.nonce ??
+    (await client.getTransactionCount({
+      address: account.address,
+      blockTag: "pending",
+    }));
+  const transaction: UnsignedTransaction = {
+    data: request.data,
+    to: request.to,
+    value: request.value,
+    nonce,
+    chainId,
+  };
+  if (!baseFeePerGas) {
+    return transaction;
+  }
+  // EIP-1559 fees
+
+  const maxPriorityFeePerGas = request.maxPriorityFeePerGas ?? 1_500_000_000n; // 1.5 gwei;
+  const maxFeePerGas =
+    request.maxPriorityFeePerGas ??
+    (baseFeePerGas * 120n) / 100n + maxPriorityFeePerGas;
+
+  const gas =
+    request.gas ??
+    (await client.estimateGas({
+      ...request,
+      account: { address: account.address, type: "json-rpc" },
+    }));
+
+  return {
+    ...transaction,
+    type: 2,
+    gasLimit: toHex(gas),
+    maxPriorityFeePerGas: toHex(maxPriorityFeePerGas),
+    maxFeePerGas: toHex(maxFeePerGas),
+  };
 };
 
 export class KeplrConnector extends Connector<Keplr, {}> {
@@ -149,58 +219,106 @@ export class KeplrConnector extends Connector<Keplr, {}> {
       this.getProvider(),
       this.getAccount(),
     ]);
-    const chain = this.chains.find((x) => x.id === chainId);
+    const chain =
+      this.chains.find((x) => x.id === chainId) ?? raise("UNSUPPORTED_NETWORK");
 
-    const cosmosId = await this.getCosmosId(chainId);
+    if (!provider) throw new Error("provider is required.");
+    // const self = this;
+    const httpTransport = http(undefined);
+    const transport = httpTransport({
+      chain,
+    });
 
-    if (!provider || !cosmosId) throw new Error("provider is required.");
-    const bech32Address =
-      ADDRESS_ENCODERS[chainId as keyof typeof ADDRESS_ENCODERS](account);
+    const request = async (args: {
+      method: string;
+      params: string[];
+    }): Promise<unknown> => {
+      const response = await this.request(args);
+      if (response !== null) {
+        return response;
+      }
+
+      return await transport.request(args);
+    };
     return createWalletClient({
       account,
       chain,
       transport: custom({
-        async request({
-          method,
-          params,
-        }: {
-          method: string;
-          params: string[];
-        }) {
-          switch (method) {
-            case "personal_sign": {
-              const signature = await provider.signEthereum(
-                cosmosId,
-                bech32Address,
-                params[0],
-                EthSignType.MESSAGE
-              );
-              return toHex(signature);
-            }
+        request,
+        // async request(args: {
+        //   method: string;
+        //   params: string[];
+        // }): Promise<unknown> {
+        //   const response = await self.request(args);
+        //   if (response !== null) {
+        //     return response;
+        //   }
 
-            case "account_signTransaction": {
-              const signature = await provider.signEthereum(
-                cosmosId,
-                bech32Address,
-                params[0],
-                EthSignType.TRANSACTION
-              );
-              return toHex(signature);
-            }
-            case "eth_signTypedData_v4": {
-              const signature = await provider.signEthereum(
-                cosmosId,
-                bech32Address,
-                params[1],
-                EthSignType.EIP712
-              );
-              return toHex(signature);
-            }
-          }
-          raise("UNSUPPORTED_SIGN_METHOD");
-        },
+        //   return await transport.request(args);
+        // },
       }),
     });
+  }
+  async request({ method, params }: { method: string; params: unknown[] }) {
+    const [provider, account, chainId] = await Promise.all([
+      this.getProvider(),
+      this.getAccount(),
+      this.getChainId(),
+    ]);
+
+    const cosmosId = await this.getCosmosId(chainId);
+    const bech32Address =
+      ADDRESS_ENCODERS[chainId as keyof typeof ADDRESS_ENCODERS](account);
+
+    switch (method) {
+      case "eth_sendTransaction": {
+        const tx = TransactionRequestSchema.parse(params[0]);
+
+        const request = await prepareTransaction(chainId, tx);
+        const signature = await this.request({
+          method: "account_signTransaction",
+          params: [JSON.stringify(request)],
+        });
+        assertIf(isHex(signature), "FAILED_TO_SIGN_TRANSACTION");
+        const message = serialize(request, signature);
+        assertIf(isHex(message), "FAILED_TO_SERIALIZE_TRANSACTION");
+        const walletClient = await this.getWalletClient();
+        return await walletClient.request({
+          method: "eth_sendRawTransaction",
+          params: [message],
+        });
+      }
+
+      case "eth_chainId": {
+        return chainId;
+      }
+      case "account_signTransaction":
+      case "personal_sign": {
+        assertIf(isString(params[0]), "INVALID_MESSAGE");
+
+        const signature = await provider.signEthereum(
+          cosmosId,
+          bech32Address,
+          params[0],
+          method === "account_signTransaction"
+            ? EthSignType.TRANSACTION
+            : EthSignType.MESSAGE
+        );
+        return toHex(signature);
+      }
+
+      case "eth_signTypedData_v4": {
+        assertIf(isString(params[1]), "INVALID_MESSAGE");
+        const signature = await provider.signEthereum(
+          cosmosId,
+          bech32Address,
+          params[1],
+          EthSignType.EIP712
+        );
+        return toHex(signature);
+      }
+    }
+    return null;
   }
 
   protected onAccountsChanged(): void {

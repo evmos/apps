@@ -23,11 +23,19 @@ import { ethToEvmos } from "@evmos/address-converter";
 import { setWallet } from "../../../../wallet/redux/WalletSlice";
 import { METAMASK_KEY } from "../wallet";
 import type { MetaMaskInpageProvider } from "@metamask/providers";
+export const getMetamaskProvider = () => {
+  if (typeof window === "undefined") return null;
+  if (!("ethereum" in window)) {
+    return null;
+  }
 
+  return window.ethereum as MetaMaskInpageProvider;
+};
 export async function switchEthereumChain(ethChainId: string) {
-  if (!window.ethereum) return false;
+  const mmProvider = getMetamaskProvider();
+  if (!mmProvider) return false;
   try {
-    await window.ethereum.request({
+    await mmProvider.request({
       method: "wallet_switchEthereumChain",
       params: [{ chainId: ethChainId }],
     });
@@ -38,8 +46,9 @@ export async function switchEthereumChain(ethChainId: string) {
 }
 
 export const isEvmosChain = async () => {
-  if (!window.ethereum) return false;
-  const chainId = await window.ethereum.request({ method: "eth_chainId" });
+  const mmProvider = getMetamaskProvider();
+  if (!mmProvider) return false;
+  const chainId = await mmProvider.request({ method: "eth_chainId" });
   if (chainId === EVMOS_ETH_CHAIN_ID) {
     return true;
   }
@@ -47,20 +56,18 @@ export const isEvmosChain = async () => {
 };
 
 export function isMetamaskInstalled() {
-  if (window.ethereum) {
-    return true;
-  }
-  return false;
+  return !!getMetamaskProvider();
 }
 
 export async function changeNetworkToEvmosMainnet(): Promise<boolean> {
-  if (!window.ethereum) return false;
+  const mmProvider = getMetamaskProvider();
+  if (!mmProvider) return false;
   const switched = await switchEthereumChain(EVMOS_ETH_CHAIN_ID);
   if (switched === true) {
     return true;
   }
   try {
-    await window.ethereum.request({
+    await mmProvider.request({
       method: "wallet_addEthereumChain",
       params: [
         {
@@ -86,14 +93,14 @@ export async function changeNetworkToEvmosMainnet(): Promise<boolean> {
 export function subscribeToAccountChange(
   handler: (a: Maybe<string[]>) => void
 ): boolean {
-  if (!window.ethereum) return false;
+  const mmProvider = getMetamaskProvider();
+  if (!mmProvider) return false;
+
   try {
-    // NOTE: we need to convert the provider because wagmi dep is replacing our window type
-    const extension = window.ethereum as unknown as MetaMaskInpageProvider;
-    extension.removeAllListeners("accountsChanged");
+    mmProvider.removeAllListeners("accountsChanged");
     // It expect unknown instead of string
     // @ts-expect-error type error
-    window.ethereum.on("accountsChanged", handler);
+    mmProvider.on("accountsChanged", handler);
     return true;
   } catch (e) {
     return false;
@@ -101,13 +108,13 @@ export function subscribeToAccountChange(
 }
 
 export function unsubscribeToEvents() {
-  if (!window.ethereum) return;
-  try {
-    // NOTE: we need to convert the provider because wagmi dep is replacing our window type
-    const extension = window.ethereum as unknown as MetaMaskInpageProvider;
-    extension.removeAllListeners("accountsChanged");
+  const mmProvider = getMetamaskProvider();
+  if (!mmProvider) return false;
 
-    extension.removeAllListeners("chainChanged");
+  try {
+    mmProvider.removeAllListeners("accountsChanged");
+
+    mmProvider.removeAllListeners("chainChanged");
     return;
   } catch (e) {
     return;
@@ -115,12 +122,11 @@ export function unsubscribeToEvents() {
 }
 
 export function subscribeToChainChanged(): boolean {
-  if (!window.ethereum) return false;
+  const mmProvider = getMetamaskProvider();
+  if (!mmProvider) return false;
   try {
-    // NOTE: we need to convert the provider because wagmi dep is replacing our window type
-    const extension = window.ethereum as unknown as MetaMaskInpageProvider;
-    extension.removeAllListeners("chainChanged");
-    extension.on("chainChanged", async () => {
+    mmProvider.removeAllListeners("chainChanged");
+    mmProvider.on("chainChanged", async () => {
       await switchEthereumChain(EVMOS_ETH_CHAIN_ID);
     });
     return true;
@@ -130,20 +136,19 @@ export function subscribeToChainChanged(): boolean {
 }
 
 export function isWalletSelected() {
-  if (!window.ethereum) return false;
-  const extension = window.ethereum as unknown as MetaMaskInpageProvider;
-  if (extension.selectedAddress === null) {
+  const mmProvider = getMetamaskProvider();
+  if (!mmProvider) return false;
+  if (mmProvider.selectedAddress === null) {
     return false;
   }
   return true;
 }
 
 export async function getWallet() {
-  if (!window.ethereum) return null;
-  // NOTE: we need to convert the provider because wagmi dep is replacing our window type
-  const extension = window.ethereum as unknown as MetaMaskInpageProvider;
+  const mmProvider = getMetamaskProvider();
+  if (!mmProvider) return null;
   try {
-    const accounts = await extension.request({
+    const accounts = await mmProvider.request({
       method: "eth_requestAccounts",
       params: [],
     });
@@ -158,15 +163,14 @@ export async function getWallet() {
 }
 
 export async function generatePubkeyFromSignature(wallet: string) {
-  if (!window.ethereum) return null;
+  const mmProvider = getMetamaskProvider();
+  if (!mmProvider) return null;
   try {
     if (wallet.startsWith("evmos1")) {
       wallet = evmosToEth(wallet);
     }
-    // NOTE: we need to convert the provider because wagmi dep is replacing our window type
-    const extension = window.ethereum as unknown as MetaMaskInpageProvider;
     // Make the user sign the generate_pubkey message
-    const signature = await extension.request({
+    const signature = await mmProvider.request({
       method: "personal_sign",
       params: [wallet, "generate_pubkey"],
     });
@@ -206,12 +210,12 @@ export type Token = {
 };
 
 export async function addToken(token: Token) {
-  if (window.ethereum) {
+  const mmProvider = getMetamaskProvider();
+
+  if (mmProvider) {
     try {
       if (token) {
-        // NOTE: we need to convert the provider because wagmi dep is replacing our window type
-        const extension = window.ethereum as unknown as MetaMaskInpageProvider;
-        const wasAdded = await extension.request({
+        const wasAdded = await mmProvider.request({
           method: "wallet_watchAsset",
           params: {
             type: "ERC20", // Initially only supports ERC20, but eventually more!

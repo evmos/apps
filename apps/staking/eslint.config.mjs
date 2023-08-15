@@ -1,3 +1,2 @@
-import baseConfig from "@evmos-apps/config/eslint/react-library.js";
-
-export default baseConfig;
+import eslint from "@evmos-apps/config/eslint/base.js";
+export default eslint;

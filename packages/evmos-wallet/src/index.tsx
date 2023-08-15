@@ -4,7 +4,9 @@
 // styles
 
 export * from "./wallet";
+export * from "./api";
 export * from "./utils";
+
 // snackbars
 export { Snackbars } from "./notification/Snackbars";
 export { addSnackbar } from "./notification/redux/notificationSlice";
@@ -62,7 +64,6 @@ export { getWallet } from "./internal/wallet/functionality/metamask/metamaskHelp
 export { addToken } from "./internal/wallet/functionality/metamask/metamaskHelpers";
 export type { Token } from "./internal/wallet/functionality/metamask/metamaskHelpers";
 export { broadcastAminoBackendTxToBackend } from "./internal/wallet/functionality/signing";
-export { useContractTransaction } from "./internal/wallet/functionality/contracts/hooks/useContractTransaction";
 
 // Probably move it to assets
 export type { IBCChainParams } from "./notification/transactionsTypes";
@@ -72,8 +73,6 @@ export type { executedTx } from "./notification/transactionsTypes";
 export { TransactionStatus } from "./notification/transactionsTypes";
 export type { txStatusErrorResponse } from "./notification/transactionsTypes";
 export type { txStatusResponse } from "./notification/transactionsTypes";
-
-export { disconnectWallets } from "./internal/wallet/functionality/disconnect";
 
 export {
   changeNetworkToEvmosMainnet,

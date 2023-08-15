@@ -1,5 +1,5 @@
 import { defineConfig, mergeConfig } from "vitest/config";
-import sharedConfig from "@evmos-apps/config/vitest/base";
+import sharedConfig from "@evmos-apps/config/vitest/base.js";
 
 export default mergeConfig(
   sharedConfig,

@@ -1,5 +1,4 @@
 {
   "extends": "@evmos-apps/config/ts/base.json",
-  "exclude": ["node_modules", "build", "dist", "coverage"],
-  "include": ["./*.ts", "./*.js"]
+  "exclude": ["node_modules", "build", "dist", "coverage"]
 }

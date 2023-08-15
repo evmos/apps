@@ -32,12 +32,16 @@ export const usePubKey = () => {
       let pubkey = window.localStorage.getItem([baseKey, address].join("/"));
 
       if (pubkey) return pubkey;
-      if (!address || !connector) raise("WALLET_PROVIDER_NOT_AVAILABLE");
+
       if (connector === keplrConnector) {
         const pubkey = await keplrConnector.getPubkey();
         return toHex(pubkey);
       }
-      pubkey = await queryPubKey(EVMOS_GRPC_URL, ethToEvmos(address));
+
+      pubkey = await queryPubKey(
+        EVMOS_GRPC_URL,
+        ethToEvmos(address ?? raise("WALLET_PROVIDER_NOT_AVAILABLE"))
+      );
 
       if (pubkey) return pubkey;
       const signature = await signMessageAsync({

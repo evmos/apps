@@ -27,7 +27,7 @@ export const useConvert = (useConvertProps: ConvertProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
 
-  const { deposit, withdraw } = useWEVMOS(wallet?.extensionName);
+  const { deposit, withdraw } = useWEVMOS();
 
   const { handlePreClickAction: clickConfirmWrapTx } = useTracker(
     CLICK_BUTTON_CONFIRM_WRAP_TX

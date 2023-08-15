@@ -3,9 +3,9 @@
   "display": "React Library",
   "extends": "./base.json",
   "compilerOptions": {
-    "lib": ["ES2020", "DOM"],
+    "jsx": "react-jsx",
+    "lib": ["ES2020", "DOM", "ESNext.BigInt"],
     "module": "ESNext",
-    "target": "ES6",
-    "jsx": "react-jsx"
+    "target": "ESNext"
   }
 }

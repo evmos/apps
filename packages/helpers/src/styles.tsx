@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
-import { formatUnits } from "ethers";
+import { formatUnits } from "@ethersproject/units";
 
 export type addAssetsType = {
   cosmosBalance: BigNumber;

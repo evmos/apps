@@ -1,2 +1,2 @@
-import custom from "@evmos-apps/config/eslint/react-library.js";
+import custom from "@evmos-apps/config/eslint/base.js";
 export default custom;

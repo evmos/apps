@@ -1,8 +1,10 @@
 {
-  "extends": "./ts/base.json",
   "compilerOptions": {
-    "noEmit": true
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "allowJs": true,
+    "composite": true
   },
-  "include": ["."],
-  "exclude": ["node_modules"]
+  "include": ["./**/*.js"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,11 +1,9 @@
 {
-  "extends": "@evmos-apps/config/ts/base.json",
+  "extends": "@evmos-apps/config/ts/nextjs.json",
+
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "incremental": true,
-    "module": "esnext",
-    "jsx": "preserve"
+    "plugins": [{ "name": "next" }]
   },
-  "include": ["."],
-  "exclude": ["node_modules", ".next", ".turbo"]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

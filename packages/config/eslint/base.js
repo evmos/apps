@@ -1,9 +1,12 @@
-import { esCompat, baseDirectory } from "./utils/compat.js";
-
+import {
+  baseDirectory,
+  configCompat,
+  pluginsCompat,
+  extendsCompat,
+} from "./utils/compat.js";
 // plugins
 import prettier from "eslint-config-prettier";
 import sonarjs from "eslint-plugin-sonarjs";
-import noSecrets from "eslint-plugin-no-secrets";
 
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
@@ -14,9 +17,10 @@ export const tsLintConfig = {
     "@typescript-eslint": tsPlugin,
   },
   rules: {
-    ...tsPlugin.configs["eslint-recommended"].overrides[0].rules,
+    ...tsPlugin.configs["eslint-recommended"].overrides?.[0]?.rules,
     ...tsPlugin.configs["recommended"].rules,
     ...tsPlugin.configs["recommended-requiring-type-checking"].rules,
+    "no-debugger": "warn",
     "@typescript-eslint/restrict-template-expressions": "error",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/no-misused-promises": [
@@ -52,11 +56,11 @@ export const tsLintConfig = {
 };
 
 const lintConfig = [
+  ...pluginsCompat("eslint-plugin-no-secrets"),
   {
     plugins: {
       prettier,
       sonarjs,
-      "no-secrets": noSecrets,
     },
     rules: {
       "no-unused-vars": "error",
@@ -66,9 +70,18 @@ const lintConfig = [
       "sonarjs/prefer-immediate-return": "off",
     },
   },
-  ...esCompat.plugins("vitest"),
+  ...configCompat({
+    parser: "@babel/eslint-parser",
+    parserOptions: {
+      requireConfigFile: false,
+      babelOptions: {
+        plugins: ["@babel/plugin-syntax-import-assertions"],
+      },
+    },
+  }),
+  ...pluginsCompat("vitest"),
 
-  ...esCompat.extends("turbo"),
+  ...extendsCompat("turbo"),
   {
     ignores: [
       "**/dist/**/*",
@@ -77,12 +90,18 @@ const lintConfig = [
       "**/next-env.d.ts",
     ],
   },
-  ...esCompat.config({
+  ...configCompat({
     extends: ["next"],
     overrides: [
       {
         files: ["*.js", "*.mjs", "*.cjs", "*.jsx"],
-        parser: "espree",
+        parser: "@babel/eslint-parser",
+        parserOptions: {
+          requireConfigFile: false,
+          babelOptions: {
+            plugins: ["@babel/plugin-syntax-import-assertions"],
+          },
+        },
       },
     ],
     settings: {

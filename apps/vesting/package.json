@@ -32,11 +32,11 @@
     "@types/react-dom": "18.0.9",
     "autoprefixer": "^10.4.13",
     "constants-helper": "workspace:*",
-    "ethers": "^6.7.0",
+    "ethers": "^6.7.1",
     "evmos-wallet": "workspace:*",
     "helpers": "workspace:*",
     "icons": "workspace:*",
-    "next": "13.4.13",
+    "next": "13.4.16",
     "playwright-config-custom": "workspace:*",
     "postcss": "^8.4.20",
     "react": "18.2.0",
@@ -50,7 +50,7 @@
     "tracker": "workspace:*",
     "typescript": "5.1.6",
     "ui-helpers": "workspace:*",
-    "wagmi": "^1.3.10"
+    "wagmi": "~1.3.10"
   },
   "browserslist": [
     "last 3 chrome version",
@@ -71,6 +71,6 @@
     "tracker": "workspace:*",
     "ui-helpers": "workspace:*",
     "vitest": "^0.34.1",
-    "zod": "^3.21.4"
+    "zod": "^3.22.1"
   }
 }

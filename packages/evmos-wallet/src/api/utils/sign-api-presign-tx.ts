@@ -8,8 +8,12 @@ import {
   getKeplrProvider,
   signKeplrAminoTransaction,
 } from "../../wallet";
-import { apiBroadcastEip712, apiBroadcastRawTx } from "../broadcast";
-import { ApiPresignTx, apiBroadcastAmino } from "../../utils";
+import {
+  apiBroadcastAmino,
+  apiBroadcastEip712,
+  apiBroadcastRawTx,
+} from "../broadcast";
+import { ApiPresignTx } from "../../utils";
 
 export async function signBackendTypedDataTransaction({
   typedData,

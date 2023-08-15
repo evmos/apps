@@ -286,7 +286,7 @@ const Convert = ({
                   }
                   setDisabled(true);
                   const res = await writeContract(contract);
-                  debugger;
+
                   dispatch(
                     addSnackbar({
                       id: 0,

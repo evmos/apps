@@ -36,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (chore) | apps/governance 1.0.22 apps/assets 1.0.23 apps/mission 1.0.21 apps/staking 1.0.20 apps/vesting 1.0.18 | Adding missing headers
 - (chore) | apps/governance 1.0.21 apps/assets 1.0.23 apps/mission 1.0.20 apps/staking 1.0.19 apps/vesting 1.0.17 packages/icons 1.0.5 packages/copilot 1.0.3 packages/eslint-config-custom 1.0.4 | Add c14 and cypherD support
 
 ## 1.1.4 - 2023-08-03

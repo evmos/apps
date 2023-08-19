@@ -22,10 +22,10 @@ export const EvmosRedIcon: React.FC<EvmosRedIconProps> = ({
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...restProps}
     >
-      <rect width="31" height="31" fill="url(#pattern0)" />
+      <rect width="31" height="31" fill="url(#EvmosRedIcon)" />
       <defs>
         <pattern
-          id="pattern0"
+          id="EvmosRedIcon"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"

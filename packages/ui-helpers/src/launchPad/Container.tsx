@@ -77,7 +77,7 @@ export const LaunchContainer = () => {
             rel="noopener noreferrer"
             className="border-t-darkGray700 text-pearl bg-darkGray2Opacity active:bg-darkGray700 flex justify-center border-t py-5 text-xs transition-all duration-200 ease-in-out hover:bg-[#FFFFFF0F]"
           >
-            View all DApps
+            View all dApps
           </Link>
         </Menu.Items>
       </Transition>

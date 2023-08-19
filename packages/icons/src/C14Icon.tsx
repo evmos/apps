@@ -19,10 +19,10 @@ export const C14Icon: React.FC<C14IconProps> = ({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="100" height="100" fill="url(#pattern0)" />
+      <rect width="100" height="100" fill="url(#c14Icon)" />
       <defs>
         <pattern
-          id="pattern0"
+          id="c14Icon"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"

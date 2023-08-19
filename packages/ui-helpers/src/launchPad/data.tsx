@@ -1,5 +1,5 @@
 import { NutIcon, CoinIcon, CalculatorIcon, GovernanceIcon } from "icons";
-
+import { EVMOS_PAGE_URL} from "constants-helper"
 export type LaunchPadItemsProps = {
   icon: JSX.Element;
   text: string;
@@ -7,20 +7,24 @@ export type LaunchPadItemsProps = {
 };
 
 export const launchPadItems = [
-  { icon: <NutIcon width="40" height="40" />, text: "dAppStore", href: "/" },
+  {
+    icon: <NutIcon width="40" height="40" />,
+    text: "dAppStore",
+    href: EVMOS_PAGE_URL,
+  },
   {
     icon: <CoinIcon width="40" height="40" />,
     text: "Assets",
-    href: "/assets",
+    href: EVMOS_PAGE_URL + "/assets",
   },
   {
     icon: <CalculatorIcon width="40" height="40" />,
     text: "Staking",
-    href: "/staking",
+    href: EVMOS_PAGE_URL + "/staking",
   },
   {
     icon: <GovernanceIcon width="40" height="40" />,
     text: "Governance",
-    href: "/governance",
+    href: EVMOS_PAGE_URL + "/governance",
   },
 ];

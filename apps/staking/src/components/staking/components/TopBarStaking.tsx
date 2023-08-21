@@ -12,8 +12,7 @@ import {
   ConfirmButton,
   Tooltip,
 } from "ui-helpers";
-import { useRewards } from "../modals/hooks/useRewards";
-
+import { useRewards } from "evmos-wallet";
 import { StoreType } from "evmos-wallet";
 import { convertFromAtto, displayTopBarTooltip } from "helpers";
 import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";

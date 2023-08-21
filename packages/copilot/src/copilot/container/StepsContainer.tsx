@@ -1,7 +1,8 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { STEPS_CIRCLE_STYLES, TEXT_STYLES, stepsStatusI } from "./helpers";
+import { STEPS_CIRCLE_STYLES, TEXT_STYLES } from "./helpers";
+import { stepsStatusI } from "./types";
 
 export const StepsContainer = ({ step }: { step: stepsStatusI }) => {
   return (

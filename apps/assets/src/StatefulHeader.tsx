@@ -1,31 +1,27 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { StoreType, WalletConnection } from "evmos-wallet";
+import { StoreType, WalletConnection, useAssets } from "evmos-wallet";
 import { useDispatch, useSelector } from "react-redux";
 import { Header } from "ui-helpers";
 import { Dispatch, SetStateAction } from "react";
 import { CLICK_EVMOS_LOGO, useTracker } from "tracker";
-import { Copilot, CopilotButton, StepsContextProvider } from "copilot";
+import { CopilotButton, StepsContextProvider, steps } from "copilot";
+import dynamic from "next/dynamic";
+const Copilot = dynamic(() => import("copilot").then((mod) => mod.Copilot));
 
-export const StatefulHeader = ({
-  pageName,
-  setShowSidebar,
-}: {
-  pageName: string;
-  setShowSidebar?: Dispatch<SetStateAction<boolean>>;
-}) => {
+export const StatefulHeader = () => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
 
   const { handlePreClickAction } = useTracker(CLICK_EVMOS_LOGO);
+  const { evmosPriceFixed } = useAssets();
   return (
-    <StepsContextProvider>
+    <StepsContextProvider steps={steps}>
       <>
         <Copilot />
         <Header
-          pageName={pageName}
-          setShowSidebar={setShowSidebar}
+          pageName="Portfolio"
           walletConnectionButton={
             <WalletConnection
               copilotModal={({
@@ -41,9 +37,10 @@ export const StatefulHeader = ({
             handlePreClickAction({
               wallet: wallet?.evmosAddressEthFormat,
               provider: wallet?.extensionName,
-              page: pageName,
+              page: "assets",
             });
           }}
+          price={evmosPriceFixed}
         />
       </>
     </StepsContextProvider>

@@ -6,28 +6,28 @@ import { useDispatch, useSelector } from "react-redux";
 import { Header } from "ui-helpers";
 import { Dispatch, SetStateAction } from "react";
 import { CLICK_EVMOS_LOGO, useTracker } from "tracker";
-
 import { StepsContextProvider } from "copilot";
-import { Copilot, CopilotButton } from "copilot";
+import { CopilotButton, steps } from "copilot";
+import { useAssets } from "evmos-wallet";
+import dynamic from "next/dynamic";
+import { useTranslation } from "next-i18next";
 
-export const StatefulHeader = ({
-  pageName,
-  setShowSidebar,
-}: {
-  pageName: string;
-  setShowSidebar?: Dispatch<SetStateAction<boolean>>;
-}) => {
+const Copilot = dynamic(() => import("copilot").then((mod) => mod.Copilot));
+
+export const StatefulHeader = () => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
 
   const { handlePreClickAction } = useTracker(CLICK_EVMOS_LOGO);
+  const { evmosPriceFixed } = useAssets();
+  const { t } = useTranslation();
   return (
-    <StepsContextProvider>
+    <StepsContextProvider steps={steps}>
       <>
         <Copilot />
+
         <Header
-          pageName={pageName}
-          setShowSidebar={setShowSidebar}
+          pageName={t("appTitle")}
           walletConnectionButton={
             <WalletConnection
               copilotModal={({
@@ -43,9 +43,10 @@ export const StatefulHeader = ({
             handlePreClickAction({
               wallet: wallet?.evmosAddressEthFormat,
               provider: wallet?.extensionName,
-              page: pageName,
+              page: "mission",
             });
           }}
+          price={evmosPriceFixed}
         />
       </>
     </StepsContextProvider>

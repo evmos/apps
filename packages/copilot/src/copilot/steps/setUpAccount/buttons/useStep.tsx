@@ -63,7 +63,6 @@ export const useStep = (
             step,
             setGroupState,
           });
-
           successfullTrack({
             provider: step.tracker.provider,
           });
@@ -74,11 +73,11 @@ export const useStep = (
 
   const firstUpdate = useRef(true);
   useEffect(() => {
-    const check = async () => {
+    async function check() {
       if (await step.checkAction()) {
         completeStepAndTrack();
       }
-    };
+    }
 
     const completeStepAndTrack = () => {
       completeStep({
@@ -93,14 +92,8 @@ export const useStep = (
     };
 
     if (firstUpdate.current) {
-      check()
-        .then(() => {
-          firstUpdate.current = false;
-        })
-        .catch((error) => {
-          // Handle the error if needed
-          console.error(error);
-        });
+      check().catch(console.error);
+      firstUpdate.current = false;
     }
 
     if (step.href !== undefined && status !== STEP_STATUS.DONE) {
@@ -122,7 +115,7 @@ export const useStep = (
         );
       };
     }
-  }, [step, status, setGroupState, successfullTrack]);
+  }, [step, status, setGroupState]);
 
   const handleClick = async () => {
     setTextError("");

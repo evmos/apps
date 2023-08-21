@@ -6,19 +6,21 @@ import { generateEndpointAccount } from "@evmos/provider";
 import { fetchWithTimeout } from "./fetch";
 
 declare type EndpointAccountResponse = {
-  code?: number;
+  code_hash?: number;
   account?: {
     base_vesting_account?: {
       base_account: {
         pub_key?: {
           key?: string;
         };
+        sequence: string;
       };
     };
     base_account?: {
       pub_key?: {
         key?: string;
       };
+      sequence: string;
     };
   };
 };
@@ -27,9 +29,10 @@ type BaseAccount = {
   pub_key?: {
     key?: string;
   };
+  sequence: string;
 };
 
-export async function queryPubKey(evmosEndpoint: string, address: string) {
+const getBaseAccountData = async (evmosEndpoint: string, address: string) => {
   let converted = address;
   if (converted.startsWith("0x")) {
     converted = ethToEvmos(converted);
@@ -47,7 +50,7 @@ export async function queryPubKey(evmosEndpoint: string, address: string) {
     );
     // If error 400 wallet doesn't exists
     const resp = (await addr.json()) as EndpointAccountResponse;
-    if (resp.code) {
+    if (resp.code_hash) {
       return null;
     }
 
@@ -60,13 +63,32 @@ export async function queryPubKey(evmosEndpoint: string, address: string) {
         base = resp.account.base_account;
       }
     }
-
-    if (base != null && base.pub_key && base.pub_key !== null) {
-      return base.pub_key.key as string;
-    }
+    return base;
   } catch (e) {
     return null;
+  }
+};
+
+export async function queryPubKey(evmosEndpoint: string, address: string) {
+  if (address === "") {
+    return null;
+  }
+  const base = await getBaseAccountData(evmosEndpoint, address);
+  if (base != null && base.pub_key && base.pub_key !== null) {
+    return base.pub_key.key as string;
   }
 
   return null;
 }
+
+export const getSequence = async (evmosEndpoint: string, address: string) => {
+  if (address === "") {
+    return null;
+  }
+  const base = await getBaseAccountData(evmosEndpoint, address);
+  if (base != null) {
+    return base.sequence;
+  }
+
+  return null;
+};

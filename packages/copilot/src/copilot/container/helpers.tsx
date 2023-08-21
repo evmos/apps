@@ -35,9 +35,37 @@ export const STEPS_CIRCLE_STYLES = {
   ),
 };
 
-export interface stepsStatusI {
-  status: string;
-  index: number;
-  component: JSX.Element;
-  title: string;
-}
+export const TEXT_STYLES_DAPP = {
+  [STEP_STATUS.CURRENT]: "text-pearl",
+  [STEP_STATUS.NOT_PROCESSED]: "text-pearl opacity-70",
+  [STEP_STATUS.DONE]: "text-pearl opacity-70",
+};
+
+export const STEPS_CIRCLE_STYLES_DAPP = {
+  [STEP_STATUS.DONE]: (
+    <span
+      className="flex h-4 w-4 items-center justify-center"
+      aria-hidden="true"
+    >
+      <span className="absolute h-3 w-3 rounded-full bg-white" />
+      <span className="relative block h-2 w-2 rounded-full bg-white" />
+    </span>
+  ),
+  [STEP_STATUS.CURRENT]: (
+    <span
+      className="flex h-4 w-4 items-center justify-center"
+      aria-hidden="true"
+    >
+      <span className="absolute h-3 w-3 rounded-full bg-white opacity-30" />
+      <span className="relative block h-2 w-2 rounded-full bg-white" />
+    </span>
+  ),
+  [STEP_STATUS.NOT_PROCESSED]: (
+    <div
+      className="relative flex h-4 w-4 items-center justify-center"
+      aria-hidden="true"
+    >
+      <div className="bg-strokeGrey h-2 w-2 rounded-full" />
+    </div>
+  ),
+};

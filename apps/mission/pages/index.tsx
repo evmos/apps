@@ -23,6 +23,7 @@ import { HeadComponent } from "../src/components/mission/HeadComponent";
 import { GoogleAnalytics } from "../src/components/mission/GoogleAnalytics";
 import { MixpanelProvider } from "tracker";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GiveFeedback } from "../src/components/mission/GiveFeedback";
 
 export async function getStaticProps({ locale }: { locale: string }) {
   return {
@@ -53,6 +54,7 @@ export default function Mission() {
               <GoogleAnalytics />
               <main>
                 <TermOfServices />
+                <GiveFeedback />
                 <Container>
                   <>
                     <SnackbarsInternal />

@@ -4,9 +4,5 @@
 import { CopilotModal } from "../copilot/CopilotModal";
 
 export const Copilot = () => {
-  return (
-    <>
-      <CopilotModal />
-    </>
-  );
+  return <CopilotModal />;
 };

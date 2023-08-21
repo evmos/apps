@@ -15,6 +15,8 @@ import {
   CLICK_ON_STAKE_YOUR_EVMOS_COPILOT,
   useTracker,
 } from "tracker";
+import { ECOSYSTEM_URL, STAKING_URL } from "constants-helper";
+
 export const ButtonsNextSteps = () => {
   const { setShowModal, resetSteps } = useContext(StepsContext);
 
@@ -33,11 +35,7 @@ export const ButtonsNextSteps = () => {
       <div className="grid w-full grid-cols-1 space-y-3 pb-3 pt-5 md:grid-cols-2 md:space-x-4 md:space-y-0">
         <Button
           handleClick={() => {
-            handleInteractWithdApp(
-              // eslint-disable-next-line no-secrets/no-secrets
-              "https://altiplanic.notion.site/a188bd13dd114a88a7763fd2a8cc601e?v=403420ad21db41ce81f09b7e3f77e4e2",
-              setShowModal
-            );
+            handleInteractWithdApp(ECOSYSTEM_URL, setShowModal);
             trackInteractWithdAppClick();
             resetSteps();
           }}
@@ -48,7 +46,7 @@ export const ButtonsNextSteps = () => {
 
         <Button
           handleClick={() => {
-            handleStakeWithEvmos("https://app.evmos.org/staking", setShowModal);
+            handleStakeWithEvmos(STAKING_URL, setShowModal);
             trackStakeEvmosClick();
             resetSteps();
           }}

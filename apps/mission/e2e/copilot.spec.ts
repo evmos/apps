@@ -131,12 +131,13 @@ test.describe("Mission Page - Copilot", () => {
         await route.fulfill({ json });
       });
 
+      await page.waitForTimeout(3000);
+
       await page.getByRole("button", { name: "Debit/Credit card" }).click();
       await expect(
         page.getByRole("button", { name: /Next steps/i })
       ).toBeHidden();
 
-      await page.waitForTimeout(3000);
       await page.route(`${BALANCE_ENDPOINT}`, async (route) => {
         const json = {
           balance: {
@@ -146,6 +147,8 @@ test.describe("Mission Page - Copilot", () => {
         };
         await route.fulfill({ json });
       });
+
+      await page.waitForTimeout(3000);
 
       await page.getByRole("button", { name: /Next steps/i }).click();
 
@@ -186,6 +189,8 @@ test.describe("Mission Page - Copilot", () => {
         await route.fulfill({ json });
       });
 
+      await page.waitForTimeout(3000);
+
       await page.getByRole("button", { name: "Debit/Credit card" }).click();
       await expect(
         page.getByRole("button", { name: /Next steps/i })
@@ -211,7 +216,6 @@ test.describe("Mission Page - Copilot", () => {
 
       expect(await cypherDWidget.count()).toBe(1);
 
-      await page.waitForTimeout(3000);
       await page.route(`${BALANCE_ENDPOINT}`, async (route) => {
         const json = {
           balance: {
@@ -221,6 +225,8 @@ test.describe("Mission Page - Copilot", () => {
         };
         await route.fulfill({ json });
       });
+
+      await page.waitForTimeout(3000);
 
       await page.getByRole("button", { name: /Next steps/i }).click();
 

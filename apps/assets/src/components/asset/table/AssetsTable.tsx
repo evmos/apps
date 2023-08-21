@@ -7,11 +7,10 @@ import { useSelector } from "react-redux";
 import { StoreType } from "evmos-wallet";
 import { ERC20BalanceResponse } from "./types";
 import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
-import { NAV_TO_MISSION_CONTROL, EVMOS_PAGE_URL } from "constants-helper";
 import dynamic from "next/dynamic";
 
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
-import { MessageTable, Switch, Navigation } from "ui-helpers";
+import { MessageTable, Switch } from "ui-helpers";
 const TopBar = dynamic(() => import("./topBar/TopBar"));
 const ContentTable = dynamic(() => import("./ContentTable"));
 
@@ -25,7 +24,7 @@ import HeadAssets from "./components/HeadAssets";
 import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
 import { BigNumber } from "ethers";
-import { CLICK_BACK_TO_MC, CLICK_HIDE_ZERO_BALANCE, useTracker } from "tracker";
+import { CLICK_HIDE_ZERO_BALANCE, useTracker } from "tracker";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -106,17 +105,8 @@ const AssetsTable = () => {
     },
   };
 
-  const { handlePreClickAction } = useTracker(CLICK_BACK_TO_MC);
-
   return (
     <>
-      <Navigation
-        href={EVMOS_PAGE_URL}
-        text={NAV_TO_MISSION_CONTROL}
-        onClick={() => {
-          handlePreClickAction();
-        }}
-      />
       <TopBar topProps={topProps} />
       <div className="mx-5 flex flex-col justify-center lg:flex-row lg:justify-between xl:mx-0">
         <Guide />

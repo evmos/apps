@@ -30,6 +30,7 @@ import { StatefulHeader } from "../src/StatefulHeader";
 import { HeadComponent } from "../src/components/staking/HeadComponent";
 import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
 import { StatefulFooter } from "../src/StatefulFooter";
+import { GiveFeedback } from "../src/GiveFeedback";
 
 const Content = dynamic(() => import("../src/components/staking/Content"));
 
@@ -48,10 +49,11 @@ export default function Home() {
               <GoogleAnalytics />
               <main>
                 <TermOfServices />
+                <GiveFeedback />
                 <Container>
                   <>
                     <SnackbarsInternal />
-                    <StatefulHeader pageName="Staking" />
+                    <StatefulHeader />
                     <div className="container mx-auto mb-auto overflow-auto">
                       <Content />
                     </div>

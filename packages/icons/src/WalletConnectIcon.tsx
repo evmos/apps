@@ -22,7 +22,7 @@ export const WalletConnectIcon: React.FC<WalletConnectIconProps> = ({
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...restProps}
     >
-      <rect width="34" height="34" fill="url(#pattern3)" />
+      <rect width={"34"} height={"34"} fill="url(#pattern3)" />
       <defs>
         <pattern
           id="pattern3"

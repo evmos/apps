@@ -6,7 +6,7 @@ type MetamaskIconProps = React.SVGAttributes<SVGElement> & {
 };
 
 export const MetamaskIcon: React.FC<MetamaskIconProps> = ({
-  width = "34",
+  width = "30",
   height = "34",
   ...restProps
 }) => {
@@ -20,7 +20,7 @@ export const MetamaskIcon: React.FC<MetamaskIconProps> = ({
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...restProps}
     >
-      <rect width="30" height="34" fill="url(#pattern2)" />
+      <rect width={"30"} height={"34"} fill="url(#pattern2)" />
       <defs>
         <pattern
           id="pattern2"

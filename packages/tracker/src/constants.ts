@@ -124,6 +124,8 @@ export const CLICK_ON_TOP_UP_WITH_CRYPTO_COPILOT =
   "Top up with “Cryptocurrencies” inside Copilot";
 // with transak
 export const CLICK_ON_BUY_NOW_COPILOT = "Click on “Buy now” inside Copilot";
+export const CLICK_ON_DIFFERENT_ON_RAMP =
+  "Click on different On-Ramp options inside Copilot";
 export const CLICK_ON_NEXT_STEPS_COPILOT =
   "Click on “Next Steps” after topping up inside Copilot";
 export const CLICK_ON_INTERACT_WITH_DAPP_COPILOT =
@@ -145,3 +147,29 @@ export const CREATED_ORDER_ON_TRANSAK = "Created order on Transak";
 export const CANCELLED_ORDER_ON_TRANSAK = "Cancelled order on Transak";
 export const FAILED_ORDER_ON_TRANSAK = "Failed order on Transak";
 export const SUCCESSFUL_ORDER_ON_TRANSAK = "Successful order on Transak";
+export const CLICK_ON_STAKE_AND_MANAGE_DELEGATION =
+  "Click on 'Stake & manage delegation'";
+export const CLICK_ON_PARTICIPATE_IN_GOVERNANCE =
+  "Click on 'Participate in Governance'";
+export const CLICK_ON_VIEW_ALL_DAPPS = "Click on 'View all dApps'";
+export const CLCIK_ON_APPLY_TO_BE_PART_OF_THE_ECOSYSTEM =
+  "Apply to be part of the Ecosystem";
+export const CLICK_ON_DAPP_INSIDE_LAUNCHER =
+  "Click on dApp inside the Launcher";
+export const CLICK_ON_FEATURED_DAPP = "Click on Featured dApp";
+export const CLICK_ON_TOP_UP_ACCOUNT_DAPP = "Click on 'Top Up Account'";
+export const CLICK_ON_SEE_PORTFOLIO = "Click on 'See Portfolio'";
+export const CLICK_ON_START_COPILOT_MAIN_PAGE = "Start Copilot from main page";
+export const CLICK_ON_STAKE_COPILOT_BANNER =
+  "Click on 'Stake' from Copilot onboarding banner";
+export const CLICK_ON_USE_DAPP_COPILOT_BANNER =
+  "Click on 'Use a dApp' from Copilot onboarding banner";
+export const USER_NOT_CONNECTED = "User is not connected to an account";
+export const USER_CONNECTED_AND_HAS_TOKENS =
+  "User is connected to an account and has Evmos";
+export const USER_CONNECTED_AND_HAS_NO_TOKENS =
+  "User is connected to an account but has no Evmos";
+export const CLICK_ON_CONTINUE_TO_THE_DASHBOARD =
+  "Click on 'Continue to the dashboard' after topping up from main page";
+export const CLICK_ON_GIVE_FEEDBACK_MAIN_PAGE =
+  "Click on 'Give Feedback' from main page";

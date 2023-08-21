@@ -2,49 +2,44 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import Link from "next/link";
-import { Dispatch, SetStateAction, useCallback } from "react";
-import { Logo } from "icons";
-import { Button } from "./Button";
+import { EvmosRedIcon, Logo } from "icons";
 import { EVMOS_PAGE_URL } from "constants-helper";
+import { LaunchContainer } from "./launchPad/Container";
 export const Header = ({
-  pageName,
-  setShowSidebar,
   walletConnectionButton,
   onClick,
+  price,
+  pageName,
 }: {
-  pageName: string;
-  setShowSidebar?: Dispatch<SetStateAction<boolean>>;
   walletConnectionButton?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
+  price?: string;
+  pageName: string;
 }) => {
-  const handleClick = useCallback(() => {
-    if (setShowSidebar !== undefined) {
-      setShowSidebar(true);
-    }
-  }, [setShowSidebar]);
-
   return (
-    <div className="text-pearl mx-5 mb-3 flex flex-col xl:mx-0 xl:h-32 xl:flex-row xl:items-center xl:justify-between">
-      <div className="flex items-center justify-between xl:justify-start">
+    <div className="text-pearl mb-3 flex flex-col md:mx-0 md:h-32 md:flex-row md:items-center md:justify-between">
+      <div className="flex items-center justify-center md:justify-start">
         <Link
           href={EVMOS_PAGE_URL}
           rel="noreferrer"
-          className="xl:pr-14"
+          className="flex items-center space-x-3 md:pr-14"
           aria-label="home"
           onClick={onClick}
         >
-          <Logo className="h-20 w-32 xl:w-36" />
+          <Logo className="h-20 w-32 md:w-36" />
+          <span className="text-red text-3xl font-bold">{pageName}</span>
         </Link>
-        <div className="flex items-center space-x-2">
-          <p className="text-base font-bold lg:text-xl">{pageName}</p>
-          {pageName.includes("Mission") && (
-            <Button className="lg:hidden" onClick={handleClick}>
-              <span>Menu</span>
-            </Button>
-          )}
+      </div>
+      <div className="flex items-center justify-center md:space-x-16">
+        <div className="font-sm text-pearl bg-darGray800 hidden cursor-default  items-center justify-center space-x-3 rounded-full px-4 py-2 font-bold md:flex">
+          <EvmosRedIcon width={"20"} height={"20"} />
+          <span>{price}</span>
+        </div>
+        <div className="flex items-center space-x-3">
+          <LaunchContainer />
+          {walletConnectionButton}
         </div>
       </div>
-      {walletConnectionButton}
     </div>
   );
 };

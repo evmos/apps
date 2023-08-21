@@ -20,7 +20,7 @@ export const KeplrIcon: React.FC<KeplrIconProps> = ({
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...restProps}
     >
-      <rect width="34" height="34" fill="url(#pattern1)" />
+      <rect width="34" height={"34"} fill="url(#pattern1)" />
       <defs>
         <pattern
           id="pattern1"

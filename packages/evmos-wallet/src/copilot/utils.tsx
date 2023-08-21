@@ -22,9 +22,9 @@ import { ButtonConnectWallet } from "../wallet/buttons/Button.ConnectWallet";
 import { WalletConnectModal } from "./WalletConnectModal";
 
 export const ProvidersIcons: { [key: string]: JSX.Element } = {
-  [METAMASK_KEY]: <MetamaskIcon />,
-  [KEPLR_KEY]: <KeplrIcon />,
-  [WALLECT_CONNECT_KEY]: <WalletConnectIcon />,
+  [METAMASK_KEY]: <MetamaskIcon width={21} height={24} />,
+  [KEPLR_KEY]: <KeplrIcon width={24} height={24} />,
+  [WALLECT_CONNECT_KEY]: <WalletConnectIcon width={24} height={24} />,
 };
 
 export function trackWallet(

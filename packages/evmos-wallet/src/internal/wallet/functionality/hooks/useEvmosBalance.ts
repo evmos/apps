@@ -7,6 +7,7 @@ import { StoreType } from "../../../../redux/Store";
 import { BigNumber } from "ethers";
 import { getEvmosBalance } from "../fetch";
 import { BalanceResponse } from "../types";
+import { useMemo } from "react";
 
 export const useEvmosBalance = () => {
   const value = useSelector((state: StoreType) => state.wallet.value);
@@ -17,13 +18,16 @@ export const useEvmosBalance = () => {
     refetchInterval: 3000,
   });
 
-  let balance = BigNumber.from(0);
-  if (evmosBalance.data !== undefined) {
-    const amount = evmosBalance.data.balance.amount;
-    if (amount !== "") {
-      balance = BigNumber.from(amount);
+  const tempEvmosBalance = useMemo(() => {
+    let balance = BigNumber.from(0);
+    if (evmosBalance.data !== undefined) {
+      const amount = evmosBalance.data.balance.amount;
+      if (amount !== "") {
+        balance = BigNumber.from(amount);
+      }
     }
-  }
+    return balance;
+  }, [evmosBalance]);
 
-  return { evmosBalance: balance };
+  return { evmosBalance: tempEvmosBalance };
 };

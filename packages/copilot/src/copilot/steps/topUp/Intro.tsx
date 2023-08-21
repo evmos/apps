@@ -3,7 +3,11 @@
 
 import { Dispatch, SetStateAction } from "react";
 import { CreditCardsIcon, EthereumIcon } from "icons";
-import { CLICK_ON_TOP_UP_WITH_CARD_COPILOT, useTracker } from "tracker";
+import {
+  CLICK_ON_TOP_UP_WITH_CARD_COPILOT,
+  useTracker,
+  CLICK_ON_TOP_UP_WITH_CRYPTO_COPILOT,
+} from "tracker";
 import { TranslationContextProvider } from "schummar-translate/react";
 import { t } from "../../../locales/translate";
 export const Intro = ({
@@ -11,18 +15,22 @@ export const Intro = ({
 }: {
   setTopUpType: Dispatch<SetStateAction<string>>;
 }) => {
-  const { handlePreClickAction } = useTracker(
+  const { handlePreClickAction: trackCardTopUp } = useTracker(
     CLICK_ON_TOP_UP_WITH_CARD_COPILOT
+  );
+
+  const { handlePreClickAction: trackCryptoTopUp } = useTracker(
+    CLICK_ON_TOP_UP_WITH_CRYPTO_COPILOT
   );
 
   const handleCardOnClick = () => {
     setTopUpType("card");
-    handlePreClickAction();
+    trackCardTopUp();
   };
 
   const handleCryptoOnClick = () => {
     setTopUpType("crypto");
-    handlePreClickAction();
+    trackCryptoTopUp();
   };
 
   return (

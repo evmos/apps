@@ -1,7 +1,11 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { useEffect, useState } from "react";
 import { Dispatch, SetStateAction } from "react";
 import { DropdownArrow, TransakIcon, C14Icon } from "icons";
 import { t } from "../../../locales/translate";
+import { useTracker, CLICK_ON_DIFFERENT_ON_RAMP } from "tracker";
 
 export type DropdownOption = {
   name: string;
@@ -38,12 +42,17 @@ export default function ProviderDropwdown({
     };
   }, []);
 
+  const { handlePreClickAction: handleDifferentOnRampClick } = useTracker(
+    CLICK_ON_DIFFERENT_ON_RAMP
+  );
+
   const handleInputClick = (e: React.MouseEvent<HTMLElement>) => {
     e.stopPropagation();
     setShowMenu(!showMenu);
   };
 
   const onItemClick = (option: DropdownOption) => {
+    handleDifferentOnRampClick({ onRampType: option.value });
     setProvider(option);
   };
 

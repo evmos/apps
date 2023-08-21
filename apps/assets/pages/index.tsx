@@ -23,6 +23,7 @@ import { HeadComponent } from "../src/components/asset/HeadComponent";
 import { GoogleAnalytics } from "../src/components/asset/GoogleAnalytics";
 import { StatefulFooter } from "../src/StatefulFooter";
 import { MixpanelProvider } from "tracker";
+import { GiveFeedback } from "../src/GiveFeedback";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
@@ -44,10 +45,11 @@ export default function Home() {
               <GoogleAnalytics />
               <main>
                 <TermOfServices />
+                <GiveFeedback />
                 <Container>
                   <>
                     <SnackbarsInternal />
-                    <StatefulHeader pageName="Assets" />
+                    <StatefulHeader />
                     <div className="container mx-auto mb-auto overflow-auto">
                       <AssetsTable />
                     </div>

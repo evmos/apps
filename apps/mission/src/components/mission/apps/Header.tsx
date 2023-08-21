@@ -1,6 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
+import { ECOSYSTEM_URL } from "constants-helper";
 import Link from "next/link";
 import { CLICK_MISSION_CONTROL_ECOSYSTEM_BUTTON, useTracker } from "tracker";
 
@@ -18,8 +19,7 @@ const Header = () => {
         <Link
           target="_blank"
           rel="noreferrer"
-          // eslint-disable-next-line no-secrets/no-secrets
-          href="https://altiplanic.notion.site/a188bd13dd114a88a7763fd2a8cc601e?v=403420ad21db41ce81f09b7e3f77e4e2"
+          href={ECOSYSTEM_URL}
           aria-label="docs"
         >
           {/* TODO: use button component */}

@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { Dispatch } from "react";
 import { disconnectWallets } from "../../internal/wallet/functionality/disconnect";
 import { Keplr } from "../../internal/wallet/functionality/keplr/keplr";

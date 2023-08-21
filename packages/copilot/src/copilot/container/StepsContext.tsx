@@ -4,7 +4,6 @@
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 
 import { STEP_STATUS } from "../steps/setUpAccount/buttons/utils";
-import { steps } from "./data";
 
 type StepsPropsContext = {
   stepsStatus: {
@@ -12,6 +11,7 @@ type StepsPropsContext = {
     index: number;
     component: JSX.Element;
     title: string;
+    buttonDapp: (status: string) => JSX.Element;
   }[];
   updateStepsStatus: () => void;
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -19,14 +19,8 @@ type StepsPropsContext = {
   setShowCloseModal: Dispatch<SetStateAction<boolean>>;
   showCloseModal: boolean;
   resetSteps: () => void;
+  hasSingleTopUpStep: boolean;
 };
-
-const initialValue = steps.map((step, index) => ({
-  status: step.status,
-  index,
-  component: step.component,
-  title: step.title,
-}));
 
 const StepsContext = createContext<StepsPropsContext>({
   stepsStatus: [],
@@ -44,12 +38,33 @@ const StepsContext = createContext<StepsPropsContext>({
   resetSteps: () => {
     /**/
   },
+  hasSingleTopUpStep: false,
 });
 
-const StepsContextProvider = ({ children }: { children: JSX.Element }) => {
+const StepsContextProvider = ({
+  children,
+  steps,
+}: {
+  children: JSX.Element;
+  steps: {
+    title: string;
+    component: JSX.Element;
+    status: string;
+    buttonDapp: (status: string) => JSX.Element;
+  }[];
+}) => {
+  const initialValue = steps.map((step, index) => ({
+    status: step.status,
+    index,
+    component: step.component,
+    title: step.title,
+    buttonDapp: step.buttonDapp,
+  }));
+
   const [stepsStatus, setStepsStatus] = useState(initialValue);
   const [showModal, setShowModal] = useState(false);
   const [showCloseModal, setShowCloseModal] = useState(false);
+
   const updateStepsStatus = () => {
     const updatedState = [...stepsStatus];
     const currentElement = updatedState.find(
@@ -63,16 +78,21 @@ const StepsContextProvider = ({ children }: { children: JSX.Element }) => {
     const nextStep = updatedState[currentElement.index + 1];
     if (nextStep) {
       const nextStepUpdated = { ...nextStep, status: STEP_STATUS.CURRENT };
-
       updatedState[currentElement.index] = updatedStep;
       updatedState[currentElement.index + 1] = nextStepUpdated;
     }
-
     setStepsStatus(updatedState);
   };
 
   function resetSteps() {
     setStepsStatus(initialValue);
+  }
+
+  function hasSingleTopUpStep() {
+    if (steps.length === 1 && steps[0].title === "Top up your account") {
+      return true;
+    }
+    return false;
   }
 
   return (
@@ -85,6 +105,7 @@ const StepsContextProvider = ({ children }: { children: JSX.Element }) => {
         showCloseModal,
         setShowCloseModal,
         resetSteps,
+        hasSingleTopUpStep: hasSingleTopUpStep(),
       }}
     >
       {children}

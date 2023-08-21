@@ -15,3 +15,17 @@ export const FEE_WITHDRAW = "4600000000000000";
 export const PRIVACY_POLICY_URL = "https://evmos.org/privacy-policy";
 export const COOKIE_POLICY_URL = "https://evmos.org/cookie-policy";
 export const EVMOS_TOS_VERSION = "evmos-TOS-v2";
+export const ECOSYSTEM_URL =
+  // eslint-disable-next-line no-secrets/no-secrets
+  "https://altiplanic.notion.site/a188bd13dd114a88a7763fd2a8cc601e?v=403420ad21db41ce81f09b7e3f77e4e2";
+export const STAKING_URL = "https://app.evmos.org/staking";
+export const GOOGLE_FORM_URL =
+  // eslint-disable-next-line no-secrets/no-secrets
+  "https://docs.google.com/forms/d/e/1FAIpQLSc2O5HzjZMPbFD84O1513xJ0mggkSXihQy_a6IGskZq28l8yA/viewform";
+export const FEEDBACK_URL = "https://evmos.canny.io/feedback";
+export const DOCS_SMART_CONTRACTS_URL =
+  "https://docs.evmos.org/develop/smart-contracts";
+export const STRIDE_URL = "https://app.stride.zone/?chain=EVMOS";
+export const FORGE_URL = "https://forge.trade/";
+export const TASHI_URL = "https://tashi.finance/";
+export const ORBITAL_APES_URL = "https://www.orbitmarket.io";

@@ -47,7 +47,6 @@ export const CreateAccountModal = () => {
 
       <form
         onSubmit={handleSubmit((d) => {
-          console.log(d);
           handleOnClick(d);
         })}
         className="flex flex-col space-y-3"

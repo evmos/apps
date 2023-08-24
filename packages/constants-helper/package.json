@@ -15,7 +15,7 @@
     "autoprefixer": "^10.4.13",
     "eslint-config-next": "13.0.6",
     "postcss": "^8.4.20",
-    "prettier": "^3.0.1",
+    "prettier": "^3.0.2",
     "tsup": "^7.2.0",
     "typescript": "^5.1.6"
   },

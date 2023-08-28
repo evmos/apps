@@ -3,7 +3,6 @@
  * SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
  */
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,6 +44,12 @@
   font-family: "IBM";
   src: url("../public/fonts/IBMPlexSans-SemiBold.ttf");
   font-weight: 500;
+}
+
+@font-face {
+  font-family: "NB";
+  src: url("../public/fonts/NBInternationalProBol.otf");
+  font-weight: 600;
 }
 
 @layer componentsGovernance {
@@ -142,26 +147,26 @@
 }
 
 tr:first-child .firstRow {
-  @apply md:rounded-tl-2xl 
+  @apply md:rounded-tl-2xl;
 }
 
 tr:last-child .firstRow {
-  @apply md:rounded-bl-2xl 
+  @apply md:rounded-bl-2xl;
 }
 
-tr:first-child td:first-child  { 
-  @apply rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none
+tr:first-child td:first-child {
+  @apply rounded-tl-2xl rounded-tr-2xl md:rounded-tr-none;
 }
-tr:first-child td:last-child { 
-  @apply md:rounded-tr-2xl
-}
-
-tr:last-child td:last-child{
-  @apply rounded-br-2xl rounded-bl-2xl md:rounded-bl-none
+tr:first-child td:last-child {
+  @apply md:rounded-tr-2xl;
 }
 
-tr:last-child td:first-child{ 
-  @apply md:rounded-bl-2xl
+tr:last-child td:last-child {
+  @apply rounded-br-2xl rounded-bl-2xl md:rounded-bl-none;
+}
+
+tr:last-child td:first-child {
+  @apply md:rounded-bl-2xl;
 }
 
 html {
@@ -170,18 +175,23 @@ html {
 }
 
 .markdown {
-  @apply text-pearl space-y-2
+  @apply text-pearl space-y-2;
 }
-.markdown h2, h1, h3, h4, h5, h6 {
-  @apply text-xl font-bold 
+.markdown h2,
+h1,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-xl font-bold;
 }
 
 .markdown p {
-  @apply text-base
+  @apply text-base;
 }
 
 .markdown a {
-  @apply underline
+  @apply underline;
 }
 
 .markdown ul li {

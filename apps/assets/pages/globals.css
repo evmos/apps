@@ -3,7 +3,6 @@
  * SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
  */
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -45,6 +44,12 @@
   font-family: "IBM";
   src: url("../public/fonts/IBMPlexSans-SemiBold.ttf");
   font-weight: 500;
+}
+
+@font-face {
+  font-family: "NB";
+  src: url("../public/fonts/NBInternationalProBol.otf");
+  font-weight: 600;
 }
 
 @layer componentsAssets {

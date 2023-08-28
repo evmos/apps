@@ -26,8 +26,10 @@ export const Header = ({
           aria-label="home"
           onClick={onClick}
         >
-          <Logo className="h-20 w-32 md:w-36" />
-          <span className="text-red text-3xl font-bold">{pageName}</span>
+          <Logo className="w-11 md:w-14" />
+          <p className="text-red text-3xl font-bold font-[NB]">
+            <span className="text-pearl">Evmos</span> {pageName}
+          </p>
         </Link>
       </div>
       <div className="flex items-center justify-center md:space-x-16">

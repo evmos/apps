@@ -33,7 +33,7 @@
     "prettier": "^3.0.1",
     "tailwind-config": "workspace:*",
     "tsup": "^7.2.0",
-    "typescript": "^5.1.6",
+    "typescript": "^5.2.2",
     "schummar-translate": "^1.18.0",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1"

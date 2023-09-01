@@ -1363,8 +1363,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/mixpanel':
-        specifier: 2.14.1
-        version: 2.14.1
+        specifier: 2.14.5
+        version: 2.14.5
       '@types/mixpanel-browser':
         specifier: 2.47.1
         version: 2.47.1
@@ -4407,8 +4407,8 @@ packages:
   /@types/mixpanel-browser@2.47.1:
     resolution: {integrity: sha512-4Oif1hbjmStA6KI1OLer19rbKjlPd67ujp5Wipfa7rIskA/lOFZbp6kYsPjXD0f5AiiCQTbf0R/SnnzgOaKrbA==}
 
-  /@types/mixpanel@2.14.1:
-    resolution: {integrity: sha512-cYiEKFI8PyJKIWl1Jax4VDYgX3/iDpKu+OcubqRT5RRSR7ZVTatNV9UKT6S2kgk4929DBbPPg6ejkLZqWVTcSQ==}
+  /@types/mixpanel@2.14.5:
+    resolution: {integrity: sha512-QTPHsxaAurmWBFxmTtaYATDb55PMx2mrPdW2Yzaa5T6dpMAzviFUiOjqDm9EelDNEiURrNLrZkK2lxKLjsjcGg==}
     dev: true
 
   /@types/ms@0.7.31:

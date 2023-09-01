@@ -14,7 +14,7 @@
     "@babel/core": "^7.22.10",
     "@babel/plugin-syntax-import-assertions": "^7.22.5",
     "eslint": "^8.47.0",
-    "eslint-config-next": "^13.4.13",
+    "eslint-config-next": "^13.4.19",
     "next": ">=13"
   },
   "dependencies": {
@@ -30,7 +30,7 @@
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
     "@vitejs/plugin-react": "^4.0.4",
-    "eslint-config-next": "^13.4.13",
+    "eslint-config-next": "^13.4.19",
     "eslint-config-prettier": "^9.0.0",
     "eslint-config-turbo": "^1.10.12",
     "eslint-plugin-no-secrets": "^0.8.9",

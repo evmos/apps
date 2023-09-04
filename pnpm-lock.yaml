@@ -27,8 +27,8 @@ importers:
         specifier: ^14.4.3
         version: 14.4.3(@testing-library/dom@9.3.1)
       '@vitest/coverage-v8':
-        specifier: ^0.34.1
-        version: 0.34.1(vitest@0.34.1)
+        specifier: ^0.34.3
+        version: 0.34.3(vitest@0.34.1)
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
@@ -4694,8 +4694,8 @@ packages:
       - supports-color
     dev: false
 
-  /@vitest/coverage-v8@0.34.1(vitest@0.34.1):
-    resolution: {integrity: sha512-lRgUwjTMr8idXEbUPSNH4jjRZJXJCVY3BqUa+LDXyJVe3pldxYMn/r0HMqatKUGTp0Kyf1j5LfFoY6kRqRp7jw==}
+  /@vitest/coverage-v8@0.34.3(vitest@0.34.1):
+    resolution: {integrity: sha512-bNjP0RHe8UxdklCigZlk6FVCNbOiqVjWnpZJ1zKixpvb7YHSaZiN/w+mzpvXIoqyxyePzKC+L+G1oj7SB20PJw==}
     peerDependencies:
       vitest: '>=0.32.0 <1'
     dependencies:

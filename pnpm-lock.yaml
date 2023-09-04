@@ -167,8 +167,8 @@ importers:
         specifier: ^0.12.20
         version: 0.12.20
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -273,8 +273,8 @@ importers:
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -415,8 +415,8 @@ importers:
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -569,8 +569,8 @@ importers:
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -711,8 +711,8 @@ importers:
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -846,8 +846,8 @@ importers:
   packages/constants-helper:
     dependencies:
       '@types/node':
-        specifier: ^20.4.8
-        version: 20.4.8
+        specifier: ^20.5.9
+        version: 20.5.9
     devDependencies:
       '@evmos-apps/config':
         specifier: workspace:*
@@ -889,8 +889,8 @@ importers:
         specifier: ^4.32.6
         version: 4.32.6(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -1068,8 +1068,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -1123,8 +1123,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1160,8 +1160,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1213,8 +1213,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1292,8 +1292,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1369,8 +1369,8 @@ importers:
         specifier: 2.47.1
         version: 2.47.1
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1427,8 +1427,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -3933,7 +3933,7 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
       playwright-core: 1.37.1
     optionalDependencies:
       fsevents: 2.3.2
@@ -4325,7 +4325,7 @@ packages:
   /@types/bn.js@4.11.6:
     resolution: {integrity: sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg==}
     dependencies:
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
 
   /@types/chai-subset@1.3.3:
     resolution: {integrity: sha512-frBecisrNGz+F4T6bcc+NLeolfiojh5FxW2klu669+8BARtyQv2C/GkNW6FUodVe4BroGMP/wER/YDGc7rEllw==}
@@ -4346,7 +4346,7 @@ packages:
   /@types/connect@3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
 
   /@types/debug@4.1.8:
     resolution: {integrity: sha512-/vPO1EPOs306Cvhwv7KfVfYvOJqA/S/AXjaHQiJboCZzcNDb+TIJFN9/2C9DZ//ijSKWioNyUxD792QmDJ+HKQ==}
@@ -4417,27 +4417,16 @@ packages:
   /@types/node@12.20.55:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  /@types/node@18.11.14:
-    resolution: {integrity: sha512-0KXV57tENYmmJMl+FekeW9V3O/rlcqGQQJ/hNh9r8pKIj304pskWuEd8fCyNT86g/TpO0gcOTiLzsHLEURFMIQ==}
-
   /@types/node@18.15.13:
     resolution: {integrity: sha512-N+0kuo9KgrUQ1Sn/ifDXsvg0TTleP7rIy4zOBGECxAljqvqfqpTfzx0Q1NUedOixRMBfe2Whhb056a42cWs26Q==}
 
-  /@types/node@20.4.1:
-    resolution: {integrity: sha512-JIzsAvJeA/5iY6Y/OxZbv1lUcc8dNSE77lb2gnBH+/PJ3lFR1Ccvgwl5JWnHAkNHcRsT0TbpVOsiMKZ1F/yyJg==}
-    dev: true
-
-  /@types/node@20.4.8:
-    resolution: {integrity: sha512-0mHckf6D2DiIAzh8fM8f3HQCvMKDpK94YQ0DSVkfWTG9BZleYIWudw9cJxX8oCk9bM+vAkDyujDV6dmKHbvQpg==}
-    dev: false
-
-  /@types/node@20.5.7:
-    resolution: {integrity: sha512-dP7f3LdZIysZnmvP3ANJYTSwg+wLLl8p7RqniVlV7j+oXSXAbt9h0WIBFmJy5inWZoX9wZN6eXx+YXd9Rh3RBA==}
+  /@types/node@20.5.9:
+    resolution: {integrity: sha512-PcGNd//40kHAS3sTlzKB9C9XL4K0sTup8nbG5lC14kzEteTNuAFh9u5nA0o5TWnSG2r/JNPRXFVcHJIIeRlmqQ==}
 
   /@types/pbkdf2@3.1.0:
     resolution: {integrity: sha512-Cf63Rv7jCQ0LaL8tNXmEyqTHuIJxRdlS5vMh1mj5voN4+QFhVZnlZruezqpWYDiJ8UTzhP0VmeLXCmBk66YrMQ==}
     dependencies:
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -4460,7 +4449,7 @@ packages:
   /@types/secp256k1@4.0.3:
     resolution: {integrity: sha512-Da66lEIFeIz9ltsdMZcpQvmrmmoqrfju8pm1BH8WbYjZSwUgCwXLb9C+9XYogwBITnbsSaMdVPb2ekf7TV+03w==}
     dependencies:
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
 
   /@types/semver@7.5.0:
     resolution: {integrity: sha512-G8hZ6XJiHnuhQKR7ZmysCeJWE08o8T0AXtk5darsCaTVsYZhhgUrq53jizaR2FvsoeCwJhlmwTjkXBY5Pn/ZHw==}
@@ -4479,12 +4468,12 @@ packages:
   /@types/ws@7.4.7:
     resolution: {integrity: sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww==}
     dependencies:
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
 
   /@types/ws@8.5.5:
     resolution: {integrity: sha512-lwhs8hktwxSjf9UaZ9tG5M03PGogvFaH8gUgLNbN9HKIg0dvv6q+gkSuJ8HN4/VbyxkuLzCjlN7GquQ0gUJfIg==}
     dependencies:
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
 
   /@typescript-eslint/eslint-plugin@6.4.0(@typescript-eslint/parser@6.4.0)(eslint@8.47.0)(typescript@5.2.2):
     resolution: {integrity: sha512-62o2Hmc7Gs3p8SLfbXcipjWAa6qk2wZGChXG2JbBtYpwSRmti/9KHLqfbLs9uDigOexG+3PaQ9G2g3201FWLKg==}
@@ -4689,7 +4678,7 @@ packages:
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.22.11)
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.22.11)
       react-refresh: 0.14.0
-      vite: 4.4.9(@types/node@20.5.7)
+      vite: 4.4.9(@types/node@20.5.9)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -7179,7 +7168,7 @@ packages:
     dependencies:
       '@typescript-eslint/utils': 6.4.0(eslint@8.47.0)(typescript@5.2.2)
       eslint: 8.47.0
-      vite: 4.4.9(@types/node@20.5.7)
+      vite: 4.4.9(@types/node@20.5.9)
       vitest: 0.34.1(jsdom@22.1.0)
     transitivePeerDependencies:
       - supports-color
@@ -10104,7 +10093,7 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
       long: 4.0.0
 
   /proxy-compare@2.5.1:
@@ -11770,7 +11759,7 @@ packages:
       - utf-8-validate
       - zod
 
-  /vite-node@0.34.1(@types/node@20.5.7):
+  /vite-node@0.34.1(@types/node@20.5.9):
     resolution: {integrity: sha512-odAZAL9xFMuAg8aWd7nSPT+hU8u2r9gU3LRm9QKjxBEF2rRdWpMuqkrkjvyVQEdNFiBctqr2Gg4uJYizm5Le6w==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -11780,7 +11769,7 @@ packages:
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.4.9(@types/node@20.5.7)
+      vite: 4.4.9(@types/node@20.5.9)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -11792,7 +11781,7 @@ packages:
       - terser
     dev: false
 
-  /vite@4.4.9(@types/node@20.5.7):
+  /vite@4.4.9(@types/node@20.5.9):
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -11820,7 +11809,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
       esbuild: 0.18.20
       postcss: 8.4.29
       rollup: 3.28.0
@@ -11861,7 +11850,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
-      '@types/node': 20.5.7
+      '@types/node': 20.5.9
       '@vitest/expect': 0.34.1
       '@vitest/runner': 0.34.1
       '@vitest/snapshot': 0.34.1
@@ -11881,8 +11870,8 @@ packages:
       strip-literal: 1.3.0
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.4.9(@types/node@20.5.7)
-      vite-node: 0.34.1(@types/node@20.5.7)
+      vite: 4.4.9(@types/node@20.5.9)
+      vite-node: 0.34.1(@types/node@20.5.9)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less

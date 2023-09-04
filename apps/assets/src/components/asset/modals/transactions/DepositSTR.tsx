@@ -22,11 +22,12 @@ import {
   EVMOS_SYMBOL,
 } from "evmos-wallet";
 import { BigNumber } from "@ethersproject/bignumber";
+import { DepositModal } from "./DepositNew";
+import { NEOK_IBC_DENOM_MAP } from "./neok-ibc-map";
 export type DepositElement = {
   chain: string;
   elements: TableDataElement[];
 };
-
 const DepositSTR = ({
   data,
   feeBalance,
@@ -41,15 +42,17 @@ const DepositSTR = ({
   const [disabled, setDisabled] = useState(false);
   const [token, setToken] = useState<TableDataElement>();
   const [chain, setChain] = useState<DepositElement>();
-
+  console.log(data.table);
   const depositData = useMemo(() => {
     const temp = new Array<DepositElement>();
-    let evmos: TableDataElement;
+    let evmosTokens: TableDataElement[] = data.table.filter(
+      (e) => e.prefix === "evmos"
+    );
     data.table.map((item) => {
-      if (item.chainIdentifier === "Evmos") {
-        evmos = item;
-        return;
-      }
+      // if (item.chainIdentifier === "Evmos") {
+      //   evmosTokens = item;
+      //   return;
+      // }
       const element = temp.find((e) => {
         if (e.chain === item.chainIdentifier) {
           return true;
@@ -66,7 +69,7 @@ const DepositSTR = ({
 
     temp.map((e) => {
       if (e.chain !== "Evmos") {
-        e.elements.push(evmos);
+        e.elements.push(...evmosTokens);
       }
     });
 
@@ -133,10 +136,15 @@ const DepositSTR = ({
             token.symbol
           );
         } else {
+          let tokenDenom = token.symbol;
+          if (token.symbol === "NEOK") {
+            const prefix = walletToUse.split("1")[0];
+            tokenDenom = encodeURIComponent(NEOK_IBC_DENOM_MAP[prefix] ?? "");
+          }
           balance = await getBalance(
             walletToUse,
-            token.chainIdentifier.toUpperCase(),
-            token.symbol
+            chain?.chain.toUpperCase() ?? "",
+            tokenDenom
           );
         }
       }
@@ -219,6 +227,7 @@ const DepositSTR = ({
     <>
       <ModalTitle title="Deposit Tokens" />
       <div className="space-y-3 text-darkGray3">
+        <DepositModal />
         <DepositSender
           address={walletToUse}
           dropChainProps={{
@@ -231,7 +240,6 @@ const DepositSTR = ({
             setToken: setToken,
           }}
         />
-
         <AmountDeposit amountProps={amountProps} />
         {depositDiv()}
       </div>

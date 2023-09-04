@@ -9,20 +9,14 @@ import { ERC20BalanceResponse } from "./types";
 import { getAssetsForAddress } from "./fetch";
 import { addAssets, addDollarAssets, amountToDollars } from "helpers";
 import { BigNumber } from "@ethersproject/bignumber";
+import { useAccount } from "wagmi";
+import { ethToEvmos } from "@evmos/address-converter";
 export const useAssets = () => {
-  const value = useSelector((state: StoreType) => state.wallet.value);
+  const { address } = useAccount();
 
   const assets = useQuery<ERC20BalanceResponse, Error>({
-    queryKey: [
-      "commonAssets",
-      value.evmosAddressCosmosFormat,
-      value.evmosAddressEthFormat,
-    ],
-    queryFn: () =>
-      getAssetsForAddress(
-        value.evmosAddressCosmosFormat,
-        value.evmosAddressEthFormat
-      ),
+    queryKey: ["commonAssets", address],
+    queryFn: () => getAssetsForAddress(address && ethToEvmos(address), address),
   });
 
   const getAssetsForMissionControl = useMemo(() => {

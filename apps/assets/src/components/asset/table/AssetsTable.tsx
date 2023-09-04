@@ -1,12 +1,9 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { useQuery } from "@tanstack/react-query";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { StoreType } from "evmos-wallet";
-import { ERC20BalanceResponse } from "./types";
-import { getAssetsForAddress } from "../../../internal/asset/functionality/fetch";
 import dynamic from "next/dynamic";
 
 const ModalAsset = dynamic(() => import("../modals/ModalAsset"));
@@ -25,7 +22,8 @@ import Guide from "./Guide";
 import { useStakedEvmos } from "../../../internal/common/api/hooks/useStakedEvmos";
 
 import { BigNumber } from "@ethersproject/bignumber";
-import {  CLICK_HIDE_ZERO_BALANCE, useTracker } from "tracker";
+import { CLICK_HIDE_ZERO_BALANCE, useTracker } from "tracker";
+import { useAssets } from "./useConnectedAccountAssets";
 
 const AssetsTable = () => {
   const [show, setShow] = useState(false);
@@ -36,19 +34,8 @@ const AssetsTable = () => {
 
   const { stakedData } = useStakedEvmos();
 
-  const { data, error, isLoading } = useQuery<ERC20BalanceResponse, Error>({
-    refetchInterval: 3000,
-    queryKey: [
-      "assets",
-      value.evmosAddressCosmosFormat,
-      value.evmosAddressEthFormat,
-    ],
-    queryFn: () =>
-      getAssetsForAddress(
-        value.evmosAddressCosmosFormat,
-        value.evmosAddressEthFormat
-      ),
-  });
+  const { data, error, isLoading } = useAssets();
+  console.log(data, error);
 
   const [hideZeroBalance, setHideBalance] = useState(false);
   useEffect(() => {
@@ -132,7 +119,7 @@ const AssetsTable = () => {
               </MessageTable>
             )}
           </tbody>
-          {error && !isLoading && tableData?.length === 0 && (
+          {!!error && !isLoading && tableData?.length === 0 && (
             <tbody>
               <MessageTable amountCols={4}>
                 <p>Request failed</p>

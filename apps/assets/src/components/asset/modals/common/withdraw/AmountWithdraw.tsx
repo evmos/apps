@@ -31,10 +31,10 @@ const AmountWithdraw = ({
     if (amountProps.token !== undefined) {
       // evmos keeps using cosmosBalance
       let balance = amountProps.token.erc20Balance;
-      if (amountProps.token.symbol === EVMOS_SYMBOL) {
+      if (amountProps.token.prefix === "evmos") {
         balance = amountProps.token.cosmosBalance;
       }
-      if (amountProps.token.symbol.toUpperCase() !== feeDenom.toUpperCase()) {
+      if (amountProps.token.prefix.toUpperCase() !== feeDenom.toUpperCase()) {
         amountProps.setValue(
           numericOnly(convertFromAtto(balance, amountProps.token.decimals))
         );

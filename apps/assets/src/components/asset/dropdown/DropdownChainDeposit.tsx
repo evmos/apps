@@ -16,6 +16,7 @@ const DropdownChainDeposit = ({
 }: {
   dropChainProps: DropdownChainsDepositProps;
 }) => {
+  console.log(dropChainProps);
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<DepositElement | null>(
     null

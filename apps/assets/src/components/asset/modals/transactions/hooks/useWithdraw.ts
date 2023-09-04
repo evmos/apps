@@ -73,17 +73,19 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
     let chainIdentifier = useWithdrawProps.token.chainIdentifier;
     let balance = useWithdrawProps.token.erc20Balance;
     let useERC20Denom = true;
-    if (
-      useWithdrawProps.token.symbol === EVMOS_SYMBOL &&
-      useWithdrawProps.chain !== undefined
-    ) {
-      chainIdentifier = useWithdrawProps.chain.chainIdentifier;
-      // evmos keeps using cosmosBalance
-      balance = useWithdrawProps.token.cosmosBalance;
-      useERC20Denom = false;
-      prefixTemp = useWithdrawProps.chain.prefix;
-    }
 
+    const { chain, token } = useWithdrawProps;
+    if (token.prefix === "evmos" && chain !== undefined) {
+      chainIdentifier = chain.chainIdentifier;
+      // evmos keeps using cosmosBalance
+
+      if (token.symbol === EVMOS_SYMBOL) {
+        balance = token.cosmosBalance;
+        useERC20Denom = false;
+      }
+
+      prefixTemp = chain.prefix;
+    }
     if (amount.gt(balance)) {
       return;
     }
@@ -100,6 +102,7 @@ export const useWithdraw = (useWithdrawProps: WithdrawProps) => {
       dstChain: chainIdentifier,
       token: useWithdrawProps.token.symbol,
     };
+
     useWithdrawProps.setDisabled(true);
 
     dispatch(snackIBCInformation());

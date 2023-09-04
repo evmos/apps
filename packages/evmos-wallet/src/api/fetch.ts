@@ -6,11 +6,11 @@ export const getAssets = async () => {
   return res.json() as Promise<ERC20BalanceResponse>;
 };
 export const getAssetsForAddress = async (
-  address: string,
-  hexAddress: string
+  address?: string,
+  hexAddress?: string
 ) => {
   // If not wallet selected return everything empty
-  if (address === "" || hexAddress === "") {
+  if (!address || !hexAddress) {
     return getAssets();
   }
 

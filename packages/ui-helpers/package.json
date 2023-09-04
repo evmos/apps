@@ -15,6 +15,7 @@
   },
   "peerDependencies": {
     "constants-helper": "workspace:*",
+    "helpers": "workspace:*",
     "icons": "workspace:*",
     "next": ">=13",
     "react": ">=18",

@@ -1,7 +1,11 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  dehydrate,
+} from "@tanstack/react-query";
 import AssetsTable from "../src/components/asset/table/AssetsTable";
 import {
   store,
@@ -24,8 +28,10 @@ function SnackbarsInternal() {
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
+const queryClient = new QueryClient();
+
 export default function Home() {
-  const queryClient = new QueryClient();
+  console.log(queryClient);
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>

@@ -164,8 +164,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@keplr-wallet/types':
-        specifier: ^0.12.20
-        version: 0.12.20
+        specifier: ^0.12.23
+        version: 0.12.23
       '@types/node':
         specifier: 20.4.1
         version: 20.4.1
@@ -261,8 +261,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@keplr-wallet/types':
-        specifier: ^0.12.20
-        version: 0.12.20
+        specifier: ^0.12.23
+        version: 0.12.23
       '@metamask/providers':
         specifier: ^10.2.1
         version: 10.2.1
@@ -403,8 +403,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@keplr-wallet/types':
-        specifier: ^0.12.20
-        version: 0.12.20
+        specifier: ^0.12.23
+        version: 0.12.23
       '@metamask/providers':
         specifier: ^10.2.1
         version: 10.2.1
@@ -554,8 +554,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@keplr-wallet/types':
-        specifier: ^0.12.20
-        version: 0.12.20
+        specifier: ^0.12.23
+        version: 0.12.23
       '@metamask/providers':
         specifier: ^10.2.1
         version: 10.2.1
@@ -699,8 +699,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@keplr-wallet/types':
-        specifier: ^0.12.20
-        version: 0.12.20
+        specifier: ^0.12.23
+        version: 0.12.23
       '@metamask/providers':
         specifier: ^10.2.1
         version: 10.2.1
@@ -995,8 +995,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1
       '@keplr-wallet/types':
-        specifier: ^0.12.20
-        version: 0.12.20
+        specifier: ^0.12.23
+        version: 0.12.23
       '@metamask/providers':
         specifier: ^11.1.0
         version: 11.1.0
@@ -3548,8 +3548,8 @@ packages:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  /@keplr-wallet/types@0.12.20:
-    resolution: {integrity: sha512-uCVu1WYv908eeK0Dlrltthf6cL9ThHdmmShhVXHx/ZzXUbRn1bfsEKwo83nggd5985XqdSiwXFmprskTHGO/pQ==}
+  /@keplr-wallet/types@0.12.23:
+    resolution: {integrity: sha512-PRnsoGswlWV5bwyqGw1o5dKCEY33s8Mgxd7HeqTX9L+Pj6TAapnBlyCxhXBp74W0QySIMe8it37VjhJqa9QWxA==}
     dependencies:
       long: 4.0.0
 

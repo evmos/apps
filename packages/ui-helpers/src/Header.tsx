@@ -21,18 +21,18 @@ export const Header = ({
   launchPad: LaunchPadProps;
 }) => {
   return (
-    <div className="text-pearl mb-3 flex flex-col md:mx-0 md:h-32 md:flex-row md:items-center md:justify-between">
+    <div className="text-pearl mb-3 mt-3 md:mt-0 flex flex-col md:mx-0 md:h-32 md:flex-row md:items-center md:justify-between">
       <div className="flex items-center justify-center md:justify-start">
         <Link
           href={EVMOS_PAGE_URL}
           rel="noreferrer"
-          className="flex items-center space-x-3 md:pr-14"
+          className="flex items-center lg:items-end space-x-5 h-full"
           aria-label="home"
           onClick={onClick}
         >
-          <Logo className="w-11 md:w-14" />
-          <p className="text-red text-3xl font-bold font-[NB]">
-            <span className="text-pearl">Evmos</span> {pageName}
+          <Logo className="w-11 md:w-14 h-full" />
+          <p className="text-red text-2xl md:text-3xl lg:text-[42px] font-bold font-[NB] tracking-wide h-full">
+            <span className="text-pearl ">Evmos</span> {pageName}
           </p>
         </Link>
       </div>

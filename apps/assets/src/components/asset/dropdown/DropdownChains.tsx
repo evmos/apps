@@ -7,6 +7,7 @@ import { TableDataElement } from "../../../internal/asset/functionality/table/no
 import { EVMOS_SYMBOL } from "evmos-wallet";
 import { DropdownArrow } from "icons";
 import { DropdownChainsProps } from "./types";
+
 const DropdownChains = ({
   dropChainProps,
 }: {

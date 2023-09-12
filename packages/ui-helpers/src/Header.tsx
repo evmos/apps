@@ -5,16 +5,20 @@ import Link from "next/link";
 import { EvmosRedIcon, Logo } from "icons";
 import { EVMOS_PAGE_URL } from "constants-helper";
 import { LaunchContainer } from "./launchPad/Container";
+import { LaunchPadProps } from "./launchPad/types";
+
 export const Header = ({
   walletConnectionButton,
   onClick,
   price,
   pageName,
+  launchPad,
 }: {
   walletConnectionButton?: JSX.Element;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   price?: string;
   pageName: string;
+  launchPad: LaunchPadProps;
 }) => {
   return (
     <div className="text-pearl mb-3 flex flex-col md:mx-0 md:h-32 md:flex-row md:items-center md:justify-between">
@@ -33,12 +37,12 @@ export const Header = ({
         </Link>
       </div>
       <div className="flex items-center justify-center md:space-x-16">
-        <div className="font-sm text-pearl bg-darGray800 hidden cursor-default  items-center justify-center space-x-3 rounded-full px-4 py-2 font-bold md:flex">
+        <div className="font-sm text-pearl bg-darGray800 hidden cursor-default items-center justify-center space-x-3 rounded-full px-4 py-2 font-bold md:flex">
           <EvmosRedIcon width={"20"} height={"20"} />
           <span>{price}</span>
         </div>
         <div className="flex items-center space-x-3">
-          <LaunchContainer />
+          <LaunchContainer launchPad={launchPad} />
           {walletConnectionButton}
         </div>
       </div>

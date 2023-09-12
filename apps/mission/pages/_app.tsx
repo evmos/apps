@@ -11,7 +11,7 @@ const app: ReturnType<typeof appWithTranslation> = appWithTranslation(
     return (
       <>
         <Script src="https://public.cypherd.io/sdk/cypher-sdk.js" />
-        <Component {...pageProps} />;
+        <Component {...pageProps} />
       </>
     );
   }

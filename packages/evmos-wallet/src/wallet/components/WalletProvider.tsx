@@ -20,7 +20,6 @@ type WalletProviderProps = PropsWithChildren<{}>;
 function Provider({ children }: WalletProviderProps) {
   const { address, connector, isConnected } = useAccount({
     onConnect: ({ isReconnected, connector, address }) => {
-      console.log("connected");
       if (isReconnected) return;
       notifySuccess(
         WALLET_NOTIFICATIONS.SuccessTitle,

@@ -36,6 +36,8 @@ import {
   SUCCESSFUL_TX_DEPOSIT,
   UNSUCCESSFUL_TX_DEPOSIT,
 } from "tracker";
+import { NEOK_IBC_DENOM_MAP } from "../neok-ibc-map";
+
 export const useDeposit = (useDepositProps: DepositProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
@@ -113,6 +115,7 @@ export const useDeposit = (useDepositProps: DepositProps) => {
     if (useDepositProps.receiverAddress.startsWith("0x")) {
       addressEvmos = ethToEvmos(useDepositProps.receiverAddress);
     }
+
     const params: IBCChainParams = {
       sender: keplrAddress,
       receiver: addressEvmos,
@@ -134,6 +137,10 @@ export const useDeposit = (useDepositProps: DepositProps) => {
     if (prefix === undefined) {
       // TODO: snackbar?
       return;
+    }
+    // hardcoding neok support for now, new modal will not have this, I promise
+    if (useDepositProps.token.symbol === "NEOK") {
+      params.token = NEOK_IBC_DENOM_MAP[prefix];
     }
     // create, sign and broadcast tx
     const res = await executeDeposit(

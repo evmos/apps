@@ -1,5 +1,6 @@
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
+import { SafeConnector } from "wagmi/connectors/safe";
 import { WALLET_CONNECT_PROJECT_ID } from "../../internal/wallet/functionality/networkConfig";
 import { KeplrConnector } from "./keplrConnector";
 import { getEvmosChainInfo } from "./chains";
@@ -20,6 +21,10 @@ export const metamaskConnector = new MetaMaskConnector({
 export const keplrConnector = new KeplrConnector({
   chains: [evmos],
 });
+export const safeConnector = new SafeConnector({
+  chains: [evmos],
+  options: { debug: false },
+});
 walletConnectConnector
   .getProvider()
   .then((provider) => {
@@ -38,4 +43,5 @@ export const CONNECTOR_MAP = {
   [keplrConnector.id]: keplrConnector,
   [metamaskConnector.id]: metamaskConnector,
   [walletConnectConnector.id]: walletConnectConnector,
+  [safeConnector.id]: safeConnector,
 } as const;

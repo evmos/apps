@@ -15,7 +15,6 @@ import {
   MODAL_NOTIFICATIONS,
   snackErrorConnectingKeplr,
   getKeplrAddressByChain,
-  EVMOS_SYMBOL,
   truncateAddress,
 } from "evmos-wallet";
 
@@ -36,10 +35,7 @@ const ToWithdraw = ({
       if (token !== undefined) {
         prefix = token.prefix;
 
-        if (
-          token.symbol === EVMOS_SYMBOL &&
-          dropChainProps.chain !== undefined
-        ) {
+        if (token.prefix === "evmos" && dropChainProps.chain !== undefined) {
           prefix = dropChainProps.chain.prefix;
         }
       }
@@ -65,7 +61,7 @@ const ToWithdraw = ({
     let chainId = token.chainId;
     let chainIdentifier = token.chainIdentifier;
     setPrefix(token.prefix);
-    if (token.symbol === EVMOS_SYMBOL && dropChainProps.chain !== undefined) {
+    if (token.prefix === "evmos" && dropChainProps.chain !== undefined) {
       chainId = dropChainProps.chain?.chainId;
       chainIdentifier = dropChainProps.chain?.chainIdentifier;
       setPrefix(dropChainProps.chain.prefix);
@@ -152,7 +148,7 @@ const ToWithdraw = ({
     <ContainerModal>
       <>
         {createWalletDiv()}
-        {token !== undefined && token.symbol === EVMOS_SYMBOL && (
+        {token !== undefined && token.prefix === "evmos" && (
           <ChainContainer dropChainProps={dropChainProps} />
         )}
         {showInput && (
@@ -173,11 +169,9 @@ const ToWithdraw = ({
             </h6>
           </>
         )}
-
         {confirmClicked && receiverAddress === "" && (
           <ErrorMessage text={MODAL_NOTIFICATIONS.ErrorAddressEmpty} />
         )}
-
         {confirmClicked &&
           token !== undefined &&
           !checkFormatAddress(receiverAddress, prefix) && (

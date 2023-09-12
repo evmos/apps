@@ -1,0 +1,55 @@
+{
+  "name": "stateful-components",
+  "version": "1.0.0",
+  "main": "./src/index.tsx",
+  "types": "./src/index.tsx",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "sideEffects": false,
+  "scripts": {
+    "check-types": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "copilot": "workspace:*",
+    "evmos-wallet": "workspace:*",
+    "icons": "workspace:*",
+    "next": ">=13",
+    "react": ">=18",
+    "react-dom": ">=18",
+    "tracker": "workspace:*",
+    "ui-helpers": "workspace:*"
+  },
+  "devDependencies": {
+    "@evmos-apps/config": "workspace:*",
+    "@types/node": "18.11.14",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "18.0.9",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.20",
+    "prettier": "^3.0.1",
+    "react-redux": "^8.1.2",
+    "redux": "^4.2.1",
+    "schummar-translate": "^1.18.0",
+    "tailwind-config": "workspace:*",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
+    "@types/mixpanel-browser": "2.47.1",
+    "clsx": "^2.0.0",
+    "mixpanel-browser": "^2.47.0",
+    "vitest": "^0.34.1"
+  },
+  "browserslist": [
+    "last 3 chrome version",
+    "last 3 firefox version",
+    "last 3 safari version"
+  ]
+}

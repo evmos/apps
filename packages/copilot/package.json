@@ -1,6 +1,6 @@
 {
   "name": "copilot",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "type": "module",
@@ -14,38 +14,41 @@
     "lint": "eslint ."
   },
   "peerDependencies": {
-    "redux": ">=4",
+    "@reduxjs/toolkit": "~1.9.5",
     "next": ">=13",
     "react": ">=18",
     "react-dom": ">=18",
     "react-redux": "^8.1.2",
-    "@reduxjs/toolkit": "~1.9.5"
+    "redux": ">=4"
   },
   "devDependencies": {
+    "@evmos-apps/config": "workspace:*",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
     "prettier": "^3.0.1",
-    "tsup": "^7.2.0",
     "schummar-translate": "^1.18.0",
-    "@evmos-apps/config": "workspace:*"
+    "tsup": "^7.2.0"
   },
   "dependencies": {
-    "ui-helpers": "workspace:*",
-    "constants-helper": "workspace:*",
-    "tracker": "workspace:*",
-    "icons": "workspace:*",
-    "evmos-wallet": "workspace:*",
     "@ethersproject/bignumber": "^5.7.0",
     "@fireworks-js/react": "^2.10.7",
     "@headlessui/react": "^1.7.15",
     "@tanstack/react-query": "^4.32.6",
     "@types/node": "18.11.14",
-    "@types/react": "18.0.26",
+    "@types/react": "18.2.21",
     "@types/react-dom": "18.0.9",
+    "constants-helper": "workspace:*",
     "eslint": "^8.47.0",
     "ethers": "^6.7.1",
+    "evmos-wallet": "workspace:*",
+    "helpers": "workspace:*",
+    "icons": "workspace:*",
+    "next": "13.4.16",
+    "react": "18.2.0",
     "react-confetti-explosion": "^2.1.2",
-    "typescript": "5.1.6"
+    "tracker": "workspace:*",
+    "typescript": "5.2.2",
+    "ui-helpers": "workspace:*"
   },
   "browserslist": [
     "last 3 chrome version",

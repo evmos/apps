@@ -22,11 +22,11 @@ import {
   EVMOS_SYMBOL,
 } from "evmos-wallet";
 import { BigNumber } from "@ethersproject/bignumber";
+import { NEOK_IBC_DENOM_MAP } from "./neok-ibc-map";
 export type DepositElement = {
   chain: string;
   elements: TableDataElement[];
 };
-
 const DepositSTR = ({
   data,
   feeBalance,
@@ -44,10 +44,10 @@ const DepositSTR = ({
 
   const depositData = useMemo(() => {
     const temp = new Array<DepositElement>();
-    let evmos: TableDataElement;
+    const evmosTokens: TableDataElement[] = [];
     data.table.map((item) => {
       if (item.chainIdentifier === "Evmos") {
-        evmos = item;
+        evmosTokens.push(item);
         return;
       }
       const element = temp.find((e) => {
@@ -66,7 +66,7 @@ const DepositSTR = ({
 
     temp.map((e) => {
       if (e.chain !== "Evmos") {
-        e.elements.push(evmos);
+        e.elements.push(...evmosTokens);
       }
     });
 
@@ -133,10 +133,15 @@ const DepositSTR = ({
             token.symbol
           );
         } else {
+          let tokenDenom = token.symbol;
+          if (token.symbol === "NEOK") {
+            const prefix = walletToUse.split("1")[0];
+            tokenDenom = encodeURIComponent(NEOK_IBC_DENOM_MAP[prefix] ?? "");
+          }
           balance = await getBalance(
             walletToUse,
-            token.chainIdentifier.toUpperCase(),
-            token.symbol
+            chain?.chain.toUpperCase() ?? "",
+            tokenDenom
           );
         }
       }
@@ -231,7 +236,6 @@ const DepositSTR = ({
             setToken: setToken,
           }}
         />
-
         <AmountDeposit amountProps={amountProps} />
         {depositDiv()}
       </div>

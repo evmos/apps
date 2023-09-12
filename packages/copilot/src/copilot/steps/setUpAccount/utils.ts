@@ -9,6 +9,7 @@ import {
   connectHandler,
   queryPubKey,
   isWalletSelected,
+  connectWith,
 } from "evmos-wallet";
 import { STEP_STATUS } from "./buttons/utils";
 import {
@@ -27,6 +28,7 @@ import {
   setCopilotFlagToReloadModal,
   setReloadFlagToReloadModal,
 } from "../../utils";
+import { E } from "helpers";
 
 const metamaskDownloadUrl = "https://metamask.io/download/";
 
@@ -72,7 +74,9 @@ const checkConnectionMetamask = async () => {
   if (pubkey === null) {
     return false;
   }
-  return await connectHandler([account]);
+  const [err] = await E.try(() => connectWith("metaMask"));
+  if (err) return false;
+  return true;
 };
 
 const connectMetaMask = (href: string) => {

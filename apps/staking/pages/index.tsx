@@ -20,10 +20,10 @@ function SnackbarsInternal() {
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
-import { StatefulHeader } from "../src/StatefulHeader";
+import { StatefulHeader } from "stateful-components";
 import { HeadComponent } from "../src/components/staking/HeadComponent";
 import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
-import { StatefulFooter } from "../src/StatefulFooter";
+import { StatefulFooter } from "stateful-components";
 import { GiveFeedback } from "../src/GiveFeedback";
 
 const Content = dynamic(() => import("../src/components/staking/Content"));
@@ -47,7 +47,7 @@ export default function Home() {
                 <Container>
                   <>
                     <SnackbarsInternal />
-                    <StatefulHeader />
+                    <StatefulHeader pageName="Staking" page="staking" />
                     <MavaWidget />
                     <div className="container mx-auto mb-auto overflow-auto">
                       <Content />

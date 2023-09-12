@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Script src="https://public.cypherd.io/sdk/cypher-sdk.js" />
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </>
   );
 }

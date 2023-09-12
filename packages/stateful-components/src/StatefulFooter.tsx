@@ -19,7 +19,7 @@ export const StatefulFooter = () => {
   return (
     <>
       <Footer
-        version={config.publicRuntimeConfig?.version ?? ""}
+        version={config?.publicRuntimeConfig?.version ?? ""}
         onClickFeedback={() => {
           handlePreClickAction();
         }}

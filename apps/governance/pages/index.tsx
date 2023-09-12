@@ -3,7 +3,6 @@
 
 import dynamic from "next/dynamic";
 import { Provider, useDispatch, useSelector } from "react-redux";
-
 import {
   store,
   StoreType,
@@ -13,19 +12,19 @@ import {
 } from "evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TermOfServices, Container, MavaWidget } from "ui-helpers";
+import { StatefulHeader } from "stateful-components";
+import { HeadComponent } from "../src/components/governance/HeadComponent";
+import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
+import { StatefulFooter } from "stateful-components";
+const Content = dynamic(() => import("../src/components/governance/Content"));
+import { MixpanelProvider } from "tracker";
+import { GiveFeedback } from "../src/components/GiveFeedback";
 
 function SnackbarsInternal() {
   const valueRedux = useSelector((state: StoreType) => getAllSnackbars(state));
   const dispatch = useDispatch();
   return <Snackbars valueRedux={valueRedux} dispatch={dispatch} />;
 }
-import { StatefulHeader } from "../src/components/StatefulHeader";
-import { HeadComponent } from "../src/components/governance/HeadComponent";
-import { GoogleAnalytics } from "../src/components/GoogleAnalytics";
-import { StatefulFooter } from "../src/components/StatefulFooter";
-const Content = dynamic(() => import("../src/components/governance/Content"));
-import { MixpanelProvider } from "tracker";
-import { GiveFeedback } from "../src/components/GiveFeedback";
 export default function Home() {
   const queryClient = new QueryClient();
   return (
@@ -45,7 +44,7 @@ export default function Home() {
                 <Container>
                   <>
                     <SnackbarsInternal />
-                    <StatefulHeader />
+                    <StatefulHeader pageName="Governance" page="governance" />
                     <MavaWidget />
                     <div className="container mx-auto mb-auto overflow-auto">
                       <Content />

@@ -20,7 +20,7 @@ export const MetamaskIcon: React.FC<MetamaskIconProps> = ({
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...restProps}
     >
-      <g stroke-linecap="round" stroke-linejoin="round" clipPath="url(#a)">
+      <g strokeLinecap="round" stroke-linejoin="round" clipPath="url(#a)">
         <path fill="#E2761B" stroke="#E2761B" d="M38 0 22 12l3-7 13-5Z" />
         <path
           fill="#E4761B"

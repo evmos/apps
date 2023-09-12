@@ -35,7 +35,7 @@ export function withEvmosConfig(config = {}) {
   transpilePackages.delete("@evmos-apps/config");
   transpilePackages.delete("tailwind-config");
   transpilePackages.delete("playwright-config-custom");
-
+  console.log(config);
   return withBundleAnalyzer({
     images: {
       domains: ["storage.evmos.org"],
@@ -49,17 +49,6 @@ export function withEvmosConfig(config = {}) {
     transpilePackages: [...transpilePackages],
     headers: async () => {
       return [
-        {
-          source: `${config.basePath ?? ""}/manifest.json`,
-          headers: [
-            { key: "Access-Control-Allow-Origin", value: "*" },
-            { key: "Access-Control-Allow-Methods", value: "GET" },
-            {
-              key: "Access-Control-Allow-Headers",
-              value: "X-Requested-With, content-type, Authorization",
-            },
-          ],
-        },
         {
           source: "/:path*",
           headers: [
@@ -91,6 +80,17 @@ export function withEvmosConfig(config = {}) {
             },
             { key: "X-Frame-Options", value: "SAMEORIGIN" },
             { key: "X-Permitted-Cross-Domain-Policies", value: "none" },
+          ],
+        },
+        {
+          source: `${config.basePath ?? ""}/manifest.json`,
+          headers: [
+            { key: "Access-Control-Allow-Origin", value: "*" },
+            { key: "Access-Control-Allow-Methods", value: "GET" },
+            {
+              key: "Access-Control-Allow-Headers",
+              value: "X-Requested-With, content-type, Authorization",
+            },
           ],
         },
       ];

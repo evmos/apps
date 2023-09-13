@@ -32,7 +32,8 @@ export const Header = ({
         >
           <Logo className="md:w-[2.91vw] md:mr-[0.625vw] w-[9.6vw] md:h-[1.8vw] h-[5.86vw] mr-[2.13vw]" />
           <p className="text-red text-[5.86vw] md:text-[1.8vw] font-bold font-[NB] tracking-wide relative -top-[2px] h-full leading-0">
-            <span className="text-pearl ">Evmos</span> {pageName}
+            <span className="text-pearl md:mr-[0.5vw] mr-[2vw]">Evmos</span>{" "}
+            {pageName}
           </p>
         </Link>
       </div>

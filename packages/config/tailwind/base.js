@@ -52,6 +52,9 @@ const config = {
       fontSize: {
         h5: "1.36rem",
       },
+      lineHeight: {
+        "leading-0": "0",
+      },
     },
   },
   plugins: [],

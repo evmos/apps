@@ -22,16 +22,16 @@ export const Header = ({
 }) => {
   return (
     <div className="text-pearl mb-3 mt-3 md:mt-0 flex flex-col md:mx-0 md:h-32 md:flex-row md:items-center md:justify-between">
-      <div className="flex items-center justify-center md:justify-start">
+      <div className="flex items-end justify-center md:justify-start">
         <Link
           href={EVMOS_PAGE_URL}
           rel="noreferrer"
-          className="flex items-center lg:items-end space-x-5 h-full"
+          className="flex items-end md:h-[1.8vw] h-[5.86vw]"
           aria-label="home"
           onClick={onClick}
         >
-          <Logo className="w-11 md:w-14 h-full" />
-          <p className="text-red text-2xl md:text-3xl lg:text-[42px] font-bold font-[NB] tracking-wide h-full">
+          <Logo className="md:w-[2.91vw] md:mr-[0.625vw] w-[9.6vw] md:h-[1.8vw] h-[5.86vw] mr-[2.13vw]" />
+          <p className="text-red text-[5.86vw] md:text-[1.8vw] font-bold font-[NB] tracking-wide relative -top-[2px] h-full leading-0">
             <span className="text-pearl ">Evmos</span> {pageName}
           </p>
         </Link>

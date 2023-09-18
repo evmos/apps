@@ -45,7 +45,7 @@
     "@evmos/provider": "^0.2.8",
     "@evmos/transactions": "^0.2.12",
     "@hanchon/signature-to-pubkey": "^1.0.1",
-    "@keplr-wallet/types": "^0.12.20",
+    "@keplr-wallet/types": "^0.12.25",
     "@metamask/providers": "^11.1.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@wagmi/connectors": "^2.7.0",

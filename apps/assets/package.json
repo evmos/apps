@@ -24,7 +24,7 @@
     "@evmos/provider": "^0.2.8",
     "@evmos/transactions": "^0.2.12",
     "@hanchon/signature-to-pubkey": "^1.0.1",
-    "@keplr-wallet/types": "^0.12.20",
+    "@keplr-wallet/types": "^0.12.27",
     "@types/node": "20.4.1",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.0.9",

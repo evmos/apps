@@ -30,7 +30,7 @@
     "@types/react-dom": "18.0.9",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
-    "prettier": "^3.0.1",
+    "prettier": "^3.0.3",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
     "schummar-translate": "^1.18.0",

@@ -25,7 +25,7 @@
     "@evmos-apps/config": "workspace:*",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.20",
-    "prettier": "^3.0.1",
+    "prettier": "^3.0.3",
     "schummar-translate": "^1.18.0",
     "tsup": "^7.2.0"
   },

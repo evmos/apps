@@ -61,6 +61,7 @@ export * from "./crypto-selector/CryptoSelectorBalanceText";
 export * from "./arrows/Arrow";
 export * from "./labels/Label";
 export * from "./AddressDisplay";
+export * from './TestnetToggler'
 export { ErrorContainer } from "./modal/ErrorContainer";
 export { IconContainer } from "./IconContainer";
 export { ContainerConfirmation } from "./transfer-confirmation/ContainerConfirmation";

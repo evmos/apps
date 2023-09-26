@@ -239,5 +239,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/axelar/txs"
+  "explorerUrl": "https://www.mintscan.io/axelar/txs",
+  "env": "mainnet"
 } as const;

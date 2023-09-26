@@ -6,6 +6,7 @@ import { EvmosRedIcon, Logo } from "icons";
 import { EVMOS_PAGE_URL } from "constants-helper";
 import { LaunchContainer } from "./launchPad/Container";
 import { LaunchPadProps } from "./launchPad/types";
+import { TestnetToggle } from "./TestnetToggler";
 
 export const Header = ({
   walletConnectionButton,
@@ -31,9 +32,11 @@ export const Header = ({
       >
         <Logo className="h-7 md:h-8 lg:h-9 w-auto mr-2 lg:mr-3" />
         <p className="text-red relative top-[6px] text-[24px] md:text-[30px] lg:text-[36px] font-bold font-[NB] ">
-          <span className="text-pearl mr-4 md:mr-5 lg:mr-6">Evmos</span>{pageName}</p>
+          <span className="text-pearl mr-4 md:mr-5 lg:mr-6">Evmos</span>
+          {pageName}
+        </p>
       </Link>
-
+      <TestnetToggle />
       <div className="flex items-center justify-center md:space-x-16">
         <div className="font-sm text-pearl bg-darGray800 hidden cursor-default items-center justify-center space-x-3 rounded-full px-4 py-2 font-bold md:flex">
           <EvmosRedIcon width={"20"} height={"20"} />

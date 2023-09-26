@@ -64,5 +64,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/stargaze/txs"
+  "explorerUrl": "https://www.mintscan.io/stargaze/txs",
+  "env": "mainnet"
 } as const;

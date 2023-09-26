@@ -56,5 +56,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/crescent/txs"
+  "explorerUrl": "https://www.mintscan.io/crescent/txs",
+  "env": "mainnet"
 } as const;

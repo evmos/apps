@@ -39,7 +39,7 @@ export const createProtobufTransaction = async ({
           new Any({
             typeUrl: `/${msg.getType().typeName}`,
             value: msg.toBinary(),
-          }),
+          })
       ),
     },
     authInfo: {

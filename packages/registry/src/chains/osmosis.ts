@@ -60,5 +60,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/osmosis/txs"
+  "explorerUrl": "https://www.mintscan.io/osmosis/txs",
+  "env": "mainnet"
 } as const;

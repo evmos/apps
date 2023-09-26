@@ -1,8 +1,7 @@
-import { chains } from "@evmosapps/registry";
-import { getTokens } from "evmos-wallet";
+import { getChains, getTokens } from "evmos-wallet";
 import { REGISTRY_NETWORK_BLOCK_LIST } from "evmos-wallet/src/internal/wallet/functionality/networkConfig";
 
-export const sortedChains = Object.values(chains)
+export const sortedChains = getChains()
   .filter(
     ({ prefix }) => REGISTRY_NETWORK_BLOCK_LIST.includes(prefix) === false
   )

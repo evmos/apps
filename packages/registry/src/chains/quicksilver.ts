@@ -91,5 +91,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/quicksilver/txs"
+  "explorerUrl": "https://www.mintscan.io/quicksilver/txs",
+  "env": "mainnet"
 } as const;

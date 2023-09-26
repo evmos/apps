@@ -6,19 +6,21 @@
  * You can find the source code for this script on /scripts/typegen.ts
  */
 
-export { default as tori } from "./tori";
+export { default as teritori } from "./teritori";
 export { default as stride } from "./stride";
-export { default as stars } from "./stars";
+export { default as stargaze } from "./stargaze";
 export { default as regen } from "./regen";
-export { default as quick } from "./quick";
-export { default as osmo } from "./osmo";
+export { default as quicksilver } from "./quicksilver";
+export { default as osmosis } from "./osmosis";
+export { default as osmosistestnet } from "./osmosistestnet";
 export { default as kava } from "./kava";
 export { default as juno } from "./juno";
-export { default as inj } from "./inj";
+export { default as injective } from "./injective";
 export { default as gravity } from "./gravity";
 export { default as evmos } from "./evmos";
+export { default as evmostestnet } from "./evmostestnet";
 export { default as emoney } from "./emoney";
-export { default as cre } from "./cre";
-export { default as cosmos } from "./cosmos";
+export { default as crescent } from "./crescent";
+export { default as cosmoshub } from "./cosmoshub";
 export { default as comdex } from "./comdex";
 export { default as axelar } from "./axelar";

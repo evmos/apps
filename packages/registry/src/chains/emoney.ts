@@ -60,5 +60,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/emoney/txs"
+  "explorerUrl": "https://www.mintscan.io/emoney/txs",
+  "env": "mainnet"
 } as const;

@@ -99,5 +99,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/evmos/txs"
+  "explorerUrl": "https://www.mintscan.io/evmos/txs",
+  "env": "mainnet"
 } as const;

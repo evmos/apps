@@ -58,5 +58,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/regen/txs"
+  "explorerUrl": "https://www.mintscan.io/regen/txs",
+  "env": "mainnet"
 } as const;

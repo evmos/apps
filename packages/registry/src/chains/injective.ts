@@ -57,5 +57,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/injective/txs"
+  "explorerUrl": "https://www.mintscan.io/injective/txs",
+  "env": "mainnet"
 } as const;

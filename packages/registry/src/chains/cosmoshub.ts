@@ -63,5 +63,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/cosmos/txs"
+  "explorerUrl": "https://www.mintscan.io/cosmos/txs",
+  "env": "mainnet"
 } as const;

@@ -1,6 +1,6 @@
-import { chains } from "@evmosapps/registry";
+import { getChains } from "./get-chain";
 
-export const tokens = Object.values(chains).flatMap((chain) => [
-  ...chain.tokens,
-]);
+export const tokens = getChains().flatMap((chain) => {
+  return [...chain.tokens];
+});
 export const getTokens = () => tokens;

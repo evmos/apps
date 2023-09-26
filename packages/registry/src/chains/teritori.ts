@@ -59,5 +59,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/teritori/txs"
+  "explorerUrl": "https://www.mintscan.io/teritori/txs",
+  "env": "mainnet"
 } as const;

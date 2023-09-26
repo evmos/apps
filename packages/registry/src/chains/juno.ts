@@ -62,5 +62,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/juno/txs"
+  "explorerUrl": "https://www.mintscan.io/juno/txs",
+  "env": "mainnet"
 } as const;

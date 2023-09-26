@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { TokenDenom, TokenRef } from "evmos-wallet/src/registry-actions/types";
-import { getTokenByDenom, useAssets } from "evmos-wallet";
+import { TokenRef } from "evmos-wallet/src/registry-actions/types";
+import { useAssets } from "evmos-wallet";
 
 export const useTokenPrice = (tokenRef: TokenRef) => {
   const { sourceData: assets } = useAssets();
@@ -8,8 +8,8 @@ export const useTokenPrice = (tokenRef: TokenRef) => {
   const priceMap = useMemo(
     () =>
       (assets?.balance ?? []).reduce(
-        (acc, { symbol, coingeckoPrice }) => {
-          const ref = getTokenByDenom(symbol as TokenDenom)?.ref;
+        (acc, { symbol, coingeckoPrice, prefix, }) => {
+          const ref = `${prefix}:${symbol}` as TokenRef;
           if (!ref) {
             return acc;
           }

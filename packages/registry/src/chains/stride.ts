@@ -164,5 +164,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/stride/txs"
+  "explorerUrl": "https://www.mintscan.io/stride/txs",
+  "env": "mainnet"
 } as const;

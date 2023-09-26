@@ -74,5 +74,6 @@ export default {
       "type": "IBC"
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/kava/txs"
+  "explorerUrl": "https://www.mintscan.io/kava/txs",
+  "env": "mainnet"
 } as const;

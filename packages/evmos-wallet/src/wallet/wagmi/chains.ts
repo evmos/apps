@@ -2,9 +2,9 @@ import {
   evmos as wagmiEvmos,
   evmosTestnet as wagmiEvmosTestnet,
 } from "wagmi/chains";
-import { EVMOS_CHAIN } from "../../internal/wallet/functionality/networkConfig";
 import { Chain } from "viem";
 import { evmos as registryEvmos } from "@evmosapps/registry";
+import { getEnableTestnet } from "ui-helpers";
 
 export const evmos: Chain & {
   cosmosId: string;
@@ -35,5 +35,5 @@ export const evmosTestnet: Chain & {
 };
 
 export function getEvmosChainInfo(): Chain & { cosmosId: string } {
-  return EVMOS_CHAIN.chainId === evmos.id ? evmos : evmosTestnet;
+  return getEnableTestnet() ? evmosTestnet : evmos;
 }

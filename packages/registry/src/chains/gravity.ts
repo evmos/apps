@@ -10,7 +10,7 @@ export default {
   "prefix": "gravity",
   "name": "Gravity Bridge",
   "cosmosId": "gravity-bridge-3",
-  "identifier": "gravitybridge",
+  "identifier": "gravity",
   "gasPriceStep": {
     "low": "0.000",
     "average": "0.000",
@@ -25,14 +25,14 @@ export default {
   },
   "feeToken": "ugraviton",
   "cosmosRest": [
-    "https://rest.cosmos.directory/gravitybridge",
+    "https://rest.cosmos.directory/gravity",
     "https://gravitychain.io:1317",
     "https://lcd.gravity-bridge.ezstaking.io",
     "https://api-gravitybridge-ia.notional.ventures",
     "https://api.gravity-bridge.nodestake.top"
   ],
   "tendermintRest": [
-    "https://rpc.cosmos.directory/gravitybridge",
+    "https://rpc.cosmos.directory/gravity",
     "https://lcd-gravity-bridge.keplr.app:9090/"
   ],
   "evmRest": null,
@@ -143,5 +143,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/gravity-bridge/txs"
+  "explorerUrl": "https://www.mintscan.io/gravity-bridge/txs",
+  "env": "mainnet"
 } as const;

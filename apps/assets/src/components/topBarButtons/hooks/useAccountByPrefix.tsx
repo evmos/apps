@@ -11,6 +11,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { E } from "helpers";
 import { useId } from "react";
 import { getAccount } from "wagmi/actions";
+import { getEnableTestnet } from "ui-helpers";
 
 const suggestChain = async (prefix: Prefix) => {
   const keplr = await getKeplrProvider();
@@ -35,6 +36,12 @@ const suggestChain = async (prefix: Prefix) => {
   if (prefix === "comdex") {
     const chainInfo = await import(
       "chainapsis-suggest-chain/cosmos/comdex.json"
+    );
+    await keplr.experimentalSuggestChain(chainInfo);
+  }
+  if (prefix === "evmos" && getEnableTestnet()) {
+    const chainInfo = await import(
+      "@evmosapps/registry/src/keplr/evmostestnet.json"
     );
     await keplr.experimentalSuggestChain(chainInfo);
   }

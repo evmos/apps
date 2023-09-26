@@ -78,5 +78,6 @@ export default {
       "listed": true
     }
   ],
-  "explorerUrl": "https://www.mintscan.io/comdex/txs"
+  "explorerUrl": "https://www.mintscan.io/comdex/txs",
+  "env": "mainnet"
 } as const;

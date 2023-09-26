@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@evmos-apps/config": "workspace:*",
-    "@types/node": "18.11.14",
+    "@types/node": "20.7.0",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.0.9",
     "@walletconnect/modal": "^2.6.1",

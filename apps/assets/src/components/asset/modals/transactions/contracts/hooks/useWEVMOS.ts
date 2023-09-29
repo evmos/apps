@@ -48,7 +48,7 @@ export function useWEVMOS() {
         args: [amount.toBigInt()],
         account: hexAddress as `0x${string}`,
       });
-      await writeContract(request);
+      return await writeContract(request);
     }
   }
 

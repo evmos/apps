@@ -28,16 +28,15 @@ export function useWEVMOS() {
   ) {
     // prepareWriteTransaction throws revert error for safe if account property is not of EOA type
     if (connectorId === "safe") {
-      const encodedData = encodeFunctionData({
-        abi: WETH_ABI,
-        functionName: "withdraw",
-        args: [amount.toBigInt()],
-      });
       return await sendTransaction({
         to: WEVMOS_CONTRACT_ADDRESS,
         account: hexAddress as `0x${string}`,
         value: 0n,
-        data: encodedData,
+        data: encodeFunctionData({
+          abi: WETH_ABI,
+          functionName: "withdraw",
+          args: [amount.toBigInt()],
+        }),
       });
     } else {
       const { request } = await prepareWriteContract({

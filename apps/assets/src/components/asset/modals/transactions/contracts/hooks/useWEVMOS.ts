@@ -26,7 +26,7 @@ export function useWEVMOS() {
     hexAddress: string,
     connectorId: string | undefined
   ) {
-    // prepareWriteTransaction throws revert error for safe if account property is not of EOA type
+    // prepareWriteContract or writeContract throws revert error for safe if account property is not of EOA type
     if (connectorId === "safe") {
       return await sendTransaction({
         to: WEVMOS_CONTRACT_ADDRESS,

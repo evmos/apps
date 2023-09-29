@@ -34,5 +34,8 @@ export const writeEvmTransfer = async ({
     amount,
   });
 
+  //Safe apps can not have data as undefined
+  if (!response.tx.data) response.tx.data = "0x";
+
   return sendTransaction(response.tx);
 };

@@ -6,11 +6,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "keplr": "tsx watch ./helpers/keplr/index.ts "
+    "build:testnodes": "tsx  watch ./testnodes/scripts/index.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.38.1",
     "@tenkeylabs/dappwright": "^2.4.0",
+    "octokit": "^3.1.1",
     "tsx": "^3.12.10"
   },
   "dependencies": {

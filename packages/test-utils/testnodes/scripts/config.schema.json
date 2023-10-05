@@ -1,0 +1,568 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "proxy_app": {
+      "type": "string",
+      "default": "tcp://127.0.0.1:26658",
+      "description": "TCP or UNIX socket address of the ABCI application, or the name of an ABCI application compiled in with the CometBFT binary."
+    },
+    "moniker": {
+      "type": "string",
+      "default": "anonymous",
+      "description": "A custom human readable name for this node."
+    },
+    "block_sync": {
+      "type": "boolean",
+      "default": true,
+      "description": "If this node is many blocks behind the tip of the chain, BlockSync allows them to catchup quickly by downloading blocks in parallel and verifying their commits. Deprecated: this key will be removed and BlockSync will be enabled unconditionally in the next major release."
+    },
+    "db_backend": {
+      "type": "string",
+      "default": "goleveldb",
+      "description": "Database backend: goleveldb | cleveldb | boltdb | rocksdb | badgerdb",
+      "enum": ["goleveldb", "cleveldb", "boltdb", "rocksdb", "badgerdb"]
+    },
+    "db_dir": {
+      "type": "string",
+      "default": "data",
+      "description": "Database directory."
+    },
+    "log_level": {
+      "type": "string",
+      "default": "info",
+      "description": "Output level for logging, including package level options."
+    },
+    "log_format": {
+      "type": "string",
+      "default": "plain",
+      "description": "Output format: 'plain' (colored text) or 'json'.",
+      "enum": ["plain", "json"]
+    },
+    "genesis_file": {
+      "type": "string",
+      "default": "config/genesis.json",
+      "description": "Path to the JSON file containing the initial validator set and other meta data."
+    },
+    "priv_validator_key_file": {
+      "type": "string",
+      "default": "config/priv_validator_key.json",
+      "description": "Path to the JSON file containing the private key to use as a validator in the consensus protocol."
+    },
+    "priv_validator_state_file": {
+      "type": "string",
+      "default": "data/priv_validator_state.json",
+      "description": "Path to the JSON file containing the last sign state of a validator."
+    },
+    "priv_validator_laddr": {
+      "type": "string",
+      "default": "",
+      "description": "TCP or UNIX socket address for CometBFT to listen on for connections from an external PrivValidator process."
+    },
+    "node_key_file": {
+      "type": "string",
+      "default": "config/node_key.json",
+      "description": "Path to the JSON file containing the private key to use for node authentication in the p2p protocol."
+    },
+    "abci": {
+      "type": "string",
+      "default": "socket",
+      "description": "Mechanism to connect to the ABCI application: socket | grpc.",
+      "enum": ["socket", "grpc"]
+    },
+    "filter_peers": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, query the ABCI app on connecting to a new peer so the app can decide if we should keep the connection or not."
+    },
+    "rpc": {
+      "type": "object",
+      "properties": {
+        "laddr": {
+          "type": "string",
+          "default": "tcp://127.0.0.1:26657",
+          "description": "TCP or UNIX socket address for the RPC server to listen on."
+        },
+        "cors_allowed_origins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "A list of origins a cross-domain request can be executed from. Default value '[]' disables cors support. Use '[\"*\"]' to allow any origin."
+        },
+        "cors_allowed_methods": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["HEAD", "GET", "POST"],
+          "description": "A list of methods the client is allowed to use with cross-domain requests."
+        },
+        "cors_allowed_headers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "Origin",
+            "Accept",
+            "Content-Type",
+            "X-Requested-With",
+            "X-Server-Time"
+          ],
+          "description": "A list of non simple headers the client is allowed to use with cross-domain requests."
+        },
+        "grpc_laddr": {
+          "type": "string",
+          "default": "",
+          "description": "TCP or UNIX socket address for the gRPC server to listen on. NOTE: This server only supports /broadcast_tx_commit."
+        },
+        "grpc_max_open_connections": {
+          "type": "integer",
+          "default": 900,
+          "description": "Maximum number of simultaneous connections. Does not include RPC (HTTP&WebSocket) connections. See max_open_connections. If you want to accept a larger number than the default, make sure you increase your OS limits. 0 - unlimited. Should be < {ulimit -Sn} - {MaxNumInboundPeers} - {MaxNumOutboundPeers} - {N of wal, db and other open files} 1024 - 40 - 10 - 50 = 924 = ~900."
+        },
+        "unsafe": {
+          "type": "boolean",
+          "default": false,
+          "description": "Activate unsafe RPC commands like /dial_seeds and /unsafe_flush_mempool."
+        },
+        "max_open_connections": {
+          "type": "integer",
+          "default": 900,
+          "description": "Maximum number of simultaneous connections (including WebSocket). Does not include gRPC connections. See grpc_max_open_connections. If you want to accept a larger number than the default, make sure you increase your OS limits. 0 - unlimited. Should be < {ulimit -Sn} - {MaxNumInboundPeers} - {MaxNumOutboundPeers} - {N of wal, db and other open files} 1024 - 40 - 10 - 50 = 924 = ~900."
+        },
+        "max_subscription_clients": {
+          "type": "integer",
+          "default": 100,
+          "description": "Maximum number of unique clientIDs that can /subscribe. If you're using /broadcast_tx_commit, set to the estimated maximum number of broadcast_tx_commit calls per block."
+        },
+        "max_subscriptions_per_client": {
+          "type": "integer",
+          "default": 5,
+          "description": "Maximum number of unique queries a given client can /subscribe to. If you're using GRPC (or Local RPC client) and /broadcast_tx_commit, set to the estimated # maximum number of broadcast_tx_commit calls per block."
+        },
+        "experimental_subscription_buffer_size": {
+          "type": "integer",
+          "default": 200,
+          "description": "Experimental parameter to specify the maximum number of events a node will buffer, per subscription, before returning an error and closing the subscription. Must be set to at least 100, but higher values will accommodate higher event throughput rates (and will use more memory)."
+        },
+        "experimental_websocket_write_buffer_size": {
+          "type": "integer",
+          "default": 200,
+          "description": "Experimental parameter to specify the maximum number of RPC responses that can be buffered per WebSocket client. If clients cannot read from the WebSocket endpoint fast enough, they will be disconnected, so increasing this parameter may reduce the chances of them being disconnected (but will cause the node to use more memory). Must be at least the same as \"experimental_subscription_buffer_size\", otherwise connections could be dropped unnecessarily. This value should ideally be somewhat higher than \"experimental_subscription_buffer_size\" to accommodate non-subscription-related RPC responses."
+        },
+        "experimental_close_on_slow_client": {
+          "type": "boolean",
+          "default": false,
+          "description": "If a WebSocket client cannot read fast enough, at present we may silently drop events instead of generating an error or disconnecting the client. Enabling this experimental parameter will cause the WebSocket connection to be closed instead if it cannot read fast enough, allowing for greater predictability in subscription behavior."
+        },
+        "timeout_broadcast_tx_commit": {
+          "type": "string",
+          "default": "10s",
+          "description": "How long to wait for a tx to be committed during /broadcast_tx_commit. WARNING: Using a value larger than 10s will result in increasing the global HTTP write timeout, which applies to all connections and endpoints. See https://github.com/tendermint/tendermint/issues/3435.",
+          "pattern": "^[0-9]+(ms|s|m|h)?$"
+        },
+        "max_body_bytes": {
+          "type": "integer",
+          "default": 1000000,
+          "description": "Maximum size of request body, in bytes."
+        },
+        "max_header_bytes": {
+          "type": "integer",
+          "default": 1048576,
+          "description": "Maximum size of request header, in bytes."
+        },
+        "tls_cert_file": {
+          "type": "string",
+          "default": "",
+          "description": "The path to a file containing certificate that is used to create the HTTPS server. Might be either absolute path or path related to CometBFT's config directory. If the certificate is signed by a certificate authority, the certFile should be the concatenation of the server's certificate, any intermediates, and the CA's certificate. NOTE: both tls_cert_file and tls_key_file must be present for CometBFT to create HTTPS server. Otherwise, HTTP server is run."
+        },
+        "tls_key_file": {
+          "type": "string",
+          "default": "",
+          "description": "The path to a file containing matching private key that is used to create the HTTPS server. Might be either absolute path or path related to CometBFT's config directory. NOTE: both tls-cert-file and tls-key-file must be present for CometBFT to create HTTPS server. Otherwise, HTTP server is run."
+        },
+        "pprof_laddr": {
+          "type": "string",
+          "default": "",
+          "description": "pprof listen address (https://golang.org/pkg/net/http/pprof)"
+        }
+      }
+    },
+    "p2p": {
+      "type": "object",
+      "properties": {
+        "laddr": {
+          "type": "string",
+          "default": "tcp://0.0.0.0:26656",
+          "description": "Address to listen for incoming connections."
+        },
+        "external_address": {
+          "type": "string",
+          "default": "",
+          "description": "Address to advertise to peers for them to dial. If empty, will use the same port as the laddr, and will introspect on the listener to figure out the address. IP and port are required. Example: 159.89.10.97:26656"
+        },
+        "seeds": {
+          "type": "string",
+          "default": "",
+          "description": "Comma separated list of seed nodes to connect to."
+        },
+        "persistent_peers": {
+          "type": "string",
+          "default": "",
+          "description": "Comma separated list of nodes to keep persistent connections to."
+        },
+        "addr_book_file": {
+          "type": "string",
+          "default": "config/addrbook.json",
+          "description": "Path to address book."
+        },
+        "addr_book_strict": {
+          "type": "boolean",
+          "default": true,
+          "description": "Set true for strict address routability rules. Set false for private or local networks."
+        },
+        "max_num_inbound_peers": {
+          "type": "integer",
+          "default": 40,
+          "description": "Maximum number of inbound peers."
+        },
+        "max_num_outbound_peers": {
+          "type": "integer",
+          "default": 10,
+          "description": "Maximum number of outbound peers to connect to, excluding persistent peers."
+        },
+        "unconditional_peer_ids": {
+          "type": "string",
+          "default": "",
+          "description": "List of node IDs, to which a connection will be (re)established ignoring any existing limits."
+        },
+        "persistent_peers_max_dial_period": {
+          "type": "string",
+          "default": "0s",
+          "description": "Maximum pause when redialing a persistent peer (if zero, exponential backoff is used).",
+          "pattern": "^[0-9]+(ms|s|m|h)?$"
+        },
+        "flush_throttle_timeout": {
+          "type": "string",
+          "default": "100ms",
+          "description": "Time to wait before flushing messages out on the connection.",
+          "pattern": "^[0-9]+(ms|s|m|h)?$"
+        },
+        "max_packet_msg_payload_size": {
+          "type": "integer",
+          "default": 1024,
+          "description": "Maximum size of a message packet payload, in bytes."
+        },
+        "send_rate": {
+          "type": "integer",
+          "default": 5120000,
+          "description": "Rate at which packets can be sent, in bytes/second."
+        },
+        "recv_rate": {
+          "type": "integer",
+          "default": 5120000,
+          "description": "Rate at which packets can be received, in bytes/second."
+        },
+        "pex": {
+          "type": "boolean",
+          "default": true,
+          "description": "Set true to enable the peer-exchange reactor."
+        },
+        "seed_mode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Set true to enable a node to run in seed mode, making it discoverable by other nodes."
+        },
+        "private_peer_ids": {
+          "type": "string",
+          "default": "",
+          "description": "Comma separated list of peer IDs to keep private (will not be gossiped to other peers)."
+        },
+        "allow_duplicate_ip": {
+          "type": "boolean",
+          "default": false,
+          "description": "Toggle to disable guard against peers connecting from the same ip."
+        },
+        "handshake_timeout": {
+          "type": "string",
+          "default": "20s",
+          "description": "Timeout to wait for a handshake response.",
+          "pattern": "^[0-9]+(ms|s|m|h)?$"
+        },
+        "dial_timeout": {
+          "type": "string",
+          "default": "3s",
+          "description": "Timeout to wait for a dial to complete.",
+          "pattern": "^[0-9]+(ms|s|m|h)?$"
+        }
+      }
+    }
+  },
+  "mempool": {
+    "type": "object",
+    "properties": {
+      "version": {
+        "type": "string",
+        "default": "v0",
+        "description": "Mempool version to use: 'v0' for FIFO mempool, 'v1' for prioritized mempool."
+      },
+      "recheck": {
+        "type": "boolean",
+        "default": true,
+        "description": "Toggle to recheck transactions in the mempool."
+      },
+      "broadcast": {
+        "type": "boolean",
+        "default": true,
+        "description": "Toggle to broadcast transactions from the mempool."
+      },
+      "wal_dir": {
+        "type": "string",
+        "default": "",
+        "description": "Directory for the Write-Ahead Logging of mempool transactions."
+      },
+      "size": {
+        "type": "integer",
+        "default": 5000,
+        "description": "Maximum number of transactions in the mempool."
+      },
+      "max_txs_bytes": {
+        "type": "integer",
+        "default": 1073741824,
+        "description": "Limit the total size of all txs in the mempool."
+      },
+      "cache_size": {
+        "type": "integer",
+        "default": 10000,
+        "description": "Size of the cache used to filter transactions seen earlier."
+      },
+      "keep-invalid-txs-in-cache": {
+        "type": "boolean",
+        "default": false,
+        "description": "Do not remove invalid transactions from the cache."
+      },
+      "max_tx_bytes": {
+        "type": "integer",
+        "default": 1048576,
+        "description": "Maximum size of a single transaction."
+      },
+      "max_batch_bytes": {
+        "type": "integer",
+        "default": 0,
+        "description": "Maximum size of a batch of transactions to send to a peer."
+      },
+      "ttl-duration": {
+        "type": "string",
+        "default": "0s",
+        "description": "Maximum duration a transaction can exist in the mempool.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "ttl-num-blocks": {
+        "type": "integer",
+        "default": 0,
+        "description": "Maximum number of blocks a transaction can exist in the mempool."
+      }
+    }
+  },
+  "statesync": {
+    "type": "object",
+    "properties": {
+      "enable": {
+        "type": "boolean",
+        "default": false,
+        "description": "Enable state sync for rapid node bootstrapping."
+      },
+      "rpc_servers": {
+        "type": "string",
+        "default": "",
+        "description": "RPC servers for light client verification of the synced state machine and retrieval of state data."
+      },
+      "trust_height": {
+        "type": "integer",
+        "default": 0,
+        "description": "Trusted height for light client verification."
+      },
+      "trust_hash": {
+        "type": "string",
+        "default": "",
+        "description": "Trusted hash for light client verification."
+      },
+      "trust_period": {
+        "type": "string",
+        "default": "168h0m0s",
+        "description": "Duration during which validators can be trusted for light client verification.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "discovery_time": {
+        "type": "string",
+        "default": "15s",
+        "description": "Time spent discovering snapshots before initiating a restore.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "temp_dir": {
+        "type": "string",
+        "default": "",
+        "description": "Temporary directory for state sync snapshot chunks."
+      },
+      "chunk_request_timeout": {
+        "type": "string",
+        "default": "10s",
+        "description": "Timeout duration before re-requesting a chunk.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "chunk_fetchers": {
+        "type": "string",
+        "default": "4",
+        "description": "Number of concurrent chunk fetchers to run."
+      }
+    }
+  },
+  "blocksync": {
+    "type": "object",
+    "properties": {
+      "version": {
+        "type": "string",
+        "default": "v0",
+        "description": "Block Sync version to use."
+      }
+    }
+  },
+  "consensus": {
+    "type": "object",
+    "properties": {
+      "wal_file": {
+        "type": "string",
+        "default": "data/cs.wal/wal",
+        "description": "File location for the consensus Write-Ahead Logging."
+      },
+      "timeout_propose": {
+        "type": "string",
+        "default": "3s",
+        "description": "How long we wait for a proposal block before prevoting nil.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "timeout_propose_delta": {
+        "type": "string",
+        "default": "500ms",
+        "description": "How much timeout_propose increases with each round.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "timeout_prevote": {
+        "type": "string",
+        "default": "1s",
+        "description": "How long we wait after receiving +2/3 prevotes for “anything”.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "timeout_prevote_delta": {
+        "type": "string",
+        "default": "500ms",
+        "description": "How much the timeout_prevote increases with each round.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "timeout_precommit": {
+        "type": "string",
+        "default": "1s",
+        "description": "How long we wait after receiving +2/3 precommits for “anything”.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "timeout_precommit_delta": {
+        "type": "string",
+        "default": "500ms",
+        "description": "How much the timeout_precommit increases with each round.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "timeout_commit": {
+        "type": "string",
+        "default": "1s",
+        "description": "How long we wait after committing a block before starting on the new height.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "double_sign_check_height": {
+        "type": "integer",
+        "default": 0,
+        "description": "How many blocks to look back to check existence of the node's consensus votes before joining consensus."
+      },
+      "skip_timeout_commit": {
+        "type": "boolean",
+        "default": false,
+        "description": "Make progress as soon as we have all the precommits."
+      },
+      "create_empty_blocks": {
+        "type": "boolean",
+        "default": true,
+        "description": "Toggle for creating empty blocks."
+      },
+      "create_empty_blocks_interval": {
+        "type": "string",
+        "default": "0s",
+        "description": "Interval between empty blocks.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "peer_gossip_sleep_duration": {
+        "type": "string",
+        "default": "100ms",
+        "description": "Reactor sleep duration for peer gossip.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      },
+      "peer_query_maj23_sleep_duration": {
+        "type": "string",
+        "default": "2s",
+        "description": "Reactor sleep duration for peer majority queries.",
+        "pattern": "^[0-9]+(ms|s|m|h)?$"
+      }
+    }
+  },
+  "storage": {
+    "type": "object",
+    "properties": {
+      "discard_abci_responses": {
+        "type": "boolean",
+        "default": false,
+        "description": "Set to true to discard ABCI responses from the state store."
+      }
+    }
+  },
+  "tx_index": {
+    "type": "object",
+    "properties": {
+      "indexer": {
+        "type": "string",
+        "default": "kv",
+        "description": "What indexer to use for transactions."
+      },
+      "psql-conn": {
+        "type": "string",
+        "default": "",
+        "description": "The PostgreSQL connection configuration."
+      }
+    }
+  },
+  "instrumentation": {
+    "type": "object",
+    "properties": {
+      "prometheus": {
+        "type": "boolean",
+        "default": false,
+        "description": "Toggle for Prometheus metrics."
+      },
+      "prometheus_listen_addr": {
+        "type": "string",
+        "default": ":26660",
+        "description": "Address to listen for Prometheus collector(s) connections."
+      },
+      "max_open_connections": {
+        "type": "integer",
+        "default": 3,
+        "description": "Maximum number of simultaneous connections."
+      },
+      "namespace": {
+        "type": "string",
+        "default": "cometbft",
+        "description": "Instrumentation namespace."
+      }
+    }
+  }
+}

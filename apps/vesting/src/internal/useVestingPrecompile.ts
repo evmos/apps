@@ -34,6 +34,9 @@ export function useVestingPrecompile() {
     lockupPeriods: Period[],
     vestingPeriods: Period[],
   ) {
+
+    console.log("here", funderAddress, vestingAddress)
+
     return await writeContract({
       mode: "prepared",
       request: {

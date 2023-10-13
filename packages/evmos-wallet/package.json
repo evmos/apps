@@ -34,7 +34,7 @@
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "ui-helpers": "workspace:*",
-    "zod": "^3.22.1"
+    "zod": "^3.22.3"
   },
   "dependencies": {
     "@buf/cosmos_cosmos-sdk.bufbuild_es": "1.3.0-20230822104619-a12828247088.1",

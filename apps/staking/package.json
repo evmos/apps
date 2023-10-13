@@ -24,7 +24,7 @@
     "services": "workspace:*",
     "ui-helpers": "workspace:*",
     "viem": "^1.14.0",
-    "zod": "^3.22.1"
+    "zod": "^3.22.3"
   },
   "devDependencies": {
     "@ethersproject/bignumber": "^5.7.0",

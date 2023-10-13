@@ -194,8 +194,8 @@ importers:
         specifier: ^0.12.20
         version: 0.12.20
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -309,8 +309,8 @@ importers:
         specifier: ^4.32.6
         version: 4.35.7(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -451,8 +451,8 @@ importers:
         specifier: ^4.32.6
         version: 4.35.7(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -605,8 +605,8 @@ importers:
         specifier: ^4.32.6
         version: 4.35.7(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -756,8 +756,8 @@ importers:
         specifier: ^4.32.6
         version: 4.35.7(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 20.4.1
-        version: 20.4.1
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -897,8 +897,8 @@ importers:
   packages/constants-helper:
     dependencies:
       '@types/node':
-        specifier: ^20.4.8
-        version: 20.5.9
+        specifier: ^20.8.5
+        version: 20.8.5
     devDependencies:
       '@evmos-apps/config':
         specifier: workspace:*
@@ -940,8 +940,8 @@ importers:
         specifier: ^4.32.6
         version: 4.35.7(react-dom@18.2.0)(react@18.2.0)
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -1143,8 +1143,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: 18.2.21
         version: 18.2.21
@@ -1219,8 +1219,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1256,8 +1256,8 @@ importers:
         version: 18.2.0(react@18.2.0)
     devDependencies:
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1312,8 +1312,8 @@ importers:
         specifier: ^4.17.8
         version: 4.17.8
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: ^18.0.26
         version: 18.2.21
@@ -1337,7 +1337,7 @@ importers:
         version: 0.32.5
       ts-node:
         specifier: ^10.9.1
-        version: 10.9.1(@types/node@18.11.14)(typescript@5.2.2)
+        version: 10.9.1(@types/node@20.8.5)(typescript@5.2.2)
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -1361,8 +1361,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1440,8 +1440,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1517,8 +1517,8 @@ importers:
         specifier: 2.47.1
         version: 2.47.1
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -1575,8 +1575,8 @@ importers:
         specifier: workspace:*
         version: link:../config
       '@types/node':
-        specifier: 18.11.14
-        version: 18.11.14
+        specifier: 20.8.5
+        version: 20.8.5
       '@types/react':
         specifier: ^18.2.21
         version: 18.2.21
@@ -4841,7 +4841,7 @@ packages:
   /@types/bn.js@4.11.6:
     resolution: {integrity: sha512-pqr857jrp2kPuO9uRjZ3PwnJTjoQy+fcdxvBTvHm6dkmEL9q+hDD/2j/0ELOBPtPnS8LjCX0gI9nbl8lVkadpg==}
     dependencies:
-      '@types/node': 20.5.9
+      '@types/node': 20.8.5
 
   /@types/chai-subset@1.3.3:
     resolution: {integrity: sha512-frBecisrNGz+F4T6bcc+NLeolfiojh5FxW2klu669+8BARtyQv2C/GkNW6FUodVe4BroGMP/wER/YDGc7rEllw==}
@@ -4860,7 +4860,7 @@ packages:
   /@types/connect@3.4.36:
     resolution: {integrity: sha512-P63Zd/JUGq+PdrM1lv0Wv5SBYeA2+CORvbrXbngriYY0jzLUWfQMQQxOhjONEz/wlHOAxOdY7CY65rgQdTjq2w==}
     dependencies:
-      '@types/node': 20.5.9
+      '@types/node': 20.8.5
 
   /@types/debug@4.1.9:
     resolution: {integrity: sha512-8Hz50m2eoS56ldRlepxSBa6PWEVCtzUo/92HgLc2qTMnotJNIm7xP+UZhyWoYsyOdd5dxZ+NZLb24rsKyFs2ow==}
@@ -4943,23 +4943,18 @@ packages:
   /@types/node@12.20.55:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  /@types/node@18.11.14:
-    resolution: {integrity: sha512-0KXV57tENYmmJMl+FekeW9V3O/rlcqGQQJ/hNh9r8pKIj304pskWuEd8fCyNT86g/TpO0gcOTiLzsHLEURFMIQ==}
-
   /@types/node@18.15.13:
     resolution: {integrity: sha512-N+0kuo9KgrUQ1Sn/ifDXsvg0TTleP7rIy4zOBGECxAljqvqfqpTfzx0Q1NUedOixRMBfe2Whhb056a42cWs26Q==}
 
-  /@types/node@20.4.1:
-    resolution: {integrity: sha512-JIzsAvJeA/5iY6Y/OxZbv1lUcc8dNSE77lb2gnBH+/PJ3lFR1Ccvgwl5JWnHAkNHcRsT0TbpVOsiMKZ1F/yyJg==}
-    dev: true
-
-  /@types/node@20.5.9:
-    resolution: {integrity: sha512-PcGNd//40kHAS3sTlzKB9C9XL4K0sTup8nbG5lC14kzEteTNuAFh9u5nA0o5TWnSG2r/JNPRXFVcHJIIeRlmqQ==}
+  /@types/node@20.8.5:
+    resolution: {integrity: sha512-SPlobFgbidfIeOYlzXiEjSYeIJiOCthv+9tSQVpvk4PAdIIc+2SmjNVzWXk9t0Y7dl73Zdf+OgXKHX9XtkqUpw==}
+    dependencies:
+      undici-types: 5.25.3
 
   /@types/pbkdf2@3.1.0:
     resolution: {integrity: sha512-Cf63Rv7jCQ0LaL8tNXmEyqTHuIJxRdlS5vMh1mj5voN4+QFhVZnlZruezqpWYDiJ8UTzhP0VmeLXCmBk66YrMQ==}
     dependencies:
-      '@types/node': 20.5.9
+      '@types/node': 20.8.5
 
   /@types/prop-types@15.7.8:
     resolution: {integrity: sha512-kMpQpfZKSCBqltAJwskgePRaYRFukDkm1oItcAbC3gNELR20XIBcN9VRgg4+m8DKsTfkWeA4m4Imp4DDuWy7FQ==}
@@ -4982,7 +4977,7 @@ packages:
   /@types/secp256k1@4.0.3:
     resolution: {integrity: sha512-Da66lEIFeIz9ltsdMZcpQvmrmmoqrfju8pm1BH8WbYjZSwUgCwXLb9C+9XYogwBITnbsSaMdVPb2ekf7TV+03w==}
     dependencies:
-      '@types/node': 20.5.9
+      '@types/node': 20.8.5
 
   /@types/semver@7.5.2:
     resolution: {integrity: sha512-7aqorHYgdNO4DM36stTiGO3DvKoex9TQRwsJU6vMaFGyqpBA1MNZkz+PG3gaNUPpTAOYhT1WR7M1JyA3fbS9Cw==}
@@ -5001,12 +4996,12 @@ packages:
   /@types/ws@7.4.7:
     resolution: {integrity: sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww==}
     dependencies:
-      '@types/node': 20.5.9
+      '@types/node': 20.8.5
 
   /@types/ws@8.5.6:
     resolution: {integrity: sha512-8B5EO9jLVCy+B58PLHvLDuOD8DRVMgQzq8d55SjLCOn9kqGyqOvy27exVaTio1q1nX5zLu8/6N0n2ThSxOM6tg==}
     dependencies:
-      '@types/node': 20.5.9
+      '@types/node': 20.8.5
 
   /@typescript-eslint/eslint-plugin@6.7.2(@typescript-eslint/parser@6.7.2)(eslint@8.48.0)(typescript@5.2.2):
     resolution: {integrity: sha512-ooaHxlmSgZTM6CHYAFRlifqh1OAr3PAQEwi7lhYhaegbnXrnh7CDcHmc3+ihhbQC7H0i4JF0psI5ehzkF6Yl6Q==}
@@ -5211,7 +5206,7 @@ packages:
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.23.0)
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.23.0)
       react-refresh: 0.14.0
-      vite: 4.4.9(@types/node@20.5.9)
+      vite: 4.4.9(@types/node@20.8.5)
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -7565,7 +7560,7 @@ packages:
     dependencies:
       '@typescript-eslint/utils': 6.7.2(eslint@8.48.0)(typescript@5.2.2)
       eslint: 8.48.0
-      vite: 4.4.9(@types/node@20.5.9)
+      vite: 4.4.9(@types/node@20.8.5)
       vitest: 0.34.1(jsdom@22.1.0)
     transitivePeerDependencies:
       - supports-color
@@ -10562,7 +10557,7 @@ packages:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 20.5.9
+      '@types/node': 20.8.5
       long: 4.0.0
 
   /proxy-compare@2.5.1:
@@ -11921,7 +11916,7 @@ packages:
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  /ts-node@10.9.1(@types/node@18.11.14)(typescript@5.2.2):
+  /ts-node@10.9.1(@types/node@20.8.5)(typescript@5.2.2):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -11940,7 +11935,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 18.11.14
+      '@types/node': 20.8.5
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -12193,6 +12188,9 @@ packages:
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
 
+  /undici-types@5.25.3:
+    resolution: {integrity: sha512-Ga1jfYwRn7+cP9v8auvEXN1rX3sWqlayd4HP7OKk4mZWylEmu3KzXDUGrQUN6Ol7qo1gPvB2e5gX6udnyEPgdA==}
+
   /unicode-canonical-property-names-ecmascript@2.0.0:
     resolution: {integrity: sha512-yY5PpDlfVIU5+y/BSCxAJRBIS1Zc2dDG3Ujq+sR0U+JjUevW2JhocOF+soROYDSaAezOzOKuyyixhD6mBknSmQ==}
     engines: {node: '>=4'}
@@ -12424,7 +12422,7 @@ packages:
       - utf-8-validate
       - zod
 
-  /vite-node@0.34.1(@types/node@20.5.9):
+  /vite-node@0.34.1(@types/node@20.8.5):
     resolution: {integrity: sha512-odAZAL9xFMuAg8aWd7nSPT+hU8u2r9gU3LRm9QKjxBEF2rRdWpMuqkrkjvyVQEdNFiBctqr2Gg4uJYizm5Le6w==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -12434,7 +12432,7 @@ packages:
       mlly: 1.4.2
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.4.9(@types/node@20.5.9)
+      vite: 4.4.9(@types/node@20.8.5)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -12445,7 +12443,7 @@ packages:
       - supports-color
       - terser
 
-  /vite@4.4.9(@types/node@20.5.9):
+  /vite@4.4.9(@types/node@20.8.5):
     resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -12473,7 +12471,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.5.9
+      '@types/node': 20.8.5
       esbuild: 0.18.20
       postcss: 8.4.31
       rollup: 3.28.1
@@ -12513,7 +12511,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.6
       '@types/chai-subset': 1.3.3
-      '@types/node': 20.5.9
+      '@types/node': 20.8.5
       '@vitest/expect': 0.34.1
       '@vitest/runner': 0.34.1
       '@vitest/snapshot': 0.34.1
@@ -12533,8 +12531,8 @@ packages:
       strip-literal: 1.3.0
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.4.9(@types/node@20.5.9)
-      vite-node: 0.34.1(@types/node@20.5.9)
+      vite: 4.4.9(@types/node@20.8.5)
+      vite-node: 0.34.1(@types/node@20.8.5)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less

@@ -15,7 +15,7 @@
     "@evmos-apps/config": "workspace:helpers",
     "@types/lodash": "^4.14.197",
     "@types/lodash-es": "^4.17.8",
-    "@types/node": "18.11.14",
+    "@types/node": "20.8.5",
     "@types/react": "^18.0.26",
     "ajv": "^8.12.0",
     "chain-token-registry": "github:evmos/chain-token-registry#main",

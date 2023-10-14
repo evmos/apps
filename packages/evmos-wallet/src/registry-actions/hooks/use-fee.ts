@@ -48,8 +48,9 @@ export const useFee = ({
             ...token,
             amount: 1n,
           },
-        }),
+        })
       );
+      console.log(err);
       if (err) {
         if (E.match.byPattern(err, /NotFound/g)) {
           throw new Error("ACCOUNT_NOT_FOUND");

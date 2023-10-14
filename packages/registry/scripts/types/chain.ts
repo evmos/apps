@@ -64,8 +64,8 @@ export interface ChainRegistry {
      * RPC endpoint link, usually port 1317
      */
     rpc: string[];
-    rest: [string, string, string, ...string[]];
-    jrpc?: [string, string, string, ...string[]];
+    rest: [string, ...string[]];
+    jrpc?: [string, ...string[]];
     web3?: string[];
     currencies: {
       /**
@@ -115,7 +115,7 @@ export interface ChainRegistry {
     /**
      * Must select either mainnet or testnet
      */
-    configurationType: "mainnet" | "testnet";
+    configurationType: "mainnet" | "testnet" | "localtestnet";
     /**
      * Explorer tx URL for the chain, i.e https://www.mintscan.io/evmos/txs.
      */

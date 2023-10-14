@@ -25,7 +25,7 @@ export async function signBackendTypedDataTransaction({
 
   assertIf(
     chain && address && connector && typedData,
-    "COULD_NOT_SIGN_TRANSACTION",
+    "COULD_NOT_SIGN_TRANSACTION"
   );
 
   const signature = await signTypedDataMessage(typedData);
@@ -64,7 +64,7 @@ export async function signBackendDirectTransaction(transaction: ApiPresignTx) {
         rawTx: createTxRaw(
           response.signed.bodyBytes,
           response.signed.authInfoBytes,
-          [new Uint8Array(Buffer.from(response.signature.signature, "base64"))],
+          [new Uint8Array(Buffer.from(response.signature.signature, "base64"))]
         ),
       }),
   } as const;
@@ -72,7 +72,7 @@ export async function signBackendDirectTransaction(transaction: ApiPresignTx) {
 
 export async function signApiAminoTx(
   transaction: ApiPresignTx,
-  network: string,
+  network: string
 ) {
   const { address, connector } = getAccount();
   const { chain } = getNetwork();

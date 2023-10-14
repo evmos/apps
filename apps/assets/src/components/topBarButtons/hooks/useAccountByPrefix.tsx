@@ -41,7 +41,13 @@ const suggestChain = async (prefix: Prefix) => {
   }
   if (prefix === "evmos" && getEnableTestnet()) {
     const chainInfo = await import(
-      "@evmosapps/registry/src/keplr/evmostestnet.json"
+      "@evmosapps/registry/src/keplr/evmoslocal.json"
+    );
+    await keplr.experimentalSuggestChain(chainInfo);
+  }
+  if (prefix === "cosmos" && getEnableTestnet()) {
+    const chainInfo = await import(
+      "@evmosapps/registry/src/keplr/cosmoshublocal.json"
     );
     await keplr.experimentalSuggestChain(chainInfo);
   }

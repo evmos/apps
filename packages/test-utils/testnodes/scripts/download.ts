@@ -1,44 +1,13 @@
-import { Octokit } from "octokit";
-import download from "download";
 import os from "os";
 import path from "path";
-import { stat, rm, readFile, writeFile } from "fs/promises";
+import { rm, readFile, writeFile } from "fs/promises";
 import { spawn, exec, ChildProcess } from "node:child_process";
 import process from "node:process";
 import { Genesis } from "testnodes/genesis";
 import toml from "toml";
 import { BaseConfig } from "testnodes/config";
+import { downloadEvmosLatest } from "../utils/download-evmos-latest";
 
-const octokit = new Octokit({
-  auth: process.env.GITHUB_TOKEN ?? "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",
-});
-
-const downloadEvmosLatest = async () => {
-  const releases = await octokit.request(
-    "GET /repos/{owner}/{repo}/releases/latest",
-    {
-      owner: "evmos",
-      repo: "evmos",
-    }
-  );
-
-  const platform = os.platform().toLowerCase();
-  const arch = os.arch().toLowerCase();
-  const release = releases.data.assets.find(
-    ({ name }) =>
-      name.toLowerCase().includes(platform) && name.toLowerCase().includes(arch)
-  );
-  if (!release) {
-    throw new Error(`No release found for ${platform} ${arch}`);
-  }
-  const dir = path.join(os.tmpdir(), release.name.replace(".tar.gz", ""));
-  try {
-    await stat(dir);
-  } catch (e) {
-    await download(release.browser_download_url, dir, { extract: true });
-  }
-  return dir;
-};
 const asyncExec = (command: string) =>
   new Promise<string>((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
@@ -404,4 +373,5 @@ await evmosd.updateConfig((config) => {
 const genesis = await evmosd.readConfig();
 
 console.log(genesis);
+console.log(evmosd.homedir);
 // console.log(await evmosd.addKey(defaulValidatorKeys));

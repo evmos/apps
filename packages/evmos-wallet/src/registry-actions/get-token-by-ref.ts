@@ -1,8 +1,9 @@
 import { chains } from "@evmosapps/registry";
 import { Token, TokenByRef, TokenRef } from "./types";
+import { getChains } from "./get-chain";
 
 const TOKEN_BY_REF = Object.fromEntries(
-  Object.values(chains).flatMap((chain) =>
+  getChains().flatMap((chain) =>
     chain.tokens.map((token) => [token.ref, token])
   )
 ) as TokenByRef;

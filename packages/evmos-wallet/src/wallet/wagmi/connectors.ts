@@ -32,7 +32,7 @@ void walletConnectConnector.getProvider().then((provider) => {
   provider?.rpc?.methods?.push(
     "eth_signTypedData_v4",
     "wallet_addEthereumChain",
-    "wallet_switchEthereumChain",
+    "wallet_switchEthereumChain"
   );
 });
 

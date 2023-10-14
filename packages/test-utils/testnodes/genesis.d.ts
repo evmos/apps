@@ -34,7 +34,25 @@ export interface AppState {
   bank: Bank;
   capability: Capability;
   claims: Claims;
-  consensus?: null;
+  consensus?: {
+    consensus_params: {
+      block: {
+        max_bytes: "22020096";
+        max_gas: "-1";
+      };
+      evidence: {
+        max_age_num_blocks: "100000";
+        max_age_duration: "172800000000000";
+        max_bytes: "1048576";
+      };
+      validator: {
+        pub_key_types: ["ed25519"];
+      };
+      version: {
+        app: "0";
+      };
+    };
+  };
   crisis: Crisis;
   distribution: Distribution;
   epochs: Epochs;
@@ -60,7 +78,10 @@ export interface AppState {
 }
 export interface Auth {
   params: Params;
-  accounts?: null[] | null;
+  accounts: {
+    "@type": string;
+    [key: string]: unknown;
+  }[];
 }
 export interface Params {
   max_memo_characters: string;
@@ -75,7 +96,11 @@ export interface Authz {
 export interface Bank {
   params: Params1;
   balances?: BankBalance[] | null;
-  supply?: null[] | null;
+  supply: {
+    denom: string;
+    amount: string;
+  }[];
+
   denom_metadata?: null[] | null;
   send_enabled?: null[] | null;
 }

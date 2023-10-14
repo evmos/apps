@@ -10,7 +10,7 @@ import { getEvmosChainInfo } from "./chains";
 const evmos = getEvmosChainInfo();
 const { publicClient } = configureChains(
   [getEvmosChainInfo()],
-  [publicProvider()],
+  [publicProvider()]
 );
 export const evmosClient = publicClient({
   chainId: evmos.id,

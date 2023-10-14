@@ -9,7 +9,7 @@ import { Chain, Connector } from "wagmi";
 
 import { getKeplrProvider } from "../utils/keplr";
 
-import { evmos, evmosTestnet, getEvmosChainInfo } from "./chains";
+import { getEvmosChainInfo } from "./chains";
 import { assertIf, raise } from "helpers";
 
 import { serialize, UnsignedTransaction } from "@ethersproject/transactions";
@@ -32,18 +32,18 @@ const evmosInfo = getEvmosChainInfo();
 
 // Right now this only supports evmos, but it'd be nice to figure out how to support
 // other chains as well.
-const COSMOS_ID_MAP = {
-  [evmos.id]: evmos.cosmosId,
-  [evmosTestnet.id]: evmosTestnet.cosmosId,
-} as const;
+// const COSMOS_ID_MAP = {
+//   [evmos.id]: evmos.cosmosId,
+//   [evmosTestnet.id]: evmosTestnet.cosmosId,
+// } as const;
 
-const ADDRESS_ENCODERS: Record<
-  keyof typeof COSMOS_ID_MAP,
-  (address: string) => string
-> = {
-  [evmos.id]: ethToEvmos,
-  [evmosTestnet.id]: ethToEvmos,
-};
+// const ADDRESS_ENCODERS: Record<
+//   keyof typeof COSMOS_ID_MAP,
+//   (address: string) => string
+// > = {
+//   [evmos.id]: ethToEvmos,
+//   [evmosTestnet.id]: ethToEvmos,
+// };
 
 const TransactionRequestSchema = z
   .object({
@@ -54,7 +54,7 @@ const TransactionRequestSchema = z
 
 const prepareTransaction = async (
   chainId: number,
-  request: TransactionRequest,
+  request: TransactionRequest
 ): Promise<UnsignedTransaction> => {
   const client = getPublicClient({
     chainId,
@@ -152,11 +152,15 @@ export class KeplrConnector extends Connector<Keplr, {}> {
     if (this.offlineSigner) return this.offlineSigner;
     const provider = await this.getProvider();
 
-    const cosmosId =
-      this.chainId in COSMOS_ID_MAP
-        ? COSMOS_ID_MAP[this.chainId]
-        : evmosInfo.cosmosId;
-
+    const cosmosId = evmosInfo.cosmosId;
+    if (cosmosId !== "evmos_9001-2") {
+      await provider.experimentalSuggestChain(
+        await import("@evmosapps/registry/src/keplr/evmoslocal.json")
+      );
+      await provider.experimentalSuggestChain(
+        await import("@evmosapps/registry/src/keplr/evmostestnet.json")
+      );
+    }
     assertIf(cosmosId, "UNSUPPORTED_NETWORK");
 
     const signer = provider.getOfflineSigner(cosmosId);
@@ -180,18 +184,19 @@ export class KeplrConnector extends Connector<Keplr, {}> {
     // TODO: Add event listeners here
 
     const account = await this.getAccount();
-    let chainId = config?.chainId;
-    if (!chainId || !(chainId in COSMOS_ID_MAP)) {
-      chainId = this.chains.find(({ id }) => id in COSMOS_ID_MAP)?.id;
-      assertIf(chainId, "UNSUPPORTED_NETWORK");
-    }
+    const chainId = config?.chainId ?? evmosInfo.id;
+
+    // if (!chainId ) {
+    //   chainId = this.chains.find(({ id }) => id === )?.id;
+    //   assertIf(chainId, "UNSUPPORTED_NETWORK");
+    // }
     this.chainId = chainId;
     window.addEventListener("keplr_keystorechange", this.onAccountsChanged);
     return {
       account,
       chain: {
         id: chainId,
-        unsupported: !(chainId in COSMOS_ID_MAP),
+        unsupported: chainId !== evmosInfo.id,
       },
     };
   }
@@ -210,15 +215,14 @@ export class KeplrConnector extends Connector<Keplr, {}> {
     }
   }
   protected isChainUnsupported(chainId: number) {
-    return chainId in COSMOS_ID_MAP;
+    return chainId === evmosInfo.id;
   }
   async getCosmosId(chainId?: number) {
     chainId ??= await this.getChainId();
 
     assertIf(this.isChainUnsupported(chainId), "UNSUPPORTED_NETWORK");
 
-    const cosmosId = COSMOS_ID_MAP[chainId] ?? raise("UNSUPPORTED_NETWORK");
-    return cosmosId;
+    return evmosInfo.cosmosId;
   }
   async getWalletClient({ chainId }: { chainId?: number } = {}) {
     chainId ??= await this.getChainId();
@@ -272,7 +276,7 @@ export class KeplrConnector extends Connector<Keplr, {}> {
     ]);
 
     const cosmosId = await this.getCosmosId(chainId);
-    const bech32Address = ADDRESS_ENCODERS[chainId](account);
+    const bech32Address = ethToEvmos(account);
 
     switch (method) {
       case "eth_sendTransaction": {
@@ -307,7 +311,7 @@ export class KeplrConnector extends Connector<Keplr, {}> {
           params[0],
           method === "account_signTransaction"
             ? EthSignType.TRANSACTION
-            : EthSignType.MESSAGE,
+            : EthSignType.MESSAGE
         );
 
         return toHex(signature);
@@ -319,7 +323,7 @@ export class KeplrConnector extends Connector<Keplr, {}> {
           cosmosId,
           bech32Address,
           params[1],
-          EthSignType.EIP712,
+          EthSignType.EIP712
         );
         return toHex(signature);
       }

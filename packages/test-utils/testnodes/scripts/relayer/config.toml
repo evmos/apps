@@ -1,0 +1,78 @@
+[global]
+log_level = 'trace'
+
+[mode]
+
+[mode.clients]
+enabled = true
+refresh = true
+misbehaviour = true
+
+[mode.connections]
+enabled = false
+
+[mode.channels]
+enabled = false
+
+[mode.packets]
+enabled = true
+clear_interval = 100
+clear_on_start = true
+tx_confirmation = true
+
+[rest]
+enabled = true
+host = '127.0.0.1'
+port = 3000
+
+[telemetry]
+enabled = true
+host = '127.0.0.1'
+port = 3001
+
+[[chains]]
+id = 'evmoslocal_9000-10'
+rpc_addr = 'http://localhost:26657'
+grpc_addr = 'http://localhost:9090'
+event_source = { mode = 'pull', interval = '1s' }
+rpc_timeout = '10s'
+account_prefix = 'evmos'
+key_name = 'evmos-relayer'
+store_prefix = 'ibc'
+default_gas = 100000
+gas_multiplier = 1.5
+max_gas = 3000000
+clock_drift = '15s'
+max_block_time = '10s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }
+gas_price = { price = 1000000000, denom = 'aevmos' }
+address_type = { derivation = 'ethermint', proto_type = { pk_type = '/ethermint.crypto.v1.ethsecp256k1.PubKey' } }
+
+[[chains]]
+id = 'cosmohub-1'
+rpc_addr = 'http://localhost:26667'
+grpc_addr = 'http://localhost:9100'
+event_source = { mode = 'pull', interval = '1s' }
+# rpc_timeout = '10s'
+# account_prefix = 'cosmos'
+# key_name = 'cosmos-relayer'
+# store_prefix = 'ibc'
+# default_gas = 5000000
+# max_gas = 25000000
+# gas_price = { price = 0.0025, denom = 'uatom' }
+gas_multiplier = 1.5
+# max_msg_num = 20
+# max_tx_size = 209715
+# clock_drift = '20s'
+# max_block_time = '10s'
+# trust_threshold = { numerator = '1', denominator = '3' }
+rpc_timeout = '15s'
+account_prefix = 'cosmos'
+key_name = 'wallet'
+store_prefix = 'ibc'
+gas_price = { price = 0.01, denom = 'uatom' }
+max_gas = 10000000
+clock_drift = '5s'
+trusting_period = '14days'
+trust_threshold = { numerator = '1', denominator = '3' }

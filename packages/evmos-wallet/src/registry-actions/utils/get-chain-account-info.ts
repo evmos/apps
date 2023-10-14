@@ -13,7 +13,7 @@ type BaseAccount = {
   pub_key: {
     "@type": string;
     key: string;
-  };
+  } | null;
 };
 const isBaseAccount = (account: unknown): account is BaseAccount => {
   return (
@@ -61,18 +61,17 @@ export const getChainAccountInfo = async (address: Address<Prefix>) => {
     throw new Error(`Unsupported account type: ${account["@type"]}`);
   }
 
-  const pubkey =
-    Buffer.from(baseAccount.pub_key.key, "base64") ??
-    (await getPubkey({
-      cosmosChainId: chain.cosmosId,
-    }));
+  const pubkey = baseAccount.pub_key
+    ? Buffer.from(baseAccount.pub_key.key, "base64")
+    : await getPubkey({
+        cosmosChainId: chain.cosmosId,
+      });
 
   return {
     address: cosmosAddress,
     sequence: BigInt(baseAccount.sequence),
     publicKey:
-      baseAccount.pub_key["@type"] ===
-      "/ethermint.crypto.v1.ethsecp256k1.PubKey"
+      chain.identifier === "evmos"
         ? new ethsecp256k1.PubKey({
             key: pubkey,
           })

@@ -15,7 +15,7 @@ const DropdownTokensDeposit = ({
 }: DropdownTokensDepositProps) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<TableDataElement | null>(
-    null,
+    null
   );
   useEffect(() => {
     const handler = () => setShowMenu(false);
@@ -36,7 +36,7 @@ const DropdownTokensDeposit = ({
         return (
           <div className="flex items-center space-x-3 font-bold">
             <Image
-              src={`/assets/tokens/${selectedValue.symbol.toLowerCase()}.png`}
+              src={`/portfolio/tokens/${selectedValue.symbol.toLowerCase()}.png`}
               alt={selectedValue.symbol}
               width={25}
               height={25}
@@ -74,7 +74,7 @@ const DropdownTokensDeposit = ({
                 >
                   <div className="flex items-center space-x-3">
                     <Image
-                      src={`/assets/tokens/${option.symbol.toLowerCase()}.png`}
+                      src={`/portfolio/tokens/${option.symbol.toLowerCase()}.png`}
                       alt={option.symbol}
                       width={25}
                       height={25}

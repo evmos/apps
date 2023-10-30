@@ -129,7 +129,7 @@ const Convert = ({
               tokenTo:
                 item.symbol === EVMOS_SYMBOL ? typeSelected.token : item.symbol,
               address,
-              img: `/assets/tokens/${item.symbol.toLowerCase()}.png`,
+              img: `/portfolio/tokens/${item.symbol.toLowerCase()}.png`,
               text: typeSelected.from,
             }}
           />
@@ -155,7 +155,7 @@ const Convert = ({
         <div className="mb-8 space-y-5 rounded-lg bg-skinTan px-8 py-4">
           <ToContainer
             token={item.symbol}
-            img={`/assets/tokens/${item.symbol.toLowerCase()}.png`}
+            img={`/portfolio/tokens/${item.symbol.toLowerCase()}.png`}
             text={typeSelected.to}
           />
           <AddTokenMetamask token={token} />

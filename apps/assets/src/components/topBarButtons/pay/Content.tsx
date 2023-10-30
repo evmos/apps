@@ -235,7 +235,7 @@ export const Content = ({
                     <CryptoSelector.Button>
                       <div className="pl-2 items-center flex gap-1.5">
                         <Image
-                          src={`/assets/chains/${
+                          src={`/portfolio/chains/${
                             selectedBalance
                               ? selectedBalance?.type === "ERC20"
                                 ? "evmos"
@@ -263,7 +263,7 @@ export const Content = ({
                       {balances.map((b) => {
                         return (
                           <CryptoSelector.Option
-                            src={`/assets/tokens/${
+                            src={`/portfolio/tokens/${
                               b?.type === "ERC20"
                                 ? "evmos"
                                 : selectedBalance?.denom

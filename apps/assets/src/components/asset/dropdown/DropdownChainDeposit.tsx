@@ -18,7 +18,7 @@ const DropdownChainDeposit = ({
 }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedValue, setSelectedValue] = useState<DepositElement | null>(
-    null,
+    null
   );
   useEffect(() => {
     const handler = () => setShowMenu(false);
@@ -38,7 +38,7 @@ const DropdownChainDeposit = ({
       return (
         <div className="flex items-center space-x-3 font-bold">
           <Image
-            src={`/assets/chains/${selectedValue.elements[0].chainIdentifier}.png`}
+            src={`/portfolio/chains/${selectedValue.elements[0].chainIdentifier}.png`}
             alt={selectedValue.elements[0].chainIdentifier}
             width={25}
             height={25}
@@ -83,7 +83,7 @@ const DropdownChainDeposit = ({
                   >
                     <div className="flex items-center space-x-3">
                       <Image
-                        src={`/assets/chains/${option.chain}.png`}
+                        src={`/portfolio/chains/${option.chain}.png`}
                         alt={option.chain}
                         width={25}
                         height={25}

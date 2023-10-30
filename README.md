@@ -14,7 +14,7 @@
   </a>
 </div>
 
-The frontend of [Evmos Dashboard Apps](https://app.evmos.org). It contains apps to manage assets, staking and governance.
+The frontend of [Evmos Dashboard Apps](https://app.evmos.org). It contains apps to manage portfolio, staking and governance.
 
 > https://app.evmos.org
 
@@ -57,7 +57,7 @@ The constants are setup to read from environment variables but there are also fa
 If you need to change the value of any of these constants we recommend the following:
 
 1. Copy the `.env.example` file located on the root directory into the base directory of the app you want to use with the name `.env.local`
-   - For example: If you are working on the assets page copy this file in the path: `apps/assets`.
+   - For example: If you are working on the portfolio page copy this file in the path: `apps/assets`.
    - Note: if you are working with multiple apps you need to copy this file into every app you are using
 2. Change the value of the env variables in the .env.local file you copied into the apps folder
 3. Build and run the apps as highlighted by the instructions above

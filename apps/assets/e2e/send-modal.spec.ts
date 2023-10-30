@@ -125,8 +125,8 @@ describe("Send Modal", () => {
     await waitForTestnet();
   });
   beforeAll(async ({ page }) => {
-    await step("Go to assets page", async () => {
-      await page.goto("/assets");
+    await step("Go to portfolio page", async () => {
+      await page.goto("/portfolio");
     });
     await step("Accept TOS", async () => {
       await acceptTOS(page);
@@ -134,8 +134,8 @@ describe("Send Modal", () => {
     await enableLocalnet(page);
   });
   beforeEach(async ({ page, keplr }) => {
-    await step("Go to assets page", async () => {
-      await page.goto("/assets");
+    await step("Go to portfolio page", async () => {
+      await page.goto("/portfolio");
     });
     await step("Connect to Keplr", async () => {
       await connectToKeplr(page, keplr);

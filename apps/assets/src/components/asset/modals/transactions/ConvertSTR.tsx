@@ -85,7 +85,7 @@ export const ConvertSTR = ({
               style={{
                 tokenTo: symbolFrom,
                 address,
-                img: `/assets/tokens/${symbolFrom.toLowerCase()}.png`,
+                img: `/portfolio/tokens/${symbolFrom.toLowerCase()}.png`,
                 text: symbolFrom,
               }}
             />
@@ -93,7 +93,7 @@ export const ConvertSTR = ({
               text={getReservedForFeeText(
                 BigNumber.from("300000000000000000"),
                 EVMOS_SYMBOL,
-                EVMOS_SYMBOL,
+                EVMOS_SYMBOL
               )}
             />
           </>
@@ -102,7 +102,7 @@ export const ConvertSTR = ({
           <>
             <ToConvert
               token={symbolTo}
-              img={`/assets/tokens/${symbolTo.toLowerCase()}.png`}
+              img={`/portfolio/tokens/${symbolTo.toLowerCase()}.png`}
               balance={balanceTo}
               decimals={item.decimals}
               addToken={token}

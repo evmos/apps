@@ -3,7 +3,7 @@ import { t } from "../locales/translate";
 
 const localPorts = {
   "/": 3004,
-  "/assets": 3002,
+  "/portfolio": 3002,
   "/staking": 3003,
   "/governance": 3001,
   "/vesting": 3005,
@@ -24,7 +24,7 @@ export const launchPadItems = [
   {
     icon: <CoinIcon width="40" height="40" />,
     text: t("launchPad.assets.title") as string,
-    href: getHref("/assets"),
+    href: getHref("/portfolio"),
     mixpanelId: "Assets",
   },
   {

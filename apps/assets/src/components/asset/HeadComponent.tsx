@@ -4,16 +4,16 @@ export const HeadComponent = () => {
   return (
     <>
       <Head>
-        <title>Assets Portfolio</title>
+        <title>Evmos Portfolio</title>
         <link rel="icon" href="/favicon.ico" />
 
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           name="keywords"
-          content="assets, evmos, evm, evm on cosmos, fast finality, delegated proof-of-stake, single-token representation, erc20 assets, (new) evmos dApp"
+          content="assets, portfolio, evmos, evm, evm on cosmos, fast finality, delegated proof-of-stake, single-token representation, erc20 assets, (new) evmos dApp"
         />
-        <link rel="canonical" href="https://app.evmos.org/assets" />
+        <link rel="canonical" href="https://app.evmos.org/portfolio" />
 
         {/* <!--  Essential META Tags --> */}
         <meta property="og:title" content="Evmos Portfolio" />
@@ -29,7 +29,7 @@ export const HeadComponent = () => {
             "https://storage.evmos.org/social_previews/social_share_apps.jpg"
           }
         />
-        <meta property="og:url" content="https://app.evmos.org/assets" />
+        <meta property="og:url" content="https://app.evmos.org/portfolio" />
         <meta name="twitter:card" content="summary_large_image" />
 
         {/* <!--  Non-Essential, But Recommended --> */}

@@ -1,7 +1,7 @@
 {
   "short_name": "EvmosAssets",
-  "name": "Evmos Assets",
-  "description": "The assets page shows token balances for each whitelisted token.",
+  "name": "Evmos Portfolio",
+  "description": "The portfolio page shows token balances for each whitelisted token.",
   "icons": [
     {
       "src": "favicon.ico",

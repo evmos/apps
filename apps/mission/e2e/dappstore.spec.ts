@@ -221,12 +221,12 @@ describe("Mission Page - Copilot", () => {
     await page.getByRole("button", { name: "Exit" }).click();
   });
 
-  test("should redirect to assets page after clicking on see portfolio", async ({
+  test("should redirect to portfolio page after clicking on see portfolio", async ({
     page,
   }) => {
     await page.getByRole("button", { name: /See portfolio/i }).click();
     await page.waitForTimeout(1000);
-    await page.goto("http://localhost:3004/assets");
+    await page.goto("http://localhost:3004/portfolio");
   });
 
   test("should redirect to governance page after clicking on participate in governance", async ({

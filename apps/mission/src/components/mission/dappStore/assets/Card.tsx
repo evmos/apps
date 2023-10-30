@@ -15,7 +15,7 @@ export const AssetsCard = () => {
   const router = useRouter();
   const handleOnClick = async () => {
     handlePreClickAction();
-    await router.push("/assets");
+    await router.push("/portfolio");
   };
 
   const { t } = useTranslation();

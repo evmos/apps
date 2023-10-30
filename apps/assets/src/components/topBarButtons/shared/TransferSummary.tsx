@@ -54,7 +54,7 @@ export const TransferSummary = ({
         <div className="flex flex-col space-y-2 items-center">
           <Image
             className="h-10 w-10 md:h-12 md:w-12 bg-white rounded-full"
-            src={`/assets/chains/${senderChain.prefix}.png`}
+            src={`/portfolio/chains/${senderChain.prefix}.png`}
             width={48}
             height={48}
             alt={senderChain.name}
@@ -68,7 +68,7 @@ export const TransferSummary = ({
         <h3 className="text-xxs md:text-xs flex justify-center items-center gap-x-2 text-white">
           <Image
             className="h-4 w-4 md:h-6 md:w-6 rounded-full"
-            src={`/assets/tokens/${denom}.png`}
+            src={`/portfolio/tokens/${denom}.png`}
             width={18}
             height={18}
             alt={name}
@@ -96,7 +96,7 @@ export const TransferSummary = ({
         <div className="flex flex-col space-y-2 items-center">
           <Image
             className="h-10 w-10 md:h-12 md:w-12 bg-white rounded-full"
-            src={`/assets/chains/${receiverChain.prefix}.png`}
+            src={`/portfolio/chains/${receiverChain.prefix}.png`}
             width={48}
             height={48}
             alt={receiverChain.name}

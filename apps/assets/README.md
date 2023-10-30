@@ -1,6 +1,6 @@
-# Assets Page
+# Portfolio Page
 
-This repo contains the front-end for the assets page: [https://assets.evmos.org/](https://assets.evmos.org/).
+This repo contains the front-end for the portfolio page: [https://app.evmos.org/portfolio](https://app.evmos.org/portfolio).
 
 ## Requirements
 
@@ -10,15 +10,14 @@ This repo contains the front-end for the assets page: [https://assets.evmos.org/
 
 It uses the [dashboard-backend](https://github.com/tharsis/dashboard-backend) to fetch the information and to create the transactions.
 
-The wallet extensions code is inside the `wallet` folders in `src/internal` and `src/components`, after releasing the v1 of the assets page, the wallet code must be moved to the `react-components` repo created in the `evmos` org in github.
+The wallet extensions code is inside the `wallet` folders in `src/internal` and `src/components`, after releasing the v1 of the portfolio page, the wallet code must be moved to the `react-components` repo created in the `evmos` org in github.
 
 ## Run
 
 ```sh
-git clone https://github.com/tharsis/assetsPage
-cd assetsPage
+git clone https://github.com/evmos/apps
+cd apps
 pnpm install
-pnpm build
 pnpm run dev
 ```
 

@@ -112,7 +112,7 @@ export const RequestAssetSelector = ({
             }}
           >
             <CryptoSelector.Button
-              src={`/assets/tokens/${selectedToken?.denom}.png`}
+              src={`/portfolio/tokens/${selectedToken?.denom}.png`}
               variant="black"
               data-testid="request-asset-selector-token-button"
             >
@@ -126,7 +126,7 @@ export const RequestAssetSelector = ({
               {tokenOptions.map((token) => {
                 return (
                   <CryptoSelector.Option
-                    src={`/assets/tokens/${token.denom}.png`}
+                    src={`/portfolio/tokens/${token.denom}.png`}
                     key={`${token.sourcePrefix}-${token.minCoinDenom}`}
                     value={token}
                     data-testid={`request-asset-selector-token-option-${token.denom}`}
@@ -156,7 +156,7 @@ export const RequestAssetSelector = ({
             }}
           >
             <CryptoSelector.Button
-              src={`/assets/chains/${value.networkPrefix}.png`}
+              src={`/portfolio/chains/${value.networkPrefix}.png`}
             >
               {selectedChain.name}
             </CryptoSelector.Button>
@@ -168,7 +168,7 @@ export const RequestAssetSelector = ({
                 const chain = getChain(value);
                 return (
                   <CryptoSelector.Option
-                    src={`/assets/chains/${value}.png`}
+                    src={`/portfolio/chains/${value}.png`}
                     key={value}
                     value={value}
                   >

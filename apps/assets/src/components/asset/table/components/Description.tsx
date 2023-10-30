@@ -20,7 +20,7 @@ export const Description = ({
         src={
           imageSrc
             ? imageSrc
-            : `/assets/tokens/${kebabCase(symbol.toLowerCase())}.png`
+            : `/portfolio/tokens/${kebabCase(symbol.toLowerCase())}.png`
         }
         alt={symbol}
         width={30}

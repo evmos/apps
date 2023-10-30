@@ -53,7 +53,7 @@ export function Providers({ children }: PropsWithChildren) {
                 <Container>
                   <>
                     <SnackbarsInternal />
-                    <StatefulHeader pageName="Portfolio" page="assets" />
+                    <StatefulHeader pageName="Portfolio" page="portfolio" />
                     <MavaWidget />
                     <div className="container mx-auto mb-auto overflow-auto">
                       {children}

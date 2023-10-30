@@ -65,7 +65,7 @@ export const ShareContent = ({
     setOrigin(window.location.origin);
   }, []);
 
-  const shareURL = `${origin}/assets?action=pay&token=${token}&amount=${amount}&message=${encodeURIComponent(
+  const shareURL = `${origin}/portfolio?action=pay&token=${token}&amount=${amount}&message=${encodeURIComponent(
     message
   )}&requester=${sender}`;
 

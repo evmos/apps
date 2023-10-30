@@ -166,15 +166,15 @@ const Deposit = ({
               address: walletToUse,
               img:
                 item.symbol === EVMOS_SYMBOL
-                  ? "/assets/tokens/osmo.png"
-                  : `/assets/tokens/${item.symbol.toLowerCase()}.png`,
+                  ? "/portfolio/tokens/osmo.png"
+                  : `/portfolio/tokens/${item.symbol.toLowerCase()}.png`,
               text: item.symbol === EVMOS_SYMBOL ? "OSMO" : item.symbol,
             }}
           />
         </div>
         <Arrow />
         <div className="mb-8 space-y-5 rounded-lg bg-skinTan px-8 py-4">
-          <ToContainer token="EVMOS" img={`/assets/tokens/evmos.png`} />
+          <ToContainer token="EVMOS" img={`/portfolio/tokens/evmos.png`} />
           <div className="space-y-3">
             <div className="flex items-center space-x-3 rounded-lg border border-darkGray5 bg-white pl-2 pr-5 focus-within:border-black hover:border-black focus-visible:border-black">
               <input

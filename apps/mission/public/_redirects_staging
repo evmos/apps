@@ -1,4 +1,3 @@
-/assets/* https://evmos-assets.netlify.app/portfolio/:splat 200!
-/portfolio/* https://evmos-assets.netlify.app/portfolio/:splat 200!
+/assets/* /portfolio/:splat 301
 /staking/* https://evmos-staking.netlify.app/staking/:splat 200!
 /governance/* https://evmos-governance.netlify.app/governance/:splat 200!

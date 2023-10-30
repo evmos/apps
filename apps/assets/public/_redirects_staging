@@ -1,2 +1,2 @@
-/assets/* /portfolio/:splat 200!
+/assets/* https://evmos-assets.netlify.app/portfolio 301
 /portfolio/* https://evmos-assets.netlify.app/assets/:splat 200!

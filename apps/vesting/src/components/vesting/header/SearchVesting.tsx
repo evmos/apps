@@ -3,7 +3,7 @@
 
 import { ChangeEvent, KeyboardEvent, useState } from "react";
 import { useRouter } from "next/router";
-import { Search } from "ui-helpers";
+import { Search } from "@evmosapps/ui-helpers";
 import { useTranslation } from "next-i18next";
 export const SearchVesting = () => {
   const router = useRouter();

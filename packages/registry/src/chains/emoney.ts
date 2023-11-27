@@ -57,7 +57,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x5db67696C3c088DfBf588d3dd849f44266ff0ffa",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "e-money-eur"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/emoney/txs",

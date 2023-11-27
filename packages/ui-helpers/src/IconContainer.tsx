@@ -69,10 +69,10 @@ export const IconContainer = ({
 }: { type: string } & ComponentProps<"div">) => {
   return (
     <div
-      className={`${ICONS_STYLES[type].style} flex items-center justify-center rounded-full`}
+      className={`${ICONS_STYLES[type]?.style} flex items-center justify-center rounded-full`}
       {...rest}
     >
-      {ICONS_STYLES[type].icon}
+      {ICONS_STYLES[type]?.icon}
     </div>
   );
 };

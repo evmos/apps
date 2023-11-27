@@ -22,7 +22,7 @@ describe("Testing Header - mixpanel is not setted", () => {
     };
   });
 
-  vi.mock("evmos-wallet", () => {
+  vi.mock("@evmosapps/evmos-wallet", () => {
     return {
       ButtonWalletConnection: vi.fn(),
       StoreType: vi.fn(),

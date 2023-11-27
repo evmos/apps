@@ -1,7 +1,7 @@
-import { ConfirmButton, Modal } from "ui-helpers";
+import { ConfirmButton, Modal } from "@evmosapps/ui-helpers";
 import { SearchVesting } from "./SearchVesting";
 import { useSelector } from "react-redux";
-import { StoreType } from "evmos-wallet";
+import { StoreType } from "@evmosapps/evmos-wallet";
 import { useState } from "react";
 import { FundVestingAccount } from "./FundVestingAccount";
 import { EnableVestingModal } from "./EnableVestingModal";
@@ -11,20 +11,14 @@ import ApproveFunding from "./ApproveFunding";
 export const Header = () => {
   const handleConfirmClick = () => {
     // TODO: open modal for creating vesting account
-    setShowModal(true);
-    setModalContent(
-      <FundVestingAccount
-        onClose={() => {
-          setShowModal(false);
-        }}
-      />,
-    );
+    setIsOpenModal(true);
+
+    setModalContent(<FundVestingAccount />);
   };
 
   const value = useSelector((state: StoreType) => state.wallet.value);
   const [showModal, setShowModal] = useState(false);
   const [showEnableModal, setShowEnableModal] = useState(false);
-  const [showApproveModal, setShowApproveModal] = useState(false);
 
   const [modalContent, setModalContent] = useState<JSX.Element>(<></>);
   const { t } = useTranslation();
@@ -36,7 +30,7 @@ export const Header = () => {
             className="w-fit normal-case"
             text={t("enable.header.button.title")}
             onClick={() => {
-              setShowEnableModal(true);
+              setIsOpenEnableModal(true);
             }}
             disabled={!value.active}
           />
@@ -59,9 +53,9 @@ export const Header = () => {
       </div>
 
       <Modal
-        show={showEnableModal}
+        isOpen={showEnableModal}
         onClose={() => {
-          setShowEnableModal(false);
+          setIsOpenEnableModal(false);
         }}
       >
         <EnableVestingModal
@@ -85,9 +79,9 @@ export const Header = () => {
       </Modal>
 
       <Modal
-        show={showModal}
+        isOpen={showModal}
         onClose={() => {
-          setShowModal(false);
+          setIsOpenModal(false);
         }}
       >
         {modalContent}

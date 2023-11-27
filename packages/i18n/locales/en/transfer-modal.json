@@ -1,0 +1,112 @@
+{
+  "title": "Send",
+  "section": {
+    "networkPickerTitle": "Select a Network",
+
+    "asset": {
+      "title": "Asset",
+      "token": "Token",
+      "network": "Network",
+
+      "balance": {
+        "label": "Balance:",
+        "error": "unable to read",
+        "loading": "Loading balance..."
+      }
+    },
+    "to": {
+      "title": "To",
+      "wallet": {
+        "myAccount": "My Account",
+        "other": "Other"
+      },
+      "placeholder": {
+        "mywalletenabled": "Paste other recipient's account address here",
+        "mywalletdisabled": "Paste recipient's account address here"
+      }
+    },
+    "summary": {
+      "title": "Sending"
+    },
+    "network": {
+      "label": "Select a Network"
+    },
+    "token": {
+      "label": "Select a Token"
+    },
+    "request": {
+      "title": "Request",
+      "message": "Message",
+      "messageInputPlaceholder": "Write a message for the recipient of this request",
+      "requestGenerateButton": "Generate Payment Request"
+    }
+  },
+  "send": {
+    "button": {
+      "text": "Send",
+      "processing": {
+        "text": "Proceeding..."
+      }
+    }
+  },
+  "topup": {
+    "button": "Top-Up Evmos"
+  },
+  "connect": {
+    "button": "Connect"
+  },
+  "bridge": {
+    "button": {
+      "text": "Go to Satellite"
+    }
+  },
+  "deposit": {
+    "helper": {
+      "description": "We prefilled the address of the recipient above with",
+      "description2": "the Evmos address that you are logged in with",
+      "description3": ". If you are depositing into a different address, you can make the changes accordingly."
+    }
+  },
+
+  "modal": {
+    "title": "Transfer Assets",
+    "description": "Deposit and send assets to any account on any chain."
+  },
+  "button": "Send",
+  "input": {
+    "placeholder": "Request receipient's address"
+  },
+  "tryAgain": "Try Again",
+  "account": {
+    "information": {
+      "title": "Account information",
+      "description": "Below are your addresses based on the account you're logged into.",
+      "tooltip": "The addresses below are the same but in different formats. We provide this information for you to quickly refer to your address in instances like depositing assets into your account."
+    }
+  },
+  "warning": {
+    "reservedGasFee": "Gas fee reserved in the max amount",
+    "processingFee": "Processing fee",
+    "onlyEvmosSupported": "Only <strong>Evmos Network</strong> is currently supported",
+    "axelar": "For axl based assets, please use <strong>Satellite </strong> instead"
+  },
+  "error": {
+    "insufficientBalance": "Insufficient balance",
+    "insufficientFee": "Insufficient fee",
+    "failedToGetBalance": "Error getting balance.",
+    "transactionFailed": "Error generating transaction. Please try again later.",
+    "checkWalletConnection": "Please make sure <strong> your account is connected</strong>.",
+    "unsupported": {
+      "title": "Unfortunately, with Metamask we currently only support sending from <strong>Evmos Network</strong>.",
+      "subtitle": "Please use <strong>Keplr</strong> or <strong>choose Evmos</strong>.",
+      "connectButtonLabel": "Connect with Keplr",
+      "installButtonLabel": "Install Keplr"
+    },
+    "rejected": {
+      "title": "I see you're trying to send tokens from ",
+      "title2": "<strong> network</strong>, for that we will need to access your account address.",
+      "subtitle": "Please, <strong>approve the network </strong>.",
+      "authorizeButtonLabel": "Try again"
+    }
+  }
+}

@@ -6,7 +6,7 @@ import {
   isEvmosAddressValid,
 } from "../components/vesting/helpers";
 import { VestingResponse } from "./types";
-import { EVMOS_BACKEND } from "evmos-wallet";
+import { EVMOS_BACKEND } from "@evmosapps/evmos-wallet";
 
 export const getVesting = async (account?: string) => {
   const acc = account?.trim();

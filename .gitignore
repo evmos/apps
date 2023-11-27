@@ -46,4 +46,4 @@ dist/
 
 # Testnet cli files
 .testnet
-
+.notion-cache

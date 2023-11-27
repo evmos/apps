@@ -53,7 +53,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x628A41754edfAFB491FEe6a1F397590B9013E01B",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "crescent-network"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/crescent/txs",

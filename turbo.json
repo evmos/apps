@@ -36,7 +36,14 @@
     "PORT",
     "NODE_ENV",
     "GITHUB_TOKEN",
-    "TEST_WORKER_INDEX"
+    "TEST_WORKER_INDEX",
+    "NOTION_API_KEY",
+    "ENABLED_LOGS",
+    "NEXT_PUBLIC_ECOSYSTEM_PAGE_NOTION_ID",
+    "NEXT_PUBLIC_CATEGORIES_PAGE_NOTION_ID",
+    "NEXT_PUBLIC_COOKIE_POLICY_PAGE_NOTION_ID",
+    "NEXT_PUBLIC_TERMS_OF_SERVICE_PAGE_NOTION_ID",
+    "NEXT_PUBLIC_PRIVACY_POLICY_PAGE_NOTION_ID"
   ],
   "pipeline": {
     "build": {
@@ -52,6 +59,11 @@
       "cache": false,
       "persistent": true
     },
+    "start": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
     "dev:testnet": {
       "cache": false,
       "persistent": true
@@ -62,7 +74,9 @@
     },
 
     "test": {},
-    "kill": {},
+    "kill": {
+      "cache": false
+    },
     "lint": {},
     "test:coverage": {
       "cache": false,

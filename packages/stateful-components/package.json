@@ -14,14 +14,15 @@
     "lint": "eslint ."
   },
   "peerDependencies": {
-    "copilot": "workspace:*",
-    "evmos-wallet": "workspace:*",
+    "@evmosapps/copilot": "workspace:*",
+    "@evmosapps/evmos-wallet": "workspace:*",
     "icons": "workspace:*",
     "tracker": "workspace:*",
-    "ui-helpers": "workspace:*"
+    "@evmosapps/ui-helpers": "workspace:*"
   },
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
+    "constants-helper": "workspace:*",
     "@types/node": "18.11.14",
     "@types/react": "^18.2.21",
     "@types/react-dom": "18.0.9",

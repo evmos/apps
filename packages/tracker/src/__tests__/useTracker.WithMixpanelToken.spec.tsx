@@ -3,7 +3,7 @@ import { renderHook, act } from "@testing-library/react";
 import { useTracker } from "../useTracker";
 import { MixpanelProvider } from "../MixPanelProvider";
 import mixpanel from "mixpanel-browser";
-import { CLICK_CONNECT_WALLET_BUTTON } from "../constants";
+import { CLICK_CONNECT_WALLET_BUTTON } from "../events";
 
 vi.mock("mixpanel-browser", () => {
   return {
@@ -26,7 +26,7 @@ describe("useTracker with the mixpanel token set", () => {
   test("should call mixpanel.track", async () => {
     const { result } = renderHook(
       () => useTracker(CLICK_CONNECT_WALLET_BUTTON, { prop: "value" }),
-      { wrapper },
+      { wrapper }
     );
     /* eslint-disable-next-line */
     expect(mixpanel.init).toHaveBeenCalledTimes(1);

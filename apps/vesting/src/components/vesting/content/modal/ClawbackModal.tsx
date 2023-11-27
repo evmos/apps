@@ -1,4 +1,4 @@
-import { ConfirmButton, ModalTitle } from "ui-helpers";
+import { ConfirmButton, ModalTitle } from "@evmosapps/ui-helpers";
 import { ItemModal } from "./ItemModal";
 import { ExclamationIcon } from "icons";
 import { VestingAccountDetail } from "../../../../internal/types";
@@ -11,7 +11,7 @@ import {
   GENERATING_TX_NOTIFICATIONS,
   BROADCASTED_NOTIFICATIONS,
   normalizeToEth,
-} from "evmos-wallet";
+} from "@evmosapps/evmos-wallet";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useVestingPrecompile } from "../../../../internal/useVestingPrecompile";
@@ -19,7 +19,7 @@ import { useTranslation } from "next-i18next";
 import { EXPLORER_URL } from "constants-helper";
 import { getNetwork, switchNetwork } from "wagmi/actions";
 import { E } from "helpers";
-import { getEvmosChainInfo } from "evmos-wallet/src/wallet/wagmi/chains";
+import { getEvmosChainInfo } from "@evmosapps/evmos-wallet/src/wallet/wagmi/chains";
 
 const evmos = getEvmosChainInfo();
 

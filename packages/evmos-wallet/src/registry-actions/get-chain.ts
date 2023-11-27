@@ -1,6 +1,6 @@
 import { chains } from "@evmosapps/registry";
 import { Prefixish, normalizeToPrefix } from "./utils/normalize-to-prefix";
-import { getSelectedNetworkMode } from "ui-helpers";
+import { getSelectedNetworkMode } from "@evmosapps/ui-helpers/src/getSelectedNetworkMode";
 import type { Chain } from "./types";
 import { E } from "helpers";
 

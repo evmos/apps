@@ -58,7 +58,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x9d6F2a9fDB32708e1AC07788cc29D6125ac73027",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "composite"
     },
     {
       "name": "Comdex",
@@ -75,7 +76,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0xF0965c8f0755CF080a61C91EDd6707F0532c8fE7",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "comdex"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/comdex/txs",

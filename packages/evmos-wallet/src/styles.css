@@ -3,12 +3,14 @@
  * SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
  */
 
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer componentsEvmosWallet {
+  body {
+    @apply font-brand;
+  }
   .animation {
     animation-duration: 10s;
     animation-name: slidein;

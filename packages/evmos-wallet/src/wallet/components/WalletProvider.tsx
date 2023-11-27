@@ -1,4 +1,5 @@
-import { useEffect, PropsWithChildren } from "react";
+"use client";
+import { useEffect, PropsWithChildren, useLayoutEffect } from "react";
 import { WagmiConfig, useAccount, useConnect, useDisconnect } from "wagmi";
 import { usePubKey, wagmiConfig } from "../wagmi";
 import {
@@ -40,7 +41,7 @@ function Provider({ children }: WalletProviderProps) {
   const { variables } = useConnect();
   const { disconnect } = useDisconnect();
   const { pubkey, error: pubkeyError, isFetching } = usePubKey();
-  useEffect(() => {
+  useLayoutEffect(() => {
     void wagmiConfig.autoConnect();
   }, []);
 

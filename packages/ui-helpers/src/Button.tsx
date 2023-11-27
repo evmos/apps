@@ -16,7 +16,7 @@ export const Button = ({
     <button
       onClick={onClick}
       className={`
-      border-pearl text-pearl hover:bg-whiteOpacity flex w-fit justify-center rounded border p-2 font-body text-xs font-bold uppercase ${
+      border-pearl text-pearl hover:bg-whiteOpacity flex w-fit justify-center rounded border p-2 text-xs font-bold uppercase ${
         disabled ? "disabled rounded" : "rounded"
       } 
         ${className !== undefined ? className : ""}

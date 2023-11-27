@@ -56,7 +56,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0xFA3C22C069B9556A4B2f7EcE1Ee3B467909f4864",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "osmosis"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/osmosis/txs",

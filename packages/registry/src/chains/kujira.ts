@@ -64,6 +64,7 @@ export default {
       "sourcePrefix": "kujira",
       "symbol": "KUJI",
       "tokenRepresentation": null,
+      "coingeckoId": null,
       "type": "IBC"
     }
   ],

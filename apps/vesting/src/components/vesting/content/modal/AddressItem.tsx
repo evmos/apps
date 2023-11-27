@@ -1,5 +1,5 @@
 import { EXPLORER_URL } from "constants-helper";
-import { ViewExplorer } from "ui-helpers";
+import { ViewExplorer } from "@evmosapps/ui-helpers";
 
 type AddressItemProps = {
   bech32Address: string;

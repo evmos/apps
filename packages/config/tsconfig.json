@@ -3,7 +3,9 @@
     "declaration": true,
     "emitDeclarationOnly": true,
     "allowJs": true,
-    "composite": true
+    "composite": true,
+    "checkJs": true,
+    "esModuleInterop": true
   },
   "include": ["./**/*.js"],
   "exclude": ["node_modules", "dist"]

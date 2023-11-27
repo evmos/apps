@@ -5,7 +5,7 @@ import { PropsWithChildren } from "react";
 
 export const TopBarContainer = ({ children }: PropsWithChildren) => {
   return (
-    <div className="bg-darkGray2 text-pearl mx-5 mb-5 grid grid-cols-[repeat(auto-fit,186px)] items-center justify-center gap-3 rounded-2xl p-5 px-5 text-center font-display text-sm md:justify-between xl:mx-0">
+    <div className="bg-darkGray2 text-pearl mx-5 mb-5 grid grid-cols-[repeat(auto-fit,186px)] items-center justify-center gap-3 rounded-2xl p-5 px-5 text-center text-sm md:justify-between xl:mx-0">
       {children}
     </div>
   );

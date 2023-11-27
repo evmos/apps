@@ -1,3 +1,4 @@
+"use client";
 import { DependencyList, useEffect } from "react";
 import { useEffectEvent } from "./use-effect-event";
 

@@ -14,28 +14,28 @@ export const BarContainer = ({ percents }: { percents: string[] }) => {
           votingProps={{
             bgColor: BAR_COLORS.yes,
             type: VOTE_TYPES.yes,
-            percent: percents[0],
+            percent: percents[0] ?? "0",
           }}
         />
         <VotingDetail
           votingProps={{
             bgColor: BAR_COLORS.no,
             type: VOTE_TYPES.no,
-            percent: percents[1],
+            percent: percents[1] ?? "0",
           }}
         />
         <VotingDetail
           votingProps={{
             bgColor: BAR_COLORS.abstain,
             type: VOTE_TYPES.abstain,
-            percent: percents[2],
+            percent: percents[2] ?? "0",
           }}
         />
         <VotingDetail
           votingProps={{
             bgColor: BAR_COLORS.noWithVeto,
             type: VOTE_TYPES.noWithVeto,
-            percent: percents[3],
+            percent: percents[3] ?? "0",
           }}
         />
       </div>

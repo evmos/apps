@@ -29,7 +29,7 @@ export function convertFromAtto(
       useGrouping: false,
     });
   }
-  return formatUnits(valueAsString.split(".")[0], exponent);
+  return formatUnits(valueAsString.split(".")?.[0] ?? "0", exponent);
 }
 
 export function convertToAtto(value: BigNumberish) {
@@ -139,7 +139,7 @@ export function convertStringFromAtto(value: BigNumberish, exponent = 18) {
       useGrouping: false,
     });
   }
-  return Number(formatUnits(valueAsString.split(".")[0], exponent));
+  return Number(formatUnits(valueAsString.split(".")?.[0] ?? "0", exponent));
 }
 
 export function amountToDollars(
@@ -228,7 +228,7 @@ export const splitString = (value: string) => {
   if (splitted.length === 0) {
     return value;
   }
-  return splitted[splitted.length - 1];
+  return splitted[splitted.length - 1] ?? value;
 };
 
 export const sumBigNumber = (value: string[]) => {
@@ -390,13 +390,13 @@ export function indexOfMax(arr: number[]) {
     return -1;
   }
 
-  let max = arr[0];
+  let max = arr[0] ?? 0;
   let maxIndex = 0;
 
   for (let i = 1; i < arr.length; i++) {
-    if (arr[i] > max) {
+    if (arr[i] ?? max > max) {
       maxIndex = i;
-      max = arr[i];
+      max = arr[i] ?? max;
     }
   }
 
@@ -425,7 +425,7 @@ export const displayTopBarTooltip = (value: BigNumber) => {
   if (value.lte(BigNumber.from("0"))) {
     return false;
   }
-  if (convertFromAtto(value).split(".")[1].length === 2) {
+  if (convertFromAtto(value).split(".")[1]?.length === 2) {
     return false;
   }
   return true;

@@ -1,3 +1,4 @@
+"use client";
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
@@ -15,7 +16,7 @@ import {
   handleWalletInLocalStorage,
   trackWallet,
   drawWalletProfileModal,
-  drawConnectModal,
+  ConnectModal,
 } from "./utils";
 
 export const WalletConnection = ({
@@ -33,10 +34,10 @@ export const WalletConnection = ({
   }) => JSX.Element;
   variant?: "primary" | "outline-primary" | "primary-lg";
 }) => {
-  const [show, setShow] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const { handlePreClickAction: trackChangeWallet } = useTracker(
-    SWITCH_BETWEEN_WALLETS,
+    SWITCH_BETWEEN_WALLETS
   );
 
   useEffect(() => {
@@ -53,7 +54,16 @@ export const WalletConnection = ({
     handleWalletInLocalStorage(walletExtension);
   }, [walletExtension]);
 
-  return walletExtension.active === true
-    ? drawWalletProfileModal({ setShow, walletExtension, show, dispatch })
-    : drawConnectModal({ setShow, show, dispatch, copilotModal, variant });
+  return walletExtension.active === true ? (
+    drawWalletProfileModal({ setIsOpen, walletExtension, isOpen, dispatch })
+  ) : (
+    <ConnectModal
+      setIsOpen={setIsOpen}
+      isOpen={isOpen}
+      dispatch={dispatch}
+      copilotModal={copilotModal}
+      variant={variant}
+      // ({ setIsOpen, isOpen, dispatch, copilotModal, variant })
+    />
+  );
 };

@@ -1,5 +1,5 @@
 {
-  "name": "copilot",
+  "name": "@evmosapps/copilot",
   "version": "1.0.10",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
@@ -28,9 +28,11 @@
   },
   "dependencies": {
     "@ethersproject/bignumber": "^5.7.0",
+    "@evmosapps/evmos-wallet": "workspace:*",
+    "@evmosapps/instant-dapps": "workspace:*",
+    "@evmosapps/ui-helpers": "workspace:*",
     "@fireworks-js/react": "^2.10.7",
     "@headlessui/react": "^1.7.15",
-    "@tanstack/react-query": "^4.32.6",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/mixpanel": "2.14.1",
@@ -41,17 +43,15 @@
     "constants-helper": "workspace:*",
     "eslint": "^8.47.0",
     "ethers": "^6.7.1",
-    "evmos-wallet": "workspace:*",
     "helpers": "workspace:*",
     "icons": "workspace:*",
     "mixpanel-browser": "^2.47.0",
-    "next": "^14.0.1",
-    "react": "^18.2.0",
+    "next": "^14.0.3",
+    "react": "18.2.0",
     "react-confetti-explosion": "^2.1.2",
     "react-dom": "^18.2.0",
     "tracker": "workspace:*",
-    "typescript": "^5.2.2",
-    "ui-helpers": "workspace:*"
+    "typescript": "^5.2.2"
   },
   "browserslist": [
     "last 3 chrome version",

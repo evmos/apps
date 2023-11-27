@@ -38,8 +38,10 @@ describe("Consent Modal", () => {
       </MixpanelProvider>
     );
   };
-  const setShow = vi.fn();
-  const { getByRole } = render(<ConsentModal setShow={setShow} />, { wrapper });
+  const setIsOpen = vi.fn();
+  const { getByRole } = render(<ConsentModal setIsOpen={setIsOpen} />, {
+    wrapper,
+  });
 
   test("should set localstorage to false when clicks on accept", async () => {
     const button = getByRole("button", { name: /accept/i });
@@ -49,7 +51,7 @@ describe("Consent Modal", () => {
 
     const { result } = renderHook(
       () => useTracker(CLICK_BACK_TO_GOVERNANCE, { prop: "value" }),
-      { wrapper },
+      { wrapper }
     );
 
     expect(mixpanel.init).toHaveBeenCalledTimes(1);
@@ -70,7 +72,7 @@ describe("Consent Modal", () => {
 
     const { result } = renderHook(
       () => useTracker(CLICK_BACK_TO_GOVERNANCE, { prop: "value" }),
-      { wrapper },
+      { wrapper }
     );
 
     /* eslint-disable-next-line */

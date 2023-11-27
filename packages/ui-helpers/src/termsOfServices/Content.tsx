@@ -1,4 +1,4 @@
-const Content = () => {
+const TOSContent = () => {
   return (
     <>
       <p>
@@ -861,4 +861,4 @@ const Content = () => {
     </>
   );
 };
-export default Content;
+export default TOSContent;

@@ -1,13 +1,21 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-import tailwindForms from "@tailwindcss/forms";
+
+import typography from "@tailwindcss/typography";
+import path from "path";
+
+const cwd = process.cwd();
+const rootDir =
+  cwd?.split("/")?.at?.(-2) === "apps" ? path.join(cwd, "../../") : cwd;
+
+/** @type {import('tailwindcss').Config} */
 const config = {
+  darkMode: "class",
+
   content: [
-    // app content
-    "src/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{ts,tsx}",
-    "./public/**/*.html",
-    "../../packages/*/src/**/*.{js,ts,jsx,tsx}",
+    "src/**/*.tsx",
+    path.join(rootDir, "packages/*/src/**/*.tsx"),
+    path.join(rootDir, "pages/*/src/**/*.tsx"),
   ],
   theme: {
     extend: {
@@ -15,6 +23,7 @@ const config = {
         body: ["var(--font-body)"],
         display: ["var(--font-display)"],
         brand: ["var(--font-brand)"],
+        evmos: ["var(--font-evmos)"],
       },
       boxShadow: {
         custom: "0px 4px 30px 0px #62575599",
@@ -40,7 +49,7 @@ const config = {
         red: "#ed4e33",
         red1: "#AA2912",
         red2: "#6b1c0e",
-        "red-300": "#FF6565",
+        "red-300": "#FE5F05",
         "red-900": "#F83E3E",
         green: "#97ad11",
         "green-200": "#70FF7E",
@@ -91,6 +100,7 @@ const config = {
       },
     },
   },
-  plugins: [tailwindForms],
+  plugins: [typography],
 };
+
 export default config;

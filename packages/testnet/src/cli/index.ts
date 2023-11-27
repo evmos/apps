@@ -14,9 +14,10 @@ import Table from "cli-table";
 import { makeAccount } from "../utils/make-account";
 import chalk from "chalk";
 import { Log } from "helpers";
+import { fundProgram } from "./fundProgram";
 
 const logAccountsWarning = () => {
-  Log.info("\n\n");
+  Log().info("\n\n");
   const table = new Table({
     colAligns: ["middle"],
   });
@@ -30,7 +31,7 @@ const logAccountsWarning = () => {
       "",
     ].join("\n"),
   ]);
-  Log.info(table.toString());
+  Log().info(table.toString());
 };
 const accountsProgram = createCommand("accounts").description(
   "Manage your testnet accounts"
@@ -41,15 +42,13 @@ const startCommand = createCommand("start")
   .option("--recreate", "Delete and recreate the testnet")
   .description("Starts local testnet")
   .action(async ({ recreate, compactLogging }) => {
-    Log.info("Starting testnet...", recreate, compactLogging);
+    Log().info("Starting testnet...", recreate, compactLogging);
     await setupTestnet({
       compactLogging,
       enableLogging: true,
       overwrite: recreate,
     });
   });
-
-program.addCommand(accountsProgram).addCommand(startCommand);
 
 accountsProgram.command("add").action(async () => {
   const accounts = await readAccounts();
@@ -104,8 +103,8 @@ accountsProgram.command("add").action(async () => {
 
   await pushAccount(answers);
 
-  Log.info("\n\n", "Account added successfully 🎉");
-  Log.info(answers);
+  Log().info("\n\n", "Account added successfully 🎉");
+  Log().info(answers);
   logAccountsWarning();
 });
 
@@ -137,25 +136,25 @@ const logAccounts = (accounts: ReturnType<typeof makeAccount>[]) => {
         wordBreak(String(value), 45),
       ]);
     });
-    Log.info(table.toString());
+    Log().info(table.toString());
     table.length = 0;
   });
 };
 accountsProgram.command("list").action(async () => {
   const accounts = await readAccounts();
 
-  Log.info("Default test accounts:");
-  Log.info("(Feel free to use them, but they can't be deleted or modified)");
+  Log().info("Default test accounts:");
+  Log().info("(Feel free to use them, but they can't be deleted or modified)");
 
   const testAccounts = Object.values(TEST_ACCOUNTS);
   logAccounts(testAccounts);
 
   if (accounts.length === 0) {
-    Log.info("You don't have any custom account yet");
+    Log().info("You don't have any custom account yet");
     logAccountsWarning();
     return;
   }
-  Log.info("\n\n", "Your accounts:");
+  Log().info("\n\n", "Your accounts:");
   logAccounts(accounts);
 
   logAccountsWarning();
@@ -164,7 +163,7 @@ accountsProgram.command("list").action(async () => {
 accountsProgram.command("delete").action(async () => {
   const accounts = await readAccounts();
   if (accounts.length === 0) {
-    Log.info("You don't have any accounts yet");
+    Log().info("You don't have any accounts yet");
     return;
   }
   const answers = (await inquirer.prompt([
@@ -192,7 +191,7 @@ accountsProgram.command("delete").action(async () => {
   ])) as { keys: string[]; confirm: boolean };
 
   if (!answers.confirm) {
-    Log.info("Aborted");
+    Log().info("Aborted");
     return;
   }
 
@@ -210,8 +209,12 @@ accountsProgram.command("delete").action(async () => {
     })
   );
 
-  Log.info("\n\n", "Account deleted successfully 🎉");
+  Log().info("\n\n", "Account deleted successfully 🎉");
   logAccountsWarning();
 });
 
+program
+  .addCommand(accountsProgram)
+  .addCommand(startCommand)
+  .addCommand(fundProgram);
 program.parse(process.argv);

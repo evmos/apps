@@ -54,7 +54,8 @@ export default {
       "decimals": 18,
       "erc20Address": "0x3515F25AB7637adcF1b69F4D384ed5936B83431F",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "injective-protocol"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/injective/txs",

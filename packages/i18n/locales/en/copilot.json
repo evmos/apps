@@ -1,0 +1,8 @@
+{
+  "exitPrompt": {
+    "title": "Exit Copilot?",
+    "description": "We advise you finish all steps if you want to get started with Evmos for the first time.",
+    "reject": "Exit",
+    "accept": "Stay"
+  }
+}

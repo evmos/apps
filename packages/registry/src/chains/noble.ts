@@ -54,7 +54,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0xf1faE9eC886C5F6E4ea13dA2456087Bd72F02cD1",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "usd-coin"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/noble/txs",

@@ -10,10 +10,10 @@ import {
   Snackbars,
   getAllSnackbars,
   WalletProvider,
-} from "evmos-wallet";
+} from "@evmosapps/evmos-wallet";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { TermOfServices, Container, MavaWidget } from "ui-helpers";
-import { greyCliff, ibm, nb } from "ui-helpers/src/fonts";
+import { TermOfServices, Container, MavaWidget } from "@evmosapps/ui-helpers";
+import { nb, evmos } from "@evmosapps/ui-helpers/src/fonts";
 
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
@@ -52,9 +52,7 @@ export default function Home() {
             <>
               <HeadComponent />
               <GoogleAnalytics />
-              <main
-                className={cn(greyCliff.variable, ibm.variable, nb.variable)}
-              >
+              <main className={cn(nb.variable, evmos.variable)}>
                 <TermOfServices />
                 <GiveFeedback />
                 <Container>

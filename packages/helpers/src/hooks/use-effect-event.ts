@@ -1,3 +1,4 @@
+"use client";
 import { useRef, useInsertionEffect, useCallback } from "react";
 
 // The useEffectEvent hook is a shim to the upcoming official React hook with the same name
@@ -7,7 +8,7 @@ import { useRef, useInsertionEffect, useCallback } from "react";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function useEffectEvent<T extends (...args: any[]) => unknown>(
-  fn: T,
+  fn: T
 ): T {
   const ref = useRef(fn);
   useInsertionEffect(() => {

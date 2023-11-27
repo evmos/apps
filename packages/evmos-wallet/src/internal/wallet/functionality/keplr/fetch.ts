@@ -17,6 +17,6 @@ export async function networkConfigByName(network: string) {
     );
     return (await res.json()) as NetworkChainConfigResponse;
   } catch (e) {
-    Log.error(e);
+    Log().error(e);
   }
 }

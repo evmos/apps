@@ -49,7 +49,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x3452e23F9c4cC62c70B7ADAd699B264AF3549C19",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "osmosis"
     }
   ],
   "explorerUrl": "https://testnet.mintscan.io/osmosis-testnet/txs",

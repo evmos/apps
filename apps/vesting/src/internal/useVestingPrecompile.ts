@@ -2,7 +2,7 @@ import VestingABI from "./abis/VestingABI.json";
 import { Period } from "@evmos/transactions";
 import { prepareWriteContract, writeContract } from "wagmi/actions";
 import { useSelector } from "react-redux";
-import { StoreType } from "evmos-wallet";
+import { StoreType } from "@evmosapps/evmos-wallet";
 
 const VESTING_CONTRACT_ADDRESS = "0x0000000000000000000000000000000000000803";
 
@@ -12,7 +12,7 @@ export function useVestingPrecompile() {
   async function createClawbackVestingAccount(
     funderAddress: string,
     vestingAddress: string,
-    enableGovClawback: boolean,
+    enableGovClawback: boolean
   ) {
     return await writeContract({
       mode: "prepared",
@@ -32,7 +32,7 @@ export function useVestingPrecompile() {
     vestingAddress: string,
     startTime: number,
     lockupPeriods: Period[],
-    vestingPeriods: Period[],
+    vestingPeriods: Period[]
   ) {
     return await writeContract({
       mode: "prepared",
@@ -70,7 +70,7 @@ export function useVestingPrecompile() {
   async function clawback(
     founderAddress: string,
     accountAddress: string,
-    destinationAddress: string,
+    destinationAddress: string
   ) {
     const { request } = await prepareWriteContract({
       address: VESTING_CONTRACT_ADDRESS,

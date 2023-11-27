@@ -36,7 +36,6 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
-- (chore fse-880) | packages/registry 1.0.5 | add KAVA token
 - (chore) fse-867 | apps/vesting 1.1.5 | approve step for funding vesting account
 
 ## 1.3.9 - 2023-11-14

@@ -67,6 +67,7 @@ export class Keplr {
 
     for (let i = 0; i < words.length; i++) {
       const word = words[i];
+      if (!word) continue;
       const inputLocator = keplrExt.locator(`input`).nth(i);
       await inputLocator.waitFor();
       await inputLocator.focus();

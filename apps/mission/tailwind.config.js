@@ -3,7 +3,4 @@
 
 const sharedConfig = require("@evmosapps/config/tailwind/base.js");
 
-module.exports = {
-  ...sharedConfig,
-  plugins: [],
-};
+module.exports = sharedConfig;

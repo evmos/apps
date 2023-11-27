@@ -6,7 +6,7 @@ import { ComponentProps } from "react";
 export function ConfirmationMessage({ ...rest }: ComponentProps<"p"> & {}) {
   return (
     <p
-      className="text-xxs md:text-xs tracking-wider text-gray-300 text-center font-normal font-body"
+      className="text-xxs md:text-xs tracking-wider text-gray-300 text-center font-normal"
       {...rest}
     />
   );

@@ -1,0 +1,182 @@
+"use client";
+import { useRouter, useSearchParams } from "next/navigation";
+import qs, { ParsedUrlQueryInput } from "querystring";
+import {
+  useMemo,
+  SetStateAction,
+  useEffect,
+  ComponentProps,
+  useRef,
+} from "react";
+import { z } from "zod";
+import { useEffectEvent } from "../hooks/use-effect-event";
+
+const serialize = <T extends z.output<z.AnyZodObject>>(obj: T) => {
+  return JSON.stringify(obj, (_, value) => {
+    if (typeof value === "bigint") {
+      return value.toString();
+    }
+    return value as unknown;
+  });
+};
+
+const sanitize = (obj: z.output<z.AnyZodObject>) => {
+  return JSON.parse(serialize(obj)) as ParsedUrlQueryInput;
+};
+
+const usePrevious = <T,>(value: T) => {
+  const ref = useRef<T>(value);
+  useEffect(() => {
+    return () => {
+      ref.current = value;
+    };
+  }, [value]);
+  return ref.current;
+};
+/**
+ * Hook to manage modals
+ *
+ * State is managed in the URL query params
+ * @param id Unique ID for the modal
+ * @param schema Zod schema to define and validate the state
+ *
+ */
+export const useModal = <T extends z.AnyZodObject>(
+  id: string,
+  schema: T = z.object({}) as T
+) => {
+  const safeParse: T["safeParse"] = useEffectEvent(schema.safeParse);
+  const { push, replace } = useRouter();
+  const searchParams = useSearchParams().toString();
+  const query = useMemo(() => {
+    return qs.decode(searchParams);
+  }, [searchParams]);
+
+  const prevAction = usePrevious(query?.action);
+
+  const routeTo = prevAction !== query.action ? push : replace;
+
+  const state: z.output<T> | null = useMemo(() => {
+    const parsed = safeParse(query);
+    if (parsed.success) return parsed.data;
+    return null;
+  }, [query, safeParse]);
+  const isOpen = !!(query.action === id && state);
+
+  const setState = useEffectEvent((next: SetStateAction<z.output<T>>) => {
+    debugger;
+    if (!isOpen) throw new Error("You can't set state on a closed modal");
+
+    const nextState = typeof next === "function" ? next(state) : next;
+    const url = new URL(window.location.href);
+    url.search = qs.stringify({
+      action: id,
+      ...sanitize(nextState),
+    });
+
+    if (searchParams === url.searchParams.toString()) {
+      return;
+    }
+
+    routeTo(url.toString(), { scroll: false });
+  });
+
+  const setIsOpen = useEffectEvent(
+    (
+      open: SetStateAction<boolean>,
+      initialState: z.output<T> = {},
+      redirectBack = false
+    ) => {
+      const nextOpenState = typeof open === "function" ? open(isOpen) : open;
+      if (nextOpenState === isOpen) return;
+      if (nextOpenState) {
+        const next = safeParse(initialState);
+
+        if (next.success) {
+          const url = new URL(window.location.href);
+          url.search = qs.stringify({
+            action: id,
+            ...sanitize(next.data),
+          });
+          if (redirectBack && typeof query.action === "string") {
+            const redirect = window.location.href;
+            url.searchParams.set("redirect", redirect);
+          }
+          push(url.toString(), { scroll: false });
+        }
+        return;
+      }
+
+      const url = new URL(window.location.href);
+      url.search = "";
+      if (typeof query.redirect === "string") {
+        push(query.redirect, { scroll: false });
+        return;
+      }
+      push(url.toString(), { scroll: false });
+    }
+  );
+
+  if (query.action !== id || !state) {
+    return {
+      isOpen: false,
+      setState: () => {},
+      setIsOpen,
+      modalProps: null,
+    } as const;
+  }
+
+  return {
+    isOpen: true,
+    setState,
+    setIsOpen,
+    modalProps: {
+      ...state,
+      setState,
+      setIsOpen,
+    },
+  } as const;
+};
+
+type ModalLinkProps<T extends z.AnyZodObject> = {
+  initialState?:
+    | z.output<T>
+    | (() => z.output<T>)
+    | (() => Promise<z.output<T>>);
+  redirectBack?: boolean;
+  children: React.ReactNode;
+};
+export const modalLink = <T extends z.AnyZodObject>(
+  id: string,
+  schema: T = z.object({}) as T
+) =>
+  function ModalLink(props: ModalLinkProps<T> & ComponentProps<"button">) {
+    const { push } = useRouter();
+
+    return (
+      <button
+        onClick={async (e) => {
+          e.preventDefault();
+          const state =
+            (props.initialState instanceof Function
+              ? await props.initialState()
+              : props.initialState) ?? {};
+          schema.parse(state);
+          const url = new URL(window.location.href);
+          url.search = qs.stringify({
+            action: id,
+            ...sanitize(state),
+          });
+
+          push(url.toString(), {
+            scroll: false,
+          });
+        }}
+        {...props}
+      />
+    );
+  };
+
+export type ModalProps<T extends z.AnyZodObject> = NonNullable<
+  ReturnType<typeof useModal<T>>["modalProps"]
+>;

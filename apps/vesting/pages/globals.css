@@ -8,6 +8,9 @@
 @tailwind utilities;
 
 @layer componentsGovernance {
+  body {
+    @apply font-brand;
+  }
   .disabled {
     @apply pointer-events-none select-none opacity-50 cursor-not-allowed;
   }

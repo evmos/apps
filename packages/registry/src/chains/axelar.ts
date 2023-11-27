@@ -65,7 +65,8 @@ export default {
           "handlingAction": "Deposit and Withdraw"
         }
       ],
-      "listed": true
+      "listed": true,
+      "coingeckoId": "wrapped-steth"
     },
     {
       "name": "Wrapped Ether on Axelar",
@@ -87,7 +88,8 @@ export default {
           "handlingAction": "Deposit and Withdraw"
         }
       ],
-      "listed": true
+      "listed": true,
+      "coingeckoId": "weth"
     },
     {
       "name": "Wrapped Bitcoin on Axelar",
@@ -109,7 +111,8 @@ export default {
           "handlingAction": "Deposit and Withdraw"
         }
       ],
-      "listed": true
+      "listed": true,
+      "coingeckoId": "wrapped-bitcoin"
     },
     {
       "name": "USDT by Axelar",
@@ -131,7 +134,8 @@ export default {
           "handlingAction": "Deposit and Withdraw"
         }
       ],
-      "listed": true
+      "listed": true,
+      "coingeckoId": "tether"
     },
     {
       "name": "USD Coin by Axelar",
@@ -153,7 +157,8 @@ export default {
           "handlingAction": "Deposit and Withdraw"
         }
       ],
-      "listed": true
+      "listed": true,
+      "coingeckoId": "usd-coin"
     },
     {
       "name": "Rocket Pool staked ETH by Axelar",
@@ -175,7 +180,8 @@ export default {
           "handlingAction": "Deposit and Withdraw"
         }
       ],
-      "listed": true
+      "listed": true,
+      "coingeckoId": "rocket-pool-eth"
     },
     {
       "name": "Pepe by Axelar",
@@ -197,7 +203,8 @@ export default {
           "handlingAction": "Deposit and Withdraw"
         }
       ],
-      "listed": true
+      "listed": true,
+      "coingeckoId": "pepe"
     },
     {
       "name": "DAI by Axelar",
@@ -219,7 +226,8 @@ export default {
           "handlingAction": "Deposit and Withdraw"
         }
       ],
-      "listed": true
+      "listed": true,
+      "coingeckoId": "dai"
     },
     {
       "name": "Axelar",
@@ -236,7 +244,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x94c23eE865E3c963A56263d0ce2CBF5C6cE7ce2d",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "axelar"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/axelar/txs",

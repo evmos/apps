@@ -1,0 +1,26 @@
+{
+  "introStep": {
+    "title": "Top up your account",
+    "body": "Now that you've set up your account, you'll need Evmos tokens to access and interact with a huge catalog of decentralized apps (dApps), such as games 🎮, marketplaces 🏪, decentralized finance (DeFi) 💸, and more!"
+  },
+  "fiatTopupStep": {
+    "title": "Onboard to Evmos",
+    "providedBy": "This onboarding service is provided by:"
+  },
+  "onboardOptions": {
+    "fiat": "Debit/Credit Card",
+    "crypto": "Cryptocurrencies"
+  },
+  "successTopupStep": {
+    "title": "Congratulations",
+    "description": "You're now ready to use your Evmos!",
+    "actions": {
+      "nextSteps": "Next steps",
+      "goToDashboard": "Continue to the dashboard"
+    }
+  },
+  "header": {
+    "title": "Evmos Copilot",
+    "description": "Let's get started with Evmos in 5 minutes"
+  }
+}

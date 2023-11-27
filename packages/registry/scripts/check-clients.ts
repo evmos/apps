@@ -26,10 +26,10 @@ for (const chainRegistry of chains) {
       `${url}/ibc/core/client/v1/client_status/${clientId}`
     );
     const json = (await clientStatus.json()) as unknown;
-    Log.info(identifier);
-    Log.info(clientId, get(json, "status"));
+    Log().info(identifier);
+    Log().info(clientId, get(json, "status"));
     if (!source) {
-      Log.info("no source");
+      Log().info("no source");
       continue;
     }
     const channelInfo = await fetch(
@@ -41,8 +41,8 @@ for (const chainRegistry of chains) {
       | undefined;
 
     if (!connectionId) {
-      Log.info("no connection id");
-      Log.info("------------------");
+      Log().info("no connection id");
+      Log().info("------------------");
       continue;
     }
     const connectionInfo = await fetch(
@@ -55,19 +55,22 @@ for (const chainRegistry of chains) {
     ) as string | undefined;
 
     if (!counterpartyClientId) {
-      Log.info("no client id");
-      Log.info("------------------");
+      Log().info("no client id");
+      Log().info("------------------");
 
       continue;
     }
-    Log.info("Counterparty");
+    Log().info("Counterparty");
     const counterpartyClientStatus = await fetch(
       `${rest[0]}/ibc/core/client/v1/client_status/${counterpartyClientId}`
     );
     const counterpartyClientStatusJson =
       (await counterpartyClientStatus.json()) as unknown;
 
-    Log.info(counterpartyClientId, get(counterpartyClientStatusJson, "status"));
-    Log.info("------------------");
+    Log().info(
+      counterpartyClientId,
+      get(counterpartyClientStatusJson, "status")
+    );
+    Log().info("------------------");
   }
 }

@@ -47,7 +47,8 @@ export default {
       "decimals": 18,
       "erc20Address": "0xD4949664cD82660AaE99bEdc034a0deA8A0bd517",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "evmos"
     },
     {
       "name": "Wizzard Token",
@@ -64,7 +65,8 @@ export default {
       "decimals": 18,
       "erc20Address": "0x04f9faC55b24c53F39b2aDCbef6318Ee2d9A6B84",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": ""
     }
   ],
   "explorerUrl": "",

@@ -49,6 +49,7 @@ const test = base.extend<{
     if (!background) background = await context.waitForEvent("serviceworker");
 
     const extensionId = background.url().split("/")[2];
+    if (!extensionId) throw new Error("Extension id not found");
     const keplr = await makeKeplr(context, extensionId);
     await use(keplr);
   },

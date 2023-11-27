@@ -4,6 +4,7 @@ import { getTokens } from "./get-tokens";
 import { normalizeToEth, normalizeToEvmos } from "../wallet/utils/addresses";
 import { makeBalance } from "./utils/make-balance";
 import { Hex } from "viem";
+import { FormattedBalance } from "./types";
 
 export async function getERC20TokenBalances({
   address,
@@ -23,9 +24,13 @@ export async function getERC20TokenBalances({
 
   const evmosAddress = normalizeToEvmos(address);
   return response
-    .map((response, index) => {
+    .reduce<FormattedBalance[]>((acc, response, index) => {
       const token = tokens[index];
-      return makeBalance(token, evmosAddress, response.result ?? "0", "ERC20");
-    })
+      if (!token) return acc;
+      acc.push(
+        makeBalance(token, evmosAddress, response.result ?? "0", "ERC20")
+      );
+      return acc;
+    }, [])
     .filter(({ value }) => value > 0n);
 }

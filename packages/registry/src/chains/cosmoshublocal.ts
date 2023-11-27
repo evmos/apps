@@ -50,7 +50,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "cosmos"
     }
   ],
   "explorerUrl": "",

@@ -1,0 +1,282 @@
+{
+  "account": {
+    "information": {
+      "title": "Account information",
+      "description": "Below are your addresses based on the account you're logged into.",
+      "tooltip": "The addresses below are the same but in different formats. We provide this information for you to quickly refer to your address in instances like depositing assets into your account."
+    }
+  },
+  "receive": {
+    "title": "Receive",
+    "format": {
+      "label": "Display Format",
+      "hex": "<strong>0x format</strong> is only supported on <strong>EVM chains</strong>."
+    },
+    "address": {
+      "label": "Receiving Address"
+    },
+    "button": "Request Funds",
+    "share": {
+      "qr": "Share QR Code"
+    },
+    "copied": "Your account address <strong> has been copied </strong> to the clipboard."
+  },
+  "request": {
+    "modal": {
+      "close": {
+        "title": "Cancel Request?",
+        "text": "You started a request process. Do you really want to exit from the process?"
+      },
+      "title": "Request Payment"
+    },
+    "button": "Receive",
+    "share": {
+      "payment": {
+        "qr": "Share Payment QR"
+      },
+      "button": "Share via App"
+    },
+    "copy": {
+      "button": "Share Message"
+    },
+    "label": "Requesting:",
+    "generate": {
+      "button": "Generate Payment Request"
+    },
+    "moda": {
+      "description": "Create instant, easy-to-share payment request links for any asset on Evmos."
+    },
+    "title": "Request",
+    "input": {
+      "placeholder": "Request receipient's address"
+    },
+    "message": {
+      "input": {
+        "placeholder": "Write a message for the recipient of this request"
+      },
+      "subtitle": "Message"
+    },
+    "subtitle": "Asset and amount to request",
+    "copied": "Payment link <strong>has been copied </strong> to the clipboard."
+  },
+  "pay": {
+    "modal": {
+      "title": "Pay",
+      "description": "Payment Request"
+    },
+    "title": "Pay",
+    "button": "Pay",
+    "from": "from:",
+    "balance": "Your Balance",
+    "subtitle": "Payment Request",
+    "swap": {
+      "button": "Swap Asset"
+    },
+    "confirmation": {
+      "message": {
+        "successful": {
+          "description": "Your payment has been processed on the blockchain.",
+          "description2": "Check details below."
+        }
+      },
+      "total": {
+        "amount": {
+          "paid": "Total amount paid"
+        }
+      },
+      "paid": {
+        "to": "Paid to"
+      },
+      "date": "Transaction Date (UTC+0)"
+    }
+  },
+  "transfer": {
+    "modal": {
+      "close": {
+        "title": "Cancel Transfer?",
+        "text": "You started a transfer process. Do you really want to exit from the process?"
+      },
+      "title": "Transfer Assets",
+      "description": "Deposit and send assets to any account on any chain."
+    },
+    "deposit": {
+      "keplr": {
+        "error": {
+          "title": "Keplr is required",
+          "description": "Depositing assets can only be done with the Keplr extension."
+        }
+      },
+      "helper": {
+        "description": "We prefilled the address of the recipient above with",
+        "description2": "the Evmos address that you are logged in with",
+        "description3": ". If you are depositing into a different address, you can make the changes accordingly."
+      }
+    },
+    "title": "Send",
+    "section": {
+      "asset": {
+        "token": "Token",
+        "network": "Network",
+        "balance": {
+          "error": "unable to read"
+        }
+      },
+      "to": {
+        "wallet": {
+          "other": "Other"
+        },
+        "placeholder": {
+          "mywalletenabled": "Paste other recipient's account address here",
+          "mywalletdisabled": "Paste recipient's account address here"
+        }
+      },
+      "summary": {
+        "title": "Sending"
+      },
+      "network": {
+        "label": "Select a Network"
+      },
+      "token": {
+        "label": "Select a Token"
+      }
+    },
+    "send": {
+      "button": {
+        "text": "Send",
+        "processing": {
+          "text": "Proceeding..."
+        }
+      }
+    },
+    "top": {
+      "up": {
+        "button": {
+          "text": "Top-Up Evmos"
+        }
+      }
+    },
+    "bridge": {
+      "button": {
+        "text": "Go to Satellite"
+      }
+    },
+    "button": "Send",
+    "input": {
+      "placeholder": "Request receipient's address"
+    },
+    "confirmation": {
+      "message": {
+        "successful": {
+          "description": "Your transaction has been processed on the blockchain.",
+          "description2": "Check details below."
+        },
+        "unsuccessful": "Transaction failed",
+        "processing": {
+          "title": "Hang in there",
+          "description": "Writing tx into a block, this might take a few minutes.",
+          "description2": "Meanwhile, you can track the transaction as below."
+        },
+        "taking": {
+          "longer": {
+            "title": "Taking longer",
+            "description": "It might take longer to retrieve the transaction,",
+            "description2": "you could track it on the explorer or check your balance."
+          }
+        }
+      },
+      "total": {
+        "amount": {
+          "sent": "Total amount sent"
+        }
+      },
+      "recipient": {
+        "address": "Recipient Address"
+      },
+      "date": "Transaction Date (UTC+0)",
+      "button": {
+        "text": {
+          "loading": "Processing..."
+        },
+        "explorer": {
+          "text": "Track on Explorer"
+        }
+      }
+    }
+  },
+  "error": {
+    "network": {
+      "not": {
+        "support": {
+          "by-wallet": {
+            "title": "Unfortunately, with Metamask we currently only support sending from <strong>Evmos Network</strong>.",
+            "subtitle": "Please use <strong>Keplr</strong> or <strong>choose Evmos</strong>.",
+            "connectButtonLabel": "Connect with Keplr",
+            "installButtonLabel": "Install Keplr"
+          }
+        }
+      }
+    },
+    "user": {
+      "rejected": {
+        "network": {
+          "title": "I see you're trying to send tokens from ",
+          "title2": "<strong> network</strong>, for that we will need to access your account address.",
+          "subtitle": "Please, <strong>approve the network </strong>.",
+          "authorizeButtonLabel": "Try again"
+        }
+      }
+    },
+    "send": {
+      "axelar": {
+        "assets": {
+          "text": "For axl based assets, please use <strong>Satellite </strong> instead"
+        }
+      }
+    },
+    "getting": {
+      "balance": {
+        "connect": {
+          "wallet": "Please make sure <strong> your account is connected</strong>."
+        }
+      }
+    },
+    "generating": {
+      "transaction": "Error generating transaction. Please try again later."
+    }
+  },
+  "button": {
+    "authorize": {
+      "request": {
+        "button": {
+          "text": "Try again"
+        }
+      }
+    }
+  },
+  "message": {
+    "gas": {
+      "fee": {
+        "reserved": {
+          "amount": "Gas fee reserved in the max amount"
+        }
+      }
+    },
+    "insufficient": {
+      "balance": "Insufficient Balance "
+    },
+    "insufficiente": {
+      "fee": "Insufficient Gas Fees: "
+    },
+    "processing": {
+      "fee": "Calculating fee..."
+    },
+    "only": {
+      "evmos": {
+        "supported": "Only <strong>Evmos Network</strong> is currently supported"
+      }
+    },
+    "try": {
+      "again": "Try Again"
+    }
+  }
+}

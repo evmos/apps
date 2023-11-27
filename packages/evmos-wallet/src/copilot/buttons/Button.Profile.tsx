@@ -9,10 +9,10 @@ import { getActiveProviderKey } from "../../wallet";
 
 export const ButtonProfile = ({
   walletExtension,
-  setShow,
+  setIsOpen,
 }: {
   walletExtension: WalletExtension;
-  setShow: Dispatch<SetStateAction<boolean>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   return (
     <button
@@ -20,7 +20,7 @@ export const ButtonProfile = ({
      items-center justify-center space-x-3 rounded-full px-10 py-2
       font-bold"
       onClick={() => {
-        setShow(true);
+        setIsOpen(true);
       }}
       data-testid={`wallet-profile-button wallet-profile-button-${getActiveProviderKey()}`}
     >

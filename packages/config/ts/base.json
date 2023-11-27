@@ -16,6 +16,7 @@
     "skipLibCheck": true,
     "strict": true,
     "allowJs": true,
+    "noUncheckedIndexedAccess": true,
     "allowImportingTsExtensions": true,
     "checkJs": true,
     "declaration": false,

@@ -1,3 +1,4 @@
+"use client";
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
@@ -45,7 +46,7 @@ export const InformationBanner = ({
 
   return isDismissed ? null : (
     <div
-      className={`bg-pearl flex items-center justify-between space-x-2 rounded-md p-3 px-5 font-body text-sm font-medium text-black ${
+      className={`bg-pearl flex items-center justify-between space-x-2 rounded-md p-3 px-5 text-sm font-medium text-black ${
         className !== undefined ? className : ""
       }`}
     >

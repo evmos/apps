@@ -1,0 +1,54 @@
+{
+  "setupHeaderSteps": {
+    "setup": "Setup up your account",
+    "topup": "Topup your account",
+    "nextsteps": "Next steps"
+  },
+
+  "introStep": {
+    "title": "Top up your account",
+    "body": "Having an account allows you to use your Evmos to interact with any decentralized applications (dApps) on Evmos.<br/>There are different tools to set up your account such as MetaMask, Keplr or WalletConnect. For simplicity, we recommend MetaMask."
+  },
+  "connectStep": {
+    "title": "Set up your account",
+    "body": "Having an account allows you to use your Evmos to interact with any decentralized applications (dApps) on Evmos.<br/>There are different tools to set up your account such as MetaMask, Keplr or WalletConnect. For simplicity, we recommend MetaMask.",
+    "actions": {
+      "installMetamask": {
+        "request": "Install MetaMask",
+        "installed": "Metamask Installed 👏",
+        "inProgress": "Waiting for MetaMask Setup"
+      },
+      "connect": {
+        "request": "Connect with MetaMask",
+        "waitingApproval": "Approve on MetaMask",
+        "connected": "MetaMask Connected 👏",
+        "error": {
+          "pendingRequest": "There is a pending connection request, please, check if you're logged in MetaMask and try again",
+          "rejected": "Approval Rejected, please try again",
+          "switchRejected": "You need to switch the network to Evmos, please try again"
+        }
+      }
+    }
+  },
+
+  "nextsteps": {
+    "title": "Congratulations!",
+    "body": "You did it! You've successfully created an account on Evmos. Get started with any of the options below!",
+    "interactWithdApp": {
+      "title": "Interact with a dApp",
+      "badge": "Recommended"
+    },
+    "stakeEvmos": {
+      "title": "Stake your Evmos",
+      "badge": "Advanced"
+    },
+    "learnMore": {
+      "title": "Learn more"
+    }
+  },
+  "connectSuccessStep": {
+    "title": "Congratulations!",
+    "body": "Your account has been set up successfully!",
+    "action": "Top up your account"
+  }
+}

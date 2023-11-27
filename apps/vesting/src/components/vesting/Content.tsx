@@ -3,7 +3,7 @@
 
 import { useRouter } from "next/router";
 import { Header } from "./header/Header";
-import { Navigation } from "ui-helpers";
+import { Navigation } from "@evmosapps/ui-helpers";
 import { NAV_TO_VESTING } from "constants-helper";
 import { AccountDetails } from "./content/AccountDetails";
 import { useTranslation } from "next-i18next";
@@ -22,7 +22,7 @@ const Content = () => {
       {account !== undefined && <Navigation href="/" text={NAV_TO_VESTING} />}
       <Header />
 
-      <div className="mt-8 w-full font-display text-pearl">
+      <div className="mt-8 w-full text-pearl">
         {account === undefined ? (
           <p className="flex justify-center ">
             {t("vesting.content.placeholder.title")}

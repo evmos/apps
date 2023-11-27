@@ -1,0 +1,54 @@
+{
+  "header": {
+    "titles": {
+      "dappstore": "Dapp Store",
+      "dapps": "Dapp Store",
+      "portfolio": "Portfolio",
+      "staking": "Staking",
+      "governance": "Governance",
+      "vesting": "Vesting"
+    }
+  },
+  "footer": {
+    "buildWithUs": "Build With Us",
+    "coingeckoAttribution": "Data by Coingecko API",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "cookiesSettings": "Cookies Settings"
+  },
+  "launchPad": {
+    "dApp": {
+      "title": "dApp Store"
+    },
+    "assets": {
+      "title": "Portfolio"
+    },
+    "staking": {
+      "title": "Staking"
+    },
+    "governance": {
+      "title": "Governance"
+    },
+    "badge": {
+      "text": "New"
+    },
+    "description": "Navigate across all Evmos dApps using our new app launcher!",
+    "title": "Discover our new navigation",
+    "button": "View all dApps"
+  },
+  "tos": {
+    "title": "Evmos Terms of Service",
+    "checks": {
+      "acknowledgeTOS": "I acknowledge to the Terms of Service.",
+      "consentTracking": "I want to share usage data. <button>More information</button>"
+    },
+    "acceptButton": "Accept and Proceed"
+  },
+
+  "consent": {
+    "title": "We value your privacy!",
+    "description": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking 'Accept All', you agree to our <privacy>privacy policy</privacy> and <cookies>cookie policy</cookies>.",
+    "acceptButton": "Accept",
+    "rejectButton": "Reject"
+  }
+}

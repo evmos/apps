@@ -1,9 +1,10 @@
+"use client";
 import { evmos as wagmiEvmos } from "wagmi/chains";
 import { Chain } from "viem";
 
 import { evmos, evmoslocal, evmostestnet } from "@evmosapps/registry";
-import { getSelectedNetworkMode } from "ui-helpers";
-
+import { getSelectedNetworkMode } from "@evmosapps/ui-helpers/src/getSelectedNetworkMode";
+import { raise } from "helpers";
 let registry: typeof evmos | typeof evmoslocal | typeof evmostestnet = evmos;
 if (getSelectedNetworkMode() === "localtestnet") {
   registry = evmoslocal;
@@ -15,7 +16,7 @@ export const config: Chain & {
   cosmosId: string;
 } = {
   ...wagmiEvmos,
-  id: parseInt(registry.cosmosId.split(/[-_]/)[1]),
+  id: parseInt(registry.cosmosId.split(/[-_]/)[1] ?? raise("Invalid chain id")),
   cosmosId: registry.cosmosId,
   contracts: {
     multicall3: {

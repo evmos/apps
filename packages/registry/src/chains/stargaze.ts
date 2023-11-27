@@ -61,7 +61,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x5aD523d94Efb56C400941eb6F34393b84c75ba39",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "stargaze"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/stargaze/txs",

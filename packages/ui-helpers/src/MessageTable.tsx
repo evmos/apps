@@ -11,7 +11,7 @@ export const MessageTable = ({
   return (
     <tr className="assetOneItem">
       <td colSpan={amountCols} className="bg-darkGray2">
-        <div className="my-4 flex items-center justify-center space-x-3 text-center font-body font-semibold">
+        <div className="my-4 flex items-center justify-center space-x-3 text-center font-semibold">
           {children}
         </div>
       </td>

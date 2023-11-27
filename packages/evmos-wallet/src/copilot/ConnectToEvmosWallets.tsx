@@ -1,15 +1,16 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { Dispatch } from "react";
+import { ComponentProps, Dispatch } from "react";
 
 import {
+  EvmosCopilotIcon,
   EvmosRedIcon,
   KeplrIcon,
   MetamaskIcon,
   WalletConnectIcon,
 } from "icons";
-import ButtonWallet from "../wallet/ButtonWallet";
+// import ButtonWallet from "../wallet/ButtonWallet";
 import {
   CLICK_CONNECTED_WITH,
   SUCCESSFUL_WALLET_CONNECTION,
@@ -17,11 +18,13 @@ import {
   useTracker,
 } from "tracker";
 import { connectWith } from "../wallet";
-import { E } from "helpers";
+import { E, cn } from "helpers";
 import {
   WALLET_NOTIFICATIONS,
   notifyError,
 } from "../internal/wallet/functionality/errors";
+import { Badge, Divider } from "@evmosapps/ui-helpers";
+import { useConnect } from "wagmi";
 
 const providers = [
   {
@@ -45,27 +48,62 @@ const providers = [
     icon: <EvmosRedIcon />,
   },
 ] as const;
-
-export const ConnectToEvmosWallets = ({
-  setShow,
-  copilotModal,
-  connectorIds,
-}: {
-  setShow: Dispatch<React.SetStateAction<boolean>>;
-  copilotModal?: React.ReactNode;
-  connectorIds: string[];
-}) => {
-  const { handlePreClickAction: trackConnectedWithWallet } =
-    useTracker(CLICK_CONNECTED_WITH);
-  const { handlePreClickAction: trackSuccessfulWalletConnection } = useTracker(
-    SUCCESSFUL_WALLET_CONNECTION
+export const ButtonWallet = ({
+  className,
+  disabled,
+  ...props
+}: ComponentProps<"button">) => {
+  return (
+    <button
+      className={cn(
+        className,
+        "flex w-full px-4 py-3",
+        "hover:bg-grayOpacity hover:shadow-md",
+        "border-darkPearl shadow rounded border",
+        "capitalize items-center space-x-3 text-sm font-bold",
+        "transition-all duration-300",
+        {
+          disabled: disabled,
+        }
+      )}
+      {...props}
+    />
   );
-  const { handlePreClickAction: trackUnsuccessfulWalletConnection } =
-    useTracker(UNSUCCESSFUL_WALLET_CONNECTION);
+};
+export const ConnectToEvmosWallets = ({
+  setIsOpen,
+}: {
+  setIsOpen: (show: boolean) => void;
+}) => {
+  const { sendEvent } = useTracker();
+  const { connectors } = useConnect();
+  const connectorIds = connectors.map((c) => c.id);
 
   return (
     <div className="space-y-3">
-      {copilotModal !== undefined && copilotModal}
+      <>
+        <div className="md:mt-5">
+          <ButtonWallet
+            className="text-left flex "
+            onClick={() => {
+              // setIsOpenModal(true);
+              // handlePreClickAction();
+              // if (beforeStartHook) {
+              //   beforeStartHook(false);
+              // }
+            }}
+          >
+            <EvmosCopilotIcon />
+            <div className="flex flex-col text-sm grow">
+              <p className="">Evmos Copilot</p>
+              <p className="font-normal">Recommended for first time users</p>
+            </div>
+
+            <Badge variant="success">New</Badge>
+          </ButtonWallet>
+        </div>
+        <Divider>or</Divider>
+      </>
       <div className="flex flex-col space-y-3">
         {providers
           .filter((p) => connectorIds.indexOf(p.id) !== -1)
@@ -81,20 +119,20 @@ export const ConnectToEvmosWallets = ({
                  * I'm not sure if we need to do that though
                  */
                 const provider = id.toLocaleLowerCase();
-                setShow(false);
+                setIsOpen(false);
 
-                trackConnectedWithWallet({
+                sendEvent(CLICK_CONNECTED_WITH, {
                   provider,
                 });
                 const [e] = await E.try(() => connectWith(id));
 
                 if (!e) {
-                  trackSuccessfulWalletConnection({
+                  sendEvent(SUCCESSFUL_WALLET_CONNECTION, {
                     provider,
                   });
                   return;
                 }
-                trackUnsuccessfulWalletConnection({
+                sendEvent(UNSUCCESSFUL_WALLET_CONNECTION, {
                   message: `Failed to connect with ${label}`,
                   provider,
                 });

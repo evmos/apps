@@ -66,4 +66,8 @@ export { LayerSwapIcon } from "./LayerSwapIcon";
 export { CypherDIcon } from "./CypherD";
 export { PriceDown } from "./PriceDown";
 export { PriceUp } from "./PriceUp";
+export { RightArrow } from "./RightArrow";
+export { UpRightArrowIcon } from "./UpRightArrowIcon";
+export { WebsiteIcon } from "./WebsiteIcon";
+export { DocumentationIcon } from "./DocumentationIcon";
 export { MediumIcon } from "./MediumIcon";

@@ -56,7 +56,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x205CF44075E77A3543abC690437F3b2819bc450a",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "teritori"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/teritori/txs",

@@ -1,3 +1,4 @@
+"use client";
 import {
   useState,
   useEffect,
@@ -62,7 +63,7 @@ export const useAddressInput = <TPrefix extends Prefix>(
   initialAddress: string = "",
   config: {
     allowedPrefixes?: TPrefix[];
-  } = {},
+  } = {}
 ) => {
   const { allowedPrefixes = [...getPrefixes()] as TPrefix[] } = config;
   const [value, setValue] = useState(initialAddress);

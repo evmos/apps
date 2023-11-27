@@ -23,7 +23,7 @@ describe("TopUp component", () => {
     };
   });
 
-  vi.mock("evmos-wallet", () => {
+  vi.mock("@evmosapps/evmos-wallet", () => {
     return {};
   });
 

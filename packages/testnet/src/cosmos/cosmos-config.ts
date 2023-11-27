@@ -29,7 +29,8 @@ export const createConfig = ({
   index?: number;
 }) => {
   const portOffset = (rest.index ?? 0) * 10;
-  const color = chainColors[rest.index ?? 0 % chainColors.length];
+  const color =
+    chainColors[rest.index ?? 0 % chainColors.length] ?? chalk.white;
   return {
     ...rest,
     chainId,

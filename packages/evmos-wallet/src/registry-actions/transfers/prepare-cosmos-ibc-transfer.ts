@@ -21,6 +21,7 @@ import { getTokenByRef } from "../get-token-by-ref";
 import { Tx } from "@buf/cosmos_cosmos-sdk.bufbuild_es/cosmos/tx/v1beta1/tx_pb";
 import { Keplr } from "@keplr-wallet/types";
 import { getTxTimeout } from "../utils/getTxTimeout";
+import { raise } from "helpers";
 
 export const createProtobufIBCTransferMsg = async ({
   sender,
@@ -173,13 +174,15 @@ export const executeCosmosIBCTransfer = async (params: {
       msgs: [
         {
           type: "cosmos-sdk/MsgTransfer",
-          value: MsgTransfer.fromBinary(msgs[0].value).toJson({
+          value: MsgTransfer.fromBinary(
+            msgs[0]?.value ?? raise("No message")
+          ).toJson({
             useProtoFieldName: true,
           }),
         },
       ],
 
-      sequence: tx.authInfo!.signerInfos[0].sequence.toString(),
+      sequence: tx.authInfo!.signerInfos[0]?.sequence.toString() ?? "0",
     });
   } else {
     throw new Error("UNSUPPORTED_SIGN_MODE");

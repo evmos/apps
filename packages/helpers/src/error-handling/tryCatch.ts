@@ -15,7 +15,7 @@ export function tryCatch<T>(fn: () => T) {
     }
     return [null, fn()] as const;
   } catch (error) {
-    Log.error(error);
+    Log().error(error);
     return [normalizeError(error), null] as const;
   }
 }

@@ -4,13 +4,13 @@
 export const ModalTOS = ({
   title,
   children,
-  show,
+  isOpen,
 }: {
   title?: string;
   children: JSX.Element;
-  show: boolean;
+  isOpen: boolean;
 }) => {
-  if (!show) {
+  if (!isOpen) {
     return null;
   }
 

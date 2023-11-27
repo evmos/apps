@@ -1,16 +1,10 @@
+"use client";
 import { cn } from "helpers";
-
 import { useEffect, useState } from "react";
-
-export const getSelectedNetworkMode = () => {
-  if (typeof window === "undefined") return "mainnet";
-  return localStorage.getItem("networkMode") || "mainnet";
-};
-
-export const setSelectedNetworkMode = (mode: string) => {
-  if (typeof window === "undefined") return;
-  localStorage.setItem("networkMode", mode);
-};
+import {
+  getSelectedNetworkMode,
+  setSelectedNetworkMode,
+} from "./getSelectedNetworkMode";
 
 const modes = ["mainnet", "testnet", "localtestnet"];
 

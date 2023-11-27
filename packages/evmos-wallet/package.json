@@ -1,5 +1,5 @@
 {
-  "name": "evmos-wallet",
+  "name": "@evmosapps/evmos-wallet",
   "version": "1.0.24",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
@@ -11,13 +11,12 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "lint": "eslint ."
-  },
-  "peerDependencies": {
-    "@tanstack/react-query": "^4.32.6"
+    "lint": "eslint .",
+    "gen-cosmos-types": "openapi-typescript https://api.evmos.dev/openapi.json -o ./src/api/cosmos-clients/cosmos-client.d.ts --exclude-deprecated"
   },
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
+    "@evmosapps/ui-helpers": "workspace:*",
     "@types/node": "18.11.14",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.0.9",
@@ -30,7 +29,6 @@
     "tracker": "workspace:*",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
-    "ui-helpers": "workspace:*",
     "zod": "^3.22.1"
   },
   "dependencies": {
@@ -48,6 +46,7 @@
     "@evmos/provider": "^0.2.8",
     "@evmos/transactions": "^0.2.12",
     "@evmosapps/registry": "workspace:*",
+    "@evmosapps/ui-helpers": "workspace:*",
     "@hanchon/signature-to-pubkey": "^1.0.1",
     "@keplr-wallet/types": "^0.12.20",
     "@metamask/providers": "^11.1.0",
@@ -62,15 +61,16 @@
     "lodash-es": "^4.17.21",
     "long": "^5.2.3",
     "mixpanel-browser": "^2.47.0",
-    "next": "^14.0.1",
+    "next": "^14.0.3",
+    "openapi-fetch": "^0.8.1",
+    "openapi-typescript": "^6.7.1",
     "pino": "^8.15.0",
     "pino-pretty": "^10.2.0",
-    "react": "^18.2.0",
+    "react": "18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",
     "schummar-translate": "^1.19.0",
-    "ui-helpers": "workspace:*",
     "vitest": "^0.34.6"
   },
   "browserslist": [

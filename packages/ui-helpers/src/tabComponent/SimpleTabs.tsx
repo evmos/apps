@@ -1,3 +1,4 @@
+"use client";
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
@@ -12,7 +13,7 @@ type tabContent = {
 };
 
 export const SimpleTabs = ({ tabsContent }: { tabsContent: tabContent[] }) => {
-  const [activeTab, setActiveTab] = useState(tabsContent[0].id);
+  const [activeTab, setActiveTab] = useState(tabsContent[0]?.id ?? "");
 
   const tabItems = useMemo(() => {
     return tabsContent?.map((item) => {

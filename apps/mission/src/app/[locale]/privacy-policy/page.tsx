@@ -1,0 +1,21 @@
+import React from "react";
+
+import { PRIVACY_POLICY_PAGE_NOTION_ID } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
+import {
+  NotionBlocks,
+  NotionPageTitle,
+} from "@evmosapps/ui-helpers/src/notion";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Privacy Policy",
+};
+export default function Page() {
+  return (
+    <section className="mx-auto prose prose-invert">
+      <h1>
+        <NotionPageTitle id={PRIVACY_POLICY_PAGE_NOTION_ID} />
+      </h1>
+      <NotionBlocks id={PRIVACY_POLICY_PAGE_NOTION_ID} />
+    </section>
+  );
+}

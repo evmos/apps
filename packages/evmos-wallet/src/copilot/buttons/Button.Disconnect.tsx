@@ -9,16 +9,16 @@ import { disconnect } from "wagmi/actions";
 
 export const ButtonDisconnect = ({
   walletExtension,
-  setShow,
+  setIsOpen,
   setIsCopied,
 }: {
   walletExtension: WalletExtension;
   dispatch: Dispatch<AnyAction>; // eslint-disable-next-line sonarjs/cognitive-complexity
-  setShow: Dispatch<SetStateAction<boolean>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
   setIsCopied: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { handlePreClickAction: trackClickDisconnectWallet } = useTracker(
-    CLICK_DISCONNECT_WALLET_BUTTON,
+    CLICK_DISCONNECT_WALLET_BUTTON
   );
 
   return (
@@ -31,7 +31,7 @@ export const ButtonDisconnect = ({
           provider: walletExtension?.extensionName,
         });
 
-        setShow(false);
+        setIsOpen(false);
         setIsCopied(false);
       }}
     >

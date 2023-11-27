@@ -60,7 +60,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0xC5e00D3b04563950941f7137B5AfA3a534F0D6d6",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "cosmos"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/cosmos/txs",

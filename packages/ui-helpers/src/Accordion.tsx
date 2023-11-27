@@ -1,3 +1,4 @@
+"use client";
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
@@ -14,8 +15,8 @@ export const Accordion = ({
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className="accordion">
-      <div className="accordion-item bg-darkGray2 border-b-2 border-b-black py-5">
+    <div className="accordion w-full">
+      <div className="accordion-item py-5">
         <div
           className={`flex items-center ${
             content !== null ? "cursor-pointer" : "cursor-default"

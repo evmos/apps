@@ -1,8 +1,20 @@
 {
   "extends": "@evmosapps/config/ts/nextjs.json",
   "compilerOptions": {
-    "plugins": [{ "name": "next" }]
+    "noUncheckedIndexedAccess": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "../../packages/i18n/utils/getLocaleFromPath.ts"
+  ],
   "exclude": ["node_modules"]
 }

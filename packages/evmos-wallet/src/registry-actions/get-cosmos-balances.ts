@@ -21,6 +21,7 @@ export async function getCosmosBalances({
   for (const { denom, amount } of response.balances) {
     if (denom in IBC_DENOMS_MAP) {
       const token = IBC_DENOMS_MAP[denom];
+      if (!token) continue;
       balances.push(makeBalance(token, address, amount, "ICS20"));
       continue;
     }

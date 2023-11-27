@@ -1,0 +1,53 @@
+{
+  "account": {
+    "balance": {
+      "title": "Total Balance",
+      "topUp": "Top Up Account"
+    }
+  },
+  "ecosystem": {
+    "title": "Featured Ecosystem dApps",
+    "description": "Interested in being a part of our ecosystem overview?",
+    "description2": "Click here!",
+    "button": {
+      "text": "View all dApps"
+    }
+  },
+  "card": {
+    "assets": {
+      "title": "Portfolio",
+      "description": "Manage your assets on Evmos",
+      "button": {
+        "text": "See Portfolio"
+      }
+    },
+    "governance": {
+      "title": "Governance",
+      "description": "Decide on the future of Evmos",
+      "button": {
+        "text": "Participate in Governance"
+      }
+    },
+    "staking": {
+      "title": "Staking",
+      "description": "Earn rewards for participating in the network's security",
+      "button": {
+        "text": "Stake & manage delegations",
+        "claim": "Claim Rewards"
+      },
+      "available": "Available Balance",
+      "staked": "Staked Balance",
+      "rewards": "Claimable Rewards"
+    }
+  },
+  "copilotCard": {
+    "title": "Onboard to Evmos in 5 minutes",
+    "setupYourAccount": "Set up your account",
+    "topUpYourAccount": "Top up your account",
+    "nextSteps": "Next steps",
+    "letsGo": "Let's go",
+    "topUp": "Top up",
+    "staking": "Staking",
+    "useADapp": "Use a dApp"
+  }
+}

@@ -1,0 +1,9 @@
+[build]
+  command = "pnpm run build --filter=mission-page"
+  functions = "netlify/functions"
+  publish = "apps/mission/.next"
+[dev]
+  command = "pnpm run dev --filter=mission-page"
+  port = 8888
+  publish = "apps/mission/.next"
+  targetPort = 3004

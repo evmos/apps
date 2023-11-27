@@ -13,7 +13,13 @@ const networkInfo = async (network: string) => {
   const networkData = networkResponse?.values;
 
   const networkConfig = networkData?.configurations[0];
+  if (!networkConfig) {
+    return "";
+  }
   const currency = networkConfig.currencies[0];
+  if (!currency) {
+    return "";
+  }
   const currencyData = {
     coinDenom: currency.coinDenom,
     coinDecimals: Number(currency.coinDecimals),
@@ -43,8 +49,8 @@ const networkInfo = async (network: string) => {
     currencies: [currencyData],
     chainId: networkConfig["chainId"],
     chainName: networkConfig.chainName,
-    rpc: networkConfig.rpc[0],
-    rest: networkConfig.rest[0],
+    rpc: networkConfig.rpc[0] || "",
+    rest: networkConfig.rest[0] || "",
     stakeCurrency: currencyData,
     feeCurrencies: feeCurrencies,
     bip44: { coinType: Number(networkData?.bip44.coinType) },
@@ -56,7 +62,7 @@ const networkInfo = async (network: string) => {
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export async function getKeplrAddressByChain(
   chainId: string,
-  network?: string,
+  network?: string
 ) {
   let accounts;
   let offlineSigner;
@@ -83,7 +89,7 @@ export async function getKeplrAddressByChain(
             // Could not get accounts information
             return null;
           }
-          return accounts[0].address;
+          return accounts[0]?.address ?? null;
         }
       }
     }
@@ -92,7 +98,7 @@ export async function getKeplrAddressByChain(
       // Could not get accounts information
       return null;
     }
-    return accounts[0].address;
+    return accounts[0]?.address ?? null;
   } catch (e) {
     return null;
   }

@@ -14,7 +14,7 @@ export const createLogger = (options: {
   return {
     raw: (message: string) => {
       if (enabled) {
-        Log.info(message);
+        Log().info(message);
       }
     },
     info: (message: string) => {

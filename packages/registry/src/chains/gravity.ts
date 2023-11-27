@@ -55,7 +55,8 @@ export default {
       "decimals": 18,
       "erc20Address": "0xc03345448969Dd8C00e9E4A85d2d9722d093aF8E",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "weth"
     },
     {
       "name": "Wrapped Bitcoin",
@@ -72,7 +73,8 @@ export default {
       "decimals": 8,
       "erc20Address": "0x1D54EcB8583Ca25895c512A8308389fFD581F9c9",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "wrapped-bitcoin"
     },
     {
       "name": "Tether USD",
@@ -89,7 +91,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0xecEEEfCEE421D8062EF8d6b4D814efe4dc898265",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "tether"
     },
     {
       "name": "Dai Stablecoin",
@@ -106,7 +109,8 @@ export default {
       "decimals": 18,
       "erc20Address": "0xd567B3d7B8FE3C79a1AD8dA978812cfC4Fa05e75",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "dai"
     },
     {
       "name": "USD Coin",
@@ -123,7 +127,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x5FD55A1B9FC24967C4dB09C513C3BA0DFa7FF687",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "usd-coin"
     },
     {
       "name": "Graviton",
@@ -140,7 +145,8 @@ export default {
       "decimals": 6,
       "erc20Address": "0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd",
       "handledByExternalUI": null,
-      "listed": true
+      "listed": true,
+      "coingeckoId": "graviton"
     }
   ],
   "explorerUrl": "https://www.mintscan.io/gravity-bridge/txs",

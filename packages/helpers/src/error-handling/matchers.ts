@@ -2,7 +2,7 @@ import { has, isString } from "../assertions";
 
 export function matchByCode<TCode>(
   error: unknown,
-  code: TCode,
+  code: TCode
 ): error is {
   code: TCode;
 } {
@@ -12,7 +12,7 @@ export function matchByCode<TCode>(
 
 export function matchByName<TName>(
   error: unknown,
-  name: TName,
+  name: TName
 ): error is {
   name: TName;
 } {
@@ -22,7 +22,7 @@ export function matchByName<TName>(
 
 export function matchByMessage(
   error: unknown,
-  message: string,
+  message: string
 ): error is {
   message: string;
 } {
@@ -30,19 +30,14 @@ export function matchByMessage(
   return error.message === message;
 }
 
-export function matchByPattern(
-  error: unknown,
-  pattern: RegExp,
-): error is {
-  message: string;
-} {
+export function matchByPattern(error: unknown, pattern: RegExp) {
   if (!has(error, "message")) return false;
   if (!isString(error.message)) return false;
   return pattern.test(error.message);
 }
 export function matchByClass<TClass>(
   error: unknown,
-  Class: new (...args: any[]) => TClass,
+  Class: new (...args: any[]) => TClass
 ): error is TClass {
   return error instanceof Class;
 }

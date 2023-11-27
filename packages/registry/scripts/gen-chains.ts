@@ -107,6 +107,7 @@ for (const chainRegistry of chains) {
         erc20Address: token.erc20Address as string | null,
         handledByExternalUI: token.handledByExternalUI ?? null,
         listed: true,
+        coingeckoId: (token.coingeckoId ?? null) as string | null,
       };
     }) ?? [];
 
@@ -134,6 +135,7 @@ for (const chainRegistry of chains) {
       sourcePrefix: chainRegistry.prefix,
       symbol: feeTokenFromChainConfig.coinDenom!,
       tokenRepresentation: null,
+      coingeckoId: null,
       type: "IBC",
     };
     tokens.push(feeToken);

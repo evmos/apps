@@ -2,6 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { QueryClient } from "@tanstack/react-query";
+import { TrackerEvents } from "tracker";
 
 export interface SetUpAccountI {
   // update the names
@@ -16,10 +17,10 @@ export interface SetUpAccountI {
   status: string;
   errorsText?: string[];
   tracker: {
-    init: string;
+    init: TrackerEvents;
     provider: string;
-    successful: string;
-    unsuccessful: string;
+    successful: TrackerEvents;
+    unsuccessful: TrackerEvents;
   };
 }
 

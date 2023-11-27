@@ -1,3 +1,4 @@
+"use client";
 import { createTxRaw } from "@evmos/proto";
 import { getAccount, getNetwork } from "wagmi/actions";
 import { assertIf } from "helpers";

@@ -105,10 +105,10 @@ export default {
     },
     {
       "name": "Wormhole USDC on Ethereum",
-      "ref": "wormhole:USDC",
+      "ref": "wormhole:wormUSDC",
       "description": "Wormhole USDC on Ethereum",
-      "symbol": "USDC",
-      "denom": "USDC",
+      "symbol": "wormUSDC",
+      "denom": "wormUSDC",
       "sourcePrefix": "wormhole",
       "sourceDenom": "usdc",
       "minCoinDenom": "uusdc",

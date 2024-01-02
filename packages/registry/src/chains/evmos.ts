@@ -22,8 +22,6 @@ export default {
   "cosmosRest": [
     "https://g.w.lavanet.xyz:443/gateway/evmos/rest/ef1ad852a77275e1eeef6c7972370118",
     "https://rest.cosmos.directory/evmos",
-    "https://rest.bd.evmos.org:1317",
-    "https://rest.evmos.lava.build",
     "https://api-evmos-ia.cosmosia.notional.ventures",
     "https://lcd.evmos.disperze.network",
     "https://evmos-rest.publicnode.com"

@@ -29,7 +29,7 @@ export default function Osmosis() {
 
   const inputTokenData = inputToken.symbol === "OSMO" ? osmosis : evmos;
   const outputTokenData = outputToken.symbol === "OSMO" ? osmosis : evmos;
-
+  const [errorText, setErrorText] = useState<string>("");
   const number_min_received = useMemo(() => {
     return parseFloat(
       formatUnits(
@@ -109,6 +109,9 @@ export default function Osmosis() {
       setLoadingSwap(false);
       setShowBalanceLink(true);
     } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
+      setErrorText("Error generating transaction. Please try again later.");
       setSwapHash(null);
       setLoadingSwap(false);
     }
@@ -281,7 +284,7 @@ export default function Osmosis() {
             );
           }}
           className={cn(
-            "absolute left-[45%] top-[220px] z-30 flex items-center transition-all duration-500 ease-bounce md:top-[195px]",
+            "absolute left-[45%] top-[220px] z-1 flex items-center transition-all duration-500 ease-bounce md:top-[195px]",
             {
               "h-10 w-10 md:h-8 md:w-8": !isHoveringSwitchButton,
               "h-11 w-11 -translate-x-[2px] md:h-9 md:w-9":
@@ -382,6 +385,14 @@ export default function Osmosis() {
             </div>
           </div>
         </div>
+        {errorText && (
+          <div
+            style={{ height: "50px" }}
+            className={`bg-osmoverse-900 text-sm text-red items-center flex-col justify-center relative overflow-hidden rounded-lg  px-4 transition-all duration-300 ease-inOutBack md:px-3 flex py-[10px]`}
+          >
+            {errorText}
+          </div>
+        )}
         {swapHash && (
           <div
             style={{ height: "50px" }}

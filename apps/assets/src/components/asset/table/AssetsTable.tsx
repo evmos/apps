@@ -119,7 +119,6 @@ const AssetsTable = () => {
           checked={hideZeroBalance}
         />
       </div>
-      aaa
       <div className="xl:scrollbar-hide mt-5 w-full font-display text-pearl">
         <table className="w-full">
           {tableData?.length === 0 && <HeadTable />}

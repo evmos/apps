@@ -1,4 +1,4 @@
-type ERC20Element = {
+export type ERC20Element = {
   name: string;
   cosmosBalance: string;
   decimals: string;

@@ -11,6 +11,13 @@ const bufferToBase64 = (buffer: Buffer) =>
 
 const getImgProps = unstable_cache(
   async (src: string) => {
+    if (process.env.NODE_ENV === "development") {
+      return {
+        src,
+        blurDataURL: undefined,
+        placeholder: undefined,
+      };
+    }
     const buffer = await cachedFetch(src, {
       devCache: {
         revalidate: 60 * 60 * 24 * 7,

@@ -20,19 +20,19 @@ export default {
   "channels": null,
   "feeToken": "aevmos",
   "cosmosRest": [
-    "https://g.w.lavanet.xyz:443/gateway/evmos/rest/ef1ad852a77275e1eeef6c7972370118",
+    "https://rest.evmos.lava.build",
     "https://rest.cosmos.directory/evmos",
     "https://api-evmos-ia.cosmosia.notional.ventures",
     "https://lcd.evmos.disperze.network",
     "https://evmos-rest.publicnode.com"
   ],
   "tendermintRest": [
-    "https://g.w.lavanet.xyz:443/gateway/evmos/rpc-http/ef1ad852a77275e1eeef6c7972370118",
+    "https://tm.evmos.lava.build",
     "https://rpc.cosmos.directory/evmos",
     "https://grpc.bd.evmos.org:9090"
   ],
   "evmRest": [
-    "https://g.w.lavanet.xyz:443/gateway/evmos/json-rpc-http/ef1ad852a77275e1eeef6c7972370118",
+    "https://evmos.lava.build",
     "https://jsonrpc-evmos-ia.cosmosia.notional.ventures",
     "https://evmos-mainnet.public.blastapi.io",
     "https://evmos-evm.publicnode.com",

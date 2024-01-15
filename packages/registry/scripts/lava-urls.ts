@@ -9,14 +9,14 @@ export const lavaUrls: Record<
   }
 > = {
   evmos: {
-    cosmosRest: `https://g.w.lavanet.xyz:443/gateway/evmos/rest/${lavaUserId}`,
-    tendermintRest: `https://g.w.lavanet.xyz:443/gateway/evmos/rpc-http/${lavaUserId}`,
-    evmRest: `https://g.w.lavanet.xyz:443/gateway/evmos/json-rpc-http/${lavaUserId}`,
+    cosmosRest: `https://rest.evmos.lava.build`,
+    tendermintRest: `https://tm.evmos.lava.build`,
+    evmRest: `https://evmos.lava.build`,
   },
   evmostestnet: {
-    cosmosRest: `https://g.w.lavanet.xyz:443/gateway/evmost/rest/${lavaUserId}`,
-    tendermintRest: `https://g.w.lavanet.xyz:443/gateway/evmost/rpc-http/${lavaUserId}`,
-    evmRest: `https://g.w.lavanet.xyz:443/gateway/evmost/json-rpc-http/${lavaUserId}`,
+    cosmosRest: `https://rest.evmos-testnet.lava.build`,
+    tendermintRest: `https://tm.evmos-testnet.lava.build`,
+    evmRest: `https://evmos-testnet.lava.build`,
   },
   cosmoshub: {
     cosmosRest: `https://g.w.lavanet.xyz:443/gateway/cos5/rest/${lavaUserId}`,

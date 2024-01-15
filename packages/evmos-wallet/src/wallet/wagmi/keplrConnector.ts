@@ -5,7 +5,6 @@ import {
 } from "../utils";
 import { getEvmosChainInfo } from "./chains";
 import { isUndefined, raise } from "helpers";
-import { injected } from "wagmi/connectors";
 import {
   EIP1474Methods,
   createPublicClient,
@@ -17,6 +16,7 @@ import { EthSignType } from "@keplr-wallet/types";
 import { fromHex, isHex, parseAccount, serializeTransaction } from "viem/utils";
 import { omit, uniqueId } from "lodash-es";
 import { estimateFeesPerGas, estimateGas } from "viem/actions";
+import { createConnector } from "wagmi";
 
 const evmos = getEvmosChainInfo();
 type ByMethod<M extends string> = Extract<
@@ -26,7 +26,7 @@ type ByMethod<M extends string> = Extract<
 type EIP1474ReturnType<M extends string> = ByMethod<M>["ReturnType"];
 type EIP1474Parameters<M extends string> = ByMethod<M>["Parameters"];
 
-const eth_accounts = async () => {
+const eth_requestAccounts = async () => {
   const provider = await getKeplrProvider();
   const signer = provider.getOfflineSigner(evmos.cosmosId);
   const [account = raise("Account not found")] = await signer.getAccounts();
@@ -46,7 +46,7 @@ const wallet_requestPermissions = (
       caveats: [
         {
           type: "restrictReturnedAccounts",
-          value: await eth_accounts(),
+          value: await eth_requestAccounts(),
         },
       ],
       date: Date.now(),
@@ -64,7 +64,7 @@ const signTransaction = async (
 ): Promise<EIP1474ReturnType<"personal_sign">> => {
   const cosmosId = evmos.cosmosId;
 
-  const [account] = await eth_accounts();
+  const [account] = await eth_requestAccounts();
   const keplr = await getKeplrProvider();
   const signature = await keplr.signEthereum(
     cosmosId,
@@ -203,66 +203,108 @@ const eth_sendTransaction = async ([
   });
 };
 
-export const keplr = injected({
-  target: {
+export const keplr = createConnector<
+  unknown,
+  {},
+  {
+    keplrConnectorStatus: "authorized";
+  }
+>(({ emitter, storage }) => {
+  if (typeof window !== "undefined") {
+    window.addEventListener("keplr_keystorechange", async () => {
+      const accounts = await eth_requestAccounts();
+      emitter.emit("change", {
+        accounts,
+        chainId: eth_chainId(),
+      });
+    });
+  }
+
+  const listeners = new Map<string, Set<(...args: any[]) => void>>();
+
+  const provider = {
+    request({ method, params }: { method: string; params?: unknown[] }) {
+      if (method === "eth_requestAccounts" || method === "eth_accounts") {
+        return eth_requestAccounts();
+      }
+
+      if (method === "wallet_requestPermissions") {
+        return wallet_requestPermissions(params as never) as never;
+      }
+      if (method === "eth_chainId") {
+        return eth_chainId() as never;
+      }
+      if (method === "personal_sign") {
+        return signTransaction(params as never, EthSignType.MESSAGE) as never;
+      }
+      if (method === "eth_sendTransaction") {
+        return eth_sendTransaction(params as never) as never;
+      }
+      if (method === "eth_signTypedData_v4") {
+        return eth_signTypedData_v4(params as never) as never;
+      }
+
+      throw new Error(`${method} Method not implemented.`);
+    },
+    _state: {
+      accounts: [],
+      isConnected: false,
+      chainId: "",
+    },
+
+    on(event: string, listener: (...args: unknown[]) => void) {
+      const listenersForEvent = listeners.get(event);
+      if (listenersForEvent) {
+        listenersForEvent.add(listener);
+      } else {
+        listeners.set(event, new Set([listener]));
+      }
+    },
+
+    removeListener(event: string, listener: (...args: unknown[]) => void) {
+      const listenersForEvent = listeners.get(event);
+      if (listenersForEvent) {
+        listenersForEvent.delete(listener);
+      }
+    },
+  };
+
+  return {
     id: "keplr",
     name: "Keplr",
+    type: "injected",
 
-    provider() {
-      const listeners = new Map<string, Set<(...args: any[]) => void>>();
-
-      const event = async () => {
-        const accounts = await eth_accounts();
-
-        listeners
-          .get("accountsChanged")
-          ?.forEach((listener) => listener(accounts));
-      };
-
-      window.addEventListener("keplr_keystorechange", event);
-
+    async connect({ chainId } = {}) {
+      const accounts = await eth_requestAccounts();
+      await storage?.setItem("keplrConnectorStatus", "authorized");
       return {
-        request({ method, params }) {
-          if (method === "eth_accounts" || method === "eth_requestAccounts") {
-            return eth_accounts() as never;
-          }
-          if (method === "wallet_requestPermissions") {
-            return wallet_requestPermissions(params as never) as never;
-          }
-          if (method === "eth_chainId") {
-            return eth_chainId() as never;
-          }
-          if (method === "personal_sign") {
-            return signTransaction(
-              params as never,
-              EthSignType.MESSAGE
-            ) as never;
-          }
-          if (method === "eth_sendTransaction") {
-            return eth_sendTransaction(params as never) as never;
-          }
-          if (method === "eth_signTypedData_v4") {
-            return eth_signTypedData_v4(params as never) as never;
-          }
-
-          throw new Error(`${method} Method not implemented.`);
-        },
-        on(event, listener) {
-          const listenersForEvent = listeners.get(event);
-          if (listenersForEvent) {
-            listenersForEvent.add(listener);
-          } else {
-            listeners.set(event, new Set([listener]));
-          }
-        },
-
-        removeListener(event, listener) {
-          const listenersForEvent = listeners.get(event);
-          if (listenersForEvent) {
-            listenersForEvent.delete(listener);
-          }
-        },
+        accounts,
+        chainId: chainId ?? eth_chainId(),
       };
     },
-  },
+    async disconnect() {
+      await storage?.removeItem("keplrConnectorStatus");
+    },
+    async getAccounts() {
+      const status = await storage?.getItem("keplrConnectorStatus");
+      if (status !== "authorized") {
+        return [];
+      }
+      return await eth_requestAccounts();
+    },
+    async getChainId() {
+      return Promise.resolve(eth_chainId());
+    },
+    getProvider() {
+      return Promise.resolve(provider);
+    },
+
+    async isAuthorized() {
+      return (await storage?.getItem("keplrConnectorStatus")) === "authorized";
+    },
+
+    onAccountsChanged() {},
+    onChainChanged() {},
+    onDisconnect() {},
+  };
 });

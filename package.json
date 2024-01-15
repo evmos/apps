@@ -35,8 +35,8 @@
     "knip": "4.0.0-canary.8",
     "prettier": "^3.0.1",
     "react-dom": "^18.2.0",
-    "viem": "^2.0.5",
-    "wagmi": "^2.0.3"
+    "viem": "^2.0.6",
+    "wagmi": "^2.1.1"
   },
   "browserslist": [
     "last 3 chrome version",

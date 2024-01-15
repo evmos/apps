@@ -1,7 +1,7 @@
 export function formatUnits(
   value: bigint,
   tokenDecimals: number,
-  mode: "short" | "long" = "short",
+  mode: "short" | "long" | number = "short"
 ) {
   let display = value.toString();
 
@@ -20,6 +20,6 @@ export function formatUnits(
       fraction ? `.${fraction}` : ""
     }`;
   }
-  fraction = fraction.slice(0, 7);
+  fraction = fraction.slice(0, typeof mode === "number" ? mode : 7);
   return `${negative ? "-" : ""}${integer || "0"}.${fraction}`;
 }

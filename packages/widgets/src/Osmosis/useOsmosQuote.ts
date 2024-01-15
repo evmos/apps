@@ -1,5 +1,7 @@
-import { useState } from "react";
-import { SwapOption } from "./useOsmosisData";
+import { useOsmosisData } from "./useOsmosisData";
+import { useQuery } from "@tanstack/react-query";
+import { parseUnits } from "viem";
+import { sleep } from "helpers/src/sleep";
 
 type OsmosisQouteResponse = {
   price_impact: number;
@@ -7,33 +9,62 @@ type OsmosisQouteResponse = {
   input_amount: number;
 };
 
-export function useOsmosisQoute() {
-  const [loading, setLoading] = useState(false);
-  const [latestQoute, setLatestQoute] = useState<OsmosisQouteResponse | null>(
-    null
-  );
+export function useOsmosisQuote({
+  tokenA,
+  tokenB,
+  amount,
+}: {
+  tokenA: string;
+  tokenB: string;
+  amount: string;
+}) {
+  const { data } = useOsmosisData();
 
-  function getQoute(token0: SwapOption, token1: SwapOption, amount: string) {
-    if (amount === "0") {
-      setLatestQoute({
-        price_impact: 0,
-        return_amount: 0,
-        input_amount: 1,
-      });
-      return;
-    }
-    setLoading(true);
-    fetch(`
-        https://api.multichain.tfm.com/route?chain0=osmosis-1&chain1=osmosis-1&token0=${token0.osmosisDenom}&token1=${token1.osmosisDenom}&amount=${amount}&exchange_specific_results=true`)
-      .then(async (res) => {
-        const data = (await res.json()) as OsmosisQouteResponse;
-        setLatestQoute(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }
+  const { data: quote, ...rest } = useQuery({
+    queryKey: ["qoute", tokenA, tokenB, amount],
 
-  return { loading, getQoute, latestQoute };
+    queryFn: async ({ signal }) => {
+      if (!data) {
+        throw new Error("No data");
+      }
+
+      await sleep(300);
+      if (signal.aborted) {
+        // debounced
+        throw new Error("Aborted");
+      }
+      if (amount === "0") {
+        return {
+          price_impact: 0,
+          return_amount: 0,
+          input_amount: 1,
+        };
+      }
+      const url = new URL("https://api.multichain.tfm.com/route");
+
+      const [tokenAInfo, tokenBInfo] =
+        tokenA === "EVMOS"
+          ? ([data.evmos, data.osmosis] as const)
+          : ([data.osmosis, data.evmos] as const);
+      url.searchParams.append("chain0", "osmosis-1");
+      url.searchParams.append("chain1", "osmosis-1");
+      url.searchParams.append("token0", tokenAInfo.osmosisDenom);
+      url.searchParams.append("token1", tokenBInfo.osmosisDenom);
+      url.searchParams.append(
+        "amount",
+        parseUnits(amount || "1", tokenAInfo.exponent).toString()
+      );
+      url.searchParams.append("exchange_specific_results", "true");
+
+      return fetch(url, {
+        signal,
+      }).then(async (res) => res.json() as Promise<OsmosisQouteResponse>);
+    },
+    enabled: !!data,
+  });
+  return {
+    quote,
+
+    ...rest,
+  };
 }

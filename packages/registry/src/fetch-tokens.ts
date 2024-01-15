@@ -25,6 +25,7 @@ export async function fetchTokens() {
         source,
         networkType,
         isMainnet: networkType === "mainnet",
+        exponent: parseInt(token.exponent),
       };
     });
 

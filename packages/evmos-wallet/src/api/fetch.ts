@@ -6,12 +6,18 @@ import { EVMOS_BACKEND } from "../internal/wallet/functionality/networkConfig";
 import { getAccountBalances } from "../registry-actions";
 import { fetchLegacyERC20ModuleBalance } from "../server/fetch-legacy-erc20modulebalance";
 import { normalizeToCosmosAddress } from "../wallet";
-import { StakingInfoResponse } from "./types";
+import {
+  ERC20BalanceResponse,
+  ERC20Element,
+  StakingInfoResponse,
+} from "./types";
 const getAssets = async () => {
   return await fetchLegacyERC20ModuleBalance();
 };
 
-export const getAssetsForAddress = async (address?: string) => {
+export const getAssetsForAddress = async (
+  address?: string
+): Promise<ERC20BalanceResponse> => {
   // If not wallet selected return everything empty
   if (!address) {
     return await getAssets();
@@ -35,9 +41,10 @@ export const getAssetsForAddress = async (address?: string) => {
 
         return {
           ...asset,
+
           cosmosBalance,
           erc20Balance,
-        };
+        } satisfies ERC20Element;
       })
       .sort((a, b) => {
         if (a.tokenName === "EVMOS") {
@@ -51,7 +58,7 @@ export const getAssetsForAddress = async (address?: string) => {
           ? -1
           : 1;
       }),
-  };
+  } satisfies ERC20BalanceResponse;
 };
 
 export const getStakingInfo = async (address: string) => {

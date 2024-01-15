@@ -9,7 +9,6 @@ export default withEvmosConfig({
       {
         protocol: "https",
         hostname: "**.amazonaws.com",
-
         pathname: "/secure.notion-static.com/**",
       },
       {
@@ -18,10 +17,10 @@ export default withEvmosConfig({
 
         pathname: "/db649a25-e00d-4b76-ae35-010494162457/**",
       },
-      // "https://images.unsplash.com/
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
+        hostname: "raw.githubusercontent.com",
+        pathname: "/evmos/chain-token-registry/main/assets/**",
       },
     ],
   },

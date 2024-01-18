@@ -36,6 +36,13 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+## 1.3.13 - 2024-01-18
+
+- (chore) remove extra / on tx link
+- (chore) add missing images
+- (chore) remove incorrect text
+- (chore) set vercel redirects
+
 ## 1.3.12 - 2023-12-12
 
 - (chore) fse-896 | apps/staking 1.1.4 | add zero values to staking precompiles call

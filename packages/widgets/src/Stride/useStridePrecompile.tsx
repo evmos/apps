@@ -1,35 +1,34 @@
 "use client";
-import StrideABI from "./abi/StrideTempABI.json";
-
-import { writeContract } from "wagmi/actions";
-import { useAccount, useConfig } from "wagmi";
+import { useAccount } from "wagmi";
 import { useMutation } from "@tanstack/react-query";
 import { switchToEvmosChain } from "@evmosapps/evmos-wallet/src/wallet/actions/switchToEvmosChain";
 import { E, Log } from "helpers";
 import { useMemo } from "react";
-import { ethToEvmos } from "helpers/src/crypto/addresses/eth-to-evmos";
 import { ethToBech32 } from "@evmosapps/evmos-wallet";
 
-const STRIDE_PRECOMPILE_ADDRESS = "0xeE44c15a354F72bb787FFfe2975872380E37afED";
+import { GenerateStrideMemo } from "@hanchon/outpost-helper";
+import { writeContractIBCOutpost } from "@evmosapps/evmos-wallet";
 
 export function useStridePrecompile() {
   const { address } = useAccount();
 
-  const config = useConfig();
   const { mutate, error, ...rest } = useMutation({
     mutationKey: ["stride-swap"],
-    mutationFn: async function liquidStake({ amount }: { amount: string }) {
+    mutationFn: async function liquidStake({ amount }: { amount: bigint }) {
       if (!address) throw new Error("Not connected");
 
       await switchToEvmosChain();
 
-      return writeContract(config, {
-        address: STRIDE_PRECOMPILE_ADDRESS,
-        abi: StrideABI,
-        functionName: "liquidStakeEvmos",
-        account: address,
-        args: [amount, ethToBech32(address, "stride"), ethToEvmos(address)],
-        gas: 1227440n,
+      return writeContractIBCOutpost({
+        sender: address,
+        receiver: ethToBech32(address, "stride"),
+        tokenAmount: amount,
+        tokenDenom: "aevmos",
+        memo: GenerateStrideMemo(
+          ethToBech32(address, "evmos"),
+          ethToBech32(address, "stride"),
+        ),
+        estimatedGas: 1227440n,
       });
     },
     onError: (e) => {

@@ -25,6 +25,7 @@
     "utility-types": "^3.10.0"
   },
   "dependencies": {
+    "@hanchon/outpost-helper": "1.0.0",
     "@forge-trade/widgets": "^1.2.6",
     "@tippyjs/react": "^4.2.6",
     "@types/node": "18.11.14",

@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { EXPLORER_URL } from "constants-helper";
 import { ViewExplorer } from "@evmosapps/ui-helpers";
 

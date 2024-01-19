@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 const { log, error, trace, table, warn } = console;
 
 type LogCategory = "notion" | "tracking" | "dev-cache-mode" | "general";

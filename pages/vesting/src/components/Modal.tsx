@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { CloseIcon } from "@evmosapps/icons/CloseIcon";
 import useEventListener from "@evmosapps/ui-helpers/src/useEventListener";
 export const Modal = ({

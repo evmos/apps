@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { Period } from "@evmos/transactions";
 import dayjs from "dayjs";
 import { BigNumber } from "@ethersproject/bignumber";

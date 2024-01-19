@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import Image from "next/image";
 import React from "react";
 import { formatUnits } from "@evmosapps/evmos-wallet/src/registry-actions/utils";

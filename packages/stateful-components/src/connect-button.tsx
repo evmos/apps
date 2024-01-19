@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { PrimaryButton } from "@evmosapps/ui-helpers";
 import { ConnectModalTrigger } from "./modals/ConnectModal/ConnectModal";
 import { cn } from "helpers";

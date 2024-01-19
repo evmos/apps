@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 export const CLICK_CONNECT_WALLET_BUTTON = "ClickConnectWallet";
 export const CLICK_DISCONNECT_WALLET_BUTTON = "ClickDisconnectWallet";
 export const CLICK_CONNECTED_WITH = "ConnectSpecificWallet";

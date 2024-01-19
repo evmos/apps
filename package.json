@@ -24,7 +24,9 @@
     "clear-cache": "sh ./clear-cache.sh",
     "kill": "turbo run kill",
     "prepare": "husky install",
-    "clear-dev-cache": "rm -rf ./node_modules/.cache/evmosapps && echo 'Dev cache cleared!'"
+    "clear-dev-cache": "rm -rf ./node_modules/.cache/evmosapps && echo 'Dev cache cleared!'",
+    "license": "node ./check-license.mjs",
+    "license:fix": "node ./check-license.mjs --fix"
   },
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
@@ -61,6 +63,7 @@
     "eslint": "^8.56.0",
     "eslint-nibble": "^8.1.0",
     "eslint-plugin-no-secrets": "^0.8.9",
+    "globby": "^14.0.0",
     "helpers": "workspace:*",
     "jsdom": "^23.2.0",
     "kill-port": "^2.0.1",

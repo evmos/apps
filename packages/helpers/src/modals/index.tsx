@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 "use client";
 import qs, { ParsedUrlQueryInput } from "querystring";
 import { useMemo, SetStateAction, useEffect, useRef } from "react";

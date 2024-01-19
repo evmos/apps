@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 "use client";
 import { Title, Description } from "@evmosapps/ui-helpers";
 import { useModal } from "@evmosapps/ui-helpers/src/Modal";

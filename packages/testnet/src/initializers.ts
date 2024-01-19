@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import chalk from "chalk";
 import { setupRelayer, startRelayer } from "./relayer/setup-relayer";
 import Table from "cli-table";

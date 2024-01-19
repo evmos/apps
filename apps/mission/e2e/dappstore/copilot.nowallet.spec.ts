@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { acceptTOS } from "@evmosapps/test-utils";
 import { test } from "@playwright/test";
 const { describe, beforeEach, expect } = test;

@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { pageListener } from "@evmosapps/test-utils";
 import { E } from "helpers/src/error-handling";
 import { BrowserContext } from "playwright";

@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 /* eslint-disable no-secrets/no-secrets */
 export const BALANCE_ENDPOINT = "*/**/cosmos/bank/v1beta1/balances/*";
 export const STAKING_INFO_ENDPOINT =

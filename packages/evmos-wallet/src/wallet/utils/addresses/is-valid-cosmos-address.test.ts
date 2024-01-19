@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 /* eslint-disable no-secrets/no-secrets */
 import { describe, expect, test } from "vitest";
 import { isValidCosmosAddress } from "./is-valid-cosmos-address";

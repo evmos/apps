@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 "use server";
 import { Banner } from "@evmosapps/ui-helpers";
 import { getServiceDisruptionData } from "./fetch-service-status";

@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { fetchDapps } from "@evmosapps/dappstore-page/src/lib/fetch-dapps";
 import { Log } from "helpers/src/logger";
 export async function generateStaticParams() {

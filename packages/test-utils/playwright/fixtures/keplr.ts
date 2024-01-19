@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { test as base, chromium, type BrowserContext } from "@playwright/test";
 import { Keplr } from "../utils/keplr/keplr-controller";
 import { downloadRelease } from "../utils/keplr/download-release";

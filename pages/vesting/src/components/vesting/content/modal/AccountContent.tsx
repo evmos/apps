@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { KEPLR_KEY, StoreType, normalizeToEth } from "@evmosapps/evmos-wallet";
 import { useSelector } from "react-redux";
 import { ConfirmButton } from "@evmosapps/ui-helpers";

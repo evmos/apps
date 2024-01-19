@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 export function max(a: bigint, b: bigint): bigint;
 export function max(a: number, b: number): number;
 export function max(a: number | bigint, b: number | bigint): number | bigint {

@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { getPrefix } from "../../wallet/utils/addresses/get-prefix";
 import { isValidCosmosAddress } from "../../wallet/utils/addresses/is-valid-cosmos-address";
 import { isValidHexAddress } from "../../wallet/utils/addresses/is-valid-hex-address";

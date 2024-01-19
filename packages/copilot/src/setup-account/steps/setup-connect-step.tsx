@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { useTranslation } from "@evmosapps/i18n/client";
 import { Trans } from "react-i18next";
 import { SetupWithMetamaskSteps } from "../partials/setup-with-metamask";

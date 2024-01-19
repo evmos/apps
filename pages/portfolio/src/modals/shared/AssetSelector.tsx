@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import React, { PropsWithChildren, useEffect, useMemo, useState } from "react";
 import {
   AmountInput,

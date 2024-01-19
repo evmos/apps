@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { RightArrow } from "@evmosapps/icons/RightArrow";
 import { CLICK_ON_BREADCRUMB } from "tracker";
 import { TrackerEvent } from "../TrackerEvent";

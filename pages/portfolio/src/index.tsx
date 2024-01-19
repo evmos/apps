@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import AssetsTable from "./asset/table/AssetsTable";
 import { TransferModal } from "./modals/transfer/TransferModal";
 import { RequestModal } from "./modals/request/RequestModal";

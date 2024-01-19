@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { setConfig } from "next/config";
 import config from "./next.config.mjs";
 import { cleanup } from "@testing-library/react";

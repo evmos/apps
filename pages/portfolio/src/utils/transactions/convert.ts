@@ -21,7 +21,7 @@ export const executeConvert = async (
   wallet: WalletExtension,
   params: ConvertMsg,
   isERC20Selected: boolean,
-  feeBalance: BigNumber
+  feeBalance: BigNumber,
 ) => {
   if (feeBalance.lt(feeAmountForConvert)) {
     return mapExecuteResponse({
@@ -45,7 +45,7 @@ export const executeConvert = async (
       address: wallet.evmosAddressCosmosFormat,
       pubkey: wallet.evmosPubkey ?? raise("ACCOUNT_NOT_FOUND"),
       params,
-    })
+    }),
   );
   if (error) {
     return mapExecuteResponse({

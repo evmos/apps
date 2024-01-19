@@ -33,7 +33,7 @@ const REPO_MAP: Record<
 const getLatestReleases = async (binary: SupportedBinaries) => {
   const releases = await github.request(
     "GET /repos/{owner}/{repo}/releases/latest",
-    REPO_MAP[binary]
+    REPO_MAP[binary],
   );
 
   return releases.data;

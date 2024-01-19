@@ -36,7 +36,7 @@ export const Button = ({
           "bg-pink-200 text-black font-light h-9 w-9 md:h-11 md:w-11":
             variant === "pink-small" && tab.option !== tab.type,
           disabled: tab.disabled,
-        }
+        },
       )}
       {...props}
     >

@@ -97,7 +97,7 @@ export const ProfileModal = () => {
 
           <button
             className={cn(
-              "border-darkPearl text-base hover:bg-grayOpacity mt-3 w-full rounded border p-3 font-bold uppercase"
+              "border-darkPearl text-base hover:bg-grayOpacity mt-3 w-full rounded border p-3 font-bold uppercase",
             )}
             onClick={() => {
               disconnect();

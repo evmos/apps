@@ -42,7 +42,7 @@ const getBaseAccountData = async (evmosEndpoint: string, address: string) => {
   try {
     const addr = await fetchWithTimeout(
       `${evmosEndpoint}${generateEndpointAccount(converted)}`,
-      get
+      get,
     );
     // If error 400 wallet doesn't exists
     const resp = (await addr.json()) as EndpointAccountResponse;

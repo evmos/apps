@@ -10,7 +10,7 @@ export const addGenesisAccountsFromList = async (
     key: string;
     initialBalance: bigint;
     mnemonic: string;
-  }[]
+  }[],
 ) => {
   const client = await getChainClient(config);
 
@@ -35,7 +35,7 @@ export const addGenesisAccountsFromList = async (
         "--home",
         config.homeDir,
       ],
-      account.mnemonic
+      account.mnemonic,
     ).exited;
     const parsedAccount = JSON.parse(registeredAccount) as {
       address: string;

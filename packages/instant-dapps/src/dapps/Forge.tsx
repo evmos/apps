@@ -3,7 +3,6 @@
 
 "use client";
 
-
 import Forge from "@evmosapps/widgets/src/forge";
 import { InstantDappContainer } from "./instant-dapp-container";
 

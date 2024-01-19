@@ -64,7 +64,7 @@ export const ShareContent = ({
   }, []);
 
   const shareURL = `${origin}/portfolio?action=pay&token=${token}&amount=${amount}&message=${encodeURIComponent(
-    message
+    message,
   )}&requester=${sender}`;
 
   const [showCopied, setIsOpenCopied] = useState(false);
@@ -187,7 +187,7 @@ export const ShareContent = ({
                     });
                   } else {
                     await navigator.clipboard.writeText(
-                      `Hi could you please transfer "${message}" using this payment link:\n\n${shareURL}}`
+                      `Hi could you please transfer "${message}" using this payment link:\n\n${shareURL}}`,
                     );
                   }
                 }}

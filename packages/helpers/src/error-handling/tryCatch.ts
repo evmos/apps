@@ -5,7 +5,7 @@ import { Log } from "../logger";
 import { normalizeError } from "./normalizeError";
 
 export function tryCatch<T extends Promise<unknown>>(
-  fn: () => T
+  fn: () => T,
 ): Promise<[null, Awaited<T>] | [Error, null]>;
 export function tryCatch<T>(fn: () => T): [null, T] | [Error, null];
 export function tryCatch<T>(fn: () => T) {

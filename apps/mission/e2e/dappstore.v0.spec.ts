@@ -37,7 +37,7 @@ describe("Dapp store", () => {
       })
       .click();
     await expect(page).toHaveURL(
-      "http://localhost:3000/dapps/bridge-and-swap/cypher-wallet"
+      "http://localhost:3000/dapps/bridge-and-swap/cypher-wallet",
     );
 
     const cypherWidget = page.getByTestId("cypher-onboading-sdk");

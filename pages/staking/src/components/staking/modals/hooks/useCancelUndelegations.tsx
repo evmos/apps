@@ -27,7 +27,7 @@ import { useConfig } from "wagmi";
 const evmos = getEvmosChainInfo();
 
 export const useCancelUndelegations = (
-  useCancelUndelegationProps: CancelUndelegationsProps
+  useCancelUndelegationProps: CancelUndelegationsProps,
 ) => {
   const dispatch = useDispatch();
 
@@ -39,7 +39,7 @@ export const useCancelUndelegations = (
       const [err] = await E.try(() =>
         switchChain(config, {
           chainId: evmos.id,
-        })
+        }),
       );
       if (err) return;
     }
@@ -54,7 +54,7 @@ export const useCancelUndelegations = (
     }
     const amount = parseUnits(
       useCancelUndelegationProps.value,
-      BigNumber.from(18)
+      BigNumber.from(18),
     );
 
     if (amount.gt(BigNumber.from(useCancelUndelegationProps.item.balance))) {
@@ -67,7 +67,7 @@ export const useCancelUndelegations = (
         useCancelUndelegationProps.wallet.evmosAddressEthFormat,
         useCancelUndelegationProps.item.validatorAddress,
         amount,
-        useCancelUndelegationProps.item.creationHeight
+        useCancelUndelegationProps.item.creationHeight,
       );
 
       dispatch(snackBroadcastSuccessful(hash, `${EXPLORER_URL}/tx`));

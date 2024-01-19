@@ -10,7 +10,7 @@ import { getTokenByRef } from "../get-token-by-ref";
 
 export const useTokenBalance = (
   address?: Address<Prefix>,
-  tokenRef?: TokenRef
+  tokenRef?: TokenRef,
 ) => {
   const { data, ...rest } = useAccountBalances(address);
 

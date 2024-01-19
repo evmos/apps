@@ -23,7 +23,7 @@ export const DappDetailsPage = async ({
   const relatedApps = dApps
     .filter(
       (dApp) =>
-        dApp.categoryName === dapp?.categoryName && dApp.slug !== dapp?.slug
+        dApp.categoryName === dapp?.categoryName && dApp.slug !== dapp?.slug,
     )
     .slice(0, 4);
 

@@ -61,7 +61,7 @@ export const WALLET_NOTIFICATIONS = {
 const formatNotification = (
   title: string,
   text: string,
-  properties: Record<string, string> = {}
+  properties: Record<string, string> = {},
 ) => {
   return {
     title: replaceProperties(title, properties),
@@ -72,7 +72,7 @@ const formatNotification = (
 export const notifyError = (
   title: string,
   text: string,
-  properties: Record<string, string> = {}
+  properties: Record<string, string> = {},
 ) => {
   NotifyError(
     {
@@ -80,14 +80,14 @@ export const notifyError = (
       ...formatNotification(title, text, properties),
     },
     store,
-    true
+    true,
   );
 };
 
 export const notifySuccess = (
   title: string,
   text: string,
-  properties: Record<string, string> = {}
+  properties: Record<string, string> = {},
 ) => {
   NotifySuccess(
     {
@@ -95,13 +95,13 @@ export const notifySuccess = (
       ...formatNotification(title, text, properties),
     },
     store,
-    true
+    true,
   );
 };
 
 const replaceProperties = (
   text: string,
-  properties: Record<string, string>
+  properties: Record<string, string>,
 ) => {
   return Object.entries(properties).reduce((acc, [key, value]) => {
     return acc.replace(new RegExp(`{${key}}`, "g"), value);

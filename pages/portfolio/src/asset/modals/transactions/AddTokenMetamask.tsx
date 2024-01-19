@@ -30,7 +30,7 @@ const AddTokenMetamask = ({ token }: { token: Token }) => {
             title: value.text,
           },
           type: value.type,
-        })
+        }),
       );
     }
   };

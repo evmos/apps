@@ -38,7 +38,7 @@ export const TermsOfServicesModalController = ({
   }, [setIsOpen]);
 
   const guardedSetIsOpen: React.Dispatch<React.SetStateAction<boolean>> = (
-    isOpen
+    isOpen,
   ) => {
     const next = typeof isOpen === "function" ? isOpen(!isOpen) : isOpen;
     if (!next && acknowledgeTOS === false) {
@@ -103,7 +103,7 @@ export const TermsOfServicesModalController = ({
                 "bg-red-300 text-pearl hover:bg-red1 rounded px-8 py-2 text-lg font-bold uppercase w-full",
                 {
                   disabled: !acknowledgeTOS,
-                }
+                },
               )}
               data-testid="accept-tos-button"
               onClick={() => {

@@ -13,5 +13,5 @@ export const apiStakingRewards = makeApiRequester(
       gas: 0,
     },
   }),
-  ApiPresignTxSchema
+  ApiPresignTxSchema,
 );

@@ -153,7 +153,7 @@ describe("dAppStore Page - Copilot", () => {
     await wallet.approve();
 
     await waitLocator(
-      page.getByRole("button", { name: "Top Up Account", exact: true })
+      page.getByRole("button", { name: "Top Up Account", exact: true }),
     ).click();
     await page.getByRole("button", { name: "Debit/Credit Card" }).click();
 
@@ -165,10 +165,10 @@ describe("dAppStore Page - Copilot", () => {
     await page.waitForTimeout(3000);
 
     await expect(
-      page.getByRole("heading", { name: /Congratulations/i })
+      page.getByRole("heading", { name: /Congratulations/i }),
     ).toBeVisible();
     await expect(
-      page.getByText(/You're now ready to use your Evmos!/i)
+      page.getByText(/You're now ready to use your Evmos!/i),
     ).toBeVisible();
 
     await page
@@ -191,10 +191,10 @@ describe("dAppStore Page - Copilot", () => {
     await page.waitForTimeout(3000);
 
     await expect(
-      page.getByRole("heading", { name: /Congratulations/i })
+      page.getByRole("heading", { name: /Congratulations/i }),
     ).toBeVisible();
     await expect(
-      page.getByText(/You're now ready to use your Evmos!/i)
+      page.getByText(/You're now ready to use your Evmos!/i),
     ).toBeVisible();
 
     await page

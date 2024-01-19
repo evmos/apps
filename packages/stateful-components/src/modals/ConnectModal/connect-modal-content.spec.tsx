@@ -48,7 +48,7 @@ describe("Testing Connect Modal Content", () => {
         token: MIXPANEL_TOKEN_FOR_TEST,
         "Error Message": "Failed to connect with MetaMask",
         "Wallet Provider": "metamask",
-      }
+      },
     );
     expect(mixpanel.track).toHaveBeenCalledTimes(2);
   });
@@ -73,7 +73,7 @@ describe("Testing Connect Modal Content", () => {
       CLICK_EVMOS_COPILOT_START_FLOW,
       {
         token: MIXPANEL_TOKEN_FOR_TEST,
-      }
+      },
     );
     expect(mixpanel.track).toHaveBeenCalledTimes(1);
   });

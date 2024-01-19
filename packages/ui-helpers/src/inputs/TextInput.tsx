@@ -29,7 +29,7 @@ export function TextInput({
       <input
         className={cn(
           "w-full bg-transparent focus-visible:outline-none placeholder:text-gray-400 placeholder:font-normal",
-          className
+          className,
         )}
         placeholder={placeholder}
         {...rest}

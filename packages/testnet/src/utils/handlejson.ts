@@ -15,7 +15,7 @@ export const writeJson = async (path: string, data: {}) => {
 
 export const updateJson = async <T extends {}>(
   path: string,
-  updater: (json: T) => T
+  updater: (json: T) => T,
 ) => {
   const json = (await readJson(path)) as T;
 

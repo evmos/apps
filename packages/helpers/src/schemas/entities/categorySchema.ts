@@ -17,7 +17,7 @@ const categoryPropertiesSchema = createNotionPropertiesSchema(
     description: richTextSchema,
     subItem: relationSchema,
     language: selectSchema,
-  })
+  }),
 );
 
 export const categorySchema = z

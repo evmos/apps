@@ -26,7 +26,7 @@ describe("Dapp store ", () => {
     const addAppPAge = await addPagePromise;
     await expect(addAppPAge).toHaveURL(ADD_DAPP_FORM_URL);
     await expect(
-      addAppPAge.getByRole("heading", { name: "Add your dApp", exact: true })
+      addAppPAge.getByRole("heading", { name: "Add your dApp", exact: true }),
     ).toBeVisible();
     await addAppPAge.close();
 
@@ -37,7 +37,7 @@ describe("Dapp store ", () => {
     await earnRevenuePage.close();
 
     await expect(
-      page.getByRole("heading", { name: /Instant dApps/i })
+      page.getByRole("heading", { name: /Instant dApps/i }),
     ).toBeVisible();
 
     await page.getByRole("link", { name: /See More/i }).click();
@@ -63,7 +63,7 @@ describe("Dapp store ", () => {
       })
       .click();
     await expect(
-      page.getByRole("heading", { name: /How to use c14 Instant dApp/i })
+      page.getByRole("heading", { name: /How to use c14 Instant dApp/i }),
     ).toBeVisible();
 
     const c14Widget = page.getByTestId("c14-widget");
@@ -77,10 +77,10 @@ describe("Dapp store ", () => {
       .getByRole("link", { name: /Transak Transak Instant dApp/i })
       .click();
     await expect(page).toHaveURL(
-      "http://localhost:3000/dapps/on-ramps/transak"
+      "http://localhost:3000/dapps/on-ramps/transak",
     );
     await expect(
-      page.getByRole("heading", { name: /How to use Transak Instant dApp/i })
+      page.getByRole("heading", { name: /How to use Transak Instant dApp/i }),
     ).toBeVisible();
 
     const transakWidget = page.getByTestId("transak-widget");
@@ -97,7 +97,7 @@ describe("Dapp store ", () => {
       })
       .click();
     await expect(page).toHaveURL(
-      "http://localhost:3000/dapps/bridge-and-swap/cypher-wallet"
+      "http://localhost:3000/dapps/bridge-and-swap/cypher-wallet",
     );
 
     await expect(page.getByText(/Connection required/i)).toBeVisible();

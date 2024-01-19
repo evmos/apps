@@ -103,7 +103,7 @@ describe("Mission Page - Copilot", () => {
 
     await step("Top up account", async () => {
       await waitLocator(
-        page.getByRole("button", { name: /Top up your account/i })
+        page.getByRole("button", { name: /Top up your account/i }),
       ).click();
       await page.route(`${BALANCE_ENDPOINT}`, async (route) => {
         const json = {
@@ -125,7 +125,7 @@ describe("Mission Page - Copilot", () => {
 
       await page.getByRole("button", { name: "Debit/Credit card" }).click();
       await expect(
-        page.getByRole("button", { name: /Next steps/i })
+        page.getByRole("button", { name: /Next steps/i }),
       ).toBeHidden();
 
       await page.route(`${BALANCE_ENDPOINT}`, async (route) => {

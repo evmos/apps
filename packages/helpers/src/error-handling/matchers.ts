@@ -5,7 +5,7 @@ import { has, isString } from "../assertions";
 
 function matchByCode<TCode>(
   error: unknown,
-  code: TCode
+  code: TCode,
 ): error is {
   code: TCode;
 } {
@@ -15,7 +15,7 @@ function matchByCode<TCode>(
 
 function matchByName<TName>(
   error: unknown,
-  name: TName
+  name: TName,
 ): error is {
   name: TName;
 } {
@@ -25,7 +25,7 @@ function matchByName<TName>(
 
 function matchByMessage(
   error: unknown,
-  message: string
+  message: string,
 ): error is {
   message: string;
 } {
@@ -40,7 +40,7 @@ function matchByPattern(error: unknown, pattern: RegExp) {
 }
 function matchByClass<TClass>(
   error: unknown,
-  Class: new (...args: any[]) => TClass
+  Class: new (...args: any[]) => TClass,
 ): error is TClass {
   return error instanceof Class;
 }

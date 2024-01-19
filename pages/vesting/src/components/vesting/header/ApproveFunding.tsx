@@ -39,7 +39,7 @@ export default function ApproveFunding({ onClose }: { onClose: () => void }) {
             explorerTxUrl: `${EXPLORER_URL}/tx`,
           },
           type: SNACKBAR_TYPES.SUCCESS,
-        })
+        }),
       );
       setIsLoading(false);
       onClose();
@@ -53,7 +53,7 @@ export default function ApproveFunding({ onClose }: { onClose: () => void }) {
             title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
           },
           type: SNACKBAR_TYPES.ERROR,
-        })
+        }),
       );
     }
   }

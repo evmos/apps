@@ -6,8 +6,8 @@ import { getChains } from "./get-chain";
 
 const TOKEN_BY_REF = Object.fromEntries(
   getChains().flatMap((chain) =>
-    chain.tokens.map((token) => [token.ref, token])
-  )
+    chain.tokens.map((token) => [token.ref, token]),
+  ),
 ) as TokenByRef;
 
 export function getTokenByRef<T extends TokenRef>(ref: T): TokenByRef[T];

@@ -27,7 +27,7 @@ export const deployERC20Contract = async (
   }: {
     name: string;
     symbol: string;
-  }
+  },
 ) => {
   const url = `http://127.0.0.1:${config.api.jsonRpc}`;
   const clientParameters = {
@@ -128,7 +128,7 @@ export const deployERC20Contract = async (
     const registeredTokenPairs = await getTokenPairsFromNetwork(config);
 
     const isRegistered = registeredTokenPairs.token_pairs.some(
-      ({ erc20_address }) => erc20_address === contractAddress
+      ({ erc20_address }) => erc20_address === contractAddress,
     );
 
     if (isRegistered) {

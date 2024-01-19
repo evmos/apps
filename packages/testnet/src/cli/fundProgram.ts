@@ -12,7 +12,7 @@ import { getChainClient } from "../utils/get-chain-client";
 const fundEvmosAccount = async (
   config: Config,
   accountKeyOrAddress: string,
-  amount: string
+  amount: string,
 ) => {
   const accounts = await readAccounts();
   const address = accountKeyOrAddress.startsWith("evmos1")
@@ -42,7 +42,7 @@ const fundEvmosAccount = async (
   Log().info(response);
 };
 export const fundProgram = createCommand("fund").description(
-  "Fund an account with tokens"
+  "Fund an account with tokens",
 );
 fundProgram
   .command("evmos <accountKeyOrAddress> <amount>")
@@ -50,6 +50,6 @@ fundProgram
     await fundEvmosAccount(
       createConfig(evmosConfig),
       accountKeyOrAddress,
-      amount
+      amount,
     );
   });

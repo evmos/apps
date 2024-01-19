@@ -20,7 +20,7 @@ export const listenToBlocks = async (config: Config) => {
             method: "subscribe",
             params: ["tm.event='NewBlock'"],
             id: 1,
-          })
+          }),
         );
       });
     } catch (e) {

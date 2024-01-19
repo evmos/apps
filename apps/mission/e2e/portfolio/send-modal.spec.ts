@@ -21,7 +21,7 @@ const waitForTestnet = async () => {
         await fetch("http://127.0.0.1:1327");
 
         const response = await fetch(
-          `http://127.0.0.1:1317/evmos/erc20/v1/token_pairs`
+          `http://127.0.0.1:1317/evmos/erc20/v1/token_pairs`,
         );
 
         const resp = (await response.json()) as {
@@ -41,13 +41,13 @@ const waitForTestnet = async () => {
 };
 const enableLocalnet = async (page: Page) => {
   await waitLocator(
-    page.getByTestId("network-mode-selector-localtestnet")
+    page.getByTestId("network-mode-selector-localtestnet"),
   ).click();
 };
 const fillAmount = async (page: Page, amount = "10") => {
   await step("Fill amount", async () => {
     const amountInput = await waitLocator(
-      page.getByTestId("asset-selector-amount-input")
+      page.getByTestId("asset-selector-amount-input"),
     ).focus();
 
     await amountInput.fill(amount, {
@@ -59,7 +59,7 @@ const fillAmount = async (page: Page, amount = "10") => {
 const fillAddress = async (
   page: Page,
   // eslint-disable-next-line no-secrets/no-secrets
-  address = "evmos1gxykhk5uffcrc7mqppftfrcxumqm6gz0lh8t5k"
+  address = "evmos1gxykhk5uffcrc7mqppftfrcxumqm6gz0lh8t5k",
 ) => {
   await step("Fill receiver address", async () => {
     await waitLocator(page.getByTestId("account-selector-input")).fill(address);
@@ -83,11 +83,11 @@ const expectSuccessScreen = async (page: Page) => {
 const selectToken = async (page: Page, denom: string) => {
   await step("Select token", async () => {
     await waitLocator(
-      page.getByTestId("asset-selector-token-selector-button")
+      page.getByTestId("asset-selector-token-selector-button"),
     ).click();
 
     await waitLocator(
-      page.getByTestId(`asset-selector-token-selector-option-${denom}`)
+      page.getByTestId(`asset-selector-token-selector-option-${denom}`),
     ).click();
   });
 };
@@ -95,11 +95,11 @@ const selectToken = async (page: Page, denom: string) => {
 const selectDestinationNetwork = async (page: Page, network: string) => {
   await step("Select destination network", async () => {
     await waitLocator(
-      page.getByTestId("account-selector-network-selector-button")
+      page.getByTestId("account-selector-network-selector-button"),
     ).click();
 
     await waitLocator(
-      page.getByTestId(`account-selector-network-selector-option-${network}`)
+      page.getByTestId(`account-selector-network-selector-option-${network}`),
     ).click();
   });
 };
@@ -107,11 +107,11 @@ const selectDestinationNetwork = async (page: Page, network: string) => {
 const selectNetwork = async (page: Page, network: string) => {
   await step("Select network", async () => {
     await waitLocator(
-      page.getByTestId("asset-selector-network-selector-button")
+      page.getByTestId("asset-selector-network-selector-button"),
     ).click();
 
     await waitLocator(
-      page.getByTestId(`asset-selector-network-selector-option-${network}`)
+      page.getByTestId(`asset-selector-network-selector-option-${network}`),
     ).click();
   });
 };

@@ -22,6 +22,6 @@ export const getIBCChannelId = ({
     return receiverChain.channels.evmos.counterpartyChannelId;
   }
   throw new Error(
-    `Could not find channel id for ${senderChain.name} -> ${receiverChain.name}`
+    `Could not find channel id for ${senderChain.name} -> ${receiverChain.name}`,
   );
 };

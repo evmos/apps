@@ -62,7 +62,7 @@ export const createTypedMessage = async ({
             {
               amount: multiply(
                 gasLimit,
-                evmos.registry.gasPriceStep.average
+                evmos.registry.gasPriceStep.average,
               ).toString(),
               denom: evmos.registry.feeToken,
             },

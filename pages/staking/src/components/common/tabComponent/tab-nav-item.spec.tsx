@@ -17,7 +17,7 @@ describe("Testing Tab Nav Item ", () => {
         title="validators"
         activeTab="tab2"
         setActiveTab={vi.fn()}
-      />
+      />,
     );
 
     const button = screen.getByText(/Validators/i);
@@ -41,7 +41,7 @@ describe("Testing Tab Nav Item ", () => {
         title="validators"
         activeTab="tab2"
         setActiveTab={vi.fn()}
-      />
+      />,
     );
 
     const button = screen.getByText(/Validators/i);

@@ -35,7 +35,7 @@ const sortKeys = <T extends Record<string, unknown>>(obj: T): T =>
         acc[key] = obj[key];
         return acc;
       },
-      {} as Record<string, unknown>
+      {} as Record<string, unknown>,
     ) as T;
 
 export const encodeEvmosEIP712Types = (messagePayload: Msg[]) => {
@@ -79,7 +79,7 @@ export const encodeEvmosEIP712Types = (messagePayload: Msg[]) => {
 const addMsgTypesToRoot = (
   eip712Types: Eip712Types,
   msgField: string,
-  msg: Msg
+  msg: Msg,
 ) => {
   const msgRootType = getMsgRootType(msg);
 
@@ -87,7 +87,7 @@ const addMsgTypesToRoot = (
     eip712Types,
     msgRootType,
     rootPrefix,
-    msg
+    msg,
   );
 
   addMsgTypeDefToTxSchema(eip712Types, msgField, msgTypeDef);
@@ -107,7 +107,7 @@ const getMsgRootType = (msg: Msg) => {
 const addMsgTypeDefToTxSchema = (
   eip712Types: Eip712Types,
   msgField: string,
-  msgTypeDef: string
+  msgTypeDef: string,
 ) => {
   get(eip712Types, txField)?.push({ name: msgField, type: msgTypeDef });
 };
@@ -116,10 +116,10 @@ const recursivelyAddTypesToRoot = (
   typeMap: Eip712Types,
   rootType: string,
   prefix: string,
-  payload: Record<string, unknown>
+  payload: Record<string, unknown>,
 ) => {
   const sortedFieldNames = Object.keys(payload).sort((a, b) =>
-    a <= b ? 1 : -1
+    a <= b ? 1 : -1,
   );
 
   const typesToAdd: Eip712Type[] = [];
@@ -165,7 +165,7 @@ const recursivelyAddTypesToRoot = (
         typeMap,
         rootType,
         fieldPrefix,
-        field as Record<string, unknown>
+        field as Record<string, unknown>,
       );
 
       let typeDef = sanitizeTypedef(fieldTypeDef);
@@ -194,7 +194,7 @@ const prefixForSubField = (prefix: string, fieldName: string) =>
 const addTypesToRoot = (
   typeMap: Eip712Types,
   typeDef: string,
-  types: Eip712Type[]
+  types: Eip712Type[],
 ) => {
   let indexedTypeDef = typeDef;
 
@@ -219,7 +219,7 @@ const addTypesToRoot = (
 
     if (indexAsDuplicate === maxDuplicateTypeDefs) {
       throw new Error(
-        "exceeded maximum number of duplicates for a single type definition"
+        "exceeded maximum number of duplicates for a single type definition",
       );
     }
   }
@@ -234,7 +234,7 @@ const typeDefWithIndex = (typeDef: string, index: number) =>
 
 const typesAreEqual = (
   types1: Readonly<Eip712Type[]>,
-  types2: Readonly<Eip712Type[]>
+  types2: Readonly<Eip712Type[]>,
 ) => {
   if (types1.length !== types2.length) {
     return false;

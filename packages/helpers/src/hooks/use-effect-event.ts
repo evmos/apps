@@ -11,7 +11,7 @@ import { useRef, useInsertionEffect, useCallback } from "react";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export function useEffectEvent<T extends (...args: any[]) => unknown>(
-  fn: T
+  fn: T,
 ): T {
   const ref = useRef(fn);
   useInsertionEffect(() => {

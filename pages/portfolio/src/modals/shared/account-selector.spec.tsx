@@ -29,15 +29,15 @@ describe("Testing Account Selector", () => {
       />,
       {
         wrapper,
-      }
+      },
     );
     const button = await screen.findByTestId(
-      /account-selector-network-selector-button/i
+      /account-selector-network-selector-button/i,
     );
     expect(button).toBeDefined();
     await userEvent.click(button);
     const buttonEvmos = screen.getByTestId(
-      /account-selector-network-selector-option-EVMOS/i
+      /account-selector-network-selector-option-EVMOS/i,
     );
     expect(buttonEvmos).toBeDefined();
     await userEvent.click(buttonEvmos);
@@ -61,15 +61,15 @@ describe("Testing Account Selector", () => {
       />,
       {
         wrapper,
-      }
+      },
     );
     const button = await screen.findByTestId(
-      /account-selector-network-selector-button/i
+      /account-selector-network-selector-button/i,
     );
     expect(button).toBeDefined();
     await userEvent.click(button);
     const buttonEvmos = screen.getByTestId(
-      /account-selector-network-selector-option-EVMOS/i
+      /account-selector-network-selector-option-EVMOS/i,
     );
     expect(buttonEvmos).toBeDefined();
     await userEvent.click(buttonEvmos);

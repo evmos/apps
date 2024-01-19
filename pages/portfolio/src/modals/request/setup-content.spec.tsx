@@ -53,7 +53,7 @@ describe("Testing Set Up Content", () => {
       />,
       {
         wrapper,
-      }
+      },
     );
 
     const button = await screen.findByTestId(/receive-modal-generate-button/i);
@@ -65,7 +65,7 @@ describe("Testing Set Up Content", () => {
       {
         "Wallet Provider": null,
         token: MIXPANEL_TOKEN_FOR_TEST,
-      }
+      },
     );
     expect(mixpanel.track).toHaveBeenCalledTimes(1);
   });
@@ -82,7 +82,7 @@ describe("Testing Set Up Content", () => {
       />,
       {
         wrapper,
-      }
+      },
     );
 
     const button = await screen.findByTestId(/receive-modal-generate-button/i);

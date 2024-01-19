@@ -23,7 +23,7 @@ export const SetupStep = ({
         {
           "before:bg-red-300": !completed,
           "before:bg-green1": completed,
-        }
+        },
       )}
     >
       <span
@@ -33,7 +33,7 @@ export const SetupStep = ({
             "ring-1 bg-white ring-red-300 disabled:brightness-90 before:bg-red-300":
               !completed,
             "bg-green1 before:bg-green1": completed,
-          }
+          },
         )}
       >
         <CheckIcon
@@ -51,7 +51,7 @@ export const SetupStep = ({
             {
               "bg-red-300 disabled:brightness-90": !completed,
               "bg-green1": completed,
-            }
+            },
           )}
           {...rest}
         />

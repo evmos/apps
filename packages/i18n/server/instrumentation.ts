@@ -21,7 +21,7 @@ const initI18next = async (locale: string, namespace: string) => {
           Log().warn(`Missing translation file: ${language}/${namespace}.json`);
           return {};
         }
-      })
+      }),
     )
     .init(getOptions(locale, namespace));
   return i18nInstance;
@@ -31,7 +31,7 @@ export async function translation(
   namespace: string = "common",
   options: {
     keyPrefix?: string;
-  } = {}
+  } = {},
 ) {
   const locale = getLocale();
   const i18nextInstance = await initI18next(locale, namespace);

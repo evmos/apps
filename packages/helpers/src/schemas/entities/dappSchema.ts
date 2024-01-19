@@ -49,7 +49,7 @@ const dappPropertiesSchema = createNotionPropertiesSchema(
     createdAt: createdAtSchema,
     language: selectSchema,
     categories: relationSchema,
-  })
+  }),
 );
 
 export const dappSchema = z

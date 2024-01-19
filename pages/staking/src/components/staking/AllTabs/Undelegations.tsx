@@ -56,7 +56,7 @@ const Undelegations = () => {
   const filtered = useMemo(() => {
     // it filters by name
     const filteredData = undelegations.filter((i) =>
-      i.validator.description.moniker.toLowerCase().includes(value)
+      i.validator.description.moniker.toLowerCase().includes(value),
     );
     if (value !== "") {
       return filteredData;
@@ -129,7 +129,7 @@ const Undelegations = () => {
                 value: `${convertAndFormat(
                   BigNumber.from(item.balance),
                   EVMOS_DECIMALS,
-                  6
+                  6,
                 )} EVMOS`,
               }}
             />

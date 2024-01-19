@@ -10,7 +10,7 @@ import { set } from "lodash-es";
 export const assignGasEstimateToProtoTx = (
   sender: Address<Prefix>,
   tx: Tx,
-  estimatedGas: bigint
+  estimatedGas: bigint,
 ) => {
   tx = tx.clone();
 

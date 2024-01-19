@@ -35,7 +35,7 @@ export const useDelegation = (useDelegateProps: DelegateProps) => {
       const [err] = await E.try(() =>
         switchChain(config, {
           chainId: evmos.id,
-        })
+        }),
       );
       if (err) return;
     }
@@ -64,7 +64,7 @@ export const useDelegation = (useDelegateProps: DelegateProps) => {
       const hash = await delegate(
         useDelegateProps.wallet.evmosAddressEthFormat,
         useDelegateProps.item.validatorAddress,
-        amount
+        amount,
       );
 
       dispatch(snackBroadcastSuccessful(hash, `${EXPLORER_URL}/tx`));

@@ -38,7 +38,7 @@ export const useConvert = (useConvertProps: ConvertProps) => {
       const [err] = await E.try(() =>
         switchChain(config, {
           chainId: evmos.id,
-        })
+        }),
       );
       if (err) return;
     }
@@ -59,7 +59,7 @@ export const useConvert = (useConvertProps: ConvertProps) => {
     }
     const amount = parseUnits(
       useConvertProps.inputValue,
-      BigNumber.from(useConvertProps.item.decimals)
+      BigNumber.from(useConvertProps.item.decimals),
     );
     if (amount.gt(useConvertProps.balance.balanceFrom)) {
       return;

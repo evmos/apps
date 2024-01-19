@@ -55,8 +55,8 @@ export default function Osmosis() {
     return parseFloat(
       formatUnits(
         BigInt(latestQuote?.return_amount ?? "0"),
-        outputTokenData.exponent
-      )
+        outputTokenData.exponent,
+      ),
     );
   }, [latestQuote?.return_amount, loading, outputTokenData]);
 
@@ -65,8 +65,8 @@ export default function Osmosis() {
     return parseFloat(
       formatUnits(
         BigInt(latestQuote?.input_amount ?? "0"),
-        inputTokenData.exponent
-      )
+        inputTokenData.exponent,
+      ),
     );
   }, [inputTokenData, latestQuote?.input_amount, loading]);
 
@@ -77,8 +77,8 @@ export default function Osmosis() {
     formatUnits(
       BigInt(inputTokenData?.balance ?? 0n),
       inputTokenData?.exponent ?? 0,
-      6
-    )
+      6,
+    ),
   );
 
   const [isHoveringSwitchButton, setHoveringSwitchButton] = useState(false);
@@ -89,7 +89,7 @@ export default function Osmosis() {
     parseFloat(
       swapAmountInputValue.toString() === ""
         ? "0"
-        : swapAmountInputValue.toString()
+        : swapAmountInputValue.toString(),
     );
 
   function swapTokens() {
@@ -101,7 +101,7 @@ export default function Osmosis() {
         output: output,
         amount: parseUnits(
           swapAmountInputValue.toString(),
-          inputTokenData?.exponent ?? 18
+          inputTokenData?.exponent ?? 18,
         ),
         slippage_tolerance: currentSlippage,
       });
@@ -241,7 +241,7 @@ export default function Osmosis() {
               "h-10 w-10 md:h-8 md:w-8": !isHoveringSwitchButton,
               "h-11 w-11 -translate-x-[2px] md:h-9 md:w-9":
                 isHoveringSwitchButton,
-            }
+            },
           )}
           onMouseEnter={() => {
             setHoveringSwitchButton(true);
@@ -262,7 +262,7 @@ export default function Osmosis() {
                   "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-bounce",
                   {
                     "rotate-180 opacity-0": isHoveringSwitchButton,
-                  }
+                  },
                 )}
               >
                 <OsmosisDownArrowIcon />
@@ -273,7 +273,7 @@ export default function Osmosis() {
                   {
                     "rotate-180 opacity-100": isHoveringSwitchButton,
                     "opacity-0": !isHoveringSwitchButton,
-                  }
+                  },
                 )}
               >
                 <OsmosisSwapIcon aria-label="switch" />
@@ -395,7 +395,7 @@ export default function Osmosis() {
                 <OsmosisChevronDownIcon
                   className={cn(
                     "text-osmoverse-400 transition-all",
-                    detailsOpen ? "rotate-180" : "rotate-0"
+                    detailsOpen ? "rotate-180" : "rotate-0",
                   )}
                 />
               </div>
@@ -416,7 +416,7 @@ export default function Osmosis() {
                     ≈ $
                     {formatNumber(
                       (number_min_received * outputTokenData.price * 0.2) / 100,
-                      4
+                      4,
                     )}
                   </span>
                 )}
@@ -442,7 +442,7 @@ export default function Osmosis() {
                       ≈ $
                       {formatNumber(
                         minReceivedAfterSlippage * outputTokenData.price,
-                        5
+                        5,
                       )}
                     </span>
                   )}

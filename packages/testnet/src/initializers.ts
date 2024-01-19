@@ -23,7 +23,7 @@ export const setupTestnet = async (
     enableLogging?: boolean;
     compactLogging?: boolean;
     overwrite?: boolean;
-  } = {}
+  } = {},
 ) => {
   const logger = createLogger({
     enabled: !!options.enableLogging,
@@ -94,7 +94,7 @@ export const setupTestnet = async (
     !(
       registeredTokens.includes(
         // eslint-disable-next-line no-secrets/no-secrets
-        "0x04f9faC55b24c53F39b2aDCbef6318Ee2d9A6B84"
+        "0x04f9faC55b24c53F39b2aDCbef6318Ee2d9A6B84",
       ) &&
       registeredTokens.includes("0x80b5a32E4F032B2a058b4F29EC95EEfEEB87aDcd")
     )
@@ -103,7 +103,7 @@ export const setupTestnet = async (
       [
         "Something went wrong with the token registration",
         "please, reset your testnet by running `pnpm run testnet start --recreate`",
-      ].join("\n")
+      ].join("\n"),
     );
   }
 
@@ -133,7 +133,7 @@ export const setupTestnet = async (
           evmos.config.chainId,
           evmosHeight,
           ...Object.values(evmos.config.api).map((port) => `:${port}`),
-        ]
+        ],
       );
       process.stdout.write("\x1Bc");
       logger.info("All set 🚀");

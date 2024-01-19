@@ -16,7 +16,7 @@ const getAssets = async () => {
 };
 
 export const getAssetsForAddress = async (
-  address?: string
+  address?: string,
 ): Promise<ERC20BalanceResponse> => {
   // If not wallet selected return everything empty
   if (!address) {
@@ -28,7 +28,7 @@ export const getAssetsForAddress = async (
   ]);
 
   const balancesMap = Object.fromEntries(
-    balances.map((balance) => [balance.denom + "-" + balance.type, balance])
+    balances.map((balance) => [balance.denom + "-" + balance.type, balance]),
   );
 
   return {

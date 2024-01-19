@@ -69,7 +69,7 @@ describe("Testing Tab Dropdowns ", () => {
       CLICK_BUTTON_MANAGE_UNDELEGATE,
       {
         token: MIXPANEL_TOKEN_FOR_TEST,
-      }
+      },
     );
   });
 
@@ -95,7 +95,7 @@ describe("Testing Tab Dropdowns ", () => {
       CLICK_BUTTON_MANAGE_REDELEGATE,
       {
         token: MIXPANEL_TOKEN_FOR_TEST,
-      }
+      },
     );
   });
 

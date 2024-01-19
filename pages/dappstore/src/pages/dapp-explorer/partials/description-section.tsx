@@ -51,7 +51,7 @@ export const DescriptiondApp = async ({
           className={cn(
             "relative h-[250px] w-screen ml-[49%] -translate-x-1/2",
             // gradient overlay
-            " after:bg-gradient-to-t after:from-black/70 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0"
+            " after:bg-gradient-to-t after:from-black/70 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
           )}
         >
           <Image
@@ -73,13 +73,13 @@ export const DescriptiondApp = async ({
         <header
           className={cn(
             "flex flex-col items-center -mt-24 gap-4",
-            "md:flex-row md:items-stretch lg:gap-x-8"
+            "md:flex-row md:items-stretch lg:gap-x-8",
           )}
         >
           <div
             className={cn(
               "relative shrink-0 w-32 h-32 aspect-square rounded-[2rem] overflow-hidden",
-              "md:w-36 md:h-36"
+              "md:w-36 md:h-36",
             )}
           >
             {dapp.icon && (
@@ -97,7 +97,7 @@ export const DescriptiondApp = async ({
           <div
             className={cn(
               "relative text-center gap-8 flex flex-col w-full justify-between",
-              "md:text-left"
+              "md:text-left",
             )}
           >
             <div className="flex flex-col md:flex-row items-center md:items-end space-y-2 md:space-y-0">

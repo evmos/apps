@@ -30,5 +30,5 @@ export const filesSchema = z
           src: file.url,
           expiryTime: "expiryTime" in file ? file.expiryTime : null,
         }
-      : null
+      : null,
   );

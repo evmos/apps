@@ -66,7 +66,7 @@ export const SelectMenu = ({
                     className={({ active }) =>
                       classNames(
                         active ? "bg-gray text-black" : "text-black",
-                        "relative cursor-default select-none py-2 pl-3 pr-9"
+                        "relative cursor-default select-none py-2 pl-3 pr-9",
                       )
                     }
                     value={option}
@@ -75,7 +75,7 @@ export const SelectMenu = ({
                       <>
                         <span
                           className={classNames(
-                            selected ? "font-semibold" : "font-normal"
+                            selected ? "font-semibold" : "font-normal",
                           )}
                         >
                           {option}
@@ -85,7 +85,7 @@ export const SelectMenu = ({
                           <span
                             className={classNames(
                               active ? "text-black" : "text-black",
-                              "absolute inset-y-0 right-0 flex items-center pr-4"
+                              "absolute inset-y-0 right-0 flex items-center pr-4",
                             )}
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />

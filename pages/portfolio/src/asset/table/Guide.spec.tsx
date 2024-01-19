@@ -21,7 +21,7 @@ describe("Testing Guide ", () => {
       CLICK_CTA_LINKS_REGISTER_TOKEN,
       {
         token: MIXPANEL_TOKEN_FOR_TEST,
-      }
+      },
     );
   });
 

@@ -13,13 +13,13 @@ export const fetchChains = async function fetchChains() {
   const fromExtensions = loadRegistryChainExtensions();
 
   const all = (await Promise.all([fromRegistry, fromExtensions])).flatMap(
-    (x) => x
+    (x) => x,
   );
   const flattened = all.flatMap(({ configurations, ...chain }) =>
     configurations.map((configuration) => ({
       ...chain,
       ...configuration,
-    }))
+    })),
   );
 
   //  sanity check

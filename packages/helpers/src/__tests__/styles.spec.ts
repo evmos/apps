@@ -25,10 +25,10 @@ describe("Test Styles for Asset", () => {
     const msg = getReservedForFeeText(
       BigNumber.from("300000000000000000"),
       "EVMOS",
-      "EVMOS"
+      "EVMOS",
     );
     expect(msg).toBe(
-      "0.3 EVMOS is reserved for transaction fees on the EVMOS network."
+      "0.3 EVMOS is reserved for transaction fees on the EVMOS network.",
     );
   });
 });
@@ -51,7 +51,7 @@ describe("safeSubstraction function", () => {
   it("Substraction greater than 0", () => {
     const value = safeSubstraction(
       createBigNumber("18008145312597981734"),
-      createBigNumber("300000000000000000")
+      createBigNumber("300000000000000000"),
     );
     expect(value._isBigNumber).toBe(true);
     expect(value._hex).toBe("0xf5bff8570c66ba26");
@@ -119,7 +119,7 @@ describe("amountToDollars function", () => {
     const value = amountToDollars(
       BigNumber.from("3608489735347276767"),
       18,
-      0.407541
+      0.407541,
     );
     expect(value).toBe("1.47");
   });
@@ -222,7 +222,7 @@ describe("checkFormatAddress function", () => {
     const value = checkFormatAddress(
       // eslint-disable-next-line no-secrets/no-secrets
       "evmos1c8wgcmqde5jzymrjrflpp8j20ss000c00zd0ak",
-      "EVMOS"
+      "EVMOS",
     );
     expect(value).toBe(true);
   });
@@ -231,7 +231,7 @@ describe("checkFormatAddress function", () => {
     const value = checkFormatAddress(
       // eslint-disable-next-line no-secrets/no-secrets
       "osmo1j30xhsxcqss0n662wrma0vqw4zcx285munun8a",
-      "EVMOS"
+      "EVMOS",
     );
     expect(value).toBe(false);
   });

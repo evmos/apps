@@ -34,7 +34,7 @@ export const NetworkModeSelector = () => {
             "text-white py-2 px-3 uppercase text-xxs font-bold grow ",
             {
               "bg-red-300": net === mode,
-            }
+            },
           )}
         >
           {net}

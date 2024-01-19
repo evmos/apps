@@ -19,9 +19,9 @@ export const useTokenPrice = (tokenRef: TokenRef) => {
           acc[ref] = coingeckoPrice;
           return acc;
         },
-        {} as Record<TokenRef, string | undefined>
+        {} as Record<TokenRef, string | undefined>,
       ),
-    [assets]
+    [assets],
   );
   return priceMap[tokenRef];
 };

@@ -8,7 +8,7 @@ import { recoverPublicKey } from "../recover-publickey";
 
 export const recoverPubkeyFromTypedMessage = (
   signature: Hex,
-  typedMessage: EvmosTypedData
+  typedMessage: EvmosTypedData,
 ) => {
   return recoverPublicKey({
     signature,

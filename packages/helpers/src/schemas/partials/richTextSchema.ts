@@ -8,7 +8,7 @@ export const richTextSchema = z
     rich_text: z.array(
       z.object({
         plain_text: z.string(),
-      })
+      }),
     ),
   })
   .transform((data) => {

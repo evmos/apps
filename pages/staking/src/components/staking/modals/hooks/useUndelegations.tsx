@@ -38,7 +38,7 @@ export const useUndelegation = (useUndelegateProps: UndelegateProps) => {
       const [err] = await E.try(() =>
         switchChain(config, {
           chainId: evmos.id,
-        })
+        }),
       );
       if (err) return;
     }
@@ -63,7 +63,7 @@ export const useUndelegation = (useUndelegateProps: UndelegateProps) => {
       const hash = await undelegate(
         useUndelegateProps.wallet.evmosAddressEthFormat,
         useUndelegateProps.item.validatorAddress,
-        amount
+        amount,
       );
 
       dispatch(snackBroadcastSuccessful(hash, `${EXPLORER_URL}/tx`));

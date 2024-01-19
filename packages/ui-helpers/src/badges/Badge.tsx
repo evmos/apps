@@ -24,7 +24,7 @@ export const Badge = ({
           "border border-black-300 bg-black-500 text-pearl text-xs md:text-sm tracking-wide px-2 md:px-4 py-1.5 font-bold cursor-pointer transition-color duration-100 ease-in-out hover:bg-black-100 active:bg-black-100":
             variant === "dark",
         },
-        className
+        className,
       )}
       {...rest}
     />

@@ -15,6 +15,6 @@ export const evmosStatusSchema = z.object({
         Name: titleSchema,
         Description: richTextSchema,
       }),
-    })
+    }),
   ),
 });

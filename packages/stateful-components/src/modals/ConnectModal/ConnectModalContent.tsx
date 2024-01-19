@@ -41,7 +41,7 @@ export const ButtonWallet = ({
         "transition-all duration-300",
         {
           disabled: disabled,
-        }
+        },
       )}
       {...props}
     />
@@ -73,7 +73,7 @@ export const ConnectModalContent = ({
             WALLET_NOTIFICATIONS.ExtensionNotFoundSubtext,
             {
               walletName: connector.name,
-            }
+            },
           );
           return;
         }
@@ -86,7 +86,7 @@ export const ConnectModalContent = ({
             WALLET_NOTIFICATIONS.AddressSubtext,
             {
               walletName: connector.name,
-            }
+            },
           );
           return;
         }
@@ -100,7 +100,7 @@ export const ConnectModalContent = ({
             "The connection was rejected",
             {
               walletName: connector.name,
-            }
+            },
           );
           return;
         }

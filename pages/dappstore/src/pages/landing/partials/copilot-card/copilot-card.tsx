@@ -138,7 +138,7 @@ export const CopilotCard = () => {
               <Link
                 className={cn(
                   linkCn,
-                  "text-sm py-3 rounded-lg bg-pearl/10 text-pearl"
+                  "text-sm py-3 rounded-lg bg-pearl/10 text-pearl",
                 )}
                 href={"/dapps/instant-dapps"}
               >
@@ -168,7 +168,7 @@ const Step = ({
         "before:bg-transparent before:border before:border-[#A4A189] before:outline before:outline-[#A4A189] before:outline-1 before:outline-offset-1  text-[#A4A189]":
           !completed && !active,
       },
-      className
+      className,
     )}
     {...rest}
   />

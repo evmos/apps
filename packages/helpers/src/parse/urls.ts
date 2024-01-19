@@ -25,7 +25,7 @@ export const parseUrl = (url: string) => {
   };
 
   const matchedKey = Object.keys(matches).find(
-    (key) => matches[key as keyof UrlMatches]
+    (key) => matches[key as keyof UrlMatches],
   );
 
   return matchedKey ? matches[matchedKey as keyof UrlMatches]?.[1] : url;

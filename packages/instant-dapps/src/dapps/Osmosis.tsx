@@ -3,7 +3,6 @@
 
 "use client";
 
-
 import Osmosis from "@evmosapps/widgets/src/Osmosis/Osmosis";
 import { InstantDappContainer } from "./instant-dapp-container";
 

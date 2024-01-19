@@ -69,7 +69,7 @@ function RootLayout({
           evmos.variable,
           poppins.variable,
           inter.variable,
-          "h-full"
+          "h-full",
         )}
       >
         <RootProviders>

@@ -22,9 +22,9 @@ export const ApiPresignTxSchema = z
       .transform((data) =>
         data
           ? (JSON.parse(
-              Buffer.from(data, "base64").toString("utf-8")
+              Buffer.from(data, "base64").toString("utf-8"),
             ) as unknown)
-          : null
+          : null,
       )
       .pipe(z.union([z.null(), TypedDataSchema])),
     legacyAmino: SignBodySchema,

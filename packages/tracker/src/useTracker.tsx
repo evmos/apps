@@ -14,12 +14,12 @@ mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? "", {
 
 export const isTrackerEnabled = () => {
   return !JSON.parse(
-    localStorage.getItem(DISABLE_TRACKER_LOCALSTORAGE) || "true"
+    localStorage.getItem(DISABLE_TRACKER_LOCALSTORAGE) || "true",
   );
 };
 export const sendEvent = (
   trackingID: TrackerEvents,
-  extraProperties?: Dict
+  extraProperties?: Dict,
 ) => {
   const mixpanelIsActive = "config" in mixpanel && isTrackerEnabled();
   Log().table({
@@ -51,6 +51,6 @@ export const useTracker = (event?: TrackerEvents, properties?: Dict) => {
       enableMixpanel,
       sendEvent,
     }),
-    [handlePreClickAction]
+    [handlePreClickAction],
   );
 };

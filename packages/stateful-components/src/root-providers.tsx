@@ -17,7 +17,7 @@ import { WagmiProvider } from "wagmi";
 import { queryClient } from "helpers/src/clients/query";
 function SnackbarsInternal() {
   const snackbars = useSelector(
-    (state: StoreType) => state.snackbar.value.snackbars
+    (state: StoreType) => state.snackbar.value.snackbars,
   );
 
   useMemo(() => {

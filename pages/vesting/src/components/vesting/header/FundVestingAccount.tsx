@@ -77,8 +77,8 @@ export const FundVestingAccount = ({ onClose }: { onClose: () => void }) => {
         } else {
           setFunderBalance(
             BigNumber.from(
-              response?.balance.amount ? response.balance.amount : 0
-            )
+              response?.balance.amount ? response.balance.amount : 0,
+            ),
           );
         }
       })
@@ -138,7 +138,7 @@ export const FundVestingAccount = ({ onClose }: { onClose: () => void }) => {
       const [err] = await E.try(() =>
         switchChain(config, {
           chainId: evmos.id,
-        })
+        }),
       );
       if (err) return;
     }
@@ -155,7 +155,7 @@ export const FundVestingAccount = ({ onClose }: { onClose: () => void }) => {
             vestingInterval: d.vestingSchedule as Intervals,
             vestingCliff: d.vestingCliff as VestingSchedule["vestingCliff"],
             lockingPeriod: d.lockupDuration as TimeWindow,
-          }
+          },
         );
 
       const hash = await fundVestingAccount(
@@ -163,7 +163,7 @@ export const FundVestingAccount = ({ onClose }: { onClose: () => void }) => {
         d.address as string,
         startTime,
         lockupPeriods,
-        vestingPeriods
+        vestingPeriods,
       );
 
       dispatch(
@@ -176,7 +176,7 @@ export const FundVestingAccount = ({ onClose }: { onClose: () => void }) => {
             explorerTxUrl: `${EXPLORER_URL}/tx`,
           },
           type: SNACKBAR_TYPES.SUCCESS,
-        })
+        }),
       );
       setDisabled(false);
       onClose();
@@ -190,14 +190,14 @@ export const FundVestingAccount = ({ onClose }: { onClose: () => void }) => {
             title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
           },
           type: SNACKBAR_TYPES.ERROR,
-        })
+        }),
       );
     }
 
     if (d.accountName !== "") {
       setVestingAccountNameLocalstorage(
         d.address as string,
-        d.accountName as string
+        d.accountName as string,
       );
     }
   };
@@ -245,16 +245,16 @@ export const FundVestingAccount = ({ onClose }: { onClose: () => void }) => {
             setValue("planType", planType);
             setValue(
               "vestingDuration",
-              vestingSettingsConfig[planType].duration[0]!
+              vestingSettingsConfig[planType].duration[0]!,
             );
             setValue("vestingCliff", vestingSettingsConfig[planType].cliff[0]!);
             setValue(
               "vestingSchedule",
-              vestingSettingsConfig[planType].schedule[0]!
+              vestingSettingsConfig[planType].schedule[0]!,
             );
             setValue(
               "lockupDuration",
-              vestingSettingsConfig[planType].lockup[0]!
+              vestingSettingsConfig[planType].lockup[0]!,
             );
           }}
         />

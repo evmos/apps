@@ -3,7 +3,6 @@
 
 "use client";
 
-
 import Squid from "@evmosapps/widgets/src/squid";
 import { InstantDappContainer } from "./instant-dapp-container";
 

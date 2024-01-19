@@ -23,7 +23,7 @@ export const useVote = (useVoteProps: VoteProps) => {
       const [err] = await E.try(() =>
         switchChain(config, {
           chainId: evmos.id,
-        })
+        }),
       );
       if (err) return;
     }

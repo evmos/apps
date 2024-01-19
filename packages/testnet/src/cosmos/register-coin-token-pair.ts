@@ -21,17 +21,17 @@ export const registerCoinTokenPair = async (
     symbol,
     exponent = 18,
     channelId,
-  }: { denom: string; symbol: string; exponent?: number; channelId: string }
+  }: { denom: string; symbol: string; exponent?: number; channelId: string },
 ) => {
   const evmosClient = await getChainClient(evmosConfig);
   const counterpartyClient = await getChainClient(counterpartyConfig);
 
   const { logger } = evmosConfig;
   logger.info(
-    "Before registering a token pair, we need to have some amount of the token in Evmos supply"
+    "Before registering a token pair, we need to have some amount of the token in Evmos supply",
   );
   logger.info(
-    `Transferring ${counterpartyConfig.baseDenom} to ${evmosConfig.chainName}`
+    `Transferring ${counterpartyConfig.baseDenom} to ${evmosConfig.chainName}`,
   );
 
   const destinationAccount = TEST_ACCOUNTS.relayer.evmosAddress;
@@ -64,7 +64,7 @@ export const registerCoinTokenPair = async (
   await pool(async () => {
     const resp = (await (
       await fetch(
-        `http://127.0.0.1:${evmosConfig.api.cosmos}/cosmos/bank/v1beta1/balances/${destinationAccount}/by_denom?denom=${ibcDenom}`
+        `http://127.0.0.1:${evmosConfig.api.cosmos}/cosmos/bank/v1beta1/balances/${destinationAccount}/by_denom?denom=${ibcDenom}`,
       )
     ).json()) as unknown;
 
@@ -102,7 +102,7 @@ export const registerCoinTokenPair = async (
 
   const tokenMetadataPath = path.join(
     evmosConfig.homeDir,
-    `${denom}-metadata.json`
+    `${denom}-metadata.json`,
   );
   await writeJson(tokenMetadataPath, metadata);
   logger.info(`Submitting proposal to registering ${denom} token pair`);
@@ -134,7 +134,7 @@ export const registerCoinTokenPair = async (
   await pool(async () => {
     const registeredTokenPairs = await getTokenPairsFromNetwork(evmosConfig);
     const isRegistered = registeredTokenPairs.token_pairs.some(
-      ({ denom }) => denom === ibcDenom
+      ({ denom }) => denom === ibcDenom,
     );
     if (isRegistered) {
       logger.info(`Token pair registered!`);

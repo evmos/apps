@@ -94,7 +94,7 @@ export const useCosmosQuery = <
   TData = QueryResponse<T>,
 >(
   prefix: Prefixish,
-  options: QueryOptions<T, TData>
+  options: QueryOptions<T, TData>,
 ) => {
   const { route, enabled, queryOptions, select, ...rest } = options;
 
@@ -118,7 +118,7 @@ export const useCosmosSuspenseQuery = <
   TData = QueryResponse<T>,
 >(
   prefix: Prefixish,
-  options: QueryOptions<T, TData, true>
+  options: QueryOptions<T, TData, true>,
 ) => {
   const { route, queryOptions, select, ...rest } = options;
 

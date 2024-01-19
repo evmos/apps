@@ -33,7 +33,7 @@ describe("Testing Container Proposals", () => {
   test("should call mixpanel event for clicking on proposal Card", async () => {
     render(
       <ContainerProposals proposals={PROPOSALS} loading={false} error={""} />,
-      { wrapper }
+      { wrapper },
     );
     const button = screen.getByText(/test/i);
     expect(button).toBeDefined();
@@ -51,7 +51,7 @@ describe("Testing Container Proposals", () => {
     disableMixpanel();
     render(
       <ContainerProposals proposals={PROPOSALS} loading={false} error={""} />,
-      { wrapper }
+      { wrapper },
     );
     const button = screen.getByText(/test/i);
     expect(button).toBeDefined();

@@ -171,7 +171,7 @@ describe.skip("Testing Description section", () => {
         dapp: DAPP,
         relatedApps: RELATED_APPS,
         totalApps: 3,
-      })
+      }),
     );
     const button = await screen.findByRole("button", { name: "See More" });
     expect(button).toBeDefined();

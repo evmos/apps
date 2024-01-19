@@ -33,7 +33,7 @@ describe("Mission Page - Copilot", () => {
     wallet,
   }) => {
     await expect(
-      page.getByText(/Onboard to Evmos in 5 minutes/i)
+      page.getByText(/Onboard to Evmos in 5 minutes/i),
     ).toBeVisible();
 
     // as we are not connected it should display let's go and all they balances with -
@@ -41,7 +41,7 @@ describe("Mission Page - Copilot", () => {
 
     // total balance
     await expect(
-      page.getByRole("heading", { name: /\- Evmos/i, exact: true })
+      page.getByRole("heading", { name: /\- Evmos/i, exact: true }),
     ).toHaveCount(4);
 
     // staking - available balance
@@ -49,7 +49,7 @@ describe("Mission Page - Copilot", () => {
       page
         .locator("div")
         .filter({ hasText: /^Available Balance- EVMOS\$-$/ })
-        .locator("h5")
+        .locator("h5"),
     ).toBeVisible();
 
     // staking - staked balance
@@ -57,12 +57,12 @@ describe("Mission Page - Copilot", () => {
       page
         .locator("div")
         .filter({ hasText: /^Staked Balance- EVMOS\$-$/ })
-        .locator("h5")
+        .locator("h5"),
     ).toBeVisible();
 
     // staking - claimable rewards
     await expect(
-      page.locator("div").filter({ hasText: /^Claimable Rewards- EVMOS\$-$/ })
+      page.locator("div").filter({ hasText: /^Claimable Rewards- EVMOS\$-$/ }),
     ).toBeVisible();
     await page
       .getByRole("button", {
@@ -123,7 +123,7 @@ describe("Mission Page - Copilot", () => {
       .isDisabled();
 
     await expect(
-      page.getByRole("button", { name: "Top Up Account", exact: true })
+      page.getByRole("button", { name: "Top Up Account", exact: true }),
     ).toBeVisible();
 
     // update values
@@ -160,7 +160,7 @@ describe("Mission Page - Copilot", () => {
       page
         .locator("div")
         .filter({ hasText: /^Available Balance0 EVMOS\$0$/ })
-        .locator("h5")
+        .locator("h5"),
     ).toBeVisible();
 
     // staking - staked balance
@@ -168,7 +168,7 @@ describe("Mission Page - Copilot", () => {
       page
         .locator("div")
         .filter({ hasText: /^Staked Balance0\.00 EVMOS\$0\.00$/ })
-        .locator("h5")
+        .locator("h5"),
     ).toBeVisible();
 
     // staking - claimable rewards
@@ -176,7 +176,7 @@ describe("Mission Page - Copilot", () => {
       page
         .locator("div")
         .filter({ hasText: /^Claimable Rewards0\.01 EVMOS\$0\.00$/ })
-        .locator("h5")
+        .locator("h5"),
     ).toBeVisible();
 
     await page
@@ -186,7 +186,7 @@ describe("Mission Page - Copilot", () => {
       .isEnabled();
 
     await expect(
-      page.getByRole("link", { name: "Stake", exact: true })
+      page.getByRole("link", { name: "Stake", exact: true }),
     ).toBeVisible();
 
     await expect(page.getByRole("link", { name: /use a dApp/i })).toBeVisible();
@@ -199,7 +199,7 @@ describe("Mission Page - Copilot", () => {
       .click();
 
     await expect(
-      page.getByRole("heading", { name: "Evmos Copilot" })
+      page.getByRole("heading", { name: "Evmos Copilot" }),
     ).toBeVisible();
 
     await page.getByRole("link", { name: "Close" }).click();
@@ -246,7 +246,7 @@ describe("Mission Page - Copilot", () => {
 
     await page.getByRole("button", { name: /Connect/i }).click();
     await connectSwitchAndSignPubkey(page.context(), () =>
-      page.getByRole("button", { name: /MetaMask/i }).click()
+      page.getByRole("button", { name: /MetaMask/i }).click(),
     );
 
     const claimPopup = pageListener(page.context());

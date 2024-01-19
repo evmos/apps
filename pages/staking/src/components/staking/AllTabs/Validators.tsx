@@ -55,7 +55,7 @@ const Validators = () => {
           validatorAddress: item.validator.operator_address,
         }}
         setIsOpen={setIsOpen}
-      />
+      />,
     );
   }, []);
 
@@ -73,7 +73,7 @@ const Validators = () => {
         i.validator.description.moniker
           .toLowerCase()
           .includes(value.toLowerCase()) ||
-        i.validator.rank.toString().includes(value)
+        i.validator.rank.toString().includes(value),
     );
 
     if (!showInactive) {
@@ -104,7 +104,7 @@ const Validators = () => {
       if (sorting.column === 2) {
         // sort by voting power
         const temp = BigNumber.from(a.validator.tokens).gt(
-          BigNumber.from(b.validator.tokens)
+          BigNumber.from(b.validator.tokens),
         )
           ? 1
           : -1;
@@ -164,7 +164,7 @@ const Validators = () => {
               tdProps={{
                 title: dataHead?.[2] ?? "",
                 value: formatNumber(
-                  convertStringFromAtto(item.validator.tokens).toFixed(2)
+                  convertStringFromAtto(item.validator.tokens).toFixed(2),
                 ),
               }}
             />
@@ -178,7 +178,7 @@ const Validators = () => {
                     ? convertAndFormat(
                         BigNumber.from(item.balance.balance.amount),
                         EVMOS_DECIMALS,
-                        6
+                        6,
                       )
                     : "--",
               }}
@@ -189,7 +189,7 @@ const Validators = () => {
               tdProps={{
                 title: dataHead?.[4] ?? "",
                 value: formatPercentage(
-                  item.validator.commission?.commission_rates?.rate
+                  item.validator.commission?.commission_rates?.rate,
                 ),
               }}
             />

@@ -20,7 +20,7 @@ const ContentProposal = ({
   error: unknown;
 }) => {
   const { vote } = useVote(
-    typeof proposalDetail !== "string" ? proposalDetail.id : ""
+    typeof proposalDetail !== "string" ? proposalDetail.id : "",
   );
   const drawContentProposal = useCallback(() => {
     const voteRecord = <UserVote voteRecord={vote} />;

@@ -119,7 +119,7 @@ export const TransferModalContent = ({
   const destinationNetworkOptions = useMemo(
     (): Prefix[] => //
       getTokenValidDestinations(tokenAmount.ref, senderChain.prefix),
-    [tokenAmount.ref, senderChain.prefix]
+    [tokenAmount.ref, senderChain.prefix],
   );
 
   const activeProviderKey = getActiveProviderKey();
@@ -127,7 +127,7 @@ export const TransferModalContent = ({
   const senderValidation = {
     userRejectedEnablingNetwork: E.match.byPattern(
       walletRequestError,
-      /USER_REJECTED_REQUEST/
+      /USER_REJECTED_REQUEST/,
     ),
     networkNotSupportedByConnectedWallet:
       activeProviderKey &&

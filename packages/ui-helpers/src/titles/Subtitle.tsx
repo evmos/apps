@@ -19,7 +19,7 @@ export const Subtitle = ({
         {
           " text-white/70 ": variant === "default",
         },
-        className
+        className,
       )}
       {...rest}
     />

@@ -53,7 +53,7 @@ export function Copilot({
   ]);
 
   const [activeStep, setActiveStep] = useState<string>(
-    initialStepId ?? stepIds[0]
+    initialStepId ?? stepIds[0],
   );
 
   useLayoutEffect(() => {

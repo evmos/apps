@@ -26,7 +26,7 @@ describe("Testing Hero Section Frameline", () => {
       CLICK_ON_APPLY_TO_BE_PART_OF_THE_ECOSYSTEM,
       {
         token: MIXPANEL_TOKEN_FOR_TEST,
-      }
+      },
     );
   });
 

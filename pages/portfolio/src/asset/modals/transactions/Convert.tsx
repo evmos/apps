@@ -141,7 +141,7 @@ const Convert = ({
             {getReservedForFeeText(
               BigNumber.from("300000000000000000"),
               EVMOS_SYMBOL,
-              EVMOS_SYMBOL
+              EVMOS_SYMBOL,
             )}
           </div>
         </div>
@@ -161,7 +161,7 @@ const Convert = ({
               const [err] = await E.try(() =>
                 switchChain(config, {
                   chainId: evmos.id,
-                })
+                }),
               );
               if (err) return;
             }
@@ -177,7 +177,7 @@ const Convert = ({
                     text: KEPLR_NOTIFICATIONS.RequestRejectedSubtext,
                   },
                   type: SNACKBAR_TYPES.ERROR,
-                })
+                }),
               );
               setIsOpen(false);
               return;
@@ -193,7 +193,7 @@ const Convert = ({
             }
             const amount = parseUnits(
               inputValue,
-              BigNumber.from(item.decimals)
+              BigNumber.from(item.decimals),
             );
             if (amount.gt(typeSelected.amount)) {
               return;
@@ -212,7 +212,7 @@ const Convert = ({
                 wallet,
                 params,
                 isERC20Selected,
-                feeBalance
+                feeBalance,
               );
 
               dispatch(
@@ -235,7 +235,7 @@ const Convert = ({
                     res.error === true
                       ? SNACKBAR_TYPES.ERROR
                       : SNACKBAR_TYPES.SUCCESS,
-                })
+                }),
               );
 
               if (res.error) {
@@ -271,7 +271,7 @@ const Convert = ({
                         explorerTxUrl: `${EXPLORER_URL}/tx`,
                       },
                       type: SNACKBAR_TYPES.SUCCESS,
-                    })
+                    }),
                   );
                 } catch (e) {
                   dispatch(
@@ -282,7 +282,7 @@ const Convert = ({
                         title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
                       },
                       type: SNACKBAR_TYPES.ERROR,
-                    })
+                    }),
                   );
                 }
               } else {
@@ -304,7 +304,7 @@ const Convert = ({
                         explorerTxUrl: `${EXPLORER_URL}/tx`,
                       },
                       type: SNACKBAR_TYPES.SUCCESS,
-                    })
+                    }),
                   );
                 } catch (e) {
                   dispatch(
@@ -315,7 +315,7 @@ const Convert = ({
                         title: GENERATING_TX_NOTIFICATIONS.ErrorGeneratingTx,
                       },
                       type: SNACKBAR_TYPES.ERROR,
-                    })
+                    }),
                   );
                 }
               }

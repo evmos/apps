@@ -18,7 +18,7 @@ const evmosStatusPropertiesSchema = createNotionPropertiesSchema(
     checkbox: checkboxSchema.default(() => ({ checkbox: false })),
     name: titleSchema.default({ title: [{ plain_text: "" }] }),
     description: richTextSchema.default({ rich_text: [{ plain_text: "" }] }),
-  })
+  }),
 );
 
 const evmosStatusSchema = z.object({
@@ -53,7 +53,8 @@ export const getServiceDisruptionData = async () => {
   const data = await fetchEvmosStatus();
   const serviceStatus = data.find(
     (item) =>
-      item.name.toLocaleLowerCase() === "Service disruption".toLocaleLowerCase()
+      item.name.toLocaleLowerCase() ===
+      "Service disruption".toLocaleLowerCase(),
   );
   if (serviceStatus === undefined || !serviceStatus?.checkbox) return null;
   return serviceStatus.description;

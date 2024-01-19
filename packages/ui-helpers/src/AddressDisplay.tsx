@@ -19,7 +19,7 @@ export const AddressDisplay = ({
     return (
       <span title={address} {...rest}>{`0x${address.slice(
         2,
-        6
+        6,
       )}…${address.slice(-tailLength)}`}</span>
     );
   }
@@ -28,7 +28,7 @@ export const AddressDisplay = ({
   const tailLength = maxLength - prefix.length - 3;
   return (
     <span title={address} {...rest}>{`${prefix}…${tail.slice(
-      -tailLength
+      -tailLength,
     )}`}</span>
   );
 };

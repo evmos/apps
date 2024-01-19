@@ -28,7 +28,7 @@ const OptionButton = ({
           "ring-2 ring-red": selected,
           "border-strokeGrey border": !selected,
         },
-        className
+        className,
       )}
       {...rest}
     >

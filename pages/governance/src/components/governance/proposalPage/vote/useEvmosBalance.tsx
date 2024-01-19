@@ -22,7 +22,7 @@ const getEvmosBalance = async (address: string) => {
     return { balance: { denom: "", amount: "" } };
   }
   const res = await fetch(
-    `${EVMOS_BACKEND}/BalanceByDenom/${EVMOS_SYMBOL}/${address}/${EVMOS_MINIMAL_COIN_DENOM}`
+    `${EVMOS_BACKEND}/BalanceByDenom/${EVMOS_SYMBOL}/${address}/${EVMOS_MINIMAL_COIN_DENOM}`,
   );
   return res.json() as Promise<BalanceResponse | txStatusError>;
 };

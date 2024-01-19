@@ -43,9 +43,9 @@ export const initializeChain = async (config: Config) => {
       }
 
       return JSON.parse(
-        JSON.stringify(genesis, null, 2).replace(/"stake"/g, `"${baseDenom}"`)
+        JSON.stringify(genesis, null, 2).replace(/"stake"/g, `"${baseDenom}"`),
       ) as Genesis;
-    }
+    },
   );
 
   logger.info(`Updating configuration files`);

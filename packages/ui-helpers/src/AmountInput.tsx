@@ -51,7 +51,7 @@ export const AmountInput = ({
         {
           "bg-pink-700": variant === "error",
           "bg-purple-200": variant === "info",
-        }
+        },
       )}
     >
       <input
@@ -62,7 +62,7 @@ export const AmountInput = ({
             "bg-pink-700": variant === "error",
             "bg-purple-200": variant === "info",
           },
-          className
+          className,
         )}
         onChange={({ target }) => {
           target.value = target.value.replace(/^(0+)(?=[1-9])/, "");
@@ -71,7 +71,7 @@ export const AmountInput = ({
             decimal + (fractional !== undefined ? "." + fractional : "");
 
           const [error, parsed] = E.try(() =>
-            parseUnits(target.value, decimalsUnit)
+            parseUnits(target.value, decimalsUnit),
           );
 
           if (error) {
@@ -100,7 +100,7 @@ export const AmountInput = ({
         <button
           className={cn(
             "py-2 px-2.5 leading-none rounded-md bg-pink-400 text-black-900 text-xxs md:text-xs tracking-wider font-light",
-            maxButtonClassName
+            maxButtonClassName,
           )}
           onClick={(e) => {
             e.preventDefault();

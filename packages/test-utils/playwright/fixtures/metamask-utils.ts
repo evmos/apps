@@ -20,7 +20,7 @@ const sessionPath = path.resolve(os.tmpdir(), "dappwright", "session");
 
 export async function launch(
   browserName: string,
-  options: OfficialOptions
+  options: OfficialOptions,
 ): Promise<DappwrightLaunchResponse> {
   const { ...officialOptions } = options;
 
@@ -38,7 +38,7 @@ export async function launch(
     sessionPath,
     options.wallet,
     workerIndex,
-    browserName
+    browserName,
   );
   try {
     await rm(userDataDir, { recursive: true });

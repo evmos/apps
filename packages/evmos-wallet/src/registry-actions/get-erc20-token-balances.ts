@@ -38,8 +38,8 @@ export async function getERC20TokenBalances({
           token,
           evmosAddress,
           BigInt(response.result ?? "0"),
-          "ERC20"
-        )
+          "ERC20",
+        ),
       );
       return acc;
     }, [])

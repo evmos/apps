@@ -10,7 +10,7 @@ export async function getPubkey({ cosmosChainId }: { cosmosChainId?: string }) {
   assertIf(connector, "No connector found");
   assertIf(
     "getPubkey" in connector && isCallable(connector.getPubkey),
-    `Connector ${connector.id} does not support getPubkey`
+    `Connector ${connector.id} does not support getPubkey`,
   );
   const pubkey = await connector.getPubkey({
     cosmosChainId,

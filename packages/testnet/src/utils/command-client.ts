@@ -9,7 +9,7 @@ import {
 } from "./download-binaries";
 export const createCommandClient = async (
   binaries: SupportedBinaries,
-  presistentArgs: string[] = []
+  presistentArgs: string[] = [],
 ) => {
   const executablePromise = await getBinaries(binaries);
   return (args: string[], stdin?: string) => {

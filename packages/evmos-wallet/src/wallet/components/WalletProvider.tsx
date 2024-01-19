@@ -101,7 +101,7 @@ function Provider({ children }: WalletProviderProps) {
         {
           walletName: connector?.name ?? "",
           address: truncateAddress(address) ?? "",
-        }
+        },
       );
     },
 
@@ -137,7 +137,7 @@ function Provider({ children }: WalletProviderProps) {
         evmosPubkey: pubkey ?? "",
         osmosisPubkey: null,
         accountName: null,
-      })
+      }),
     );
   }, [isConnected, connector, pubkey, address]);
 
@@ -151,7 +151,7 @@ function Provider({ children }: WalletProviderProps) {
     notifyError(
       WALLET_NOTIFICATIONS.ErrorTitle,
       WALLET_NOTIFICATIONS.PubkeySubtext,
-      { walletName: variables?.connector?.name ?? "" }
+      { walletName: variables?.connector?.name ?? "" },
     );
   }, [isFetching]);
   return (

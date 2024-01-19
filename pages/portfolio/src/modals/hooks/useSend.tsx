@@ -111,7 +111,7 @@ export const useSend = ({
   const hasTransferred = transferResponse !== undefined;
   const transferRejected = E.match.byPattern(
     transferError,
-    /(Request rejected|User rejected the request)/g
+    /(Request rejected|User rejected the request)/g,
   );
   const out = {
     transfer,

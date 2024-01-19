@@ -39,7 +39,7 @@ const SetupSteps = () => {
               "text-lightGrey flex items-center gap-x-2 text-sm font-medium",
               {
                 "text-red-300 ": active,
-              }
+              },
             )}
             key={label}
           >

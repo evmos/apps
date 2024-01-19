@@ -39,7 +39,7 @@ export const devCache = <T extends Function>(
      * Disabled in test mode because vitest stops the process when the test is done, so the revalidation doesn't happen.
      */
     staleWhileRevalidate?: boolean;
-  } = {}
+  } = {},
 ): T => {
   if (process.env.NODE_ENV !== "development" && process.env.NODE_ENV !== "test")
     return fn;

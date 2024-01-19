@@ -19,7 +19,7 @@ export const readAccounts = async () => {
   } catch (error) {}
 
   return accounts.map(({ key, mnemonic, initialBalance }) =>
-    makeAccount(key, mnemonic, BigInt(initialBalance))
+    makeAccount(key, mnemonic, BigInt(initialBalance)),
   );
 };
 

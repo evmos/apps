@@ -71,7 +71,7 @@ const Button = ({ className, ...rest }: ComponentProps<typeof Link>) => {
     <Link
       className={cn(
         "border-gray300 flex cursor-pointer flex-col items-center space-y-2 rounded-lg border px-4 py-5 shadow transition-all duration-300 hover:shadow-md",
-        className
+        className,
       )}
       {...rest}
     />

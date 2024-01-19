@@ -39,7 +39,7 @@ export async function GET(
       dappId: string;
       location: "thumbnail" | "cover" | "icon";
     };
-  }
+  },
 ) {
   Log().info("Generating image for:", dappId, location);
   const notionDapps = await fetchDapps();

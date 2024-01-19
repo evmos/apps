@@ -108,7 +108,7 @@ const generateERC20TransferReceipt = (result: GetTransactionReturnType) => {
   if (!tokenErc20Address) throw new Error("Missing token contract address");
   const token =
     getTokens().find(
-      (token) => token.erc20Address?.toLowerCase() === tokenErc20Address
+      (token) => token.erc20Address?.toLowerCase() === tokenErc20Address,
     ) ?? raise("Token not found");
 
   return generateReceipt({
@@ -210,7 +210,7 @@ const useBlock = (prefix?: Prefix, height?: bigint) => {
       const chainConfig = getChain(prefix);
       const result = await apiCosmosBlockByHeight(
         chainConfig.cosmosRest,
-        height
+        height,
       );
       return result;
     },
@@ -233,7 +233,7 @@ export const ReceiptModalContent = ({
 
   const { data: block, isLoading: isFetchingBlock } = useBlock(
     chainPrefix,
-    receipt?.height
+    receipt?.height,
   );
   const chain = getChain(chainPrefix ?? "evmos");
   const blockDate = block?.block?.header?.time

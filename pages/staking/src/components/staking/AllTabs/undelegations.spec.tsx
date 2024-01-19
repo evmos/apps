@@ -136,7 +136,7 @@ describe("Testing Undelegations", () => {
       CLICK_CANCEL_UNDELEGATION_BUTTON,
       {
         token: MIXPANEL_TOKEN_FOR_TEST,
-      }
+      },
     );
     vi.unstubAllGlobals();
   });

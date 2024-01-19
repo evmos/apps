@@ -55,7 +55,7 @@ export function useOsmosisQuote({
       url.searchParams.append("token1", tokenBInfo.osmosisDenom);
       url.searchParams.append(
         "amount",
-        parseUnits(amount || "1", tokenAInfo.exponent).toString()
+        parseUnits(amount || "1", tokenAInfo.exponent).toString(),
       );
       url.searchParams.append("exchange_specific_results", "true");
 

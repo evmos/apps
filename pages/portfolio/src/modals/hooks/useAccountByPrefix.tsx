@@ -53,19 +53,19 @@ const suggestChain = async (prefix: Prefix) => {
 
   if (prefix === "evmos" && getSelectedNetworkMode() === "testnet") {
     await keplr.experimentalSuggestChain(
-      await import("@evmosapps/registry/src/keplr/evmostestnet.json")
+      await import("@evmosapps/registry/src/keplr/evmostestnet.json"),
     );
   }
 
   if (getSelectedNetworkMode() === "localtestnet") {
     if (prefix === "evmos") {
       await keplr.experimentalSuggestChain(
-        await import("@evmosapps/registry/src/keplr/evmoslocal.json")
+        await import("@evmosapps/registry/src/keplr/evmoslocal.json"),
       );
     }
     if (prefix === "cosmos") {
       await keplr.experimentalSuggestChain(
-        await import("@evmosapps/registry/src/keplr/cosmoshublocal.json")
+        await import("@evmosapps/registry/src/keplr/cosmoshublocal.json"),
       );
     }
   }

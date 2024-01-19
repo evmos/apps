@@ -26,9 +26,9 @@ export const Title = ({
           "text-base lg:text-lg": variant === "small",
           ...rest,
         },
-        className
+        className,
       ),
     },
-    children
+    children,
   );
 };

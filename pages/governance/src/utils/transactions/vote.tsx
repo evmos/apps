@@ -13,7 +13,7 @@ import { raise } from "helpers";
 export const executeVote = async (
   wallet: WalletExtension,
   id: string,
-  option: number
+  option: number,
 ) => {
   const { apiResponse, error, hash } = await executeApiTransaction(() =>
     apiVote({
@@ -21,7 +21,7 @@ export const executeVote = async (
       pubkey: wallet.evmosPubkey ?? raise("ACCOUNT_NOT_FOUND"),
       id,
       option,
-    })
+    }),
   );
   if (error) {
     return mapExecuteResponse({

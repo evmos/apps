@@ -38,7 +38,7 @@ export const SetupAccountNextStep = () => {
             explosion: 7,
           }}
         />,
-        document.body
+        document.body,
       )}
       <div className="self-center">
         <IconContainer type={ICONS_TYPES.BIG_HANDS} />

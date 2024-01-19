@@ -35,7 +35,7 @@ export const PrimaryButton = <
         variant === "secondary",
     },
     className,
-    disabled ? "disabled" : ""
+    disabled ? "disabled" : "",
   );
   return React.createElement(
     as,
@@ -46,6 +46,6 @@ export const PrimaryButton = <
     } as never,
     <>
       {icon && <span>{icon}</span>} {children}
-    </>
+    </>,
   );
 };

@@ -36,7 +36,7 @@ export const useRedelegation = (useRedelegateProps: RedelegateProps) => {
       const [err] = await E.try(() =>
         switchChain(config, {
           chainId: evmos.id,
-        })
+        }),
       );
       if (err) return;
     }
@@ -65,7 +65,7 @@ export const useRedelegation = (useRedelegateProps: RedelegateProps) => {
         useRedelegateProps.wallet.evmosAddressEthFormat,
         useRedelegateProps.item.validatorAddress,
         useRedelegateProps.validatorDst,
-        amount
+        amount,
       );
 
       dispatch(snackBroadcastSuccessful(hash, `${EXPLORER_URL}/tx`));

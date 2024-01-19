@@ -25,7 +25,7 @@ export const useStake = () => {
     enabled: !!address,
     queryFn: () =>
       getStakingInfo(
-        normalizeToCosmosAddress(address ?? raise("Address not found"))
+        normalizeToCosmosAddress(address ?? raise("Address not found")),
       ),
     refetchInterval: 15_000,
   });

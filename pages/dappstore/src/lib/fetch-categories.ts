@@ -39,7 +39,7 @@ export const fetchCategories = async () => {
             description: subItem?.description,
           },
         ];
-      })
+      }),
     );
     acc.set(parsed.data.notionId, parsed.data);
 

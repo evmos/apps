@@ -33,7 +33,7 @@ export const useRewards = (rewardsProps: RewardsProps) => {
       const [err] = await E.try(() =>
         switchChain(wagmiConfig, {
           chainId: evmos.id,
-        })
+        }),
       );
       if (err) return;
     }

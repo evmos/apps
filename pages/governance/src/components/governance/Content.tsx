@@ -10,7 +10,7 @@ import { COMMONWEALTH_URL } from "constants-helper";
 import { useProposals } from "../../utils/hooks/useProposals";
 const BannerBlack = dynamic(() => import("../common/banners/BannerBlack"));
 const ContainerProposals = dynamic(
-  () => import("./proposals/ContainerProposals")
+  () => import("./proposals/ContainerProposals"),
 );
 const ContentProposal = dynamic(() => import("./proposalPage/ContentProposal"));
 
@@ -19,7 +19,7 @@ const Content = () => {
   const id = searchParams?.get("id");
 
   const { proposals, loading, error, proposalDetail } = useProposals(
-    id ?? undefined
+    id ?? undefined,
   );
   return (
     <div>

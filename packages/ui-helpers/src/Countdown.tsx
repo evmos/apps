@@ -23,7 +23,7 @@ export const Countdown = ({ epochs }: { epochs: number | string }) => {
       setDays(d);
 
       const h = Math.floor(
-        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
       );
       setHours(h);
 

@@ -60,7 +60,7 @@ export const NotionBlocksRenderer = ({
         {},
         block.children.map((block, i) => {
           return <NotionSingleBlock key={i} block={block} />;
-        })
+        }),
       );
     }
 

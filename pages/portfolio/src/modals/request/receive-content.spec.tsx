@@ -103,7 +103,7 @@ describe("Testing Receive Content", () => {
       {
         token: MIXPANEL_TOKEN_FOR_TEST,
         "Wallet Provider": null,
-      }
+      },
     );
     expect(mixpanel.track).toHaveBeenCalledTimes(1);
   });

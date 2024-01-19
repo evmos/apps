@@ -17,14 +17,14 @@ import { getProposals } from "../fetch";
 import { Proposal, ProposalDetailProps } from "../types";
 const [, parsedProposals] = E.try(
   () =>
-    JSON.parse(process.env.NEXT_PUBLIC_PROPOSALS_TO_REMOVE ?? "[]") as string[]
+    JSON.parse(process.env.NEXT_PUBLIC_PROPOSALS_TO_REMOVE ?? "[]") as string[],
 );
 
 const PROPOSALS_TO_REMOVE = parsedProposals ?? [];
 
 const removeProposals = (proposals: Proposal[], proposalToRemove: string[]) => {
   return proposals?.filter(
-    (proposal) => !proposalToRemove.includes(proposal.id)
+    (proposal) => !proposalToRemove.includes(proposal.id),
   );
 };
 
@@ -41,7 +41,7 @@ export const useProposals = (pid?: string) => {
     // if (proposalsResponse.data !== undefined) {
     const filtered = removeProposals(
       proposalsResponse.data.proposals,
-      PROPOSALS_TO_REMOVE
+      PROPOSALS_TO_REMOVE,
     );
 
     return filtered?.map((item) => {
@@ -97,7 +97,7 @@ export const useProposals = (pid?: string) => {
     if (proposalsResponse.data !== undefined) {
       const filtered = proposalsResponse.data.proposals?.filter(
         (proposal) =>
-          proposal.id === pid && !PROPOSALS_TO_REMOVE.includes(proposal.id)
+          proposal.id === pid && !PROPOSALS_TO_REMOVE.includes(proposal.id),
       );
       const proposalFiltered = filtered[0];
       if (!proposalFiltered) {
@@ -158,13 +158,15 @@ export const useProposals = (pid?: string) => {
         type:
           proposalFiltered.messages.length > 0
             ? splitString(
-                proposalFiltered.messages?.[0]?.content["@type"] ?? ""
+                proposalFiltered.messages?.[0]?.content["@type"] ?? "",
               )
             : "",
         totalDeposit:
           proposalFiltered.total_deposit.length > 0
             ? formatAttoNumber(
-                BigNumber.from(proposalFiltered.total_deposit?.[0]?.amount ?? 0)
+                BigNumber.from(
+                  proposalFiltered.total_deposit?.[0]?.amount ?? 0,
+                ),
               )
             : "--",
         submitTime:
@@ -183,7 +185,7 @@ export const useProposals = (pid?: string) => {
           proposalFiltered.final_tally_result.no_with_veto_count,
         ]),
         isVotingTimeWithinRange: isVotingTimeWithinRange(
-          proposalFiltered.voting_end_time
+          proposalFiltered.voting_end_time,
         ),
       };
     }

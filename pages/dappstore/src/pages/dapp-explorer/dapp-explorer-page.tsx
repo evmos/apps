@@ -58,8 +58,8 @@ export const DappExplorerPage = async ({
           ...categories.map((category) =>
             pick(
               category,
-              keys(instantDappCategory) as (keyof typeof instantDappCategory)[]
-            )
+              keys(instantDappCategory) as (keyof typeof instantDappCategory)[],
+            ),
           ),
         ]}
         params={params}

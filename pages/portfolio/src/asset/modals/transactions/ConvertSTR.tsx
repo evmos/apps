@@ -94,7 +94,7 @@ export const ConvertSTR = ({
               text={getReservedForFeeText(
                 BigNumber.from("300000000000000000"),
                 EVMOS_SYMBOL,
-                EVMOS_SYMBOL
+                EVMOS_SYMBOL,
               )}
             />
           </>

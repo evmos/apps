@@ -41,7 +41,7 @@ export const fetchChainRegistryDirJsonFiles = async <T>(dir: string) => {
             return JSON.parse(data) as T;
           }),
       ];
-    })
+    }),
   );
 
   return result as T[];

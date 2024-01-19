@@ -61,7 +61,7 @@ describe("Testing Profile Modal", () => {
       CLICK_DISCONNECT_WALLET_BUTTON,
       {
         token: MIXPANEL_TOKEN_FOR_TEST,
-      }
+      },
     );
   });
 

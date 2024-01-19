@@ -14,7 +14,7 @@ const { step, describe, beforeEach, expect, test } = keplrFixture;
 const fillAmount = async (page: Page, amount = "0.000000000000000001") => {
   await step("Fill amount", async () => {
     const amountInput = await waitLocator(
-      page.getByTestId("request-asset-selector-amount-input")
+      page.getByTestId("request-asset-selector-amount-input"),
     ).focus();
 
     await amountInput.fill(amount, {
@@ -32,7 +32,7 @@ const clickOnReceiveButton = async (page: Page) => {
 const clickOnGenerateButton = async (page: Page) => {
   await step("Click on generate button", async () => {
     await waitLocator(
-      page.getByTestId("receive-modal-generate-button")
+      page.getByTestId("receive-modal-generate-button"),
     ).click();
   });
 };
@@ -40,14 +40,14 @@ const clickOnGenerateButton = async (page: Page) => {
 const setMessage = async (page: Page, message = "gimme money") => {
   await step("Set message", async () => {
     await waitLocator(page.getByTestId("receive-modal-message-input")).fill(
-      message
+      message,
     );
   });
 };
 
 const goToShareUrlFromInput = async (page: Page) => {
   const shareUrl = await waitLocator(
-    page.getByTestId("request-modal-share-url-input")
+    page.getByTestId("request-modal-share-url-input"),
   ).getAttribute("value");
   expect(shareUrl).toBeTruthy();
   const url = new URL(shareUrl!);

@@ -21,14 +21,14 @@ export const fetchDapps = cache(async () => {
         Log("notion").error(result.error.issues);
       }
       return result;
-    })
+    }),
   ).then((results) =>
     results.flatMap((result) => {
       if (!result.success || result.data.listed === false) {
         return [];
       }
       return [result.data];
-    })
+    }),
   );
 
   const dappsMap = new Map<string, (typeof parsedDapps)[number]>();
@@ -48,7 +48,7 @@ export const fetchDapps = cache(async () => {
             description: subItem?.description,
           },
         ];
-      })
+      }),
     );
     dappsMap.set(parsed.notionId, parsed);
   }

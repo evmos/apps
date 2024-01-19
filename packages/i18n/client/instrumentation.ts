@@ -23,7 +23,7 @@ void i18next
   .use(
     resourcesToBackend((language: string, namespace: string) => {
       return import(`../locales/${language}/${namespace}.json`);
-    })
+    }),
   )
   .init({
     ...getOptions(),

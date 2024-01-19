@@ -54,7 +54,7 @@ export const findToken = ({
       return (
         minCoinDenom === denom || tokenDenom === denom || sourceDenom === denom
       );
-    }
+    },
   );
   return token ?? null;
 };

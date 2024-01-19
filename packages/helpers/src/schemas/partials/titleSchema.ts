@@ -8,7 +8,7 @@ export const titleSchema = z
     title: z.array(
       z.object({
         plain_text: z.string(),
-      })
+      }),
     ),
   })
   .transform((data) => {

@@ -20,7 +20,7 @@ export const Skeleton = ({ lines = 1, dark = false }) => {
             {
               "bg-black/10": !dark,
               "bg-white/5": dark,
-            }
+            },
           )}
         />
       ))}

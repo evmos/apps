@@ -11,7 +11,7 @@ const PaginatedCosmosSchema = z.object({
 });
 
 export const paginateCosmosSchema = <TSchema extends ZodRawShape>(
-  shape: TSchema
+  shape: TSchema,
 ) => PaginatedCosmosSchema.extend(shape);
 
 export const BigIntSchema = z.string().transform((x) => BigInt(x));

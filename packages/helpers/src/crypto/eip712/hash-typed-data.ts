@@ -150,7 +150,7 @@ function findTypeDependencies(
       }[]
     >;
   },
-  results: Set<string> = new Set()
+  results: Set<string> = new Set(),
 ): Set<string> {
   const match = primaryType_.match(/^\w*/u);
   const primaryType = match?.[0] ?? raise("Invalid primary type");
@@ -187,7 +187,7 @@ function encodeField({
   if (types[type] !== undefined) {
     assertIf(
       typeof value === "object" && value !== null,
-      "Invalid value for type"
+      "Invalid value for type",
     );
     return [
       { type: "bytes32" },
@@ -196,7 +196,7 @@ function encodeField({
           data: value as Record<string, unknown>,
           primaryType: type,
           types,
-        })
+        }),
       ),
     ];
   }
@@ -220,15 +220,15 @@ function encodeField({
         type: parsedType,
         types,
         value: item,
-      })
+      }),
     );
     return [
       { type: "bytes32" },
       keccak256(
         encodeAbiParameters(
           typeValuePairs.map(([t]) => t),
-          typeValuePairs.map(([, v]) => v)
-        )
+          typeValuePairs.map(([, v]) => v),
+        ),
       ),
     ];
   }
@@ -249,7 +249,7 @@ export const hashTypedData = ({
       hashDomain({
         domain,
         types,
-      })
+      }),
     );
   if (primaryType !== "EIP712Domain") {
     parts.push(
@@ -257,7 +257,7 @@ export const hashTypedData = ({
         data: message,
         primaryType,
         types,
-      })
+      }),
     );
   }
   return keccak256(concat(parts));

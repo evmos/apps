@@ -6,7 +6,7 @@ import { get } from "lodash-es";
 
 export const updateToml = async (
   tomlPath: string,
-  updates: Record<string, {}>
+  updates: Record<string, {}>,
 ) => {
   const toml = await readFile(tomlPath, "utf8");
   let path: string[] = [];

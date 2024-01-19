@@ -13,7 +13,7 @@ const genUnion = (name: string, union: string[]) => {
   types.push(
     `export type ${name} = ${union
       .map((value) => JSON.stringify(value))
-      .join("\n  | ")};\n`
+      .join("\n  | ")};\n`,
   );
 };
 

@@ -5,7 +5,7 @@ export const EVMOS_GRPC_URL =
   process.env.NEXT_PUBLIC_EVMOS_GRPC_URL || "https://rest.evmos.lava.build/";
 export const EVMOS_SYMBOL = process.env.NEXT_PUBLIC_EVMOS_SYMBOL ?? "EVMOS";
 export const EVMOS_DECIMALS = parseInt(
-  process.env.NEXT_PUBLIC_EVMOS_DECIMALS ?? "18"
+  process.env.NEXT_PUBLIC_EVMOS_DECIMALS ?? "18",
 );
 
 export const EVMOS_NETWORK_FOR_BACKEND =

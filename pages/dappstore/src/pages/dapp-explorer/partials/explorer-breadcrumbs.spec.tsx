@@ -48,7 +48,7 @@ describe("Testing Explorer Breadcrumbs", () => {
           category: MOCK_CATEGORIES[2]!.slug,
           dapp: MOCK_DAPPS[1]!.slug,
         },
-      })
+      }),
     );
     const button = screen.getByText(MOCK_CATEGORIES[2]!.name);
     expect(button).toBeDefined();
@@ -68,7 +68,7 @@ describe("Testing Explorer Breadcrumbs", () => {
           category: MOCK_CATEGORIES[2]!.slug,
           dapp: MOCK_DAPPS[1]!.slug,
         },
-      })
+      }),
     );
 
     const button = screen.getByText(MOCK_CATEGORIES[2]!.name);

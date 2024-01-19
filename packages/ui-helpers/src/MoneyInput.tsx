@@ -188,7 +188,7 @@ MoneyInput.Input = function Input({
       autoCorrect="off"
       className={cn(
         "text-right w-full font-bold font-display text-2xl bg-transparent outline-none",
-        className
+        className,
       )}
       onFocus={(e) => {
         e.target.select();

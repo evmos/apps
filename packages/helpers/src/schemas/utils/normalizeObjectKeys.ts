@@ -17,8 +17,8 @@ const { entries, fromEntries } = Object;
 const normalizeKey = <T extends string>(key: T) =>
   camelCase(key.toLowerCase()) as CamelCase<T>;
 export const normalizeObjectKeys = <T extends Record<string, unknown>>(
-  obj: T
+  obj: T,
 ) =>
   fromEntries(
-    entries(obj).map(([key, value]) => [normalizeKey(key), value])
+    entries(obj).map(([key, value]) => [normalizeKey(key), value]),
   ) as KeysToCamelCase<T>;

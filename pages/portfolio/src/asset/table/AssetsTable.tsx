@@ -111,7 +111,7 @@ const AssetsTable = () => {
         <div
           className={cn(
             "[&>*]:bg-darkGray2 gap-y-0.5 flex flex-col",
-            "first:[&>*]:rounded-t-2xl last:[&>*]:rounded-b-2xl "
+            "first:[&>*]:rounded-t-2xl last:[&>*]:rounded-b-2xl ",
           )}
         >
           {isLoading && (

@@ -57,7 +57,7 @@ const ValidatorsDropdown = ({
       setIsValidatorSelected(true);
       setIsOpenMenu(!showMenu);
     },
-    [setValidator, setIsValidatorSelected, showMenu]
+    [setValidator, setIsValidatorSelected, showMenu],
   );
 
   const handleOnChange = useCallback(
@@ -70,7 +70,7 @@ const ValidatorsDropdown = ({
         setValidator("");
       }
     },
-    [setIsValidatorSelected, setValidator]
+    [setIsValidatorSelected, setValidator],
   );
 
   const filtered = useMemo(() => {
@@ -78,7 +78,7 @@ const ValidatorsDropdown = ({
     const filteredData = validators.filter((i) =>
       i.validator.description.moniker
         .toLowerCase()
-        .includes(selectedValue.toLowerCase())
+        .includes(selectedValue.toLowerCase()),
     );
     if (selectedValue !== "") {
       return filteredData;

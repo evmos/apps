@@ -11,7 +11,7 @@ export const apiBalancedFetch = async <TSuccess extends z.ZodType<unknown>>(
   init?: RequestInit & {
     timeout?: number;
     millisecondsBetweenCalls?: number;
-  }
+  },
 ): Promise<z.infer<TSuccess>> => {
   for (const host of hosts) {
     let response;

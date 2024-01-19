@@ -34,7 +34,7 @@ export const getChainAccountInfo = async (address: Address<Prefix>) => {
 
   const { account } = await apiCosmosAccountByAddress(
     chain.cosmosRest,
-    cosmosAddress
+    cosmosAddress,
   );
 
   let baseAccount: BaseAccount | undefined = undefined;

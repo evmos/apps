@@ -11,7 +11,7 @@ const ConnectModal = dynamic(
       .ConnectModal,
   {
     ssr: false,
-  }
+  },
 );
 const SetupAccountModal = dynamic(
   () =>
@@ -20,25 +20,25 @@ const SetupAccountModal = dynamic(
     ).then((mod) => mod.SetupAccountModal),
   {
     ssr: false,
-  }
+  },
 );
 const ProfileModal = dynamic(
   () =>
     import("stateful-components/src/modals/ProfileModal/ProfileModal").then(
-      (mod) => mod.ProfileModal
+      (mod) => mod.ProfileModal,
     ),
   {
     ssr: false,
-  }
+  },
 );
 const TopupModal = dynamic(
   () =>
     import("stateful-components/src/modals/TopupModal/TopupModal").then(
-      (mod) => mod.TopupModal
+      (mod) => mod.TopupModal,
     ),
   {
     ssr: false,
-  }
+  },
 );
 const TermsOfServiceModal = dynamic(
   () =>
@@ -47,17 +47,17 @@ const TermsOfServiceModal = dynamic(
     ).then((mod) => mod.TermsOfServiceModal),
   {
     ssr: false,
-  }
+  },
 );
 
 const ConsentModal = dynamic(
   () =>
     import("stateful-components/src/modals/ConsentModal/ConsentModal").then(
-      (mod) => mod.ConsentModal
+      (mod) => mod.ConsentModal,
     ),
   {
     ssr: false,
-  }
+  },
 );
 
 export const Modals = () => {

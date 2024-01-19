@@ -45,14 +45,14 @@ export function useOsmosisData() {
       const osmoBalance =
         balances
           ?.find(
-            (balance) => balance.symbol === "OSMO" && balance.type === "ERC20"
+            (balance) => balance.symbol === "OSMO" && balance.type === "ERC20",
           )
           ?.value.toString() ?? "0";
 
       const evmosBalance =
         balances
           ?.find(
-            (balance) => balance.symbol === "EVMOS" && balance.type === "ICS20"
+            (balance) => balance.symbol === "EVMOS" && balance.type === "ICS20",
           )
           ?.value.toString() ?? "0";
 
@@ -62,7 +62,7 @@ export function useOsmosisData() {
         balance: osmoBalance,
         price:
           tokenPrices?.find((token) =>
-            token.coinDenoms.includes(osmoToken.coinDenom)
+            token.coinDenoms.includes(osmoToken.coinDenom),
           )?.usd.price ?? null,
         osmosisDenom: osmoToken.minCoinDenom,
       } as const;
@@ -73,7 +73,7 @@ export function useOsmosisData() {
         balance: evmosBalance,
         price:
           tokenPrices?.find((token) =>
-            token.coinDenoms.includes(evmosToken.coinDenom)
+            token.coinDenoms.includes(evmosToken.coinDenom),
           )?.usd.price ?? null,
         osmosisDenom:
           "ibc/6AE98883D4D5D5FF9E50D7130F1305DA2FFA0C652D1DD9C123657C6B4EB2DF8A",

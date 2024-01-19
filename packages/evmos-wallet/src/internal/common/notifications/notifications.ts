@@ -15,7 +15,7 @@ function notify(
     explorerTxUrl?: string;
   },
   store: ReduxWalletStore,
-  isEnabled: boolean
+  isEnabled: boolean,
 ) {
   if (isEnabled) {
     store.dispatch(
@@ -25,7 +25,7 @@ function notify(
         id: 0,
         type: type,
         content: content,
-      })
+      }),
     );
   }
 }
@@ -39,7 +39,7 @@ export function NotifyError(
     explorerTxUrl?: string;
   },
   store: ReduxWalletStore,
-  isEnabled: boolean
+  isEnabled: boolean,
 ) {
   if (isEnabled) {
     notify(SNACKBAR_TYPES.ERROR, content, store, isEnabled);
@@ -55,7 +55,7 @@ export function NotifySuccess(
     explorerTxUrl?: string;
   },
   store: ReduxWalletStore,
-  isEnabled: boolean
+  isEnabled: boolean,
 ) {
   if (isEnabled) {
     notify(SNACKBAR_TYPES.SUCCESS, content, store, isEnabled);

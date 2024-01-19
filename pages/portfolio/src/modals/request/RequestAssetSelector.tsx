@@ -37,7 +37,7 @@ type Asset = {
 
 const tokenToUSD = (amount: bigint, price: number, decimals: number) => {
   const unformmatedUsd = Number(
-    formatUnits((amount * BigInt(~~(1000 * Number(price)))) / 1000n, decimals)
+    formatUnits((amount * BigInt(~~(1000 * Number(price)))) / 1000n, decimals),
   );
   return unformmatedUsd.toLocaleString("en-US", {
     style: "currency",
@@ -62,7 +62,7 @@ export const RequestAssetSelector = ({
   const onChangeEvent = useEffectEvent(
     (next: Asset | ((value: Asset) => Asset)) => {
       onChange(typeof next === "function" ? next(value) : next);
-    }
+    },
   );
   const selectedToken = getTokenByRef(value.ref);
 
@@ -91,7 +91,7 @@ export const RequestAssetSelector = ({
 
   const { balance, isFetching: isFetchingBalance } = useTokenBalance(
     address,
-    value.ref
+    value.ref,
   );
 
   const amountInUsd = price

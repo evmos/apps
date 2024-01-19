@@ -25,7 +25,7 @@ async function signBackendTypedDataTransaction({
   const chainId = getChainId(wagmiConfig);
   assertIf(
     chainId && address && connector && typedData,
-    "COULD_NOT_SIGN_TRANSACTION"
+    "COULD_NOT_SIGN_TRANSACTION",
   );
 
   const signature = await signTypedDataMessage(typedData);
@@ -63,7 +63,7 @@ async function signBackendDirectTransaction(transaction: ApiPresignTx) {
         rawTx: createTxRaw(
           response.signed.bodyBytes,
           response.signed.authInfoBytes,
-          [new Uint8Array(Buffer.from(response.signature.signature, "base64"))]
+          [new Uint8Array(Buffer.from(response.signature.signature, "base64"))],
         ),
       }),
   } as const;

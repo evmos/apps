@@ -14,7 +14,7 @@ const notDevWarning = () => {
     process.env.NODE_ENV !== "test"
   ) {
     throw new Error(
-      "Dev Cache functions should not be used in production environments"
+      "Dev Cache functions should not be used in production environments",
     );
   }
 };
@@ -28,13 +28,13 @@ type CacheEntry<T = unknown> = {
 export const writeDevCache = async (
   key: string,
   data: unknown,
-  tags: string[]
+  tags: string[],
 ) => {
   notDevWarning();
   await mkdir(cacheDir, { recursive: true });
   Log("dev-cache-mode").info(
     `Response cached for key '${key}'`,
-    `\ncacheDir: ${cacheDir}`
+    `\ncacheDir: ${cacheDir}`,
   );
   return await writeFile(
     path.join(cacheDir, key),
@@ -43,20 +43,20 @@ export const writeDevCache = async (
       cacheDate: Date.now(),
       cacheKey: key,
       data,
-    })
+    }),
   );
 };
 
 export const readDevCache = async <T = unknown>(
   key: string,
-  revalidate = 3600
+  revalidate = 3600,
 ) => {
   notDevWarning();
   const [err, cached] = await E.try(
     () =>
       readFile(path.join(cacheDir, key), "utf8").then(JSON.parse) as Promise<
         CacheEntry<T>
-      >
+      >,
   );
   if (err) return null;
   return {
@@ -88,9 +88,9 @@ export const readCacheEntries = async () => {
     res.map(
       (entry) =>
         readFile(path.join(cacheDir, entry), "utf8").then(
-          JSON.parse
-        ) as Promise<CacheEntry<unknown>>
-    )
+          JSON.parse,
+        ) as Promise<CacheEntry<unknown>>,
+    ),
   );
   return entries;
 };

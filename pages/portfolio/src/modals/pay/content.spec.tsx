@@ -62,7 +62,7 @@ vi.mock(
         };
       },
     };
-  }
+  },
 );
 
 describe("Testing Content Pay", () => {
@@ -81,7 +81,7 @@ describe("Testing Content Pay", () => {
         setState={vi.fn()}
         setIsOpen={vi.fn()}
       />,
-      { wrapper }
+      { wrapper },
     );
 
     const text = await screen.findByText(/Payment Request/i);
@@ -110,7 +110,7 @@ describe("Testing Content Pay", () => {
         setState={vi.fn()}
         setIsOpen={vi.fn()}
       />,
-      { wrapper }
+      { wrapper },
     );
 
     const text = await screen.findByText(/Payment Request/i);

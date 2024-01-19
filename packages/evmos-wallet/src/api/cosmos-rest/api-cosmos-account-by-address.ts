@@ -8,7 +8,7 @@ import { apiCosmosFetch } from "./api-cosmos-fetch";
 
 export const apiCosmosAccountByAddress = (
   urls: Readonly<[string, ...string[]]>,
-  address: CosmosAddress
+  address: CosmosAddress,
 ) =>
   apiCosmosFetch(
     z.object({
@@ -19,5 +19,5 @@ export const apiCosmosAccountByAddress = (
         .passthrough(),
     }),
     urls,
-    `/cosmos/auth/v1beta1/accounts/${address}`
+    `/cosmos/auth/v1beta1/accounts/${address}`,
   );

@@ -14,10 +14,10 @@ export const fetchLegacyERC20ModuleBalance =
     const [{ tokens: registryToken }, tokenPrices, { chains }] =
       await Promise.all([fetchTokens(), fetchTokenPrices(), fetchChains()]);
     const chainMap = Object.fromEntries(
-      chains.map((chain) => [chain.identifier, chain])
+      chains.map((chain) => [chain.identifier, chain]),
     );
     const tokenPriceMap = Object.fromEntries(
-      tokenPrices.map((tokenPrice) => [tokenPrice.coingeckoId, tokenPrice])
+      tokenPrices.map((tokenPrice) => [tokenPrice.coingeckoId, tokenPrice]),
     );
     const balance = registryToken
       .filter((token) => token.networkType === "mainnet")

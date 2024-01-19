@@ -51,7 +51,7 @@ export const BlockLatestSchema = z.object({
             timestamp: z.string(),
             signature: z.null(),
           }),
-        ])
+        ]),
       ),
     }),
   }),

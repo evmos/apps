@@ -10,7 +10,7 @@ import { getLocaleFromPath } from "../..";
 
 export const Link: typeof NextLink = forwardRef(function Link(
   { href, ...props },
-  ref
+  ref,
 ) {
   let url = String(href);
   let locale = getLocaleFromPath(url);

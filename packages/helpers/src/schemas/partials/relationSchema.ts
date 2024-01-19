@@ -8,7 +8,7 @@ export const relationSchema = z
     relation: z.array(
       z.object({
         id: z.string(),
-      })
+      }),
     ),
   })
   .transform((data) => {

@@ -17,7 +17,7 @@ export function useStakingPrecompile() {
   async function delegate(
     delegatorAddress: string,
     validatorAddress: string,
-    amount: BigNumber
+    amount: BigNumber,
   ) {
     return await writeContract(config, {
       address: STAKING_CONTRACT_ADDRESS,
@@ -31,7 +31,7 @@ export function useStakingPrecompile() {
   async function undelegate(
     delegatorAddress: string,
     validatorAddress: string,
-    amount: BigNumber
+    amount: BigNumber,
   ) {
     return await writeContract(config, {
       address: STAKING_CONTRACT_ADDRESS,
@@ -46,7 +46,7 @@ export function useStakingPrecompile() {
     delegatorAddress: string,
     validatorSrcAddress: string,
     validatorDstAddress: string,
-    amount: BigNumber
+    amount: BigNumber,
   ) {
     return await writeContract(config, {
       address: STAKING_CONTRACT_ADDRESS,
@@ -66,7 +66,7 @@ export function useStakingPrecompile() {
     delegatorAddress: string,
     validatorAddress: string,
     amount: BigNumber,
-    creationHeight: string
+    creationHeight: string,
   ) {
     return await writeContract(config, {
       address: STAKING_CONTRACT_ADDRESS,

@@ -17,7 +17,7 @@ export const useSetupCopilotModal = () =>
 
 export const SetupAccountModalTrigger = modalLink(
   "setup-copilot",
-  setupAccountModalSchema
+  setupAccountModalSchema,
 );
 
 const SetupAccountModalContent = withClosePrompt(
@@ -25,7 +25,7 @@ const SetupAccountModalContent = withClosePrompt(
     props: ModalProps & {
       onStepChange: (step: string) => void;
       initialStepId?: string;
-    }
+    },
   ) => {
     const { isOpen, initialStepId, onStepChange, ...rest } = props;
     return (
@@ -40,7 +40,7 @@ const SetupAccountModalContent = withClosePrompt(
         </Modal.Body>
       </Modal>
     );
-  }
+  },
 );
 export const SetupAccountModal = () => {
   const { isOpen, setIsOpen, modalProps } = useSetupCopilotModal();

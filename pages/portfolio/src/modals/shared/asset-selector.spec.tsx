@@ -39,7 +39,7 @@ describe("Testing Assets Selector", () => {
       />,
       {
         wrapper,
-      }
+      },
     );
 
     const text = await screen.findByText(/token/i);
@@ -48,7 +48,7 @@ describe("Testing Assets Selector", () => {
     expect(button).toBeDefined();
     await userEvent.click(button);
     const buttonEvmos = screen.getByTestId(
-      /asset-selector-token-selector-option-EVMOS/i
+      /asset-selector-token-selector-option-EVMOS/i,
     );
     expect(buttonEvmos).toBeDefined();
     await userEvent.click(buttonEvmos);
@@ -82,7 +82,7 @@ describe("Testing Assets Selector", () => {
       />,
       {
         wrapper,
-      }
+      },
     );
 
     const text = await screen.findByText(/token/i);
@@ -91,7 +91,7 @@ describe("Testing Assets Selector", () => {
     expect(button).toBeDefined();
     await userEvent.click(button);
     const buttonEvmos = screen.getByTestId(
-      /asset-selector-token-selector-option-EVMOS/i
+      /asset-selector-token-selector-option-EVMOS/i,
     );
     expect(buttonEvmos).toBeDefined();
     await userEvent.click(buttonEvmos);
@@ -112,17 +112,17 @@ describe("Testing Assets Selector", () => {
       />,
       {
         wrapper,
-      }
+      },
     );
     const text = await screen.findByText(/token/i);
     expect(text).toBeDefined();
     const button = screen.getByTestId(
-      /asset-selector-network-selector-button/i
+      /asset-selector-network-selector-button/i,
     );
     expect(button).toBeDefined();
     await userEvent.click(button);
     const buttonEvmos = screen.getByTestId(
-      /asset-selector-network-selector-option-EVMOS/i
+      /asset-selector-network-selector-option-EVMOS/i,
     );
     expect(buttonEvmos).toBeDefined();
     await userEvent.click(buttonEvmos);
@@ -150,17 +150,17 @@ describe("Testing Assets Selector", () => {
       />,
       {
         wrapper,
-      }
+      },
     );
     const text = await screen.findByText(/token/i);
     expect(text).toBeDefined();
     const button = screen.getByTestId(
-      /asset-selector-network-selector-button/i
+      /asset-selector-network-selector-button/i,
     );
     expect(button).toBeDefined();
     await userEvent.click(button);
     const buttonEvmos = screen.getByTestId(
-      /asset-selector-network-selector-option-EVMOS/i
+      /asset-selector-network-selector-option-EVMOS/i,
     );
     expect(buttonEvmos).toBeDefined();
     await userEvent.click(buttonEvmos);

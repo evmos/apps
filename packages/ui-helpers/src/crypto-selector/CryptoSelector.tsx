@@ -13,7 +13,7 @@ export function CryptoSelector<T>(
   props: PropsWithChildren<{
     value: T;
     onChange: (value: T) => void;
-  }>
+  }>,
 ) {
   return (
     <div className="relative">
@@ -38,7 +38,7 @@ const Button = ({
         {
           "bg-gray-500 py-2 pl-2": variant === "default",
           "bg-black-900": variant === "black",
-        }
+        },
       )}
       {...rest}
     >
@@ -85,7 +85,7 @@ const Options = ({
         className={cn(
           // add the following className to the CryptoSelector.Options component: left:0 or right:0
           "absolute z-10 bg-gradient-to-br from-red-300 to-[#FFDDD880] p-[1px] rounded-2xl text-xs",
-          className
+          className,
         )}
       >
         <div className="pr-3 py-5 bg-black rounded-2xl">
@@ -100,7 +100,7 @@ const Options = ({
                 "w-44 md:w-52": variant === "default",
                 "w-56 md:w-64": variant === "wide",
                 "w-64 md:w-80 grid grid-cols-2": variant === "multiple",
-              }
+              },
             )}
           >
             {children}
@@ -131,7 +131,7 @@ const Option = <T,>({
           {
             "bg-pink-600 text-black font-medium": active || selected,
             disabled: disabled,
-          }
+          },
         )
       }
       {...props}

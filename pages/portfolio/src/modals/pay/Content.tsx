@@ -132,14 +132,14 @@ export const Content = ({
     ? tokenToUSD(
         selectedBalance?.value ?? 0n,
         Number(price),
-        selectedToken.decimals
+        selectedToken.decimals,
       )
     : null;
 
   const { balance } = useTokenBalance(sender, token);
   const { balance: evmosBalance } = useTokenBalance(
     evmosData?.bech32Address,
-    token
+    token,
   );
   const balances =
     sender === evmosData?.bech32Address
@@ -211,7 +211,7 @@ export const Content = ({
                     value={selectedBalance?.type ?? ""}
                     onChange={(type) => {
                       setSelectedBalance(
-                        balances?.find((b) => b?.type === type)
+                        balances?.find((b) => b?.type === type),
                       );
                     }}
                   >
@@ -277,7 +277,7 @@ export const Content = ({
                           <span className="text-xs md:text-sm break-all">
                             {formatUnits(
                               selectedBalance?.value ?? 0n,
-                              selectedBalance?.decimals ?? 0
+                              selectedBalance?.decimals ?? 0,
                             )}{" "}
                             {selectedToken?.denom}
                           </span>

@@ -46,7 +46,7 @@ describe("Testing Tab Nav Item ", () => {
         feeBalance={BigNumber.from(1)}
         isIBCBalance={true}
       />,
-      { wrapper }
+      { wrapper },
     );
     const button = screen.getByText("Convert");
     expect(button).toBeDefined();
@@ -67,7 +67,7 @@ describe("Testing Tab Nav Item ", () => {
         feeBalance={BigNumber.from(1)}
         isIBCBalance={true}
       />,
-      { wrapper }
+      { wrapper },
     );
 
     const button = screen.getByText("Convert");

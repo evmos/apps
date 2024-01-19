@@ -4,7 +4,7 @@
 "use server";
 
 import sharp from "sharp";
-import { unstable_cache } from "next/cache"
+import { unstable_cache } from "next/cache";
 const bufferToBase64 = (buffer: Buffer) =>
   `data:image/png;base64,${buffer.toString("base64")}`;
 export const generateBlurImage = unstable_cache(
@@ -23,5 +23,5 @@ export const generateBlurImage = unstable_cache(
   ["image"],
   {
     revalidate: 60 * 60 * 24 * 7,
-  }
+  },
 );

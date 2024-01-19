@@ -161,7 +161,7 @@ export const executeCosmosIBCTransfer = async (params: {
       },
       {
         preferNoSetFee: true,
-      }
+      },
     );
   } else if (mode === "LEGACY_AMINO_JSON") {
     const fee = tx.authInfo?.fee;
@@ -178,7 +178,7 @@ export const executeCosmosIBCTransfer = async (params: {
         {
           type: "cosmos-sdk/MsgTransfer",
           value: MsgTransfer.fromBinary(
-            msgs[0]?.value ?? raise("No message")
+            msgs[0]?.value ?? raise("No message"),
           ).toJson({
             useProtoFieldName: true,
           }),

@@ -25,7 +25,7 @@ describe("Mission Page - Copilot", () => {
       .click();
 
     await connectSwitchAndSignPubkey(page.context(), () =>
-      page.getByRole("button", { name: /Connect with MetaMask/i }).click()
+      page.getByRole("button", { name: /Connect with MetaMask/i }).click(),
     );
 
     await page.getByRole("button", { name: /Top up your account/i }).click();
@@ -49,7 +49,7 @@ describe("Mission Page - Copilot", () => {
 
     await page.getByRole("button", { name: "Debit/Credit card" }).click();
     await expect(
-      page.getByRole("button", { name: /Next steps/i })
+      page.getByRole("button", { name: /Next steps/i }),
     ).toBeHidden();
 
     const c14Widget = page.getByTestId("c14-widget");

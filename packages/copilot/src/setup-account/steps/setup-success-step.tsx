@@ -32,7 +32,7 @@ export const SetupAccountSuccesStep = () => {
             h: 3000,
           }}
         />,
-        document.body
+        document.body,
       )}
       <div className="flex items-center justify-center ">
         <IconContainer type="BIG_CONFETTI" />

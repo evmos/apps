@@ -19,7 +19,7 @@ import { wagmiConfig } from "./config";
 import { getEvmosChainInfo } from "./chains";
 const recoveryMessage = "generate_pubkey";
 const hashedMessage = Buffer.from(
-  fromHex(hashMessage(recoveryMessage), "bytes")
+  fromHex(hashMessage(recoveryMessage), "bytes"),
 );
 
 const baseKey = "evmos/pubkey";
@@ -40,7 +40,7 @@ const queryFn = async () => {
 
   pubkey = await queryPubKey(
     EVMOS_GRPC_URL,
-    normalizeToEvmos(address ?? raise("WALLET_PROVIDER_NOT_AVAILABLE"))
+    normalizeToEvmos(address ?? raise("WALLET_PROVIDER_NOT_AVAILABLE")),
   );
 
   if (pubkey) return pubkey;
@@ -71,7 +71,7 @@ export const usePubKey = () => {
     initialData() {
       if (typeof window === "undefined") return;
       const cachedKey = window.localStorage.getItem(
-        [baseKey, address].join("/")
+        [baseKey, address].join("/"),
       );
       if (cachedKey) return cachedKey;
     },

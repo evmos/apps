@@ -13,7 +13,7 @@ export const ButtonWithLink = ({
     <Link
       className={cn(
         "w-fit flex justify-center self-start rounded bg-[#A4A18999] px-5 py-3 text-xs md:text-sm text-pearl transition-all duration-200 ease-in-out hover:bg-[#504f43] active:bg-[#504f43]",
-        className
+        className,
       )}
       {...props}
     />

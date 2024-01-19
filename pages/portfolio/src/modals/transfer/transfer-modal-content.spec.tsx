@@ -70,7 +70,7 @@ vi.mock(
         };
       },
     };
-  }
+  },
 );
 
 describe("Testing Transfer Modal Content", () => {
@@ -88,7 +88,7 @@ describe("Testing Transfer Modal Content", () => {
         setState={vi.fn()}
         setIsOpen={vi.fn()}
       />,
-      { wrapper }
+      { wrapper },
     );
     const button = await screen.findByRole("button", { name: /top-up evmos/i });
     expect(button).toBeDefined();
@@ -111,7 +111,7 @@ describe("Testing Transfer Modal Content", () => {
         setState={vi.fn()}
         setIsOpen={vi.fn()}
       />,
-      { wrapper }
+      { wrapper },
     );
     const button = await screen.findByRole("button", {
       name: /go to satellite/i,
@@ -137,7 +137,7 @@ describe("Testing Transfer Modal Content", () => {
         setState={vi.fn()}
         setIsOpen={vi.fn()}
       />,
-      { wrapper }
+      { wrapper },
     );
     const button = await screen.findByRole("button", {
       name: /install keplr/i,
@@ -164,7 +164,7 @@ describe("Testing Transfer Modal Content", () => {
         setState={vi.fn()}
         setIsOpen={vi.fn()}
       />,
-      { wrapper }
+      { wrapper },
     );
     const button = await screen.findByRole("button", { name: /top-up evmos/i });
     expect(button).toBeDefined();
@@ -184,7 +184,7 @@ describe("Testing Transfer Modal Content", () => {
         setState={vi.fn()}
         setIsOpen={vi.fn()}
       />,
-      { wrapper }
+      { wrapper },
     );
     const button = await screen.findByRole("button", {
       name: /go to satellite/i,
@@ -206,7 +206,7 @@ describe("Testing Transfer Modal Content", () => {
         setState={vi.fn()}
         setIsOpen={vi.fn()}
       />,
-      { wrapper }
+      { wrapper },
     );
     const button = await screen.findByRole("button", {
       name: /install keplr/i,

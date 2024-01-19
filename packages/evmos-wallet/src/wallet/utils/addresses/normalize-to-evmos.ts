@@ -15,7 +15,7 @@ import { CosmosAddress } from "./types";
 
 export const normalizeToEvmos = (
   // address: Address<"evmos"> | HexAddress,
-  address: string
+  address: string,
 ) => {
   return isHex(address)
     ? ethToEvmos(address)

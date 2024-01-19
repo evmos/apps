@@ -4,7 +4,7 @@
 export function formatUnits(
   value: bigint,
   tokenDecimals: number,
-  mode: "short" | "long" | number = "short"
+  mode: "short" | "long" | number = "short",
 ) {
   let display = value.toString();
 

@@ -27,7 +27,7 @@ export const prepareContractIBCTransfer = async <T extends Prefix>({
 }) => {
   assertIf(
     isEvmosAddress(sender),
-    "Sender must be an EVMOS address to transfer through ICS20 contract"
+    "Sender must be an EVMOS address to transfer through ICS20 contract",
   );
   const transferredToken = getTokenByRef(token.ref);
 

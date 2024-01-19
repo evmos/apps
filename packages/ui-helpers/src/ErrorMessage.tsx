@@ -22,7 +22,7 @@ export function ErrorMessage({
         {
           "text-red-900": variant === "error",
           "text-purple-200": variant === "info",
-        }
+        },
       )}
     >
       {displayIcon && <ErrorIcon />}

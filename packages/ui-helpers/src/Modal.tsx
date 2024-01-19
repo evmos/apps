@@ -96,7 +96,7 @@ const ModalBody = forwardRef<
       ref={ref}
       className={cn(
         "text-sm flex bg-pearl1 m-auto rounded-lg flex-col p-6 max-w-md w-full",
-        className as string
+        className as string,
       )}
       {...rest}
     >
@@ -125,7 +125,7 @@ const ModalHeader = ({
       >
         <CloseIcon
           className={cn(
-            "h-6 w-auto text-current focus:outline-none focus-visible:outline-none"
+            "h-6 w-auto text-current focus:outline-none focus-visible:outline-none",
           )}
           aria-hidden="true"
         />

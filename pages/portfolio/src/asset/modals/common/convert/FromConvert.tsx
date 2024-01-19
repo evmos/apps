@@ -51,13 +51,15 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
             onClick={() => {
               if (style.tokenTo?.toUpperCase() !== fee.feeDenom.toUpperCase()) {
                 input.setInputValue(
-                  numericOnly(convertFromAtto(balance.amount, balance.decimals))
+                  numericOnly(
+                    convertFromAtto(balance.amount, balance.decimals),
+                  ),
                 );
               } else {
                 setMaxClicked(true);
                 const val = safeSubstraction(balance.amount, fee.fee);
                 input.setInputValue(
-                  numericOnly(convertFromAtto(val, balance.decimals))
+                  numericOnly(convertFromAtto(val, balance.decimals)),
                 );
               }
             }}
@@ -74,7 +76,7 @@ const FromConvert = ({ fee, balance, input, style }: FromProps) => {
       )}
       {truncateNumber(input.value) >
         truncateNumber(
-          numericOnly(convertFromAtto(balance.amount, balance.decimals))
+          numericOnly(convertFromAtto(balance.amount, balance.decimals)),
         ) && <ErrorMessage>{MODAL_NOTIFICATIONS.ErrorsAmountGt}</ErrorMessage>}
       <div>
         <p className="text-sm font-bold">

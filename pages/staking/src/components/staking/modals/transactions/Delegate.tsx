@@ -83,7 +83,7 @@ export const Delegate = ({
                   evmosBalance.eq(BigNumber.from(-1))
                     ? BigNumber.from(0)
                     : evmosBalance,
-                  BigNumber.from(FEE_STAKING_ACTIONS)
+                  BigNumber.from(FEE_STAKING_ACTIONS),
                 );
                 setValue(numericOnly(convertFromAtto(val, 18)));
               }}
@@ -103,8 +103,8 @@ export const Delegate = ({
             numericOnly(
               evmosBalance.eq(BigNumber.from(-1))
                 ? "0"
-                : convertFromAtto(evmosBalance, 18)
-            )
+                : convertFromAtto(evmosBalance, 18),
+            ),
           ) && (
           <ErrorMessage>{MODAL_NOTIFICATIONS.ErrorsAmountGt}</ErrorMessage>
         )}
@@ -112,7 +112,7 @@ export const Delegate = ({
           {getReservedForFeeText(
             BigNumber.from(FEE_STAKING_ACTIONS),
             "EVMOS",
-            "EVMOS"
+            "EVMOS",
           )}
         </p>
       </div>

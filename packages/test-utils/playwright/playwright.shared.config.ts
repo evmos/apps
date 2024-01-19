@@ -5,7 +5,7 @@ import { PlaywrightTestConfig, devices } from "@playwright/test";
 
 export const createPlaywrightConfig = (
   port = 3000,
-  enableTestnet = false
+  enableTestnet = false,
 ): PlaywrightTestConfig => ({
   testDir: "./e2e",
   /* Run tests in files in parallel */

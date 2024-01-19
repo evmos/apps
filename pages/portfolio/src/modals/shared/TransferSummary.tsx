@@ -71,7 +71,7 @@ export const TransferSummary = ({
         <h3 className="text-xxs md:text-xs flex justify-center items-center gap-x-2 text-white">
           <Image
             className="h-4 w-4 md:h-6 md:w-6 rounded-full"
-            src={`/tokens/${denom}.png`}
+            src={`/tokens/${denom.toLowerCase()}.png`}
             width={18}
             height={18}
             alt={name}

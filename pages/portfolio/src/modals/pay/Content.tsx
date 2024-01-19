@@ -217,13 +217,12 @@ export const Content = ({
                     <CryptoSelector.Button>
                       <div className="pl-2 items-center flex gap-1.5">
                         <Image
-                          src={`/chains/${
-                            selectedBalance
-                              ? selectedBalance?.type === "ERC20"
-                                ? "evmos"
-                                : selectedBalance?.denom
-                              : "evmos"
-                          }.png`}
+                          src={`/chains/${(selectedBalance
+                            ? selectedBalance?.type === "ERC20"
+                              ? "evmos"
+                              : selectedBalance?.denom
+                            : "evmos"
+                          ).toLowerCase()}.png`}
                           className="rounded-full"
                           alt=""
                           width={24}

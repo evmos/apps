@@ -33,7 +33,7 @@ export default function ApproveFunding({ onClose }: { onClose: () => void }) {
             type: SNACKBAR_CONTENT_TYPES.LINK,
             title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
             hash,
-            explorerTxUrl: `${EXPLORER_URL}/tx/`,
+            explorerTxUrl: `${EXPLORER_URL}/tx`,
           },
           type: SNACKBAR_TYPES.SUCCESS,
         })

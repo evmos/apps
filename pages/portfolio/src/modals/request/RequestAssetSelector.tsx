@@ -180,7 +180,7 @@ export const RequestAssetSelector = ({
                 const chain = getChain(value);
                 return (
                   <CryptoSelector.Option
-                    src={`/chains/${value}.png`}
+                    src={`/chains/${value.toLowerCase()}.png`}
                     key={value}
                     value={value}
                     data-testid={`request-asset-selector-network-option-${value}`}

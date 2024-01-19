@@ -62,7 +62,8 @@ export const ClawbackModal = ({
             type: SNACKBAR_CONTENT_TYPES.LINK,
             title: BROADCASTED_NOTIFICATIONS.SuccessTitle,
             hash,
-            explorerTxUrl: `${EXPLORER_URL}/tx/`,
+
+            explorerTxUrl: `${EXPLORER_URL}/tx`,
           },
           type: SNACKBAR_TYPES.SUCCESS,
         })

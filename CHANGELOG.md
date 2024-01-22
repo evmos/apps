@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (chore) | apps/mission 1.0.28 packages/stateful-components 1.0.4 packages/ui-helpers 1.0.21 | Updates preparing dappstore
+
 ## 1.3.14 - 2024-01-19
 
 - (chore) add redirect from /assets to /portfolio

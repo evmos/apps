@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { useAccount } from "wagmi";
+import { useAccount, useConfig } from "wagmi";
 
 import { useMutation } from "@tanstack/react-query";
 import { switchToEvmosChain } from "@evmosapps/evmos-wallet/src/wallet/actions/switchToEvmosChain";
@@ -26,6 +26,7 @@ const osmosisFallbackAddress = "osmo1yzw585gd8ajymcaqt9e98k5tt66qpzspn4zy4h";
 // NOTE: Input and output must be the erc20 denominations of the coins in the evmos chain
 export function useOsmosisPrecompile() {
   const { address } = useAccount();
+  const config = useConfig();
   const { mutate, error, ...rest } = useMutation({
     mutationKey: ["osmosis-swap"],
     mutationFn: async function swap({
@@ -39,6 +40,7 @@ export function useOsmosisPrecompile() {
       amount: bigint;
       slippage_tolerance: number;
     }) {
+      console.log(config);
       // Generate denoms
       const isInputOsmosis = input === UOSMO_DENOM_ERC20_IN_EVMOS;
       if (

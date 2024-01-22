@@ -4,6 +4,7 @@
 import { evmos as wagmiEvmos } from "wagmi/chains";
 import { Chain, Hex } from "viem";
 import { getPubUrl } from "./clients/get-pub-url";
+const where = typeof window !== "undefined" ? "browser" : "node";
 
 export const evmosmainnet = {
   ...wagmiEvmos,
@@ -19,6 +20,7 @@ export const evmosmainnet = {
 
   networkType: "mainnet",
   ref: "evmos" as const,
+  where,
 } satisfies Chain & Record<string, unknown>;
 export const evmostestnet = {
   ...wagmiEvmos,
@@ -36,6 +38,7 @@ export const evmostestnet = {
 
   networkType: "testnet",
   ref: "evmostestnet" as const,
+  where,
 } satisfies Chain & Record<string, unknown>;
 
 export const evmoslocalnet = {
@@ -54,6 +57,7 @@ export const evmoslocalnet = {
 
   networkType: "localnet",
   ref: "evmoslocalnet" as const,
+  where,
 } satisfies Chain & Record<string, unknown>;
 
 export const EVMOS_CONFIG_MAP = {

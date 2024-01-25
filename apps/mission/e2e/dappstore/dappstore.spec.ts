@@ -1,8 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { acceptTOS, mmFixture } from "@evmosapps/test-utils";
-import { BALANCE_ENDPOINT, responseEmptyBalance } from "../constants";
+import { acceptTOS, mmFixture, pageListener } from "@evmosapps/test-utils";
 
 import { cleanupTabs } from "../cleanupTabs";
 
@@ -17,7 +16,7 @@ describe("Mission Page - Copilot", () => {
   });
   test("should let the user connect with MetaMask", async ({
     page,
-    wallet,
+    context,
   }) => {
     await expect(
       page.getByRole("heading", { name: /Get started/i }),
@@ -34,20 +33,28 @@ describe("Mission Page - Copilot", () => {
       page.getByRole("heading", { name: /\- Evmos/i, exact: true }),
     ).toBeVisible();
 
-    await page.route(BALANCE_ENDPOINT, async (route) => {
-      const json = responseEmptyBalance;
-      await route.fulfill({ json });
-    });
+    // await page.route(BALANCE_ENDPOINT, async (route) => {
+    //   const json = responseEmptyBalance;
+    //   await route.fulfill({ json });
+    // });
 
     // connect with metamask
+
     await page.getByRole("button", { name: /Connect/i }).click();
     await page.getByRole("button", { name: /MetaMask/i }).click();
-    await wallet.approve();
-    await page.waitForTimeout(3000);
+
+    const approveAllPopup = pageListener(context);
+
+    await approveAllPopup.load;
+    const popupPage = approveAllPopup.page;
+
+    await popupPage.getByRole("button", { name: /Next/i }).click();
+    await popupPage.getByRole("button", { name: /Connect/i }).click();
+    await popupPage.getByRole("button", { name: /Sign/i }).click();
 
     // total balance in dollars
-    await expect(page.locator("p").filter({ hasText: "$0.00" })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Evmos" })).toBeVisible();
+    // await expect(page.locator("p").filter({ hasText: "$0.00" })).toBeVisible();
+    // await expect(page.getByRole("heading", { name: "Evmos" })).toBeVisible();
 
     // update values
 

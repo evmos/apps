@@ -10,7 +10,7 @@ const { test, beforeEach, describe, expect } = mmFixture;
 describe("Mission Page - Copilot", () => {
   beforeEach(async ({ page, context }) => {
     await cleanupTabs(context);
-    await page.goto("/");
+    await page.goto("http://localhost:3000/");
     await acceptTOS(page);
   });
 
@@ -18,11 +18,7 @@ describe("Mission Page - Copilot", () => {
     page,
   }) => {
     await page.getByRole("button", { name: /Connect/i }).click();
-    await page
-      .getByRole("button", {
-        name: /Evmos Copilot Recommended for first time users/i,
-      })
-      .click();
+    await page.getByTestId("connect-with-evmos-copilot").click();
 
     await connectSwitchAndSignPubkey(page.context(), () =>
       page.getByRole("button", { name: /Connect with MetaMask/i }).click(),

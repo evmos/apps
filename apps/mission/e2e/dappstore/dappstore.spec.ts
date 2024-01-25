@@ -2,20 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { acceptTOS, mmFixture } from "@evmosapps/test-utils";
-import {
-  STAKING_INFO_ENDPOINT,
-  responseEmptyInfoStaking,
-  ERC20_MODULE_BALANCE_ENDPOINT,
-  responseZeroBalance,
-  GET_ACCOUNT_ENDPOINT,
-  responseEmptyAccount,
-  BALANCE_ENDPOINT,
-  responseEmptyBalance,
-  responseInfoStaking,
-  responseERC20ModuleBalance,
-  responseAccount,
-  responseBalance,
-} from "../constants";
+import { BALANCE_ENDPOINT, responseEmptyBalance } from "../constants";
 
 import { cleanupTabs } from "../cleanupTabs";
 
@@ -47,23 +34,6 @@ describe("Mission Page - Copilot", () => {
       page.getByRole("heading", { name: /\- Evmos/i, exact: true }),
     ).toBeVisible();
 
-    // mocks: case where the user doesn't have any balance
-
-    await page.route(STAKING_INFO_ENDPOINT, async (route) => {
-      const json = responseEmptyInfoStaking;
-      await route.fulfill({ json });
-    });
-
-    await page.route(ERC20_MODULE_BALANCE_ENDPOINT, async (route) => {
-      const json = responseZeroBalance;
-      await route.fulfill({ json });
-    });
-
-    await page.route(GET_ACCOUNT_ENDPOINT, async (route) => {
-      const json = responseEmptyAccount;
-      await route.fulfill({ json });
-    });
-
     await page.route(BALANCE_ENDPOINT, async (route) => {
       const json = responseEmptyBalance;
       await route.fulfill({ json });
@@ -73,40 +43,18 @@ describe("Mission Page - Copilot", () => {
     await page.getByRole("button", { name: /Connect/i }).click();
     await page.getByRole("button", { name: /MetaMask/i }).click();
     await wallet.approve();
-    // await page.pause();
-    // await expect(
-    //   page.getByRole("heading", { name: " Evmos", exact: true }),
-    // ).toBeVisible();
+    await page.waitForTimeout(3000);
 
-    // // total balance in dollars
-    // await expect(page.locator("p").filter({ hasText: "$0.00" })).toBeVisible();
-
-    // await expect(
-    //   page.getByRole("button", { name: "Top Up Account", exact: true }),
-    // ).toBeVisible();
+    // total balance in dollars
+    await expect(page.locator("p").filter({ hasText: "$0.00" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Evmos" })).toBeVisible();
 
     // update values
-
-    // await page.route(`${STAKING_INFO_ENDPOINT}`, async (route) => {
-    //   const json = responseInfoStaking;
-    //   await route.fulfill({ json });
-    // });
-
-    // await page.route(ERC20_MODULE_BALANCE_ENDPOINT, async (route) => {
-    //   const json = responseERC20ModuleBalance;
-    //   await route.fulfill({ json });
-    // });
-
-    // await page.route(GET_ACCOUNT_ENDPOINT, async (route) => {
-    //   const json = responseAccount;
-    //   await route.fulfill({ json });
-    // });
 
     // await page.route(BALANCE_ENDPOINT, async (route) => {
     //   const json = responseBalance;
     //   await route.fulfill({ json });
     // });
-    // await page.pause();
     // await expect(page.getByRole("heading", { name: "0.01Evmos" })).toBeVisible({
     //   timeout: 15000,
     // });
@@ -114,8 +62,6 @@ describe("Mission Page - Copilot", () => {
     // // total balance in dollars
     // await expect(page.locator("p").filter({ hasText: "$0" })).toBeVisible();
 
-    // await expect(page.getByRole("link", { name: /use a dApp/i })).toBeVisible();
-    // await page.pause();
     await page
       .getByRole("button", {
         name: "Top Up Account",
@@ -126,9 +72,7 @@ describe("Mission Page - Copilot", () => {
     await expect(
       page.getByRole("heading", { name: "Evmos Copilot" }),
     ).toBeVisible();
-    await page.pause();
     await page.getByTestId("close-modal-icon").click();
-    await page.pause();
     await page.getByRole("button", { name: "Exit" }).click();
   });
 });

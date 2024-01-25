@@ -1,8 +1,9 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { waitLocator, mmFixture } from "@evmosapps/test-utils";
+import { waitLocator, mmFixture, acceptTOS } from "@evmosapps/test-utils";
 import { BALANCE_ENDPOINT } from "../constants";
+import { cleanupTabs } from "../cleanupTabs";
 
 const STAKING_INFO_ENDPOINT =
   // eslint-disable-next-line no-secrets/no-secrets
@@ -104,23 +105,10 @@ const responseBalanceUpdated = {
 const { test, expect, describe, beforeEach } = mmFixture;
 
 describe("dAppStore Page - Copilot", () => {
-  beforeEach(async ({ page }) => {
-    await page.goto("/");
-
-    await page
-      .locator("div")
-      .filter({ hasText: /^I acknowledge to the Terms of Service\.$/ })
-      .getByRole("checkbox")
-      .check();
-    await page
-      .locator("div")
-      .filter({
-        hasText: /^I want to share usage data\. More information\.$/,
-      })
-      .getByRole("checkbox")
-      .check();
-    await page.getByRole("button", { name: "Accept", exact: true }).click();
-    await page.getByRole("button", { name: /accept and proceed/i }).click();
+  beforeEach(async ({ page, context }) => {
+    await cleanupTabs(context);
+    await page.goto("http://localhost:3000/");
+    await acceptTOS(page);
   });
   test("should connect with MetaMask, top up the account from onboarding section and then from the top up button in account balance section", async ({
     page,

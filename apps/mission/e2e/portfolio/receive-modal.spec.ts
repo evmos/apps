@@ -57,7 +57,7 @@ const goToShareUrlFromInput = async (page: Page) => {
 describe("Request Modal", () => {
   beforeEach(async ({ page, keplr }) => {
     await step("Go to portfolio page", async () => {
-      await page.goto("/portfolio");
+      await page.goto("http://localhost:3000/portfolio");
     });
     await step("Accept TOS", async () => {
       await acceptTOS(page);

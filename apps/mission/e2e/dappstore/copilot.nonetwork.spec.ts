@@ -14,7 +14,7 @@ const { test, beforeEach, describe, expect, step } = noNetworkMMFixture;
 
 describe("Mission Page - Copilot", () => {
   beforeEach(async ({ page, context }) => {
-    await page.goto("/");
+    await page.goto("http://localhost:3000/");
     await acceptTOS(page);
     await cleanupTabs(context);
   });
@@ -26,11 +26,7 @@ describe("Mission Page - Copilot", () => {
     await step("Connect", async () => {
       await page.getByRole("button", { name: /Connect/i }).click();
 
-      await page
-        .getByRole("button", {
-          name: /Evmos Copilot Recommended for first time users /i,
-        })
-        .click();
+      await page.getByTestId("connect-with-evmos-copilot").click();
       const switchNetworkPopup = pageListener(context);
       await page
         .getByRole("button", {
@@ -89,6 +85,14 @@ describe("Mission Page - Copilot", () => {
       await page.getByRole("button", { name: /Try again/i }).click();
 
       await switchNetworkPopupRetry.load;
+
+      await switchNetworkPopupRetry.page
+        .getByRole("button", { name: /Next/i })
+        .click();
+
+      await switchNetworkPopupRetry.page
+        .getByRole("button", { name: /Connect/i })
+        .click();
 
       await switchNetworkPopupRetry.page
         .getByRole("button", { name: /Switch Network/i })

@@ -71,6 +71,8 @@ jobs:
         # Once the fix for that is deployed we can reenable it
         # env:
         #   E2E_TEST_SEED: ${{ secrets.E2E_TEST_SEED }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: xvfb-run pnpm test:e2e
       - uses: actions/upload-artifact@v3
         if: always()

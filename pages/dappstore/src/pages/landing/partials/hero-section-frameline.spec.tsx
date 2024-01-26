@@ -40,9 +40,9 @@ describe("Testing Hero Section Frameline", () => {
     expect(mixpanel.track).not.toHaveBeenCalled();
   });
 
-  test("should call mixpanel event for build on evmos", async () => {
+  test("should call mixpanel event for build with us", async () => {
     render(await HeroSectionFrameline());
-    const button = screen.getByRole("link", { name: /build on evmos/i });
+    const button = screen.getByRole("link", { name: /build with us/i });
     expect(button).toBeDefined();
     await userEvent.click(button);
     expect(mixpanel.init).toHaveBeenCalledOnce();
@@ -51,10 +51,10 @@ describe("Testing Hero Section Frameline", () => {
     });
   });
 
-  test("should not call mixpanel event for build on evmos", async () => {
+  test("should not call mixpanel event for build with us", async () => {
     disableMixpanel();
     render(await HeroSectionFrameline());
-    const button = screen.getByRole("link", { name: /build on evmos/i });
+    const button = screen.getByRole("link", { name: /build with us/i });
     expect(button).toBeDefined();
     await userEvent.click(button);
     expect(mixpanel.init).toHaveBeenCalledOnce();

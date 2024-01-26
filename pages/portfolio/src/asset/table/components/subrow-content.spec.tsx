@@ -36,6 +36,13 @@ const MOCKED_TOKEN = {
 vi.mock("@tanstack/react-query-next-experimental", () => ({
   ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
 }));
+
+vi.mock("react", async (importOriginal: () => Promise<{}>) => {
+  return {
+    ...(await importOriginal()),
+    cache: (fn: unknown) => fn,
+  };
+});
 describe("Testing Tab Nav Item ", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return <RootProviders>{children}</RootProviders>;

@@ -4,8 +4,12 @@
 import { test, describe, vi, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_GOVERNANCE_PROPOSAL, disableMixpanel } from "tracker";
+
+import {
+  CLICK_GOVERNANCE_PROPOSAL,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 import ContainerProposals from "./ContainerProposals";
 import { RootProviders } from "stateful-components/src/root-providers";
 import { PropsWithChildren } from "react";

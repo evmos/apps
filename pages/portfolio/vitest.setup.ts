@@ -3,8 +3,7 @@
 
 import { cleanup } from "@testing-library/react";
 import { afterEach, beforeEach, vi } from "vitest";
-import mixpanel from "mixpanel-browser";
-import { enableMixpanel } from "tracker";
+import { enableMixpanel, localMixpanel as mixpanel } from "tracker";
 
 export const MIXPANEL_TOKEN_FOR_TEST = "testToken";
 const initializeMixpanelAndEnable = () => {

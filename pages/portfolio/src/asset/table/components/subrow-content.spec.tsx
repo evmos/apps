@@ -4,8 +4,11 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_BUTTON_CONVERT, disableMixpanel } from "tracker";
+import {
+  CLICK_BUTTON_CONVERT,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 import { SubRowContent } from "./SubRowContent";
 import { BigNumber } from "@ethersproject/bignumber";
 import { RootProviders } from "stateful-components/src/root-providers";

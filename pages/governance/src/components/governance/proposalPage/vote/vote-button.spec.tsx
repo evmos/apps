@@ -4,8 +4,11 @@
 import { test, describe, vi, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_VOTE_BUTTON, disableMixpanel } from "tracker";
+import {
+  CLICK_VOTE_BUTTON,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 
 import { RootProviders } from "stateful-components/src/root-providers";
 

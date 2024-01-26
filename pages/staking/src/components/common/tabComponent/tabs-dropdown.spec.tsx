@@ -4,8 +4,12 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_TABS_STAKING_OPTIONS, disableMixpanel } from "tracker";
+
+import {
+  CLICK_TABS_STAKING_OPTIONS,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 import TabsDropdown from "./TabsDropdown";
 import { tabsContent } from "../../staking/Tabs/Content";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../../vitest.setup";

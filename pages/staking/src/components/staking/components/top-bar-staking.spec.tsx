@@ -4,12 +4,13 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
+
 import { BigNumber } from "@ethersproject/bignumber";
 import {
   CLICK_CLAIM_REWARDS_BUTTON,
   UNSUCCESSFUL_TX_CLAIM_REWARDS,
   disableMixpanel,
+  localMixpanel as mixpanel,
 } from "tracker";
 import { PropsWithChildren } from "react";
 import TopBarStaking from "./TopBarStaking";

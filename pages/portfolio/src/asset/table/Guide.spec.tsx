@@ -4,8 +4,11 @@
 import { test, describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_CTA_LINKS_REGISTER_TOKEN, disableMixpanel } from "tracker";
+import {
+  CLICK_CTA_LINKS_REGISTER_TOKEN,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 
 import Guide from "./Guide";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";

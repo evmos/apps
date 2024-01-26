@@ -4,12 +4,12 @@
 import { test, describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
 
 import {
   CLICK_LEARN_BUTTON,
   CLICK_ON_APPLY_TO_BE_PART_OF_THE_ECOSYSTEM,
   disableMixpanel,
+  localMixpanel as mixpanel,
 } from "tracker";
 
 import { HeroSectionFrameline } from "./hero-section-frameline";

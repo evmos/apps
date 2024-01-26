@@ -4,12 +4,13 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
+
 import {
   CLICK_CONNECTED_WITH,
   CLICK_EVMOS_COPILOT_START_FLOW,
   UNSUCCESSFUL_WALLET_CONNECTION,
   disableMixpanel,
+  localMixpanel as mixpanel,
 } from "tracker";
 import { RootProviders } from "../../root-providers";
 import { PropsWithChildren } from "react";

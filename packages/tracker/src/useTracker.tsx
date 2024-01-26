@@ -8,13 +8,14 @@ import { DISABLE_TRACKER_LOCALSTORAGE } from "./constants";
 import { Log, useEffectEvent } from "helpers";
 import { useMemo } from "react";
 
+export const localMixpanel = mixpanel;
 mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? "", {
   ip: false,
 });
 
 export const isTrackerEnabled = () => {
   return !JSON.parse(
-    localStorage.getItem(DISABLE_TRACKER_LOCALSTORAGE) || "true",
+    localStorage.getItem(DISABLE_TRACKER_LOCALSTORAGE) || "false",
   );
 };
 export const sendEvent = (

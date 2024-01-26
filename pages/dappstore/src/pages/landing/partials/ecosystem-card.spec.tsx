@@ -4,9 +4,11 @@
 import { test, describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-
-import { CLICK_ON_FEATURED_DAPP, disableMixpanel } from "tracker";
+import {
+  CLICK_ON_FEATURED_DAPP,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 
 import { EcosystemCard } from "./ecosystem-card";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../../vitest.setup";

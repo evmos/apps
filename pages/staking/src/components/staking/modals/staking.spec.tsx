@@ -4,12 +4,12 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
 import {
   CLICK_BUTTON_MANAGE_DELEGATE,
   CLICK_BUTTON_MANAGE_UNDELEGATE,
   CLICK_BUTTON_MANAGE_REDELEGATE,
   disableMixpanel,
+  localMixpanel as mixpanel,
 } from "tracker";
 import Staking from "./Staking";
 import { RootProviders } from "stateful-components/src/root-providers";

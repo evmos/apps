@@ -4,9 +4,7 @@
 import { test, describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-
-import { CLICK_ON_VIEW_ALL_DAPPS } from "tracker";
+import { CLICK_ON_VIEW_ALL_DAPPS, localMixpanel as mixpanel } from "tracker";
 
 import { ButtonSeedApps } from "./button-see-dapps";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../../vitest.setup";

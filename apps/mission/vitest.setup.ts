@@ -5,8 +5,8 @@ import { setConfig } from "next/config";
 import config from "./next.config.mjs";
 import { cleanup } from "@testing-library/react";
 import { afterEach, beforeEach, vi } from "vitest";
-import mixpanel from "mixpanel-browser";
-import { enableMixpanel } from "tracker";
+
+import { enableMixpanel, localMixpanel as mixpanel } from "tracker";
 
 setConfig(config);
 

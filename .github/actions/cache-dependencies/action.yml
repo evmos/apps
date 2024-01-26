@@ -13,5 +13,3 @@ runs:
     - name: Install dependencies
       shell: bash
       run: pnpm install
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}

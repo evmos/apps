@@ -13,5 +13,5 @@ runs:
     - name: Install dependencies
       shell: bash
       run: pnpm install
-      env:
+      secrets:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

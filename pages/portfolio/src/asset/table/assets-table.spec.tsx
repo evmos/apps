@@ -27,6 +27,16 @@ vi.mock("react", async (importOriginal: () => Promise<{}>) => {
     "server-only": {},
   };
 });
+
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      getActiveProviderKey: () => null,
+    };
+  },
+);
 describe("Testing Assets Table", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return <RootProviders>{children}</RootProviders>;

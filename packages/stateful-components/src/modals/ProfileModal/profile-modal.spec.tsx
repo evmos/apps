@@ -4,9 +4,11 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-
-import { CLICK_DISCONNECT_WALLET_BUTTON, disableMixpanel } from "tracker";
+import {
+  CLICK_DISCONNECT_WALLET_BUTTON,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 
 import { ProfileModal } from "./ProfileModal";
 import { RootProviders } from "../../root-providers";
@@ -46,6 +48,16 @@ vi.mock("helpers", async (importOriginal: () => Promise<{}>) => {
     }),
   };
 });
+
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      getActiveProviderKey: () => "Keplr",
+    };
+  },
+);
 
 describe("Testing Profile Modal", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

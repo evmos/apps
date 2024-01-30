@@ -27,6 +27,24 @@ vi.mock("@tanstack/react-query-next-experimental", () => ({
     props.children,
 }));
 
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      useWallet: () => {
+        return {
+          connector: vi.fn(),
+          address: "",
+          isHydrating: false,
+          isConnecting: false,
+          isReconnecting: false,
+        };
+      },
+    };
+  },
+);
+
 describe("Testing Branding", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return <RootProviders>{children}</RootProviders>;

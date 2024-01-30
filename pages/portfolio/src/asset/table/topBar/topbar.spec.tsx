@@ -67,6 +67,15 @@ vi.mock("react", async (importOriginal: () => Promise<{}>) => {
   };
 });
 
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      getActiveProviderKey: () => null,
+    };
+  },
+);
 describe("Testing Top bar Portfolio", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return <RootProviders>{children}</RootProviders>;

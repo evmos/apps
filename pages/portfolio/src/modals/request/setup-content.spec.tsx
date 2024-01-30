@@ -40,6 +40,16 @@ vi.mock("wagmi", async (importOriginal: () => Promise<{}>) => {
   };
 });
 
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      getActiveProviderKey: () => null,
+    };
+  },
+);
+
 describe("Testing Set Up Content", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return <RootProviders>{children}</RootProviders>;

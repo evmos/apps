@@ -13,7 +13,6 @@ import {
 } from "tracker";
 import Staking from "./Staking";
 import { RootProviders } from "stateful-components/src/root-providers";
-import { PropsWithChildren } from "react";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../../vitest.setup";
 
 const validator = {
@@ -25,10 +24,6 @@ const validator = {
   // eslint-disable-next-line no-secrets/no-secrets
   validatorAddress: "evmosvaloper1dgpv4leszpeg2jusx2xgyfnhdzghf3rf0qq22v",
 };
-
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
 
 describe("Testing Tab Dropdowns ", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

@@ -11,13 +11,11 @@ import {
 } from "tracker";
 import Undelegations from "./Undelegations";
 import { RootProviders } from "stateful-components/src/root-providers";
-import { PropsWithChildren } from "react";
 import { SearchWrapper } from "../../context/SearchContext";
-import { MIXPANEL_TOKEN_FOR_TEST } from "../../../../vitest.setup";
-
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
+import {
+  MIXPANEL_TOKEN_FOR_TEST,
+  ResizeObserver,
+} from "../../../../vitest.setup";
 
 vi.mock("@evmosapps/evmos-wallet/src/api/useStake", () => ({
   useStakingInfo: () => {
@@ -113,12 +111,6 @@ vi.mock("@evmosapps/evmos-wallet/src/api/useStake", () => ({
   },
 }));
 describe("Testing Undelegations", () => {
-  const ResizeObserver = vi.fn(() => ({
-    observe: vi.fn(),
-    unobserve: vi.fn(),
-    disconnect: vi.fn(),
-  }));
-
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return (
       <RootProviders>

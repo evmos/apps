@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { test, describe, expect, vi } from "vitest";
+import { test, describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -12,31 +12,9 @@ import {
 } from "tracker";
 
 import { RootProviders } from "stateful-components/src/root-providers";
-import { PropsWithChildren } from "react";
 import AssetsTable from "./AssetsTable";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
 
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
-vi.mock("react", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-
-    cache: (fn: unknown) => fn,
-    "server-only": {},
-  };
-});
-
-vi.mock(
-  "@evmosapps/evmos-wallet",
-  async (importOriginal: () => Promise<{}>) => {
-    return {
-      ...(await importOriginal()),
-      getActiveProviderKey: () => null,
-    };
-  },
-);
 describe("Testing Assets Table", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return <RootProviders>{children}</RootProviders>;

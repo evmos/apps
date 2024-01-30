@@ -12,52 +12,7 @@ import {
 
 import { ProfileModal } from "./ProfileModal";
 import { RootProviders } from "../../root-providers";
-import { PropsWithChildren } from "react";
-import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
-
-const ResizeObserver = vi.fn(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
-
-vi.mock("wagmi", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-    useAccount: () => {
-      return {
-        isDisconnected: false,
-        address: "0x1234567890123456789012345678901234567890",
-        connector: {
-          id: "metaMask",
-        },
-      };
-    },
-  };
-});
-
-vi.mock("helpers", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-    useModal: () => ({
-      isOpen: true,
-      setIsOpen: vi.fn(),
-    }),
-  };
-});
-
-vi.mock(
-  "@evmosapps/evmos-wallet",
-  async (importOriginal: () => Promise<{}>) => {
-    return {
-      ...(await importOriginal()),
-      getActiveProviderKey: () => "Keplr",
-    };
-  },
-);
+import { MIXPANEL_TOKEN_FOR_TEST, ResizeObserver } from "../../../vitest.setup";
 
 describe("Testing Profile Modal", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

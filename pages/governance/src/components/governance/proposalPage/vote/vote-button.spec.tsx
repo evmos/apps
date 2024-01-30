@@ -13,61 +13,10 @@ import {
 import { RootProviders } from "stateful-components/src/root-providers";
 
 import VoteButton from "./VoteButton";
-import { PropsWithChildren } from "react";
-import { MIXPANEL_TOKEN_FOR_TEST } from "../../../../../vitest.setup";
-import { getPercentage } from "helpers";
-
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
-
-vi.mock(
-  "@evmosapps/evmos-wallet",
-  async (importOriginal: () => Promise<{}>) => {
-    return {
-      ...(await importOriginal()),
-      getActiveProviderKey: () => null,
-    };
-  },
-);
-
-const ResizeObserver = vi.fn(() => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
-
-vi.mock("../../../../utils/hooks/useProposals", () => ({
-  useProposalById: () => ({
-    data: {
-      id: 1,
-      title: "title",
-
-      description: "description",
-
-      tally: getPercentage({
-        yes: "0",
-        no: "0",
-        abstain: "0",
-        noWithVeto: "0",
-      }),
-      tallyAbsolute: {
-        yes: "0",
-        no: "0",
-        abstain: "0",
-        noWithVeto: "0",
-      },
-      votingStart: new Date("Fri Jan 26 2024 16:40:04 GMT+0100"),
-      votingEnd: new Date("Fri Jan 26 2024 16:40:04 GMT+0100"),
-      depositEnd: new Date("Fri Jan 26 2024 16:40:04 GMT+0100"),
-      submitTime: new Date("Fri Jan 26 2024 16:40:04 GMT+0100"),
-      totalVotes: 0n,
-      totalDeposit: "0",
-
-      type: "",
-    },
-  }),
-}));
+import {
+  MIXPANEL_TOKEN_FOR_TEST,
+  ResizeObserver,
+} from "../../../../../vitest.setup";
 
 describe("Testing Container Proposals", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
@@ -76,7 +25,7 @@ describe("Testing Container Proposals", () => {
 
   test("should call mixpanel event for clicking on proposal Card", async () => {
     vi.stubGlobal("ResizeObserver", ResizeObserver);
-    render(<VoteButton proposalId="267" />, {
+    render(<VoteButton proposalId="2" />, {
       wrapper,
     });
     const button = await screen.findByRole("button", { name: "Vote" });
@@ -95,7 +44,7 @@ describe("Testing Container Proposals", () => {
   test("should call mixpanel event for clicking on proposal Card", async () => {
     disableMixpanel();
     vi.stubGlobal("ResizeObserver", ResizeObserver);
-    render(<VoteButton proposalId="1" />, {
+    render(<VoteButton proposalId="2" />, {
       wrapper,
     });
     const button = await screen.findByRole("button", { name: "Vote" });

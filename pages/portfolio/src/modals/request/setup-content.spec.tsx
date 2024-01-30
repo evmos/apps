@@ -10,45 +10,9 @@ import {
   localMixpanel as mixpanel,
 } from "tracker";
 import { RootProviders } from "stateful-components/src/root-providers";
-import { PropsWithChildren } from "react";
+
 import { SetUpContent } from "./SetupContent";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
-
-// eslint-disable-next-line no-secrets/no-secrets
-const ADDRESS = "0xC1dC8C6c0dCd24226c721a7E109E4A7C20F7bF0f";
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
-vi.mock("react", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-
-    cache: (fn: unknown) => fn,
-    "server-only": {},
-  };
-});
-
-vi.mock("wagmi", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-    useAccount: () => {
-      return {
-        isDisconnected: false,
-        address: ADDRESS,
-      };
-    },
-  };
-});
-
-vi.mock(
-  "@evmosapps/evmos-wallet",
-  async (importOriginal: () => Promise<{}>) => {
-    return {
-      ...(await importOriginal()),
-      getActiveProviderKey: () => null,
-    };
-  },
-);
 
 describe("Testing Set Up Content", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

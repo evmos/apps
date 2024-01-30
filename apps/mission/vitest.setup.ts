@@ -11,6 +11,38 @@ import { enableMixpanel, localMixpanel as mixpanel } from "tracker";
 setConfig(config);
 
 export const MIXPANEL_TOKEN_FOR_TEST = "testToken";
+
+vi.mock("react", async (importOriginal: () => Promise<{}>) => {
+  return {
+    ...(await importOriginal()),
+
+    cache: (fn: unknown) => fn,
+    "server-only": {},
+  };
+});
+vi.mock("@tanstack/react-query-next-experimental", () => ({
+  ReactQueryStreamedHydration: (props: React.PropsWithChildren<{}>) =>
+    props.children,
+}));
+
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      useWallet: () => {
+        return {
+          connector: vi.fn(),
+          address: "",
+          isHydrating: false,
+          isConnecting: false,
+          isReconnecting: false,
+        };
+      },
+    };
+  },
+);
+
 const initializeMixpanelAndEnable = () => {
   mixpanel.init(MIXPANEL_TOKEN_FOR_TEST, { ip: false });
   enableMixpanel();

@@ -12,62 +12,8 @@ import {
 } from "tracker";
 
 import { RootProviders } from "stateful-components/src/root-providers";
-import { PropsWithChildren } from "react";
 import { Content } from "./Content";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
-
-// eslint-disable-next-line no-secrets/no-secrets
-const ADDRESS = "evmos1c8wgcmqde5jzymrjrflpp8j20ss000c00zd0ak";
-
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
-
-vi.mock("react", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-    cache: (fn: unknown) => fn,
-  };
-});
-
-vi.mock("wagmi", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-    useAccount: () => {
-      return {
-        isDisconnected: false,
-        address: ADDRESS,
-        connector: {
-          id: "metaMask",
-        },
-      };
-    },
-  };
-});
-
-vi.mock(
-  "@evmosapps/evmos-wallet",
-  async (importOriginal: () => Promise<{}>) => {
-    return {
-      ...(await importOriginal()),
-      useFee: () => {
-        return {
-          fee: {
-            gasLimit: 1n,
-            token: "evmos:EVMOS",
-          },
-          isPending: false,
-        };
-      },
-      useTokenBalance: () => {
-        return {
-          balance: 1n,
-          isFetching: false,
-        };
-      },
-    };
-  },
-);
 
 describe("Testing Content Pay", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

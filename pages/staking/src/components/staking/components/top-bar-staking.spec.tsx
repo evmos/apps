@@ -12,38 +12,9 @@ import {
   disableMixpanel,
   localMixpanel as mixpanel,
 } from "tracker";
-import { PropsWithChildren } from "react";
 import TopBarStaking from "./TopBarStaking";
 import { RootProviders } from "stateful-components/src/root-providers";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../../vitest.setup";
-
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
-
-vi.mock("wagmi/actions", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-    getNetwork: () => {
-      return {
-        chain: {
-          id: 9001,
-        },
-      };
-    },
-  };
-});
-
-vi.mock("wagmi", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-    useAccount: () => {
-      return {
-        isDisconnected: false,
-      };
-    },
-  };
-});
 
 vi.mock("@evmosapps/evmos-wallet/src/api/useStake", () => ({
   useStakingInfo: () => {

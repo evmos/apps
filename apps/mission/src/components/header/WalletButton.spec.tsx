@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { test, describe, expect, vi } from "vitest";
+import { test, describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { RootProviders } from "stateful-components/src/root-providers";
@@ -13,37 +13,6 @@ import {
 
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
 import { WalletButton } from "./WalletButton";
-
-vi.mock("react", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-
-    cache: (fn: unknown) => fn,
-    "server-only": {},
-  };
-});
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: React.PropsWithChildren<{}>) =>
-    props.children,
-}));
-
-vi.mock(
-  "@evmosapps/evmos-wallet",
-  async (importOriginal: () => Promise<{}>) => {
-    return {
-      ...(await importOriginal()),
-      useWallet: () => {
-        return {
-          connector: vi.fn(),
-          address: "",
-          isHydrating: false,
-          isConnecting: false,
-          isReconnecting: false,
-        };
-      },
-    };
-  },
-);
 
 describe("Testing Branding", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

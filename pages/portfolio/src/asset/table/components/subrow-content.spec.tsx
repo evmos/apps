@@ -12,7 +12,6 @@ import {
 import { SubRowContent } from "./SubRowContent";
 import { BigNumber } from "@ethersproject/bignumber";
 import { RootProviders } from "stateful-components/src/root-providers";
-import { PropsWithChildren } from "react";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../../vitest.setup";
 
 const MOCKED_TOKEN = {
@@ -33,16 +32,6 @@ const MOCKED_TOKEN = {
     "https://raw.githubusercontent.com/cosmos/chain-registry/master/gravitybridge/images/gweth.png",
   prefix: "gravity",
 };
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
-
-vi.mock("react", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-    cache: (fn: unknown) => fn,
-  };
-});
 describe("Testing Tab Nav Item ", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return <RootProviders>{children}</RootProviders>;

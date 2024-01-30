@@ -12,42 +12,8 @@ import {
   localMixpanel as mixpanel,
 } from "tracker";
 import { RootProviders } from "stateful-components/src/root-providers";
-import { PropsWithChildren } from "react";
 import { ShareContent } from "./ShareContent";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
-
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
-vi.mock("react", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-
-    cache: (fn: unknown) => fn,
-    "server-only": {},
-  };
-});
-
-vi.mock("wagmi", async (importOriginal: () => Promise<{}>) => {
-  return {
-    ...(await importOriginal()),
-    useAccount: () => {
-      return {
-        isDisconnected: false,
-      };
-    },
-  };
-});
-
-vi.mock(
-  "@evmosapps/evmos-wallet",
-  async (importOriginal: () => Promise<{}>) => {
-    return {
-      ...(await importOriginal()),
-      getActiveProviderKey: () => null,
-    };
-  },
-);
 
 describe("Testing Set Up Content", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

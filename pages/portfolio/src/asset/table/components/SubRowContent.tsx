@@ -17,12 +17,7 @@ import { SubRowProps } from "./types";
 import { useCallback, useMemo } from "react";
 import { CLICK_BUTTON_CONVERT, sendEvent } from "tracker";
 import { useConvertModal } from "../../../modals/convert/ConvertModal";
-export const SubRowContent = ({
-  item,
-  //setIsOpen,
-  //setModalContent,
-  isIBCBalance = false, //feeBalance,
-}: SubRowProps) => {
+export const SubRowContent = ({ item, isIBCBalance = false }: SubRowProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
 

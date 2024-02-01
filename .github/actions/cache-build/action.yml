@@ -12,7 +12,7 @@ runs:
 
     - name: Build
       with: # Set the secret as an input
-        notion_api_key: ${{ secrets.NOTION_API_KEY }}
+        NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
       env:
         NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
       run: NEXT_PUBLIC_ENABLE_TESTNET=true pnpm build "$NOTION_API_KEY"

@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/widgets",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "type": "module",
@@ -26,7 +26,7 @@
   },
   "dependencies": {
     "@evmosapps/icons": "workspace:*",
-    "@forge-trade/widgets": "^1.2.6",
+    "@forge-trade/widgets": "^1.2.8",
     "@tippyjs/react": "^4.2.6",
     "@types/node": "18.11.14",
     "@types/react-input-autosize": "^2.2.4",

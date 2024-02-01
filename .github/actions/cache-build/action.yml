@@ -13,6 +13,8 @@ runs:
     - name: Build
       run: NEXT_PUBLIC_ENABLE_TESTNET=true pnpm build
       shell: bash
+      env:
+        NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
 
     - name: Save Turbo Cache
       id: turbo-cache-save

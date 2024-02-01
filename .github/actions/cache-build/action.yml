@@ -12,7 +12,7 @@ runs:
 
     - name: Build
       env:
-        NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+        NOTION_API_KEY: ${{ inputs.NOTION_API_KEY }}
       run: NEXT_PUBLIC_ENABLE_TESTNET=true pnpm build
       shell: bash
 

@@ -27,6 +27,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/cache-dependencies
       - uses: ./.github/actions/cache-build
+        with:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
       - name: "Run Linting Checks"
         shell: bash
         env:
@@ -47,6 +49,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/cache-dependencies
       - uses: ./.github/actions/cache-build
+        with:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
       - name: Run Unit and Integration Tests
         run: pnpm test:coverage
       - uses: actions/upload-artifact@v3
@@ -66,6 +70,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/cache-dependencies
       - uses: ./.github/actions/cache-build
+        with:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
       - name: Install Playwright Browsers
         run: pnpx playwright install chromium
       - name: Run tests

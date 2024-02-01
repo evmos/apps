@@ -11,11 +11,7 @@ runs:
         key: ${{ runner.os }}-turbo-
 
     - name: Build
-      with: # Set the secret as an input
-        NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-      env:
-        NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-      run: NEXT_PUBLIC_ENABLE_TESTNET=true pnpm build "$NOTION_API_KEY"
+      run: NEXT_PUBLIC_ENABLE_TESTNET=true pnpm build
       shell: bash
 
     - name: Save Turbo Cache

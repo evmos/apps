@@ -2,7 +2,8 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 /* eslint-disable no-secrets/no-secrets */
-export const BALANCE_ENDPOINT = "*/**/cosmos/bank/v1beta1/balances/*";
+export const BALANCE_STAKED = "*/**/api/trpc/account.balance.staked*";
+
 export const STAKING_INFO_ENDPOINT =
   // eslint-disable-next-line no-secrets/no-secrets
   "*/**/stakingInfo/*";
@@ -171,14 +172,42 @@ export const responseAccount = {
   },
 };
 export const responseEmptyBalance = {
-  balance: {
-    denom: "aevmos",
-    amount: "0",
+  result: {
+    data: {
+      json: {
+        delegations: [],
+        total: "0",
+      },
+      meta: {
+        values: {
+          total: ["bigint"],
+        },
+      },
+    },
   },
 };
 export const responseBalance = {
-  balance: {
-    denom: "aevmos",
-    amount: "13234",
+  result: {
+    data: {
+      json: {
+        delegations: [
+          {
+            delegation: {
+              delegator_address: "evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65",
+              validator_address:
+                "evmosvaloper1zwr06uz8vrwkcnd05e5yddamvghn93a4hsyewa",
+              shares: "1010000000000000.000000000000000000",
+            },
+            balance: { denom: "aevmos", amount: "98122420535519398861" },
+          },
+        ],
+        total: "98122420535519398861",
+      },
+      meta: {
+        values: {
+          total: ["bigint"],
+        },
+      },
+    },
   },
 };

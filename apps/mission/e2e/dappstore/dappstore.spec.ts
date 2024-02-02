@@ -4,6 +4,7 @@
 import { acceptTOS, mmFixture, pageListener } from "@evmosapps/test-utils";
 
 import { cleanupTabs } from "../cleanupTabs";
+import { BALANCE_STAKED, responseBalance } from "../constants";
 
 const { expect, beforeEach, describe, test } = mmFixture;
 
@@ -33,11 +34,6 @@ describe("Mission Page - Copilot", () => {
       page.getByRole("heading", { name: /\- Evmos/i, exact: true }),
     ).toBeVisible();
 
-    // await page.route(BALANCE_ENDPOINT, async (route) => {
-    //   const json = responseEmptyBalance;
-    //   await route.fulfill({ json });
-    // });
-
     // connect with metamask
 
     await page.getByRole("button", { name: /Connect/i }).click();
@@ -47,27 +43,17 @@ describe("Mission Page - Copilot", () => {
 
     await approveAllPopup.load;
     const popupPage = approveAllPopup.page;
+    await page.route(BALANCE_STAKED, async (route) => {
+      const json = responseBalance;
+      await route.fulfill({ json });
+    });
 
     await popupPage.getByRole("button", { name: /Next/i }).click();
     await popupPage.getByRole("button", { name: /Connect/i }).click();
     await popupPage.getByRole("button", { name: /Sign/i }).click();
-
-    // total balance in dollars
-    // await expect(page.locator("p").filter({ hasText: "$0.00" })).toBeVisible();
-    // await expect(page.getByRole("heading", { name: "Evmos" })).toBeVisible();
-
-    // update values
-
-    // await page.route(BALANCE_ENDPOINT, async (route) => {
-    //   const json = responseBalance;
-    //   await route.fulfill({ json });
-    // });
-    // await expect(page.getByRole("heading", { name: "0.01Evmos" })).toBeVisible({
-    //   timeout: 15000,
-    // });
-
-    // // total balance in dollars
-    // await expect(page.locator("p").filter({ hasText: "$0" })).toBeVisible();
+    await page.waitForTimeout(6000);
+    // await page.pause();
+    await expect(page.getByRole("heading", { name: "98 Evmos" })).toBeVisible();
 
     await page
       .getByRole("button", {

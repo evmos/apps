@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import type { AppRouter } from "./router";
-import { httpBatchLink } from "@trpc/client";
+import { httpBatchLink, httpLink } from "@trpc/client";
 import { transformer } from "./transformer";
 import { createTRPCReact } from "@trpc/react-query";
 import { UseQueriesProcedureRecord } from "@trpc/react-query/shared";
@@ -51,5 +51,8 @@ export const createTrpcClient = () =>
   trpc.createClient({
     transformer,
 
-    links: [httpBatchLink({ url: "/api/trpc", fetch })],
+    links:
+      process.env.NODE_ENV === "development" || process.env.NODE_ENV === "test"
+        ? [httpLink({ url: "/api/trpc", fetch })]
+        : [httpBatchLink({ url: "/api/trpc", fetch })],
   });

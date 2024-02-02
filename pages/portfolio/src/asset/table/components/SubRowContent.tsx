@@ -12,19 +12,12 @@ import {
 } from "@evmosapps/evmos-wallet";
 import { Button, Tooltip } from "@evmosapps/ui-helpers";
 import { QuestionMarkIcon } from "@evmosapps/icons/QuestionMarkIcon";
-import { ConvertSTR } from "../../modals/transactions/ConvertSTR";
 import { Description } from "./Description";
 import { SubRowProps } from "./types";
 import { useCallback, useMemo } from "react";
 import { CLICK_BUTTON_CONVERT, sendEvent } from "tracker";
 import { useConvertModal } from "../../../modals/convert/ConvertModal";
-export const SubRowContent = ({
-  item,
-  setIsOpen,
-  setModalContent,
-  isIBCBalance = false,
-  feeBalance,
-}: SubRowProps) => {
+export const SubRowContent = ({ item, isIBCBalance = false }: SubRowProps) => {
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
 
@@ -43,18 +36,6 @@ export const SubRowContent = ({
     }
   }
 
-  const openModalConvertEvmos = () => {
-    setIsOpen(true);
-    setModalContent(
-      <ConvertSTR
-        item={item}
-        address={wallet?.evmosAddressCosmosFormat}
-        setIsOpen={setIsOpen}
-        isIBCBalance={isIBCBalance}
-        feeBalance={feeBalance}
-      />,
-    );
-  };
   const convertModal = useConvertModal();
   const openModalConvert = () => {
     sendEvent(CLICK_BUTTON_CONVERT, {
@@ -70,25 +51,6 @@ export const SubRowContent = ({
     } else {
       dispatch(snackWarningLedger());
     }
-  };
-
-  const EvmosConvertButton = () => {
-    let label = "Convert";
-    if (symbol === "EVMOS") {
-      label = "WRAP";
-    } else if (symbol === "WEVMOS") {
-      label = "UNWRAP";
-    }
-
-    return (
-      <div className="flex w-full justify-end pr-8">
-        <Button disabled={!wallet?.active} onClick={openModalConvertEvmos}>
-          <div className="flex w-16 flex-row items-center justify-center">
-            <span className="px-2">{label}</span>
-          </div>
-        </Button>
-      </div>
-    );
   };
 
   const ConvertButton = () => {
@@ -175,7 +137,7 @@ export const SubRowContent = ({
           imageSrc={img}
           subRow={true}
         />
-        {item.symbol === EVMOS_SYMBOL && <EvmosConvertButton />}
+        {item.symbol === EVMOS_SYMBOL}
         {displayConvertButton && <ConvertButton />}
       </div>
       <div className="mt-2 flex w-full pl-4 text-right uppercase lg:mt-0 lg:w-[50%] lg:items-center lg:pl-0 lg:text-left">
@@ -234,9 +196,7 @@ export const SubRowContent = ({
           </div>
         </div>
 
-        <div className="hidden lg:block">
-          {item.symbol === EVMOS_SYMBOL && EvmosConvertButton()}
-        </div>
+        <div className="hidden lg:block">{item.symbol === EVMOS_SYMBOL}</div>
         <div className="hidden lg:block">
           {displayConvertButton && <ConvertButton />}
         </div>

@@ -2,9 +2,8 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { cleanup } from "@testing-library/react";
-import { afterAll, afterEach, beforeAll, beforeEach, vi } from "vitest";
+import { afterEach, beforeEach, vi } from "vitest";
 import { enableMixpanel, localMixpanel as mixpanel } from "tracker";
-import { server } from "./mocks/server";
 export const MIXPANEL_TOKEN_FOR_TEST = "testToken";
 
 export const ResizeObserver = vi.fn(() => ({
@@ -52,15 +51,11 @@ const initializeMixpanelAndEnable = () => {
   enableMixpanel();
 };
 
-beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
-afterAll(() => server.close());
-
 beforeEach(() => {
   vi.spyOn(mixpanel, "init");
   vi.spyOn(mixpanel, "track");
   initializeMixpanelAndEnable();
 });
 afterEach(() => {
-  server.resetHandlers();
   cleanup();
 });

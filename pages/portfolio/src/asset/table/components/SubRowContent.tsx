@@ -3,24 +3,14 @@
 
 import { BigNumber } from "@ethersproject/bignumber";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
 import { amountToDollars, convertAndFormat } from "helpers";
-import {
-  snackWarningLedger,
-  EVMOS_SYMBOL,
-  StoreType,
-} from "@evmosapps/evmos-wallet";
-import { Button, Tooltip } from "@evmosapps/ui-helpers";
+import { EVMOS_SYMBOL } from "@evmosapps/evmos-wallet";
+import { Tooltip } from "@evmosapps/ui-helpers";
 import { QuestionMarkIcon } from "@evmosapps/icons/QuestionMarkIcon";
 import { Description } from "./Description";
 import { SubRowProps } from "./types";
-import { useCallback, useMemo } from "react";
-import { CLICK_BUTTON_CONVERT, sendEvent } from "tracker";
-import { useConvertModal } from "../../../modals/convert/ConvertModal";
+import { useCallback } from "react";
 export const SubRowContent = ({ item, isIBCBalance = false }: SubRowProps) => {
-  const wallet = useSelector((state: StoreType) => state.wallet.value);
-  const dispatch = useDispatch();
-
   let balance = item.erc20Balance;
   let symbol = item.symbol;
   let description = item.description;
@@ -35,35 +25,6 @@ export const SubRowContent = ({ item, isIBCBalance = false }: SubRowProps) => {
       img = "/tokens/wevmos.png";
     }
   }
-
-  const convertModal = useConvertModal();
-  const openModalConvert = () => {
-    sendEvent(CLICK_BUTTON_CONVERT, {
-      Token: item.tokenName,
-    });
-
-    if (wallet?.evmosAddressCosmosFormat !== "") {
-      convertModal.setIsOpen(true, {
-        token: item.symbol,
-        amount: 0n,
-        type: "ICS20",
-      });
-    } else {
-      dispatch(snackWarningLedger());
-    }
-  };
-
-  const ConvertButton = () => {
-    return (
-      <div className="flex w-full justify-end pr-8">
-        <Button onClick={openModalConvert}>
-          <div className="flex flex-row items-center">
-            <span className="px-2">Convert</span>
-          </div>
-        </Button>
-      </div>
-    );
-  };
 
   const createV10Tooltip = () => {
     return (
@@ -109,14 +70,7 @@ export const SubRowContent = ({ item, isIBCBalance = false }: SubRowProps) => {
       />
     );
   }, []);
-  const displayConvertButton = useMemo(() => {
-    if (item.symbol === EVMOS_SYMBOL) return false;
-    if (item.cosmosBalance.gt(0)) return true;
-    if (["gravitybridge", "wormhole"].includes(item.chainIdentifier))
-      return true;
-    if (item.chainIdentifier === "axelar" && item.symbol !== "AXL") return true;
-    return false;
-  }, [item]);
+
   return (
     <div className="mr-8 flex w-full flex-col lg:mr-0 lg:flex-row">
       <div className="md:w-[5%]"></div>
@@ -137,8 +91,6 @@ export const SubRowContent = ({ item, isIBCBalance = false }: SubRowProps) => {
           imageSrc={img}
           subRow={true}
         />
-        {item.symbol === EVMOS_SYMBOL}
-        {displayConvertButton && <ConvertButton />}
       </div>
       <div className="mt-2 flex w-full pl-4 text-right uppercase lg:mt-0 lg:w-[50%] lg:items-center lg:pl-0 lg:text-left">
         <div className=" mx-2.5 lg:mx-0"></div>
@@ -194,11 +146,6 @@ export const SubRowContent = ({ item, isIBCBalance = false }: SubRowProps) => {
               </div>
             )}
           </div>
-        </div>
-
-        <div className="hidden lg:block">{item.symbol === EVMOS_SYMBOL}</div>
-        <div className="hidden lg:block">
-          {displayConvertButton && <ConvertButton />}
         </div>
       </div>
     </div>

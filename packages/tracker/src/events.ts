@@ -54,8 +54,6 @@ export const SUCCESSFUL_WALLET_CONNECTION = "SuccessfulWalletConnection";
 export const UNSUCCESSFUL_WALLET_CONNECTION = "UnsuccessfulWalletConnection";
 export const SUCCESSFUL_CONVERT_TX = "SuccessfulConvert";
 export const UNSUCCESSFUL_CONVERT_TX = "UnsuccessfulConvert";
-export const SUCCESSFUL_WRAP_TX = "SuccessfulWrap";
-export const UNSUCCESSFUL_WRAP_TX = "UnsuccessfulWrap";
 export const CLICK_ON_INSTALL_ACCOUNT_COPILOT =
   "ClickedInstallAccountInCopilot";
 export const CLICK_ON_CONNECT_ACCOUNT_COPILOT =

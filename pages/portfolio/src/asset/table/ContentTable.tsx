@@ -27,6 +27,11 @@ const createSubRow = (
   feeBalance: BigNumber,
   isIBCBalance: boolean,
 ) => {
+  // Filter to prevent rendering of Wevmos
+  if (!isIBCBalance && item.symbol === EVMOS_SYMBOL) {
+    return null;
+  }
+
   return (
     <div
       className="subrow w-full"
@@ -105,42 +110,48 @@ const ContentTable = ({
       let valueInTokens = 0;
 
       content = [];
-      v.tokens.map((e) => {
-        if (e.symbol === EVMOS_SYMBOL) {
-          content?.unshift(
-            createSubRow(
-              e,
-              setIsOpen,
-              setModalContent,
-              tableData.feeBalance,
-              false,
-            ),
-          );
-          content?.unshift(
-            createSubRow(
-              e,
-              setIsOpen,
-              setModalContent,
-              tableData.feeBalance,
-              true,
-            ),
-          );
-        } else {
-          content?.push(
-            createSubRow(
-              e,
-              setIsOpen,
-              setModalContent,
-              tableData.feeBalance,
-              false,
-            ),
-          );
+      v.tokens.forEach((e) => {
+        const subRowContent =
+          e.symbol === EVMOS_SYMBOL
+            ? [
+                createSubRow(
+                  e,
+                  setIsOpen,
+                  setModalContent,
+                  tableData.feeBalance,
+                  false,
+                ),
+                createSubRow(
+                  e,
+                  setIsOpen,
+                  setModalContent,
+                  tableData.feeBalance,
+                  true,
+                ),
+              ]
+            : [
+                createSubRow(
+                  e,
+                  setIsOpen,
+                  setModalContent,
+                  tableData.feeBalance,
+                  false,
+                ),
+              ];
+        // Ensure that content and subRowContent do not include 'null' elements in the final result
+        if (content) {
+          content = [
+            ...content,
+            ...subRowContent.filter((el) => el !== null),
+          ] as JSX.Element[];
         }
+
         valueInTokens += addAssets({
           erc20Balance: e.erc20Balance,
           decimals: e.decimals,
           cosmosBalance: e.cosmosBalance,
         });
+
         valueInDollars += addDollarAssets({
           erc20Balance: e.erc20Balance,
           decimals: e.decimals,

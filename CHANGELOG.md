@@ -36,11 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
-## 2.0.4 - 2024-01-02
-
 - (fix) XAP-98 pages/portfolio 1.1.9 | single token representation: remove convert buttons
-
-## 2.0.3 - 2024-01-01
 
 - (fix) XAP-92 pages/portfolio 1.1.8 | single token representation: remove wrapping buttons
 

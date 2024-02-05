@@ -145,7 +145,7 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
       mixpanel-browser:
-        specifier: ^2.47.0
+        specifier: ^2.48.1
         version: 2.48.1
       next:
         specifier: 14.1.0
@@ -333,7 +333,7 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       mixpanel-browser:
-        specifier: ^2.47.0
+        specifier: ^2.48.1
         version: 2.48.1
       next:
         specifier: 14.1.0
@@ -687,7 +687,7 @@ importers:
         specifier: workspace:*
         version: link:../ui-helpers
       mixpanel-browser:
-        specifier: ^2.47.0
+        specifier: ^2.48.1
         version: 2.48.1
       tracker:
         specifier: workspace:*
@@ -825,8 +825,8 @@ importers:
   packages/tracker:
     dependencies:
       mixpanel-browser:
-        specifier: 2.47.0
-        version: 2.47.0
+        specifier: 2.48.1
+        version: 2.48.1
     devDependencies:
       '@evmosapps/config':
         specifier: workspace:*
@@ -905,7 +905,7 @@ importers:
         specifier: workspace:*
         version: link:../constants-helper
       mixpanel-browser:
-        specifier: ^2.47.0
+        specifier: ^2.48.1
         version: 2.48.1
       next:
         specifier: 14.1.0
@@ -12956,6 +12956,7 @@ packages:
     dependencies:
       is-hex-prefixed: 1.0.0
       strip-hex-prefix: 1.0.0
+    bundledDependencies: false
 
   /event-emitter@0.3.5:
     resolution: {integrity: sha512-D9rRn9y7kLPnJ+hMq7S/nhvoKwwvVJahBi2BPmx3bvbsEdK3W9ii8cBSGjP+72/LnM4n6fo3+dkCX5FeTQruXA==}
@@ -16601,10 +16602,6 @@ packages:
       - utf-8-validate
       - zod
     dev: true
-
-  /mixpanel-browser@2.47.0:
-    resolution: {integrity: sha512-Ldrva0fRBEIFWmEibBQO1PulfpJVF3pf28Guk09lDirDaSQqqU/xs9zQLwN2rL5VwVtsP1aD3JaCgaa98EjojQ==}
-    dev: false
 
   /mixpanel-browser@2.48.1:
     resolution: {integrity: sha512-vXTuUzZMg+ht7sRqyjtc3dUDy/81Z/H6FLFgFkUZJqKFaAqcx1JSXmOdY/2kmsxCkUdy5JN5zW9m9TMCk+rxGQ==}

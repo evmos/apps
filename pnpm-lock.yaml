@@ -749,8 +749,8 @@ importers:
         specifier: ^1.40.1
         version: 1.40.1
       '@tenkeylabs/dappwright':
-        specifier: ^2.5.5
-        version: 2.5.5(playwright-core@1.40.1)
+        specifier: ^2.8.1
+        version: 2.8.1(playwright-core@1.40.1)
 
   packages/testnet:
     dependencies:
@@ -8274,8 +8274,8 @@ packages:
       '@tanstack/query-core': 5.17.19
       react: 18.2.0
 
-  /@tenkeylabs/dappwright@2.5.5(playwright-core@1.40.1):
-    resolution: {integrity: sha512-SctJOypoCrwFto+bnezjUpOh/M17bt3078F4OwewgY+j39o4aVB/4tADsJUxngLyrh7DNtsbND6AGc+4XlRdrA==}
+  /@tenkeylabs/dappwright@2.8.1(playwright-core@1.40.1):
+    resolution: {integrity: sha512-e3qM+jvdklgf0dQTY74/y8b/XRxNpgNE08RuiBSQNYfGN9yWSEWd09ic8gHw2NsOe9NMA70alnfBmahfKnXSLQ==}
     engines: {node: '>=16'}
     peerDependencies:
       playwright-core: '>1.0'
@@ -12956,6 +12956,7 @@ packages:
     dependencies:
       is-hex-prefixed: 1.0.0
       strip-hex-prefix: 1.0.0
+    bundledDependencies: false
 
   /event-emitter@0.3.5:
     resolution: {integrity: sha512-D9rRn9y7kLPnJ+hMq7S/nhvoKwwvVJahBi2BPmx3bvbsEdK3W9ii8cBSGjP+72/LnM4n6fo3+dkCX5FeTQruXA==}

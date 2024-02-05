@@ -6,7 +6,7 @@
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
     "accept-language": "^3.0.18",
-    "i18next": "^23.7.18",
+    "i18next": "^23.8.2",
     "i18next-resources-to-backend": "^1.2.0",
     "react": "18.2.0",
     "react-i18next": "^14.0.1"

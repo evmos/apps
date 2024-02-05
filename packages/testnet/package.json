@@ -29,7 +29,7 @@
     "lodash-es": "^4.17.21",
     "pino": "^8.15.0",
     "pino-pretty": "^10.2.0",
-    "smol-toml": "^1.1.2",
+    "smol-toml": "^1.1.4",
     "typescript": "^5.3.3",
     "ws": "^8.14.2"
   }

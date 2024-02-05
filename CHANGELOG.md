@@ -36,6 +36,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (fix) XAP-98 pages/portfolio 1.1.9 | single token representation: remove convert buttons
+
+- (fix) XAP-92 pages/portfolio 1.1.8 | single token representation: remove wrapping buttons
+
 ## 2.0.2 - 2024-01-29
 
 - (chore) packages/widgets 1.0.2 | Upgrade Foprge widget to 1.2.8

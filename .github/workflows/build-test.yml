@@ -74,13 +74,13 @@ jobs:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
       - name: Install Playwright Browsers
         run: pnpx playwright install chromium
-        with:
-          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
       - name: Run tests
         # Disabling this because the configured account is causing issues with the backend
         # Once the fix for that is deployed we can reenable it
         # env:
         #   E2E_TEST_SEED: ${{ secrets.E2E_TEST_SEED }}
+        env:
+          NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
         run: xvfb-run pnpm test:e2e
       - uses: actions/upload-artifact@v3
         if: always()

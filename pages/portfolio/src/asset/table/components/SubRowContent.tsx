@@ -12,18 +12,12 @@ import { SubRowProps } from "./types";
 import { useCallback } from "react";
 export const SubRowContent = ({ item, isIBCBalance = false }: SubRowProps) => {
   let balance = item.erc20Balance;
-  let symbol = item.symbol;
-  let description = item.description;
-  let img = item.pngSrc;
+  const symbol = item.symbol;
+  const description = item.description;
+  const img = item.pngSrc;
 
   if (isIBCBalance) {
     balance = item.cosmosBalance;
-  } else {
-    if (item.symbol === EVMOS_SYMBOL) {
-      symbol = "WEVMOS";
-      description = "Wrapped EVMOS";
-      img = "/tokens/wevmos.png";
-    }
   }
 
   const createV10Tooltip = () => {

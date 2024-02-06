@@ -81,6 +81,7 @@ jobs:
         #   E2E_TEST_SEED: ${{ secrets.E2E_TEST_SEED }}
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: xvfb-run pnpm test:e2e
       - uses: actions/upload-artifact@v3
         if: always()

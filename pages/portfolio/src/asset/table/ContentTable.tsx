@@ -5,7 +5,6 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { Dispatch, SetStateAction, useMemo } from "react";
 
 import { addAssets, addDollarAssets, formatNumber } from "helpers";
-import { EVMOS_SYMBOL } from "@evmosapps/evmos-wallet";
 import { Accordion } from "@evmosapps/ui-helpers";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContent";
@@ -25,24 +24,14 @@ const createSubRow = (
   setIsOpen: Dispatch<SetStateAction<boolean>>,
   setModalContent: Dispatch<SetStateAction<JSX.Element>>,
   feeBalance: BigNumber,
-  isIBCBalance: boolean,
 ) => {
-  // Filter to prevent rendering of Wevmos
-  if (!isIBCBalance && item.symbol === EVMOS_SYMBOL) {
-    return null;
-  }
-
   return (
-    <div
-      className="subrow w-full"
-      key={isIBCBalance ? item.symbol.toLocaleLowerCase() : item.symbol}
-    >
+    <div className="subrow w-full" key={item.symbol}>
       <SubRowContent
         item={item}
         setIsOpen={setIsOpen}
         setModalContent={setModalContent}
         feeBalance={feeBalance}
-        isIBCBalance={isIBCBalance}
       />
     </div>
   );
@@ -111,33 +100,9 @@ const ContentTable = ({
 
       content = [];
       v.tokens.forEach((e) => {
-        const subRowContent =
-          e.symbol === EVMOS_SYMBOL
-            ? [
-                createSubRow(
-                  e,
-                  setIsOpen,
-                  setModalContent,
-                  tableData.feeBalance,
-                  false,
-                ),
-                createSubRow(
-                  e,
-                  setIsOpen,
-                  setModalContent,
-                  tableData.feeBalance,
-                  true,
-                ),
-              ]
-            : [
-                createSubRow(
-                  e,
-                  setIsOpen,
-                  setModalContent,
-                  tableData.feeBalance,
-                  false,
-                ),
-              ];
+        const subRowContent = [
+          createSubRow(e, setIsOpen, setModalContent, tableData.feeBalance),
+        ];
         // Ensure that content and subRowContent do not include 'null' elements in the final result
         if (content) {
           content = [

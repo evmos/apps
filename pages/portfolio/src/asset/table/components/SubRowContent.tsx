@@ -10,15 +10,12 @@ import { QuestionMarkIcon } from "@evmosapps/icons/QuestionMarkIcon";
 import { Description } from "./Description";
 import { SubRowProps } from "./types";
 import { useCallback } from "react";
-export const SubRowContent = ({ item, isIBCBalance = false }: SubRowProps) => {
-  let balance = item.erc20Balance;
+
+export const SubRowContent = ({ item }: SubRowProps) => {
+  const balance = item.erc20Balance;
   const symbol = item.symbol;
   const description = item.description;
   const img = item.pngSrc;
-
-  if (isIBCBalance) {
-    balance = item.cosmosBalance;
-  }
 
   const createV10Tooltip = () => {
     return (

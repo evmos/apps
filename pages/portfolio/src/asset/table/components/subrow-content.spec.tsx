@@ -44,7 +44,6 @@ describe("Testing Tab Nav Item ", () => {
         setIsOpen={vi.fn()}
         setModalContent={vi.fn()}
         feeBalance={BigNumber.from(1)}
-        isIBCBalance={true}
       />,
       { wrapper },
     );
@@ -65,7 +64,6 @@ describe("Testing Tab Nav Item ", () => {
         setIsOpen={vi.fn()}
         setModalContent={vi.fn()}
         feeBalance={BigNumber.from(1)}
-        isIBCBalance={true}
       />,
       { wrapper },
     );

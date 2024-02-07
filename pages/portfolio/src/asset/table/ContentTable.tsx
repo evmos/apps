@@ -99,17 +99,10 @@ const ContentTable = ({
       let valueInTokens = 0;
 
       content = [];
-      v.tokens.forEach((e) => {
-        const subRowContent = [
+      v.tokens.map((e) => {
+        content?.push(
           createSubRow(e, setIsOpen, setModalContent, tableData.feeBalance),
-        ];
-        // Ensure that content and subRowContent do not include 'null' elements in the final result
-        if (content) {
-          content = [
-            ...content,
-            ...subRowContent.filter((el) => el !== null),
-          ] as JSX.Element[];
-        }
+        );
 
         valueInTokens += addAssets({
           erc20Balance: e.erc20Balance,

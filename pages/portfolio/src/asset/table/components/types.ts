@@ -9,7 +9,6 @@ export type SubRowProps = {
   item: TableDataElement;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   setModalContent: Dispatch<SetStateAction<JSX.Element>>;
-  isIBCBalance?: boolean;
   feeBalance: BigNumber;
 };
 

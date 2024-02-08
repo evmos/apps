@@ -5,7 +5,6 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { Dispatch, SetStateAction, useMemo } from "react";
 
 import { addAssets, addDollarAssets, formatNumber } from "helpers";
-import { EVMOS_SYMBOL } from "@evmosapps/evmos-wallet";
 import { Accordion } from "@evmosapps/ui-helpers";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContent";
@@ -25,19 +24,14 @@ const createSubRow = (
   setIsOpen: Dispatch<SetStateAction<boolean>>,
   setModalContent: Dispatch<SetStateAction<JSX.Element>>,
   feeBalance: BigNumber,
-  isIBCBalance: boolean,
 ) => {
   return (
-    <div
-      className="subrow w-full"
-      key={isIBCBalance ? item.symbol.toLocaleLowerCase() : item.symbol}
-    >
+    <div className="subrow w-full" key={item.symbol}>
       <SubRowContent
         item={item}
         setIsOpen={setIsOpen}
         setModalContent={setModalContent}
         feeBalance={feeBalance}
-        isIBCBalance={isIBCBalance}
       />
     </div>
   );
@@ -106,41 +100,16 @@ const ContentTable = ({
 
       content = [];
       v.tokens.map((e) => {
-        if (e.symbol === EVMOS_SYMBOL) {
-          content?.unshift(
-            createSubRow(
-              e,
-              setIsOpen,
-              setModalContent,
-              tableData.feeBalance,
-              false,
-            ),
-          );
-          content?.unshift(
-            createSubRow(
-              e,
-              setIsOpen,
-              setModalContent,
-              tableData.feeBalance,
-              true,
-            ),
-          );
-        } else {
-          content?.push(
-            createSubRow(
-              e,
-              setIsOpen,
-              setModalContent,
-              tableData.feeBalance,
-              false,
-            ),
-          );
-        }
+        content?.push(
+          createSubRow(e, setIsOpen, setModalContent, tableData.feeBalance),
+        );
+
         valueInTokens += addAssets({
           erc20Balance: e.erc20Balance,
           decimals: e.decimals,
           cosmosBalance: e.cosmosBalance,
         });
+
         valueInDollars += addDollarAssets({
           erc20Balance: e.erc20Balance,
           decimals: e.decimals,

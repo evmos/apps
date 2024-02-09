@@ -6,11 +6,7 @@ import { useMemo } from "react";
 import { BigNumber } from "@ethersproject/bignumber";
 import { useAccount } from "wagmi";
 import { isNaN } from "lodash-es";
-import {
-  addAssets,
-  addDollarAssets,
-  amountToDollars,
-} from "helpers/src/styles";
+import { amountToDollars, convertFromAtto } from "helpers/src/styles";
 
 import { useTrpcQuery } from "@evmosapps/trpc/client";
 import { useEvmosChainRef } from "../registry-actions/hooks/use-evmos-chain-ref";
@@ -45,17 +41,17 @@ export const useAssets = () => {
         return {
           symbol: item.symbol,
           description: item.description,
-          valueInTokens: addAssets({
-            erc20Balance: BigNumber.from(item.erc20Balance),
-            decimals: Number(item.decimals),
-            cosmosBalance: BigNumber.from(item.cosmosBalance),
-          }).toFixed(2),
-          valueInDollars: addDollarAssets({
-            erc20Balance: BigNumber.from(item.erc20Balance),
-            decimals: Number(item.decimals),
-            coingeckoPrice: Number(item.coingeckoPrice),
-            cosmosBalance: BigNumber.from(item.cosmosBalance),
-          }).toFixed(2),
+          valueInTokens: Number(
+            convertFromAtto(item.erc20Balance, Number(item.decimals)),
+          ).toFixed(2),
+
+          valueInDollars: parseFloat(
+            amountToDollars(
+              BigNumber.from(item.erc20Balance),
+              Number(item.decimals),
+              Number(item.coingeckoPrice),
+            ),
+          ).toFixed(2),
         };
       }) ?? []
     );

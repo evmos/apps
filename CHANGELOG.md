@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (fix) XAP-110 pages/portfolio 1.1.13 | single token representation: remove test
+
 - (fix) XAP-109 pages/portfolio 1.1.12 | single token representation: potfolio responsive
 
 - (fix) XAP-106 pages/portfolio 1.1.11 | single token representation: remove double balance

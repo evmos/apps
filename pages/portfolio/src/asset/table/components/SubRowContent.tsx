@@ -28,7 +28,7 @@ export const SubRowContent = ({ item }: SubRowProps) => {
     <div className="mr-8 flex w-full lg:mr-0 flex-row">
       <div className="md:w-[5%]"></div>
       {/* symbol - token name - description */}
-      <div className="w-[50%] lg:flex">
+      <div className="w-[100%] lg:flex lg:w-[50%]">
         <Description
           symbol={symbol}
           description={description}
@@ -37,7 +37,7 @@ export const SubRowContent = ({ item }: SubRowProps) => {
         />
       </div>
       {/* balance token - balance dollars */}
-      <div className="mt-2 flex w-full pl-4 text-right uppercase lg:mt-0 lg:w-[50%] lg:items-center lg:pl-0 lg:text-left">
+      <div className="flex w-full pl-4 text-right uppercase lg:mt-0 lg:w-[50%] lg:items-center lg:pl-0 lg:text-left">
         {/* md:w-[5%] */}
 
         <div className="mr-8 flex w-full flex-col lg:mr-0">

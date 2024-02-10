@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (fix) XAP-99 pages/potfolio 1.1.14 | single token representation: miscalculation token balance
+
 - (fix) XAP-106 pages/portfolio 1.1.11 | single token representation: remove double balance
 
 - (fix) XAP-96 pages/portfolio 1.1.10 | single token representation: remove WEVMOS row

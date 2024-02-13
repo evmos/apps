@@ -95,6 +95,7 @@ export const useModal = <T extends z.AnyZodObject>(
       redirectBack = false,
     ) => {
       const nextOpenState = typeof open === "function" ? open(isOpen) : open;
+
       if (nextOpenState === isOpen) return;
       if (nextOpenState) {
         const next = safeParse(initialState);
@@ -102,6 +103,7 @@ export const useModal = <T extends z.AnyZodObject>(
         if (next.success) {
           const url = new URL(window.location.href);
           url.searchParams.set("action", id);
+
           for (const [key, value] of Object.entries(next.data)) {
             url.searchParams.set(key, value as string);
           }
@@ -176,6 +178,7 @@ export const modalLink = <T extends z.AnyZodObject>(
 
       const searchParams = new URLSearchParams(
         qs.stringify({
+          action: id,
           ...sanitize(state),
         }),
       );

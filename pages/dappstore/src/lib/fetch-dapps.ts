@@ -52,7 +52,7 @@ export const fetchDapps = cache(async () => {
           subItem?.language,
           {
             name: subItem?.name,
-            description: subItem?.description,
+            description: subItem?.description.plainText,
           },
         ];
       }),

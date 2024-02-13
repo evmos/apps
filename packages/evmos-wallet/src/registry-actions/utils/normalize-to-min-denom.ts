@@ -5,11 +5,16 @@ import { Token } from "../types";
 import { getIBCDenom } from "./get-ibc-denom";
 import { getTokens } from "../get-tokens";
 import { getChains } from "../get-chain";
+import { raise } from "helpers";
 
 export const IBC_DENOMS_MAP: Record<string, Token> = {};
 const chains = getChains();
-const evmos = chains.find(({ prefix }) => prefix === "evmos")!;
-const others = chains.filter(({ prefix }) => prefix !== "evmos")!;
+const evmos =
+  chains.find(({ prefix }) => prefix === "evmos") ??
+  raise("evmos chain not found");
+const others =
+  chains.filter(({ prefix }) => prefix !== "evmos") ??
+  raise("other chains not found");
 /**
  * Evmos tokens in other networks
  */

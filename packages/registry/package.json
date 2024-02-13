@@ -25,6 +25,7 @@
     "typescript": "^5.3.3"
   },
   "browserslist": [
+    "Chrome 118",
     "last 3 chrome version",
     "last 3 firefox version",
     "last 3 safari version"

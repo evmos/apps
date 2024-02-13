@@ -48,4 +48,10 @@ export const WIDGETS: {
   osmosis: dynamic(() => import("@evmosapps/instant-dapps/src/dapps/Osmosis"), {
     ssr: false,
   }),
+  "dappstore-demo": dynamic(
+    () => import("@evmosapps/instant-dapps/src/dapps/DappstoreDemo"),
+    {
+      ssr: false,
+    },
+  ),
 };

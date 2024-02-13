@@ -48,7 +48,8 @@
     "NEXT_PUBLIC_VERCEL_URL",
     "VERCEL",
     "VERCEL_ENV",
-    "VERCEL_URL"
+    "VERCEL_URL",
+    "ENABLE_DAPPSTORE_DEV"
   ],
   "pipeline": {
     "build": {

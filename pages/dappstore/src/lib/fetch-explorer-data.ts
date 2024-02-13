@@ -6,7 +6,7 @@ import { cache } from "react";
 import { fetchDapps } from "./fetch-dapps";
 import { fetchCategories } from "./fetch-categories";
 import { raise } from "helpers";
-
+import { DEMO_PAGE_DAPP } from "./demo-page-dapp";
 export const fetchExplorerData = cache(async () => {
   const categoriesMap = await fetchCategories();
   const dappsMap = await fetchDapps();
@@ -31,6 +31,13 @@ export const fetchExplorerData = cache(async () => {
       ...rest,
     };
   });
+
+  if (
+    process.env.NODE_ENV === "development" ||
+    process.env.ENABLE_DAPPSTORE_DEV === "true"
+  ) {
+    dApps.push(DEMO_PAGE_DAPP);
+  }
 
   const categories = [...categoriesMap.values()]
     .map((category) => {

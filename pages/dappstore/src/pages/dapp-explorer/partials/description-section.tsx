@@ -15,7 +15,7 @@ import { RightArrow } from "@evmosapps/icons/RightArrow";
 import { TelegramIcon } from "@evmosapps/icons/TelegramIcon";
 import { TwitterIcon } from "@evmosapps/icons/TwitterIcon";
 import { WebsiteIcon } from "@evmosapps/icons/WebsiteIcon";
-
+import { RichTextBlock } from "@evmosapps/ui-helpers/src/notion/RichText";
 import { HeroSection } from "../../landing/partials/hero-section";
 import { DescriptionItem } from "./description-item";
 import { DApp } from "../../../lib/fetch-explorer-data";
@@ -114,29 +114,29 @@ export const DescriptiondApp = async ({
               )}
             </div>
             <p className="text-[#D3CBC7] font-light lg:text-base">
-              {dapp.oneLiner}
+              {dapp.oneLiner.plainText}
             </p>
           </div>
         </header>
       </div>
       <div className="flex flex-col lg:flex-row gap-y-12 lg:gap-y-24 gap-x-24 items-start">
         <div className=" w-full grid gap-y-8">
-          {dapp.description && (
+          {!!dapp.description.richText.length && (
             <DescriptionItem
               title={t("instantdApp.description.title", {
                 name: dapp.name,
               })}
             >
-              <p>{dapp.description}</p>
+              <RichTextBlock richText={dapp.description.richText} />
             </DescriptionItem>
           )}
-          {dapp.howTo && (
+          {!!dapp.howTo.richText.length && (
             <DescriptionItem
               title={t("instantdApp.howTo.title", {
                 name: dapp.name,
               })}
             >
-              <p>{dapp.howTo}</p>
+              <RichTextBlock richText={dapp.howTo.richText} />
             </DescriptionItem>
           )}
 

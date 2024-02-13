@@ -51,7 +51,10 @@ export const DappExplorerPage = async ({
               .filter(({ instantDapp }) => instantDapp)
               .map(({ slug }) => slug),
 
-            description: t("categories.instantdApps.description"),
+            description: {
+              richText: [],
+              plainText: t("categories.instantdApps.description"),
+            },
             name: t("categories.instantdApps.name"),
             slug: "instant-dapps",
           },

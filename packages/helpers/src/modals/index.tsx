@@ -34,6 +34,7 @@ const usePrevious = <T,>(value: T) => {
   }, [value]);
   return ref.current;
 };
+
 /**
  * Hook to manage modals
  *
@@ -70,11 +71,16 @@ export const useModal = <T extends z.AnyZodObject>(
 
     const nextState = typeof next === "function" ? next(state) : next;
     const url = new URL(window.location.href);
-    url.search = qs.stringify({
-      action: id,
-      ...sanitize(nextState),
-    });
 
+    const newParams = new URLSearchParams(
+      qs.stringify({
+        action: id,
+        ...sanitize(nextState),
+      }),
+    );
+    for (const [key, value] of newParams) {
+      url.searchParams.set(key, value);
+    }
     if (searchParams === url.searchParams.toString()) {
       return;
     }
@@ -95,10 +101,11 @@ export const useModal = <T extends z.AnyZodObject>(
 
         if (next.success) {
           const url = new URL(window.location.href);
-          url.search = qs.stringify({
-            action: id,
-            ...sanitize(next.data),
-          });
+          url.searchParams.set("action", id);
+          for (const [key, value] of Object.entries(next.data)) {
+            url.searchParams.set(key, value as string);
+          }
+
           if (redirectBack && typeof query.action === "string") {
             const redirect = window.location.href;
             url.searchParams.set("redirect", redirect);
@@ -109,7 +116,13 @@ export const useModal = <T extends z.AnyZodObject>(
       }
 
       const url = new URL(window.location.href);
-      url.search = "";
+      url.searchParams.delete("action");
+      if (typeof state === "object" && state !== null) {
+        for (const [key, value] of Object.entries(state)) {
+          url.searchParams.delete(key, value as string);
+        }
+      }
+      // url.search = "";
       if (typeof query.redirect === "string") {
         push(query.redirect, { scroll: false });
         return;
@@ -160,11 +173,16 @@ export const modalLink = <T extends z.AnyZodObject>(
           : initialState) ?? {};
       schema.parse(state);
       const url = new URL(window.location.href);
-      url.search = qs.stringify({
-        action: id,
-        ...sanitize(state),
-      });
 
+      const searchParams = new URLSearchParams(
+        qs.stringify({
+          ...sanitize(state),
+        }),
+      );
+
+      for (const [key, value] of searchParams) {
+        url.searchParams.set(key, value);
+      }
       push(url.toString(), {
         scroll: false,
       });

@@ -39,7 +39,7 @@ export const fetchCategories = async () => {
             subItem.language,
             {
               name: subItem.name,
-              description: subItem?.description,
+              description: subItem?.description.plainText,
             },
           ];
         }),

@@ -13,7 +13,7 @@ import bundleAnalyzer from "@next/bundle-analyzer";
  * }}
  **/
 const modulePackageJson = JSON.parse(
-  await readFile(`${process.cwd()}/package.json`, "utf-8")
+  await readFile(`${process.cwd()}/package.json`, "utf-8"),
 );
 
 const withBundleAnalyzer = bundleAnalyzer({
@@ -27,8 +27,8 @@ export function withEvmosConfig(config = {}) {
       {},
       modulePackageJson.dependencies,
       modulePackageJson.devDependencies,
-      modulePackageJson.peerDependencies
-    )
+      modulePackageJson.peerDependencies,
+    ),
   ).reduce((acc, [key, value]) => {
     if (value.startsWith("workspace:")) {
       acc.add(key);
@@ -51,7 +51,7 @@ export function withEvmosConfig(config = {}) {
     },
     transpilePackages: [...transpilePackages],
     headers: async () => {
-      return [
+      const headers = [
         {
           source: `${config.basePath ?? ""}/manifest.json`,
           headers: [
@@ -97,6 +97,25 @@ export function withEvmosConfig(config = {}) {
           ],
         },
       ];
+
+      if (process.env.ENABLE_DAPPSTORE_DEV === "true") {
+        return [
+          ...headers,
+          {
+            source: "/dapps/defi/dappstore-demo*",
+
+            headers: [
+              {
+                key: "Content-Security-Policy",
+                value:
+                  "font-src 'self' fonts.gstatic.com; object-src 'none'; base-uri 'self'; form-action 'self';upgrade-insecure-requests",
+              },
+            ],
+          },
+        ];
+      }
+
+      return headers;
     },
     ...config,
   });

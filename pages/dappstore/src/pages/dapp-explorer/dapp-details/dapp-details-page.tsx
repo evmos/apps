@@ -36,6 +36,14 @@ export const DappDetailsPage = async ({
 
   return (
     <>
+      {params.dapp === "dappstore-demo" ? (
+        <head>
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content="upgrade-insecure-requests"
+          />
+        </head>
+      ) : null}
       <ExplorerBreadcrumbs params={params} />
       <DescriptiondApp
         dapp={dapp}

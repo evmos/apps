@@ -21,8 +21,9 @@ import { normalizeChainId } from "wagmi";
 import { normalizeToEth } from "helpers/src/crypto/addresses/normalize-to-eth";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
 import { EventEmitter } from "events";
+import { EVMOS_CONFIG_BY_EVM_ID } from "helpers/src/evmos-info";
 
-const evmos = getEvmosChainInfo();
+// const evmos = getEvmosChainInfo();
 type ByMethod<M extends string> = Extract<
   EIP1474Methods[number],
   { Method: M }
@@ -35,7 +36,7 @@ const prepareTransactionForKeplr = async (
   request: EIP1474Parameters<"eth_sendTransaction">[0],
 ) => {
   const client = createPublicClient({
-    chain: evmos,
+    chain: EVMOS_CONFIG_BY_EVM_ID[chainId] ?? raise("Chain not found"),
     transport: http(),
   });
   const account = parseAccount(request.from);
@@ -131,7 +132,7 @@ type ChainConfig =
   | {
       // this means the chain doesn't need to be suggested to keplr
       isNative: true;
-      chainId: string;
+      chainId: string; // <- cosmos chain id
     };
 
 let instance: KeplrProvider | undefined = undefined;
@@ -157,6 +158,13 @@ export class KeplrProvider extends CustomProvider {
     void this.setup();
   }
   private isReady = false;
+
+  getChainId = () => {
+    return this.connectedNetwork ?? raise("Not connected");
+  };
+  getCosmosChainId = async () => {
+    return (await this.resolveCosmosConfig(this.getChainId())).chainId;
+  };
   resolveCosmosConfig = async (evmChainId: string | number) => {
     const chainConfig = this.chainConfigMap[normalizeChainId(evmChainId)];
     if (!chainConfig) {
@@ -186,7 +194,8 @@ export class KeplrProvider extends CustomProvider {
 
   eth_requestAccounts = async () => {
     const provider = await getKeplrProvider();
-    const signer = provider.getOfflineSigner(evmos.cosmosId);
+
+    const signer = provider.getOfflineSigner(await this.getCosmosChainId());
     const [account = raise("Account not found")] = await signer.getAccounts();
     return [normalizeToEth(account.address)] as const;
   };
@@ -195,7 +204,7 @@ export class KeplrProvider extends CustomProvider {
     parameters: [string],
     signType: EthSignType,
   ): Promise<EIP1474ReturnType<"personal_sign">> => {
-    const cosmosId = evmos.cosmosId;
+    const cosmosId = await this.getCosmosChainId();
 
     const [account] = await this.eth_requestAccounts();
     const keplr = await getKeplrProvider();
@@ -213,7 +222,10 @@ export class KeplrProvider extends CustomProvider {
   ]: EIP1474Parameters<"eth_sendTransaction">): Promise<
     EIP1474ReturnType<"eth_sendTransaction">
   > => {
-    const transaction = await prepareTransactionForKeplr(evmos.id, request);
+    const transaction = await prepareTransactionForKeplr(
+      this.getChainId(),
+      request,
+    );
     const signature = await this.personal_sign(
       [JSON.stringify(transaction)],
       EthSignType.TRANSACTION,
@@ -242,7 +254,8 @@ export class KeplrProvider extends CustomProvider {
       hexToSignature(signature),
     );
     const client = createPublicClient({
-      chain: evmos,
+      chain:
+        EVMOS_CONFIG_BY_EVM_ID[this.getChainId()] ?? raise("Chain not found"),
       transport: http(),
     });
 
@@ -255,7 +268,7 @@ export class KeplrProvider extends CustomProvider {
     parameters: EIP1474Parameters<"eth_signTypedData_v4">,
   ): Promise<EIP1474ReturnType<"eth_signTypedData_v4">> => {
     const keplr = await getKeplrProvider();
-    const cosmosId = evmos.cosmosId;
+    const cosmosId = await this.getCosmosChainId();
     const [account, message] = parameters;
     const signature = await keplr.signEthereum(
       cosmosId,

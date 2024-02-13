@@ -29,10 +29,8 @@ export async function generateMetadata({
     dApps.find((c) => c.slug === params.dapp) ?? raise("DApp not found");
 
   if (dapp.instantDapp) {
-    const demoProps: Metadata = params.dapp === "dappstore-demo" ? {} : {};
     return {
       title: `${dapp.name} Instant dApp | Evmos dApp Store`,
-      ...demoProps,
     };
   }
 

@@ -67,6 +67,7 @@ export const ConnectModalContent = ({
           "Wallet Provider": connector.name,
           "Error Message": `Failed to connect with ${connector.name}`,
         });
+        console.error(e);
         if (E.match.byPattern(e, /Connector not found/)) {
           notifyError(
             "{walletName} not found",

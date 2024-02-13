@@ -87,7 +87,7 @@ const VoteButton = ({ proposalId }: { proposalId: string }) => {
       gasLimit: GAS,
     });
   };
-  const isSmallBalance = (balance?.balance.cosmos ?? 0n) < GAS;
+  const isSmallBalance = (balance?.balance.erc20 ?? 0n) < GAS;
   return (
     <>
       <ConfirmButton

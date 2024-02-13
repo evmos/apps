@@ -102,7 +102,7 @@ export function withEvmosConfig(config = {}) {
         return [
           ...headers,
           {
-            source: "(/en)?/dapps/defi/dappstore-demo",
+            source: "(.*)/dapps/defi/dappstore-demo",
 
             headers: [
               {

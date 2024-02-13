@@ -259,7 +259,6 @@ type Staked = {
 
 type TableDataElement = {
   name: string;
-  cosmosBalance: BigNumber;
   decimals: number;
   description: string;
   erc20Balance: BigNumber;

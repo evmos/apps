@@ -65,17 +65,9 @@ export const useAssets = () => {
     }
 
     balance.forEach((item) => {
-      if (item.erc20Balance !== undefined && item.cosmosBalance !== undefined) {
+      if (item.erc20Balance !== undefined) {
         total =
-          total +
-          parseFloat(
-            amountToDollars(
-              BigNumber.from(item.cosmosBalance),
-              Number(item.decimals),
-              Number(item.coingeckoPrice),
-            ),
-          ) +
-          parseFloat(
+          total + parseFloat(
             amountToDollars(
               BigNumber.from(item.erc20Balance),
               Number(item.decimals),
@@ -117,10 +109,8 @@ export const useAssets = () => {
 
     const evmosData = balance.filter((i) => i.symbol.toLowerCase() === "evmos");
 
-    total = BigNumber.from(evmosData[0]?.cosmosBalance).add(
-      BigNumber.from(evmosData[0]?.erc20Balance),
-    );
-
+    total = BigNumber.from(evmosData[0]?.erc20Balance)
+    
     return total;
   }, [assets.data, balance]);
 

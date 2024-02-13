@@ -36,7 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
-- (fix) XAP-99 pages/potfolio 1.1.14 | single token representation: miscalculation token balance
+- (fix) XAP-99 pages/potfolio 1.1.14 pages/vesting 1.0.1 packages/evmos-wallet 1.0.28 packages/helpers 1.0.13 packages/trpc 1.0.1 packages/widgets 1.0.3 | single token representation: miscalculation token balance
 
 - (fix) XAP-106 pages/portfolio 1.1.11 | single token representation: remove double balance
 

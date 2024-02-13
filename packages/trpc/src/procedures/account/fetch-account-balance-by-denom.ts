@@ -36,7 +36,6 @@ export const fetchAccountBalanceByDenom = async ({
 
   return formatBalance({
     token,
-    cosmos: 0n,
     erc20: 0n,
     tokenPrice: tokenPrices.find(
       (tokenPrice) => tokenPrice.coingeckoId === token.coingeckoId,

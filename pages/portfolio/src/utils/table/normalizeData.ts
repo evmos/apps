@@ -6,7 +6,6 @@ import { ERC20BalanceResponse } from "../../asset/table/types";
 
 export type TableDataElement = {
   name: string;
-  cosmosBalance: BigNumber;
   decimals: number;
   description: string;
   erc20Balance: BigNumber;
@@ -43,19 +42,15 @@ export function normalizeAssetsData(data: ERC20BalanceResponse | undefined) {
         external = item.handledByExternalUI[0];
       }
       if (item.tokenName.toUpperCase() === "EVMOS") {
-        temp.feeBalance = BigNumber.from(item.cosmosBalance);
+        temp.feeBalance = BigNumber.from(item.erc20Balance);
       }
 
       if (item.erc20Balance === "") {
         item.erc20Balance = "0";
       }
 
-      if (item.cosmosBalance === "") {
-        item.cosmosBalance = "0";
-      }
       temp.table.push({
         name: item.name,
-        cosmosBalance: BigNumber.from(item.cosmosBalance),
         decimals: parseInt(item.decimals, 10),
         description: item.description,
         erc20Balance: BigNumber.from(item.erc20Balance),

@@ -20,5 +20,5 @@ export const useEvmosBalance = () => {
     }),
   );
 
-  return { evmosBalance: BigNumber.from(data?.balance.cosmos ?? 0) };
+  return { evmosBalance: BigNumber.from(data?.balance.erc20 ?? 0) };
 };

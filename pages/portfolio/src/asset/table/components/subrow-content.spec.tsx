@@ -17,7 +17,6 @@ const MOCKED_TOKEN = {
   symbol: "gWETH",
   decimals: 18,
   erc20Balance: BigNumber.from(20000000000000),
-  cosmosBalance: BigNumber.from(0),
   tokenName: "gWETH",
   tokenIdentifier: "WETH",
   description: "Wrapped Ether via Gravity Bridge",

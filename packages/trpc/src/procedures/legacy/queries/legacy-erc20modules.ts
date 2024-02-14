@@ -44,7 +44,6 @@ export const legacyFetchERC20ModuleBalance = async ({
 
       return {
         name: token.name,
-        cosmosBalance: balance?.balance.cosmos.toString() || "0",
         decimals: String(token.exponent),
         description: token.description,
         erc20Balance: balance?.balance.erc20.toString() || "0",
@@ -68,10 +67,7 @@ export const legacyFetchERC20ModuleBalance = async ({
       if (b.tokenName === "EVMOS") {
         return 1;
       }
-      return BigInt(a.cosmosBalance) + BigInt(a.erc20Balance) >
-        BigInt(b.cosmosBalance) + BigInt(b.erc20Balance)
-        ? -1
-        : 1;
+      return BigInt(a.erc20Balance) > BigInt(b.erc20Balance) ? -1 : 1;
     });
 
   return { balance };

@@ -6,7 +6,6 @@ import { TableData } from "../../utils/table/normalizeData";
 
 type ERC20Element = {
   name: string;
-  cosmosBalance: string;
   decimals: string;
   description: string;
   erc20Balance: string;

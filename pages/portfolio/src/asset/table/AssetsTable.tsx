@@ -62,8 +62,7 @@ const AssetsTable = () => {
     return normalizedAssetsData?.table.filter((asset) => {
       if (
         hideZeroBalance === true &&
-        asset.erc20Balance.eq(BigNumber.from(0)) &&
-        asset.cosmosBalance.eq(BigNumber.from(0))
+        asset.erc20Balance.eq(BigNumber.from(0))
       ) {
         return false;
       }

@@ -47,7 +47,7 @@ export function useOsmosisData() {
     const evmos = {
       ...evmosToken,
       chain: "Evmos",
-      balance: evmosBalance.balance.cosmos,
+      balance: evmosBalance.balance.erc20,
       price: evmosBalance.price?.usd.price ?? raise("evmos price not found"),
 
       osmosisDenom:

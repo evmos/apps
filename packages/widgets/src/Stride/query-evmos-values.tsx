@@ -20,7 +20,7 @@ export function useEvmosData() {
   );
 
   return {
-    balance: data?.balance?.cosmos.toString() ?? "0",
+    balance: data?.balance?.erc20?.toString() ?? "0",
     evmosPrice: data?.price?.usd.price.toString() ?? "0",
   };
 }

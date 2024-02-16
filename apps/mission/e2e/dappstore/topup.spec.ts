@@ -21,7 +21,6 @@ const responseZeroBalance = {
       symbol: "EVMOS",
       decimals: 18,
       erc20Balance: "0",
-      cosmosBalance: "0",
       tokenName: "EVMOS",
       tokenIdentifier: "EVMOS",
       description: "EVMOS",

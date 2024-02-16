@@ -6,16 +6,6 @@ import { formatUnits, parseEther } from "@ethersproject/units";
 import { safeBigInt } from "./bigint/safe-bigint";
 import { divide } from "./bigint";
 
-type addAssetsType = {
-  cosmosBalance: BigNumber;
-  decimals: number;
-  erc20Balance: BigNumber;
-};
-
-interface addDolarsAssetsType extends addAssetsType {
-  coingeckoPrice: number;
-}
-
 export function convertFromAtto(
   value: BigNumber | BigNumberish,
   exponent = 18,
@@ -155,32 +145,6 @@ export function amountToDollars(
   return (Number(convertFromAtto(value, decimals)) * coingeckoPrice).toFixed(2);
 }
 
-export function addAssets(asset: addAssetsType) {
-  return (
-    Number(convertFromAtto(asset.cosmosBalance, asset.decimals)) +
-    Number(convertFromAtto(asset.erc20Balance, asset.decimals))
-  );
-}
-
-export function addDollarAssets(assets: addDolarsAssetsType) {
-  return (
-    parseFloat(
-      amountToDollars(
-        assets.cosmosBalance,
-        assets.decimals,
-        assets.coingeckoPrice,
-      ),
-    ) +
-    parseFloat(
-      amountToDollars(
-        assets.erc20Balance,
-        assets.decimals,
-        assets.coingeckoPrice,
-      ),
-    )
-  );
-}
-
 export function formatDate(date: string | number | Date) {
   return new Intl.DateTimeFormat("default", {
     year: "numeric",
@@ -295,7 +259,6 @@ type Staked = {
 
 type TableDataElement = {
   name: string;
-  cosmosBalance: BigNumber;
   decimals: number;
   description: string;
   erc20Balance: BigNumber;
@@ -324,9 +287,6 @@ export function getTotalAssets(
   normalizedAssetsData?.table?.map((item) => {
     totalAssets =
       totalAssets +
-      parseFloat(
-        amountToDollars(item.cosmosBalance, item.decimals, item.coingeckoPrice),
-      ) +
       parseFloat(
         amountToDollars(item.erc20Balance, item.decimals, item.coingeckoPrice),
       );

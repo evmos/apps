@@ -39,6 +39,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (fix) XAP-110 pages/portfolio 1.1.13 | single token representation: remove test
 
 - (fix) XAP-109 pages/portfolio 1.1.12 | single token representation: potfolio responsive
+- (fix) XAP-99 pages/governance 1.1.4 pages/potfolio 1.1.14 pages/vesting 1.0.1 packages/evmos-wallet 1.0.28 packages/helpers 1.0.13 packages/trpc 1.0.1 packages/widgets 1.0.3 | single token representation: miscalculation token balance
 
 - (fix) XAP-106 pages/portfolio 1.1.11 | single token representation: remove double balance
 

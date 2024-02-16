@@ -6,11 +6,7 @@ import { useMemo } from "react";
 import { BigNumber } from "@ethersproject/bignumber";
 import { useAccount } from "wagmi";
 import { isNaN } from "lodash-es";
-import {
-  addAssets,
-  addDollarAssets,
-  amountToDollars,
-} from "helpers/src/styles";
+import { amountToDollars, convertFromAtto } from "helpers/src/styles";
 
 import { useTrpcQuery } from "@evmosapps/trpc/client";
 import { useEvmosChainRef } from "../registry-actions/hooks/use-evmos-chain-ref";
@@ -45,17 +41,17 @@ export const useAssets = () => {
         return {
           symbol: item.symbol,
           description: item.description,
-          valueInTokens: addAssets({
-            erc20Balance: BigNumber.from(item.erc20Balance),
-            decimals: Number(item.decimals),
-            cosmosBalance: BigNumber.from(item.cosmosBalance),
-          }).toFixed(2),
-          valueInDollars: addDollarAssets({
-            erc20Balance: BigNumber.from(item.erc20Balance),
-            decimals: Number(item.decimals),
-            coingeckoPrice: Number(item.coingeckoPrice),
-            cosmosBalance: BigNumber.from(item.cosmosBalance),
-          }).toFixed(2),
+          valueInTokens: Number(
+            convertFromAtto(item.erc20Balance, Number(item.decimals)),
+          ).toFixed(2),
+
+          valueInDollars: parseFloat(
+            amountToDollars(
+              BigNumber.from(item.erc20Balance),
+              Number(item.decimals),
+              Number(item.coingeckoPrice),
+            ),
+          ).toFixed(2),
         };
       }) ?? []
     );
@@ -69,17 +65,9 @@ export const useAssets = () => {
     }
 
     balance.forEach((item) => {
-      if (item.erc20Balance !== undefined && item.cosmosBalance !== undefined) {
+      if (item.erc20Balance !== undefined) {
         total =
-          total +
-          parseFloat(
-            amountToDollars(
-              BigNumber.from(item.cosmosBalance),
-              Number(item.decimals),
-              Number(item.coingeckoPrice),
-            ),
-          ) +
-          parseFloat(
+          total + parseFloat(
             amountToDollars(
               BigNumber.from(item.erc20Balance),
               Number(item.decimals),
@@ -121,10 +109,8 @@ export const useAssets = () => {
 
     const evmosData = balance.filter((i) => i.symbol.toLowerCase() === "evmos");
 
-    total = BigNumber.from(evmosData[0]?.cosmosBalance).add(
-      BigNumber.from(evmosData[0]?.erc20Balance),
-    );
-
+    total = BigNumber.from(evmosData[0]?.erc20Balance)
+    
     return total;
   }, [assets.data, balance]);
 

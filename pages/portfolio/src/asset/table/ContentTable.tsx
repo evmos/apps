@@ -4,7 +4,7 @@
 import { BigNumber } from "@ethersproject/bignumber";
 import { Dispatch, SetStateAction, useMemo } from "react";
 
-import { addAssets, addDollarAssets, formatNumber } from "helpers";
+import { amountToDollars, convertFromAtto, formatNumber } from "helpers";
 import { Accordion } from "@evmosapps/ui-helpers";
 import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContent";
@@ -104,18 +104,11 @@ const ContentTable = ({
           createSubRow(e, setIsOpen, setModalContent, tableData.feeBalance),
         );
 
-        valueInTokens += addAssets({
-          erc20Balance: e.erc20Balance,
-          decimals: e.decimals,
-          cosmosBalance: e.cosmosBalance,
-        });
+        valueInTokens += Number(convertFromAtto(e.erc20Balance, e.decimals));
 
-        valueInDollars += addDollarAssets({
-          erc20Balance: e.erc20Balance,
-          decimals: e.decimals,
-          coingeckoPrice: e.coingeckoPrice,
-          cosmosBalance: e.cosmosBalance,
-        });
+        valueInDollars += parseFloat(
+          amountToDollars(e.erc20Balance, e.decimals, e.coingeckoPrice),
+        );
       });
 
       ret.push(

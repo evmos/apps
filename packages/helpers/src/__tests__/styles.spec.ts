@@ -132,7 +132,6 @@ const dataTable = {
       symbol: "EVMOS",
       decimals: 18,
       erc20Balance: BigNumber.from("0"),
-      cosmosBalance: BigNumber.from("3502239735347276767"),
       tokenName: "EVMOS",
       tokenIdentifier: "EVMOS",
       description: "EVMOS",

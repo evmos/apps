@@ -1,12 +1,9 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { serverCosmos } from "../utils/cosmos-server-client";
-
 import { evmosServerClient } from "../utils/evmos-server-client";
 import { Hex, erc20Abi } from "viem";
 import { normalizeToEth } from "helpers/src/crypto/addresses/normalize-to-eth";
-import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
 import { Address } from "helpers/src/crypto/addresses/types";
 import { fetchTokenPrices } from "../tokens/queries/price/fetch-token-prices";
 
@@ -21,8 +18,7 @@ export const fetchAccountBalances = async ({
   chainRef: string;
   address: Address;
 }) => {
-  const [cosmosClient, evmosClient, tokens, tokenPrices] = await Promise.all([
-    serverCosmos(chainRef),
+  const [evmosClient, tokens, tokenPrices] = await Promise.all([
     chainRef.startsWith("evmos") ? evmosServerClient(chainRef) : null,
     fetchTokens(),
     fetchTokenPrices(),
@@ -47,38 +43,9 @@ export const fetchAccountBalances = async ({
     string,
     {
       erc20: bigint;
-      cosmos: bigint;
     }
   >();
-  const cosmosBalancePromise = cosmosClient
-    .GET("/cosmos/bank/v1beta1/balances/{address}", {
-      params: {
-        path: {
-          address: normalizeToCosmos(address),
-        },
-      },
-    })
-    .then(({ data }) => {
-      data?.balances?.forEach(({ denom, amount = "0" }) => {
-        if (!denom) return;
-        const token = tokenMap[denom];
-
-        if (!token) {
-          return;
-        }
-
-        const cosmo = BigInt(amount);
-        if (cosmo === 0n) return;
-        const balance = balanceMap.get(token.coinDenom) ?? {
-          cosmos: 0n,
-          erc20: 0n,
-        };
-        balanceMap.set(token.coinDenom, {
-          cosmos: BigInt(amount),
-          erc20: balance.erc20 ?? 0n,
-        });
-      });
-    });
+ 
 
   const evmosBalancePromise =
     evmosClient
@@ -98,29 +65,23 @@ export const fetchAccountBalances = async ({
           const erc20 = BigInt(response.result ?? "0");
           if (erc20 === 0n) return;
 
-          const balance = balanceMap.get(token.coinDenom) ?? {
-            cosmos: 0n,
-            erc20,
-          };
           balanceMap.set(token.coinDenom, {
-            cosmos: balance.cosmos ?? 0n,
             erc20,
           });
         });
       }) ?? Promise.resolve();
-  await Promise.all([cosmosBalancePromise, evmosBalancePromise]);
+  await Promise.all([evmosBalancePromise]);
 
   const tokenPriceMap = new Map(
     tokenPrices.map((token) => [token.coingeckoId, token]),
   );
-  return [...balanceMap.entries()].flatMap(([denom, { cosmos, erc20 }]) => {
+  return [...balanceMap.entries()].flatMap(([denom, { erc20 }]) => {
     const token = tokenMap[denom];
     if (!token) return [];
 
     return [
       formatBalance({
         token,
-        cosmos,
         erc20,
         tokenPrice: tokenPriceMap.get(token.coingeckoId),
       }),

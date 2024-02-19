@@ -146,9 +146,9 @@ export const ConnectModalContent = ({
       <div className="flex flex-col space-y-3">
         {connectors
           .filter((connector) => {
-            if (connector.id.startsWith("io.")) {
-              return false;
-            }
+            // if (connector.id.startsWith("io.")) {
+            //   return false;
+            // }
             if (connector.name === "Safe") return false;
             return true;
           })

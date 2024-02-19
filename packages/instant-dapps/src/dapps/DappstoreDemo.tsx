@@ -6,10 +6,63 @@
 import { InstantDappContainer } from "./instant-dapp-container";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PrimaryButton } from "@evmosapps/ui-helpers";
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { createHost } from "@evmos/dappstore-sdk/internal/host";
+import { wagmiConfig } from "../../../evmos-wallet/src";
+import { useAccount, useConnections, useConnectors } from "wagmi";
+import { useQuery } from "@tanstack/react-query";
+import { watchConnections } from "wagmi/actions";
+import { EIP1193Provider } from "viem";
+
+const WidgetIframe = ({
+  dappUrl,
+  provider,
+}: {
+  dappUrl: string;
+  provider: EIP1193Provider;
+}) => {
+  const ref = useRef<HTMLIFrameElement | null>(null);
+  useEffect(() => {
+    if (!ref.current?.contentWindow) return;
+
+    return createHost({
+      target: ref.current.contentWindow,
+      provider: provider,
+    });
+  }, [ref, provider]);
+  return <iframe ref={ref} src={dappUrl} height={600} width="100%" />;
+};
 
 const Widget = () => {
+  const connections = useConnections();
+  const [provider, setProvider] = useState<EIP1193Provider | null>(null);
+
+  useEffect(() => {
+    const connection = connections[0];
+    if (!connection) {
+      setProvider(null);
+      return;
+    }
+    if (!("getProvider" in connection.connector)) {
+      setProvider(null);
+      return;
+    }
+    connection.connector.getProvider().then((p) => {
+      console.log(p);
+      setProvider(p as EIP1193Provider);
+    });
+  }, [connections]);
+
+  // const { data } = useQuery({
+  //   queryKey: ["providers"],
+  //   queryFn: async () => {
+  //     return Promise.all(connectors.map((c) => c.getProvider()));
+  //   },
+  // });
+
+  // console.log(data);
   const search = useSearchParams();
+  const { isConnected } = useAccount();
   const { push } = useRouter();
   const dappUrl = search.get("dappUrl");
 
@@ -23,7 +76,7 @@ const Widget = () => {
 
     return false;
   }, [dappUrl]);
-  if (!dappUrl || invalidUrl)
+  if (!dappUrl || invalidUrl || !isConnected || !provider)
     return (
       <div className="prose prose-invert">
         <h3>Test your widget here</h3>
@@ -65,7 +118,8 @@ const Widget = () => {
         </form>
       </div>
     );
-  return <iframe src={dappUrl} height={600} width="100%" />;
+  // return null;
+  return <WidgetIframe dappUrl={dappUrl} provider={provider} />;
 };
 export default function DappstoreDemo() {
   return (

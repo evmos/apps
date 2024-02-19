@@ -11,6 +11,7 @@ import {
   evmosmainnet,
   evmostestnet,
 } from "helpers/src/evmos-info";
+import { EIP1193Provider } from "viem";
 
 export const wagmiConfig = createConfig({
   chains: [evmosmainnet, evmostestnet, evmoslocalnet],
@@ -24,6 +25,17 @@ export const wagmiConfig = createConfig({
 
   connectors: [
     injected({ target: "metaMask" }),
+    injected({
+      target: {
+        id: "rabby",
+        name: "Rabby",
+        provider: (window) => {
+          if (window && "rabby" in window) {
+            return window.rabby as EIP1193Provider;
+          }
+        },
+      },
+    }),
     injected({
       target() {
         return {

@@ -18,7 +18,9 @@
     "@evmosapps/evmos-wallet": "workspace:*",
     "@evmosapps/ui-helpers": "workspace:*",
     "@evmosapps/widgets": "workspace:*",
-    "stateful-components": "workspace:*"
+    "stateful-components": "workspace:*",
+    "@evmos/dappstore-sdk": "/Users/juliaortiz/Documents/Projects.nosync/evmos/dappstore/packages/dappstore-sdk",
+    "next": "14.1.0"
   },
   "dependencies": {
     "@types/node": "18.11.14",
@@ -26,6 +28,7 @@
     "typescript": "^5.3.3"
   },
   "browserslist": [
+    "Chrome 118",
     "last 3 chrome version",
     "last 3 firefox version",
     "last 3 safari version"

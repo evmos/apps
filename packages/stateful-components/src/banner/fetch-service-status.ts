@@ -15,9 +15,9 @@ import { notion } from "helpers/src/clients/notion";
 
 const evmosStatusPropertiesSchema = createNotionPropertiesSchema(
   z.object({
-    checkbox: checkboxSchema.default(() => ({ checkbox: false })),
-    name: titleSchema.default({ title: [{ plain_text: "" }] }),
-    description: richTextSchema.default({ rich_text: [{ plain_text: "" }] }),
+    checkbox: checkboxSchema,
+    name: titleSchema,
+    description: richTextSchema,
   }),
 );
 
@@ -38,11 +38,7 @@ const fetchEvmosStatus = async () => {
 
     if (!parsed.success) {
       Log("notion").error(parsed.error.issues);
-      return {
-        name: "",
-        description: "",
-        checkbox: false,
-      };
+      return null;
     }
 
     return parsed.data.properties;
@@ -53,8 +49,9 @@ export const getServiceDisruptionData = async () => {
   const data = await fetchEvmosStatus();
   const serviceStatus = data.find(
     (item) =>
+      item &&
       item.name.toLocaleLowerCase() ===
-      "Service disruption".toLocaleLowerCase(),
+        "Service disruption".toLocaleLowerCase(),
   );
   if (serviceStatus === undefined || !serviceStatus?.checkbox) return null;
   return serviceStatus.description;

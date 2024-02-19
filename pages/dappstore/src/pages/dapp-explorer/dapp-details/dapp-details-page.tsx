@@ -6,7 +6,7 @@ import { fetchExplorerData } from "../../../lib/fetch-explorer-data";
 import { DescriptiondApp } from "../partials/description-section";
 import { ExplorerBreadcrumbs } from "../partials/explorer-breadcrumbs";
 import { sortApps } from "../../../lib/sort/sort-dapps";
-
+// import { DAppStoreSDKHost } from "./dappstore-sdk-host";
 export const DappDetailsPage = async ({
   params,
 }: {
@@ -36,6 +36,15 @@ export const DappDetailsPage = async ({
 
   return (
     <>
+      {/* {params.dapp === "dappstore-demo" ? (
+        <head>
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content="upgrade-insecure-requests"
+          />
+        </head>
+      ) : null} */}
+      {/* <DAppStoreSDKHost /> */}
       <ExplorerBreadcrumbs params={params} />
       <DescriptiondApp
         dapp={dapp}

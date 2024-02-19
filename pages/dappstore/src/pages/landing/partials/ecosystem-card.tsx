@@ -66,7 +66,7 @@ export const EcosystemCard = ({ data }: { data: DApp }) => {
           )}
         </div>
         <p className="px-5 text-xs md:text-sm text-white opacity-70 overflow-hidden line-clamp-3">
-          {data.oneLiner || data.description}
+          {data.oneLiner.plainText || data.description.plainText}
         </p>
       </Link>
     </TrackerEvent>

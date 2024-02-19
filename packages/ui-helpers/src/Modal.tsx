@@ -50,23 +50,23 @@ export function Modal({
           onClose={() => setIsOpen(false)}
           {...rest}
         >
+          <Transition.Child
+            as={Fragment}
+            enter="transition duration-100 ease-in"
+            enterFrom="transform scale-95 opacity-0"
+            enterTo="transform scale-100 opacity-100"
+            leave="transition duration-100 ease-out"
+            leaveFrom="transform scale-100 opacity-100"
+            leaveTo="transform scale-95 opacity-0"
+          >
+            <div
+              className="fixed inset-0 bg-black bg-opacity-50"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            />
+          </Transition.Child>
           <div className="fixed inset-0 h-full w-full flex py-4 overflow-y-auto">
-            <Transition.Child
-              as={Fragment}
-              enter="transition duration-100 ease-in"
-              enterFrom="transform scale-95 opacity-0"
-              enterTo="transform scale-100 opacity-100"
-              leave="transition duration-100 ease-out"
-              leaveFrom="transform scale-100 opacity-100"
-              leaveTo="transform scale-95 opacity-0"
-            >
-              <div
-                className="fixed inset-0 bg-black bg-opacity-50"
-                onClick={() => {
-                  setIsOpen(false);
-                }}
-              />
-            </Transition.Child>
             <Transition.Child
               as={Fragment}
               enter="transition duration-100 ease-in"

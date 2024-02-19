@@ -3,6 +3,7 @@
 
 import { fetchExplorerData } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
 import { raise } from "helpers";
+import { Metadata } from "next/types";
 
 export { DappDetailsPage as default } from "@evmosapps/dappstore-page/src/pages/dapp-explorer/dapp-details/dapp-details-page";
 
@@ -21,7 +22,7 @@ export async function generateMetadata({
   params,
 }: {
   params: { dapp: string };
-}) {
+}): Promise<Metadata> {
   const { dApps } = await fetchExplorerData();
 
   const dapp =

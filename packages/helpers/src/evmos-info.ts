@@ -64,3 +64,9 @@ export const EVMOS_CONFIG_MAP = {
   evmostestnet,
   evmoslocalnet,
 };
+
+export const EVMOS_CONFIG_BY_EVM_ID = {
+  [evmosmainnet.id]: evmosmainnet,
+  [evmostestnet.id]: evmostestnet,
+  [evmoslocalnet.id]: evmoslocalnet,
+};

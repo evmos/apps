@@ -67,6 +67,7 @@ export const ConnectModalContent = ({
           "Wallet Provider": connector.name,
           "Error Message": `Failed to connect with ${connector.name}`,
         });
+        console.error(e);
         if (E.match.byPattern(e, /Connector not found/)) {
           notifyError(
             "{walletName} not found",
@@ -145,9 +146,9 @@ export const ConnectModalContent = ({
       <div className="flex flex-col space-y-3">
         {connectors
           .filter((connector) => {
-            if (connector.id.startsWith("io.")) {
-              return false;
-            }
+            // if (connector.id.startsWith("io.")) {
+            //   return false;
+            // }
             if (connector.name === "Safe") return false;
             return true;
           })

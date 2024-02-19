@@ -22,6 +22,7 @@
     "tracker": "workspace:*"
   },
   "devDependencies": {
+    "@evmos/dappstore-sdk": "/Users/juliaortiz/Documents/Projects.nosync/evmos/dappstore/packages/dappstore-sdk",
     "@noble/hashes": "^1.3.2",
     "lodash-es": "^4.17.21",
     "mixpanel-browser": "^2.48.1"

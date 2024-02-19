@@ -107,7 +107,7 @@ const CategoryHeader = async ({
 
       <div className="relative text-base text-[#E8DFD3]">
         <Subtitle>
-          {category?.description ?? t("categories.description")}
+          {category?.description.plainText ?? t("categories.description")}
         </Subtitle>
       </div>
     </div>

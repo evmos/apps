@@ -10,6 +10,8 @@
     "isolatedModules": true,
     "moduleResolution": "Bundler",
     "noUnusedLocals": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "noUnusedParameters": false,
     "preserveWatchOutput": true,
     "resolveJsonModule": true,

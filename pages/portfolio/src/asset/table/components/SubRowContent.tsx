@@ -25,10 +25,10 @@ export const SubRowContent = ({ item }: SubRowProps) => {
   }, []);
 
   return (
-    <div className="mr-8 flex w-full flex-col lg:mr-0 lg:flex-row">
+    <div className="mr-8 flex w-full lg:mr-0 flex-row">
       <div className="md:w-[5%]"></div>
       {/* symbol - token name - description */}
-      <div className="hidden w-[50%] lg:flex">
+      <div className="w-[100%] lg:flex lg:w-[50%]">
         <Description
           symbol={symbol}
           description={description}
@@ -36,21 +36,9 @@ export const SubRowContent = ({ item }: SubRowProps) => {
           subRow={true}
         />
       </div>
-      {/* mobile view for description and convert */}
-      <div className="flex items-center lg:hidden">
-        <Description
-          symbol={symbol}
-          description={description}
-          imageSrc={img}
-          subRow={true}
-        />
-      </div>
-      <div className="mt-2 flex w-full pl-4 text-right uppercase lg:mt-0 lg:w-[50%] lg:items-center lg:pl-0 lg:text-left">
-        <div className=" mx-2.5 lg:mx-0"></div>
+      {/* balance token - balance dollars */}
+      <div className="flex w-full pl-4 text-right uppercase lg:mt-0 lg:w-[50%] lg:items-center lg:pl-0 lg:text-left">
         {/* md:w-[5%] */}
-        <p className="w-full text-left text-sm capitalize text-darkGray5 lg:hidden ">
-          Total Balance
-        </p>
 
         <div className="mr-8 flex w-full flex-col lg:mr-0">
           {/* displays erc20 balance */}

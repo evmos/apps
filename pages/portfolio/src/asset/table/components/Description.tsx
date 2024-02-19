@@ -13,7 +13,7 @@ export const Description = ({
   return (
     <div
       className={`flex w-[50%] items-center space-x-3 lg:space-x-5 ${
-        subRow ? "pl-5 md:pl-14" : ""
+        subRow ? "pl-5 md:pl-14 w-[100%]" : ""
       } `}
     >
       <Image

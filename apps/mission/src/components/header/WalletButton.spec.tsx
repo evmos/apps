@@ -4,16 +4,15 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
 import { RootProviders } from "stateful-components/src/root-providers";
-import { CLICK_CONNECT_WALLET_BUTTON, disableMixpanel } from "tracker";
-import { WalletButton } from "./WalletButton";
-import { PropsWithChildren } from "react";
-import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
+import {
+  CLICK_CONNECT_WALLET_BUTTON,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 
-vi.mock("@tanstack/react-query-next-experimental", () => ({
-  ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
-}));
+import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
+import { WalletButton } from "./WalletButton";
 
 vi.mock("react", async (importOriginal: () => Promise<{}>) => {
   return {
@@ -23,6 +22,28 @@ vi.mock("react", async (importOriginal: () => Promise<{}>) => {
     "server-only": {},
   };
 });
+vi.mock("@tanstack/react-query-next-experimental", () => ({
+  ReactQueryStreamedHydration: (props: React.PropsWithChildren<{}>) =>
+    props.children,
+}));
+
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      useWallet: () => {
+        return {
+          connector: vi.fn(),
+          address: "",
+          isHydrating: false,
+          isConnecting: false,
+          isReconnecting: false,
+        };
+      },
+    };
+  },
+);
 
 describe("Testing Branding", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

@@ -19,7 +19,8 @@
     "redux": ">=4"
   },
   "devDependencies": {
-    "@evmosapps/config": "workspace:*"
+    "@evmosapps/config": "workspace:*",
+    "vitest-canvas-mock": "^0.3.3"
   },
   "dependencies": {
     "@evmosapps/evmos-wallet": "workspace:*",

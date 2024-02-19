@@ -4,8 +4,11 @@
 import { test, describe, vi, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_ON_NEXT_STEPS_COPILOT, disableMixpanel } from "tracker";
+import {
+  CLICK_ON_NEXT_STEPS_COPILOT,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 
 import { TopupSuccessMessage } from "./topup-success-message";
 import { CopilotContext } from "../../copilot";

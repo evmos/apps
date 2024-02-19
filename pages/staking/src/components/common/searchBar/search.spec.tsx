@@ -4,8 +4,12 @@
 import { test, describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_SEARCH_VALIDATORS_INPUT, disableMixpanel } from "tracker";
+
+import {
+  CLICK_SEARCH_VALIDATORS_INPUT,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 
 import Search from "./Search";
 import { SearchWrapper } from "../../context/SearchContext";

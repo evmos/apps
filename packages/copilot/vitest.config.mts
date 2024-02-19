@@ -6,6 +6,14 @@ export default mergeConfig(
   defineConfig({
     test: {
       setupFiles: ["vitest.setup.ts"],
+      deps: {
+        // >= 0.34
+        optimizer: {
+          web: {
+            include: ["vitest-canvas-mock"],
+          },
+        },
+      },
     },
-  })
+  }),
 );

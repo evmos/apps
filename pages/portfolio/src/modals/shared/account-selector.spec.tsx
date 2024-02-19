@@ -4,8 +4,12 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { SELECT_TO_NETWORK_SEND_FLOW, disableMixpanel } from "tracker";
+
+import {
+  SELECT_TO_NETWORK_SEND_FLOW,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 import { RootProviders } from "stateful-components/src/root-providers";
 import { PropsWithChildren } from "react";
 import { AccountSelector } from "./AccountSelector";
@@ -14,6 +18,16 @@ import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
 vi.mock("@tanstack/react-query-next-experimental", () => ({
   ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
 }));
+
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      getActiveProviderKey: () => null,
+    };
+  },
+);
 
 describe("Testing Account Selector", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

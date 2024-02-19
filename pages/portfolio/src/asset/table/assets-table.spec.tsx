@@ -4,8 +4,12 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_HIDE_ZERO_BALANCE, disableMixpanel } from "tracker";
+
+import {
+  CLICK_HIDE_ZERO_BALANCE,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 
 import { RootProviders } from "stateful-components/src/root-providers";
 import { PropsWithChildren } from "react";
@@ -23,6 +27,16 @@ vi.mock("react", async (importOriginal: () => Promise<{}>) => {
     "server-only": {},
   };
 });
+
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      getActiveProviderKey: () => null,
+    };
+  },
+);
 describe("Testing Assets Table", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return <RootProviders>{children}</RootProviders>;

@@ -4,8 +4,11 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_SEE_MORE_BUTTON, disableMixpanel } from "tracker";
+import {
+  CLICK_SEE_MORE_BUTTON,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 
 import { EcosystemSection } from "./ecosystem-section";
 import { PropsWithChildren } from "react";

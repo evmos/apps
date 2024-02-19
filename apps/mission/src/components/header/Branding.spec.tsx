@@ -4,9 +4,11 @@
 import { test, describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-
-import { CLICK_EVMOS_LOGO, disableMixpanel } from "tracker";
+import {
+  CLICK_EVMOS_LOGO,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 import { Branding } from "./Branding";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
 

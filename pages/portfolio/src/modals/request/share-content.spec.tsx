@@ -4,11 +4,12 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
+
 import {
   CLICK_ON_COPY_ICON_REQUEST_FLOW,
   CLICK_ON_SHARE_VIA_APP_REQUEST_FLOW,
   disableMixpanel,
+  localMixpanel as mixpanel,
 } from "tracker";
 import { RootProviders } from "stateful-components/src/root-providers";
 import { PropsWithChildren } from "react";
@@ -37,6 +38,16 @@ vi.mock("wagmi", async (importOriginal: () => Promise<{}>) => {
     },
   };
 });
+
+vi.mock(
+  "@evmosapps/evmos-wallet",
+  async (importOriginal: () => Promise<{}>) => {
+    return {
+      ...(await importOriginal()),
+      getActiveProviderKey: () => null,
+    };
+  },
+);
 
 describe("Testing Set Up Content", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {

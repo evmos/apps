@@ -4,8 +4,11 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { CLICK_BUTTON_CONVERT, disableMixpanel } from "tracker";
+import {
+  CLICK_BUTTON_CONVERT,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 import { SubRowContent } from "./SubRowContent";
 import { BigNumber } from "@ethersproject/bignumber";
 import { RootProviders } from "stateful-components/src/root-providers";
@@ -33,6 +36,13 @@ const MOCKED_TOKEN = {
 vi.mock("@tanstack/react-query-next-experimental", () => ({
   ReactQueryStreamedHydration: (props: PropsWithChildren<{}>) => props.children,
 }));
+
+vi.mock("react", async (importOriginal: () => Promise<{}>) => {
+  return {
+    ...(await importOriginal()),
+    cache: (fn: unknown) => fn,
+  };
+});
 describe("Testing Tab Nav Item ", () => {
   const wrapper = ({ children }: { children: JSX.Element }) => {
     return <RootProviders>{children}</RootProviders>;

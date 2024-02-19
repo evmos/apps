@@ -4,8 +4,12 @@
 import { test, describe, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import mixpanel from "mixpanel-browser";
-import { PROMPTED_TO, disableMixpanel } from "tracker";
+
+import {
+  PROMPTED_TO,
+  disableMixpanel,
+  localMixpanel as mixpanel,
+} from "tracker";
 import { PropsWithChildren } from "react";
 import { ConnectToWalletWarning } from "./ConnectToWalletWarning";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";

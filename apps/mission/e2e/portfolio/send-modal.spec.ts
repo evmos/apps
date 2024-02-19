@@ -129,7 +129,7 @@ describe("Send Modal", () => {
   });
   beforeAll(async ({ page }) => {
     await step("Go to portfolio page", async () => {
-      await page.goto("/portfolio");
+      await page.goto("http://localhost:3000/portfolio");
     });
     await step("Accept TOS", async () => {
       await acceptTOS(page);
@@ -138,7 +138,7 @@ describe("Send Modal", () => {
   });
   beforeEach(async ({ page, keplr }) => {
     await step("Go to portfolio page", async () => {
-      await page.goto("/portfolio");
+      await page.goto("http://localhost:3000/portfolio");
     });
     await step("Connect to Keplr", async () => {
       await connectToKeplr(page, keplr);

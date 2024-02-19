@@ -5,7 +5,7 @@ import { acceptTOS, mmFixture } from "@evmosapps/test-utils";
 
 const { test, describe, expect, beforeEach } = mmFixture;
 beforeEach(async ({ page }) => {
-  await page.goto("/governance");
+  await page.goto("http://localhost:3000/governance");
   await acceptTOS(page);
 });
 

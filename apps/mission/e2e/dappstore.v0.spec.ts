@@ -1,22 +1,16 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { mmFixture, pageListener } from "@evmosapps/test-utils";
+import { acceptTOS, mmFixture, pageListener } from "@evmosapps/test-utils";
+import { cleanupTabs } from "./cleanupTabs";
 const { test, beforeEach, describe, expect } = mmFixture;
 
 describe("Dapp store", () => {
-  beforeEach(async ({ page }) => {
+  beforeEach(async ({ page, context }) => {
+    await cleanupTabs(context);
     await page.goto("http://localhost:3000");
 
-    await page
-      .locator("div")
-      .filter({ hasText: /^I acknowledge to the Terms of Service\.$/ })
-      .getByRole("checkbox")
-      .check();
-
-    await page.getByLabel(/I want to share usage data./i).check();
-
-    await page.getByRole("button", { name: /accept and proceed/i }).click();
+    await acceptTOS(page);
   });
   test("should display transak wallet widget", async ({ page, context }) => {
     await page.getByRole("button", { name: /Connect/i }).click();

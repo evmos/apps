@@ -128,6 +128,7 @@ const ModalHeader = ({
             "h-6 w-auto absolute m-2 top-0 right-0 text-current focus:outline-none focus-visible:outline-none",
           )}
           aria-hidden="true"
+          data-testid="close-modal-icon"
         />
       </button>
     </div>

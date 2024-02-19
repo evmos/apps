@@ -28,13 +28,17 @@ const web3Test = test.extend<{
         "test test test test test test test test test test test junk",
       headless: false,
     });
-
-    await wallet.addNetwork({
-      networkName: E2E_TEST_EVMOS_CHAIN_NAME,
-      rpc: E2E_TEST_EVMOS_RPC_URL,
-      chainId: E2E_TEST_EVMOS_CHAIN_ID,
-      symbol: E2E_TEST_EVMOS_SYMBOL,
-    });
+    try {
+      await wallet.addNetwork({
+        networkName: E2E_TEST_EVMOS_CHAIN_NAME,
+        rpc: E2E_TEST_EVMOS_RPC_URL,
+        chainId: E2E_TEST_EVMOS_CHAIN_ID,
+        symbol: E2E_TEST_EVMOS_SYMBOL,
+      });
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.log(e);
+    }
 
     await use(browserContext);
   },

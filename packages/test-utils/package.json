@@ -6,8 +6,8 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "@playwright/test": "^1.40.1",
-    "@tenkeylabs/dappwright": "^2.5.5"
+    "@playwright/test": "^1.41.2",
+    "@tenkeylabs/dappwright": "^2.8.1"
   },
   "dependencies": {
     "@types/download": "^8.0.2",

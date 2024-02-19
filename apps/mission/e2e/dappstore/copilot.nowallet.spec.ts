@@ -6,16 +6,13 @@ import { test } from "@playwright/test";
 const { describe, beforeEach, expect } = test;
 describe("Mission Page - Copilot", () => {
   beforeEach(async ({ page }) => {
-    await page.goto("/");
+    await page.goto("http://localhost:3000/");
     await acceptTOS(page);
   });
   test("install Metamask", async ({ page }) => {
     await page.getByRole("button", { name: /Connect/i }).click();
-    await page
-      .getByRole("button", {
-        name: /Evmos Copilot Recommended for first time users /i,
-      })
-      .click();
+
+    await page.getByTestId("connect-with-evmos-copilot").click();
 
     await page
       .getByRole("button", {

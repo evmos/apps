@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (fix) xap-153 | packages/instant-dapps 1.0.2 packages/widget 1.0.4 package/i18n 1.0.5 | Wormhole temporary banner
+
 ## 2.0.4 - 2024-02-19
 
 - (fix) xap-125 | apps 1.0.30 packages/copilot 1.0.13 packages/icons 1.0.12 packages/instantdapps 1.0.1 packages/widgets 1.0.3 pages/dappsstore 1.1.5 | Remove Cypher from instant dapps

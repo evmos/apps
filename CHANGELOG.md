@@ -37,6 +37,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 ## Unreleased
 
 - (chore) onb-3 | packages/evmos-wallet 1.0.28 packages/stateful-components 1.0.5 pages/staking 1.1.4 pages/vesting 1.0.2 | Add Rabby Wallet
+- (fix) apps/mission 1.0.32 | Adds error boundary to Evmos Price to prevent app crash in case of coingecko API failure
+- (fix) xap-157 | packages/widgets 1.0.4 | forge widget temporary change
 
 ## 2.0.5 - 2024-02-21
 

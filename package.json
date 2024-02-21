@@ -38,7 +38,7 @@
     "prettier": "^3.0.1",
     "react-dom": "^18.2.0",
     "viem": "^2.0.6",
-    "wagmi": "^2.1.1"
+    "wagmi": "^2.5.7"
   },
   "browserslist": [
     "last 3 chrome version",

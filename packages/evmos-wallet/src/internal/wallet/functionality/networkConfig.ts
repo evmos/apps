@@ -11,7 +11,7 @@ export const EVMOS_DECIMALS = parseInt(
 export const EVMOS_NETWORK_FOR_BACKEND =
   process.env.NEXT_PUBLIC_EVMOS_NETWORK_FOR_BACKEND ?? "EVMOS";
 export const EVMOS_BACKEND =
-  process.env.NEXT_PUBLIC_EVMOS_BACKEND ?? "https://goapi-staging.evmos.org";
+  process.env.NEXT_PUBLIC_EVMOS_BACKEND ?? "https://goapi.evmos.org";
 
 export const EVMOS_MINIMAL_COIN_DENOM =
   process.env.NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM ?? "aevmos";

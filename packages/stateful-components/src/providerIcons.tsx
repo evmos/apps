@@ -4,6 +4,7 @@
 "use client";
 import { KeplrIcon } from "@evmosapps/icons/KeplrIcon";
 import { MetamaskIcon } from "@evmosapps/icons/MetamaskIcon";
+import { RabbyIcon } from "@evmosapps/icons/RabbyWalletIcon";
 import { WalletConnectIcon } from "@evmosapps/icons/WalletConnectIcon";
 
 export const ProvidersIcons: Record<
@@ -13,4 +14,5 @@ export const ProvidersIcons: Record<
   MetaMask: MetamaskIcon,
   Keplr: KeplrIcon,
   WalletConnect: WalletConnectIcon,
+  "Rabby Wallet": RabbyIcon,
 };

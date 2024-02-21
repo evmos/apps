@@ -57,6 +57,8 @@ import { TransactionInspector } from "../shared/TransactionInspector";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { ConnectToWalletWarning } from "../shared/ConnectToWalletWarning";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
+import { isCosmosBasedWallet } from "helpers/src/crypto/wallets/is-cosmos-wallet";
+import { getGlobalLeapProvider } from "@evmosapps/evmos-wallet/src/wallet/utils/leap/getLeapProvider";
 
 export const TransferModalContent = ({
   receiver,
@@ -86,7 +88,13 @@ export const TransferModalContent = ({
   const { address } = useAccount();
 
   useEffect(() => {
-    if (networkPrefix !== "evmos" && getActiveProviderKey() !== "Keplr") return;
+    const provider = getActiveProviderKey();
+    if (
+      networkPrefix !== "evmos" &&
+      provider !== null &&
+      !isCosmosBasedWallet(provider)
+    )
+      return;
     requestAccount(networkPrefix);
   }, [networkPrefix, requestAccount, address]);
 
@@ -133,6 +141,7 @@ export const TransferModalContent = ({
     networkNotSupportedByConnectedWallet:
       activeProviderKey &&
       activeProviderKey !== "Keplr" &&
+      activeProviderKey !== "Leap" &&
       networkPrefix !== "evmos",
   };
 
@@ -377,7 +386,8 @@ export const TransferModalContent = ({
                   </p>
                   <PrimaryButton
                     variant={
-                      getGlobalKeplrProvider() === null
+                      getGlobalKeplrProvider() === null ||
+                      getGlobalLeapProvider() === null
                         ? "outline-primary"
                         : "primary"
                     }

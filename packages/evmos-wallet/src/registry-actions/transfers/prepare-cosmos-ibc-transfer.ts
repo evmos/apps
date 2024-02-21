@@ -5,7 +5,7 @@ import { SignMode } from "@buf/cosmos_cosmos-sdk.bufbuild_es/cosmos/tx/signing/v
 import { MsgTransfer } from "@buf/cosmos_ibc.bufbuild_es/ibc/applications/transfer/v1/tx_pb";
 import { apiCosmosTxSimulate } from "../../api/cosmos-rest/api-cosmos-tx-simulate";
 
-import { getKeplrProvider } from "../../wallet";
+import { getActiveProviderKey, getKeplrProvider } from "../../wallet";
 import { getChainByAddress } from "../get-chain-by-account";
 import { TokenAmount } from "../types";
 import { getIBCChannelId } from "../utils";
@@ -23,6 +23,13 @@ import { getTxTimeout } from "../utils/getTxTimeout";
 import { raise } from "helpers";
 import { Address } from "helpers/src/crypto/addresses/types";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
+import { Leap } from "../../wallet/utils/leap/types/leap";
+import { getLeapProvider } from "../../wallet/utils/leap/getLeapProvider";
+import { providers } from "../../api/utils/cosmos-based";
+import {
+  COSMOS_BASED_WALLETS,
+  isCosmosBasedWallet,
+} from "helpers/src/crypto/wallets/is-cosmos-wallet";
 
 const createProtobufIBCTransferMsg = async ({
   sender,
@@ -113,13 +120,27 @@ const signDirect = async (tx: Tx, ...args: Parameters<Keplr["signDirect"]>) => {
   return tx;
 };
 
+const signDirectLeap = async (
+  tx: Tx,
+  ...args: Parameters<Leap["signDirect"]>
+) => {
+  const leap = await getLeapProvider();
+
+  const signature = await leap.signDirect(...args);
+  tx.signatures = [Buffer.from(signature.signature.signature, "base64")];
+  return tx;
+};
+
 const signAmino = async (
   tx: Tx,
-  ...[chainId, sender, signDoc]: Parameters<Keplr["signAmino"]>
+  ...[chainId, sender, signDoc]: Parameters<
+    Keplr["signAmino"] | Leap["signAmino"]
+  >
 ) => {
-  const keplr = await getKeplrProvider();
+  const connectorCosmosBased =
+    await providers[getActiveProviderKey() as COSMOS_BASED_WALLETS]();
 
-  const signer = keplr.getOfflineSignerOnlyAmino(chainId);
+  const signer = connectorCosmosBased.getOfflineSignerOnlyAmino(chainId);
 
   const signature = await signer.signAmino(sender, signDoc);
 
@@ -144,47 +165,69 @@ export const executeCosmosIBCTransfer = async (params: {
   const chain = getChainByAddress(params.sender);
 
   const { accountNumber } = await getChainAccountInfo(params.sender);
+  const activeProvider = getActiveProviderKey();
   if (mode === "DIRECT") {
-    tx = await signDirect(
-      tx,
-      chain.cosmosId,
-      params.sender,
-      {
-        // @ts-expect-error This is typed as `Long`, but it does accept a string,
-        // I'd rather not have yet another library to do what native bigint does
-        accountNumber: accountNumber.toString(),
-        authInfoBytes: tx.authInfo?.toBinary(),
-        bodyBytes: tx.body?.toBinary(),
-        chainId: chain.cosmosId,
-      },
-      {
-        preferNoSetFee: true,
-      },
-    );
+    if (activeProvider === "Leap") {
+      tx = await signDirectLeap(
+        tx,
+        chain.cosmosId,
+        params.sender,
+        {
+          // @ts-expect-error This is typed as `Long`, but it does accept a string,
+          // I'd rather not have yet another library to do what native bigint does
+          accountNumber: accountNumber.toString(),
+          authInfoBytes: tx.authInfo?.toBinary(),
+          bodyBytes: tx.body?.toBinary(),
+          chainId: chain.cosmosId,
+        },
+        {
+          preferNoSetFee: true,
+        },
+      );
+    } else {
+      tx = await signDirect(
+        tx,
+        chain.cosmosId,
+        params.sender,
+        {
+          // @ts-expect-error This is typed as `Long`, but it does accept a string,
+          // I'd rather not have yet another library to do what native bigint does
+          accountNumber: accountNumber.toString(),
+          authInfoBytes: tx.authInfo?.toBinary(),
+          bodyBytes: tx.body?.toBinary(),
+          chainId: chain.cosmosId,
+        },
+        {
+          preferNoSetFee: true,
+        },
+      );
+    }
   } else if (mode === "LEGACY_AMINO_JSON") {
     const fee = tx.authInfo?.fee;
     const msgs = tx.body?.messages ?? [];
-    tx = await signAmino(tx, chain.cosmosId, params.sender, {
-      account_number: accountNumber,
-      chain_id: chain.cosmosId,
-      fee: {
-        amount: fee?.amount ?? [],
-        gas: fee?.gasLimit!.toString() ?? "0",
-      },
-      memo: tx.body?.memo ?? "",
-      msgs: [
-        {
-          type: "cosmos-sdk/MsgTransfer",
-          value: MsgTransfer.fromBinary(
-            msgs[0]?.value ?? raise("No message"),
-          ).toJson({
-            useProtoFieldName: true,
-          }),
+    if (activeProvider && isCosmosBasedWallet(activeProvider)) {
+      tx = await signAmino(tx, chain.cosmosId, params.sender, {
+        account_number: accountNumber,
+        chain_id: chain.cosmosId,
+        fee: {
+          amount: fee?.amount ?? [],
+          gas: fee?.gasLimit!.toString() ?? "0",
         },
-      ],
+        memo: tx.body?.memo ?? "",
+        msgs: [
+          {
+            type: "cosmos-sdk/MsgTransfer",
+            value: MsgTransfer.fromBinary(
+              msgs[0]?.value ?? raise("No message"),
+            ).toJson({
+              useProtoFieldName: true,
+            }),
+          },
+        ],
 
-      sequence: tx.authInfo!.signerInfos[0]?.sequence.toString() ?? "0",
-    });
+        sequence: tx.authInfo!.signerInfos[0]?.sequence.toString() ?? "0",
+      });
+    }
   } else {
     throw new Error("UNSUPPORTED_SIGN_MODE");
   }

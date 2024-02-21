@@ -12,6 +12,7 @@ import {
   evmostestnet,
 } from "helpers/src/evmos-info";
 import { EIP1193Provider } from "viem";
+import { leap } from "./leapConnector";
 
 export const wagmiConfig = createConfig({
   chains: [evmosmainnet, evmostestnet, evmoslocalnet],
@@ -38,6 +39,7 @@ export const wagmiConfig = createConfig({
       },
     }),
     keplr,
+    leap,
     walletConnect({
       showQrModal: process.env.NODE_ENV !== "test",
       projectId: WALLET_CONNECT_PROJECT_ID,
@@ -53,4 +55,5 @@ export type ConnetorId =
   | "WalletConnect"
   | "Keplr"
   | "Safe"
-  | "Rabby";
+  | "Rabby"
+  | "Leap";

@@ -292,27 +292,28 @@ export const ConvertModalContent = ({
             )}
             {type === "ERC20" ? "IBC" : "ERC20"}
           </p>
-          {getActiveProviderKey() !== "Keplr" && (
-            <button
-              className=" rounded border border-black px-3 py-0.5 text-xs font-bold text-black opacity-80 hover:opacity-50"
-              onClick={(e) => {
-                e.preventDefault();
-                if (!connectorClient || !address || !tokenEntity) return;
+          {getActiveProviderKey() !== "Keplr" ||
+            (getActiveProviderKey() !== "Leap" && (
+              <button
+                className=" rounded border border-black px-3 py-0.5 text-xs font-bold text-black opacity-80 hover:opacity-50"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (!connectorClient || !address || !tokenEntity) return;
 
-                void watchAsset(connectorClient, {
-                  type: "ERC20",
-                  options: {
-                    address,
-                    decimals: tokenEntity.exponent,
-                    symbol: tokenEntity.coinDenom,
-                    image: tokenEntity.img?.png,
-                  },
-                });
-              }}
-            >
-              Add {tokenEntity?.coinDenom} to wallet
-            </button>
-          )}
+                  void watchAsset(connectorClient, {
+                    type: "ERC20",
+                    options: {
+                      address,
+                      decimals: tokenEntity.exponent,
+                      symbol: tokenEntity.coinDenom,
+                      image: tokenEntity.img?.png,
+                    },
+                  });
+                }}
+              >
+                Add {tokenEntity?.coinDenom} to wallet
+              </button>
+            ))}
         </div>
         <span className=" text-center text-xs">
           Since{" "}

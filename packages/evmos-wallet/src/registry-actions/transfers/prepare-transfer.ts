@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { SignMode } from "@buf/cosmos_cosmos-sdk.bufbuild_es/cosmos/tx/signing/v1beta1/signing_pb";
-import { getActiveProviderKey, getKeplrProvider } from "../../wallet";
+import { getActiveProviderKey } from "../../wallet";
 import { TokenAmount } from "../types";
 import {
   prepareContractERC20Transfer,
@@ -20,6 +20,8 @@ import { prepareEvmTransfer, writeEvmTransfer } from "./prepare-evm-transfer";
 import { getChainByAddress } from "../get-chain-by-account";
 import { Address } from "helpers/src/crypto/addresses/types";
 import { isEvmosAddress } from "helpers/src/crypto/addresses/is-evmos-address";
+import { providers } from "../../api/utils/cosmos-based";
+import { COSMOS_BASED_WALLETS } from "helpers/src/crypto/wallets/is-cosmos-wallet";
 
 export const simulateTransfer = async ({
   sender,
@@ -140,17 +142,23 @@ export const transfer = async ({
   }
   if (!senderIsEvmos && receiverIsEvmos) {
     /**
-     * Nano Ledger on keplr doesn't support sign direct mode, so we have to use legacy amino json
+     * Nano Ledger on keplr / leap doesn't support sign direct mode, so we have to use legacy amino json
      */
     let mode: keyof typeof SignMode = "DIRECT";
-    if (getActiveProviderKey() === "Keplr") {
-      const keplr = await getKeplrProvider();
+
+    const connectorCosmosBased =
+      await providers[getActiveProviderKey() as COSMOS_BASED_WALLETS]();
+
+    if (connectorCosmosBased) {
       const chain = getChainByAddress(sender);
-      const { isNanoLedger } = await keplr.getKey(chain.cosmosId);
+      const { isNanoLedger } = await connectorCosmosBased.getKey(
+        chain.cosmosId,
+      );
       if (isNanoLedger) {
         mode = "LEGACY_AMINO_JSON";
       }
     }
+
     const result = await executeCosmosIBCTransfer({
       sender,
       receiver,

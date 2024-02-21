@@ -3,6 +3,7 @@
 
 "use client";
 import { KeplrIcon } from "@evmosapps/icons/KeplrIcon";
+import { LeapIcon } from "@evmosapps/icons/LeapWalletIcon";
 import { MetamaskIcon } from "@evmosapps/icons/MetamaskIcon";
 import { RabbyIcon } from "@evmosapps/icons/RabbyWalletIcon";
 import { WalletConnectIcon } from "@evmosapps/icons/WalletConnectIcon";
@@ -15,4 +16,5 @@ export const ProvidersIcons: Record<
   Keplr: KeplrIcon,
   WalletConnect: WalletConnectIcon,
   "Rabby Wallet": RabbyIcon,
+  Leap: LeapIcon,
 };

@@ -42,4 +42,8 @@ export const WIDGETS: {
   osmosis: dynamic(() => import("@evmosapps/instant-dapps/src/dapps/Osmosis"), {
     ssr: false,
   }),
+  tfm: dynamic(() => import("@evmosapps/instant-dapps/src/dapps/Tfm"), {
+    loading: () => <p>Loading...</p>,
+    ssr: false,
+  }),
 };

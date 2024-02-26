@@ -34,7 +34,7 @@
     "autoprefixer": "^10.4.13",
     "constants-helper": "workspace:*",
     "helpers": "workspace:*",
-    "i18next": "^23.7.18",
+    "i18next": "^23.10.0",
     "postcss": "^8.4.20",
     "sharp": "^0.32.6",
     "stateful-components": "workspace:*",

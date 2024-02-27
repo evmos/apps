@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (fix) xap-150 | apps/mission 1.0.33 package/instant-dapps 1.0.2 package/ widgets 1.0.5 pages 1.1.6 | add TFM instant dapp
+
 ## 2.0.6 - 2024-02-21
 
 - (fix) apps/mission 1.0.32 | Adds error boundary to Evmos Price to prevent app crash in case of coingecko API failure

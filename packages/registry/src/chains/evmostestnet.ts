@@ -1,6 +1,3 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-
 /* eslint-disable */
 /**
  * DO NOT MANUALLY EDIT THIS FILE!
@@ -23,7 +20,6 @@ export default {
   "channels": null,
   "feeToken": "atevmos",
   "cosmosRest": [
-    "https://rest.evmos-testnet.lava.build",
     "https://g.w.lavanet.xyz:443/gateway/evmost/rest/549a760ba95638964be1942980693d34",
     "https://rest.bd.evmos.dev:1317",
     "https://evmos.test.api.coldyvalidator.net",
@@ -32,7 +28,6 @@ export default {
     "https://evmos-testnet-lcd.qubelabs.io"
   ],
   "tendermintRest": [
-    "https://tm.evmos-testnet.lava.build",
     "https://g.w.lavanet.xyz:443/gateway/evmost/rpc-http/549a760ba95638964be1942980693d34",
     "https://tendermint.bd.evmos.dev:26657",
     "https://evmos.test.rpc.coldyvalidator.net",
@@ -42,7 +37,6 @@ export default {
     "https://rpc-t.evmos.nodestake.top"
   ],
   "evmRest": [
-    "https://evmos-testnet.lava.build",
     "https://g.w.lavanet.xyz:443/gateway/evmost/json-rpc-http/549a760ba95638964be1942980693d34",
     "https://eth.bd.evmos.dev:8545",
     "https://jsonrpc-t.evmos.nodestake.top",

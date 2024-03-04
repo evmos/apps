@@ -1,6 +1,3 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-
 /* eslint-disable */
 /**
  * DO NOT MANUALLY EDIT THIS FILE!
@@ -28,12 +25,9 @@ export default {
   },
   "feeToken": "uosmo",
   "cosmosRest": [
-    "https://g.w.lavanet.xyz:443/gateway/cos4/rest/ef1ad852a77275e1eeef6c7972370118",
     "https://lcd.osmotest5.osmosis.zone"
   ],
-  "tendermintRest": [
-    "https://g.w.lavanet.xyz:443/gateway/cos4/rpc-http/ef1ad852a77275e1eeef6c7972370118"
-  ],
+  "tendermintRest": null,
   "evmRest": null,
   "cosmosGRPC": null,
   "tokens": [

@@ -1,6 +1,3 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-
 /* eslint-disable */
 /**
  * DO NOT MANUALLY EDIT THIS FILE!
@@ -38,7 +35,6 @@ export default {
     "https://api.osmosis.interbloc.org"
   ],
   "tendermintRest": [
-    "https://g.w.lavanet.xyz:443/gateway/cos3/rpc-http/ef1ad852a77275e1eeef6c7972370118",
     "https://rpc.cosmos.directory/osmosis"
   ],
   "evmRest": null,

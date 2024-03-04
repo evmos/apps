@@ -30,7 +30,7 @@ export const fetchAccountEvmosRewards = async ({
       },
     },
   );
-  console.log(address, chainRef, data);
+
   return {
     rewards: data.rewards?.flatMap(({ reward, validator_address }) => {
       if (isValidCosmosAddress(validator_address) === false) {

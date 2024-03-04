@@ -11,14 +11,16 @@ import { loadRegistryTokenExtensions } from "../../utils/load-registry-token-ext
 import { ChainType } from "@evmosapps/registry/src/types";
 import { nextCache } from "helpers/src/next/cache";
 import { seconds } from "helpers/src/time";
-import { fetchRegistry } from "./fetchRegistry";
+
+import { TokenEntity } from "@evmosapps/registry/autogen/token-entity";
+import { fetchChainRegistryDir } from "../../utils/fetch-chain-registry-dir";
 
 const CHAIN_REGISTRY_REF = process.env.CHAIN_REGISTRY_REF ?? "main";
 export const fetchTokens = nextCache(
   async function () {
     const [chainMap, fromRegistry, fromExtensions] = await Promise.all([
       fetchChains().then((chains) => new Map(chains.map((c) => [c.ref, c]))),
-      fetchRegistry().then((registry) => registry.tokens),
+      fetchChainRegistryDir<TokenEntity>("tokens"),
       loadRegistryTokenExtensions(),
     ]);
 

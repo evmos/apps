@@ -36,7 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
-- (chore) | apps/mission 1.0.33 | Creates new static endpoint to provide registry data
+- (chore) | apps/mission 1.0.33 | Swap rpcs by the newly crated proxy
 
 ## 2.0.6 - 2024-02-21
 

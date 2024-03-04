@@ -5,10 +5,9 @@
 
 import { nextCache } from "helpers/src/next/cache";
 import { loadRegistryChainExtensions } from "../../utils/load-registry-chain-extensions";
-
 import { seconds } from "helpers/src/time";
-
-import { fetchRegistry } from "../../tokens/queries/fetchRegistry";
+import { fetchChainRegistryDir } from "../../utils/fetch-chain-registry-dir";
+import { ChainEntity } from "@evmosapps/registry/autogen/chain-entity";
 
 const EVMOS_OVERWRITES = {
   web3: [
@@ -36,8 +35,7 @@ const EVMOS_OVERWRITES = {
 
 export const fetchChains = nextCache(
   async function fetchChains() {
-    const fromRegistry = fetchRegistry().then((registry) => registry.chains);
-
+    const fromRegistry = fetchChainRegistryDir<ChainEntity>("chainConfig");
     const fromExtensions = loadRegistryChainExtensions();
 
     const all = (await Promise.all([fromRegistry, fromExtensions])).flatMap(

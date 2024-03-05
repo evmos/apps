@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { useState } from "react";
 // import { useChains } from "@cosmos-kit/react";
 // import { WalletConnectProvider } from "@walletconnect/web3-provider";

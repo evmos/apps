@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { type WalletClient } from "@leapwallet/elements";
 import { useWalletClient } from "@cosmos-kit/react";
 import { WalletClientContext } from "@cosmos-kit/core";

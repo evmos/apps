@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { ChainProvider } from "@cosmos-kit/react";
 import { Spinner } from "@interchain-ui/react";
 import dynamic from "next/dynamic";

@@ -30,19 +30,12 @@ const customElementsTheme: ThemeDefinition = {
 };
 
 const CustomLiquidity = () => {
-  const a = useChain("evmos");
-  // eslint-disable-next-line no-console
-  console.log("esto es a", a);
+  const { openView, address } = useChain("evmos");
   const walletClient = useElementsWalletClient();
-  // eslint-disable-next-line no-console
-  console.log("wallet client", walletClient);
-  const userAddress = a.address ? a.address : "";
-  // eslint-disable-next-line @typescript-eslint/require-await, @typescript-eslint/no-unused-vars
-  const connectWallet = async function (chainId: string | undefined) {
-    a.openView();
-    await a.connect();
-    // eslint-disable-next-line no-console
-    console.log("address", a.address);
+  const userAddress = address;
+  // eslint-disable-next-line @typescript-eslint/require-await
+  const connectWallet = async () => {
+    openView();
   };
 
   const walletClientConfig = {

@@ -38,6 +38,21 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 - (fix) xap-150 | apps/mission 1.0.33 package/instant-dapps 1.0.2 package/ widgets 1.0.5 pages 1.1.6 | add TFM instant dapp
 
+## 2.0.9 - 2024-03-06
+
+- (chore) | Enable new wallets
+
+## 2.0.8 - 2024-03-06
+
+- (chore) | packages/icons 1.0.13 | Fix icons for wallets
+- (chore) | apps/mission 1.0.33 | Swap rpcs by the newly crated proxy
+- (chore) | packages/evmos-wallet 1.0.31 | Fix provider request
+- (chore) onb-4 | apps/mission 1.0.33 packages/constants-helpers 1.0.12 packages/config 1.0.2 packages/evmos-wallet 1.0.30 packages/helpers 1.0.13 packages/stateful-components 1.0.6 packages/trpc 1.0.2 packages/ui-helpers 1.0.23 pages/dappstore 1.1.6 pages/portfolio 1.1.11 | Add Leap Wallet
+- (chore) onb-3 | packages/evmos-wallet 1.0.29 packages/stateful-components 1.0.5 pages/staking 1.1.4 pages/vesting 1.0.2 | Add Rabby Wallet
+
+## 2.0.7 - 2024-03-05
+
+
 ## 2.0.6 - 2024-02-21
 
 - (fix) apps/mission 1.0.32 | Adds error boundary to Evmos Price to prevent app crash in case of coingecko API failure

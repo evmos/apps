@@ -4,6 +4,7 @@
 import { CheckIcon } from "@evmosapps/icons/CheckIcon";
 import { CloseBorderIcon } from "@evmosapps/icons/CloseBorderIcon";
 import { KeplrIcon } from "@evmosapps/icons/KeplrIcon";
+import { LeapIcon } from "@evmosapps/icons/LeapWalletIcon";
 import { MetamaskIcon } from "@evmosapps/icons/MetamaskIcon";
 import { WalletConnectIcon } from "@evmosapps/icons/WalletConnectIcon";
 import { ComponentProps } from "react";
@@ -61,6 +62,10 @@ const ICONS_STYLES = {
   [ICONS_TYPES.WALLETCONNECT]: {
     style: "bg-gray-600 text-pearl flex h-9 w-9 shrink-0",
     icon: <WalletConnectIcon width={"20px"} height={"20px"} />,
+  },
+  [ICONS_TYPES.LEAP]: {
+    style: "bg-gray-600 text-pearl flex h-9 w-9 shrink-0",
+    icon: <LeapIcon width={"20px"} height={"20px"} />,
   },
 } as const;
 

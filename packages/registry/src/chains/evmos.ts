@@ -23,19 +23,18 @@ export default {
   "channels": null,
   "feeToken": "aevmos",
   "cosmosRest": [
-    "https://rest.evmos.lava.build",
+    "https://proxy.evmos.org/cosmos",
     "https://rest.cosmos.directory/evmos",
     "https://api-evmos-ia.cosmosia.notional.ventures",
     "https://lcd.evmos.disperze.network",
     "https://evmos-rest.publicnode.com"
   ],
   "tendermintRest": [
-    "https://tm.evmos.lava.build",
     "https://rpc.cosmos.directory/evmos",
     "https://grpc.bd.evmos.org:9090"
   ],
   "evmRest": [
-    "https://evmos.lava.build",
+    "https://proxy.evmos.org/web3",
     "https://jsonrpc-evmos-ia.cosmosia.notional.ventures",
     "https://evmos-mainnet.public.blastapi.io",
     "https://evmos-evm.publicnode.com",

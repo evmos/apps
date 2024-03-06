@@ -7,7 +7,7 @@ type WalletConnectIconProps = React.SVGAttributes<SVGElement> & {
 
 export const WalletConnectIcon: React.FC<WalletConnectIconProps> = ({
   width = "40",
-  height = "40",
+  height = "38",
   color = "currentColor",
   ...restProps
 }) => {

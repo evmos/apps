@@ -25,7 +25,6 @@ export const prepareEvmTransfer = async ({
     to: normalizeToEth(receiver),
     value: amount.amount,
   });
-
   return {
     tx: args,
     estimatedGas: buffGasEstimate(gasEstimate ?? raise("No gas estimate")),
@@ -43,6 +42,15 @@ export const writeEvmTransfer = async ({
     receiver: normalizeToEth(receiver),
     amount,
   });
+  // TODO: move it to prepareEvmTransfer or other function if it's needed.
+  // Use estimatedGas instead of wagmi value.
+  // The value that wagmi gives sometimes is not enough for the gas that the tx needs.
+  const temp: {
+    readonly to: `0x${string}`;
+    readonly value: bigint;
+    gas?: bigint;
+  } = response.tx;
 
-  return sendTransaction(wagmiConfig, response.tx);
+  temp.gas = response.estimatedGas;
+  return sendTransaction(wagmiConfig, temp);
 };

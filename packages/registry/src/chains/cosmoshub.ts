@@ -28,7 +28,6 @@ export default {
   },
   "feeToken": "uatom",
   "cosmosRest": [
-    "https://g.w.lavanet.xyz:443/gateway/cos5/rest/ef1ad852a77275e1eeef6c7972370118",
     "https://rest.cosmos.directory/cosmoshub",
     "https://cosmos-lcd.quickapi.com:443",
     "https://lcd-cosmoshub.whispernode.com",
@@ -39,7 +38,6 @@ export default {
     "https://api-cosmoshub-ia.notional.ventures/"
   ],
   "tendermintRest": [
-    "https://g.w.lavanet.xyz:443/gateway/cos5/rpc-http/ef1ad852a77275e1eeef6c7972370118",
     "https://rpc.cosmos.directory/cosmoshub",
     "https://cosmoshub-rpc.stakely.io/"
   ],

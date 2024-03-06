@@ -18,13 +18,9 @@ import {
 
 import { EXPLORER_URL } from "constants-helper";
 
-import { getEvmosChainInfo } from "@evmosapps/evmos-wallet/src/wallet/wagmi/chains";
 import { E } from "helpers";
 import { useStakingPrecompile } from "../../../../utils/hooks/useStakingPrecompile";
-import { getChainId, switchChain } from "wagmi/actions";
-import { useConfig } from "wagmi";
-
-const evmos = getEvmosChainInfo();
+import { switchToEvmosChain } from "@evmosapps/evmos-wallet/src/wallet/actions/switchToEvmosChain";
 
 export const useCancelUndelegations = (
   useCancelUndelegationProps: CancelUndelegationsProps,
@@ -32,17 +28,10 @@ export const useCancelUndelegations = (
   const dispatch = useDispatch();
 
   const { cancelUnbondingDelegation } = useStakingPrecompile();
-  const config = useConfig();
   //   async
   const handleConfirmButton = async () => {
-    if (getChainId(config) !== evmos.id) {
-      const [err] = await E.try(() =>
-        switchChain(config, {
-          chainId: evmos.id,
-        }),
-      );
-      if (err) return;
-    }
+    const [err] = await E.try(() => switchToEvmosChain());
+    if (err) return;
     useCancelUndelegationProps.setConfirmClicked(true);
     if (
       useCancelUndelegationProps.value === undefined ||

@@ -28,7 +28,6 @@ export default {
   },
   "feeToken": "uaxl",
   "cosmosRest": [
-    "https://g.w.lavanet.xyz:443/gateway/axelar/rest/ef1ad852a77275e1eeef6c7972370118",
     "https://rest.cosmos.directory/axelar",
     "https://lcd-axelar.imperator.co:443",
     "https://axelar-lcd.quickapi.com:443",
@@ -39,7 +38,6 @@ export default {
     "https://axelar-api.polkachu.com"
   ],
   "tendermintRest": [
-    "https://g.w.lavanet.xyz:443/gateway/axelar/rpc-http/ef1ad852a77275e1eeef6c7972370118",
     "https://rpc.cosmos.directory/axelar",
     "https://axelar-grpc.quantnode.tech:9090"
   ],

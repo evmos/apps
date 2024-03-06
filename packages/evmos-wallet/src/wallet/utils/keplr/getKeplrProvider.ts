@@ -2,7 +2,8 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { Keplr } from "@keplr-wallet/types";
-import { assert, raise } from "helpers";
+import { raise } from "helpers";
+import { waitDocReady } from "../wait-doc-ready";
 
 export function getGlobalKeplrProvider() {
   if (typeof window !== "undefined" && "keplr" in window) {
@@ -11,24 +12,10 @@ export function getGlobalKeplrProvider() {
   return null;
 }
 
-export async function getKeplrProvider(): Promise<Keplr> {
-  let keplr = getGlobalKeplrProvider();
-  if (keplr) return keplr;
+export async function getKeplrProvider() {
+  await waitDocReady();
 
-  assert(document.readyState !== "complete", "PROVIDER_NOT_AVAILABLE");
-
-  return new Promise((resolve) => {
-    const documentStateChange = (event: Event) => {
-      if (
-        event.target &&
-        (event.target as Document).readyState === "complete"
-      ) {
-        keplr = getGlobalKeplrProvider() ?? raise("PROVIDER_NOT_AVAILABLE");
-
-        resolve(keplr);
-        document.removeEventListener("readystatechange", documentStateChange);
-      }
-    };
-    document.addEventListener("readystatechange", documentStateChange);
-  });
+  return (
+    getGlobalKeplrProvider() ?? raise("global Keplr provider not available")
+  );
 }

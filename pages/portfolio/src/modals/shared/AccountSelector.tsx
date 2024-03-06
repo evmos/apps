@@ -27,6 +27,7 @@ import { useEffectEvent } from "helpers";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { useAccount } from "wagmi";
 import { Address } from "helpers/src/crypto/addresses/types";
+import { isCosmosBasedWallet } from "helpers/src/crypto/wallets/is-cosmos-wallet";
 
 type WalletTabKey = "WALLET" | "OTHER";
 export const AccountSelector = ({
@@ -51,7 +52,8 @@ export const AccountSelector = ({
     useState<WalletTabKey>("WALLET");
   const activeProviderKey = getActiveProviderKey();
   const disableWalletRequest =
-    activeProviderKey !== "Keplr" || senderPrefix === selectedNetwork;
+    (activeProviderKey !== null && !isCosmosBasedWallet(activeProviderKey)) ||
+    senderPrefix === selectedNetwork;
 
   const activeWalletTab = disableWalletRequest ? "OTHER" : selectedWalletTab;
 
@@ -70,13 +72,15 @@ export const AccountSelector = ({
   /**
    * Requests wallet address when
    * - wallet tab is selected
-   * - keplr is active
+   * - keplr / leap is active
    * - selected network is not the sender network
    */
 
   const { requestAccount, account } = useRequestWalletAccount();
   const shouldRequestWalletState =
-    activeProviderKey === "Keplr" && activeWalletTab === "WALLET";
+    activeProviderKey !== null &&
+    isCosmosBasedWallet(activeProviderKey) &&
+    activeWalletTab === "WALLET";
   useEffect(() => {
     if (!shouldRequestWalletState) return;
     requestAccount(selectedNetwork);

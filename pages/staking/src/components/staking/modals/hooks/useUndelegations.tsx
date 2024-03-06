@@ -19,29 +19,18 @@ import {
 
 import { EXPLORER_URL } from "constants-helper";
 
-import { getEvmosChainInfo } from "@evmosapps/evmos-wallet/src/wallet/wagmi/chains";
 import { E } from "helpers";
 import { useStakingPrecompile } from "../../../../utils/hooks/useStakingPrecompile";
-import { useConfig } from "wagmi";
 
-import { getChainId, switchChain } from "wagmi/actions";
-
-const evmos = getEvmosChainInfo();
+import { switchToEvmosChain } from "@evmosapps/evmos-wallet/src/wallet/actions/switchToEvmosChain";
 
 export const useUndelegation = (useUndelegateProps: UndelegateProps) => {
   const dispatch = useDispatch();
 
   const { undelegate } = useStakingPrecompile();
-  const config = useConfig();
   const handleConfirmButton = async () => {
-    if (getChainId(config) !== evmos.id) {
-      const [err] = await E.try(() =>
-        switchChain(config, {
-          chainId: evmos.id,
-        }),
-      );
-      if (err) return;
-    }
+    const [err] = await E.try(() => switchToEvmosChain());
+    if (err) return;
     useUndelegateProps.setConfirmClicked(true);
     if (
       useUndelegateProps.value === undefined ||

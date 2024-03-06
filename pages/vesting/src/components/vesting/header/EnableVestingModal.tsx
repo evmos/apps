@@ -25,28 +25,18 @@ import { Log } from "helpers";
 import { EXPLORER_URL } from "constants-helper";
 
 import { E } from "helpers";
-import { getEvmosChainInfo } from "@evmosapps/evmos-wallet/src/wallet/wagmi/chains";
 import { ModalTitle } from "../../ModalTitle";
-import { getChainId, switchChain } from "wagmi/actions";
-import { useConfig } from "wagmi";
 import { useTranslation } from "@evmosapps/i18n/client";
+import { switchToEvmosChain } from "@evmosapps/evmos-wallet/src/wallet/actions/switchToEvmosChain";
 
-const evmos = getEvmosChainInfo();
 export const EnableVestingModal = ({ onClose }: { onClose: () => void }) => {
   const [disabled, setDisabled] = useState(false);
   const wallet = useSelector((state: StoreType) => state.wallet.value);
   const dispatch = useDispatch();
   const { createClawbackVestingAccount } = useVestingPrecompile();
-  const config = useConfig();
   const handleOnClick = async (d: FieldValues) => {
-    if (getChainId(config) !== evmos.id) {
-      const [err] = await E.try(() =>
-        switchChain(config, {
-          chainId: evmos.id,
-        }),
-      );
-      if (err) return;
-    }
+    const [err] = await E.try(() => switchToEvmosChain());
+    if (err) return;
     try {
       setDisabled(true);
 

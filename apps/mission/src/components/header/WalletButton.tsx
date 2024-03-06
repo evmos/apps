@@ -10,7 +10,7 @@ import { ProvidersIcons } from "stateful-components/src/providerIcons";
 import { ConnectButton } from "stateful-components/src/connect-button";
 import { normalizeToEth } from "helpers/src/crypto/addresses/normalize-to-eth";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
-
+import { isCosmosBasedWallet } from "helpers/src/crypto/wallets/is-cosmos-wallet";
 export const WalletButton = () => {
   const { connector, address, isHydrating, isConnecting, isReconnecting } =
     useWallet();
@@ -37,7 +37,7 @@ export const WalletButton = () => {
             {address && (
               <AddressDisplay
                 address={
-                  connector.name === "Keplr"
+                  isCosmosBasedWallet(connector.name)
                     ? normalizeToCosmos(address)
                     : normalizeToEth(address)
                 }

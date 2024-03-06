@@ -34,6 +34,12 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
+## Unreleased
+
+## 2.0.9 - 2024-03-06
+
+- chore | Add new wallets to production
+
 ## 2.0.8 - 2024-03-06
 
 - (chore) | packages/icons 1.0.13 | Fix icons for wallets

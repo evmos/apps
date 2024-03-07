@@ -39,6 +39,14 @@ export const DescriptiondApp = async ({
 }) => {
   const { t } = await translation("dappStore");
 
+  //Adapt the page to each Dapp
+  const getSlugClass = (slug: string): string => {
+    const slugClasses: Record<string, string> = {
+      "leap-wallet": "max-w-5xl",
+    };
+    return slugClasses[slug] || "max-w-lg";
+  };
+
   const drawWidget = () => {
     const Widget = WIDGETS[dapp.slug];
     if (Widget) return <Widget />;
@@ -222,7 +230,7 @@ export const DescriptiondApp = async ({
         </div>
         {drawWidget() && (
           <Frameline
-            className="w-full max-w-lg mx-auto grow"
+            className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}
             variant="secondary"
           >
             <div className="flex items-center justify-center h-full">

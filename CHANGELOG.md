@@ -36,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (fix) xap-151 | package/widget 1.0.5 package/instant-dapps 1.0.2 pages/dapp-store 1.1.7 | Add Leap Elements instant dapp
 - (chore) | packages/evmos-wallet 1.0.31 | Fix provider request
 - (chore) onb-4 | apps/mission 1.0.33 packages/constants-helpers 1.0.12 packages/config 1.0.2 packages/evmos-wallet 1.0.30 packages/helpers 1.0.13 packages/stateful-components 1.0.6 packages/trpc 1.0.2 packages/ui-helpers 1.0.23 pages/dappstore 1.1.6 pages/portfolio 1.1.11 | Add Leap Wallet
 - (chore) onb-3 | packages/evmos-wallet 1.0.29 packages/stateful-components 1.0.5 pages/staking 1.1.4 pages/vesting 1.0.2 | Add Rabby Wallet

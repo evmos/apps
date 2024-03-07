@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import type {
   WalletClient,
   WalletClientContext as LeapWalletClientContext,
@@ -8,7 +11,7 @@ import {
   useManager,
   useWallet,
 } from "@cosmos-kit/react";
-import { WalletClientContext } from "@cosmos-kit/core";
+import { WalletClientContext, WalletStatus } from "@cosmos-kit/core";
 import React from "react";
 import { SignDoc } from "cosmjs-types/cosmos/tx/v1beta1/tx";
 import { StdSignDoc } from "@cosmjs/amino";
@@ -80,18 +83,15 @@ export const useElementsWalletClientConfig = (): LeapWalletClientContext => {
 
   return React.useMemo(() => {
     return {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-      userAddress: walletStatus === "Connected" ? address : undefined,
+      userAddress:
+        walletStatus === WalletStatus.Connected ? address : undefined,
       walletClient,
       connectWallet: (chainId: unknown) => {
-        let _chainId = chainId;
-        if (typeof chainId !== "string") {
-          _chainId = "osmosis-1";
-        }
+        const _chainId: string =
+          typeof chainId === "string" ? chainId : "osmosis-1";
         const chain = chains.find((c) => c.chain_id === _chainId);
         if (!chain) {
-          // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-          throw new Error(`Chain ${chainId} not supported`);
+          throw new Error(`Chain ${_chainId} not supported`);
         }
         return getWalletRepo(chain.chain_name).connect();
       },

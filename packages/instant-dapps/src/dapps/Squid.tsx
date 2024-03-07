@@ -3,17 +3,15 @@
 
 "use client";
 
-// import Squid from "@evmosapps/widgets/src/squid";
-// import { InstantDappContainer } from "./instant-dapp-container";
-import LeapElements from "@evmosapps/widgets/src/LeapElements/leapElements";
+import Squid from "@evmosapps/widgets/src/squid";
+import { InstantDappContainer } from "./instant-dapp-container";
 
 export default function SquidInstantDapp() {
   return (
-    <LeapElements />
-    // <InstantDappContainer
-    //   image="bg-[url(/ecosystem/blur/squid-blur.png)]"
-    //   dappName="Squid"
-    //   widget={<Squid />}
-    // />
+    <InstantDappContainer
+      image="bg-[url(/ecosystem/blur/squid-blur.png)]"
+      dappName="Squid"
+      widget={<Squid />}
+    />
   );
 }

@@ -23,7 +23,6 @@ const customElementsTheme: ThemeDefinition = {
 };
 
 const CustomLiquidity = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const walletClientConfig = useElementsWalletClientConfig();
 
   return (

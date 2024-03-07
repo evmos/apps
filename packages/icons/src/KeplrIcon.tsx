@@ -7,7 +7,7 @@ type KeplrIconProps = React.SVGAttributes<SVGElement> & {
 
 export const KeplrIcon: React.FC<KeplrIconProps> = ({
   width = "40",
-  height = "40",
+  height = "38",
   ...restProps
 }) => {
   return (

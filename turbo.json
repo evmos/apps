@@ -48,7 +48,9 @@
     "VERCEL",
     "VERCEL_ENV",
     "VERCEL_URL",
-    "CHAIN_REGISTRY_REF"
+    "CHAIN_REGISTRY_REF",
+    "NEXT_PUBLIC_EVMOS_COSMOS_REST_API",
+    "NEXT_PUBLIC_EVMOS_EVM_JSON_RPC"
   ],
   "pipeline": {
     "build": {

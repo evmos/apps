@@ -7,7 +7,7 @@ type RabbyIconProps = React.SVGAttributes<SVGElement> & {
 
 export const RabbyIcon: React.FC<RabbyIconProps> = ({
   width = "40",
-  height = "32",
+  height = "38",
   ...restProps
 }) => {
   return (

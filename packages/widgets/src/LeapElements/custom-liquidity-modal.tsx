@@ -7,6 +7,8 @@ import {
   WalletClientContextProvider,
   darkTheme,
   LiquidityView,
+  Tabs,
+  TabsConfig,
 } from "@leapwallet/elements";
 import "@leapwallet/elements/styles.css";
 import { useElementsWalletClientConfig } from "./wallet";
@@ -22,19 +24,40 @@ const customElementsTheme: ThemeDefinition = {
   fontFamily: "Inter",
 };
 
+const defaults: TabsConfig = {
+  [Tabs.SWAP]: {
+    defaults: {
+      sourceChainId: "osmosis-1",
+      destinationChainId: "evmos_9001-2",
+    },
+  },
+  [Tabs.TRANSFER]: {
+    title: "Transfers",
+    defaults: {
+      sourceChainId: "evmos_9001-2",
+      sourceAssetSelector: ["denom", "evmos"],
+    },
+  },
+  [Tabs.CROSS_CHAIN_SWAPS]: {
+    defaults: {
+      destinationChainId: "evmos_9001-2",
+    },
+  },
+};
+
 const CustomLiquidity = () => {
   const walletClientConfig = useElementsWalletClientConfig();
 
   return (
     <div
-      className="rounded-lg"
+      className="rounded-lg md:w-[40rem]"
       style={{
         backgroundColor: darkTheme.colors.backgroundSecondary,
       }}
     >
       <ThemeContextProvider theme={customElementsTheme}>
         <WalletClientContextProvider value={walletClientConfig}>
-          <LiquidityView />
+          <LiquidityView tabsConfig={defaults} />
         </WalletClientContextProvider>
       </ThemeContextProvider>
     </div>

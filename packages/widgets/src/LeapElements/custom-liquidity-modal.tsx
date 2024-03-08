@@ -43,6 +43,9 @@ const defaults: TabsConfig = {
       destinationChainId: "evmos_9001-2",
     },
   },
+  [Tabs.FIAT_ON_RAMP]: {
+    enabled: false,
+  },
 };
 
 const CustomLiquidity = () => {

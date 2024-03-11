@@ -17,11 +17,6 @@ export const WIDGETS: {
     loading: () => <p>Loading...</p>,
     ssr: false,
   }),
-
-  c14: dynamic(() => import("@evmosapps/instant-dapps/src/dapps/C14"), {
-    loading: () => <p>Loading...</p>,
-    ssr: false,
-  }),
   transak: dynamic(() => import("@evmosapps/instant-dapps/src/dapps/Transak"), {
     loading: () => <p>Loading...</p>,
     ssr: false,

@@ -31,7 +31,7 @@ import Image from "next/image";
 //Adapt the page to each Dapp
 const getSlugClass = (slug: string): string => {
   const slugClasses: Record<string, string> = {
-    "leap-wallet": "max-w-5xl",
+    "leap-elements": "max-w-5xl",
   };
   return slugClasses[slug] || "max-w-lg";
 };

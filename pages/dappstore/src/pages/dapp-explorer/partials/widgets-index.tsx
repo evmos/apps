@@ -37,7 +37,7 @@ export const WIDGETS: {
   osmosis: dynamic(() => import("@evmosapps/instant-dapps/src/dapps/Osmosis"), {
     ssr: false,
   }),
-  "leap-wallet": dynamic(
+  "leap-elements": dynamic(
     () => import("@evmosapps/instant-dapps/src/dapps/LeapElements"),
     {
       loading: () => <p>Loading...</p>,

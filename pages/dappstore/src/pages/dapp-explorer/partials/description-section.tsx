@@ -28,6 +28,14 @@ import { CLICK_SEE_MORE_BUTTON, CLICK_SOCIAL_BUTTON } from "tracker";
 import { WIDGETS } from "./widgets-index";
 import Image from "next/image";
 
+//Adapt the page to each Dapp
+const getSlugClass = (slug: string): string => {
+  const slugClasses: Record<string, string> = {
+    "leap-wallet": "max-w-5xl",
+  };
+  return slugClasses[slug] || "max-w-lg";
+};
+
 export const DescriptiondApp = async ({
   dapp,
   relatedApps,
@@ -38,14 +46,6 @@ export const DescriptiondApp = async ({
   totalApps: number;
 }) => {
   const { t } = await translation("dappStore");
-
-  //Adapt the page to each Dapp
-  const getSlugClass = (slug: string): string => {
-    const slugClasses: Record<string, string> = {
-      "leap-wallet": "max-w-5xl",
-    };
-    return slugClasses[slug] || "max-w-lg";
-  };
 
   const drawWidget = () => {
     const Widget = WIDGETS[dapp.slug];

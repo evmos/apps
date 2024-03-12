@@ -5,16 +5,13 @@
 
 import Tfm from "@evmosapps/widgets/src/Tfm/tfm";
 import { InstantDappContainer } from "./instant-dapp-container";
-import "@evmosapps/widgets/src/Tfm/tfm.css";
 
-export default function WormholeInstantDapp() {
+export default function TfmInstantDapp() {
   return (
-    <div className="widget-container">
-      <InstantDappContainer
-        image="bg-[url(/ecosystem/blur/tfm-blur.png)]"
-        dappName="Tfm"
-        widget={<Tfm />}
-      />
-    </div>
+    <InstantDappContainer
+      image="bg-[url(/ecosystem/blur/tfm-blur.png)]"
+      dappName="Tfm"
+      widget={<Tfm />}
+    />
   );
 }

@@ -7,7 +7,14 @@ import "./tfm.css";
 const Tfm = () => {
   return (
     <div>
-      <IBCWidget projectId={""} />
+      <IBCWidget
+        enabledModes={["swap", "transfer"]}
+        options={{
+          destinationChain: "evmos_9001-2",
+          destinationDenom: "aevmos",
+        }}
+        projectId={""}
+      />
     </div>
   );
 };

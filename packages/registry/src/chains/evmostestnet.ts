@@ -15,9 +15,9 @@ export default {
   "cosmosId": "evmos_9000-4",
   "identifier": "evmostestnet",
   "gasPriceStep": {
-    "low": "10000000000",
-    "average": "25000000000",
-    "high": "40000000000"
+    "low": "50000000000",
+    "average": "80000000000",
+    "high": "100000000000"
   },
   "evmId": 9000,
   "channels": null,

@@ -57,7 +57,7 @@ export default {
   "tokens": [
     {
       "name": "EVMOS",
-      "ref": "evmos:EVMOS",
+      "ref": "EVMOS",
       "description": "EVMOS",
       "symbol": "EVMOS",
       "denom": "EVMOS",
@@ -75,12 +75,12 @@ export default {
     },
     {
       "name": "Wizzard Token",
-      "ref": "evmos:WIZZ",
+      "ref": "WIZZ",
       "description": "Wizzard Coin",
       "symbol": "WIZZ",
       "denom": "WIZZ",
       "sourcePrefix": "evmos",
-      "sourceDenom": "erc20/0xCF4E2cae6193f943C8f39B6012B735CAD37d8F4a",
+      "sourceDenom": "wizz",
       "minCoinDenom": "wizz",
       "category": "cosmos",
       "tokenRepresentation": "WIZZ",

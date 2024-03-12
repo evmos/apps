@@ -58,7 +58,7 @@ vi.mock(
         return {
           fee: {
             gasLimit: 1n,
-            token: "evmos:EVMOS",
+            token: "EVMOS",
           },
           isPending: false,
         };
@@ -83,7 +83,7 @@ describe("Testing Transfer Modal Content", () => {
       <TransferModalContent
         receiver={RECEIVER}
         networkPrefix="evmos"
-        token="evmos:EVMOS"
+        token="EVMOS"
         amount={1n}
         setState={vi.fn()}
         setIsOpen={vi.fn()}
@@ -132,7 +132,7 @@ describe("Testing Transfer Modal Content", () => {
       <TransferModalContent
         receiver={RECEIVER}
         networkPrefix="axelar"
-        token="evmos:EVMOS"
+        token="EVMOS"
         amount={1n}
         setState={vi.fn()}
         setIsOpen={vi.fn()}
@@ -159,7 +159,7 @@ describe("Testing Transfer Modal Content", () => {
       <TransferModalContent
         receiver={RECEIVER}
         networkPrefix="evmos"
-        token="evmos:EVMOS"
+        token="EVMOS"
         amount={1n}
         setState={vi.fn()}
         setIsOpen={vi.fn()}
@@ -201,7 +201,7 @@ describe("Testing Transfer Modal Content", () => {
       <TransferModalContent
         receiver={RECEIVER}
         networkPrefix="axelar"
-        token="evmos:EVMOS"
+        token="EVMOS"
         amount={1n}
         setState={vi.fn()}
         setIsOpen={vi.fn()}

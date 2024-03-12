@@ -652,7 +652,7 @@ importers:
         version: 18.11.14
       chain-token-registry:
         specifier: github:evmos/chain-token-registry#main
-        version: github.com/evmos/chain-token-registry/46797778dfdf05e5146316ebf7a501c0c0aa5d39
+        version: github.com/evmos/chain-token-registry/35ddee0d5d6726a9f0c6140ddcb1c2b8a949458e
       helpers:
         specifier: workspace:*
         version: link:../helpers
@@ -12912,6 +12912,7 @@ packages:
     dependencies:
       is-hex-prefixed: 1.0.0
       strip-hex-prefix: 1.0.0
+    bundledDependencies: false
 
   /event-emitter@0.3.5:
     resolution: {integrity: sha512-D9rRn9y7kLPnJ+hMq7S/nhvoKwwvVJahBi2BPmx3bvbsEdK3W9ii8cBSGjP+72/LnM4n6fo3+dkCX5FeTQruXA==}
@@ -21920,8 +21921,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  github.com/evmos/chain-token-registry/46797778dfdf05e5146316ebf7a501c0c0aa5d39:
-    resolution: {tarball: https://codeload.github.com/evmos/chain-token-registry/tar.gz/46797778dfdf05e5146316ebf7a501c0c0aa5d39}
+  github.com/evmos/chain-token-registry/35ddee0d5d6726a9f0c6140ddcb1c2b8a949458e:
+    resolution: {tarball: https://codeload.github.com/evmos/chain-token-registry/tar.gz/35ddee0d5d6726a9f0c6140ddcb1c2b8a949458e}
     name: chain-token-registry#main
     version: 0.0.0
     dev: true

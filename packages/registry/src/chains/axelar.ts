@@ -48,7 +48,7 @@ export default {
   "tokens": [
     {
       "name": "Lido staked ETH by Axelar",
-      "ref": "axelar:axlWSTETH",
+      "ref": "axlWSTETH",
       "description": "Lido staking derivative wstETH for staked ETH on Axelar",
       "symbol": "axlWSTETH",
       "denom": "axlWSTETH",
@@ -71,7 +71,7 @@ export default {
     },
     {
       "name": "Wrapped Ether on Axelar",
-      "ref": "axelar:axlWETH",
+      "ref": "axlWETH",
       "description": "Wrapped Ether on Axelar",
       "symbol": "axlWETH",
       "denom": "axlWETH",
@@ -94,7 +94,7 @@ export default {
     },
     {
       "name": "Wrapped Bitcoin on Axelar",
-      "ref": "axelar:axlWBTC",
+      "ref": "axlWBTC",
       "description": "Wrapped Bitcoin on Axelar",
       "symbol": "axlWBTC",
       "denom": "axlWBTC",
@@ -117,7 +117,7 @@ export default {
     },
     {
       "name": "USDT by Axelar",
-      "ref": "axelar:axlUSDT",
+      "ref": "axlUSDT",
       "description": "USD Tether Stablecoin on Axelar",
       "symbol": "axlUSDT",
       "denom": "axlUSDT",
@@ -140,7 +140,7 @@ export default {
     },
     {
       "name": "USD Coin by Axelar",
-      "ref": "axelar:axlUSDC",
+      "ref": "axlUSDC",
       "description": "Circle's stablecoin on Axelar",
       "symbol": "axlUSDC",
       "denom": "axlUSDC",
@@ -163,7 +163,7 @@ export default {
     },
     {
       "name": "Rocket Pool staked ETH by Axelar",
-      "ref": "axelar:axlRETH",
+      "ref": "axlRETH",
       "description": "Rocket Pool staking derivative rETH for staked ETH on Axelar",
       "symbol": "axlRETH",
       "denom": "axlRETH",
@@ -186,7 +186,7 @@ export default {
     },
     {
       "name": "Pepe by Axelar",
-      "ref": "axelar:axlPEPE",
+      "ref": "axlPEPE",
       "description": "Pepe on Axelar",
       "symbol": "axlPEPE",
       "denom": "axlPEPE",
@@ -209,7 +209,7 @@ export default {
     },
     {
       "name": "DAI by Axelar",
-      "ref": "axelar:axlDAI",
+      "ref": "axlDAI",
       "description": "DAI Stablecoin on Axelar",
       "symbol": "axlDAI",
       "denom": "axlDAI",
@@ -232,7 +232,7 @@ export default {
     },
     {
       "name": "Axelar",
-      "ref": "axelar:AXL",
+      "ref": "AXL",
       "description": "The native token of Axelar",
       "symbol": "AXL",
       "denom": "AXL",

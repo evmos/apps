@@ -48,7 +48,7 @@ export default {
   "tokens": [
     {
       "name": "Cosmos Hub",
-      "ref": "cosmos:ATOM",
+      "ref": "ATOM",
       "description": "The native token of Cosmos Hub",
       "symbol": "ATOM",
       "denom": "ATOM",

@@ -198,14 +198,14 @@ export const TransferModalContent = ({
     if (isDisconnected) return "CONNECT";
 
     if (
-      token.ref === "evmos:EVMOS" &&
+      token.ref === "EVMOS" &&
       !validation.hasSufficientBalance &&
       !isPreparing
     )
       return "TOPUP";
     if (
       fee &&
-      fee.token.ref === "evmos:EVMOS" &&
+      fee.token.ref === "EVMOS" &&
       !validation.hasSufficientBalanceForFee &&
       !isPreparing
     )

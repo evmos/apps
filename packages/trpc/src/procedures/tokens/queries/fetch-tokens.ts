@@ -32,14 +32,12 @@ export const fetchTokens = nextCache(
       if (CHAIN_REGISTRY_REF !== "main") {
         token = {
           ...token,
-          img: token.img
-            ? {
-                png: token.img.png.replace("/main/", `/${CHAIN_REGISTRY_REF}/`),
-                svg:
-                  token.img.svg?.replace("/main/", `/${CHAIN_REGISTRY_REF}/`) ??
-                  token.img.svg,
-              }
-            : {png: "", svg: ""},
+          img: {
+            png: token.img.png.replace("/main/", `/${CHAIN_REGISTRY_REF}/`),
+            svg:
+              token.img.svg?.replace("/main/", `/${CHAIN_REGISTRY_REF}/`) ??
+              token.img.svg,
+          },
         };
       }
       return {

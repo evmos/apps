@@ -16,7 +16,7 @@ import { ModalProps, useModal } from "helpers";
 const TransferModalSchema = z.object({
   receiver: AddressSchema.optional(),
   networkPrefix: ChainPrefixSchema.default("evmos"),
-  token: TokenRefSchema.default("evmos:EVMOS"),
+  token: TokenRefSchema.default("EVMOS"),
   amount: z.coerce.bigint().default(0n),
 });
 

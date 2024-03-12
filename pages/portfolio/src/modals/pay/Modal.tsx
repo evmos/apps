@@ -16,7 +16,7 @@ const MAX_MESSAGE_LENGTH = 140;
 
 const PayModalSchema = z.object({
   requester: AddressSchema.optional(),
-  token: TokenRefSchema.default("evmos:EVMOS"),
+  token: TokenRefSchema.default("EVMOS"),
   amount: z.coerce.bigint().default(0n),
   step: z
     .union([z.literal("setup"), z.literal("share"), z.literal("receive")])

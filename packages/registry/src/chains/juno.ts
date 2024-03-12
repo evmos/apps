@@ -47,7 +47,7 @@ export default {
   "tokens": [
     {
       "name": "Juno",
-      "ref": "juno:JUNO",
+      "ref": "JUNO",
       "description": "The native token of Juno Network",
       "symbol": "JUNO",
       "denom": "JUNO",

@@ -15,8 +15,8 @@ export const useTokenBalance = (address?: Address, tokenRef?: TokenRef) => {
     if (!data || !tokenRef || !address) return undefined;
     return (
       data.find((balance) => {
-        if (tokenRef === "evmos:EVMOS") {
-          return balance.tokenRef == "evmos:EVMOS" && balance.type === "ICS20";
+        if (tokenRef === "EVMOS") {
+          return balance.tokenRef == "EVMOS" && balance.type === "ICS20";
         }
         return tokenRef === balance.tokenRef;
       }) ?? makeBalance(getTokenByRef(tokenRef), address, 0n, "ICS20")

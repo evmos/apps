@@ -43,7 +43,7 @@ export default {
   "tokens": [
     {
       "name": "USD Coin",
-      "ref": "noble:USDC",
+      "ref": "USDC",
       "description": "USD Coin",
       "symbol": "USDC",
       "denom": "USDC",

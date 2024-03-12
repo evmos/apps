@@ -48,7 +48,7 @@ describe("Testing Set Up Content", () => {
     render(
       <ShareContent
         setState={vi.fn()}
-        token="evmos:EVMOS"
+        token="EVMOS"
         message="test"
         amount={1n}
       />,
@@ -77,7 +77,7 @@ describe("Testing Set Up Content", () => {
     render(
       <ShareContent
         setState={vi.fn()}
-        token="evmos:EVMOS"
+        token="EVMOS"
         message="test"
         amount={1n}
       />,
@@ -98,7 +98,7 @@ describe("Testing Set Up Content", () => {
     render(
       <ShareContent
         setState={vi.fn()}
-        token="evmos:EVMOS"
+        token="EVMOS"
         message="test"
         amount={1n}
       />,
@@ -129,7 +129,7 @@ describe("Testing Set Up Content", () => {
     render(
       <ShareContent
         setState={vi.fn()}
-        token="evmos:EVMOS"
+        token="EVMOS"
         message="test"
         amount={1n}
       />,

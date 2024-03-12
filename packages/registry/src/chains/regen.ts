@@ -45,7 +45,7 @@ export default {
   "tokens": [
     {
       "name": "Regen Network",
-      "ref": "regen:REGEN",
+      "ref": "REGEN",
       "description": "REGEN coin is the token for the Regen Network Platform",
       "symbol": "REGEN",
       "denom": "REGEN",

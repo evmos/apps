@@ -50,7 +50,7 @@ vi.mock(
         return {
           fee: {
             gasLimit: 1n,
-            token: "evmos:EVMOS",
+            token: "EVMOS",
           },
           isPending: false,
         };
@@ -74,7 +74,7 @@ describe("Testing Content Pay", () => {
     render(
       <Content // eslint-disable-next-line no-secrets/no-secrets
         requester="evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65"
-        token="evmos:EVMOS"
+        token="EVMOS"
         amount={80000000000000000000000n}
         message="test"
         step="receive"
@@ -103,7 +103,7 @@ describe("Testing Content Pay", () => {
       <Content
         // eslint-disable-next-line no-secrets/no-secrets
         requester="evmos14uepnqnvkuyyvwe65wmncejq5g2f0tjft3wr65"
-        token="evmos:EVMOS"
+        token="EVMOS"
         amount={80000000000000000000000n}
         message="test"
         step="receive"

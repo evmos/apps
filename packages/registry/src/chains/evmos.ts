@@ -46,7 +46,7 @@ export default {
   "tokens": [
     {
       "name": "Tashi",
-      "ref": "evmos:TASHI",
+      "ref": "TASHI",
       "description": "Tashi",
       "symbol": "TASHI",
       "denom": "TASHI",
@@ -64,7 +64,7 @@ export default {
     },
     {
       "name": "NEOKingdom DAO",
-      "ref": "evmos:NEOK",
+      "ref": "NEOK",
       "description": "NEOKingdom DAO",
       "symbol": "NEOK",
       "denom": "NEOK",
@@ -82,7 +82,7 @@ export default {
     },
     {
       "name": "EVMOS",
-      "ref": "evmos:EVMOS",
+      "ref": "EVMOS",
       "description": "EVMOS",
       "symbol": "EVMOS",
       "denom": "EVMOS",
@@ -100,7 +100,7 @@ export default {
     },
     {
       "name": "Teledisko DAO",
-      "ref": "evmos:BERLIN",
+      "ref": "BERLIN",
       "description": "The token of Teledisko DAO",
       "symbol": "BERLIN",
       "denom": "BERLIN",

@@ -91,18 +91,13 @@ for (const chainRegistry of chains) {
     tokenByIdentifier[identifier]?.map((token) => {
       return {
         name: token.name,
-        ref: `${chainRegistry.prefix}:${token.coinDenom}`,
+        ref: token.coinDenom,
         description: token.description,
         symbol: token.coinDenom,
         denom: token.coinDenom,
         sourcePrefix: chainRegistry.prefix,
-        sourceDenom:
-          chainRegistry.prefix === "evmos"
-            ? token.cosmosDenom
-            : token.ibc.sourceDenom,
-        // TODO: minCoinDenom for evmos is wrong in our registry, we should fix that there
-        minCoinDenom:
-          token.minCoinDenom === "EVMOS" ? "aevmos" : token.minCoinDenom,
+        sourceDenom: token.ibc.sourceDenom,
+        minCoinDenom: token.minCoinDenom,
         category: token.category === "none" ? null : token.category,
         tokenRepresentation: token.tokenRepresentation as string | null,
         type: token.type === "IBC" ? "IBC" : "ERC20",
@@ -117,10 +112,7 @@ for (const chainRegistry of chains) {
   const isTestnet = configuration.configurationType === "testnet";
   const feeTokenFromChainConfig = configuration.currencies[0]!;
   let feeToken = tokens.find(
-    (token) =>
-      token.minCoinDenom === feeTokenFromChainConfig.coinMinDenom ||
-      // @ts-expect-error TODO: Injective coinMinDenom key is wrong in our registry, we should fix that there
-      token.minCoinDenom === feeTokenFromChainConfig.coinMinimalDenom,
+    (token) => token.minCoinDenom === feeTokenFromChainConfig.coinMinDenom,
   );
   if (!feeToken) {
     feeToken = {
@@ -133,7 +125,7 @@ for (const chainRegistry of chains) {
       listed: false,
       minCoinDenom: feeTokenFromChainConfig.coinMinDenom!,
       name: feeTokenFromChainConfig.coinDenom!,
-      ref: `${chainRegistry.prefix}:${feeTokenFromChainConfig.coinDenom!}`,
+      ref: feeTokenFromChainConfig.coinDenom!,
       sourceDenom: feeTokenFromChainConfig.coinMinDenom!,
       sourcePrefix: chainRegistry.prefix,
       symbol: feeTokenFromChainConfig.coinDenom!,

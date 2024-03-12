@@ -15,7 +15,7 @@ import { Content } from "./Content";
 
 const RequestModalSchema = z.object({
   receiver: AddressSchema.optional(),
-  token: TokenRefSchema.default("evmos:EVMOS"),
+  token: TokenRefSchema.default("EVMOS"),
   amount: z.coerce.bigint().default(0n),
   step: z
     .union([z.literal("setup"), z.literal("share"), z.literal("receive")])

@@ -951,8 +951,8 @@ importers:
   packages/widgets:
     dependencies:
       '@0xtfm/widget-ibc':
-        specifier: ^0.0.5
-        version: 0.0.5(@babel/core@7.23.7)(@cosmjs/proto-signing@0.32.2)(@types/react@18.2.48)(axios@0.27.2)(cosmjs-types@0.9.0)(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0)
+        specifier: ^0.0.7
+        version: 0.0.7(@babel/core@7.23.7)(@cosmjs/proto-signing@0.32.3)(@types/react@18.2.48)(axios@0.27.2)(cosmjs-types@0.9.0)(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0)
       '@evmosapps/icons':
         specifier: workspace:*
         version: link:../icons
@@ -1352,8 +1352,8 @@ importers:
 
 packages:
 
-  /@0xtfm/widget-ibc@0.0.5(@babel/core@7.23.7)(@cosmjs/proto-signing@0.32.2)(@types/react@18.2.48)(axios@0.27.2)(cosmjs-types@0.9.0)(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-av48PwNYMUM9YCbn+2Y81ITdkqmOPK3ESR9TlhriZIwv3238jCFrScD6nsuFmQrGevMYvLMvAi1vbWqC3cT7ag==}
+  /@0xtfm/widget-ibc@0.0.7(@babel/core@7.23.7)(@cosmjs/proto-signing@0.32.3)(@types/react@18.2.48)(axios@0.27.2)(cosmjs-types@0.9.0)(postcss@8.4.33)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-8WLKghBQlTq8xkxcVARslUeBeaC4aYGpcIJAHC66twDmk+MIfzAE1ZnB318SJctFDeDW5UnpFxF5LZCIjUhgUA==}
     peerDependencies:
       react: ^17.0.0 || ^18.0.0
       react-dom: ^17.0.0 || ^18.0.0
@@ -1365,7 +1365,7 @@ packages:
       '@cosmjs/launchpad': 0.27.1
       '@cosmjs/stargate': 0.31.3
       '@cosmology/core': 2.0.1
-      '@cosmos-kit/core': 1.8.0(@cosmjs/amino@0.29.5)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.32.2)(@cosmjs/stargate@0.31.3)(cosmjs-types@0.9.0)
+      '@cosmos-kit/core': 1.8.0(@cosmjs/amino@0.29.5)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.32.3)(@cosmjs/stargate@0.31.3)(cosmjs-types@0.9.0)
       '@cosmostation/cosmos-client': 0.0.5
       '@cosmostation/extension-client': 0.1.15
       '@evmos/transactions': 0.3.2
@@ -3449,7 +3449,7 @@ packages:
       '@cosmjs/utils': 0.27.1
       bip39: 3.1.0
       bn.js: 5.2.1
-      elliptic: 6.5.4
+      elliptic: 6.5.5
       js-sha3: 0.8.0
       libsodium-wrappers: 0.7.13
       ripemd160: 2.0.2
@@ -3475,7 +3475,7 @@ packages:
       '@cosmjs/utils': 0.28.4
       '@noble/hashes': 1.3.3
       bn.js: 5.2.1
-      elliptic: 6.5.4
+      elliptic: 6.5.5
       libsodium-wrappers: 0.7.13
     dev: false
 
@@ -3487,7 +3487,7 @@ packages:
       '@cosmjs/utils': 0.29.5
       '@noble/hashes': 1.3.3
       bn.js: 5.2.1
-      elliptic: 6.5.4
+      elliptic: 6.5.5
       libsodium-wrappers: 0.7.13
     dev: false
 
@@ -3499,7 +3499,7 @@ packages:
       '@cosmjs/utils': 0.31.3
       '@noble/hashes': 1.3.3
       bn.js: 5.2.1
-      elliptic: 6.5.4
+      elliptic: 6.5.5
       libsodium-wrappers-sumo: 0.7.13
     dev: false
 
@@ -3523,7 +3523,7 @@ packages:
       '@cosmjs/utils': 0.32.3
       '@noble/hashes': 1.3.3
       bn.js: 5.2.1
-      elliptic: 6.5.4
+      elliptic: 6.5.5
       libsodium-wrappers-sumo: 0.7.13
     dev: false
 
@@ -3790,7 +3790,7 @@ packages:
       '@cosmjs/amino': 0.29.5
       '@cosmjs/encoding': 0.29.5
       '@cosmjs/math': 0.29.5
-      '@cosmjs/proto-signing': 0.29.3
+      '@cosmjs/proto-signing': 0.29.5
       '@cosmjs/stream': 0.29.5
       '@cosmjs/tendermint-rpc': 0.29.5
       '@cosmjs/utils': 0.29.5
@@ -4021,7 +4021,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/core@1.8.0(@cosmjs/amino@0.29.5)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.32.2)(@cosmjs/stargate@0.31.3)(cosmjs-types@0.9.0):
+  /@cosmos-kit/core@1.8.0(@cosmjs/amino@0.29.5)(@cosmjs/cosmwasm-stargate@0.31.3)(@cosmjs/proto-signing@0.32.3)(@cosmjs/stargate@0.31.3)(cosmjs-types@0.9.0):
     resolution: {integrity: sha512-07+upbiwT1IaIhpxINk1g4+T5z9uaQ0ZJhqVAAMoN32fch8D1FmHHaf3PQa/J3uG+KifbhnANwrdtgvnYB8cLw==}
     peerDependencies:
       '@cosmjs/amino': '>= 0.28'
@@ -4033,7 +4033,7 @@ packages:
       '@chain-registry/types': 0.13.0
       '@cosmjs/amino': 0.29.5
       '@cosmjs/cosmwasm-stargate': 0.31.3
-      '@cosmjs/proto-signing': 0.32.2
+      '@cosmjs/proto-signing': 0.32.3
       '@cosmjs/stargate': 0.31.3
       '@walletconnect/types': 2.7.2
       bowser: 2.11.0
@@ -5327,8 +5327,8 @@ packages:
     requiresBuild: true
     dependencies:
       '@apollo/client': 3.9.6(@types/react@18.2.48)(graphql@16.8.1)(react-dom@18.2.0)(react@18.2.0)
-      '@cosmjs/amino': 0.32.2
-      '@cosmjs/proto-signing': 0.32.2
+      '@cosmjs/amino': 0.32.3
+      '@cosmjs/proto-signing': 0.32.3
       '@cosmjs/stargate': 0.32.3
       '@ensdomains/ens-validation': 0.1.0
       '@ensdomains/eth-ens-namehash': 2.0.15
@@ -5520,7 +5520,7 @@ packages:
       '@iov/encoding': 2.1.0
       bip39: 3.1.0
       bn.js: 4.12.0
-      elliptic: 6.5.4
+      elliptic: 6.5.5
       js-sha3: 0.8.0
       libsodium-wrappers: 0.7.13
       pbkdf2: 3.1.2
@@ -5836,7 +5836,7 @@ packages:
       bs58check: 2.1.2
       buffer: 6.0.3
       crypto-js: 4.2.0
-      elliptic: 6.5.4
+      elliptic: 6.5.5
       sha.js: 2.4.11
     dev: false
 
@@ -13272,7 +13272,7 @@ packages:
     resolution: {integrity: sha512-mf+TCx8wWc9VpuxfP2ht0iSISLZnt0JgWlrOKZiNqyUZWnjIaCIVNQArMHnCZKfEYRg6IM7A+NeJoN8gf/Ws0A==}
     dependencies:
       bn.js: 4.12.0
-      elliptic: 6.5.4
+      elliptic: 6.5.5
     dev: false
 
   /create-hash@1.2.0:

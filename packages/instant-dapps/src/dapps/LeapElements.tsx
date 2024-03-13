@@ -5,6 +5,6 @@
 
 import LeapElements from "@evmosapps/widgets/src/LeapElements/leapElements";
 
-export default function SquidInstantDapp() {
+export default function LeapElementsInstantDapp() {
   return <LeapElements />;
 }

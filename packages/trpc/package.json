@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/trpc",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE",
   "sideEffects": false,
@@ -40,7 +40,7 @@
     "dotenv": "^16.3.1",
     "pnpm": "^8.14.1",
     "superjson": "^2.2.1",
-    "viem": "^2.0.6",
+    "viem": "^2.7.8",
     "zod": "^3.22.1"
   }
 }

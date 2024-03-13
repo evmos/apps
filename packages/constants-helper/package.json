@@ -1,6 +1,6 @@
 {
   "name": "constants-helper",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "sideEffects": false,

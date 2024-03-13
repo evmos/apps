@@ -29,6 +29,7 @@ export const ICONS_TYPES = {
   METAMASK: "METAMASK",
   KEPLR: "KEPLR",
   WALLETCONNECT: "WALLETCONNECT",
+  LEAP: "LEAP",
 };
 
 export const EMOJIS = {

@@ -58,22 +58,6 @@ describe("Dapp store ", () => {
     await expect(page).toHaveURL("http://localhost:3000");
 
     await page
-      .getByRole("link", {
-        name: /c14/i,
-      })
-      .click();
-    await expect(
-      page.getByRole("heading", { name: /How to use c14 Instant dApp/i }),
-    ).toBeVisible();
-
-    const c14Widget = page.getByTestId("c14-widget");
-    await c14Widget.waitFor();
-
-    expect(await c14Widget.count()).toBe(1);
-
-    await page.getByRole("link", { name: "c14", exact: true }).click();
-    await expect(page).toHaveURL("http://localhost:3000/dapps/on-ramps/c14");
-    await page
       .getByRole("link", { name: /Transak Transak Instant dApp/i })
       .click();
     await expect(page).toHaveURL(

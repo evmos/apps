@@ -8,12 +8,13 @@ import { PriceUpIcon } from "@evmosapps/icons/PriceUpIcon";
 import { assert } from "helpers";
 import { trpc } from "@evmosapps/trpc/client";
 import { ms } from "helpers/src/time";
+
 export const PriceDisplay = () => {
   const [data] = trpc.token.price.byDenom.useSuspenseQuery("EVMOS", {
     staleTime: ms("5m"),
   });
 
-  assert(data, "Token not found");
+  assert(data, "Token price not found");
 
   return (
     <>

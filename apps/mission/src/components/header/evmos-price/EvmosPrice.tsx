@@ -4,17 +4,20 @@
 "use client";
 import { EvmosRedIcon } from "@evmosapps/icons/EvmosRedIcon";
 import { cn } from "helpers";
+import { ErrorBoundary } from "react-error-boundary";
 
 import { LazyPriceDisplay } from "./LazyPriceDisplay";
 
 export const EvmosPrice = () => {
   return (
-    <div className="text-pearl bg-darGray800 cursor-default items-center justify-center gap-3 rounded-full px-4 py-2 font-bold flex lg:mr-8">
-      <EvmosRedIcon width={"1em"} height={"1em"} />
+    <ErrorBoundary fallback={null}>
+      <div className="text-pearl bg-darGray800 cursor-default items-center justify-center gap-3 rounded-full px-4 py-2 font-bold flex lg:mr-8">
+        <EvmosRedIcon width={"1em"} height={"1em"} />
 
-      <div className={cn("flex gap-3 items-center")}>
-        <LazyPriceDisplay />
+        <div className={cn("flex gap-3 items-center")}>
+          <LazyPriceDisplay />
+        </div>
       </div>
-    </div>
+    </ErrorBoundary>
   );
 };

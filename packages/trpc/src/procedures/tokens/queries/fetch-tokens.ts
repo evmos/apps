@@ -6,13 +6,16 @@
 import { raise } from "helpers";
 
 import { fetchChains } from "../../chains/queries/fetch-chains";
-import { TokenEntity } from "@evmosapps/registry/autogen/token-entity";
-import { fetchChainRegistryDir } from "../../utils/fetch-chain-registry-dir";
+
 import { loadRegistryTokenExtensions } from "../../utils/load-registry-token-extensions";
 import { ChainType } from "@evmosapps/registry/src/types";
 import { nextCache } from "helpers/src/next/cache";
 import { seconds } from "helpers/src/time";
 
+import { TokenEntity } from "@evmosapps/registry/autogen/token-entity";
+import { fetchChainRegistryDir } from "../../utils/fetch-chain-registry-dir";
+
+const CHAIN_REGISTRY_REF = process.env.CHAIN_REGISTRY_REF ?? "main";
 export const fetchTokens = nextCache(
   async function () {
     const [chainMap, fromRegistry, fromExtensions] = await Promise.all([
@@ -26,9 +29,22 @@ export const fetchTokens = nextCache(
 
       const chain = chainMap.get(source) ?? raise(`Chain ${source} not found`);
       const networkType: ChainType = chain.configurationType;
-
+      if (CHAIN_REGISTRY_REF !== "main") {
+        token = {
+          ...token,
+          img: token.img
+            ? {
+                png: token.img.png.replace("/main/", `/${CHAIN_REGISTRY_REF}/`),
+                svg:
+                  token.img.svg?.replace("/main/", `/${CHAIN_REGISTRY_REF}/`) ??
+                  token.img.svg,
+              }
+            : {png: "", svg: ""},
+        };
+      }
       return {
         ...token,
+
         source,
         networkType,
         isMainnet: networkType === "mainnet",

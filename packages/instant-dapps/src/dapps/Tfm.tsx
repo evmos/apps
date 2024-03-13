@@ -3,15 +3,15 @@
 
 "use client";
 
-import C14 from "@evmosapps/widgets/src/c14";
+import Tfm from "@evmosapps/widgets/src/Tfm/tfm";
 import { InstantDappContainer } from "./instant-dapp-container";
 
-export default function C14InstantDapp() {
+export default function TfmInstantDapp() {
   return (
     <InstantDappContainer
-      image="bg-[url(/ecosystem/blur/c14-blur.png)]"
-      dappName="C14"
-      widget={<C14 />}
+      image="bg-[url(/ecosystem/blur/tfm-blur.png)]"
+      dappName="Tfm"
+      widget={<Tfm />}
     />
   );
 }

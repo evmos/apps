@@ -11,7 +11,7 @@ export const EVMOS_DECIMALS = parseInt(
 export const EVMOS_NETWORK_FOR_BACKEND =
   process.env.NEXT_PUBLIC_EVMOS_NETWORK_FOR_BACKEND ?? "EVMOS";
 export const EVMOS_BACKEND =
-  process.env.NEXT_PUBLIC_EVMOS_BACKEND ?? "https://goapi-staging.evmos.org";
+  process.env.NEXT_PUBLIC_EVMOS_BACKEND ?? "https://goapi.evmos.org";
 
 export const EVMOS_MINIMAL_COIN_DENOM =
   process.env.NEXT_PUBLIC_EVMOS_MINIMAL_COIN_DENOM ?? "aevmos";
@@ -44,3 +44,4 @@ export const PRIVACY_POLICY_PAGE_NOTION_ID =
 export const EVMOS_UTILS_PAGE_NOTION_ID =
   process.env.NEXT_PUBLIC_EVMOS_UTILS_PAGE_NOTION_ID ||
   "40c02e22610744cd9dd9785c30a60277";
+export const CHAIN_REGISTRY_REF = process.env.CHAIN_REGISTRY_REF || "main";

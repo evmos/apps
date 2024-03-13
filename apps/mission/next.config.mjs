@@ -31,6 +31,13 @@ export default withEvmosConfig({
         hostname: "raw.githubusercontent.com",
         pathname: "/evmos/chain-token-registry/main/assets/**",
       },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        pathname: `/evmos/chain-token-registry/${
+          process.env.CHAIN_REGISTRY_REF ?? "main"
+        }/assets/**`,
+      },
     ],
   },
   logging: {

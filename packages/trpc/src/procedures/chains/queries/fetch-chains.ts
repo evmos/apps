@@ -3,11 +3,11 @@
 
 "use server";
 
-import { fetchChainRegistryDirJsonFiles } from "@evmosapps/registry/src/fetch-chain-registry-dir-json-files";
 import { nextCache } from "helpers/src/next/cache";
 import { loadRegistryChainExtensions } from "../../utils/load-registry-chain-extensions";
-import { ChainEntity } from "@evmosapps/registry/autogen/chain-entity";
 import { seconds } from "helpers/src/time";
+import { fetchChainRegistryDir } from "../../utils/fetch-chain-registry-dir";
+import { ChainEntity } from "@evmosapps/registry/autogen/chain-entity";
 
 const EVMOS_OVERWRITES = {
   web3: [
@@ -35,8 +35,7 @@ const EVMOS_OVERWRITES = {
 
 export const fetchChains = nextCache(
   async function fetchChains() {
-    const fromRegistry =
-      fetchChainRegistryDirJsonFiles<ChainEntity>("chainConfig");
+    const fromRegistry = fetchChainRegistryDir<ChainEntity>("chainConfig");
     const fromExtensions = loadRegistryChainExtensions();
 
     const all = (await Promise.all([fromRegistry, fromExtensions])).flatMap(

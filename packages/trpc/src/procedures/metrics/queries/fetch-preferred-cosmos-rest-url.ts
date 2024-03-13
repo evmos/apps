@@ -5,9 +5,17 @@ import { nextCache } from "helpers/src/next/cache";
 import { assert } from "helpers";
 import { fetchChainCosmosRestMetrics } from "./fetch-cosmos-chain-rest-metrics";
 import { seconds } from "helpers/src/time";
-
+const mainNetApiUrl =
+  process.env.NEXT_PUBLIC_EVMOS_COSMOS_REST_API ||
+  "https://proxy.evmos.org/cosmos";
 export const fetchPreferredCosmosRestUrl = nextCache(
   async (chain: string) => {
+    if (chain === "evmos") {
+      return {
+        preferred: mainNetApiUrl,
+        urls: [mainNetApiUrl],
+      };
+    }
     const { results } = await fetchChainCosmosRestMetrics(chain);
 
     const [best, ...others] = results.flatMap(({ url, error }) => {

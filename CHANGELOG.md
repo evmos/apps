@@ -36,7 +36,37 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
-- (fix) xap-153 | packages/instant-dapps 1.0.2 packages/widget 1.0.4 package/i18n 1.0.5 | Wormhole temporary banner
+
+- (fix) xap-153 | packages/instant-dapps 1.0.4 packages/widget 1.0.7 package/i18n 1.0.5 | Wormhole temporary banner
+- (fix) xap-150 | apps/mission 1.0.34 package/instant-dapps 1.0.3 package/ widgets 1.0.6 pages 1.1.7 | add TFM instant dapp
+
+## 2.0.10 - 2024-03-11
+
+- (fix) xap-175 | packages/widget 1.0.5 package/copilot 1.0.14 package/icons 1.0.14 package/instant-dapps 1.0.2 pages/dappstore 1.1.7 apps/mission 1.0.34 | Remove c14 from copilot and instant dapps
+
+## 2.0.9 - 2024-03-06
+
+- (chore) | Enable new wallets
+
+## 2.0.8 - 2024-03-06
+
+- (chore) | packages/icons 1.0.13 | Fix icons for wallets
+- (chore) | apps/mission 1.0.33 | Swap rpcs by the newly crated proxy
+- (chore) | packages/evmos-wallet 1.0.31 | Fix provider request
+- (chore) onb-4 | apps/mission 1.0.33 packages/constants-helpers 1.0.12 packages/config 1.0.2 packages/evmos-wallet 1.0.30 packages/helpers 1.0.13 packages/stateful-components 1.0.6 packages/trpc 1.0.2 packages/ui-helpers 1.0.23 pages/dappstore 1.1.6 pages/portfolio 1.1.11 | Add Leap Wallet
+- (chore) onb-3 | packages/evmos-wallet 1.0.29 packages/stateful-components 1.0.5 pages/staking 1.1.4 pages/vesting 1.0.2 | Add Rabby Wallet
+
+## 2.0.7 - 2024-03-05
+
+
+## 2.0.6 - 2024-02-21
+
+- (fix) apps/mission 1.0.32 | Adds error boundary to Evmos Price to prevent app crash in case of coingecko API failure
+- (fix) xap-157 | packages/widgets 1.0.4 | forge widget temporary change
+
+## 2.0.5 - 2024-02-21
+
+- (chore) onb-8 | apps/mission 1.0.31 packages/evmos-wallet 1.0.28 packages/registry 1.0.7 packages/trpc 1.0.1 | List BERLIN token
 
 ## 2.0.4 - 2024-02-19
 

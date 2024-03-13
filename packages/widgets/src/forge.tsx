@@ -3,8 +3,8 @@
 
 "use client";
 
-import { SwapWidget } from "@forge-trade/widgets";
-import "@forge-trade/widgets/fonts.css";
+import { SwapWidget } from "forgetwidgets";
+import "forgetwidgets/fonts.css";
 
 const Forge = () => {
   return (

@@ -72,6 +72,9 @@
       "button": {
         "text": "See More"
       }
+    },
+    "wormhole": {
+      "disruption": "We are currently in maintenance mode with the Wormhole bridge. This will be addressed by the next upgrade of the Evmos chain."
     }
   }
 }

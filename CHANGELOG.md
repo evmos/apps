@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (fix) xap-150 | apps/mission 1.0.34 package/instant-dapps 1.0.3 package/ widgets 1.0.6 pages 1.1.7 | add TFM instant dapp
+
 ## 2.0.10 - 2024-03-11
 
 - (fix) xap-175 | packages/widget 1.0.5 package/copilot 1.0.14 package/icons 1.0.14 package/instant-dapps 1.0.2 pages/dappstore 1.1.7 apps/mission 1.0.34 | Remove c14 from copilot and instant dapps
@@ -53,6 +55,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (chore) onb-3 | packages/evmos-wallet 1.0.29 packages/stateful-components 1.0.5 pages/staking 1.1.4 pages/vesting 1.0.2 | Add Rabby Wallet
 
 ## 2.0.7 - 2024-03-05
+
 
 ## 2.0.6 - 2024-02-21
 

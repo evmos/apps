@@ -26,7 +26,7 @@ export const EcosystemSection = async () => {
 
   const instantDapps = dApps
     // get the instant dapps
-    .filter((dApp) => dApp.instantDapp && dApp.name !== "c14")
+    .filter((dApp) => dApp.instantDapp)
     // sort them by the order in the array
     .sort((a, b) => {
       return (

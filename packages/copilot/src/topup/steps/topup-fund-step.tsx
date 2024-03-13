@@ -12,7 +12,6 @@ import { getCosmosBalances } from "@evmosapps/evmos-wallet";
 import { useQuery } from "@tanstack/react-query";
 import { isBigInt, useEffectEvent } from "helpers";
 import { TopupSuccessMessage } from "../partials/topup-success-message";
-import C14 from "@evmosapps/widgets/src/c14";
 import Squid from "@evmosapps/widgets/src/squid";
 import LayerSwap from "@evmosapps/widgets/src/layerswap";
 import { Modal } from "@evmosapps/ui-helpers";
@@ -108,7 +107,6 @@ export const TopupFundStep = () => {
       </div>
       <div className="flex rounded-lg overflow-hidden">
         {selectedProvider.value === "Transak" && <Transak />}
-        {selectedProvider.value === "C14" && <C14 />}
         {selectedProvider.value === "Squid" && (
           <Squid className="max-w-md w-full mx-auto" />
         )}

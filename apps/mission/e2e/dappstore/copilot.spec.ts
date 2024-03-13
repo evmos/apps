@@ -52,11 +52,6 @@ describe("Mission Page - Copilot", () => {
       page.getByRole("button", { name: /Next steps/i }),
     ).toBeHidden();
 
-    const c14Widget = page.getByTestId("c14-widget");
-    await c14Widget.waitFor();
-
-    expect(await c14Widget.count()).toBe(1);
-
     await page.getByTestId("card-provider-dropdown").click();
     await page.getByRole("button", { name: /Transak/i }).click();
 

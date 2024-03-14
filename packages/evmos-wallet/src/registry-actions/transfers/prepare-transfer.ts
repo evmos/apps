@@ -40,7 +40,7 @@ export const simulateTransfer = async ({
    */
 
   if (senderIsEvmos && receiverIsEvmos) {
-    if (token.ref === "evmos:EVMOS") {
+    if (token.ref === "EVMOS") {
       return {
         method: "evm-transfer",
         sender,
@@ -121,7 +121,7 @@ export const transfer = async ({
   const receiverIsEvmos = isEvmosAddress(receiver);
 
   if (senderIsEvmos && receiverIsEvmos) {
-    if (token.ref === "evmos:EVMOS") {
+    if (token.ref === "EVMOS") {
       return await writeEvmTransfer({
         receiver,
         amount: token,

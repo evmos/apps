@@ -121,7 +121,7 @@ const generateEVMTxReceipt = (result: GetTransactionReturnType) => {
     sender: result.from,
     receiver: result.to ?? raise("Missing receiver"),
     amount: result.value,
-    token: getTokenByRef("evmos:EVMOS"),
+    token: getTokenByRef("EVMOS"),
     height: result.blockNumber,
   });
 };

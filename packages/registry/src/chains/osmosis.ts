@@ -38,6 +38,7 @@ export default {
     "https://api.osmosis.interbloc.org"
   ],
   "tendermintRest": [
+    "https://proxy.evmos.org/osmosis",
     "https://rpc.cosmos.directory/osmosis"
   ],
   "evmRest": null,
@@ -45,7 +46,7 @@ export default {
   "tokens": [
     {
       "name": "Osmosis",
-      "ref": "osmo:OSMO",
+      "ref": "OSMO",
       "description": "The native token of Osmosis",
       "symbol": "OSMO",
       "denom": "OSMO",

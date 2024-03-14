@@ -47,7 +47,7 @@ describe("Testing Set Up Content", () => {
       <SetUpContent
         setState={vi.fn()}
         setMessage={vi.fn()}
-        token="evmos:EVMOS"
+        token="EVMOS"
         message="test"
         amount={1n}
       />,
@@ -76,7 +76,7 @@ describe("Testing Set Up Content", () => {
       <SetUpContent
         setState={vi.fn()}
         setMessage={vi.fn()}
-        token="evmos:EVMOS"
+        token="EVMOS"
         message="test"
         amount={1n}
       />,

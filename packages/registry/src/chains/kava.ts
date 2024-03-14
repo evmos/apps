@@ -44,7 +44,7 @@ export default {
   "tokens": [
     {
       "name": "USDT on Kava",
-      "ref": "kava:kavaUSDT",
+      "ref": "kavaUSDT",
       "description": "Native USDT issued on Kava",
       "symbol": "kavaUSDT",
       "denom": "kavaUSDT",
@@ -62,7 +62,7 @@ export default {
     },
     {
       "name": "Kava",
-      "ref": "kava:KAVA",
+      "ref": "KAVA",
       "description": "The native token of Kava",
       "symbol": "KAVA",
       "denom": "KAVA",

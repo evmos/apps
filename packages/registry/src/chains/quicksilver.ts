@@ -44,7 +44,7 @@ export default {
   "tokens": [
     {
       "name": "Quicksilver Liquid Staked OSMO",
-      "ref": "quick:qOSMO",
+      "ref": "qOSMO",
       "description": "Quicksilver Liquid Staked OSMO",
       "symbol": "qOSMO",
       "denom": "qOSMO",
@@ -62,7 +62,7 @@ export default {
     },
     {
       "name": "Quicksilver Liquid Staked ATOM",
-      "ref": "quick:qATOM",
+      "ref": "qATOM",
       "description": "Quicksilver Liquid Staked ATOM",
       "symbol": "qATOM",
       "denom": "qATOM",
@@ -80,7 +80,7 @@ export default {
     },
     {
       "name": "Quicksilver",
-      "ref": "quick:QCK",
+      "ref": "QCK",
       "description": "QCK - native token of Quicksilver",
       "symbol": "QCK",
       "denom": "QCK",

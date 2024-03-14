@@ -48,7 +48,7 @@ export default {
   "tokens": [
     {
       "name": "CMST Stablecoin of Harbor protocol",
-      "ref": "comdex:CMST",
+      "ref": "CMST",
       "description": "An over-collateralized soft-pegged token to the USD on the Comdex chain",
       "symbol": "CMST",
       "denom": "CMST",
@@ -66,7 +66,7 @@ export default {
     },
     {
       "name": "Comdex",
-      "ref": "comdex:CMDX",
+      "ref": "CMDX",
       "description": "The native token of Comdex",
       "symbol": "CMDX",
       "denom": "CMDX",

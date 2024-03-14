@@ -62,7 +62,7 @@ export default {
       "listed": false,
       "minCoinDenom": "ukuji",
       "name": "KUJI",
-      "ref": "kujira:KUJI",
+      "ref": "KUJI",
       "sourceDenom": "ukuji",
       "sourcePrefix": "kujira",
       "symbol": "KUJI",

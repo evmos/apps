@@ -45,7 +45,7 @@ export default {
   "tokens": [
     {
       "name": "Wrapped Ether",
-      "ref": "gravity:gWETH",
+      "ref": "gWETH",
       "description": "Wrapped Ether via Gravity Bridge",
       "symbol": "gWETH",
       "denom": "gWETH",
@@ -63,7 +63,7 @@ export default {
     },
     {
       "name": "Wrapped Bitcoin",
-      "ref": "gravity:gWBTC",
+      "ref": "gWBTC",
       "description": "Wrapped Bitcoin via Gravity Bridge",
       "symbol": "gWBTC",
       "denom": "gWBTC",
@@ -81,7 +81,7 @@ export default {
     },
     {
       "name": "Tether USD",
-      "ref": "gravity:gUSDT",
+      "ref": "gUSDT",
       "description": "Tether USD via Gravity Bridge",
       "symbol": "gUSDT",
       "denom": "gUSDT",
@@ -99,7 +99,7 @@ export default {
     },
     {
       "name": "USD Coin",
-      "ref": "gravity:gUSDC",
+      "ref": "gUSDC",
       "description": "USD Coin via Gravity Bridge",
       "symbol": "gUSDC",
       "denom": "gUSDC",
@@ -117,7 +117,7 @@ export default {
     },
     {
       "name": "Dai Stablecoin",
-      "ref": "gravity:gDAI",
+      "ref": "gDAI",
       "description": "Dai Stablecoin via Gravity Bridge",
       "symbol": "gDAI",
       "denom": "gDAI",
@@ -135,7 +135,7 @@ export default {
     },
     {
       "name": "Graviton",
-      "ref": "gravity:GRAV",
+      "ref": "GRAV",
       "description": "The native token of Gravity Bridge",
       "symbol": "GRAV",
       "denom": "GRAV",

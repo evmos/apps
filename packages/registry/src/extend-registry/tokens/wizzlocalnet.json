@@ -14,7 +14,7 @@
   "isEnabled": true,
   "erc20Address": "0x04f9faC55b24c53F39b2aDCbef6318Ee2d9A6B84",
   "ibc": {
-    "sourceDenom": "wizz",
+    "sourceDenom": "erc20/0x04f9faC55b24c53F39b2aDCbef6318Ee2d9A6B84",
     "source": "evmostestnet"
   },
   "hideFromTestnet": false,

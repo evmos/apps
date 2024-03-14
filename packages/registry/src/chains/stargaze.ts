@@ -51,7 +51,7 @@ export default {
   "tokens": [
     {
       "name": "Stargaze",
-      "ref": "stars:STARS",
+      "ref": "STARS",
       "description": "The native token of Stargaze",
       "symbol": "STARS",
       "denom": "STARS",

@@ -31,7 +31,7 @@ describe("Testing Request Assets Selector", () => {
       <RequestAssetSelector
         value={{
           networkPrefix: "evmos",
-          ref: "evmos:EVMOS",
+          ref: "EVMOS",
           amount: 0n,
         }}
         onChange={vi.fn()}
@@ -74,7 +74,7 @@ describe("Testing Request Assets Selector", () => {
       <RequestAssetSelector
         value={{
           networkPrefix: "evmos",
-          ref: "evmos:EVMOS",
+          ref: "EVMOS",
           amount: 0n,
         }}
         onChange={vi.fn()}
@@ -104,7 +104,7 @@ describe("Testing Request Assets Selector", () => {
       <RequestAssetSelector
         value={{
           networkPrefix: "evmos",
-          ref: "evmos:EVMOS",
+          ref: "EVMOS",
           amount: 0n,
         }}
         onChange={vi.fn()}
@@ -140,7 +140,7 @@ describe("Testing Request Assets Selector", () => {
       <RequestAssetSelector
         value={{
           networkPrefix: "evmos",
-          ref: "evmos:EVMOS",
+          ref: "EVMOS",
           amount: 0n,
         }}
         onChange={vi.fn()}

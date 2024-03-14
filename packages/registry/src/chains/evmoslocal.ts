@@ -15,9 +15,9 @@ export default {
   "cosmosId": "evmoslocal_9002-10",
   "identifier": "evmoslocal",
   "gasPriceStep": {
-    "low": "10000000000",
-    "average": "25000000000",
-    "high": "40000000000"
+    "low": "50000000000",
+    "average": "80000000000",
+    "high": "100000000000"
   },
   "evmId": 9001,
   "channels": null,
@@ -37,7 +37,7 @@ export default {
   "tokens": [
     {
       "name": "EVMOS",
-      "ref": "evmos:EVMOS",
+      "ref": "EVMOS",
       "description": "EVMOS",
       "symbol": "EVMOS",
       "denom": "EVMOS",
@@ -55,12 +55,12 @@ export default {
     },
     {
       "name": "Wizzard Token",
-      "ref": "evmos:WIZZ",
+      "ref": "WIZZ",
       "description": "Wizzard Coin",
       "symbol": "WIZZ",
       "denom": "WIZZ",
       "sourcePrefix": "evmos",
-      "sourceDenom": "erc20/0x04f9faC55b24c53F39b2aDCbef6318Ee2d9A6B84",
+      "sourceDenom": "wizz",
       "minCoinDenom": "wizz",
       "category": "cosmos",
       "tokenRepresentation": "WIZZ",

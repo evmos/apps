@@ -43,7 +43,7 @@ export default {
   "tokens": [
     {
       "name": "Wormhole USDT on Ethereum",
-      "ref": "wormhole:wormUSDT",
+      "ref": "wormUSDT",
       "description": "Wormhole USDT on Ethereum",
       "symbol": "wormUSDT",
       "denom": "wormUSDT",
@@ -66,7 +66,7 @@ export default {
     },
     {
       "name": "Wormhole USDC on Ethereum",
-      "ref": "wormhole:wormUSDC",
+      "ref": "wormUSDC",
       "description": "Wormhole USDC on Ethereum",
       "symbol": "wormUSDC",
       "denom": "wormUSDC",
@@ -89,7 +89,7 @@ export default {
     },
     {
       "name": "Wormhole SOL token from Solana",
-      "ref": "wormhole:wormSOL",
+      "ref": "wormSOL",
       "description": "Wormhole SOL token from Solana",
       "symbol": "wormSOL",
       "denom": "wormSOL",
@@ -112,7 +112,7 @@ export default {
     },
     {
       "name": "Wormhole ETH",
-      "ref": "wormhole:wormETH",
+      "ref": "wormETH",
       "description": "Wrapped Ether (Wormhole)",
       "symbol": "wormETH",
       "denom": "wormETH",
@@ -135,7 +135,7 @@ export default {
     },
     {
       "name": "Wormhole Bitcoin",
-      "ref": "wormhole:wormBTC",
+      "ref": "wormBTC",
       "description": "Wormhole Bitcoin",
       "symbol": "wormBTC",
       "denom": "wormBTC",
@@ -166,7 +166,7 @@ export default {
       "listed": false,
       "minCoinDenom": "uworm",
       "name": "WORM",
-      "ref": "wormhole:WORM",
+      "ref": "WORM",
       "sourceDenom": "uworm",
       "sourcePrefix": "wormhole",
       "symbol": "WORM",

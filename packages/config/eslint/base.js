@@ -105,6 +105,7 @@ const lintConfig = [
       "**/test-results/**/*",
       "**/autogen/**",
       "**/.vercel/**/*",
+      "**/.storybook/**/*",
     ],
   },
   ...configCompat({

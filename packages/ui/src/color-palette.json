@@ -1,0 +1,435 @@
+{
+  "primary": {
+    "name": "Primary",
+    "colors": {
+      "primary": {
+        "name": "Primary",
+        "dark": "#FF8C5C",
+        "light": "#D04B00",
+        "description": "Primary background colour (brand)."
+      },
+      "on-primary": {
+        "name": "On-primary",
+        "dark": "#5A1C00",
+        "light": "#FFFFFF",
+        "description": "Primary foreground colour."
+      },
+      "primary-container": {
+        "name": "Primary-container",
+        "dark": "#D04B00",
+        "light": "#FA5C00",
+        "description": "Primary container background colour."
+      },
+      "on-primary-container": {
+        "name": "On-primary-container",
+        "dark": "#FFDBCE",
+        "light": "#FFFFFF",
+        "description": "Primary container foreground colour."
+      }
+    }
+  },
+  "secondary": {
+    "name": "Secondary",
+    "colors": {
+      "secondary": {
+        "name": "Secondary",
+        "dark": "#D8B9FF",
+        "light": "#6D5194",
+        "description": "Secondary background colour."
+      },
+      "on-secondary": {
+        "name": "On-secondary",
+        "dark": "#3D2162",
+        "light": "#FFFFFF",
+        "description": "Secondary foreground colour."
+      },
+      "secondary-container": {
+        "name": "Secondary-container",
+        "dark": "#55397B",
+        "light": "#EDDCFF",
+        "description": "Secondary container background colour."
+      },
+      "on-secondary-container": {
+        "name": "On-secondary-container",
+        "dark": "#EDDCFF",
+        "light": "#28074C",
+        "description": "Secondary container foreground colour."
+      }
+    }
+  },
+  "tertiary": {
+    "name": "Tertiary",
+    "colors": {
+      "tertiary": {
+        "name": "Tertiary",
+        "dark": "#FA9DB3",
+        "light": "#853D4E",
+        "description": "Tertiary background colour."
+      },
+      "on-tertiary": {
+        "name": "On-tertiary",
+        "dark": "#4E1321",
+        "light": "#FFFFFF",
+        "description": "Tertiary foreground colour."
+      },
+      "tertiary-container": {
+        "name": "Tertiary-container",
+        "dark": "#692736",
+        "light": "#FFCED9",
+        "description": "Tertiary container background colour."
+      },
+      "on-tertiary-container": {
+        "name": "On-tertiary-container",
+        "dark": "#FFCED9",
+        "light": "#340303",
+        "description": "Tertiary container foreground colour."
+      }
+    }
+  },
+  "error": {
+    "name": "Error",
+    "colors": {
+      "error": {
+        "name": "Error",
+        "dark": "#F65D4D",
+        "light": "#CA1B0B",
+        "description": "Error background colour."
+      },
+      "on-error": {
+        "name": "On-error",
+        "dark": "#690906",
+        "light": "#FFFFFF",
+        "description": "Error foreground colour."
+      },
+      "error-container": {
+        "name": "Error-container",
+        "dark": "#991308",
+        "light": "#FFDAD5",
+        "description": "Error container background colour."
+      },
+      "on-error-container": {
+        "name": "On-error-container",
+        "dark": "#FFDAD5",
+        "light": "#441100",
+        "description": "Error container foreground colour."
+      }
+    }
+  },
+  "success": {
+    "name": "Success",
+    "colors": {
+      "success": {
+        "name": "Success",
+        "dark": "#9BD679",
+        "light": "#366A1A",
+        "description": "Success background colour."
+      },
+      "on-success": {
+        "name": "On-success",
+        "dark": "#133800",
+        "light": "#FF8C5C",
+        "description": "Success foreground colour."
+      },
+      "success-container": {
+        "name": "Success-container",
+        "dark": "#1E5100",
+        "light": "#C1F0A4",
+        "description": "Success container background colour."
+      },
+      "on-success-container": {
+        "name": "On-success-container",
+        "dark": "#C1F0A4",
+        "light": "#082100",
+        "description": "Success container foreground colour."
+      }
+    }
+  },
+  "warning": {
+    "name": "Warning",
+    "colors": {
+      "warning": {
+        "name": "Warning",
+        "dark": "#FCBB41",
+        "light": "#BF8600",
+        "description": "Warning background colour."
+      },
+      "on-warning": {
+        "name": "On-warning",
+        "dark": "#422C00",
+        "light": "#FF8C5C",
+        "description": "Warning foreground colour."
+      },
+      "warning-container": {
+        "name": "Warning-container",
+        "dark": "#5F4100",
+        "light": "#FFDEAB",
+        "description": "Warning container background colour."
+      },
+      "on-warning-container": {
+        "name": "On-warning-container",
+        "dark": "#FFDEAB",
+        "light": "#271900",
+        "description": "Warning container foreground colour."
+      }
+    }
+  },
+  "background": {
+    "name": "Background",
+    "colors": {
+      "background": {
+        "name": "Background",
+        "dark": "#0A0A0A",
+        "light": "#FDF9F8",
+        "description": "Background colour for pages."
+      },
+      "on-background": {
+        "name": "On-background",
+        "dark": "#EDE0DC",
+        "light": "#1F1A19",
+        "description": "Background foreground colour."
+      }
+    }
+  },
+  "surface": {
+    "name": "Surface",
+    "colors": {
+      "surface": {
+        "name": "Surface",
+        "dark": "#14110F",
+        "light": "#FFFFFF",
+        "description": "Surface background colour."
+      },
+      "surface-variant": {
+        "name": "Surface-variant",
+        "dark": "#53433E",
+        "light": "#D8C2BB",
+        "description": "Surface-variant background colour."
+      }
+    }
+  },
+  "surface-container": {
+    "name": "Surface-container",
+    "colors": {
+      "surface-container-lowest": {
+        "name": "Surface-container-lowest",
+        "dark": "#1C1816",
+        "light": "#FEFCFC",
+        "description": "1st level of elevation from Surface."
+      },
+      "surface-container-low": {
+        "name": "Surface-container-low",
+        "dark": "#1F1A19",
+        "light": "#FDF9F8",
+        "description": "2nd level of elevation from Surface."
+      },
+      "surface-container": {
+        "name": "Surface-container",
+        "dark": "#26211F",
+        "light": "#FAF4F2",
+        "description": "3rd level of elevation from Surface."
+      },
+      "surface-container-high": {
+        "name": "Surface-container-high",
+        "dark": "#302B29",
+        "light": "#FAEFEB",
+        "description": "4th level of elevation from Surface."
+      },
+      "surface-container-highest": {
+        "name": "Surface-container-highest",
+        "dark": "#3B3634",
+        "light": "#F0E9E6",
+        "description": "High level of elevation."
+      }
+    }
+  },
+  "outline": {
+    "name": "Outline",
+    "colors": {
+      "outline": {
+        "name": "Outline",
+        "dark": "#A08D86",
+        "light": "#85736D",
+        "description": "Outline colour."
+      }
+    }
+  },
+  "scrim": {
+    "name": "Scrim",
+    "colors": {
+      "scrim": {
+        "name": "Scrim",
+        "dark": "#000000",
+        "light": "#FFFFFF",
+        "description": "Scrim (aka overlay) background colour."
+      }
+    }
+  },
+  "text": {
+    "name": "Text",
+    "colors": {
+      "heading": {
+        "name": "Heading",
+        "dark": "#FAEFEB",
+        "light": "#26211F",
+        "description": "Heading colour."
+      },
+      "paragraph": {
+        "name": "Paragraph",
+        "dark": "#B4A9A5",
+        "light": "#7F7572",
+        "description": "Paragraph colour."
+      },
+      "subheading": {
+        "name": "Subheading",
+        "dark": "#998E8B",
+        "light": "#998E8B",
+        "description": "Subheading colour."
+      }
+    }
+  },
+  "accent-blue": {
+    "name": "Accent-blue",
+    "colors": {
+      "accent-blue": {
+        "name": "Accent-blue",
+        "dark": "#AFC6FF",
+        "light": "#0059C8",
+        "description": "Accent-blue background colour."
+      },
+      "on-accent-blue": {
+        "name": "On-accent-blue",
+        "dark": "#002D6D",
+        "light": "#FFFFFF",
+        "description": "Accent-blue foreground colour."
+      },
+      "accent-blue-container": {
+        "name": "Accent-blue-container",
+        "dark": "#004299",
+        "light": "#D9E2FF",
+        "description": "Accent-blue container background colour."
+      },
+      "on-accent-blue-container": {
+        "name": "On-accent-blue-container",
+        "dark": "#D9E2FF",
+        "light": "#001944",
+        "description": "Accent-blue-container foreground colour."
+      }
+    }
+  },
+  "accent-teal": {
+    "name": "Accent-teal",
+    "colors": {
+      "accent-teal": {
+        "name": "Accent-teal",
+        "dark": "#54D6F3",
+        "light": "#006879",
+        "description": "Accent-teal background colour."
+      },
+      "on-accent-teal": {
+        "name": "On-accent-teal",
+        "dark": "#003640",
+        "light": "#FF8C5C",
+        "description": "Accent-teal foreground colour."
+      },
+      "accent-teal-container": {
+        "name": "Accent-teal-container",
+        "dark": "#004E5C",
+        "light": "#AAEDFF",
+        "description": "Accent-teal-container background colour."
+      },
+      "on-accent-teal-container": {
+        "name": "On-accent-teal-container",
+        "dark": "#AAEDFF",
+        "light": "#001F26",
+        "description": "Accent-teal-container foreground colour."
+      }
+    }
+  },
+  "accent-orange": {
+    "name": "Accent-orange",
+    "colors": {
+      "accent-orange": {
+        "name": "Accent-orange",
+        "dark": "#FFB68C",
+        "light": "#9A4600",
+        "description": "Accent-orange background colour."
+      },
+      "on-accent-orange": {
+        "name": "On-accent-orange",
+        "dark": "#532200",
+        "light": "#FFFFFF",
+        "description": "Accent-orange foreground colour."
+      },
+      "accent-orange-container": {
+        "name": "Accent-orange-container",
+        "dark": "#753400",
+        "light": "#FFDBC9",
+        "description": "Accent-orange-container background colour."
+      },
+      "on-accent-orange-container": {
+        "name": "On-accent-orange-container",
+        "dark": "#FFDBC9",
+        "light": "#321200",
+        "description": "Accent-orange-container foreground colour."
+      }
+    }
+  },
+  "accent-pink": {
+    "name": "Accent-pink",
+    "colors": {
+      "accent-pink": {
+        "name": "Accent-pink",
+        "dark": "#FFAEDB",
+        "light": "#B00E86",
+        "description": "Accent-pink background colour."
+      },
+      "on-pink-orange": {
+        "name": "On-pink-orange",
+        "dark": "#610048",
+        "light": "#FFFFFF",
+        "description": "Accent-pink foreground colour."
+      },
+      "accent-pink-container": {
+        "name": "Accent-pink-container",
+        "dark": "#880067",
+        "light": "#FFD8EB",
+        "description": "Accent-pink-container background colour."
+      },
+      "on-accent-pink-container": {
+        "name": "On-accent-pink-container",
+        "dark": "#FFD8EB",
+        "light": "#3C002B",
+        "description": "Accent-pink-container foreground colour."
+      }
+    }
+  },
+  "accent-purple": {
+    "name": "Accent-purple",
+    "colors": {
+      "accent-purple": {
+        "name": "Accent-purple",
+        "dark": "#D4BBFF",
+        "light": "#7339D2",
+        "description": "Accent-purple background colour."
+      },
+      "on-purple-orange": {
+        "name": "On-purple-orange",
+        "dark": "#40008C",
+        "light": "#FFFFFF",
+        "description": "Accent-purple foreground colour."
+      },
+      "accent-purple-container": {
+        "name": "Accent-purple-container",
+        "dark": "#5A15B9",
+        "light": "#EBDCFF",
+        "description": "Accent-purple-container background colour."
+      },
+      "on-accent-purple-container": {
+        "name": "On-accent-purple-container",
+        "dark": "#EBDCFF",
+        "light": "#260059",
+        "description": "Accent-purple-container foreground colour."
+      }
+    }
+  }
+}

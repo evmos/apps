@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/widgets",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "type": "module",
@@ -31,6 +31,7 @@
     "@cosmos-kit/leap": "^2.6.11",
     "@cosmos-kit/leap-metamask-cosmos-snap": "^0.6.2",
     "@cosmos-kit/react": "^2.10.11",
+    "@0xtfm/widget-ibc": "^0.0.7",
     "@evmosapps/icons": "workspace:*",
     "@leapwallet/elements": "^0.12.8",
     "@tippyjs/react": "^4.2.6",

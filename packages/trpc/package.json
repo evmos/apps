@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/trpc",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE",
   "sideEffects": false,

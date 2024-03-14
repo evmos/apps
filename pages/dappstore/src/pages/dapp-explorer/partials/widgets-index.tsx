@@ -37,6 +37,7 @@ export const WIDGETS: {
   osmosis: dynamic(() => import("@evmosapps/instant-dapps/src/dapps/Osmosis"), {
     ssr: false,
   }),
+
   "leap-elements": dynamic(
     () => import("@evmosapps/instant-dapps/src/dapps/LeapElements"),
     {
@@ -44,4 +45,9 @@ export const WIDGETS: {
       ssr: false,
     },
   ),
+
+  tfm: dynamic(() => import("@evmosapps/instant-dapps/src/dapps/Tfm"), {
+    loading: () => <p>Loading...</p>,
+    ssr: false,
+  }),
 };

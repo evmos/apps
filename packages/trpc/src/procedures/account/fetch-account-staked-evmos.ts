@@ -1,6 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
+import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
 import { ChainRef } from "../../../autogen/registry";
 import { serverCosmos } from "../utils/cosmos-server-client";
 import { safeBigInt } from "helpers/src/bigint/safe-bigint";
@@ -20,7 +21,7 @@ export const fetchAccountStakedEvmos = async ({
     {
       params: {
         path: {
-          delegator_addr: address,
+          delegator_addr: normalizeToCosmos(address),
         },
         query: {
           "pagination.limit": "200",

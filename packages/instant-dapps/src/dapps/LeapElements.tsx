@@ -4,7 +4,13 @@
 "use client";
 
 import LeapElements from "@evmosapps/widgets/src/LeapElements/leapElements";
+import { InstantDappContainer } from "./instant-dapp-container";
 
 export default function LeapElementsInstantDapp() {
-  return <LeapElements />;
+  <InstantDappContainer
+    image="bg-[url(/ecosystem/blur/leap-elements-blur.png)]"
+    dappName="Leap-Elements"
+    widget={<LeapElements />}
+  />;
+  return;
 }

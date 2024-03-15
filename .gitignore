@@ -40,7 +40,7 @@ yarn-error.log*
 
 # ui
 dist/
-
+storybook-static/
 # Local Netlify folder
 .netlify
 

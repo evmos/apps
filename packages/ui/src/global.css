@@ -1,0 +1,17 @@
+/*
+ * Copyright Tharsis Labs Ltd.(Evmos)
+ * SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .heading {
+    @apply font-bold text-heading;
+  }
+  .dark .heading {
+    @apply text-heading-dark;
+  }
+}

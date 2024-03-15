@@ -1,0 +1,20 @@
+{
+  "extends": "@evmosapps/config/ts/react-library.json",
+  "include": [
+    ".",
+    "../config/**/*",
+    "../helpers/src/bigint/safeBigInt.ts",
+    ".next/types/**/*.ts",
+    "src/declaration.d.ts"
+  ],
+  "exclude": ["dist", "build", "node_modules", "../config/node_modules"],
+  "compilerOptions": {
+    "incremental": true,
+    "jsx": "preserve",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  }
+}

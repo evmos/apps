@@ -7,10 +7,11 @@ import LeapElements from "@evmosapps/widgets/src/LeapElements/leapElements";
 import { InstantDappContainer } from "./instant-dapp-container";
 
 export default function LeapElementsInstantDapp() {
-  <InstantDappContainer
-    image="bg-[url(/ecosystem/blur/leap-elements-blur.png)]"
-    dappName="Leap-Elements"
-    widget={<LeapElements />}
-  />;
-  return;
+  return (
+    <InstantDappContainer
+      image="bg-[url(/ecosystem/blur/leap-elements-blur.png)]"
+      dappName="LeapElements"
+      widget={<LeapElements />}
+    />
+  );
 }

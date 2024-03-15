@@ -18,7 +18,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Typography: Story = {
-  render: (_, { globals }) => {
-    return <Page />;
-  },
+  render: Page,
 };

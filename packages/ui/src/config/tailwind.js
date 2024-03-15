@@ -8,7 +8,10 @@ import chroma from "chroma-js";
 
 const { entries, values, fromEntries } = Object;
 
-const toTwColor = (color: string) => {
+/**
+ * @param {string} color
+ */
+const toTwColor = (color) => {
   const [r, g, b] = chroma(color).rgb();
   return `rgb(${r} ${g} ${b} / <alpha-value>)`;
 };
@@ -22,7 +25,7 @@ const evmosColors = fromEntries(
           DEFAULT: toTwColor(light),
           dark: toTwColor(dark),
         },
-      ] as const;
+      ];
     }),
   ),
 );

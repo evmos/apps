@@ -4,7 +4,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Page } from "./Palette";
-import { useEffect } from "react";
 
 const meta = {
   title: "Colors",
@@ -20,7 +19,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Colors: Story = {
   render: (_, { globals }) => {
-    return <Page darkMode={globals.darkMode} />;
+    return <Page darkMode={globals.darkMode as boolean} />;
   },
 
   parameters: {

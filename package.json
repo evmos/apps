@@ -9,7 +9,7 @@
     "build": "dotenv -- turbo run build",
     "build:analyse": "ANALYZE_NEXT_BUNDLE=true next build",
     "nibble": "eslint-nibble . -c eslint.config.js",
-    "dev": "dotenv -- turbo run dev --filter=apps/*",
+    "dev": "dotenv -- turbo run dev --filter=./apps/*",
     "dev:testnet": "dotenv -- turbo run dev:testnet --concurrency 20",
     "start": "dotenv -- turbo run start",
     "testnet": "dotenv -- tsx node_modules/@evmosapps/testnet/src/cli/index.ts",
@@ -71,7 +71,7 @@
     "react-hook-form": "^7.44.3",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.7.0",
-    "turbo": "^1.10.16",
+    "turbo": "^1.12.5",
     "typescript": "^5.3.3",
     "vitest": "^1.1.3",
     "zod": "^3.22.1"

@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
+    "@evmosapps/ui": "workspace:*",
     "@evmosapps/copilot": "workspace:*",
     "@evmosapps/dappstore-page": "workspace:*",
     "@evmosapps/governance-page": "workspace:*",

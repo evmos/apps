@@ -3,26 +3,53 @@
 
 import typography from "@tailwindcss/typography";
 import path from "path";
+import colors from "./colors.json";
+import chroma from "chroma-js";
 
-const cwd = process.cwd();
-const rootDir =
-  cwd?.split("/")?.at?.(-2) === "apps" ? path.join(cwd, "../../") : cwd;
+const { entries, values, fromEntries } = Object;
+
+const toTwColor = (color: string) => {
+  const [r, g, b] = chroma(color).rgb();
+  return `rgb(${r} ${g} ${b} / <alpha-value>)`;
+};
+
+const evmosColors = fromEntries(
+  values(colors).flatMap(({ colors }) =>
+    entries(colors).map(([color, { dark, light }]) => {
+      return [
+        color,
+        {
+          DEFAULT: toTwColor(light),
+          dark: toTwColor(dark),
+        },
+      ] as const;
+    }),
+  ),
+);
+
+const dirName = __dirname; // this works because postcss loads as cjs, otherwise __dirname wouldn't be available
+const repositoryRoot = path.resolve(dirName, "../../../../");
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-  darkMode: "class",
+  darkMode: ["class"],
 
   content: [
     "src/**/*.tsx",
-    path.join(rootDir, "packages/*/src/**/*.tsx"),
-    path.join(rootDir, "pages/*/src/**/*.tsx"),
+    "!**/node_modules/**",
+    "!**/dist/**",
+    "!**/build/**",
+    "!**/.next/**",
+
+    path.join(repositoryRoot, "packages/*/(src|.storybook)/**/*.tsx"),
+    path.join(repositoryRoot, "pages/*/src/**/*.tsx"),
   ],
   theme: {
     extend: {
       fontFamily: {
-        body: ["var(--font-body)"],
+        body: ["var(--font-body)", "sans-serif"],
         display: ["var(--font-display)"],
-        brand: ["var(--font-brand)"],
+        brand: ["var(--font-brand)", "sans-serif"],
         evmos: ["var(--font-evmos)"],
         poppins: ["var(--font-poppins)"],
         inter: ["var(--font-inter)"],
@@ -121,11 +148,14 @@ const config = {
         "purple-200": "#F8E3FF",
         "purple-300": "#BD89FF",
         "purple-400": "#AE00FF",
+        // colors above are deprecated and should eventually be removed
+        ...evmosColors,
       },
       fontSize: {
         h5: "1.36rem",
-        xxs: "10px",
+
         xxxs: "8.5px",
+        xxs: "10px",
       },
     },
   },

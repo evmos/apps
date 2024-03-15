@@ -6,3 +6,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer utilities {
+  .heading {
+    @apply font-bold text-heading;
+  }
+  .dark .heading {
+    @apply text-heading-dark;
+  }
+}

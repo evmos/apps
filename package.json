@@ -9,7 +9,7 @@
     "build": "dotenv -- turbo run build",
     "build:analyse": "ANALYZE_NEXT_BUNDLE=true next build",
     "nibble": "eslint-nibble . -c eslint.config.js",
-    "dev": "dotenv -- turbo run dev --filter=./apps/*",
+    "dev": "dotenv -- turbo run dev --filter=apps/*",
     "dev:testnet": "dotenv -- turbo run dev:testnet --concurrency 20",
     "start": "dotenv -- turbo run start",
     "testnet": "dotenv -- tsx node_modules/@evmosapps/testnet/src/cli/index.ts",

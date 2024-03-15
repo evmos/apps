@@ -7,7 +7,7 @@
   "exports": {
     "./*": {
       "import": {
-        "types": "./src/*.ts",
+        "types": "./src/*",
         "default": "./src/*"
       }
     }
@@ -22,7 +22,9 @@
     "last 3 safari version"
   ],
   "dependencies": {
+    "@tailwindcss/typography": "^0.5.10",
     "autoprefixer": "^10.4.18",
+    "chroma-js": "^2.4.2",
     "next": "14.1.3",
     "react": "^18",
     "react-dom": "^18",
@@ -31,6 +33,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^1.2.19",
     "@evmosapps/config": "workspace:*",
+    "helpers": "workspace:*",
     "@storybook/addon-essentials": "^8.0.0",
     "@storybook/addon-interactions": "^8.0.0",
     "@storybook/addon-links": "^8.0.0",
@@ -39,6 +42,7 @@
     "@storybook/nextjs": "^8.0.0",
     "@storybook/react": "^8.0.0",
     "@storybook/test": "^8.0.0",
+    "@types/chroma-js": "^2.4.4",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

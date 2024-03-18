@@ -28,6 +28,14 @@ import { CLICK_SEE_MORE_BUTTON, CLICK_SOCIAL_BUTTON } from "tracker";
 import { WIDGETS } from "./widgets-index";
 import Image from "next/image";
 
+//Adapt the page to each Dapp
+const getSlugClass = (slug: string): string => {
+  const slugClasses: Record<string, string> = {
+    "leap-elements": "max-w-5xl",
+  };
+  return slugClasses[slug] || "max-w-lg";
+};
+
 export const DescriptiondApp = async ({
   dapp,
   relatedApps,
@@ -222,7 +230,7 @@ export const DescriptiondApp = async ({
         </div>
         {drawWidget() && (
           <Frameline
-            className="w-full max-w-lg mx-auto grow"
+            className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}
             variant="secondary"
           >
             <div className="flex items-center justify-center h-full">

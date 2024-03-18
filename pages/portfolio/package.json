@@ -33,7 +33,7 @@
     "chainapsis-suggest-chain": "github:chainapsis/keplr-chain-registry",
     "ethers": "^6.9.2",
     "lodash-es": "^4.17.21",
-    "mixpanel-browser": "^2.48.1",
+    "mixpanel-browser": "^2.49.0",
     "next-i18next": "^15.2.0",
     "react-icons": "^4.12.0",
     "react-qr-code": "^2.0.12",

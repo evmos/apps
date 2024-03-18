@@ -23,7 +23,7 @@
   "devDependencies": {
     "@ethersproject/bignumber": "^5.7.0",
     "@ethersproject/units": "^5.7.0",
-    "mixpanel-browser": "^2.48.1",
+    "mixpanel-browser": "^2.49.0",
     "react-redux": "^8.1.2"
   }
 }

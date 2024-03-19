@@ -10,6 +10,7 @@ import { cn } from "helpers/src/classnames";
 import Image from "next/image";
 import bg from "./bg.png";
 import bg2 from "./Subtract.png";
+import { BadgeSkeleton } from "../badges/BadgeSkeleton";
 const categories = ["Trade", "Defi", "NFT", "Wallet"];
 
 const meta = {
@@ -40,21 +41,22 @@ export const Recent: Story = {
   },
 };
 
+// should we create a different component for skeleton ? As I did for Badge ?
 export const RecentSkeleton: Story = {
   args: {
     children: (
-      <div className="gap-1.5 flex-col flex w-96 cursor-pointer animate-pulse">
+      <div className="gap-1.5 flex-col flex w-96 cursor-pointer ">
         <div
           className={cn(
-            "relative shrink-0 w-12 h-12 aspect-square rounded-lg shadow overflow-hidden bg-surface-container-highest dark:bg-gray-700 ",
+            "relative shrink-0 w-12 h-12 aspect-square rounded-lg shadow overflow-hidden bg-surface-container-highest-dark animate-pulse",
           )}
         ></div>
-        <div className="h-5 px-0.5 bg-surface-container-highest rounded-full dark:bg-gray-700 w-20 "></div>
+        <div className="h-5 px-0.5 bg-surface-container-highest-dark rounded-full w-20 animate-pulse "></div>
         <div className="gap-1 inline-flex">
-          <div className="h-4 px-0.5 bg-surface-container-highest rounded-full dark:bg-gray-700 w-8"></div>
-          <div className="h-4 px-0.5 bg-surface-container-highest rounded-full dark:bg-gray-700 w-8"></div>
-          <div className="h-4 px-0.5 bg-surface-container-highest rounded-full dark:bg-gray-700 w-8"></div>
-          <div className="h-4 px-0.5 bg-surface-container-highest rounded-full dark:bg-gray-700 w-8"></div>
+          <BadgeSkeleton />
+          <BadgeSkeleton />
+          <BadgeSkeleton />
+          <BadgeSkeleton />
         </div>
       </div>
     ),
@@ -67,7 +69,7 @@ export const Developer: Story = {
     children: (
       <div className="gap-4 w-96 flex group">
         <Icon />
-        <div className="grow shrink basis-0">
+        <div className="grow shrink basis-0 space-y-2">
           <h5 className="heading text-base px-0.5">dApp name</h5>
           <div className="gap-1 inline-flex">
             {categories.map((category) => (
@@ -86,6 +88,31 @@ export const Developer: Story = {
   },
 };
 
+export const DeveloperSkeleton: Story = {
+  args: {
+    children: (
+      <div className="gap-4 w-96 flex group">
+        <div
+          className={cn(
+            "relative shrink-0 w-12 h-12 aspect-square rounded-lg shadow overflow-hidden bg-surface-container-highest-dark animate-pulse",
+          )}
+        ></div>
+        <div className="grow shrink basis-0 space-y-2">
+          <div className="h-5 px-0.5 bg-surface-container-highest-dark rounded-full w-20 animate-pulse"></div>
+          <div className="gap-1 inline-flex">
+            <BadgeSkeleton />
+            <BadgeSkeleton />
+            <BadgeSkeleton />
+            <BadgeSkeleton />
+          </div>
+        </div>
+      </div>
+    ),
+  },
+};
+
+// Im not sure how should we add the bacground image to the card
+// And how to handle the width and height for it (width I guess that it will depend on the parent container, but the height i think that we have to define it?)
 export const Trending: Story = {
   args: {
     intent: "trending",

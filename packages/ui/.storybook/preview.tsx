@@ -32,10 +32,6 @@ const preview: Preview = {
       return Story();
     },
   ],
-  args: {
-    primary: true,
-    label: "Button",
-  },
   parameters: {
     controls: {
       matchers: {

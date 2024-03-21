@@ -30,6 +30,8 @@
     "@types/lodash-es": "^4.17.12",
     "autoprefixer": "^10.4.18",
     "chroma-js": "^2.4.2",
+    "class-variance-authority": "^0.7.0",
+    "cva": "1.0.0-beta.1",
     "glob": "^10.3.4",
     "html-to-react": "^1.7.0",
     "lodash-es": "^4.17.21",

@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
+    "@evmosapps/ui": "workspace:*",
     "@evmosapps/testnet": "workspace:*",
     "@types/react-dom": "^18.2.18",
     "eslint-plugin-vitest": "^0.3.20",

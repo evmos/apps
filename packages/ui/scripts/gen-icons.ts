@@ -59,8 +59,7 @@ const genIconFileFromTemplate = ({
 }: {
   iconName: string;
   content: string;
-}) => `${HEADER}
-
+}) => `
 import React, { forwardRef } from "react";
 
 export const Icon${iconName} = forwardRef<

@@ -1,6 +1,5 @@
 import type { Preview } from "@storybook/react";
 import React, { useEffect, useLayoutEffect } from "react";
-import { cn } from "helpers/src/classnames";
 import { evmos, nb } from "../src/fonts";
 // @ts-expect-error - I'm not sure why if I import it the normal way, storybook doesn't pick it up, so I'm importing it with this syntax
 import("../src/global.css");
@@ -26,16 +25,11 @@ const preview: Preview = {
         document
           .querySelector("html")
           ?.classList.toggle("dark", args.globals.darkMode);
-        console.log(args.globals.darkMode, document.body.classList);
       }, [args.globals.darkMode]);
 
       return Story();
     },
   ],
-  args: {
-    primary: true,
-    label: "Button",
-  },
   parameters: {
     controls: {
       matchers: {

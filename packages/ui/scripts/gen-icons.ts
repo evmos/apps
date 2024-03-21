@@ -60,14 +60,18 @@ const genIconFileFromTemplate = ({
   iconName: string;
   content: string;
 }) => `
-import React, { forwardRef } from "react";
+import React, { forwardRef, ForwardedRef } from "react";
+
+function _Icon${iconName}({ className, ...props}: React.SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>){
+  return (${content.replace(">", "ref={ref} className={['icon', className].join(' ')} {...props}>")});
+}
+
+_Icon${iconName}.isIcon = true;
 
 export const Icon${iconName} = forwardRef<
   SVGSVGElement,
   React.SVGProps<SVGSVGElement>
->(function Icon${iconName}(props){
-  return (${content.replace(">", "ref={props.ref} {...props}>")});
-});
+>(_Icon${iconName});
 `;
 
 const writeTsFile = async (filePath: string, content: string) => {

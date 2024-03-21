@@ -199,11 +199,24 @@
         "light": "#FFFFFF",
         "description": "Surface background colour."
       },
+      "on-surface": {
+        "name": "On-Surface",
+        "dark": "#EDE0DC",
+        "light": "#1F1A19",
+        "description": "Surface foreground colour."
+      },
+
       "surface-variant": {
         "name": "Surface-variant",
         "dark": "#53433E",
         "light": "#D8C2BB",
         "description": "Surface-variant background colour."
+      },
+      "on-surface-variant": {
+        "name": "On-Surface-variant",
+        "dark": "#EDE0DC",
+        "light": "#1F1A19",
+        "description": "Surface-variant foreground colour."
       }
     }
   },

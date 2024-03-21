@@ -278,5 +278,11 @@
     "try": {
       "again": "Try Again"
     }
+  },
+  "metamask": {
+    "token": {
+      "lg": "Add tokens to Metamask",
+      "md": "Add tokens"
+    }
   }
 }

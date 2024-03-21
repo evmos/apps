@@ -17,7 +17,12 @@ export const PrimaryButton = <
   icon,
   ...rest
 }: ComponentProps<T> & {
-  variant?: "primary" | "outline-primary" | "primary-lg" | "secondary";
+  variant?:
+    | "primary"
+    | "outline-primary"
+    | "primary-lg"
+    | "secondary"
+    | "secondary-meta";
   icon?: JSX.Element;
   disabled?: boolean;
   as?: T;
@@ -33,6 +38,8 @@ export const PrimaryButton = <
         variant === "primary-lg",
       "w-fit rounded px-6 py-3 text-xs font-bold transition-all duration-200 ease-in-out text-red-300 bg-pearl hover:bg-[#e3d6c3] active:bg-[#ccc0af]":
         variant === "secondary",
+      "w-fit rounded-lg px-6 py-3 text-xs font-medium transition-all duration-200 ease-in-out text-pearl bg-[#666557] hover:bg-[#565548] active:bg-[#ccc0af]":
+        variant === "secondary-meta",
     },
     className,
     disabled ? "disabled" : "",

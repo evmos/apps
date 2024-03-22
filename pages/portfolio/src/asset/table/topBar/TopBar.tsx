@@ -149,7 +149,9 @@ const TopBar = ({ topProps }: { topProps: TopBarProps }) => {
         </PrimaryButton>
         <PrimaryButton
           variant="secondary-meta"
-          className="py-2 text-sm font-light"
+          className={`py-2 text-sm font-light ${
+            isDisconnected || activeProvider !== "MetaMask" ? "hidden" : ""
+          }`}
           disabled={isDisconnected}
           icon={<MetamaskIcon width={20} height={20} />}
           data-testid="open-request-modal-button"

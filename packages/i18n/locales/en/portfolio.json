@@ -279,10 +279,11 @@
       "again": "Try Again"
     }
   },
-  "metamask": {
+  "add": {
     "token": {
-      "lg": "Add tokens to Metamask",
-      "md": "Add tokens"
+      "lg": "Add tokens to ",
+      "md": "Add tokens",
+      "xs": "Add"
     }
   }
 }

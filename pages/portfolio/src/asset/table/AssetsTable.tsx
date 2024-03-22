@@ -88,7 +88,7 @@ const AssetsTable = () => {
   return (
     <>
       <Suspense>
-        <TopBar topProps={topProps} />
+        <TopBar topProps={topProps} tableData={tableData} />
       </Suspense>
       <div className="flex flex-col justify-center lg:flex-row lg:justify-between my-2">
         <Guide />

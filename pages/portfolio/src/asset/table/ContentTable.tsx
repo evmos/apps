@@ -10,14 +10,7 @@ import { RowContent } from "./components/RowContent";
 import { SubRowContent } from "./components/SubRowContent";
 import { ContentTableProps } from "./types";
 import { TableDataElement } from "../../utils/table/normalizeData";
-
-type accordionData = {
-  name: string;
-  icon: string;
-  total: BigNumber;
-  tokens: TableDataElement[];
-  img: string;
-};
+import { useDataTokens } from "../../utils/hooks/useDataTokens";
 
 const createSubRow = (
   item: TableDataElement,
@@ -42,53 +35,8 @@ const ContentTable = ({
   setIsOpen,
   setModalContent,
 }: ContentTableProps) => {
-  const data = useMemo(() => {
-    // TODO: We'll use the Evmos price for stEvmos until they add it on Coingecko
-    const map = new Map<string, accordionData>();
-    tableData?.table.map((e) => {
-      if (
-        (e.chainIdentifier === "Stride" &&
-          map.has(e.chainIdentifier) === true) ||
-        (e.chainIdentifier === "Quicksilver" &&
-          map.has(e.chainIdentifier) === true)
-      ) {
-        const temp = map.get(e.chainIdentifier);
-        if (temp === undefined) {
-          return;
-        }
-        temp.tokens.push(e);
-        temp.total = temp.total.add(e.erc20Balance);
-      } else if (
-        e.chainIdentifier === "Stride" ||
-        e.chainIdentifier === "Quicksilver"
-      ) {
-        map.set(e.chainIdentifier, {
-          name: e.chainIdentifier,
-          icon: e.chainIdentifier,
-          total: e.erc20Balance,
-          img: e.pngSrc,
-          tokens: [e],
-        });
-      } else if (map.has(e.tokenIdentifier) === true) {
-        const temp = map.get(e.tokenIdentifier);
-        if (temp === undefined) {
-          return;
-        }
-        temp.tokens.push(e);
-        temp.total = temp.total.add(e.erc20Balance);
-      } else {
-        map.set(e.tokenIdentifier, {
-          name: e.tokenIdentifier,
-          icon: e.tokenIdentifier,
-          total: e.erc20Balance,
-          img: e.pngSrc,
-          tokens: [e],
-        });
-      }
-    });
-
-    return map;
-  }, [tableData?.table]);
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  const { dataTokens: data } = useDataTokens({ tableData: tableData.table });
 
   const renderData = useMemo(() => {
     const ret: JSX.Element[] = [];

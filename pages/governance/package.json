@@ -6,7 +6,7 @@
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "dependencies": {
-    "@buf/cosmos_cosmos-sdk.bufbuild_es": "1.3.0-20230822104619-a12828247088.1",
+    "@buf/cosmos_cosmos-sdk.bufbuild_es": "1.3.0-20240220165237-05419252bcc2.1",
     "@buf/evmos_evmos.bufbuild_es": "1.3.0-20230822152208-9101da12dca9.1",
     "@evmosapps/copilot": "workspace:*",
     "@evmosapps/evmos-wallet": "workspace:*",

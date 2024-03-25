@@ -161,7 +161,7 @@ const TopBar = ({
         </div>
         <div className="md:order-last my-2">
           <PrimaryButton
-            variant="secondary-meta"
+            variant="tertiary"
             className={`py-2 text-sm font-light ${
               //TODO: change activeProvider !== "MetaMask" to (activeProvider !== "MetaMask" && activeProvider !== "Rabbit")
               isDisconnected || activeProvider !== "MetaMask" ? "hidden" : ""

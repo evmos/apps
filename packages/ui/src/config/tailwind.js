@@ -2,6 +2,8 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import typography from "@tailwindcss/typography";
+import forms from "@tailwindcss/forms";
+
 import path from "path";
 import colors from "./colors.json";
 import chroma from "chroma-js";
@@ -167,7 +169,7 @@ const config = {
       },
     },
   },
-  plugins: [typography],
+  plugins: [typography, forms],
 };
 
 export default config;

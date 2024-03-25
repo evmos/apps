@@ -26,7 +26,6 @@ const preview: Preview = {
         document
           .querySelector("html")
           ?.classList.toggle("dark", args.globals.darkMode);
-        console.log(args.globals.darkMode, document.body.classList);
       }, [args.globals.darkMode]);
 
       return Story();

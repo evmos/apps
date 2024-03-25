@@ -431,5 +431,15 @@
         "description": "Accent-purple-container foreground colour."
       }
     }
+  },
+  "yellow": {
+    "colors": {
+      "primary": {
+        "name": "Yellow",
+        "dark": "#F2C94C",
+        "light": "#F2C94C",
+        "description": "Yellow background colour."
+      }
+    }
   }
 }

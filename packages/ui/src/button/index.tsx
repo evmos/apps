@@ -137,18 +137,19 @@ const button = cva({
       variant: "danger",
       outlined: true,
       class:
-        "text-error-container dark:text-error-container-dark [&:not(:disabled)]:border-current",
+        "text-error dark:text-error-container-dark [&:not(:disabled)]:border-current",
     },
     {
       variant: "danger",
       ghost: true,
-      class: "text-error-container dark:text-error-container-dark",
+      class: "text-error dark:text-error-container-dark",
     },
+
     {
       variant: "danger",
       tight: true,
       class:
-        "text-error-container dark:text-error-container-dark disabled:text-error/40 disabled:dark:text-error-container-dark/40",
+        "text-error dark:text-error-container-dark disabled:text-error/40 disabled:dark:text-error-container-dark/40",
     },
   ],
   defaultVariants: {
@@ -178,6 +179,8 @@ function _Button<T extends ElementType = "button">({
   });
 }
 
-export const Button = forwardRef(_Button) as <T extends ElementType = "button">(
+type ButtonType = <T extends ElementType = "button">(
   props: ButtonProps<T>,
-) => JSX.Element;
+) => JSX.Element
+export const Button = forwardRef(_Button) as ButtonType;
+// Button.Icon = IconButton;

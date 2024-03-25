@@ -87,7 +87,10 @@ const TopBar = ({
     }[],
   ) {
     try {
-      const requests = tokens.map((token) => ({
+      const filteredTokens = tokens.filter(
+        (token) => token.symbol !== "EVMOS" && token.symbol !== "WEVMOS",
+      );
+      const requests = filteredTokens.map((token) => ({
         method: "wallet_watchAsset",
         params: {
           type: "ERC20",

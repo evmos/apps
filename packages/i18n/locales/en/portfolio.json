@@ -278,5 +278,12 @@
     "try": {
       "again": "Try Again"
     }
+  },
+  "add": {
+    "token": {
+      "lg": "Add tokens to ",
+      "md": "Add tokens",
+      "xs": "Add"
+    }
   }
 }

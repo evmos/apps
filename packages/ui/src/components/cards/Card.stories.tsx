@@ -3,7 +3,7 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Card, Ranking } from "./Card";
+import { Card, CardRanking } from "./Card";
 import { Icon } from "../images/Icon";
 import { Badge } from "../badges/Badge";
 import { cn } from "helpers/src/classnames";
@@ -118,7 +118,7 @@ export const Trending: Story = {
             "after:bg-gradient-to-t after:from-black/70 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
           )}
         >
-          <Ranking className="text-yellow">1</Ranking>
+          <CardRanking className="text-yellow">1</CardRanking>
           <Image
             src={defaultBg}
             alt="dApp Name"

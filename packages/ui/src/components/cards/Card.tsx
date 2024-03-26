@@ -37,12 +37,12 @@ export const Card = forwardRef<HTMLElementTagNameMap["article"], CardProps>(
   },
 );
 
-type RankingProps = ComponentProps<"div"> & {
+type CardRankingProps = ComponentProps<"div"> & {
   className?: string;
 };
 
-export const Ranking = forwardRef<HTMLDivElement, RankingProps>(
-  function _Ranking({ children, className, ...rest }, ref) {
+export const CardRanking = forwardRef<HTMLDivElement, CardRankingProps>(
+  function _CardRanking({ children, className, ...rest }, ref) {
     return (
       <div
         className={cn(

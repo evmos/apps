@@ -9,7 +9,7 @@
 
 @layer utilities {
   .heading {
-    @apply font-bold text-heading;
+    @apply font-medium text-heading;
   }
   .dark .heading {
     @apply text-heading-dark;

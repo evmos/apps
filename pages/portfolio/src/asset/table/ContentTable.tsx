@@ -35,7 +35,6 @@ const ContentTable = ({
   setIsOpen,
   setModalContent,
 }: ContentTableProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
   const { dataTokens: data } = useDataTokens({ tableData: tableData.table });
 
   const renderData = useMemo(() => {

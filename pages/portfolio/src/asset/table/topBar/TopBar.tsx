@@ -15,27 +15,10 @@ import {
   useTracker,
 } from "tracker";
 import { getActiveProviderKey } from "@evmosapps/evmos-wallet";
-import { useMemo } from "react";
 import { useDataTokens } from "../../../utils/hooks/useDataTokens";
 import { TableDataElement } from "../../../utils/table/normalizeData";
 import { ProvidersIcons } from "stateful-components/src/providerIcons";
-
-interface Ethereum {
-  request(args: {
-    method: string;
-    params: {
-      type: string;
-      options: {
-        address: string;
-        symbol: string;
-        decimals: number;
-        image: string;
-      };
-    };
-  }): Promise<boolean>;
-}
-
-declare const ethereum: Ethereum;
+import { addTokenFunction } from "../../../utils/tokens/tokenUtils";
 
 const TopBar = ({
   topProps,
@@ -56,65 +39,25 @@ const TopBar = ({
     tableData,
   });
 
-  const tokens = useMemo(() => {
-    const tokensList: {
-      address: string;
-      symbol: string;
-      decimals: number;
-      image: string;
-    }[] = [];
+  const tokensList: {
+    address: string;
+    symbol: string;
+    decimals: number;
+    image: string;
+  }[] = [];
 
-    data.forEach((tokenData) => {
-      tokenData.tokens.forEach((token) => {
-        tokensList.push({
-          address: token.erc20Address,
-          symbol: token.symbol,
-          decimals: token.decimals,
-          image: token.pngSrc,
-        });
+  data.forEach((tokenData) => {
+    tokenData.tokens.forEach((token) => {
+      tokensList.push({
+        address: token.erc20Address,
+        symbol: token.symbol,
+        decimals: token.decimals,
+        image: token.pngSrc,
       });
     });
+  });
 
-    return tokensList;
-  }, [data]);
-
-  async function addTokenFunction(
-    tokens: {
-      address: string;
-      symbol: string;
-      decimals: number;
-      image: string;
-    }[],
-  ) {
-    try {
-      const filteredTokens = tokens.filter(
-        (token) => token.symbol !== "EVMOS" && token.symbol !== "WEVMOS",
-      );
-      const requests = filteredTokens.map((token) => ({
-        method: "wallet_watchAsset",
-        params: {
-          type: "ERC20",
-          options: {
-            address: token.address,
-            symbol: token.symbol,
-            decimals: token.decimals,
-            image: token.image,
-          },
-        },
-      }));
-
-      // Send all requests to Metamask
-      const results = await Promise.all(
-        requests.map((request) => ethereum.request(request)),
-      );
-
-      results.forEach((wasAdded) => {
-        if (wasAdded) {
-        } else {
-        }
-      });
-    } catch (error) {}
-  }
+  const tokens = tokensList;
 
   const Icon = connector && ProvidersIcons[connector.name];
 
@@ -172,8 +115,8 @@ const TopBar = ({
             disabled={isDisconnected}
             icon={Icon && <Icon width="1.4em" height="1.4em" />}
             data-testid="open-request-modal-button"
-            onClick={() => {
-              void addTokenFunction(tokens);
+            onClick={async () => {
+              await addTokenFunction(tokens);
             }}
           >
             <p className="hidden 2xl:inline">

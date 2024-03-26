@@ -3,12 +3,12 @@
 
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Card } from "./Card";
+import { Card, Ranking } from "./Card";
 import { Icon } from "../images/Icon";
 import { Badge } from "../badges/Badge";
 import { cn } from "helpers/src/classnames";
 import Image from "next/image";
-import bg from "./bg.png";
+import defaultBg from "../images/default-card.png";
 
 const categories = ["Trade", "Defi", "NFT", "Wallet"];
 
@@ -118,9 +118,9 @@ export const Trending: Story = {
             "after:bg-gradient-to-t after:from-black/70 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
           )}
         >
-          <Card.Ranking className="text-yellow">1</Card.Ranking>
+          <Ranking className="text-yellow">1</Ranking>
           <Image
-            src={bg}
+            src={defaultBg}
             alt="dApp Name"
             fill={true}
             className="object-cover rounded-xl"

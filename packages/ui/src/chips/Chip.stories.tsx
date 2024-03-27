@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import type { Meta, StoryObj } from "@storybook/react";
 import * as icons from "../icons/line";
 import { Fragment } from "react";

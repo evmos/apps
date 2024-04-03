@@ -35,7 +35,6 @@ const chip = cva({
     },
   },
   defaultVariants: {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     variant: "neutral",
   },
 });

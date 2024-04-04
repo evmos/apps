@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+-(fix) DAPP-22 | packages/ui 1.0.1 | storybooks: chips
+
 ## 2.0.11 - 2024-03-13
 
 - (fix) xap-153 | packages/instant-dapps 1.0.4 packages/widget 1.0.7 package/i18n 1.0.5 | Wormhole temporary banner

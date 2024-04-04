@@ -11,10 +11,6 @@ const chip = cva({
     "flex tracking-wide items-center w-fit h-[28px] pl-[10px] pr-2 py-2 rounded-2xl text-sm gap-x-2 [&_.icon]:h-3 [&_.icon]:w-3",
     //opacity
     "bg-opacity-[0.08] dark:bg-opacity-[0.08]",
-    //text color
-    "text-on-surface-variant dark:text-on-surface-variant-dark",
-    //background color
-    "bg-on-surface dark:bg-on-surface-dark",
     //hover
     "hover:bg-opacity-[0.2] hover:dark:bg-opacity-[0.2]",
     //focus
@@ -22,7 +18,9 @@ const chip = cva({
   ],
   variants: {
     variant: {
-      neutral: [],
+      neutral: [
+        "bg-on-surface dark:bg-on-surface-dark text-on-surface-variant dark:text-on-surface-variant-dark",
+      ],
       success: [
         "bg-success-light dark:bg-success-dark text-success dark:text-success-dark",
       ],

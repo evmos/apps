@@ -25,12 +25,6 @@ export const Chips: Story = {
     icon: "IconCheckboxCircle",
     children: "Label",
   },
-  argTypes: {
-    icon: {
-      options: Object.keys(icons),
-      control: { type: "select" },
-    },
-  },
   render: (props) => {
     const Icon = icons[props.icon as keyof typeof icons];
 

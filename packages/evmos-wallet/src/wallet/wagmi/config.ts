@@ -26,10 +26,12 @@ export const wagmiConfig = createConfig({
     [evmoslocalnet.id]: http(),
   },
   ssr: true,
-  multiInjectedProviderDiscovery: false,
+  multiInjectedProviderDiscovery: true,
 
   connectors: [
     injected({ target: "metaMask" }),
+    injected({ target: "rainbow" }),
+    injected({ target: "coinbaseWallet" }),
     injected({
       target: {
         id: "rabby",
@@ -75,4 +77,6 @@ export type ConnetorId =
   | "Keplr"
   | "Safe"
   | "Leap"
-  | "Rabby";
+  | "Rabby"
+  | "Rainbow"
+  | "Coinbase Wallet";

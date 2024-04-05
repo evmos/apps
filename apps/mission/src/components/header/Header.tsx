@@ -7,6 +7,7 @@ import { LaunchPad } from "./LaunchPad";
 import { Container } from "@evmosapps/ui-helpers";
 import { EvmosPrice } from "./evmos-price/EvmosPrice";
 import { WalletButton } from "./WalletButton";
+import { SignIn } from "./signin/SignIn";
 
 export const Header = () => {
   return (
@@ -19,7 +20,10 @@ export const Header = () => {
         <EvmosPrice />
 
         <LaunchPad />
-        <WalletButton />
+
+        <SignIn />
+
+        {/* <WalletButton /> */}
       </div>
     </Container>
   );

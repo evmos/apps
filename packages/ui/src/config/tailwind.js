@@ -51,11 +51,11 @@ const config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        default: "url('./components/images/default-card.png')",
-        ranking: "url('./components/images/ranking-bg.png')",
-        "galaxy-red": "url('./components/images/galaxy.png')",
-      },
+      // backgroundImage: {
+      //   default: "url('./components/images/default-card.png')",
+      //   ranking: "url('./components/images/ranking-bg.png')",
+      //   "galaxy-red": "url('./components/images/galaxy.png')",
+      // },
       fontFamily: {
         body: ["var(--font-body)", "sans-serif"],
         display: ["var(--font-display)"],

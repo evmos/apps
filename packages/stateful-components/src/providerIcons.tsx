@@ -7,7 +7,8 @@ import { LeapIcon } from "@evmosapps/icons/LeapWalletIcon";
 import { MetamaskIcon } from "@evmosapps/icons/MetamaskIcon";
 import { RabbyIcon } from "@evmosapps/icons/RabbyWalletIcon";
 import { WalletConnectIcon } from "@evmosapps/icons/WalletConnectIcon";
-
+import { RainbowIcon } from "@evmosapps/icons/Rainbow";
+import { CoinbaseWalletIcon } from "@evmosapps/icons/CoinbaseWallet";
 export const ProvidersIcons: Record<
   string,
   React.FC<React.SVGAttributes<SVGElement>>
@@ -17,4 +18,6 @@ export const ProvidersIcons: Record<
   WalletConnect: WalletConnectIcon,
   Leap: LeapIcon,
   "Rabby Wallet": RabbyIcon,
+  Rainbow: RainbowIcon,
+  "Coinbase Wallet": CoinbaseWalletIcon,
 };

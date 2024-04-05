@@ -74,8 +74,10 @@ function RootLayout({
             <StatefulBanner />
             <Header />
 
-            <Container className="grow">{children}</Container>
-            <Footer />
+            <Container className="grow">
+              {children}
+              <Footer />
+            </Container>
           </main>
 
           <Modals />

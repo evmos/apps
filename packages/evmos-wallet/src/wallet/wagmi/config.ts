@@ -26,12 +26,12 @@ export const wagmiConfig = createConfig({
     [evmoslocalnet.id]: http(),
   },
   ssr: true,
-  multiInjectedProviderDiscovery: true,
+  multiInjectedProviderDiscovery: false,
 
   connectors: [
     injected({ target: "metaMask" }),
-    injected({ target: "rainbow" }),
     injected({ target: "coinbaseWallet" }),
+    injected({ target: "braveWallet" }),
     injected({
       target: {
         id: "rabby",
@@ -39,6 +39,50 @@ export const wagmiConfig = createConfig({
         provider: (window) => {
           if (window && "rabby" in window) {
             return window.rabby as EIP1193Provider;
+          }
+        },
+      },
+    }),
+    injected({
+      target: {
+        id: "phantom",
+        name: "Phantom",
+        provider: (window) => {
+          if (window && "phantom" in window) {
+            return window.phantom?.ethereum as EIP1193Provider;
+          }
+        },
+      },
+    }),
+    injected({
+      target: {
+        id: "rainbow",
+        name: "Rainbow",
+        provider: (window) => {
+          if (window && "rainbow" in window) {
+            return window.rainbow as EIP1193Provider;
+          }
+        },
+      },
+    }),
+    injected({
+      target: {
+        id: "trustWallet",
+        name: "Trust Wallet",
+        provider: (window) => {
+          if (window && "trustwallet" in window) {
+            return window.trustwallet as EIP1193Provider;
+          }
+        },
+      },
+    }),
+    injected({
+      target: {
+        id: "okxWallet",
+        name: "OKX Wallet",
+        provider: (window) => {
+          if (window && "okxwallet" in window) {
+            return window.okxwallet as EIP1193Provider;
           }
         },
       },
@@ -79,4 +123,9 @@ export type ConnetorId =
   | "Leap"
   | "Rabby"
   | "Rainbow"
-  | "Coinbase Wallet";
+  | "CoinbaseWallet"
+  | "BraveWallet"
+  | "Phantom"
+  // doesnt work
+  | "okxWallet"
+  | "Trust Wallet";

@@ -36,6 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+-(fix) DAPP-35 | apps/mission 1.0.36 | change text color to Privacy, Terms and Cookies
 -(fix) DAPP-22 | packages/ui 1.0.1 | storybooks: chips
 
 ## 2.0.11 - 2024-03-13

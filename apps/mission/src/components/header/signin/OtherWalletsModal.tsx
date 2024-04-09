@@ -9,6 +9,7 @@ import { useModal } from "helpers";
 import { useSignIn } from "./useSignIn";
 import { ProvidersIcons } from "stateful-components/src/providerIcons";
 import Image from "next/image";
+import { supportedWallets } from "./supportedWallets";
 
 export const useOtherWalletsModal = () => useModal("supported-wallets");
 
@@ -43,16 +44,16 @@ export const OtherWalletsModal = () => {
                 //   sendEvent(CLICK_CONNECTED_WITH, {
                 //     "Wallet Provider": connector.name,
                 //   });
-                // if (!isWalletInstalled(connector.name)) {
-                //   const web = supportedWallets.find(
-                //     (item) => item.name === connector.name,
-                //   );
-                //   window.open(web?.url, "_blank");
-                // } else {
-                connect({
-                  connector,
-                });
-                // }
+                if (!isWalletInstalled(connector.name)) {
+                  const web = supportedWallets.find(
+                    (item) => item.name === connector.name,
+                  );
+                  window.open(web?.url, "_blank");
+                } else {
+                  connect({
+                    connector,
+                  });
+                }
               }}
             >
               {Icon && <Icon className="w-7" />}

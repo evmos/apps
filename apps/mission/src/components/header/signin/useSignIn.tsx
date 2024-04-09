@@ -8,11 +8,11 @@ import { E } from "helpers";
 import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
 
 const predefinedWallets = [
-  // "MetaMask",
-  // "Rainbow",
-  // "Coinbase Wallet",
-  // "Leap",
-  // "WalletConnect",
+  "MetaMask",
+  "Rainbow",
+  "Coinbase Wallet",
+  "Leap",
+  "WalletConnect",
 ];
 
 export const useSignIn = () => {
@@ -77,6 +77,9 @@ export const useSignIn = () => {
     // Use Promise.all to wait for all promises in `temp` to resolve
     const connected = await Promise.all(
       connectors.map(async (connector) => {
+        if (connector.name === "WalletConnect") {
+          return { name: connector.name, installed: true };
+        }
         if (isCosmosBasedWallet(connector.name)) {
           if (connector.name === "Keplr" && getGlobalKeplrProvider() !== null) {
             return { name: connector.name, installed: true };
@@ -98,16 +101,10 @@ export const useSignIn = () => {
     return connected;
   };
 
-  const tempResponse = [
-    {
-      name: "Rainbow",
-      installed: true,
-    },
-  ];
-  // const connectionResponse = useQuery({
-  //   queryKey: ["test"],
-  //   queryFn: async () => await providersDetected(),
-  // });
+  const connectionResponse = useQuery({
+    queryKey: ["test"],
+    queryFn: async () => await providersDetected(),
+  });
 
   const cleanProviders = () => {
     return connectors.filter((connector) => {
@@ -149,8 +146,8 @@ export const useSignIn = () => {
 
   const providers = getProviders(defaultProviders(), cleanProviders());
   return {
-    data: tempResponse,
-    // data: connectionResponse.data,
+    // data: tempResponse,
+    data: connectionResponse.data,
     defaultProviders,
     providers,
     error,

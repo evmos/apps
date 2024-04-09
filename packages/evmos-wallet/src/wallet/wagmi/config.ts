@@ -12,7 +12,7 @@ import {
   evmostestnet,
 } from "helpers/src/evmos-info";
 import { EIP1193Provider } from "viem";
-
+import { coinbaseWallet } from "wagmi/connectors";
 import {
   keplrProvider,
   leapProvider,
@@ -30,8 +30,12 @@ export const wagmiConfig = createConfig({
 
   connectors: [
     injected({ target: "metaMask" }),
-    injected({ target: "coinbaseWallet" }),
+
+    coinbaseWallet({
+      appName: "Dappstore Evmos",
+    }),
     injected({ target: "braveWallet" }),
+
     injected({
       target: {
         id: "rabby",
@@ -43,28 +47,14 @@ export const wagmiConfig = createConfig({
         },
       },
     }),
-    injected({
-      target: {
-        id: "phantom",
-        name: "Phantom",
-        provider: (window) => {
-          if (window && "phantom" in window) {
-            return window.phantom?.ethereum as EIP1193Provider;
-          }
-        },
-      },
-    }),
-    injected({
-      target: {
-        id: "rainbow",
-        name: "Rainbow",
-        provider: (window) => {
-          if (window && "rainbow" in window) {
-            return window.rainbow as EIP1193Provider;
-          }
-        },
-      },
-    }),
+
+    // injected({
+    //   target: {
+    //     id: "rainbow",
+    //     name: "Rainbow",
+    //     provider: window.ethereum.providers?.find(isMetaMask),
+    //   },
+    // }),
     injected({
       target: {
         id: "trustWallet",
@@ -76,17 +66,17 @@ export const wagmiConfig = createConfig({
         },
       },
     }),
-    injected({
-      target: {
-        id: "okxWallet",
-        name: "OKX Wallet",
-        provider: (window) => {
-          if (window && "okxwallet" in window) {
-            return window.okxwallet as EIP1193Provider;
-          }
-        },
-      },
-    }),
+    // injected({
+    //   target: {
+    //     id: "okxWallet",
+    //     name: "OKX Wallet",
+    //     provider: (window) => {
+    //       if (window && "okxwallet" in window) {
+    //         return window.okxwallet as EIP1193Provider;
+    //       }
+    //     },
+    //   },
+    // }),
     injected({
       target() {
         return {
@@ -122,10 +112,8 @@ export type ConnetorId =
   | "Safe"
   | "Leap"
   | "Rabby"
-  | "Rainbow"
+  // | "Rainbow"
   | "CoinbaseWallet"
   | "BraveWallet"
-  | "Phantom"
-  // doesnt work
   | "okxWallet"
   | "Trust Wallet";

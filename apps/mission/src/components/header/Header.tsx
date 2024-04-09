@@ -23,7 +23,7 @@ export const Header = () => {
         <LaunchPad />
 
         <SignIn />
-        <SignOut />
+        {/* <SignOut /> */}
         {/* <WalletButton /> */}
       </div>
     </Container>

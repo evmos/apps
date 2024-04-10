@@ -2,9 +2,9 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import type { Meta, StoryObj } from "@storybook/react";
-import * as icons from "../icons/line";
 import { Fragment } from "react";
 import { Chip } from "./Chip";
+import { IconCheckboxCircle } from "../icons/line/basic";
 const meta = {
   title: "Chips",
   component: Chip,
@@ -20,13 +20,8 @@ type Story = StoryObj<typeof meta>;
 const labelText = "Label";
 
 export const Chips: Story = {
-  args: {
-    //change icon
-    icon: "IconCheckboxCircle",
-    children: "Label",
-  },
   render: (props) => {
-    const Icon = icons[props.icon as keyof typeof icons];
+    const Icon = IconCheckboxCircle;
 
     return (
       <div className="grid text-center grid-cols-5 gap-4 [&>*]:flex [&>*]:items-center [&>*]:justify-center">

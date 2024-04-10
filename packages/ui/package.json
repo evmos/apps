@@ -10,7 +10,10 @@
         "types": "./src/*",
         "default": "./src/*"
       },
-      "require": "./src/*"
+      "require": {
+        "types": "./src/*",
+        "default": "./src/*"
+      }
     },
     "./config/tailwind": "./src/config/tailwind.js"
   },

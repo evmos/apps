@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import type { Meta, StoryObj } from "@storybook/react";
-import { IconHeart } from "../icons/line";
+import { IconHeart } from "../icons/line/basic";
 import { Button } from ".";
 import { Fragment } from "react";
 const variants = [

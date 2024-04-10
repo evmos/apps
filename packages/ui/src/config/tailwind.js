@@ -48,6 +48,7 @@ const config = {
 
     path.join(repositoryRoot, "packages/*/(src|.storybook)/**/*.tsx"),
     path.join(repositoryRoot, "pages/*/src/**/*.tsx"),
+    path.join(repositoryRoot, "apps/*/src/**/*.tsx"),
   ],
   theme: {
     extend: {

@@ -30,7 +30,7 @@ export const wagmiConfig = createConfig({
 
   connectors: [
     injected({ target: "metaMask" }),
-
+    // injected({target: "coinbaseWallet"})
     coinbaseWallet({
       appName: "Dappstore Evmos",
     }),
@@ -66,17 +66,17 @@ export const wagmiConfig = createConfig({
         },
       },
     }),
-    // injected({
-    //   target: {
-    //     id: "okxWallet",
-    //     name: "OKX Wallet",
-    //     provider: (window) => {
-    //       if (window && "okxwallet" in window) {
-    //         return window.okxwallet as EIP1193Provider;
-    //       }
-    //     },
-    //   },
-    // }),
+    injected({
+      target: {
+        id: "okxWallet",
+        name: "OKX Wallet",
+        provider: (window) => {
+          if (window && "okxwallet" in window) {
+            return window.okxwallet as EIP1193Provider;
+          }
+        },
+      },
+    }),
     injected({
       target() {
         return {

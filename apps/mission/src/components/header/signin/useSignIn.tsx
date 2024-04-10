@@ -10,16 +10,23 @@ import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/walle
 const predefinedWallets = [
   "MetaMask",
   "Rainbow",
+  "Trust Wallet",
+  "OKX Wallet",
   "Coinbase Wallet",
   "Leap",
   "WalletConnect",
 ];
 
 export const useSignIn = () => {
-  const [error, setError] = useState({ name: "", error: "" });
+  const [error, setError] = useState<
+    { name: string; error: string } | undefined
+  >();
 
   const { connectors, connect } = useConnect({
     mutation: {
+      onMutate: () => {
+        setError(undefined);
+      },
       onSuccess: (_, { connector }) => {
         console.log("connect with ", connector);
         // sendEvent(SUCCESSFUL_WALLET_CONNECTION, {
@@ -151,8 +158,9 @@ export const useSignIn = () => {
     defaultProviders,
     providers,
     error,
-    isLoading: false,
-    // isLoading: connectionResponse.isLoading,
+    // isLoading: false,
+
+    isLoading: connectionResponse.isLoading,
     connectors,
     connect,
   };

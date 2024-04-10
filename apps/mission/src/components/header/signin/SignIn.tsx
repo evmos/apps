@@ -11,6 +11,8 @@ import { useWallet } from "@evmosapps/evmos-wallet";
 import { SignOut } from "./SignOut";
 import { supportedWallets } from "./supportedWallets";
 import { useState } from "react";
+import { useInstallProvider } from "./useWalletInstalled";
+import { Spinner } from "./Spinner";
 
 export const SignIn = () => {
   const { data, connect, isLoading, error, defaultProviders } = useSignIn();
@@ -31,43 +33,12 @@ export const SignIn = () => {
     );
   };
 
-  const isMetamaskInstalled = () => {
-    return "rainbow" in window;
-  };
-
-  // const useInstallMetamask = () => {
-  //   const [status, setStatus] = useState<
-  //     "not-installed" | "started-install" | "installed"
-  //   >(isMetamaskInstalled() ? "installed" : "not-installed");
-
-  //   useEffect(() => {
-  //     if (status !== "started-install") return;
-  //     const handleFocus = () => {
-  //       const isInstalled = isMetamaskInstalled();
-
-  //       if (isInstalled) {
-  //         setStatus("installed");
-  //         // sendEvent(SUCCESSFUL_WALLET_INSTALLATION_COPILOT, {
-  //         //   "Wallet Provider": "MetaMask",
-  //         // });
-  //         return;
-  //       }
-  //       // for chrome and brave we need to reload the page to know if the user has Metamask installed
-  //       window.location.reload();
-  //     };
-  //     window.addEventListener("focus", handleFocus);
-
-  //     return () => {
-  //       window.removeEventListener("focus", handleFocus);
-  //     };
-  //   }, [status]);
-  //   return [status, setStatus] as const;
-  // };
-
   const [walletSelectedToConnect, setWalletSelectedToConnect] = useState("");
 
-  // const [metamaskStatus, setMetamaskStatus] = useInstallMetamask();
-  // el isConnectiong puedo poner el loader pero en el caso especifico de la wallet no que me desaparezca todo el dropdown
+  const [providerStatus, setProviderStatus] = useInstallProvider(
+    walletSelectedToConnect,
+  );
+
   if (isHydrating || isReconnecting) {
     return (
       <div className="animate-pulse text-pearl bg-darGray800 flex items-center justify-center space-x-3 rounded-full px-4 md:px-8 py-2 font-bold w-28 h-full">
@@ -91,14 +62,14 @@ export const SignIn = () => {
 
             <Menu.Items
               // TODO Mili: we should have a prop to make the menu static (add it in localstorage or manage it somehow)
-              // static={metamaskStatus !== "installed" ? true : false}
+
               className="space-y-5 z-10 absolute right-0 mt-2 w-96 origin-top-right bg-surface-container-low dark:bg-surface-container-low-dark border border-surface-container dark:border-surface-container-dark text-surface-container-high-dark dark:text-surface-container-high  rounded-2xl p-3"
             >
               <Menu.Item as="div" className="text-center">
                 Sign in with wallet
               </Menu.Item>
               {/* loader */}
-              {isLoading && <div>Loading!</div>}
+              {isLoading && <Spinner />}
               {!isLoading && (
                 <>
                   <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2">
@@ -122,14 +93,15 @@ export const SignIn = () => {
                                 (item) => item.name === connector.name,
                               );
                               window.open(web?.url, "_blank");
-                              // setMetamaskStatus("started-install");
+                              setProviderStatus("started-install");
+
                               // we should reuse the same logic that we have for installing MM
                               // here, to reload the page -
                             } else {
                               connect({
                                 connector,
                               });
-                              setWalletSelectedToConnect(connector.name);
+                              setWalletSelectedToConnect(connector.id);
                             }
                           }}
                         >
@@ -145,7 +117,7 @@ export const SignIn = () => {
                           <div className="text-left flex justify-between w-full items-center ">
                             <div>
                               <span>{connector.name}</span>
-                              {connector.name === "MetaMask" && (
+                              {connector.name === "MetaMask" && !error && (
                                 <div className="text-paragraph dark:text-paragraph-dark text-sm">
                                   Recommended
                                 </div>
@@ -157,19 +129,28 @@ export const SignIn = () => {
                                 </div>
                               )}
                             </div>
-                            {isWalletInstalled(connector.name) ? (
-                              <div className="text-paragraph dark:text-paragraph-dark text-sm">
-                                Detected
-                              </div>
-                            ) : (
-                              ""
-                            )}
+                            {isWalletInstalled(connector.name) &&
+                              !isConnecting &&
+                              (!error ||
+                                (error && error.name !== connector.name)) && (
+                                <div className="text-paragraph dark:text-paragraph-dark text-sm">
+                                  Detected
+                                  {/* spinner - move to ui / icon  */}
+                                </div>
+                              )}
                             {isConnecting &&
-                              walletSelectedToConnect === connector.name && (
-                                //    add icon with className="animate-spin"
-                                <p>Loading</p>
+                              walletSelectedToConnect === connector.id &&
+                              !error && (
+                                //      {/* spinner - move to ui / icon  */}
+                                <Spinner />
                               )}
                             {isConnected && <p>connected</p>}
+
+                            {error && error.name === connector.name && (
+                              <div className="text-error-container dark:text-error-container-dark">
+                                X
+                              </div>
+                            )}
                           </div>
                         </Menu.Item>
                       );

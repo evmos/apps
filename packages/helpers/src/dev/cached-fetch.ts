@@ -32,12 +32,7 @@ const normalizeFetchParams = (input: RequestInfo | URL, init?: RequestInit) =>
 /**
  * Enhanced fetch function with caching for development and test environments.
  * Caches the results of HTTP requests to improve performance during development.
- *
- * @param {RequestInfo | URL} input - The resource URL or RequestInfo object.
- * @param {RequestInit & { devCache?: { revalidate?: number; tags?: string[]; }}} [init] - Custom fetch options with optional cache settings.
- * @returns {Promise<Response>} A promise that resolves to the Response object.
  */
-
 export type CachedRequestInit = RequestInit &
   (
     | {

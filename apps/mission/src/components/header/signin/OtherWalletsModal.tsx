@@ -56,7 +56,7 @@ export const OtherWalletsModal = () => {
                 }
               }}
             >
-              {Icon && <Icon className="w-7" />}
+              {/* {Icon && <Icon className="w-7" />}
               {connector.icon && (
                 <Image
                   src={connector.icon}
@@ -64,7 +64,7 @@ export const OtherWalletsModal = () => {
                   width={28}
                   height={28}
                 />
-              )}
+              )} */}
               <div className="text-left ">
                 <span>{connector.name}</span>
                 {connector.name === "MetaMask" && (

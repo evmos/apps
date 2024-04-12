@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useSignIn } from "./useSignIn";
 import { useOtherWalletsModal } from "./OtherWalletsModal";
 import { useWallet } from "@evmosapps/evmos-wallet";
-import { SignOut } from "./SignOut";
+import { Profile } from "./Profile";
 import { supportedWallets } from "./supportedWallets";
 import { useState } from "react";
 import { useInstallProvider } from "./useWalletInstalled";
@@ -47,7 +47,7 @@ export const SignIn = () => {
     );
   }
   if (address && connector) {
-    return <SignOut connector={connector} address={address} />;
+    return <Profile connector={connector} />;
   }
   return (
     <div className="relative">

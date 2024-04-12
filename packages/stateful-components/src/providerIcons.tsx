@@ -9,6 +9,7 @@ import { RabbyIcon } from "@evmosapps/icons/RabbyWalletIcon";
 import { WalletConnectIcon } from "@evmosapps/icons/WalletConnectIcon";
 import { RainbowIcon } from "@evmosapps/icons/Rainbow";
 import { CoinbaseWalletIcon } from "@evmosapps/icons/CoinbaseWallet";
+
 export const ProvidersIcons: Record<
   string,
   React.FC<React.SVGAttributes<SVGElement>>

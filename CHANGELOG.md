@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (fix) dapp-58 | pages/dappstore | Update ecosystem section - show 8 dapps
+
 ## 2.0.12 - 2024-03-18
 
 - (fix) xap-151 | packages/widgets 1.0.8 packages/instant-dapps 1.0.5 pages/dapp-store 1.1.8 | Add Leap Elements instant dapp

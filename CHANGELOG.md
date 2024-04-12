@@ -35,8 +35,9 @@ Ref: https://keepachangelog.com/en/1.0.0/
 # Changelog
 
 ## Unreleased
-- (feat) pages/governance 1.1.4 | Read blocked proposals from notion
 
+## 2.0.13 - 2024-04-12
+- (feat) pages/governance 1.1.4 | Read blocked proposals from notion
 - (fix) dapp-58 | pages/dappstore | Update ecosystem section - show 8 dapps
 
 ## 2.0.12 - 2024-03-18

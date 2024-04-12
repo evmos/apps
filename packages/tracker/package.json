@@ -19,7 +19,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "mixpanel-browser": "2.47.0"
+    "mixpanel-browser": "2.49.0"
   },
   "browserslist": [
     "last 3 chrome version",

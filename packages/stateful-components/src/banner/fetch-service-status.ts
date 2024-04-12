@@ -32,7 +32,6 @@ const fetchNotionEvmosStatus = async () =>
 
 const fetchEvmosStatus = async () => {
   const evmosStatus = await fetchNotionEvmosStatus();
-
   return evmosStatus.results.map((result) => {
     const parsed = evmosStatusSchema.safeParse(result);
 

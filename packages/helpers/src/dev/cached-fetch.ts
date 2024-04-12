@@ -3,7 +3,7 @@
 
 import { tryCatch } from "../error-handling";
 import { readDevCache, writeDevCache } from "./dev-cache-crud";
-import { snakeCase } from "lodash-es";
+import { get, snakeCase } from "lodash-es";
 import { hashString } from "../hash/hash-string";
 import { Log } from "..";
 
@@ -32,24 +32,26 @@ const normalizeFetchParams = (input: RequestInfo | URL, init?: RequestInit) =>
 /**
  * Enhanced fetch function with caching for development and test environments.
  * Caches the results of HTTP requests to improve performance during development.
- *
- * @param {RequestInfo | URL} input - The resource URL or RequestInfo object.
- * @param {RequestInit & { devCache?: { revalidate?: number; tags?: string[]; }}} [init] - Custom fetch options with optional cache settings.
- * @returns {Promise<Response>} A promise that resolves to the Response object.
  */
+export type CachedRequestInit = RequestInit &
+  (
+    | {
+      devCache?: {
+        revalidate?: number;
+        tags?: string[];
+      };
+    }
+    | { revalidate?: number; tags?: string[] }
+  );
 export const cachedFetch = async (
   input: RequestInfo | URL,
-  init?: RequestInit & {
-    devCache?: {
-      revalidate?: number;
-      tags?: string[];
-    };
-  },
+  init?: CachedRequestInit,
 ) => {
   // Bypass caching in non-development environments
   if (process.env.NODE_ENV !== "development" && process.env.NODE_ENV !== "test")
     return fetch(input, init);
-  const devCache = init?.devCache;
+  const devCache = get(init, "devCache", init) as { revalidate?: number; tags?: string[]}
+
   const request = normalizeFetchParams(input, init);
 
   const url = new URL(request.url);

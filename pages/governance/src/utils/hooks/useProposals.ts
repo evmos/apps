@@ -2,17 +2,14 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
-import { E, getPercentage, raise } from "helpers";
+import { getPercentage, raise } from "helpers";
+
 import { useEvmosChainRef } from "@evmosapps/evmos-wallet/src/registry-actions/hooks/use-evmos-chain-ref";
 import { cosmos } from "helpers/src/clients/cosmos";
 import get from "lodash-es/get";
 import { formatUnits } from "@evmosapps/evmos-wallet/src/registry-actions/utils";
 import { safeBigInt } from "helpers/src/bigint/safe-bigint";
-
-const [, parsedProposals] = E.try(
-  () =>
-    JSON.parse(process.env.NEXT_PUBLIC_PROPOSALS_TO_REMOVE ?? "[]") as string[],
-);
+import { fetcEvmosBlockedProposals } from "./fetchBlockedProposals";
 
 const fetchProposalTally = async ({
   chainRef,
@@ -28,14 +25,14 @@ const fetchProposalTally = async ({
       },
     },
   });
-
 const ProposalsQueryOptions = (chainRef: string) =>
   queryOptions({
     queryKey: ["proposals", chainRef],
 
     queryFn: async () => {
-      const proposals =
-        (await cosmos(chainRef)
+      let [blockedProposals, proposals] = await Promise.all([
+        await fetcEvmosBlockedProposals(),
+        cosmos(chainRef)
           .GET("/cosmos/gov/v1/proposals", {
             params: {
               query: {
@@ -44,14 +41,14 @@ const ProposalsQueryOptions = (chainRef: string) =>
               },
             },
           })
-          .then(
-            ({ data = {} }) =>
-              data?.proposals?.filter(
-                ({ id, status }) =>
-                  (id && parsedProposals?.includes(id) === false) ||
-                  status !== "PROPOSAL_STATUS_DEPOSIT_PERIOD",
-              ),
-          )) ?? [];
+          .then(({ data = {} }) => data.proposals ?? []),
+      ]);
+
+      proposals = proposals.filter(({ id, status }) => {
+        const isBlocked = id && blockedProposals.includes(id);
+        const isDepositPeriod = status === "PROPOSAL_STATUS_DEPOSIT_PERIOD";
+        return !isBlocked && !isDepositPeriod;
+      });
 
       return await Promise.all(
         proposals.map(

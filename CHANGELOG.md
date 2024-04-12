@@ -38,6 +38,16 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 -(fix) DAPP-22 | packages/ui 1.0.1 | storybooks: chips
 
+## 2.0.13 - 2024-04-12
+
+- (feat) pages/governance 1.1.4 | Read blocked proposals from notion
+- (fix) dapp-58 | pages/dappstore | Update ecosystem section - show 8 dapps
+
+## 2.0.12 - 2024-03-18
+
+- (fix) xap-151 | packages/widgets 1.0.8 packages/instant-dapps 1.0.5 pages/dapp-store 1.1.8 | Add Leap Elements instant dapp
+- (fix) fse-975 | packages/trpc 1.0.3 | Fix format address for staked endpoint
+
 ## 2.0.11 - 2024-03-13
 
 - (fix) xap-153 | packages/instant-dapps 1.0.4 packages/widget 1.0.7 package/i18n 1.0.5 | Wormhole temporary banner
@@ -55,6 +65,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 - (chore) | packages/icons 1.0.13 | Fix icons for wallets
 - (chore) | apps/mission 1.0.33 | Swap rpcs by the newly crated proxy
+
 - (chore) | packages/evmos-wallet 1.0.31 | Fix provider request
 - (chore) onb-4 | apps/mission 1.0.33 packages/constants-helpers 1.0.12 packages/config 1.0.2 packages/evmos-wallet 1.0.30 packages/helpers 1.0.13 packages/stateful-components 1.0.6 packages/trpc 1.0.2 packages/ui-helpers 1.0.23 pages/dappstore 1.1.6 pages/portfolio 1.1.11 | Add Leap Wallet
 - (chore) onb-3 | packages/evmos-wallet 1.0.29 packages/stateful-components 1.0.5 pages/staking 1.1.4 pages/vesting 1.0.2 | Add Rabby Wallet

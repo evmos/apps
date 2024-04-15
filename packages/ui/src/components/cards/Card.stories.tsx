@@ -118,7 +118,9 @@ export const Trending: Story = {
             "after:bg-gradient-to-t after:from-black/70 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
           )}
         >
-          <CardRanking className="text-yellow">1</CardRanking>
+          <CardRanking className="text-yellow-primary dark:text-yellow-primary-dark">
+            1
+          </CardRanking>
           <Image
             src={defaultBg}
             alt="dApp Name"

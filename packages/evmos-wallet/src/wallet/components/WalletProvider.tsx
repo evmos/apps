@@ -89,14 +89,14 @@ function Provider({ children }: WalletProviderProps) {
         return;
       }
 
-      notifySuccess(
-        WALLET_NOTIFICATIONS.SuccessTitle,
-        "Connected with wallet {address}",
-        {
-          walletName: connector?.name ?? "",
-          address: truncateAddress(address) ?? "",
-        },
-      );
+      // notifySuccess(
+      //   WALLET_NOTIFICATIONS.SuccessTitle,
+      //   "Connected with wallet {address}",
+      //   {
+      //     walletName: connector?.name ?? "",
+      //     address: truncateAddress(address) ?? "",
+      //   },
+      // );
     },
 
     onDisconnect() {

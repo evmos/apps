@@ -23,6 +23,7 @@ export const useSignIn2 = () => {
       },
       onSuccess: (_, { connector }) => {
         console.log("connect with ", connector);
+
         // sendEvent(SUCCESSFUL_WALLET_CONNECTION, {
         //   "Wallet Provider": connector.name,
         // });

@@ -8,5 +8,5 @@ export * as wallet from "./wallet";
 export * as line from "./line";
 export * as gestalt from "./gestalt";
 export * as filled from "./filled";
-export * as duotone from "./duotone";
 export * as duocolor from "./duocolor";
+export * as duotone from "./duotone";

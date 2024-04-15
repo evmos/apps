@@ -447,7 +447,7 @@
   },
   "yellow": {
     "colors": {
-      "primary": {
+      "yellow-primary": {
         "name": "Yellow",
         "dark": "#F2C94C",
         "light": "#F2C94C",

@@ -3,23 +3,22 @@
 
 "use client";
 
-import { Modal } from "@evmosapps/ui/components/dialog/Dialog";
-import { Input } from "@evmosapps/ui/components/inputs/Input";
-import { Label } from "@evmosapps/ui/components/labels/Label";
-import { Button } from "@evmosapps/ui/button/index";
-import { cn, modalLink, useModal } from "helpers";
+import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
+import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
+import { Label } from "../../../../../../packages/ui/src/components/labels/Label";
+import { Button } from "../../../../../../packages/ui/src/button/index";
+import { cn, useModal } from "helpers";
 import purple from "../../../../public/purple.png";
 import orange from "../../../../public/orange.png";
 import Image from "next/image";
 import { useEdit } from "./useEdit";
 import { useTranslation } from "@evmosapps/i18n/client";
-export const useConsentModal = () => useModal("edit");
-export const ConsentModalTrigger = modalLink("edit");
+export const useEditModal = () => useModal("edit");
 
 const profileImages = [purple, orange];
 
 export const EditModal = () => {
-  const { isOpen, setIsOpen, modalProps } = useConsentModal();
+  const { isOpen, setIsOpen, modalProps } = useEditModal();
   const {
     profileImg,
     setProfileImg,

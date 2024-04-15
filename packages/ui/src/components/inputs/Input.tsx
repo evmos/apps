@@ -25,7 +25,7 @@ export function Input({
   value,
   fullWidth,
   ...rest
-}: Omit<ComponentProps<"input">, "onChange" | "disable" | "onBlur"> & {
+}: Omit<ComponentProps<"input">, "disable" | "onBlur"> & {
   fullWidth?: boolean;
 }) {
   const ref = useRef<HTMLInputElement>(null);

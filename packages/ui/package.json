@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/ui",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE",
   "sideEffects": false,
@@ -10,7 +10,10 @@
         "types": "./src/*",
         "default": "./src/*"
       },
-      "require": "./src/*"
+      "require": {
+        "types": "./src/*",
+        "default": "./src/*"
+      }
     },
     "./config/tailwind": "./src/config/tailwind.js"
   },

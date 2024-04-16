@@ -263,6 +263,12 @@
         "dark": "#A08D86",
         "light": "#85736D",
         "description": "Outline colour."
+      },
+      "outline-variant": {
+        "name": "Outline-variant",
+        "dark": "#3B3634",
+        "light": "#F0E9E6",
+        "description": "Outline variant colour."
       }
     }
   },
@@ -447,7 +453,7 @@
   },
   "yellow": {
     "colors": {
-      "yellow-primary": {
+      "accent-yellow": {
         "name": "Yellow",
         "dark": "#F2C94C",
         "light": "#F2C94C",

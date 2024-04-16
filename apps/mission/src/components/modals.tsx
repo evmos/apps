@@ -5,6 +5,7 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { WalletsModal } from "./header/signin/WalletsModal";
+import { EditModal } from "./header/edit/ModalEdit";
 
 const ConnectModal = dynamic(
   async () =>
@@ -71,6 +72,7 @@ export const Modals = () => {
       <TermsOfServiceModal />
       <ConsentModal />
       <WalletsModal />
+      <EditModal />
     </Suspense>
   );
 };

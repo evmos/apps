@@ -52,6 +52,7 @@ const config = {
   ],
   theme: {
     extend: {
+      // TODO Mili: ask Julia how should we manage this images
       // backgroundImage: {
       //   default: "url('./components/images/default-card.png')",
       //   ranking: "url('./components/images/ranking-bg.png')",
@@ -69,6 +70,7 @@ const config = {
         custom: "0px 1px 8px 0px #9C848199",
         "custom-sm": "0px 4px 15px 0px #9C848199",
         "custom-pink": "4px 4px 8px 2px #CE250040 inset",
+        elevation: "0px 6px 10px 4px #00000026",
       },
       colors: {
         wosmongton: {

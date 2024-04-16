@@ -13,7 +13,7 @@ import {
   useContext,
 } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { cn } from "helpers";
+import { cn } from "helpers/src/classnames";
 
 const ModalContext = createContext<{
   isOpen: boolean;

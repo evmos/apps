@@ -14,6 +14,7 @@ import {
 } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { cn } from "helpers/src/classnames";
+import { IconCross } from "../../icons/line/basic";
 
 const ModalContext = createContext<{
   isOpen: boolean;
@@ -127,13 +128,12 @@ const ModalHeader = ({
         className="cursor-pointer focus-visible:outline-none"
         onClick={() => setIsOpen(false)}
       >
-        {/* TODO: add icon */}x
-        {/* <CloseIcon
+        <IconCross
           className={cn(
             "h-5 w-auto m-2 focus:outline-none focus-visible:outline-none text-paragraph dark:text-paragraph-dark",
           )}
           aria-hidden="true"
-        /> */}
+        />
       </button>
     </div>
   );

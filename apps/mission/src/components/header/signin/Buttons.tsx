@@ -1,6 +1,10 @@
 import { Button } from "../../../../../../packages/ui/src/button/index";
 import { getActiveProviderKey } from "@evmosapps/evmos-wallet";
-import { IconArrowBottomRec } from "../../../../../../packages/ui/src/icons/duocolor";
+import { IconChevronDown } from "@evmosapps/ui/icons/line/arrows/chevron-down.tsx";
+import Image from "next/image";
+import { useEdit } from "../edit/useEdit";
+import { profileImages } from "../edit/ModalEdit";
+import { cn } from "helpers";
 
 export const SignInButton = ({ open }: { open: boolean }) => {
   return (
@@ -17,14 +21,25 @@ before:-translate-y-1/2 before:w-[15px] before:h-[15px] before:lg:w-[12px] befor
 };
 
 export const ProfileButton = () => {
+  const { profileImg, profileName } = useEdit();
+
   return (
     <button
       className="text-pearl bg-darGray800 flex items-center justify-center space-x-3 rounded-full px-4 md:px-8 py-2 font-bold"
       data-testid={`wallet-profile-button wallet-profile-button-${getActiveProviderKey()}`}
     >
-      <div className="w-3 h-3 rounded-full bg-red" />
-      <span className="font-bold whitespace-nowrap">name.evmos</span>
-      <IconArrowBottomRec />
+      <div className="flex items-center justify-center space-x-3">
+        <Image
+          src={profileImages[profileImg].src}
+          width={24}
+          height={24}
+          alt={profileImages[profileImg].src}
+          className={cn("rounded-full cursor-pointer")}
+        />
+
+        <span>{profileName}</span>
+      </div>
+      <IconChevronDown />
     </button>
   );
 };

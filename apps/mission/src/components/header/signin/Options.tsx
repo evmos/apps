@@ -1,18 +1,23 @@
 import { Menu } from "@headlessui/react";
 import { useOtherWalletsModal } from "./WalletsModal";
-import { IconWallet } from "../../../../../../packages/ui/src/icons/line/wallet";
+import { IconWalletPlus } from "@evmosapps/ui/icons/line/finances/wallet-plus.tsx";
 import { IconButton } from "../../../../../../packages/ui/src/button/icon-button";
-import { IconArrowRightRec } from "../../../../../../packages/ui/src/icons/line";
+import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { CopyButton } from "./CopyButton";
 import { Dispatch, SetStateAction, Suspense } from "react";
 import { TotalEvmos, TotalUsd } from "./useEvmosBalance";
 import { useAccount, useDisconnect } from "wagmi";
-import { IconArrowBottomRec } from "../../../../../../packages/ui/src/icons/duocolor";
-import { IconPlusRec } from "../../../../../../packages/ui/src/icons/duocolor";
-import { IconGear2 } from "../../../../../../packages/ui/src/icons/line";
+import { IconArrowSwap } from "@evmosapps/ui/icons/line/arrows/arrow-swap.tsx";
+import { IconPlus } from "@evmosapps/ui/icons/line/basic/plus.tsx";
+import { IconGear } from "@evmosapps/ui/icons/line/basic/gear.tsx";
+import { IconLogOut2 } from "@evmosapps/ui/icons/line/arrows/log-out-2.tsx";
+import { IconDollarCircle } from "@evmosapps/ui/icons/line/finances/dollar-circle.tsx";
+import { IconGlobe } from "@evmosapps/ui/icons/line/map/globe.tsx";
+import { IconBell } from "@evmosapps/ui/icons/line/alerts/bell.tsx";
+import { IconHashtag } from "@evmosapps/ui/icons/line/basic/hashtag.tsx";
 import Link from "next/link";
-import { Badge } from "../../../../../../packages/ui/src/components/badges/Badge";
+import { Chip } from "../../../../../../packages/ui/src/chips/Chip";
 
 // TODO Mili: update icons
 export const SignInOptions = ({ close }: { close: () => void }) => {
@@ -28,10 +33,10 @@ export const SignInOptions = ({ close }: { close: () => void }) => {
           close();
         }}
       >
-        {<IconWallet className="w-7" />}
+        {<IconWalletPlus className="w-7" />}
         <div className="text-left flex justify-between w-full items-center ">
           Other wallets
-          {<IconArrowRightRec className="w-7" />}
+          {<IconChevronRight className="w-7" />}
         </div>
       </Menu.Item>
     </div>
@@ -63,13 +68,11 @@ export const ProfileSettings = ({
             // close();
           }}
         >
-          {
-            <IconGear2 className="w-7 text-paragraph dark:text-paragraph-dark" />
-          }
+          {<IconGear className="w-7 text-paragraph dark:text-paragraph-dark" />}
           <div className="text-left flex justify-between w-full items-center ">
             Settings
             {
-              <IconArrowRightRec className="w-7 text-paragraph dark:text-paragraph-dark" />
+              <IconChevronRight className="w-7 text-paragraph dark:text-paragraph-dark" />
             }
           </div>
         </Menu.Item>
@@ -84,7 +87,7 @@ export const ProfileSettings = ({
           }}
         >
           {
-            <IconGear2 className="w-7 text-paragraph dark:text-paragraph-dark" />
+            <IconLogOut2 className="w-7 text-paragraph dark:text-paragraph-dark" />
           }
           <div className="text-left flex justify-between w-full items-center ">
             Sign out
@@ -104,6 +107,9 @@ export const ProfileOptions = () => {
       <Menu.Item
         as="div"
         className=" flex justify-center flex-col gap-3 items-center"
+        onClick={(e) => {
+          e.preventDefault();
+        }}
       >
         <div className="w-fit gap-3 flex items-center text-paragraph dark:text-paragraph-dark text-xs leading-4 font-medium bg-surface-container-highest dark:bg-surface-container-highest-dark rounded-2xl px-3 py-2">
           <AddressDisplay address={address} />
@@ -136,7 +142,7 @@ export const ProfileOptions = () => {
         <div className="flex flex-col gap-2 items-center justify-center ">
           <Link href="/portfolio">
             <IconButton variant="low-emphasis">
-              <IconArrowBottomRec />
+              <IconArrowSwap />
             </IconButton>
           </Link>
           <p>Portfolio</p>
@@ -144,7 +150,7 @@ export const ProfileOptions = () => {
         <div className="flex flex-col gap-2 items-center justify-center">
           <Link href="/dapps/on-ramps/transak">
             <IconButton variant="low-emphasis">
-              <IconPlusRec />
+              <IconPlus />
             </IconButton>
           </Link>
           <p>Topup</p>
@@ -170,7 +176,7 @@ export const SettingsOptions = () => {
             as="div"
           >
             {
-              <IconGear2 className="w-7 text-paragraph dark:text-paragraph-dark" />
+              <IconDollarCircle className="w-4 text-paragraph dark:text-paragraph-dark" />
             }
             <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
               Currency
@@ -184,7 +190,7 @@ export const SettingsOptions = () => {
             as="div"
           >
             {
-              <IconGear2 className="w-7 text-paragraph dark:text-paragraph-dark" />
+              <IconGlobe className="w-4 text-paragraph dark:text-paragraph-dark" />
             }
             <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
               Language
@@ -198,11 +204,11 @@ export const SettingsOptions = () => {
             as="div"
           >
             {
-              <IconGear2 className="w-7 text-paragraph dark:text-paragraph-dark" />
+              <IconBell className="w-4 text-paragraph dark:text-paragraph-dark" />
             }
             <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
               Notifications
-              <Badge>Coming soon</Badge>
+              <Chip variant="tertiary">Coming soon</Chip>
             </div>
           </Menu.Item>
           <Menu.Item
@@ -210,11 +216,11 @@ export const SettingsOptions = () => {
             as="div"
           >
             {
-              <IconGear2 className="w-7 text-paragraph dark:text-paragraph-dark" />
+              <IconHashtag className="w-4 text-paragraph dark:text-paragraph-dark" />
             }
             <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
               Address Format
-              <Badge>Coming soon</Badge>
+              <Chip variant="tertiary">Coming soon</Chip>
               {/* <Button variant="tertiary">Coming soon</Button> */}
             </div>
           </Menu.Item>

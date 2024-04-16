@@ -7,15 +7,15 @@ import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialo
 import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
 import { Label } from "../../../../../../packages/ui/src/components/labels/Label";
 import { Button } from "../../../../../../packages/ui/src/button/index";
-import { cn, useModal } from "helpers";
+import { cn, modalLink, useModal } from "helpers";
 import purple from "../../../../public/purple.png";
 import orange from "../../../../public/orange.png";
 import Image from "next/image";
 import { useEdit } from "./useEdit";
 import { useTranslation } from "@evmosapps/i18n/client";
+// import { generateBlurImage } from "helpers/src/schemas/entities/generateBlurImage";
 export const useEditModal = () => useModal("edit");
-
-const profileImages = [purple, orange];
+export const profileImages = [purple, orange];
 
 export const EditModal = () => {
   const { isOpen, setIsOpen, modalProps } = useEditModal();
@@ -50,16 +50,21 @@ export const EditModal = () => {
               <div className="flex items-center space-x-6">
                 {profileImages.map((img, index) => (
                   <Image
+                    // blurDataURL={await generateBlurImage(img.src)}
                     key={index}
-                    src={img}
-                    width={50}
-                    height={50}
+                    src={img.src}
+                    width={80}
+                    height={80}
                     alt={img.src}
-                    className={cn("rounded-full cursor-pointer", {
-                      "ring-1 ring-tertiary-container dark:ring-tertiary-container-dark":
-                        profileImg === index,
-                    })}
-                    onClick={() => {
+                    className={cn(
+                      "rounded-full cursor-pointer transition-all duration-150 ease-out hover:scale-105 overflow-hidden",
+                      {
+                        "ring-1 ring-tertiary-container dark:ring-tertiary-container-dark ":
+                          profileImg === index,
+                      },
+                    )}
+                    onClick={(e) => {
+                      e.preventDefault();
                       setProfileImg(index);
                     }}
                   />

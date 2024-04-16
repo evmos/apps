@@ -93,7 +93,7 @@ export const CLICK_SEE_MORE_BUTTON = "ClickedCTAButton - See more";
 export const CLICK_EVMOS_COPILOT_START_FLOW = "StartedCopilotOnboarding";
 export const EXIT_OUT_COPILOT = "ExitedCopilotOnboarding";
 export const CLICK_EVMOS_LOGO = "ClickedEvmosLogo";
-export const CLICK_ON_GIVE_FEEDBACK = "ClickedGiveFeedback";
+
 export const CLICK_BUTTON_CONVERT = "ClickedConvert";
 export const CLICK_HIDE_ZERO_BALANCE = "HideZeroBalance";
 export const CLICK_CTA_LINKS_REGISTER_TOKEN = "ClickedRegisterToken";

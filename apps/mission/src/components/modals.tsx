@@ -5,7 +5,6 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 import { WalletsModal } from "./header/signin/WalletsModal";
-import { EditModal } from "./header/edit/ModalEdit";
 
 const ConnectModal = dynamic(
   async () =>
@@ -57,6 +56,13 @@ const ConsentModal = dynamic(
     import("stateful-components/src/modals/ConsentModal/ConsentModal").then(
       (mod) => mod.ConsentModal,
     ),
+  {
+    ssr: false,
+  },
+);
+
+const EditModal = dynamic(
+  () => import("./header/edit/ModalEdit").then((mod) => mod.EditModal),
   {
     ssr: false,
   },

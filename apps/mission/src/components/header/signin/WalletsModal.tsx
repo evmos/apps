@@ -3,23 +3,43 @@
 
 "use client";
 
-import { Modal } from "@evmosapps/ui-helpers";
 import { useModal } from "helpers";
 import { useSignIn2 } from "./useSignin2";
 import { Wallets } from "./Wallets";
 import { Menu } from "@headlessui/react";
+import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
+import { SearchFilter } from "./Search";
+import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
+import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 export const useOtherWalletsModal = () => useModal("supported-wallets2");
 
 export const WalletsModal = () => {
   const { isOpen, setIsOpen } = useOtherWalletsModal();
   const { walletsToShow } = useSignIn2();
+  const { searchTerm, handleSearchChange, filteredOptions } =
+    SearchFilter(walletsToShow);
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Modal.Body>
+        <Modal.Header>Other Wallets</Modal.Header>
+        <div className="w-full flex justify-start items-center relative">
+          <IconSearch className="absolute w-4 shrink-0 left-3" />
+          <Input
+            value={searchTerm}
+            onChange={handleSearchChange}
+            placeholder="Search"
+            type="text"
+            className="w-full rounded-full pl-8"
+          />
+        </div>
+
         <Menu>
-          <Wallets wallets={walletsToShow} />
+          <Wallets wallets={filteredOptions} />
         </Menu>
+        {filteredOptions.length === 0 && searchTerm && (
+          <p>No results found for {searchTerm}</p>
+        )}
       </Modal.Body>
     </Modal>
   );

@@ -10,14 +10,14 @@ import { ProfileOptions, ProfileSettings } from "./Options";
 import { ChangeWallet } from "./ChangeWallet";
 
 export const Profile = ({ connector }: { connector: Connector }) => {
-  const [dropdownStatus, setDropdownStatus] = useState("sign-in");
+  const [dropdownStatus, setDropdownStatus] = useState("profile");
 
   if (connector && dropdownStatus === "settings") {
     return <Settings setDropdownStatus={setDropdownStatus} />;
   }
 
   if (connector && dropdownStatus === "wallets") {
-    return <ChangeWallet />;
+    return <ChangeWallet setDropdownStatus={setDropdownStatus} />;
   }
 
   return (

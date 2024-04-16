@@ -4,8 +4,8 @@ import { WALLETS_TYPE, useSignIn2 } from "./useSignin2";
 import { useState } from "react";
 import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
 import { Spinner } from "./Spinner";
-import { IconAlertTriangle } from "../../../../../../packages/ui/src/icons/line/alert-triangle";
-import { IconCheckboxCircle } from "../../../../../../packages/ui/src/icons/line/checkbox-circle";
+import { IconCross } from "@evmosapps/ui/icons/line/basic/cross.tsx";
+import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
 import { useInstallProvider } from "./useWalletInstalled";
 import { useDisconnect } from "wagmi";
 
@@ -26,7 +26,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
     },
   });
 
-  return wallets.map((wallet) => {
+  return wallets?.map((wallet) => {
     if (!wallet) return;
     const Icon = wallet.icon as React.FC<React.SVGAttributes<SVGElement>>;
     const connector = connectors.find((c) => c.name === wallet.name);
@@ -54,7 +54,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
           }
         }}
       >
-        {Icon && <Icon className="w-8 h-8" />}
+        {Icon && <Icon className="w-7 h-7" />}
         <div className="text-left flex justify-between w-full items-center ">
           <div>
             {wallet.name}
@@ -79,13 +79,13 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
             !error && <Spinner />}
           {(isConnected && walletSelectedToConnect === wallet.name && !error) ||
             (isConnected && getActiveProviderKey() === wallet.name && (
-              <IconCheckboxCircle />
+              <IconCheck />
             ))}
 
           {error && error.name === wallet.name && (
             <div className="text-error-container dark:text-error-container-dark">
               {/* TODO Mili: update icon when library is updated */}
-              <IconAlertTriangle />
+              <IconCross />
             </div>
           )}
         </div>

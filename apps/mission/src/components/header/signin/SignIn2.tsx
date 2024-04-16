@@ -7,9 +7,24 @@ import { SignInButton } from "./Buttons";
 import { SignInTitle } from "./Titles";
 import { Wallets } from "./Wallets";
 import { SignInOptions } from "./Options";
+import { useSignIn2 } from "./useSignin2";
+import { useEffect, useState } from "react";
 
 export const SignIn2 = () => {
   const { connector, address, isHydrating, isReconnecting } = useWallet();
+  const { defaultWallets } = useSignIn2();
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    const status = localStorage.getItem("redirect-wallet");
+    if (status === "true") {
+      setIsOpen(true);
+      localStorage.removeItem("redirect-wallet");
+    }
+  }, []);
 
   if (isHydrating || isReconnecting) {
     return (
@@ -25,19 +40,23 @@ export const SignIn2 = () => {
   return (
     <div className="relative">
       <Menu>
-        {({ open, close }) => (
+        {({ close }) => (
           <>
-            <Menu.Button>
-              <SignInButton open={open} />
+            <Menu.Button as="div" onClick={toggleMenu}>
+              <SignInButton open={isOpen} />
             </Menu.Button>
-
-            <Menu.Items className="space-y-5 z-10 text-sm absolute right-0 mt-2 w-96 origin-top-right bg-surface-container-low dark:bg-surface-container-low-dark border border-surface-container dark:border-surface-container-dark text-surface-container-high-dark dark:text-surface-container-high  rounded-2xl pt-6 p-3">
-              <SignInTitle />
-              <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2">
-                <Wallets />
-              </div>
-              <SignInOptions close={close} />
-            </Menu.Items>
+            {isOpen && (
+              <Menu.Items
+                static
+                className="space-y-5 z-10 text-sm absolute right-0 mt-2 w-96 origin-top-right bg-surface-container-low dark:bg-surface-container-low-dark border border-surface-container dark:border-surface-container-dark text-surface-container-high-dark dark:text-surface-container-high  rounded-2xl pt-6 p-3"
+              >
+                <SignInTitle />
+                <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2">
+                  <Wallets wallets={defaultWallets} />
+                </div>
+                <SignInOptions close={close} />
+              </Menu.Items>
+            )}
           </>
         )}
       </Menu>

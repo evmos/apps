@@ -4,7 +4,6 @@
 "use client";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { OtherWalletsModal } from "./header/signin/OtherWalletsModal";
 import { WalletsModal } from "./header/signin/WalletsModal";
 
 const ConnectModal = dynamic(
@@ -71,7 +70,6 @@ export const Modals = () => {
       <TopupModal />
       <TermsOfServiceModal />
       <ConsentModal />
-      <OtherWalletsModal />
       <WalletsModal />
     </Suspense>
   );

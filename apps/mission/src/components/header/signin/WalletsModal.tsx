@@ -6,38 +6,20 @@
 import { Modal } from "@evmosapps/ui-helpers";
 import { useModal } from "helpers";
 import { useSignIn2 } from "./useSignin2";
-
+import { Wallets } from "./Wallets";
+import { Menu } from "@headlessui/react";
 export const useOtherWalletsModal = () => useModal("supported-wallets2");
 
 export const WalletsModal = () => {
   const { isOpen, setIsOpen } = useOtherWalletsModal();
-  const { walletsToShow, connectors, connect, error } = useSignIn2();
+  const { walletsToShow } = useSignIn2();
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Modal.Body>
-        {walletsToShow.map((wallet) => {
-          if (!wallet) return;
-          const Icon = wallet.icon as React.FC<React.SVGAttributes<SVGElement>>;
-          const connector = connectors.find((c) => c.name === wallet.name);
-          return (
-            <div
-              key={wallet.name}
-              onClick={() => {
-                if (connector) {
-                  connect({ connector });
-                } else {
-                  window.open(wallet.url, "_blank");
-                }
-              }}
-            >
-              {Icon && <Icon className="w-7" />}
-              {wallet.name}
-              {connector && "Detected"}
-              {error && error.name === wallet.name && "Error"}
-            </div>
-          );
-        })}
+        <Menu>
+          <Wallets wallets={walletsToShow} />
+        </Menu>
       </Modal.Body>
     </Modal>
   );

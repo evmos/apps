@@ -23,7 +23,7 @@ export const WalletButton = () => {
     );
   }
   if (address && connector) {
-    const Icon = ProvidersIcons[connector.name];
+    // const Icon = ProvidersIcons[connector.name];
 
     return (
       <ProfileModalTrigger>
@@ -31,7 +31,7 @@ export const WalletButton = () => {
           className="text-pearl bg-darGray800 flex items-center justify-center space-x-3 rounded-full px-4 md:px-8 py-2 font-bold"
           data-testid={`wallet-profile-button wallet-profile-button-${getActiveProviderKey()}`}
         >
-          {Icon && <Icon width="1.4em" height="1.4em" />}
+          {/* {Icon && <Icon width="1.4em" height="1.4em" />} */}
 
           <span className="font-bold whitespace-nowrap">
             {address && (

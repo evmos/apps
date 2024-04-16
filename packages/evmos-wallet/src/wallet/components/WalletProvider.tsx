@@ -80,7 +80,11 @@ function Provider({ children }: WalletProviderProps) {
     reconnect();
   });
   useLayoutEffect(() => {
-    void reconnectIfRecent();
+    const timeoutId = setTimeout(() => {
+      void reconnectIfRecent();
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
   }, [reconnectIfRecent]);
 
   useAccountEffect({

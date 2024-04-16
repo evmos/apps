@@ -61,7 +61,7 @@ export const ProfileModal = () => {
   }
   const evmosAddress = normalizeToCosmos(address);
 
-  const Icon = ProvidersIcons[connector.name];
+  // const Icon = ProvidersIcons[connector.name];
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Modal.Body>
@@ -72,7 +72,7 @@ export const ProfileModal = () => {
             </h3>
           </Modal.Header>
           <div className="flex items-center gap-x-4 ">
-            <div>{Icon && <Icon height={40} width={40} />}</div>
+            {/* <div>{Icon && <Icon height={40} width={40} />}</div> */}
             <div className="flex flex-col text-base font-bold gap-y-2">
               <p className="gap-x-2 flex">
                 <AddressDisplay address={evmosAddress} maxLength={24} />

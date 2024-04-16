@@ -3,7 +3,7 @@
 
 import { createConfig, http } from "wagmi";
 
-import { injected, metaMask, safe, walletConnect } from "wagmi/connectors";
+import { injected, safe, walletConnect } from "wagmi/connectors";
 import { WALLET_CONNECT_PROJECT_ID } from "../../internal/wallet/functionality/networkConfig";
 
 import {
@@ -11,8 +11,6 @@ import {
   evmosmainnet,
   evmostestnet,
 } from "helpers/src/evmos-info";
-import { EIP1193Provider } from "viem";
-import { coinbaseWallet } from "wagmi/connectors";
 import {
   keplrProvider,
   leapProvider,
@@ -26,7 +24,7 @@ export const wagmiConfig = createConfig({
     [evmoslocalnet.id]: http(),
   },
   ssr: true,
-  multiInjectedProviderDiscovery: true,
+  // multiInjectedProviderDiscovery: true,
 
   connectors: [
     // injected({ target: "metaMask" }),
@@ -113,7 +111,7 @@ export type ConnetorId =
   | "Safe"
   | "Leap"
   | "Rabby"
-  // | "Rainbow"
+  | "Rainbow"
   | "CoinbaseWallet"
   | "BraveWallet"
   | "okxWallet"

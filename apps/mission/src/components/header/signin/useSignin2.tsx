@@ -1,7 +1,12 @@
 import { E } from "helpers";
 import { useConnect } from "wagmi";
 import { supportedWallets } from "./supportedWallets";
-import { useState } from "react";
+import {
+  ForwardRefExoticComponent,
+  RefAttributes,
+  SVGProps,
+  useState,
+} from "react";
 import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
 
 const predefinedWallets = [
@@ -11,6 +16,16 @@ const predefinedWallets = [
   "Leap",
   "WalletConnect",
 ];
+
+export type WALLETS_TYPE =
+  | {
+      name: string;
+      url: string;
+      icon: ForwardRefExoticComponent<
+        Omit<SVGProps<SVGSVGElement>, "ref"> & RefAttributes<SVGSVGElement>
+      >;
+    }
+  | undefined;
 
 export const useSignIn2 = () => {
   const [error, setError] = useState<

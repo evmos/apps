@@ -3,6 +3,7 @@ import { ProvidersIcons } from "stateful-components/src/providerIcons";
 import { Connector } from "wagmi";
 import { IconArrowRightRec } from "../../../../../../packages/ui/src/icons/line";
 import { IconArrowLeftRec } from "../../../../../../packages/ui/src/icons/line";
+import { Dispatch, SetStateAction } from "react";
 export const SignInTitle = () => {
   return (
     <Menu.Item as="div" className="text-center">
@@ -11,7 +12,13 @@ export const SignInTitle = () => {
   );
 };
 
-export const ProfileTitle = ({ connector }: { connector: Connector }) => {
+export const ProfileTitle = ({
+  connector,
+  setDropdownStatus,
+}: {
+  connector: Connector;
+  setDropdownStatus: Dispatch<SetStateAction<string>>;
+}) => {
   // TODO Mili: use the icon that is in supportWallets
   const Icon = ProvidersIcons[connector.name];
   return (
@@ -20,6 +27,7 @@ export const ProfileTitle = ({ connector }: { connector: Connector }) => {
       className="text-center flex items-center justify-bewteen w-full px-3 "
       onClick={(e) => {
         e.preventDefault();
+        setDropdownStatus("wallets");
       }}
     >
       <div className="flex items-center w-full gap-4 text-sm leading-5 font-medium">
@@ -33,13 +41,17 @@ export const ProfileTitle = ({ connector }: { connector: Connector }) => {
   );
 };
 
-export const SettingsTitle = () => {
+export const SettingsTitle = ({
+  setDropdownStatus,
+}: {
+  setDropdownStatus: Dispatch<SetStateAction<string>>;
+}) => {
   return (
     <Menu.Item
       as="button"
       className="text-center flex px-3 gap-3"
       onClick={() => {
-        // setDropdownStatus("sign-in");
+        setDropdownStatus("sign-in");
       }}
     >
       <IconArrowLeftRec />

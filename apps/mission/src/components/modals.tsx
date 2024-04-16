@@ -4,6 +4,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import { EditModal } from "./header/edit/ModalEdit";
 
 const ConnectModal = dynamic(
   async () =>
@@ -69,6 +70,7 @@ export const Modals = () => {
       <TopupModal />
       <TermsOfServiceModal />
       <ConsentModal />
+      <EditModal />
     </Suspense>
   );
 };

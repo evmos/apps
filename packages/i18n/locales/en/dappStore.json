@@ -76,5 +76,13 @@
     "wormhole": {
       "disruption": "We are currently in maintenance mode with the Wormhole bridge. This will be addressed by the next upgrade of the Evmos chain."
     }
+  },
+  "profile": {
+    "modal": {
+      "title": "Edit Profile",
+      "label": "Display Name",
+      "placeholder": "user.evmos",
+      "button": "Save changes"
+    }
   }
 }

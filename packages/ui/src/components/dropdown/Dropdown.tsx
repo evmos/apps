@@ -14,17 +14,11 @@ export const Dropdown = () => {
           as="a"
           onClick={(e) => {
             e.preventDefault();
-            // console.log("holi");
           }}
         >
           1
         </Menu.Item>
-        <Menu.Item
-          as="a"
-          onClick={() => {
-            // console.log("holi");
-          }}
-        >
+        <Menu.Item as="a" onClick={() => {}}>
           2
         </Menu.Item>
       </Menu.Items>

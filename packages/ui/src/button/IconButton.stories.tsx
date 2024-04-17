@@ -12,6 +12,7 @@ const variants = [
   "tertiary",
   "low-emphasis",
   "danger",
+  "success",
 ] as const;
 const meta = {
   title: "IconButtons",

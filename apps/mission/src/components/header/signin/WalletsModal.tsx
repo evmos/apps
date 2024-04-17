@@ -4,7 +4,7 @@
 "use client";
 
 import { useModal } from "helpers";
-import { useSignIn2 } from "./useSignin2";
+import { useSignIn } from "./useSignin";
 import { Wallets } from "./Wallets";
 import { Menu } from "@headlessui/react";
 import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
@@ -15,7 +15,7 @@ export const useOtherWalletsModal = () => useModal("supported-wallets2");
 
 export const WalletsModal = () => {
   const { isOpen, setIsOpen } = useOtherWalletsModal();
-  const { walletsToShow } = useSignIn2();
+  const { walletsToShow } = useSignIn();
   const { searchTerm, handleSearchChange, filteredOptions } =
     SearchFilter(walletsToShow);
 

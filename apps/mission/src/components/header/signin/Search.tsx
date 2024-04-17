@@ -1,5 +1,6 @@
+"use client";
 import React, { useState } from "react";
-import { WALLETS_TYPE } from "./useSignin2";
+import { WALLETS_TYPE } from "./useSignin";
 
 export const SearchFilter = (options: WALLETS_TYPE[]) => {
   const [searchTerm, setSearchTerm] = useState("");

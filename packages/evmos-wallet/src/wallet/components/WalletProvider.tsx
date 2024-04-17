@@ -55,6 +55,7 @@ export const useWallet = () => {
   const { isWalletHydrated } = useWalletContext();
 
   const account = useAccount();
+
   return {
     ...account,
     bech32Address: account.address ? normalizeToCosmos(account.address) : null,

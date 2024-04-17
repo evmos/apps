@@ -1,16 +1,18 @@
+"use client";
 import { Menu } from "@headlessui/react";
 
-import { WALLETS_TYPE, useSignIn2 } from "./useSignin2";
+import { WALLETS_TYPE, useSignIn } from "./useSignin";
 import { useState } from "react";
 import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
 import { Spinner } from "./Spinner";
 import { IconCross } from "@evmosapps/ui/icons/line/basic/cross.tsx";
 import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
 import { useInstallProvider } from "./useWalletInstalled";
-import { useDisconnect } from "wagmi";
+
+import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 
 export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
-  const { connectors, connect, error } = useSignIn2();
+  const { connectors, connect, error } = useSignIn();
   const { isConnecting, isConnected } = useWallet();
   const [walletSelectedToConnect, setWalletSelectedToConnect] = useState("");
 
@@ -18,18 +20,11 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
     walletSelectedToConnect,
   );
 
-  const { disconnect } = useDisconnect({
-    mutation: {
-      onSuccess: () => {
-        // setIsOpen(false);
-      },
-    },
-  });
-
   return wallets?.map((wallet) => {
     if (!wallet) return;
     const Icon = wallet.icon as React.FC<React.SVGAttributes<SVGElement>>;
     const connector = connectors.find((c) => c.name === wallet.name);
+
     return (
       <Menu.Item
         as="button"
@@ -41,9 +36,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
         key={wallet.name}
         onClick={(e) => {
           e.preventDefault();
-          if (isConnected) {
-            disconnect();
-          }
+
           if (connector) {
             connect({ connector });
             setWalletSelectedToConnect(connector.name);
@@ -58,11 +51,14 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
         <div className="text-left flex justify-between w-full items-center ">
           <div>
             {wallet.name}
-            {wallet.name === "MetaMask" && !error && !isConnected && (
-              <div className="text-paragraph dark:text-paragraph-dark text-sm">
-                Recommended
-              </div>
-            )}
+            {wallet.name === "MetaMask" &&
+              !error &&
+              !isConnected &&
+              !isConnecting && (
+                <div className="text-paragraph dark:text-paragraph-dark text-sm">
+                  Recommended
+                </div>
+              )}
             {error && error.name === wallet.name && (
               <div className="text-error-container dark:text-error-container-dark  text-xs font-medium leading-4">
                 {error.error}
@@ -77,16 +73,21 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
           {isConnecting &&
             walletSelectedToConnect === wallet.name &&
             !error && <Spinner />}
-          {(isConnected && walletSelectedToConnect === wallet.name && !error) ||
-            (isConnected && getActiveProviderKey() === wallet.name && (
-              <IconCheck />
-            ))}
+          {isConnected &&
+            (walletSelectedToConnect.toLowerCase() ===
+              wallet.name.toLowerCase() ||
+              getActiveProviderKey()?.toLowerCase() ===
+                wallet.name.toLowerCase()) &&
+            !error && (
+              <IconButton variant="success" size="sm">
+                <IconCheck />
+              </IconButton>
+            )}
 
           {error && error.name === wallet.name && (
-            <div className="text-error-container dark:text-error-container-dark">
-              {/* TODO Mili: update icon when library is updated */}
+            <IconButton variant="danger" size="sm">
               <IconCross />
-            </div>
+            </IconButton>
           )}
         </div>
       </Menu.Item>

@@ -48,7 +48,7 @@ const button = cva({
       ],
 
       ["low-emphasis"]: [
-        "bg-surface-container dark:bg-surface-container-dark",
+        "bg-surface-container-highest dark:bg-surface-container-highest-dark",
         "text-on-surface dark:text-on-surface-dark",
         "before:bg-on-surface/10 dark:before:bg-on-surface-dark/10",
         "before:focus:opacity-100 [&:not(:disabled)]:before:hover:opacity-100",
@@ -58,6 +58,12 @@ const button = cva({
         "bg-error-container dark:bg-error-container-dark",
         "text-on-error-container dark:text-on-error-container-dark",
         "before:bg-on-error-container/10 dark:before:bg-on-error-container-dark/10",
+        "before:focus:opacity-100 [&:not(:disabled)]:before:hover:opacity-100",
+      ],
+      success: [
+        "bg-success-container dark:bg-success-container-dark",
+        "text-on-success-container dark:text-on-success-container-dark",
+        "before:bg-on-success-container/10 dark:before:bg-on-success-container-dark/10",
         "before:focus:opacity-100 [&:not(:disabled)]:before:hover:opacity-100",
       ],
     },
@@ -105,16 +111,32 @@ const button = cva({
       outlined: true,
       class: "border-error dark:border-error-container-dark",
     },
+    {
+      variant: "success",
+      outlined: true,
+      class: "border-success-container dark:border-success-container-dark",
+    },
 
     {
       variant: "danger",
       ghost: true,
       class: "text-error dark:text-error-container-dark",
     },
+
+    {
+      variant: "success",
+      ghost: true,
+      class: "text-success dark:text-success-container-dark",
+    },
     {
       variant: "danger",
       tight: true,
       class: "text-error dark:text-error-container-dark",
+    },
+    {
+      variant: "success",
+      tight: true,
+      class: "text-success dark:text-success-container-dark",
     },
   ],
   defaultVariants: {

@@ -1,3 +1,4 @@
+"use client";
 import { CopyIcon } from "@evmosapps/icons/CopyIcon";
 import { Tooltip } from "@evmosapps/ui-helpers";
 import { useEffect, useState } from "react";

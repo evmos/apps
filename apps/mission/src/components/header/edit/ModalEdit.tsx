@@ -7,7 +7,7 @@ import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialo
 import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
 import { Label } from "../../../../../../packages/ui/src/components/labels/Label";
 import { Button } from "../../../../../../packages/ui/src/button/index";
-import { cn, modalLink, useModal } from "helpers";
+import { cn, useModal } from "helpers";
 import purple from "../../../../public/purple.png";
 import orange from "../../../../public/orange.png";
 import Image from "next/image";
@@ -28,10 +28,12 @@ export const EditModal = () => {
     setProfileNameDb,
   } = useEdit();
   const { t } = useTranslation("dappStore");
-
+  // console.log(profileName);
   const handleOnClick = () => {
     setProfileImgDb(profileImg);
-    setProfileNameDb(profileName);
+
+    profileName && setProfileName(profileName);
+    profileName && setProfileNameDb(profileName);
     setIsOpen(false);
     // TODO Mili: add notification when changes are saved.
   };

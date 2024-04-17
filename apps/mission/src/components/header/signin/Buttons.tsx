@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "../../../../../../packages/ui/src/button/index";
 import { getActiveProviderKey } from "@evmosapps/evmos-wallet";
 import { IconChevronDown } from "@evmosapps/ui/icons/line/arrows/chevron-down.tsx";

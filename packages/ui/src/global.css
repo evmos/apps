@@ -14,4 +14,8 @@
   .dark .heading {
     @apply text-heading-dark;
   }
+
+  * {
+    @apply focus-visible:rounded-xl focus-visible:outline focus-visible:outline-tertiary-container dark:focus-visible:outline-tertiary-container-dark;
+  }
 }

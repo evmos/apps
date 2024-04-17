@@ -1,38 +1,66 @@
-import { getGlobalKeplrProvider } from "@evmosapps/evmos-wallet";
-import { useCallback, useMemo, useState } from "react";
-import { isCosmosBasedWallet } from "helpers/src/crypto/wallets/is-cosmos-wallet";
-import { getGlobalLeapProvider } from "@evmosapps/evmos-wallet/src/wallet/utils/leap/getLeapProvider";
-import { useQuery } from "@tanstack/react-query";
-import { Connector, useConnect } from "wagmi";
+"use client";
 import { E } from "helpers";
+import { Connector, useConnect } from "wagmi";
+import { supportedWallets } from "./supportedWallets";
+import {
+  ForwardRefExoticComponent,
+  RefAttributes,
+  SVGProps,
+  useState,
+} from "react";
 import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
+import { wagmiConfig } from "@evmosapps/evmos-wallet";
+import { disconnect } from "wagmi/actions";
 
 const predefinedWallets = [
   "MetaMask",
   "Rainbow",
-  "Trust Wallet",
-  "OKX Wallet",
   "Coinbase Wallet",
   "Leap",
   "WalletConnect",
 ];
 
+export type WALLETS_TYPE =
+  | {
+      name: string;
+      url: string;
+      icon: ForwardRefExoticComponent<
+        Omit<SVGProps<SVGSVGElement>, "ref"> & RefAttributes<SVGSVGElement>
+      >;
+    }
+  | undefined;
+
 export const useSignIn = () => {
   const [error, setError] = useState<
     { name: string; error: string } | undefined
   >();
-
+  const [currentConnector, setCurrentConnector] = useState<
+    string | undefined
+  >();
   const { connectors, connect } = useConnect({
     mutation: {
-      onMutate: () => {
+      onMutate: async () => {
         setError(undefined);
+        const temp = await wagmiConfig.storage?.getItem("recentConnectorId");
+        if (temp) {
+          setCurrentConnector(temp);
+        }
       },
-      onSuccess: (_, { connector }) => {
-        console.log("connect with ", connector);
+      onSuccess: async (_, { connector }) => {
+        if (
+          currentConnector &&
+          (connector as Connector).id !== currentConnector
+        ) {
+          await disconnect(wagmiConfig, {
+            connector: connectors.find((c) => c.id === currentConnector),
+          });
+        }
+
         // sendEvent(SUCCESSFUL_WALLET_CONNECTION, {
         //   "Wallet Provider": connector.name,
         // });
         // setIsOpen(false);
+        setError(undefined);
       },
 
       onError: (e, { connector }) => {
@@ -80,88 +108,23 @@ export const useSignIn = () => {
     },
   });
 
-  const providersDetected = async () => {
-    // Use Promise.all to wait for all promises in `temp` to resolve
-    const connected = await Promise.all(
-      connectors.map(async (connector) => {
-        if (connector.name === "WalletConnect") {
-          return { name: connector.name, installed: true };
-        }
-        if (isCosmosBasedWallet(connector.name)) {
-          if (connector.name === "Keplr" && getGlobalKeplrProvider() !== null) {
-            return { name: connector.name, installed: true };
-          }
-          if (connector.name === "Leap" && getGlobalLeapProvider() !== null) {
-            return { name: connector.name, installed: true };
-          }
-          return { name: connector.name, installed: false };
-        } else {
-          const connec = await connector.getProvider();
-
-          return connec
-            ? { name: connector.name, installed: true }
-            : { name: connector.name, installed: false };
-        }
-      }),
-    );
-
-    return connected;
-  };
-
-  const connectionResponse = useQuery({
-    queryKey: ["test"],
-    queryFn: async () => await providersDetected(),
+  const walletsToShow = supportedWallets.map((wallet) => {
+    if (!predefinedWallets.includes(wallet.name)) {
+      return wallet;
+    }
   });
 
-  const cleanProviders = () => {
-    return connectors.filter((connector) => {
-      if (connector.id.startsWith("io.")) {
-        return false;
-      }
-      if (connector.name === "Safe") return false;
-      if (connector.id === "me.rainbow") return false;
-      return true;
-    });
-  };
+  const defaultWallets = supportedWallets.map((wallet) => {
+    if (predefinedWallets.includes(wallet.name)) {
+      return wallet;
+    }
+  });
 
-  const defaultProviders = () => {
-    return cleanProviders().filter((connector) => {
-      if (!predefinedWallets.includes(connector.name)) {
-        return false;
-      }
-      return true;
-    });
-  };
-
-  function getProviders(
-    defaultProviders: Connector[],
-    allProviders: readonly Connector[],
-  ) {
-    // Create a set of names from default providers for efficient lookups
-    const defaultProviderNames = new Set(
-      defaultProviders.map((provider) => provider.name),
-    );
-
-    // Filter allProviders to exclude providers present in defaultProviderNames
-    const missingProviders = allProviders.filter(
-      (provider) => !defaultProviderNames.has(provider.name),
-    );
-
-    // Return the list of missing providers
-    return missingProviders;
-  }
-
-  const providers = getProviders(defaultProviders(), cleanProviders());
   return {
-    // data: tempResponse,
-    data: connectionResponse.data,
-    defaultProviders,
-    providers,
-    error,
-    // isLoading: false,
-
-    isLoading: connectionResponse.isLoading,
+    defaultWallets,
+    walletsToShow,
     connectors,
     connect,
+    error,
   };
 };

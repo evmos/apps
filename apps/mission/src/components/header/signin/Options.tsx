@@ -1,3 +1,4 @@
+"use client";
 import { Menu } from "@headlessui/react";
 import { useOtherWalletsModal } from "./WalletsModal";
 import { IconWalletPlus } from "@evmosapps/ui/icons/line/finances/wallet-plus.tsx";
@@ -19,18 +20,20 @@ import { IconHashtag } from "@evmosapps/ui/icons/line/basic/hashtag.tsx";
 import Link from "next/link";
 import { Chip } from "../../../../../../packages/ui/src/chips/Chip";
 
-// TODO Mili: update icons
-export const SignInOptions = ({ close }: { close: () => void }) => {
+export const SignInOptions = ({ close }: { close?: () => void }) => {
   const otherWalletsModal = useOtherWalletsModal();
   return (
-    <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2 ">
+    <div
+      className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2
+    [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10  focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark "
+    >
       <Menu.Item
         className="pt-3 pb-2 px-3 flex items-center justify-between w-full gap-4"
         as="button"
         onClick={(e) => {
           e.preventDefault();
           otherWalletsModal.setIsOpen(true, {}, true);
-          close();
+          close && close();
         }}
       >
         {<IconWalletPlus className="w-7" />}
@@ -45,8 +48,10 @@ export const SignInOptions = ({ close }: { close: () => void }) => {
 
 export const ProfileSettings = ({
   setDropdownStatus,
+  setIsOpen,
 }: {
   setDropdownStatus: Dispatch<SetStateAction<string>>;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   const { disconnect } = useDisconnect({
     mutation: {
@@ -59,7 +64,8 @@ export const ProfileSettings = ({
     <div>
       <div className="rounded-xl bg-surface-container  dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2 [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark">
         <Menu.Item
-          className="pt-3 pb-2 px-3 flex items-center justify-between w-full gap-4 "
+          className="pt-3 pb-2 flex items-center justify-between w-full 
+          [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark "
           as="button"
           onClick={(e) => {
             e.preventDefault();
@@ -79,10 +85,12 @@ export const ProfileSettings = ({
       </div>
       <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2">
         <Menu.Item
-          className="pt-3 pb-2 px-3 flex items-center justify-between w-full gap-4"
+          className="pt-3 pb-2  flex items-center justify-between w-full 
+          [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark"
           as="button"
           onClick={() => {
             disconnect();
+            setIsOpen(false);
             // sendEvent(CLICK_DISCONNECT_WALLET_BUTTON);
           }}
         >
@@ -170,9 +178,12 @@ export const SettingsOptions = () => {
       </div>
       <div>
         {/* TODO Mili: fix border bottom, is not appearing correctly */}
-        <div className="rounded-xl bg-surface-container  dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2 [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark">
+        <div
+          className="
+        rounded-xl bg-surface-container  dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2 [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark"
+        >
           <Menu.Item
-            className="pt-3 pb-2 px-3 flex items-center w-full gap-4 "
+            className="pt-3 pb-2 px-3 flex items-center w-full gap-4  "
             as="div"
           >
             {

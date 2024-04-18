@@ -11,14 +11,7 @@ import {
 import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
 import { wagmiConfig } from "@evmosapps/evmos-wallet";
 import { disconnect } from "wagmi/actions";
-
-const predefinedWallets = [
-  "MetaMask",
-  "Rainbow",
-  "Coinbase Wallet",
-  "Leap",
-  "WalletConnect",
-];
+import { WalletsContext, useWAlletsContext } from "./useWallets";
 
 export type WALLETS_TYPE =
   | {
@@ -37,6 +30,14 @@ export const useSignIn = () => {
   const [currentConnector, setCurrentConnector] = useState<
     string | undefined
   >();
+
+  const { wallets, setWallets } = useWAlletsContext() as WalletsContext;
+  const defaultWallets = supportedWallets.map((wallet) => {
+    if (wallets.includes(wallet.name)) {
+      return wallet;
+    }
+  });
+
   const { connectors, connect } = useConnect({
     mutation: {
       onMutate: async () => {
@@ -61,10 +62,12 @@ export const useSignIn = () => {
         // });
         // setIsOpen(false);
         setError(undefined);
+
+        setWallets(connector.name);
       },
 
       onError: (e, { connector }) => {
-        console.log(e);
+        // console.log(e);
         // sendEvent(UNSUCCESSFUL_WALLET_CONNECTION, {
         //   "Wallet Provider": connector.name,
         //   "Error Message": `Failed to connect with ${connector.name}`,
@@ -108,17 +111,9 @@ export const useSignIn = () => {
     },
   });
 
-  const walletsToShow = supportedWallets.map((wallet) => {
-    if (!predefinedWallets.includes(wallet.name)) {
-      return wallet;
-    }
-  });
-
-  const defaultWallets = supportedWallets.map((wallet) => {
-    if (predefinedWallets.includes(wallet.name)) {
-      return wallet;
-    }
-  });
+  const walletsToShow = supportedWallets.filter(
+    (item) => !wallets.includes(item.name),
+  );
 
   return {
     defaultWallets,

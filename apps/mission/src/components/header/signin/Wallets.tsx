@@ -2,7 +2,7 @@
 import { Menu } from "@headlessui/react";
 
 import { WALLETS_TYPE, useSignIn } from "./useSignin";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
 import { Spinner } from "./Spinner";
 import { IconCross } from "@evmosapps/ui/icons/line/basic/cross.tsx";
@@ -20,7 +20,22 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
     walletSelectedToConnect,
   );
 
-  return wallets?.map((wallet) => {
+  // console.log("wallets en wallets modal", contextWallet);
+
+  const tempWallet = useMemo(() => {
+    if (getActiveProviderKey() !== null) {
+      const indexForWallet = wallets.findIndex(
+        (wallet) => wallet?.name === getActiveProviderKey(),
+      );
+      const tempWallet = wallets.slice();
+      const selectedWallet = tempWallet.splice(indexForWallet, 1)[0];
+      tempWallet.unshift(selectedWallet);
+      return tempWallet;
+    }
+    return wallets;
+  }, [wallets]);
+
+  return tempWallet?.map((wallet) => {
     if (!wallet) return;
     const Icon = wallet.icon as React.FC<React.SVGAttributes<SVGElement>>;
     const connector = connectors.find((c) => c.name === wallet.name);

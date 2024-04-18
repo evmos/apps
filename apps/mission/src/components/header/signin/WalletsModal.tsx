@@ -16,14 +16,14 @@ export const useOtherWalletsModal = () => useModal("supported-wallets2");
 export const WalletsModal = () => {
   const { isOpen, setIsOpen } = useOtherWalletsModal();
   const { walletsToShow } = useSignIn();
-  const { searchTerm, handleSearchChange, filteredOptions } =
-    SearchFilter(walletsToShow);
+  // const { searchTerm, handleSearchChange, filteredOptions } =
+  //   SearchFilter(walletsToShow);
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Modal.Body>
         <Modal.Header>Other Wallets</Modal.Header>
-        <div className="w-full flex justify-start items-center relative">
+        {/* <div className="w-full flex justify-start items-center relative">
           <IconSearch className="absolute w-4 shrink-0 left-3" />
           <Input
             value={searchTerm}
@@ -32,14 +32,14 @@ export const WalletsModal = () => {
             type="text"
             className="w-full rounded-full pl-8"
           />
-        </div>
+        </div> */}
 
         <Menu>
-          <Wallets wallets={filteredOptions} />
+          <Wallets wallets={walletsToShow} />
         </Menu>
-        {filteredOptions.length === 0 && searchTerm && (
+        {/* {filteredOptions.length === 0 && searchTerm && (
           <p>No results found for {searchTerm}</p>
-        )}
+        )} */}
       </Modal.Body>
     </Modal>
   );

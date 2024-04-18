@@ -21,6 +21,7 @@ import { Link } from "@evmosapps/i18n/client";
 import { TrackerEvent } from "@evmosapps/ui-helpers/src/TrackerEvent";
 import { CLICK_EVMOS_LOGO } from "tracker/src/events";
 import { ProfileWrapper } from "../../components/header/edit/useEdit";
+import { WalletsProvider } from "../../components/header/signin/useWallets";
 
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
@@ -94,18 +95,20 @@ function RootLayout({
             <Sidebar />
           </div>
           <ProfileWrapper>
-            <>
-              <div className="md:overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
-                <Header />
-                <div className="px-14">
-                  <main className="flex flex-col dark:text-white min-h-screen relative">
-                    {children}
-                  </main>
+            <WalletsProvider>
+              <>
+                <div className="md:overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
+                  <Header />
+                  <div className="px-14">
+                    <main className="flex flex-col dark:text-white min-h-screen relative">
+                      {children}
+                    </main>
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
-              </div>
-              <Modals />
-            </>
+                <Modals />
+              </>
+            </WalletsProvider>
           </ProfileWrapper>
           <GoogleAnalytics />
         </RootProviders>

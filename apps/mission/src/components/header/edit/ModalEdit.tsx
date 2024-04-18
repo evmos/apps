@@ -11,35 +11,31 @@ import { cn, useModal } from "helpers";
 import purple from "../../../../public/purple.png";
 import orange from "../../../../public/orange.png";
 import Image from "next/image";
-import { useEdit } from "./useEdit";
 import { useTranslation } from "@evmosapps/i18n/client";
+import { useState } from "react";
+import { ProfileContext, useProfileContext } from "./useEdit";
 // import { generateBlurImage } from "helpers/src/schemas/entities/generateBlurImage";
 export const useEditModal = () => useModal("edit");
 export const profileImages = [purple, orange];
 
 export const EditModal = () => {
   const { isOpen, setIsOpen, modalProps } = useEditModal();
-  const {
-    profileImg,
-    setProfileImg,
-    profileName,
-    setProfileName,
-    setProfileImgDb,
-    setProfileNameDb,
-  } = useEdit();
-  const { t } = useTranslation("dappStore");
-  // console.log(profileName);
-  const handleOnClick = () => {
-    setProfileImgDb(profileImg);
 
-    profileName && setProfileName(profileName);
-    profileName && setProfileNameDb(profileName);
+  const { name, handleSetName, img, handleSetImg } =
+    useProfileContext() as ProfileContext;
+  const [localName, setLocalName] = useState(name);
+  const [localImg, setLocalImg] = useState(img);
+  const { t } = useTranslation("dappStore");
+
+  const handleOnClick = () => {
+    handleSetImg(localImg);
+    handleSetName(localName);
     setIsOpen(false);
     // TODO Mili: add notification when changes are saved.
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProfileName(e.target.value);
+    setLocalName(e.target.value);
   };
 
   return (
@@ -62,12 +58,12 @@ export const EditModal = () => {
                       "rounded-full cursor-pointer transition-all duration-150 ease-out hover:scale-105 overflow-hidden",
                       {
                         "ring-1 ring-tertiary-container dark:ring-tertiary-container-dark ":
-                          profileImg === index,
+                          localImg === index,
                       },
                     )}
                     onClick={(e) => {
                       e.preventDefault();
-                      setProfileImg(index);
+                      setLocalImg(index);
                     }}
                   />
                 ))}
@@ -78,7 +74,7 @@ export const EditModal = () => {
               <Input
                 fullWidth
                 placeholder={t("profile.modal.placeholder")}
-                value={profileName}
+                value={name}
                 onChange={handleOnChange}
               />
             </div>

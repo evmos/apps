@@ -20,6 +20,7 @@ import { Header } from "../../components/header/Header";
 import { Link } from "@evmosapps/i18n/client";
 import { TrackerEvent } from "@evmosapps/ui-helpers/src/TrackerEvent";
 import { CLICK_EVMOS_LOGO } from "tracker/src/events";
+import { ProfileWrapper } from "../../components/header/edit/useEdit";
 
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
@@ -92,16 +93,20 @@ function RootLayout({
           <div className="bg-surface dark:bg-surface-dark w-full z-10 sticky top-0 md:col-span-1 md:row-start-2 md:row-span-1 h-full md:top-auto md:pt-5">
             <Sidebar />
           </div>
-          <div className="md:overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
-            <Header />
-            <div className="px-14">
-              <main className="flex flex-col dark:text-white min-h-screen relative">
-                {children}
-              </main>
-            </div>
-            <Footer />
-          </div>
-          <Modals />
+          <ProfileWrapper>
+            <>
+              <div className="md:overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
+                <Header />
+                <div className="px-14">
+                  <main className="flex flex-col dark:text-white min-h-screen relative">
+                    {children}
+                  </main>
+                </div>
+                <Footer />
+              </div>
+              <Modals />
+            </>
+          </ProfileWrapper>
           <GoogleAnalytics />
         </RootProviders>
       </body>

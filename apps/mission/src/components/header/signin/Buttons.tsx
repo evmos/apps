@@ -3,9 +3,9 @@ import { Button } from "../../../../../../packages/ui/src/button/index";
 import { getActiveProviderKey } from "@evmosapps/evmos-wallet";
 import { IconChevronDown } from "@evmosapps/ui/icons/line/arrows/chevron-down.tsx";
 import Image from "next/image";
-import { useEdit } from "../edit/useEdit";
 import { profileImages } from "../edit/ModalEdit";
 import { cn } from "helpers";
+import { ProfileContext, useProfileContext } from "../edit/useEdit";
 
 export const SignInButton = ({ open }: { open: boolean }) => {
   return (
@@ -22,7 +22,7 @@ before:-translate-y-1/2 before:w-[15px] before:h-[15px] before:lg:w-[12px] befor
 };
 
 export const ProfileButton = () => {
-  const { profileImg, profileName } = useEdit();
+  const { name: profileName, img } = useProfileContext() as ProfileContext;
 
   return (
     <button
@@ -31,10 +31,10 @@ export const ProfileButton = () => {
     >
       <div className="flex items-center justify-center space-x-3">
         <Image
-          src={profileImages[profileImg].src}
+          src={profileImages[img].src}
           width={24}
           height={24}
-          alt={profileImages[profileImg].src}
+          alt={profileImages[img].src}
           className={cn("rounded-full cursor-pointer")}
         />
 

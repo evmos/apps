@@ -1,8 +1,11 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 "use client";
 import { Menu } from "@headlessui/react";
 
 import { WALLETS_TYPE, useSignIn } from "./useSignin";
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
 import { Spinner } from "./Spinner";
 import { IconCross } from "@evmosapps/ui/icons/line/basic/cross.tsx";
@@ -16,11 +19,11 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
   const { isConnecting, isConnected } = useWallet();
   const [walletSelectedToConnect, setWalletSelectedToConnect] = useState("");
 
+  // TODO Mili: fix this
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [providerStatus, setProviderStatus] = useInstallProvider(
     walletSelectedToConnect,
   );
-
-  // console.log("wallets en wallets modal", contextWallet);
 
   const tempWallet = useMemo(() => {
     if (getActiveProviderKey() !== null) {

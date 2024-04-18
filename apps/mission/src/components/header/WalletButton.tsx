@@ -6,7 +6,7 @@ import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
 
 import { ProfileModalTrigger } from "stateful-components/src/modals/ProfileModal/ProfileModal";
-import { ProvidersIcons } from "stateful-components/src/providerIcons";
+
 import { ConnectButton } from "stateful-components/src/connect-button";
 import { normalizeToEth } from "helpers/src/crypto/addresses/normalize-to-eth";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
@@ -23,6 +23,7 @@ export const WalletButton = () => {
     );
   }
   if (address && connector) {
+    // TODO Mili: update icons
     // const Icon = ProvidersIcons[connector.name];
 
     return (

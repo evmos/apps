@@ -4,7 +4,7 @@
 "use client";
 import { cn, modalLink, useModal } from "helpers";
 import { AddressDisplay, Modal, Tooltip } from "@evmosapps/ui-helpers";
-import { ProvidersIcons } from "../../providerIcons";
+// import { ProvidersIcons } from "../../providerIcons";
 import { useAccount, useDisconnect } from "wagmi";
 
 import { EXPLORER_URL } from "constants-helper";
@@ -60,7 +60,7 @@ export const ProfileModal = () => {
     return null;
   }
   const evmosAddress = normalizeToCosmos(address);
-
+  // TODO Mili: update icons
   // const Icon = ProvidersIcons[connector.name];
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>

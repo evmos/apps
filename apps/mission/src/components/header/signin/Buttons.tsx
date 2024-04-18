@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 "use client";
 import { Button } from "../../../../../../packages/ui/src/button/index";
 import { getActiveProviderKey } from "@evmosapps/evmos-wallet";

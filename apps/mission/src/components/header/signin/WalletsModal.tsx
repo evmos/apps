@@ -8,9 +8,9 @@ import { useSignIn } from "./useSignin";
 import { Wallets } from "./Wallets";
 import { Menu } from "@headlessui/react";
 import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
-import { SearchFilter } from "./Search";
-import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
-import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
+// import { SearchFilter } from "./Search";
+// import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
+// import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 export const useOtherWalletsModal = () => useModal("supported-wallets2");
 
 export const WalletsModal = () => {

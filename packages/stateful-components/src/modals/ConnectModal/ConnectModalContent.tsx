@@ -21,8 +21,8 @@ import {
   notifyError,
 } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
 import { useSetupCopilotModal } from "../SetupAccountModal/SetupAccountModal";
-import { ProvidersIcons } from "../../providerIcons";
-import Image from "next/image";
+// import { ProvidersIcons } from "../../providerIcons";
+
 import { EvmosRedIcon } from "@evmosapps/icons/EvmosRedIcon";
 export const ButtonWallet = ({
   className,
@@ -152,7 +152,8 @@ export const ConnectModalContent = ({
             return true;
           })
           .map((connector) => {
-            const Icon = ProvidersIcons[connector.name];
+            // TODO Mili: update icons
+            // const Icon = ProvidersIcons[connector.name];
 
             return (
               <ButtonWallet

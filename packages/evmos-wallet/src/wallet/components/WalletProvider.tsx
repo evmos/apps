@@ -15,9 +15,9 @@ import { usePubKey, wagmiConfig } from "../wagmi";
 import {
   WALLET_NOTIFICATIONS,
   notifyError,
-  notifySuccess,
+  // notifySuccess,
 } from "../../internal/wallet/functionality/errors";
-import { truncateAddress } from "../../internal/wallet/style/format";
+// import { truncateAddress } from "../../internal/wallet/style/format";
 import { getActiveProviderKey, store } from "../..";
 import { resetWallet, setWallet } from "../redux/WalletSlice";
 import {
@@ -79,11 +79,11 @@ function Provider({ children }: WalletProviderProps) {
   }, [reconnectIfRecent]);
 
   useAccountEffect({
-    onConnect: ({ connector, address, isReconnected }) => {
+    onConnect: ({ isReconnected }) => {
       if (isReconnected) {
         return;
       }
-
+      // TODO Mili: update notifications
       // notifySuccess(
       //   WALLET_NOTIFICATIONS.SuccessTitle,
       //   "Connected with wallet {address}",

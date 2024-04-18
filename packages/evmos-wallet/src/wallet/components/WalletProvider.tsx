@@ -10,13 +10,7 @@ import {
   createContext,
   useContext,
 } from "react";
-import {
-  useAccount,
-  useAccountEffect,
-  useConnect,
-  useDisconnect,
-  useReconnect,
-} from "wagmi";
+import { useAccount, useAccountEffect, useConnect, useDisconnect } from "wagmi";
 import { usePubKey, wagmiConfig } from "../wagmi";
 import {
   WALLET_NOTIFICATIONS,
@@ -66,7 +60,6 @@ export const useWallet = () => {
 function Provider({ children }: WalletProviderProps) {
   const [isWalletHydrated, setIsWalletHydrated] = useState(false);
 
-  const { reconnect } = useReconnect();
   const { address, connector, isConnected } = useAccount();
 
   /**
@@ -74,18 +67,15 @@ function Provider({ children }: WalletProviderProps) {
    * however, even when you don't have a recent connection, it reconnects to the first in the list
    * I'm not sure if that's a bug or not, but this is a workaround for now
    */
+  // TODO Mili: ask Julia if we still need this.
+
   const reconnectIfRecent = useEffectEvent(async () => {
     const recentId = await wagmiConfig.storage?.getItem("recentConnectorId");
     setIsWalletHydrated(true);
     if (!recentId) return;
-    reconnect();
   });
   useLayoutEffect(() => {
-    const timeoutId = setTimeout(() => {
-      void reconnectIfRecent();
-    }, 2000);
-
-    return () => clearTimeout(timeoutId);
+    void reconnectIfRecent();
   }, [reconnectIfRecent]);
 
   useAccountEffect({

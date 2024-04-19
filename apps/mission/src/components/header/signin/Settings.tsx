@@ -13,6 +13,8 @@ import { cn } from "helpers";
 import { IconEdit2 } from "@evmosapps/ui/icons/line/editor/edit-2.tsx";
 
 import { ProfileContext, useProfileContext } from "../edit/useEdit";
+import { AddressDisplay } from "@evmosapps/ui-helpers";
+import { useAccount } from "wagmi";
 export const Settings = ({
   setDropdownStatus,
 }: {
@@ -21,6 +23,7 @@ export const Settings = ({
   const { name: profileName, img } = useProfileContext() as ProfileContext;
   const image = profileImages[img] as StaticImageData;
   const editModal = useEditModal();
+  const { address } = useAccount();
 
   return (
     <>
@@ -40,9 +43,13 @@ export const Settings = ({
             className={cn("rounded-full")}
           />
 
-          <span className="text-sm leading-5 font-medium text-heading dark:text-heading-dark">
-            {profileName}
-          </span>
+          {profileName === "" ? (
+            <AddressDisplay address={address} />
+          ) : (
+            <span className="text-sm leading-5 font-medium text-heading dark:text-heading-dark">
+              {profileName}
+            </span>
+          )}
         </div>
         <IconEdit2 className="w-4 text-heading dark:text-heading-dark" />
       </button>

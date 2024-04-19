@@ -2,7 +2,6 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 "use client";
 import { createContext, useCallback, useContext, useState } from "react";
-import { useAccount } from "wagmi";
 
 export const DISPLAY_NAME_KEY = "displayName";
 export const PROFILE_IMAGE_KEY = "profileImage";
@@ -44,16 +43,13 @@ export function ProfileWrapper({ children }: { children: JSX.Element }) {
         : window.localStorage.getItem(DISPLAY_NAME_KEY);
 
     if (!storedName) {
-      address && setProfileNameDb(address);
-      return address || "";
+      return "";
     }
 
     return JSON.parse(storedName) as string;
   };
   const [profileName, setProfileName] = useState(getProfileName());
   const [profileImg, setProfileImg] = useState(getProfileImage());
-
-  const { address } = useAccount();
 
   const handleSetValue = useCallback((name: string) => {
     setProfileName(name);

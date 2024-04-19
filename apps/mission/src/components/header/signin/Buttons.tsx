@@ -9,6 +9,8 @@ import Image from "next/image";
 import { profileImages } from "../edit/ModalEdit";
 import { cn } from "helpers";
 import { ProfileContext, useProfileContext } from "../edit/useEdit";
+import { useAccount } from "wagmi";
+import { AddressDisplay } from "@evmosapps/ui-helpers";
 
 export const SignInButton = ({ open }: { open: boolean }) => {
   return (
@@ -27,6 +29,8 @@ before:-translate-y-1/2 before:w-[15px] before:h-[15px] before:lg:w-[12px] befor
 export const ProfileButton = () => {
   const { name: profileName, img } = useProfileContext() as ProfileContext;
 
+  const { address } = useAccount();
+
   return (
     <div
       className="text-pearl bg-darGray800 flex items-center justify-center space-x-3 rounded-full px-4 md:px-8 py-2 font-bold"
@@ -41,7 +45,11 @@ export const ProfileButton = () => {
           className={cn("rounded-full cursor-pointer")}
         />
 
-        <span>{profileName}</span>
+        {profileName === "" ? (
+          <AddressDisplay address={address} />
+        ) : (
+          <span>{profileName}</span>
+        )}
       </div>
       <IconChevronDown className="w-5 text-paragraph dark:text-paragraph-dark" />
     </div>

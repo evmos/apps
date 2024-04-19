@@ -25,7 +25,7 @@ export const Profile = ({
         setDropdownStatus={setDropdownStatus}
       />
 
-      <ProfileOptions />
+      <ProfileOptions setIsOpen={setIsOpen} />
       <ProfileSettings
         setDropdownStatus={setDropdownStatus}
         setIsOpen={setIsOpen}

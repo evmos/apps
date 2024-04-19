@@ -27,11 +27,11 @@ export const SignInOptions = ({ close }: { close?: () => void }) => {
   const otherWalletsModal = useOtherWalletsModal();
   return (
     <div
-      className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2
-    [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10  focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark "
+      className="rounded-xl bg-surface-container dark:bg-surface-container-dark 
+    [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark  gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10  focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark "
     >
       <Menu.Item
-        className="pt-3 pb-2 px-3 flex items-center justify-between w-full gap-4"
+        className="pt-3 pb-2 pl-2 pr-5 flex items-center justify-between w-full gap-4"
         as="button"
         onClick={(e) => {
           e.preventDefault();
@@ -39,10 +39,12 @@ export const SignInOptions = ({ close }: { close?: () => void }) => {
           close && close();
         }}
       >
-        {<IconWalletPlus className="w-7" />}
-        <div className="text-left flex justify-between w-full items-center ">
+        {
+          <IconWalletPlus className="w-7 text-paragraph dark:text-paragraph-dark" />
+        }
+        <div className="text-left flex justify-between w-full items-center">
           Other wallets
-          {<IconChevronRight className="w-7" />}
+          <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
         </div>
       </Menu.Item>
     </div>
@@ -65,10 +67,10 @@ export const ProfileSettings = ({
   });
   return (
     <div>
-      <div className="rounded-xl bg-surface-container  dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2 [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark">
+      <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark">
         <Menu.Item
-          className="pt-3 pb-2 flex items-center justify-between w-full 
-          [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark "
+          className=" flex items-center justify-between w-full py-3 px-3
+          [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 hover:rounded-lg focus-visible:rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark "
           as="button"
           onClick={(e) => {
             e.preventDefault();
@@ -77,19 +79,18 @@ export const ProfileSettings = ({
             // close();
           }}
         >
-          {<IconGear className="w-7 text-paragraph dark:text-paragraph-dark" />}
+          {<IconGear className="w-5 text-paragraph dark:text-paragraph-dark" />}
           <div className="text-left flex justify-between w-full items-center ">
             Settings
             {
-              <IconChevronRight className="w-7 text-paragraph dark:text-paragraph-dark" />
+              <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
             }
           </div>
         </Menu.Item>
-      </div>
-      <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2">
+
         <Menu.Item
-          className="pt-3 pb-2  flex items-center justify-between w-full 
-          [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark"
+          className=" flex items-center justify-between w-full py-3 px-3
+          [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark"
           as="button"
           onClick={() => {
             disconnect();
@@ -98,7 +99,7 @@ export const ProfileSettings = ({
           }}
         >
           {
-            <IconLogOut2 className="w-7 text-paragraph dark:text-paragraph-dark" />
+            <IconLogOut2 className="w-5 text-paragraph dark:text-paragraph-dark" />
           }
           <div className="text-left flex justify-between w-full items-center ">
             Sign out
@@ -109,7 +110,11 @@ export const ProfileSettings = ({
   );
 };
 
-export const ProfileOptions = () => {
+export const ProfileOptions = ({
+  setIsOpen,
+}: {
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   const { address } = useAccount();
   if (!address) return null;
 
@@ -122,7 +127,7 @@ export const ProfileOptions = () => {
           e.preventDefault();
         }}
       >
-        <div className="w-fit gap-3 flex items-center text-paragraph dark:text-paragraph-dark text-xs leading-4 font-medium bg-surface-container-highest dark:bg-surface-container-highest-dark rounded-2xl px-3 py-2">
+        <div className="cursor-default w-fit gap-3 hover:dark:bg-opacity-50 transition-all duration-200  flex items-center text-paragraph dark:text-paragraph-dark text-xs leading-4 font-medium bg-surface-container-highest dark:bg-surface-container-highest-dark rounded-2xl px-3 py-2">
           <AddressDisplay address={address} />
           {address && <CopyButton text={address} />}
         </div>
@@ -152,7 +157,12 @@ export const ProfileOptions = () => {
       <div className="flex justify-center gap-4 text-paragraph dark:text-paragraph-dark text-xs">
         <div className="flex flex-col gap-2 items-center justify-center ">
           <Link href="/portfolio">
-            <IconButton variant="low-emphasis">
+            <IconButton
+              variant="low-emphasis"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
               <IconArrowSwap />
             </IconButton>
           </Link>
@@ -160,7 +170,12 @@ export const ProfileOptions = () => {
         </div>
         <div className="flex flex-col gap-2 items-center justify-center">
           <Link href="/dapps/on-ramps/transak">
-            <IconButton variant="low-emphasis">
+            <IconButton
+              variant="low-emphasis"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
               <IconPlus />
             </IconButton>
           </Link>
@@ -175,7 +190,7 @@ export const SettingsOptions = () => {
   return (
     <div>
       <div>
-        <p className="text-left text-subheading dark:text-subheading-dark text-xs leading-4 font-medium">
+        <p className="text-left text-subheading dark:text-subheading-dark text-xs leading-4 font-medium mb-2">
           Account
         </p>
       </div>
@@ -222,7 +237,9 @@ export const SettingsOptions = () => {
             }
             <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
               Notifications
-              <Chip variant="tertiary">Coming soon</Chip>
+              <Chip variant="tertiary" disabled>
+                Coming soon
+              </Chip>
             </div>
           </Menu.Item>
           <Menu.Item
@@ -234,7 +251,9 @@ export const SettingsOptions = () => {
             }
             <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
               Address Format
-              <Chip variant="tertiary">Coming soon</Chip>
+              <Chip variant="tertiary" disabled>
+                Coming soon
+              </Chip>
               {/* <Button variant="tertiary">Coming soon</Button> */}
             </div>
           </Menu.Item>

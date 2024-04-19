@@ -16,6 +16,6 @@
   }
 
   * {
-    @apply focus-visible:rounded-xl focus-visible:outline focus-visible:outline-tertiary-container dark:focus-visible:outline-tertiary-container-dark;
+    @apply focus-visible:rounded-xl focus-visible:outline focus-visible:outline-tertiary-container dark:focus-visible:outline-tertiary-container-dark tracking-wide;
   }
 }

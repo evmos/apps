@@ -40,9 +40,11 @@ export const Settings = ({
             className={cn("rounded-full")}
           />
 
-          <span>{profileName}</span>
+          <span className="text-sm leading-5 font-medium text-heading dark:text-heading-dark">
+            {profileName}
+          </span>
         </div>
-        <IconEdit2 />
+        <IconEdit2 className="w-4 text-heading dark:text-heading-dark" />
       </button>
 
       <SettingsOptions />

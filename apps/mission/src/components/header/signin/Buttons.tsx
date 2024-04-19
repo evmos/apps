@@ -28,7 +28,7 @@ export const ProfileButton = () => {
   const { name: profileName, img } = useProfileContext() as ProfileContext;
 
   return (
-    <button
+    <div
       className="text-pearl bg-darGray800 flex items-center justify-center space-x-3 rounded-full px-4 md:px-8 py-2 font-bold"
       data-testid={`wallet-profile-button wallet-profile-button-${getActiveProviderKey()}`}
     >
@@ -43,7 +43,7 @@ export const ProfileButton = () => {
 
         <span>{profileName}</span>
       </div>
-      <IconChevronDown />
-    </button>
+      <IconChevronDown className="w-5 text-paragraph dark:text-paragraph-dark" />
+    </div>
   );
 };

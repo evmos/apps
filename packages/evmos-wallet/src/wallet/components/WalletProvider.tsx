@@ -136,12 +136,13 @@ function Provider({ children }: WalletProviderProps) {
 
     disconnect();
 
-    // disconnect();
-    notifyError(
-      WALLET_NOTIFICATIONS.ErrorTitle,
-      WALLET_NOTIFICATIONS.PubkeySubtext,
-      { walletName: variables?.connector?.name ?? "" },
-    );
+    // TODO Mili: ask about pubkey and it we still need to show this, handle the error
+    // ask swan how to handle this
+    // notifyError(
+    //   WALLET_NOTIFICATIONS.ErrorTitle,
+    //   WALLET_NOTIFICATIONS.PubkeySubtext,
+    //   { walletName: variables?.connector?.name ?? "" },
+    // );
   }, [isFetching]);
   return (
     <WalletContext.Provider

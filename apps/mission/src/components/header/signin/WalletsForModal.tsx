@@ -14,7 +14,7 @@ import { useInstallProvider } from "./useWalletInstalled";
 
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 
-export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
+export const WalletsForModal = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
   const { connectors, connect, error } = useSignIn();
   const { isConnecting, isConnected } = useWallet();
   const [walletSelectedToConnect, setWalletSelectedToConnect] = useState("");
@@ -44,9 +44,8 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
     const connector = connectors.find((c) => c.name === wallet.name);
 
     return (
-      <Menu.Item
-        as="button"
-        className="flex w-full items-center [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark"
+      <button
+        className="flex w-full items-center mb-2 bg-surface-container dark:bg-surface-container-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark"
         disabled={
           (isConnected || isConnecting) &&
           getActiveProviderKey() === wallet.name
@@ -104,7 +103,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
             </IconButton>
           )}
         </div>
-      </Menu.Item>
+      </button>
     );
   });
 };

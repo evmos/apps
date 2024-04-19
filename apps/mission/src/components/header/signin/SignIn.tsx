@@ -54,7 +54,7 @@ export const SignIn = () => {
                 className="space-y-5 z-10 text-sm absolute right-0 mt-2 w-96 origin-top-right bg-surface-container-low dark:bg-surface-container-low-dark border border-surface-container dark:border-surface-container-dark text-surface-container-high-dark dark:text-surface-container-high  rounded-2xl pt-6 p-3"
               >
                 <SignInTitle />
-                <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2">
+                <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark ">
                   <Wallets wallets={defaultWallets} />
                 </div>
                 <SignInOptions close={close} />

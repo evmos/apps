@@ -2,14 +2,16 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { Menu } from "@headlessui/react";
-import { ProvidersIcons } from "stateful-components/src/providerIcons";
+
 import { Connector } from "wagmi";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
 import { Dispatch, SetStateAction } from "react";
+
+import { getIcon } from "./helpers";
 export const SignInTitle = () => {
   return (
-    <Menu.Item as="div" className="text-center">
+    <Menu.Item as="div" className="text-center text-base font-medium leading-5">
       Sign in with wallet
     </Menu.Item>
   );
@@ -22,8 +24,7 @@ export const ProfileTitle = ({
   connector: Connector;
   setDropdownStatus: Dispatch<SetStateAction<string>>;
 }) => {
-  // TODO Mili: use the icon that is in supportWallets
-  const Icon = ProvidersIcons[connector?.name];
+  const Icon = getIcon(connector.name);
   return (
     <Menu.Item
       as="button"
@@ -33,13 +34,13 @@ export const ProfileTitle = ({
         setDropdownStatus("wallets");
       }}
     >
-      <div className="flex items-center w-full gap-4 text-sm leading-5 font-medium">
-        {Icon && <Icon width="1.4em" height="1.4em" />} Wallet
+      <div className="flex items-center w-full gap-3 text-sm leading-5 font-medium">
+        {Icon && <Icon className="w-5" />} Wallet
         <span className="text-paragraph dark:text-paragraph-dark font-normal">
           {connector?.name}
         </span>
       </div>
-      {<IconChevronRight className="w-7" />}
+      <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
     </Menu.Item>
   );
 };
@@ -52,12 +53,12 @@ export const SettingsTitle = ({
   return (
     <Menu.Item
       as="button"
-      className="text-center flex px-3 gap-3"
+      className="text-center flex px-3 text-base  items-center w-full gap-3  leading-5 font-medium"
       onClick={() => {
         setDropdownStatus("profile");
       }}
     >
-      <IconArrowLeft />
+      <IconArrowLeft className="w-5 text-paragraph dark:text-paragraph-dark" />
       Settings
     </Menu.Item>
   );
@@ -71,13 +72,13 @@ export const WalletsTitle = ({
   return (
     <Menu.Item
       as="button"
-      className="text-center flex px-3 gap-3"
+      className="text-center flex px-3 gap-3 text-base items-center w-full leading-5 font-medium"
       onClick={() => {
         setDropdownStatus("profile");
       }}
     >
-      <IconArrowLeft />
-      Wallets
+      <IconArrowLeft className="w-5 text-paragraph dark:text-paragraph-dark" />
+      Wallet
     </Menu.Item>
   );
 };

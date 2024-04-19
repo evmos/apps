@@ -15,6 +15,8 @@ import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/walle
 import { wagmiConfig } from "@evmosapps/evmos-wallet";
 import { disconnect } from "wagmi/actions";
 import { WalletsContext, useWAlletsContext } from "./useWallets";
+import { useOtherWalletsModal } from "./WalletsModal";
+import useComponentVisible from "./useComponentVisible";
 
 export type WALLETS_TYPE =
   | {
@@ -33,13 +35,12 @@ export const useSignIn = () => {
   const [currentConnector, setCurrentConnector] = useState<
     string | undefined
   >();
-
+  const { setIsOpen } = useOtherWalletsModal();
+  const { setIsComponentVisible } = useComponentVisible();
   const { wallets, setWallets } = useWAlletsContext() as WalletsContext;
-  const defaultWallets = supportedWallets.map((wallet) => {
-    if (wallets.includes(wallet.name)) {
-      return wallet;
-    }
-  });
+  const defaultWallets = supportedWallets.filter((item) =>
+    wallets.includes(item.name),
+  );
 
   const { connectors, connect } = useConnect({
     mutation: {
@@ -63,10 +64,12 @@ export const useSignIn = () => {
         // sendEvent(SUCCESSFUL_WALLET_CONNECTION, {
         //   "Wallet Provider": connector.name,
         // });
-        // setIsOpen(false);
-        setError(undefined);
 
+        setError(undefined);
+        setIsOpen(false);
         setWallets(connector.name);
+        // TODO Mili: create context for maintaining the dropdown state
+        // setIsComponentVisible(true);
       },
 
       onError: (e, { connector }) => {
@@ -76,10 +79,7 @@ export const useSignIn = () => {
         //   "Error Message": `Failed to connect with ${connector.name}`,
         // });
         if (E.match.byPattern(e, /Connector not found/)) {
-          setError({
-            error: WALLET_NOTIFICATIONS.ExtensionNotFoundSubtext,
-            name: connector.name,
-          });
+          setError({ error: "Connection failed.", name: connector.name });
 
           return;
         }
@@ -88,10 +88,7 @@ export const useSignIn = () => {
           // same message for Leap ?
           E.match.byMessage(e, "PROVIDER_NOT_AVAILABLE") // keplr
         ) {
-          setError({
-            error: WALLET_NOTIFICATIONS.AddressSubtext,
-            name: connector.name,
-          });
+          setError({ error: "Connection failed.", name: connector.name });
 
           return;
         }
@@ -100,16 +97,13 @@ export const useSignIn = () => {
           E.match.byPattern(e, /Connection request reset/) || // wallet connect
           E.match.byPattern(e, /Request rejected/) // keplr
         ) {
-          setError({ error: "Connection Rejected", name: connector.name });
+          setError({ error: "Connection failed.", name: connector.name });
 
           return;
         }
 
         // Didn't find a match, so we'll just isOpen the error
-        setError({
-          error: WALLET_NOTIFICATIONS.ErrorTitle,
-          name: connector.name,
-        });
+        setError({ error: "Connection failed.", name: connector.name });
       },
     },
   });

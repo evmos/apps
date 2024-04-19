@@ -8,9 +8,11 @@ import { useSignIn } from "./useSignin";
 import { Wallets } from "./Wallets";
 import { Menu } from "@headlessui/react";
 import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
+import { WalletsForModal } from "./WalletsForModal";
+
 // import { SearchFilter } from "./Search";
 // import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
-// import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
+import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 export const useOtherWalletsModal = () => useModal("supported-wallets2");
 
 export const WalletsModal = () => {
@@ -22,7 +24,7 @@ export const WalletsModal = () => {
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Modal.Body>
-        <Modal.Header>Other Wallets</Modal.Header>
+        <Modal.Header className="text-2xl">Other Wallets</Modal.Header>
         {/* <div className="w-full flex justify-start items-center relative">
           <IconSearch className="absolute w-4 shrink-0 left-3" />
           <Input
@@ -34,9 +36,9 @@ export const WalletsModal = () => {
           />
         </div> */}
 
-        <Menu>
-          <Wallets wallets={walletsToShow} />
-        </Menu>
+        <div className="max-h-[300px] overflow-auto">
+          <WalletsForModal wallets={walletsToShow} />
+        </div>
         {/* {filteredOptions.length === 0 && searchTerm && (
           <p>No results found for {searchTerm}</p>
         )} */}

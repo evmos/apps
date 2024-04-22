@@ -3,18 +3,21 @@
 
 "use server";
 
-import { Badge, TrackerEvent } from "@evmosapps/ui-helpers";
+import { TrackerEvent } from "@evmosapps/ui-helpers";
 
 import { CLICK_ON_FEATURED_DAPP } from "tracker";
 
 import { Link } from "@evmosapps/i18n/client";
-import { UpRightArrowIcon } from "@evmosapps/icons/UpRightArrowIcon";
 import { DApp } from "../../../lib/fetch-explorer-data";
 
 import Image from "next/image";
+import { cn } from "helpers";
+import { Card } from "../../../../../../packages/ui/src/components/cards/Card";
+import { Icon } from "./Icon";
+import { IconLightning } from "../../../../../../packages/ui/src/icons/filled";
 
 export const EcosystemCard = ({ data }: { data: DApp }) => {
-  const img = data.thumbnail;
+  const img = data.cover;
 
   return (
     <TrackerEvent
@@ -22,52 +25,52 @@ export const EcosystemCard = ({ data }: { data: DApp }) => {
       properties={{ "dApp Name": data.name }}
     >
       <Link
-        href={
-          data.instantDapp
-            ? `/dapps/${data.categorySlug}/${data.slug}`
-            : data.dapp.url ?? ""
-        }
-        target={data.instantDapp ? "" : "_blank"}
+        href={`/dapps/${data.categorySlug}/${data.slug}`}
         key={data.name}
-        className="relative space-y-2 rounded-lg bg-[#262017] pb-8 transition-all duration-150 ease-out hover:scale-105 overflow-hidden"
+        className="transition-all duration-150 ease-out hover:scale-105 overflow-hidden "
       >
-        <div className="relative aspect-[3/2] w-full bg-white/5 overflow-hidden">
-          {img && (
-            <Image
-              src={img.src}
-              blurDataURL={img.blurDataURL}
-              placeholder="blur"
-              className="object-cover"
-              alt={data.name}
-              fill={true}
-              sizes="400w"
-            />
-          )}
-        </div>
-        <div className="flex space-x-3 items-center px-5 pt-5">
-          <h3 className="font-bold text-sm text-pearl">{data.name}</h3>
-          {data.instantDapp ? (
-            <Badge
-              className="text-xs gap-x-2 whitespace-nowrap overflow-hidden"
-              data-testid="badge-instant-dapp"
-            >
-              <span className="w-[6px] h-[6px] aspect-square bg-purple-400 rounded-full" />
-              <span className="overflow-ellipsis overflow-hidden">
-                Instant dApp
-              </span>
-            </Badge>
-          ) : (
+        <Card className="w-full" key={data.name}>
+          <div className="">
             <div
-              className="rounded-full h-6 w-6 flex justify-center items-center bg-black-500 border-black-200 border text-pearl"
-              data-testid="badge-external-link"
+              className={cn(
+                "relative h-[150px]",
+                "after:bg-gradient-to-t after:from-surface-container-lowest-dark/100 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
+                // "hover:after:bg-gradient-to-t hover:after:from-surface-container-dark/100 hover:after:to-transparent",
+              )}
             >
-              <UpRightArrowIcon className="h-2 w-2" />
+              {img && (
+                <Image
+                  src={img.src}
+                  blurDataURL={img.blurDataURL}
+                  placeholder="blur"
+                  className="object-cover rounded-t-xl"
+                  alt={data.name}
+                  fill={true}
+                  sizes="400w"
+                />
+              )}
             </div>
-          )}
-        </div>
-        <p className="px-5 text-xs md:text-sm text-white opacity-70 overflow-hidden line-clamp-3">
-          {data.oneLiner || data.description}
-        </p>
+
+            <div className="px-4 py-4 flex gap-4 -mt-5 pb-6">
+              <Icon data={data} />
+              <div>
+                <div className="flex gap-1">
+                  <h5 className="heading text-base px-0.5">{data.name}</h5>
+                  {data.instantDapp && (
+                    <div className="justify-start items-center gap-px flex">
+                      <div className="relative">
+                        <IconLightning className="h-3 w-3 text-primary-container dark:text-primary-container-dark" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <p className="text-xs md:text-sm text-paragraph dark:text-paragraph-dark overflow-hidden line-clamp-1 text-ellipsis">
+                  {data.oneLiner || data.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        </Card>
       </Link>
     </TrackerEvent>
   );

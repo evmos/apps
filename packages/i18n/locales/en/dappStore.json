@@ -32,7 +32,8 @@
       "text": "See all ",
       "text2": "dApps"
     },
-    "explore": "Explore all <div>{{count}} dApps</div>",
+    "explore": "<div>Explore all {{count}} dApps<div/>",
+    "discover": "Discover a diverse array of innovative apps",
     "instantdApps": {
       "title": "Instant dApps",
       "description": "Discover the power of cross-chain apps - instantly, in one place",
@@ -50,7 +51,7 @@
     }
   },
   "instantdApp": {
-    "badge": "Instant dApp",
+    "badge": "Instant",
     "howTo": {
       "title": "How to use {{name}} Instant dApp"
     },
@@ -75,6 +76,9 @@
     },
     "wormhole": {
       "disruption": "We are currently in maintenance mode with the Wormhole bridge. This will be addressed by the next upgrade of the Evmos chain."
-    }
+    },
+    "signRequired": "Sign in required.",
+    "singInToInteract": "Please sign in order to interact with the ",
+    "IdApp": "Instant dApp"
   }
 }

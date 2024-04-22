@@ -26,11 +26,16 @@ export const WalletsProvider = ({
   children: React.ReactNode;
 }) => {
   const setWalletsDb = (wallets: string[]) => {
-    localStorage.setItem(WALLET_KEY, JSON.stringify(wallets));
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(WALLET_KEY, JSON.stringify(wallets));
+    }
   };
 
   const getWalletsDb = () => {
-    const values = localStorage.getItem(WALLET_KEY);
+    if (typeof window === "undefined") {
+      return predefinedWallets;
+    }
+    const values = window.localStorage.getItem(WALLET_KEY);
     return values ? (JSON.parse(values) as string[]) : predefinedWallets;
   };
 

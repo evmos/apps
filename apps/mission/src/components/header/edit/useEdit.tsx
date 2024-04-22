@@ -15,15 +15,14 @@ export type ProfileContext = {
 
 const ProfileContext = createContext<ProfileContext | null>(null);
 
-const setProfileNameDb = (profileName: string) => {
-  localStorage.setItem(DISPLAY_NAME_KEY, JSON.stringify(profileName));
-};
-
-const setProfileImgDb = (profileImg: number) => {
-  localStorage.setItem(PROFILE_IMAGE_KEY, JSON.stringify(profileImg));
-};
-
 export function ProfileWrapper({ children }: { children: JSX.Element }) {
+  const setProfileNameDb = (profileName: string) => {
+    localStorage.setItem(DISPLAY_NAME_KEY, JSON.stringify(profileName));
+  };
+
+  const setProfileImgDb = (profileImg: number) => {
+    localStorage.setItem(PROFILE_IMAGE_KEY, JSON.stringify(profileImg));
+  };
   const getProfileImage = () => {
     const storedImg =
       typeof window === "undefined"

@@ -5,6 +5,7 @@ import React, { useState, useRef } from "react";
 import type { Meta } from "@storybook/react";
 
 import { Dropdown } from "./Dropdown";
+import { Button } from "../../button";
 
 const meta: Meta<typeof Dropdown> = {
   title: "Dropdowns",
@@ -25,11 +26,16 @@ export const Default = () => {
     <>
       <Dropdown isOpen={isOpen} setIsOpen={setIsOpen}>
         <Dropdown.Button ref={buttonRef} onClick={() => setIsOpen(!isOpen)}>
-          Show dropdown
+          <Button>Dropdown</Button>
         </Dropdown.Button>
         <Dropdown.Items ref={dropdwonRef}>
-          <Dropdown.Item as="div">Test 1</Dropdown.Item>
-          <Dropdown.Item as="div">Test 2</Dropdown.Item>
+          <Dropdown.Title as="div" align="center">
+            Title for dropdown
+          </Dropdown.Title>
+          <Dropdown.Container>
+            <Dropdown.Item as="div">Test 1</Dropdown.Item>
+            <Dropdown.Item as="div">Test 2</Dropdown.Item>
+          </Dropdown.Container>
         </Dropdown.Items>
       </Dropdown>
     </>

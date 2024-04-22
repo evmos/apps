@@ -3,7 +3,7 @@
 
 "use client";
 
-import { WALLETS_TYPE, useSignIn } from "./useSignin";
+import { WALLETS_TYPE, useSignIn } from "./useSignIn";
 import { useMemo, useState } from "react";
 import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
 import { Spinner } from "./Spinner";

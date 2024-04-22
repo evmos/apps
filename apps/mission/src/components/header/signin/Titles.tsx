@@ -55,6 +55,7 @@ export const SettingsTitle = ({
   const { t } = useTranslation("dappStore");
   return (
     <Dropdown.Title
+      align="left"
       as="button"
       onClick={() => {
         setDropdownStatus("profile");
@@ -74,6 +75,7 @@ export const WalletsTitle = ({
   const { t } = useTranslation("dappStore");
   return (
     <Dropdown.Title
+      align="left"
       as="button"
       onClick={() => {
         setDropdownStatus("profile");

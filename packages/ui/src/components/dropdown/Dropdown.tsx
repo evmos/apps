@@ -40,7 +40,7 @@ export function Dropdown({
 }: PropsWithChildren<DropdownProps>) {
   return (
     <DropdownContext.Provider value={{ isOpen, setIsOpen }}>
-      <div className="relative">
+      <div className="relative text-right">
         <Menu {...rest}>{children ?? <div />}</Menu>
       </div>
     </DropdownContext.Provider>
@@ -54,11 +54,7 @@ const MenuButton = forwardRef<
   } & ComponentPropsWithoutRef<typeof Menu.Button>
 >(function MenuButton({ children, className, ...rest }, ref) {
   return (
-    <Menu.Button
-      ref={ref}
-      className={cn("text-right", className as string)}
-      {...rest}
-    >
+    <Menu.Button ref={ref} className={cn("", className as string)} {...rest}>
       {children}
     </Menu.Button>
   );
@@ -145,7 +141,7 @@ const MenuTitle = forwardRef<
     <Menu.Item
       ref={ref}
       className={cn(
-        "text-center text-base font-medium leading-5 flex items-center w-full px-3  gap-3",
+        "text-center text-base font-medium leading-5 flex items-center w-full px-3 pt-4 gap-3",
         align === "between" && "justify-between",
         align === "left" && "justify-start",
         align === "right" && "justify-end",

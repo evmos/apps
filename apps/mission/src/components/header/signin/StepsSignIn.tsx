@@ -7,7 +7,7 @@ import { ProfileButton, SignInButton } from "./Buttons";
 import { SignInTitle, WalletsTitle } from "./Titles";
 import { Wallets } from "./Wallets";
 import { SignInOptions } from "./Options";
-import { useSignIn } from "./useSignin";
+import { useSignIn } from "./useSignIn";
 import { useEffect, useState } from "react";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { Profile } from "./Profile";

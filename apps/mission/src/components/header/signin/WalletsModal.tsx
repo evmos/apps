@@ -4,27 +4,26 @@
 "use client";
 
 import { useModal } from "helpers";
-import { useSignIn } from "./useSignin";
 
 import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
 import { WalletsForModal } from "./WalletsForModal";
-
-// import { SearchFilter } from "./Search";
-// import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
+import { useSignIn } from "./useSignIn";
+import { SearchFilter } from "./Search";
+import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
 import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 export const useOtherWalletsModal = () => useModal("supported-wallets2");
 
 export const WalletsModal = () => {
   const { isOpen, setIsOpen } = useOtherWalletsModal();
+
   const { walletsToShow } = useSignIn();
-  // const { searchTerm, handleSearchChange, filteredOptions } =
-  //   SearchFilter(walletsToShow);
+  const { searchTerm, handleSearchChange } = SearchFilter(walletsToShow);
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <Modal.Body>
         <Modal.Header className="text-2xl">Other Wallets</Modal.Header>
-        {/* <div className="w-full flex justify-start items-center relative">
+        <div className="w-full flex justify-start items-center relative">
           <IconSearch className="absolute w-4 shrink-0 left-3" />
           <Input
             value={searchTerm}
@@ -33,7 +32,7 @@ export const WalletsModal = () => {
             type="text"
             className="w-full rounded-full pl-8"
           />
-        </div> */}
+        </div>
 
         <div className="max-h-[300px] overflow-auto">
           <WalletsForModal wallets={walletsToShow} />

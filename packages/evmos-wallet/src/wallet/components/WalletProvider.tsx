@@ -10,13 +10,12 @@ import {
   createContext,
   useContext,
 } from "react";
-import { useAccount, useAccountEffect, useConnect, useDisconnect } from "wagmi";
+import { useAccount, useAccountEffect, useDisconnect } from "wagmi";
 import { usePubKey, wagmiConfig } from "../wagmi";
-import {
-  WALLET_NOTIFICATIONS,
-  notifyError,
-  // notifySuccess,
-} from "../../internal/wallet/functionality/errors";
+import // WALLET_NOTIFICATIONS,
+// notifyError,
+// notifySuccess,
+"../../internal/wallet/functionality/errors";
 // import { truncateAddress } from "../../internal/wallet/style/format";
 import { getActiveProviderKey, store } from "../..";
 import { resetWallet, setWallet } from "../redux/WalletSlice";
@@ -99,7 +98,7 @@ function Provider({ children }: WalletProviderProps) {
       store.dispatch(resetWallet());
     },
   });
-  const { variables } = useConnect();
+  // const { variables } = useConnect();
   const { disconnect } = useDisconnect();
   const { pubkey, error: pubkeyError, isFetching } = usePubKey();
 

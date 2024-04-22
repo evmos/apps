@@ -11,12 +11,12 @@ import {
   SVGProps,
   useState,
 } from "react";
-import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
+// import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
 import { wagmiConfig } from "@evmosapps/evmos-wallet";
 import { disconnect } from "wagmi/actions";
 import { WalletsContext, useWAlletsContext } from "./useWallets";
 import { useOtherWalletsModal } from "./WalletsModal";
-import useComponentVisible from "./useComponentVisible";
+// import useComponentVisible from "./useComponentVisible";
 
 export type WALLETS_TYPE =
   | {
@@ -36,7 +36,7 @@ export const useSignIn = () => {
     string | undefined
   >();
   const { setIsOpen } = useOtherWalletsModal();
-  const { setIsComponentVisible } = useComponentVisible();
+  // const { setIsComponentVisible } = useComponentVisible();
   const { wallets, setWallets } = useWAlletsContext() as WalletsContext;
   const defaultWallets = supportedWallets.filter((item) =>
     wallets.includes(item.name),

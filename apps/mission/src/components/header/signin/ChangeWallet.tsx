@@ -4,7 +4,7 @@
 "use client";
 
 import { Wallets } from "./Wallets";
-import { useSignIn } from "./useSignin";
+import { useSignIn } from "./useSignIn";
 import { Dispatch, SetStateAction } from "react";
 import { WalletsTitle } from "./Titles";
 import { SignInOptions } from "./Options";

@@ -2,9 +2,6 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { Menu } from "@headlessui/react";
-
-import { WALLETS_TYPE, useSignIn } from "./useSignin";
 import { useMemo, useState } from "react";
 import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
 import { Spinner } from "./Spinner";
@@ -13,6 +10,7 @@ import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
 import { useInstallProvider } from "./useWalletInstalled";
 
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
+import { WALLETS_TYPE, useSignIn } from "./useSignIn";
 
 export const WalletsForModal = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
   const { connectors, connect, error } = useSignIn();

@@ -10,7 +10,7 @@ import { SignInButton } from "./Buttons";
 import { SignInTitle } from "./Titles";
 import { Wallets } from "./Wallets";
 import { SignInOptions } from "./Options";
-import { useSignIn } from "./useSignin";
+import { useSignIn } from "./useSignIn";
 import { useEffect, useState } from "react";
 
 export const SignIn = () => {

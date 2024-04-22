@@ -1,19 +1,21 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { Menu } from "@headlessui/react";
-
 import { Connector } from "wagmi";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
 import { Dispatch, SetStateAction } from "react";
 
 import { getIcon } from "./helpers";
+import { useTranslation } from "@evmosapps/i18n/client";
+import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
+
 export const SignInTitle = () => {
+  const { t } = useTranslation("dappStore");
   return (
-    <Menu.Item as="div" className="text-center text-base font-medium leading-5">
-      Sign in with wallet
-    </Menu.Item>
+    <Dropdown.Title as="div" align="center">
+      {t("signIn.title")}
+    </Dropdown.Title>
   );
 };
 
@@ -24,24 +26,24 @@ export const ProfileTitle = ({
   connector: Connector;
   setDropdownStatus: Dispatch<SetStateAction<string>>;
 }) => {
+  const { t } = useTranslation("dappStore");
   const Icon = getIcon(connector.name);
   return (
-    <Menu.Item
+    <Dropdown.Title
       as="button"
-      className="text-center flex items-center justify-bewteen w-full px-3 "
-      onClick={(e) => {
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setDropdownStatus("wallets");
       }}
     >
       <div className="flex items-center w-full gap-3 text-sm leading-5 font-medium">
-        {Icon && <Icon className="w-5" />} Wallet
+        {Icon && <Icon className="w-5" />} {t("profile.title")}
         <span className="text-paragraph dark:text-paragraph-dark font-normal">
           {connector?.name}
         </span>
       </div>
       <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
-    </Menu.Item>
+    </Dropdown.Title>
   );
 };
 
@@ -50,17 +52,17 @@ export const SettingsTitle = ({
 }: {
   setDropdownStatus: Dispatch<SetStateAction<string>>;
 }) => {
+  const { t } = useTranslation("dappStore");
   return (
-    <Menu.Item
+    <Dropdown.Title
       as="button"
-      className="text-center flex px-3 text-base  items-center w-full gap-3  leading-5 font-medium"
       onClick={() => {
         setDropdownStatus("profile");
       }}
     >
       <IconArrowLeft className="w-5 text-paragraph dark:text-paragraph-dark" />
-      Settings
-    </Menu.Item>
+      {t("signIn.settings.title")}
+    </Dropdown.Title>
   );
 };
 
@@ -69,16 +71,16 @@ export const WalletsTitle = ({
 }: {
   setDropdownStatus: Dispatch<SetStateAction<string>>;
 }) => {
+  const { t } = useTranslation("dappStore");
   return (
-    <Menu.Item
+    <Dropdown.Title
       as="button"
-      className="text-center flex px-3 gap-3 text-base items-center w-full leading-5 font-medium"
       onClick={() => {
         setDropdownStatus("profile");
       }}
     >
       <IconArrowLeft className="w-5 text-paragraph dark:text-paragraph-dark" />
-      Wallet
-    </Menu.Item>
+      {t("signIn.switchWallet.title")}
+    </Dropdown.Title>
   );
 };

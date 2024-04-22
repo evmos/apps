@@ -5,8 +5,7 @@
 
 import { useModal } from "helpers";
 import { useSignIn } from "./useSignin";
-import { Wallets } from "./Wallets";
-import { Menu } from "@headlessui/react";
+
 import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
 import { WalletsForModal } from "./WalletsForModal";
 

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { Menu } from "@headlessui/react";
+
 import { useOtherWalletsModal } from "./WalletsModal";
 import { IconWalletPlus } from "@evmosapps/ui/icons/line/finances/wallet-plus.tsx";
 import { IconButton } from "../../../../../../packages/ui/src/button/icon-button";
@@ -22,32 +22,27 @@ import { IconBell } from "@evmosapps/ui/icons/line/alerts/bell.tsx";
 import { IconHashtag } from "@evmosapps/ui/icons/line/basic/hashtag.tsx";
 import Link from "next/link";
 import { Chip } from "../../../../../../packages/ui/src/chips/Chip";
+import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
 
 export const SignInOptions = ({ close }: { close?: () => void }) => {
   const otherWalletsModal = useOtherWalletsModal();
   return (
-    <div
-      className="rounded-xl bg-surface-container dark:bg-surface-container-dark 
-    [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark  gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10  focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark "
+    <Dropdown.Item
+      as="button"
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        otherWalletsModal.setIsOpen(true, {}, true);
+        close && close();
+      }}
     >
-      <Menu.Item
-        className="pt-3 pb-2 pl-2 pr-5 flex items-center justify-between w-full gap-4"
-        as="button"
-        onClick={(e) => {
-          e.preventDefault();
-          otherWalletsModal.setIsOpen(true, {}, true);
-          close && close();
-        }}
-      >
-        {
-          <IconWalletPlus className="w-7 text-paragraph dark:text-paragraph-dark" />
-        }
-        <div className="text-left flex justify-between w-full items-center">
-          Other wallets
-          <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
-        </div>
-      </Menu.Item>
-    </div>
+      {
+        <IconWalletPlus className="w-7 text-paragraph dark:text-paragraph-dark" />
+      }
+      <div className="text-left flex justify-between w-full items-center">
+        Other wallets
+        <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
+      </div>
+    </Dropdown.Item>
   );
 };
 
@@ -60,53 +55,43 @@ export const ProfileSettings = ({
 }) => {
   const { disconnect } = useDisconnect({
     mutation: {
-      onSuccess: () => {
-        // setIsOpen(false);
-      },
+      onSuccess: () => {},
     },
   });
   return (
-    <div>
-      <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark">
-        <Menu.Item
-          className=" flex items-center justify-between w-full py-3 px-3
-          [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 hover:rounded-lg focus-visible:rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark "
-          as="button"
-          onClick={(e) => {
-            e.preventDefault();
-            setDropdownStatus("settings");
-            // otherWalletsModal.setIsOpen(true, {}, true);
-            // close();
-          }}
-        >
-          {<IconGear className="w-5 text-paragraph dark:text-paragraph-dark" />}
-          <div className="text-left flex justify-between w-full items-center ">
-            Settings
-            {
-              <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
-            }
-          </div>
-        </Menu.Item>
-
-        <Menu.Item
-          className=" flex items-center justify-between w-full py-3 px-3
-          [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark"
-          as="button"
-          onClick={() => {
-            disconnect();
-            setIsOpen(false);
-            // sendEvent(CLICK_DISCONNECT_WALLET_BUTTON);
-          }}
-        >
+    <Dropdown.Container>
+      <Dropdown.Item
+        as="button"
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          e.preventDefault();
+          setDropdownStatus("settings");
+        }}
+      >
+        {<IconGear className="w-5 text-paragraph dark:text-paragraph-dark" />}
+        <div className="text-left flex justify-between w-full items-center ">
+          Settings
           {
-            <IconLogOut2 className="w-5 text-paragraph dark:text-paragraph-dark" />
+            <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
           }
-          <div className="text-left flex justify-between w-full items-center ">
-            Sign out
-          </div>
-        </Menu.Item>
-      </div>
-    </div>
+        </div>
+      </Dropdown.Item>
+
+      <Dropdown.Item
+        as="button"
+        onClick={() => {
+          disconnect();
+          setIsOpen(false);
+          // sendEvent(CLICK_DISCONNECT_WALLET_BUTTON);
+        }}
+      >
+        {
+          <IconLogOut2 className="w-5 text-paragraph dark:text-paragraph-dark" />
+        }
+        <div className="text-left flex justify-between w-full items-center ">
+          Sign out
+        </div>
+      </Dropdown.Item>
+    </Dropdown.Container>
   );
 };
 
@@ -119,9 +104,8 @@ export const ProfileOptions = ({
   if (!address) return null;
 
   return (
-    <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark pt-8 pb-10 pl-1 pr-2 space-y-6">
-      <Menu.Item
-        as="div"
+    <Dropdown.Container className="space-y-6 pt-8 pb-10 pl-1 pr-2">
+      <div
         className=" flex justify-center flex-col gap-3 items-center"
         onClick={(e) => {
           e.preventDefault();
@@ -131,7 +115,7 @@ export const ProfileOptions = ({
           <AddressDisplay address={address} />
           {address && <CopyButton text={address} />}
         </div>
-      </Menu.Item>
+      </div>
       <div>
         <h6 className="text-2xl font-medium text-heading dark:text-heading-dark leading-8">
           <Suspense
@@ -182,7 +166,7 @@ export const ProfileOptions = ({
           <p>Topup</p>
         </div>
       </div>
-    </div>
+    </Dropdown.Container>
   );
 };
 
@@ -194,71 +178,50 @@ export const SettingsOptions = () => {
           Account
         </p>
       </div>
-      <div>
+      <Dropdown.Container>
         {/* TODO Mili: fix border bottom, is not appearing correctly */}
-        <div
-          className="
-        rounded-xl bg-surface-container  dark:bg-surface-container-dark pt-1 pb-2 pl-1 pr-2 [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark"
-        >
-          <Menu.Item
-            className="pt-3 pb-2 px-3 flex items-center w-full gap-4  "
-            as="div"
-          >
-            {
-              <IconDollarCircle className="w-4 text-paragraph dark:text-paragraph-dark" />
-            }
-            <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
-              Currency
-              <span className="text-paragraph dark:text-paragraph-dark">
-                USD
-              </span>
-            </div>
-          </Menu.Item>
-          <Menu.Item
-            className="pt-3 pb-2 px-3 flex items-center w-full gap-4 "
-            as="div"
-          >
-            {
-              <IconGlobe className="w-4 text-paragraph dark:text-paragraph-dark" />
-            }
-            <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
-              Language
-              <span className="text-paragraph dark:text-paragraph-dark">
-                English
-              </span>
-            </div>
-          </Menu.Item>
-          <Menu.Item
-            className="pt-3 pb-2 px-3 flex items-center w-full gap-4 "
-            as="div"
-          >
-            {
-              <IconBell className="w-4 text-paragraph dark:text-paragraph-dark" />
-            }
-            <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
-              Notifications
-              <Chip variant="tertiary" disabled>
-                Coming soon
-              </Chip>
-            </div>
-          </Menu.Item>
-          <Menu.Item
-            className="pt-3 pb-2 px-3 flex items-center w-full gap-4 "
-            as="div"
-          >
-            {
-              <IconHashtag className="w-4 text-paragraph dark:text-paragraph-dark" />
-            }
-            <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
-              Address Format
-              <Chip variant="tertiary" disabled>
-                Coming soon
-              </Chip>
-              {/* <Button variant="tertiary">Coming soon</Button> */}
-            </div>
-          </Menu.Item>
-        </div>
-      </div>
+
+        <Dropdown.Item disabled as="div">
+          {
+            <IconDollarCircle className="w-4 text-paragraph dark:text-paragraph-dark" />
+          }
+          <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
+            Currency
+            <span className="text-paragraph dark:text-paragraph-dark">USD</span>
+          </div>
+        </Dropdown.Item>
+        <Dropdown.Item as="div" disabled>
+          {
+            <IconGlobe className="w-4 text-paragraph dark:text-paragraph-dark" />
+          }
+          <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
+            Language
+            <span className="text-paragraph dark:text-paragraph-dark">
+              English
+            </span>
+          </div>
+        </Dropdown.Item>
+        <Dropdown.Item as="div" disabled>
+          {<IconBell className="w-4 text-paragraph dark:text-paragraph-dark" />}
+          <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
+            Notifications
+            <Chip variant="tertiary" disabled>
+              Coming soon
+            </Chip>
+          </div>
+        </Dropdown.Item>
+        <Dropdown.Item as="div" disabled>
+          {
+            <IconHashtag className="w-4 text-paragraph dark:text-paragraph-dark" />
+          }
+          <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
+            Address Format
+            <Chip variant="tertiary" disabled>
+              Coming soon
+            </Chip>
+          </div>
+        </Dropdown.Item>
+      </Dropdown.Container>
     </div>
   );
 };

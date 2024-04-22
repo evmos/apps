@@ -2,7 +2,6 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { Menu } from "@headlessui/react";
 
 import { WALLETS_TYPE, useSignIn } from "./useSignin";
 import { useMemo, useState } from "react";
@@ -11,7 +10,7 @@ import { Spinner } from "./Spinner";
 import { IconCross } from "@evmosapps/ui/icons/line/basic/cross.tsx";
 import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
 import { useInstallProvider } from "./useWalletInstalled";
-
+import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 
 export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
@@ -44,15 +43,14 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
     const connector = connectors.find((c) => c.name === wallet.name);
 
     return (
-      <Menu.Item
+      <Dropdown.Item
         as="button"
-        className="flex w-full items-center [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark"
         disabled={
           (isConnected || isConnecting) &&
           getActiveProviderKey() === wallet.name
         }
         key={wallet.name}
-        onClick={(e) => {
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
 
           if (connector) {
@@ -104,7 +102,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
             </IconButton>
           )}
         </div>
-      </Menu.Item>
+      </Dropdown.Item>
     );
   });
 };

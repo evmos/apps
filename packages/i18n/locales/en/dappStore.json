@@ -83,6 +83,17 @@
       "label": "Display Name",
       "placeholder": "user.evmos",
       "button": "Save changes"
+    },
+    "title": "Wallet"
+  },
+  "signIn": {
+    "button": "Sign in ",
+    "title": "Sign in with wallet",
+    "switchWallet": {
+      "title": "Wallet"
+    },
+    "settings": {
+      "title": "Settings"
     }
   }
 }

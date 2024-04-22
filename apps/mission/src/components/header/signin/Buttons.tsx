@@ -11,17 +11,14 @@ import { cn } from "helpers";
 import { ProfileContext, useProfileContext } from "../edit/useEdit";
 import { useAccount } from "wagmi";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
-
+import { Pulse } from "../../../../../../packages/ui/src/components/pulse/Pulse";
+import { useTranslation } from "@evmosapps/i18n/client";
 export const SignInButton = ({ open }: { open: boolean }) => {
+  const { t } = useTranslation("dappStore");
   return (
     <Button as="div" className="relative" outlined={open}>
-      {!open && (
-        <div
-          className=" before:content-[''] before:absolute before:top-1.5 before:right-0 
-before:-translate-y-1/2 before:w-[15px] before:h-[15px] before:lg:w-[12px] before:lg:h-[12px] before:animate-pulse before:bg-primary before:dark:bg-primary-dark before:rounded-full"
-        />
-      )}
-      Sign in
+      {!open && <Pulse />}
+      {t("signIn.button")}
     </Button>
   );
 };
@@ -37,14 +34,15 @@ export const ProfileButton = () => {
       data-testid={`wallet-profile-button wallet-profile-button-${getActiveProviderKey()}`}
     >
       <div className="flex items-center justify-center space-x-3">
-        <Image
-          src={profileImages[img].src}
-          width={24}
-          height={24}
-          alt={profileImages[img].src}
-          className={cn("rounded-full cursor-pointer")}
-        />
-
+        {
+          <Image
+            src={profileImages[img]?.src ?? ""}
+            width={24}
+            height={24}
+            alt={profileImages[img]?.src ?? ""}
+            className={cn("rounded-full cursor-pointer")}
+          />
+        }
         {profileName === "" ? (
           <AddressDisplay address={address} />
         ) : (

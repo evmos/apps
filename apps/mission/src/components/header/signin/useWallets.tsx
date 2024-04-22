@@ -13,15 +13,6 @@ const predefinedWallets = [
 
 const WALLET_KEY = "wallets_list";
 
-const setWalletsDb = (wallets: string[]) => {
-  localStorage.setItem(WALLET_KEY, JSON.stringify(wallets));
-};
-
-const getWalletsDb = () => {
-  const values = localStorage.getItem(WALLET_KEY);
-  return values ? (JSON.parse(values) as string[]) : predefinedWallets;
-};
-
 export interface WalletsContext {
   wallets: string[];
   setWallets: (newWallets: string) => void;
@@ -34,6 +25,15 @@ export const WalletsProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
+  const setWalletsDb = (wallets: string[]) => {
+    localStorage.setItem(WALLET_KEY, JSON.stringify(wallets));
+  };
+
+  const getWalletsDb = () => {
+    const values = localStorage.getItem(WALLET_KEY);
+    return values ? (JSON.parse(values) as string[]) : predefinedWallets;
+  };
+
   const [wallets, setWallets] = useState<string[]>(getWalletsDb());
 
   const updateWallets = (wallet: string) => {

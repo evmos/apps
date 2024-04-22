@@ -871,8 +871,8 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
       pnpm:
-        specifier: ^8.14.1
-        version: 8.14.1
+        specifier: ^9.0.5
+        version: 9.0.5
       superjson:
         specifier: ^2.2.1
         version: 2.2.1
@@ -17458,7 +17458,7 @@ packages:
     resolution: {integrity: sha512-iNZ576iTOGcfllftB73cPB5AN+XUQAT/T8xzsILsghXC1o8gJUqe3RHlcDqagu+biFpYQ61KQrZZJza8eRSYqw==}
     deprecated: Deprecated in favor of '@metamask/eth-sig-util'
     dependencies:
-      ethereumjs-abi: github.com/ethereumjs/ethereumjs-abi/ee3994657fa7a427238e6ba92a84d0b529bbcde0
+      ethereumjs-abi: git@github.com+ethereumjs/ethereumjs-abi/ee3994657fa7a427238e6ba92a84d0b529bbcde0
       ethereumjs-util: 5.2.1
     dev: false
 
@@ -17674,7 +17674,6 @@ packages:
     dependencies:
       is-hex-prefixed: 1.0.0
       strip-hex-prefix: 1.0.0
-    bundledDependencies: false
 
   /event-emitter@0.3.5:
     resolution: {integrity: sha512-D9rRn9y7kLPnJ+hMq7S/nhvoKwwvVJahBi2BPmx3bvbsEdK3W9ii8cBSGjP+72/LnM4n6fo3+dkCX5FeTQruXA==}
@@ -23163,9 +23162,9 @@ packages:
     resolution: {integrity: sha512-40QW5YalBNfQo5yRYmiw7Yz6TKKVr3h6970B2YE+3fQpsWcrbj1PzJgxeJ19DRQjhMbKPIuMY8rFaXc8moolVw==}
     engines: {node: '>=10.13.0'}
 
-  /pnpm@8.14.1:
-    resolution: {integrity: sha512-hWxOzZfF0/MDVOvDc80y+zcnQpXEidstD2E6HmDwEMrfuxUDbVJfOgbewYl+QhmzxPbTvo8vYvsKNmvuaqp1Mw==}
-    engines: {node: '>=16.14'}
+  /pnpm@9.0.5:
+    resolution: {integrity: sha512-pyJXXBj9eR+e9x44fG4WzAPJDYWbmwmY0EKMoOMiCCizKpbm3nPOo07bwPUIJHcbGmnH6ja4bao7icfm2aPZEg==}
+    engines: {node: '>=18.12'}
     hasBin: true
     dev: false
 
@@ -23820,7 +23819,6 @@ packages:
       react: 16.14.0
       scheduler: 0.19.1
     dev: false
-    bundledDependencies: false
 
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
@@ -24301,7 +24299,6 @@ packages:
       object-assign: 4.1.1
       prop-types: 15.8.1
     dev: false
-    bundledDependencies: false
 
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -28007,6 +28004,15 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
 
+  git@github.com+ethereumjs/ethereumjs-abi/ee3994657fa7a427238e6ba92a84d0b529bbcde0:
+    resolution: {commit: ee3994657fa7a427238e6ba92a84d0b529bbcde0, repo: git@github.com:ethereumjs/ethereumjs-abi.git, type: git}
+    name: ethereumjs-abi
+    version: 0.6.8
+    dependencies:
+      bn.js: 4.12.0
+      ethereumjs-util: 6.2.1
+    dev: false
+
   github.com/chainapsis/keplr-chain-registry/588b9bc688b31122911a51248ab3b40862f60249(@babel/core@7.24.0)(react-is@18.2.0):
     resolution: {tarball: https://codeload.github.com/chainapsis/keplr-chain-registry/tar.gz/588b9bc688b31122911a51248ab3b40862f60249}
     id: github.com/chainapsis/keplr-chain-registry/588b9bc688b31122911a51248ab3b40862f60249
@@ -28041,15 +28047,6 @@ packages:
       - supports-color
       - utf-8-validate
     dev: true
-
-  github.com/ethereumjs/ethereumjs-abi/ee3994657fa7a427238e6ba92a84d0b529bbcde0:
-    resolution: {tarball: https://codeload.github.com/ethereumjs/ethereumjs-abi/tar.gz/ee3994657fa7a427238e6ba92a84d0b529bbcde0}
-    name: ethereumjs-abi
-    version: 0.6.8
-    dependencies:
-      bn.js: 4.12.0
-      ethereumjs-util: 6.2.1
-    dev: false
 
   github.com/evmos/chain-token-registry/0f977421dca39debb81e3cbd302b57ec1e942091:
     resolution: {tarball: https://codeload.github.com/evmos/chain-token-registry/tar.gz/0f977421dca39debb81e3cbd302b57ec1e942091}

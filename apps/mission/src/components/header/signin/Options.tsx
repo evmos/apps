@@ -5,22 +5,22 @@
 
 import { useOtherWalletsModal } from "./WalletsModal";
 import { IconWalletPlus } from "@evmosapps/ui/icons/line/finances/wallet-plus.tsx";
-import { IconButton } from "../../../../../../packages/ui/src/button/icon-button";
+// import { IconButton } from "../../../../../../packages/ui/src/button/icon-button";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { CopyButton } from "./CopyButton";
 import { Dispatch, SetStateAction, Suspense } from "react";
 import { TotalEvmos, TotalUsd } from "./useEvmosBalance";
 import { useAccount, useDisconnect } from "wagmi";
-import { IconArrowSwap } from "@evmosapps/ui/icons/line/arrows/arrow-swap.tsx";
-import { IconPlus } from "@evmosapps/ui/icons/line/basic/plus.tsx";
+// import { IconArrowSwap } from "@evmosapps/ui/icons/line/arrows/arrow-swap.tsx";
+// import { IconPlus } from "@evmosapps/ui/icons/line/basic/plus.tsx";
 import { IconGear } from "@evmosapps/ui/icons/line/basic/gear.tsx";
 import { IconLogOut2 } from "@evmosapps/ui/icons/line/arrows/log-out-2.tsx";
 import { IconDollarCircle } from "@evmosapps/ui/icons/line/finances/dollar-circle.tsx";
 import { IconGlobe } from "@evmosapps/ui/icons/line/map/globe.tsx";
 import { IconBell } from "@evmosapps/ui/icons/line/alerts/bell.tsx";
 import { IconHashtag } from "@evmosapps/ui/icons/line/basic/hashtag.tsx";
-import Link from "next/link";
+// import Link from "next/link";
 import { Chip } from "../../../../../../packages/ui/src/chips/Chip";
 import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
 

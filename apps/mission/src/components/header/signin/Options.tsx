@@ -109,6 +109,8 @@ export const ProfileOptions = ({
         className=" flex justify-center flex-col gap-3 items-center"
         onClick={(e) => {
           e.preventDefault();
+          // TODO Mili: delete this setisopen
+          setIsOpen(false);
         }}
       >
         <div className="cursor-default w-fit gap-3 hover:dark:bg-opacity-50 transition-all duration-200  flex items-center text-paragraph dark:text-paragraph-dark text-xs leading-4 font-medium bg-surface-container-highest dark:bg-surface-container-highest-dark rounded-2xl px-3 py-2">
@@ -138,7 +140,7 @@ export const ProfileOptions = ({
           </Suspense>
         </p>
       </div>
-      <div className="flex justify-center gap-4 text-paragraph dark:text-paragraph-dark text-xs">
+      {/* <div className="flex justify-center gap-4 text-paragraph dark:text-paragraph-dark text-xs">
         <div className="flex flex-col gap-2 items-center justify-center ">
           <Link href="/portfolio">
             <IconButton
@@ -165,7 +167,7 @@ export const ProfileOptions = ({
           </Link>
           <p>Topup</p>
         </div>
-      </div>
+      </div> */}
     </Dropdown.Container>
   );
 };

@@ -43,7 +43,7 @@ export const WalletsForModal = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
 
     return (
       <button
-        className="flex w-full items-center mb-2 bg-surface-container dark:bg-surface-container-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark"
+        className="flex w-full items-center mb-3 bg-surface-container dark:bg-surface-container-dark py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark"
         disabled={
           (isConnected || isConnecting) &&
           getActiveProviderKey() === wallet.name
@@ -80,11 +80,17 @@ export const WalletsForModal = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
               </div>
             )}
           </div>
-          {connector && !isConnecting && !error && !isConnected && (
-            <p className="text-paragraph dark:text-paragraph-dark text-xs font-medium leading-4">
-              Detected
-            </p>
-          )}
+          {((isConnected &&
+            getActiveProviderKey()?.toLowerCase() !==
+              wallet.name.toLowerCase()) ||
+            !isConnected) &&
+            !error &&
+            !isConnecting &&
+            connector && (
+              <p className="text-paragraph dark:text-paragraph-dark text-xs font-medium leading-4">
+                Detected
+              </p>
+            )}
           {isConnecting &&
             walletSelectedToConnect === wallet.name &&
             !error && <Spinner />}

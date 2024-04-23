@@ -3,18 +3,20 @@
 
 "use client";
 import React, { useState } from "react";
-import { WALLETS_TYPE } from "./useSignIn";
+import { WALLETS_TYPE, useSignIn } from "./useSignIn";
 
-export const SearchFilter = (options: WALLETS_TYPE[]) => {
+export const SearchFilter = () => {
+  const { walletsToShow } = useSignIn();
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredOptions, setFilteredOptions] = useState(options);
+
+  const [filteredOptions, setFilteredOptions] = useState([] as WALLETS_TYPE[]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newSearchTerm = event.target.value.toLowerCase(); // Make search case-insensitive
+    const newSearchTerm = event.target.value.toLowerCase();
     setSearchTerm(newSearchTerm);
 
-    const filtered = options.filter((option) => {
-      const optionText = option && option.name.toLowerCase(); // Ensure case-insensitive search
+    const filtered = walletsToShow.filter((option) => {
+      const optionText = option && option.name.toLowerCase();
       return optionText?.includes(newSearchTerm);
     });
 
@@ -24,6 +26,6 @@ export const SearchFilter = (options: WALLETS_TYPE[]) => {
   return {
     searchTerm,
     handleSearchChange,
-    filteredOptions,
+    filteredOptions: searchTerm ? filteredOptions : walletsToShow,
   };
 };

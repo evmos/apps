@@ -81,11 +81,17 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
               </div>
             )}
           </div>
-          {connector && !isConnecting && !error && !isConnected && (
-            <p className="text-paragraph dark:text-paragraph-dark text-xs font-medium leading-4">
-              Detected
-            </p>
-          )}
+          {((isConnected &&
+            getActiveProviderKey()?.toLowerCase() !==
+              wallet.name.toLowerCase()) ||
+            !isConnected) &&
+            !error &&
+            !isConnecting &&
+            connector && (
+              <p className="text-paragraph dark:text-paragraph-dark text-xs font-medium leading-4">
+                Detected
+              </p>
+            )}
           {isConnecting &&
             walletSelectedToConnect === wallet.name &&
             !error && <Spinner />}

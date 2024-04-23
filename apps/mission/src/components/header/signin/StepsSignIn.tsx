@@ -95,11 +95,7 @@ export const StepsSignIn = () => {
 
     if (address && connector && dropdownStatus === "profile") {
       return (
-        <Profile
-          setDropdownStatus={setDropdownStatus}
-          setIsOpen={setIsOpen}
-          connector={connector}
-        />
+        <Profile setDropdownStatus={setDropdownStatus} connector={connector} />
       );
     }
   };

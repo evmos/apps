@@ -5,7 +5,7 @@ import { cva, VariantProps } from "cva";
 import { cn } from "helpers/src/classnames";
 import React from "react";
 import { createElement, ElementType, forwardRef } from "react";
-
+import { omit } from "lodash-es";
 const button = cva({
   base: [
     "rounded-full transition-[background-color,outline-color,filter] transition-200 flex gap-x-1",
@@ -174,13 +174,12 @@ function _Button<T extends ElementType = "button">({
   ...props
 }: ButtonProps<T>) {
   return createElement((as as string) ?? "button", {
-    ...props,
+    ...omit(props, ["variant", "size", "outlined", "tight", "ghost"]),
     className: cn(button(props), className as string),
   });
 }
 
 type ButtonType = <T extends ElementType = "button">(
   props: ButtonProps<T>,
-) => JSX.Element
+) => JSX.Element;
 export const Button = forwardRef(_Button) as ButtonType;
-// Button.Icon = IconButton;

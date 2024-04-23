@@ -11,11 +11,9 @@ import { ProfileOptions, ProfileSettings } from "./Options";
 
 export const Profile = ({
   connector,
-  setIsOpen,
   setDropdownStatus,
 }: {
   connector: Connector;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
   setDropdownStatus: Dispatch<SetStateAction<string>>;
 }) => {
   return (
@@ -25,11 +23,8 @@ export const Profile = ({
         setDropdownStatus={setDropdownStatus}
       />
 
-      <ProfileOptions setIsOpen={setIsOpen} />
-      <ProfileSettings
-        setDropdownStatus={setDropdownStatus}
-        setIsOpen={setIsOpen}
-      />
+      <ProfileOptions />
+      <ProfileSettings setDropdownStatus={setDropdownStatus} />
     </>
   );
 };

@@ -23,6 +23,7 @@ import { IconHashtag } from "@evmosapps/ui/icons/line/basic/hashtag.tsx";
 import Link from "next/link";
 import { Chip } from "../../../../../../packages/ui/src/chips/Chip";
 import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
+import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const SignInOptions = ({ close }: { close?: () => void }) => {
   const otherWalletsModal = useOtherWalletsModal();
@@ -50,11 +51,10 @@ export const SignInOptions = ({ close }: { close?: () => void }) => {
 
 export const ProfileSettings = ({
   setDropdownStatus,
-  setIsOpen,
 }: {
   setDropdownStatus: Dispatch<SetStateAction<string>>;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
+  const { setIsOpen } = useWallet();
   const { disconnect } = useDisconnect({
     mutation: {
       onSuccess: () => {},
@@ -97,24 +97,14 @@ export const ProfileSettings = ({
   );
 };
 
-export const ProfileOptions = ({
-  setIsOpen,
-}: {
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-}) => {
+export const ProfileOptions = () => {
   const { address } = useAccount();
+  const { setIsOpen } = useWallet();
   if (!address) return null;
 
   return (
     <Dropdown.Container className="space-y-6 pt-8 pb-10 pl-1 pr-2">
-      <div
-        className=" flex justify-center flex-col gap-3 items-center"
-        onClick={(e) => {
-          e.preventDefault();
-          // TODO Mili: delete this setisopen
-          setIsOpen(false);
-        }}
-      >
+      <div className=" flex justify-center flex-col gap-3 items-center">
         <div className="cursor-default w-fit gap-3 hover:dark:bg-opacity-50 transition-all duration-200  flex items-center text-paragraph dark:text-paragraph-dark text-xs leading-4 font-medium bg-surface-container-highest dark:bg-surface-container-highest-dark rounded-2xl px-3 py-2">
           <AddressDisplay address={address} />
           {address && <CopyButton text={address} />}
@@ -183,8 +173,6 @@ export const SettingsOptions = () => {
         </p>
       </div>
       <Dropdown.Container>
-        {/* TODO Mili: fix border bottom, is not appearing correctly */}
-
         <Dropdown.Item disabled as="div">
           {
             <IconDollarCircle className="w-4 text-paragraph dark:text-paragraph-dark" />

@@ -36,6 +36,7 @@ export const Settings = ({
       >
         <div className="flex items-center space-x-3">
           <Image
+            // TODO Mili: add blur ?
             src={image.src}
             width={24}
             height={24}

@@ -19,7 +19,6 @@ export const useInstallProvider = (provider: string) => {
 
       if (isInstalled) {
         setStatus("installed");
-        // setLocalOpen(true);
         // sendEvent(SUCCESSFUL_WALLET_INSTALLATION_COPILOT, {
         //   "Wallet Provider": "MetaMask",
         // });
@@ -34,5 +33,5 @@ export const useInstallProvider = (provider: string) => {
       window.removeEventListener("focus", handleFocus);
     };
   }, [status, provider]);
-  return [status, setStatus] as const;
+  return [setStatus] as const;
 };

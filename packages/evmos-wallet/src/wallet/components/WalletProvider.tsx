@@ -32,7 +32,7 @@ const WalletContext = createContext<{
   isWalletHydrated: boolean;
   config: typeof wagmiConfig;
   isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsOpen: (val: boolean) => void;
 }>({
   isWalletHydrated: false,
   config: wagmiConfig,
@@ -65,9 +65,6 @@ export const useWallet = () => {
 function Provider({ children }: WalletProviderProps) {
   const [isWalletHydrated, setIsWalletHydrated] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-  const updateWallets = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
   const { address, connector, isConnected } = useAccount();
 
   /**
@@ -158,7 +155,7 @@ function Provider({ children }: WalletProviderProps) {
         isWalletHydrated,
         config: wagmiConfig,
         isOpen: dropdownOpen,
-        setIsOpen: updateWallets,
+        setIsOpen: setDropdownOpen,
       }}
     >
       {children}

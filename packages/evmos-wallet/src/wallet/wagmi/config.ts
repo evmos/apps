@@ -24,57 +24,8 @@ export const wagmiConfig = createConfig({
     [evmoslocalnet.id]: http(),
   },
   ssr: true,
-  // multiInjectedProviderDiscovery: true,
 
   connectors: [
-    // injected({ target: "metaMask" }),
-    // injected({target: "coinbaseWallet"})
-    // coinbaseWallet({
-    //   appName: "Dappstore Evmos",
-    // }),
-    // injected({ target: "braveWallet" }),
-
-    // injected({
-    //   target: {
-    //     id: "rabby",
-    //     name: "Rabby Wallet",
-    //     provider: (window) => {
-    //       if (window && "rabby" in window) {
-    //         return window.rabby as EIP1193Provider;
-    //       }
-    //     },
-    //   },
-    // }),
-
-    // injected({
-    //   target: {
-    //     id: "rainbow",
-    //     name: "Rainbow",
-    //     provider: window.ethereum.providers?.find(isMetaMask),
-    //   },
-    // }),
-    // injected({
-    //   target: {
-    //     id: "trustWallet",
-    //     name: "Trust Wallet",
-    //     provider: (window) => {
-    //       if (window && "trustwallet" in window) {
-    //         return window.trustwallet as EIP1193Provider;
-    //       }
-    //     },
-    //   },
-    // }),
-    // injected({
-    //   target: {
-    //     id: "okxWallet",
-    //     name: "OKX Wallet",
-    //     provider: (window) => {
-    //       if (window && "okxwallet" in window) {
-    //         return window.okxwallet as EIP1193Provider;
-    //       }
-    //     },
-    //   },
-    // }),
     injected({
       target() {
         return {
@@ -93,7 +44,7 @@ export const wagmiConfig = createConfig({
         };
       },
     }),
-    // metaMask(),
+
     walletConnect({
       showQrModal: process.env.NODE_ENV !== "test",
       projectId: WALLET_CONNECT_PROJECT_ID,

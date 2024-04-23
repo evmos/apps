@@ -6,11 +6,11 @@
 import { WALLETS_TYPE, useSignIn } from "./useSignIn";
 import { useMemo, useState } from "react";
 import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
-import { Spinner } from "./Spinner";
+import { Spinner } from "@evmosapps/ui/components/spinners/Spinner.tsx";
 import { IconCross } from "@evmosapps/ui/icons/line/basic/cross.tsx";
 import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
 import { useInstallProvider } from "./useWalletInstalled";
-import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
+import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 
 export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
@@ -18,11 +18,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
   const { isConnecting, isConnected } = useWallet();
   const [walletSelectedToConnect, setWalletSelectedToConnect] = useState("");
 
-  // TODO Mili: fix this
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [providerStatus, setProviderStatus] = useInstallProvider(
-    walletSelectedToConnect,
-  );
+  const [setProviderStatus] = useInstallProvider(walletSelectedToConnect);
 
   const tempWallet = useMemo(() => {
     if (getActiveProviderKey() !== null) {

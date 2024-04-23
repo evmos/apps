@@ -5,14 +5,6 @@
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
 
-const ConnectModal = dynamic(
-  async () =>
-    (await import("stateful-components/src/modals/ConnectModal/ConnectModal"))
-      .ConnectModal,
-  {
-    ssr: false,
-  },
-);
 const SetupAccountModal = dynamic(
   () =>
     import(
@@ -22,15 +14,7 @@ const SetupAccountModal = dynamic(
     ssr: false,
   },
 );
-const ProfileModal = dynamic(
-  () =>
-    import("stateful-components/src/modals/ProfileModal/ProfileModal").then(
-      (mod) => mod.ProfileModal,
-    ),
-  {
-    ssr: false,
-  },
-);
+
 const TopupModal = dynamic(
   () =>
     import("stateful-components/src/modals/TopupModal/TopupModal").then(
@@ -77,9 +61,7 @@ const WalletsModal = dynamic(
 export const Modals = () => {
   return (
     <Suspense>
-      <ConnectModal />
       <SetupAccountModal />
-      <ProfileModal />
       <TopupModal />
       <TermsOfServiceModal />
       <ConsentModal />

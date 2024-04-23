@@ -27,22 +27,24 @@ import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/
 export const SignInOptions = ({ close }: { close?: () => void }) => {
   const otherWalletsModal = useOtherWalletsModal();
   return (
-    <Dropdown.Item
-      as="button"
-      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-        e.preventDefault();
-        otherWalletsModal.setIsOpen(true, {}, true);
-        close && close();
-      }}
-    >
-      {
-        <IconWalletPlus className="w-7 text-paragraph dark:text-paragraph-dark" />
-      }
-      <div className="text-left flex justify-between w-full items-center">
-        Other wallets
-        <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
-      </div>
-    </Dropdown.Item>
+    <Dropdown.Container>
+      <Dropdown.Item
+        as="button"
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+          e.preventDefault();
+          otherWalletsModal.setIsOpen(true, {}, true);
+          close && close();
+        }}
+      >
+        {
+          <IconWalletPlus className="w-7 text-paragraph dark:text-paragraph-dark" />
+        }
+        <div className="text-left flex justify-between w-full items-center">
+          Other wallets
+          <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
+        </div>
+      </Dropdown.Item>
+    </Dropdown.Container>
   );
 };
 

@@ -6,10 +6,12 @@
 import { useModal } from "helpers";
 
 import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
-import { WalletsForModal } from "./WalletsForModal";
+
 import { SearchFilter } from "./Search";
 import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
 import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
+import { Wallets } from "./Wallets";
+import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 export const useOtherWalletsModal = () => useModal("supported-wallets2");
 
 export const WalletsModal = () => {
@@ -33,9 +35,9 @@ export const WalletsModal = () => {
         </div>
 
         <div className="max-h-[350px] overflow-auto">
-          {/* <Wallets wallets={walletsToShow} /> */}
-
-          <WalletsForModal wallets={filteredOptions} />
+          <Dropdown.Menu as="div">
+            <Wallets wallets={filteredOptions} />
+          </Dropdown.Menu>
         </div>
       </Modal.Body>
     </Modal>

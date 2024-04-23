@@ -35,6 +35,8 @@ export const WalletsModal = () => {
         </div>
 
         <div className="max-h-[300px] overflow-auto">
+          {/* <Wallets wallets={walletsToShow} /> */}
+
           <WalletsForModal wallets={walletsToShow} />
         </div>
         {/* {filteredOptions.length === 0 && searchTerm && (

@@ -90,13 +90,13 @@ export const WalletsForModal = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
             !error && <Spinner />}
           {getActiveProviderKey()?.toLowerCase() ===
             wallet.name.toLowerCase() && (
-            <IconButton variant="success" size="sm">
+            <IconButton as="div" variant="success" size="sm">
               <IconCheck />
             </IconButton>
           )}
 
           {error && error.name === wallet.name && (
-            <IconButton variant="danger" size="sm">
+            <IconButton as="div" variant="danger" size="sm">
               <IconCross />
             </IconButton>
           )}

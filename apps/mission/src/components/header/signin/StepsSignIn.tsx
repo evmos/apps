@@ -8,12 +8,11 @@ import { SignInTitle, WalletsTitle } from "./Titles";
 import { Wallets } from "./Wallets";
 import { SignInOptions } from "./Options";
 import { useSignIn } from "./useSignIn";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { Profile } from "./Profile";
 import { Settings } from "./Settings";
 import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
-import useComponentVisible from "./useComponentVisible";
 
 export const StepsSignIn = () => {
   const { defaultWallets } = useSignIn();
@@ -27,22 +26,43 @@ export const StepsSignIn = () => {
     isReconnecting,
     isDisconnected,
     isConnecting,
+    setIsOpen,
+    isOpen,
   } = useWallet();
 
-  const { ref, isComponentVisible, setIsComponentVisible } =
-    useComponentVisible();
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (ref.current && !ref.current.contains(event.target as Node)) {
+      setIsOpen(!isOpen);
+    }
+  };
+  const closeOnEscapePressed = (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      setIsOpen(!isOpen);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, !isOpen);
+    document.addEventListener("keydown", closeOnEscapePressed, !isOpen);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, !isOpen);
+      document.removeEventListener("keydown", closeOnEscapePressed, !isOpen);
+    };
+  });
 
   useEffect(() => {
     const status = localStorage.getItem("redirect-wallet");
     if (status === "true") {
-      setIsComponentVisible(true);
+      setIsOpen(true);
       localStorage.removeItem("redirect-wallet");
     }
-  }, [setIsComponentVisible]);
+  }, [setIsOpen]);
 
   const drawButton = () => {
     if (isDisconnected || isConnecting) {
-      return <SignInButton open={isComponentVisible} />;
+      return <SignInButton open={isOpen} />;
     }
     if (address && connector) {
       return <ProfileButton />;
@@ -65,7 +85,7 @@ export const StepsSignIn = () => {
           <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark mt-5 ">
             <Wallets wallets={defaultWallets} />
           </div>
-          <SignInOptions close={() => setIsComponentVisible(false)} />
+          <SignInOptions close={() => setIsOpen(false)} />
         </>
       );
     }
@@ -77,7 +97,7 @@ export const StepsSignIn = () => {
       return (
         <Profile
           setDropdownStatus={setDropdownStatus}
-          setIsOpen={setIsComponentVisible}
+          setIsOpen={setIsOpen}
           connector={connector}
         />
       );
@@ -93,22 +113,24 @@ export const StepsSignIn = () => {
   }
 
   return (
-    <Dropdown isOpen={isComponentVisible} setIsOpen={setIsComponentVisible}>
-      <>
-        <Dropdown.Button
-          onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-            e.preventDefault();
-            setIsComponentVisible(!isComponentVisible);
-          }}
-        >
-          {drawButton()}
-        </Dropdown.Button>
-        {isComponentVisible && (
-          <Dropdown.Items ref={ref} static>
-            {drawContent()}
-          </Dropdown.Items>
-        )}
-      </>
-    </Dropdown>
+    <div className="relative text-right">
+      <Dropdown.Menu>
+        <>
+          <Dropdown.Button
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+              e.preventDefault();
+              setIsOpen(!isOpen);
+            }}
+          >
+            {drawButton()}
+          </Dropdown.Button>
+          {isOpen && (
+            <Dropdown.Items ref={ref} static>
+              {drawContent()}
+            </Dropdown.Items>
+          )}
+        </>
+      </Dropdown.Menu>
+    </div>
   );
 };

@@ -12,11 +12,10 @@ import {
   useState,
 } from "react";
 // import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
-import { wagmiConfig } from "@evmosapps/evmos-wallet";
+import { useWallet, wagmiConfig } from "@evmosapps/evmos-wallet";
 import { disconnect } from "wagmi/actions";
 import { WalletsContext, useWAlletsContext } from "./useWallets";
 import { useOtherWalletsModal } from "./WalletsModal";
-// import useComponentVisible from "./useComponentVisible";
 
 export type WALLETS_TYPE =
   | {
@@ -36,7 +35,7 @@ export const useSignIn = () => {
     string | undefined
   >();
   const { setIsOpen } = useOtherWalletsModal();
-  // const { setIsComponentVisible } = useComponentVisible();
+  const { setIsOpen: setDropdownOpen } = useWallet();
   const { wallets, setWallets } = useWAlletsContext() as WalletsContext;
   const defaultWallets = supportedWallets.filter((item) =>
     wallets.includes(item.name),
@@ -68,8 +67,7 @@ export const useSignIn = () => {
         setError(undefined);
         setIsOpen(false);
         setWallets(connector.name);
-        // TODO Mili: create context for maintaining the dropdown state
-        // setIsComponentVisible(true);
+        setDropdownOpen(true);
       },
 
       onError: (e, { connector }) => {

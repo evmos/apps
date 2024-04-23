@@ -7,45 +7,19 @@ import {
   ComponentProps,
   ComponentPropsWithoutRef,
   PropsWithChildren,
-  createContext,
   forwardRef,
-  useContext,
 } from "react";
 import { Menu } from "@headlessui/react";
 import { cn } from "helpers/src/classnames";
 
-const DropdownContext = createContext<{
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}>({
-  isOpen: false,
-  setIsOpen: () => {},
-});
-
-export const useDropdown = () => {
-  return useContext(DropdownContext);
-};
-
-export type DropdownProps = {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
 export function Dropdown({
-  isOpen,
-  setIsOpen,
   children,
-
   ...rest
-}: PropsWithChildren<DropdownProps>) {
-  return (
-    <DropdownContext.Provider value={{ isOpen, setIsOpen }}>
-      <div className="relative text-right">
-        <Menu {...rest}>{children ?? <div />}</Menu>
-      </div>
-    </DropdownContext.Provider>
-  );
+}: PropsWithChildren<typeof Menu>) {
+  return <Menu {...rest}>{children ?? <div />}</Menu>;
 }
+
+Dropdown.Menu = Menu;
 
 const MenuButton = forwardRef<
   HTMLButtonElement,

@@ -3,7 +3,7 @@
 
 import { cn } from "helpers";
 import { EvmosPrice } from "./evmos-price/EvmosPrice";
-import { StepsSignIn } from "./signin/StepsSignIn";
+import { SignIn } from "./signin/SignIn";
 export const Header = () => (
   <header
     className={cn(
@@ -13,6 +13,6 @@ export const Header = () => (
     )}
   >
     <EvmosPrice />
-    <StepsSignIn />
+    <SignIn />
   </header>
 );

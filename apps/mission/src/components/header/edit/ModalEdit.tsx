@@ -14,7 +14,7 @@ import Image from "next/image";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { useState } from "react";
 import { ProfileContext, useProfileContext } from "./useEdit";
-import { generateBlurImage } from "helpers/src/schemas/entities/generateBlurImage";
+
 export const useEditModal = () => useModal("edit");
 export const profileImages = [purple, orange];
 
@@ -46,10 +46,9 @@ export const EditModal = () => {
             <Modal.Header>{t("profile.modal.title")}</Modal.Header>
             <div className="flex flex-col">
               <div className="flex items-center space-x-6">
-                {profileImages.map(async (img, index) => (
+                {profileImages.map((img, index) => (
+                  // TODO Mili: add blur ?
                   <Image
-                    blurDataURL={await generateBlurImage(img.src)}
-                    placeholder="blur"
                     key={index}
                     src={img.src}
                     width={80}

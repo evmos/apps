@@ -84,6 +84,8 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
             !error &&
             !isConnecting &&
             connector && (
+              // TODO Miili: check if it is keplr or leap and check for the global provider to show detected
+              // same for the redirection when trying to connect
               <p className="text-paragraph dark:text-paragraph-dark text-xs font-medium leading-4">
                 Detected
               </p>

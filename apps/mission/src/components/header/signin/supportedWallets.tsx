@@ -16,7 +16,7 @@ import { IconRabbyCirc } from "../../../../../../packages/ui/src/icons/wallet/ra
 import { IconRainbowCirc } from "../../../../../../packages/ui/src/icons/wallet/rainbow-circ";
 import { IconTrustWalletCirc } from "../../../../../../packages/ui/src/icons/wallet/trust-wallet-circ";
 import { IconLeap } from "../../../../../../packages/ui/src/icons/wallet/leap";
-
+import { IconOkxWallet } from "../../../../../../packages/ui/src/icons/wallet/okx-wallet";
 export type SUPPORTED_WALLETS_TYPE =
   | {
       name: string;
@@ -62,7 +62,7 @@ export const supportedWallets = [
   {
     name: "OKX Wallet",
     url: "https://www.okx.com/web3",
-    icon: IconMetamaskCirc,
+    icon: IconOkxWallet,
   },
 
   { name: "Keplr", url: "https://www.keplr.app/download", icon: IconKeplrCirc },

@@ -4,7 +4,6 @@
 "use client";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { WalletsModal } from "./header/signin/WalletsModal";
 
 const ConnectModal = dynamic(
   async () =>
@@ -63,6 +62,13 @@ const ConsentModal = dynamic(
 
 const EditModal = dynamic(
   () => import("./header/edit/ModalEdit").then((mod) => mod.EditModal),
+  {
+    ssr: false,
+  },
+);
+
+const WalletsModal = dynamic(
+  () => import("./header/signin/WalletsModal").then((mod) => mod.WalletsModal),
   {
     ssr: false,
   },

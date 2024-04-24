@@ -52,12 +52,13 @@ for (const file of files) {
   // if no license, add it
   console.log(`Adding license to ${file}`);
 
+
   writeFileSync(
     file,
     content.slice(0, expectedPosition) +
-      LICENSE_HEADER +
-      "\n\n" +
-      content.slice(expectedPosition),
+    LICENSE_HEADER +
+    "\n\n" +
+    content.slice(expectedPosition),
   );
 }
 

@@ -7,8 +7,7 @@ import { notionWith } from "helpers/src/clients/notion";
 import { get } from "lodash-es";
 
 const notion = notionWith({
-  revalidate: 60 * 5,
-  tags: ["notion-client", "blocked-proposals"],
+  next: { revalidate: 60 * 5, tags: ["notion-client", "blocked-proposals"] },
 });
 export const fetcEvmosBlockedProposals = async () => {
   const blockedProposalsPage = await notion.pages.retrieve({

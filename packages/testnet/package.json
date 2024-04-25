@@ -27,7 +27,7 @@
     "inquirer": "^9.2.11",
     "kill-port": "^2.0.1",
     "lodash-es": "^4.17.21",
-    "pino": "^8.15.0",
+    "pino": "^9.0.0",
     "pino-pretty": "^10.2.0",
     "smol-toml": "^1.1.2",
     "typescript": "^5.3.3",

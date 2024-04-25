@@ -25,108 +25,101 @@ const fetchProposalTally = async ({
       },
     },
   });
+
+const queryFn = async (chainRef: string) => {
+  let [blockedProposals, proposals] = await Promise.all([
+    await fetcEvmosBlockedProposals(),
+    cosmos(chainRef)
+      .GET("/cosmos/gov/v1/proposals", {
+        params: {
+          query: {
+            "pagination.limit": "50",
+            "pagination.reverse": true,
+          },
+        },
+      })
+      .then(({ data = {} }) => data.proposals ?? []),
+  ]);
+
+  proposals = proposals.filter(({ id, status }) => {
+    const isBlocked = id && blockedProposals.includes(id);
+    const isDepositPeriod = status === "PROPOSAL_STATUS_DEPOSIT_PERIOD";
+    return !isBlocked && !isDepositPeriod;
+  });
+
+  return await Promise.all(
+    proposals.map(
+      async ({
+        id,
+        title,
+        summary,
+        messages,
+        status,
+        final_tally_result,
+        voting_start_time,
+        voting_end_time,
+        deposit_end_time = "",
+        total_deposit,
+        submit_time = "",
+      }) => {
+        if (!id || !status || !voting_start_time || !voting_end_time) return [];
+        let tally = final_tally_result;
+        if (status === "PROPOSAL_STATUS_VOTING_PERIOD") {
+          const { data } = await fetchProposalTally({
+            chainRef,
+            proposalId: id,
+          });
+          tally = data?.tally ?? tally;
+        }
+        return [
+          {
+            id,
+            title:
+              title || get(messages, "0.content.title") || `Proposal ${id}`,
+
+            description:
+              summary || get(messages, "0.content.description") || "",
+
+            status,
+            tally: getPercentage({
+              yes: tally?.yes_count ?? "0",
+              no: tally?.no_count ?? "0",
+              abstain: tally?.abstain_count ?? "0",
+              noWithVeto: tally?.no_with_veto_count ?? "0",
+            }),
+            tallyAbsolute: {
+              yes: safeBigInt(tally?.yes_count ?? "0"),
+              no: safeBigInt(tally?.no_count ?? "0"),
+              abstain: safeBigInt(tally?.abstain_count ?? "0"),
+              noWithVeto: safeBigInt(tally?.no_with_veto_count ?? "0"),
+            },
+            votingStart: new Date(voting_start_time),
+            votingEnd: new Date(voting_end_time),
+            depositEnd: new Date(deposit_end_time),
+            submitTime: new Date(submit_time),
+            totalVotes: Object.values(tally ?? {}).reduce(
+              (acc, curr) => acc + safeBigInt(curr),
+              0n,
+            ),
+            totalDeposit: formatUnits(
+              safeBigInt(total_deposit?.[0]?.amount ?? "0"),
+              18,
+            ),
+            type: get(messages, "0.content.@type") ?? "",
+          },
+        ];
+      },
+    ),
+  ).then((data) => data.flat());
+};
 const ProposalsQueryOptions = (chainRef: string) =>
   queryOptions({
     queryKey: ["proposals", chainRef],
 
-    queryFn: async () => {
-      let [blockedProposals, proposals] = await Promise.all([
-        await fetcEvmosBlockedProposals(),
-        cosmos(chainRef)
-          .GET("/cosmos/gov/v1/proposals", {
-            params: {
-              query: {
-                "pagination.limit": "50",
-                "pagination.reverse": true,
-              },
-            },
-          })
-          .then(({ data = {} }) => data.proposals ?? []),
-      ]);
-
-      proposals = proposals.filter(({ id, status }) => {
-        const isBlocked = id && blockedProposals.includes(id);
-        const isDepositPeriod = status === "PROPOSAL_STATUS_DEPOSIT_PERIOD";
-        return !isBlocked && !isDepositPeriod;
-      });
-
-      return await Promise.all(
-        proposals.map(
-          async ({
-            id,
-            title,
-            summary,
-            messages,
-            status,
-            final_tally_result,
-            voting_start_time,
-            voting_end_time,
-            deposit_end_time = "",
-            total_deposit,
-            submit_time = "",
-          }) => {
-            if (!id || !status || !voting_start_time || !voting_end_time)
-              return [];
-            let tally = final_tally_result;
-            if (status === "PROPOSAL_STATUS_VOTING_PERIOD") {
-              const { data } = await fetchProposalTally({
-                chainRef,
-                proposalId: id,
-              });
-              tally = data?.tally ?? tally;
-            }
-            return [
-              {
-                id,
-                title:
-                  title || get(messages, "0.content.title") || `Proposal ${id}`,
-
-                description:
-                  summary || get(messages, "0.content.description") || "",
-
-                status,
-                tally: getPercentage({
-                  yes: tally?.yes_count ?? "0",
-                  no: tally?.no_count ?? "0",
-                  abstain: tally?.abstain_count ?? "0",
-                  noWithVeto: tally?.no_with_veto_count ?? "0",
-                }),
-                tallyAbsolute: {
-                  yes: safeBigInt(tally?.yes_count ?? "0"),
-                  no: safeBigInt(tally?.no_count ?? "0"),
-                  abstain: safeBigInt(tally?.abstain_count ?? "0"),
-                  noWithVeto: safeBigInt(tally?.no_with_veto_count ?? "0"),
-                },
-                votingStart: new Date(voting_start_time),
-                votingEnd: new Date(voting_end_time),
-                depositEnd: new Date(deposit_end_time),
-                submitTime: new Date(submit_time),
-                totalVotes: Object.values(tally ?? {}).reduce(
-                  (acc, curr) => acc + safeBigInt(curr),
-                  0n,
-                ),
-                totalDeposit: formatUnits(
-                  safeBigInt(total_deposit?.[0]?.amount ?? "0"),
-                  18,
-                ),
-                type: get(messages, "0.content.@type") ?? "",
-              },
-            ];
-          },
-        ),
-      ).then((data) => data.flat());
-    },
+    queryFn: () => queryFn(chainRef),
   });
 
-type InferQueryFnData<T> = T extends { queryFn?: (...args: any[]) => infer R }
-  ? Awaited<R>
-  : T extends (...args: any[]) => infer Q
-    ? InferQueryFnData<Q>
-    : never;
-
-export type ProposalsQueryResponse = InferQueryFnData<
-  typeof ProposalsQueryOptions
->;
+export type ProposalsQueryResponse = Awaited<ReturnType<typeof queryFn>>;
 
 export const useProposals = () => {
   const chainRef = useEvmosChainRef();

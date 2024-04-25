@@ -4,12 +4,12 @@
 "use server";
 
 import { isUndefined } from "helpers";
-import { cachedFetch } from "helpers/src/dev/cached-fetch";
 import { formatFiat } from "helpers/src/format/format-fiat";
 import { nextCache } from "helpers/src/next/cache";
 import { seconds } from "helpers/src/time";
 import { z } from "zod";
 import { fetchTokens } from "../fetch-tokens";
+import { devMemo } from "helpers/src/dev/dev-memo";
 
 const revalidate = seconds("5m");
 
@@ -22,51 +22,58 @@ type CoingeckoResponse<T extends string, C extends string> = string extends T
       [K in T]: CoingeckoTokenPriceResponse<C>;
     };
 
-const fetchCoinGeckoTokenPrices = async function <
-  const T extends string,
-  const C extends string,
->(coingeckoIds: T[], currencies?: C[]) {
-  const url = new URL("https://api.coingecko.com/api/v3/simple/price");
-  url.searchParams.set("include_24hr_change", "true");
-  url.searchParams.set("include_last_updated_at", "true");
-  url.searchParams.set("vs_currencies", currencies?.join(",") ?? "usd");
+const fetchCoinGeckoTokenPrices = devMemo(
+  async function <const T extends string, const C extends string>(
+    coingeckoIds: T[],
+    currencies?: C[],
+  ) {
+    const url = new URL("https://api.coingecko.com/api/v3/simple/price");
+    url.searchParams.set("include_24hr_change", "true");
+    url.searchParams.set("include_last_updated_at", "true");
+    url.searchParams.set("vs_currencies", currencies?.join(",") ?? "usd");
 
-  url.searchParams.set("ids", coingeckoIds.join(","));
+    url.searchParams.set("ids", coingeckoIds.join(","));
 
-  return (await cachedFetch(url, {
-    next: {
-      revalidate,
-      tags: ["coingecko-token-prices"],
-    },
-    devCache: {
-      revalidate,
-      tags: ["coingecko-token-prices"],
-    },
-  })
-    .then((res) => res.json() as Promise<unknown>)
-    .then((tokenPrices) => tokenPrices)) as Promise<CoingeckoResponse<T, C>>;
-};
-
-const fetchStevmosRedemptionRate = async () => {
-  const resp = await fetch(
-    "https://stride-api.polkachu.com/Stride-Labs/stride/stakeibc/host_zone/evmos_9001-2",
-    {
+    return (await fetch(url, {
       next: {
         revalidate,
-        tags: ["stride-redemption-rate"],
+        tags: ["coingecko-token-prices"],
       },
-    },
-  ).then((res) => res.json() as Promise<unknown>);
-  return z
-    .object({
-      host_zone: z.object({
-        redemption_rate: z.coerce.number(),
-      }),
     })
-    .transform((data) => data.host_zone.redemption_rate)
-    .parse(resp);
-};
+      .then((res) => res.json() as Promise<unknown>)
+      .then((tokenPrices) => tokenPrices)) as Promise<CoingeckoResponse<T, C>>;
+  },
+  {
+    tags: ["fetchCoinGeckoTokenPrices"],
+    revalidate,
+  },
+);
 
+const fetchStevmosRedemptionRate = devMemo(
+  async () => {
+    const resp = await fetch(
+      "https://stride-api.polkachu.com/Stride-Labs/stride/stakeibc/host_zone/evmos_9001-2",
+      {
+        next: {
+          revalidate,
+          tags: ["stride-redemption-rate"],
+        },
+      },
+    ).then((res) => res.json() as Promise<unknown>);
+    return z
+      .object({
+        host_zone: z.object({
+          redemption_rate: z.coerce.number(),
+        }),
+      })
+      .transform((data) => data.host_zone.redemption_rate)
+      .parse(resp);
+  },
+  {
+    tags: ["fetchStevmosRedemptionRate"],
+    revalidate,
+  },
+);
 export const fetchTokenPrices = nextCache(
   async () => {
     const url = new URL("https://api.coingecko.com/api/v3/simple/price");

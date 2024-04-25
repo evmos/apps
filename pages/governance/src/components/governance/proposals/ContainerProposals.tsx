@@ -8,9 +8,9 @@ import { Link } from "@evmosapps/i18n/client";
 import { useAccount } from "wagmi";
 import { getActiveProviderKey } from "@evmosapps/evmos-wallet";
 import { useProposals } from "../../../utils/hooks/useProposals";
-import { createSlug } from "helpers";
+import { createSlug} from "helpers/src/schemas/utils/createSlug";
 
-export const ContainerProposals = ({}) => {
+export const ContainerProposals = ({ }) => {
   const { address } = useAccount();
   const activeProviderKey = getActiveProviderKey();
   const { data } = useProposals();

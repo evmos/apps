@@ -1,10 +1,11 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-
+"use server";
 import { z } from "zod";
 
 import { CATEGORIES_PAGE_NOTION_ID } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
-import { Log, categorySchema } from "helpers";
+import { Log } from "helpers";
+import { categorySchema } from "helpers/src/schemas/entities/categorySchema";
 import { notion } from "helpers/src/clients/notion";
 import { fetchNotionPaginated } from "./fetch-notion-paginated";
 

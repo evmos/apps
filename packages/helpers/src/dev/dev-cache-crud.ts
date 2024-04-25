@@ -7,12 +7,10 @@ import path from "path";
 import { E } from "../error-handling";
 import { Log } from "helpers/src/logger";
 import { cacheDir } from "./constants";
+import SuperJSON from "superjson";
 
 const notDevWarning = () => {
-  if (
-    process.env.NODE_ENV !== "development" &&
-    process.env.NODE_ENV !== "test"
-  ) {
+  if (process.env.NODE_ENV === "production") {
     throw new Error(
       "Dev Cache functions should not be used in production environments",
     );
@@ -32,13 +30,10 @@ export const writeDevCache = async (
 ) => {
   notDevWarning();
   await mkdir(cacheDir, { recursive: true });
-  Log("dev-cache-mode").info(
-    `Response cached for key '${key}'`,
-    `\ncacheDir: ${cacheDir}`,
-  );
+
   return await writeFile(
     path.join(cacheDir, key),
-    JSON.stringify({
+    SuperJSON.stringify({
       tags,
       cacheDate: Date.now(),
       cacheKey: key,
@@ -54,9 +49,9 @@ export const readDevCache = async <T = unknown>(
   notDevWarning();
   const [err, cached] = await E.try(
     () =>
-      readFile(path.join(cacheDir, key), "utf8").then(JSON.parse) as Promise<
-        CacheEntry<T>
-      >,
+      readFile(path.join(cacheDir, key), "utf8").then(
+        SuperJSON.parse,
+      ) as Promise<CacheEntry<T>>,
   );
   if (err) return null;
   return {
@@ -88,7 +83,7 @@ export const readCacheEntries = async () => {
     res.map(
       (entry) =>
         readFile(path.join(cacheDir, entry), "utf8").then(
-          JSON.parse,
+          SuperJSON.parse,
         ) as Promise<CacheEntry<unknown>>,
     ),
   );

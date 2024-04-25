@@ -20,11 +20,14 @@ let passed = true;
 for (const file of files) {
   let content = readFileSync(file, "utf8");
   let licensePosition = content.indexOf(LICENSE);
+  const expectedPosition = content.startsWith("#!")
+    ? content.indexOf("\n") + 1
+    : 0;
 
   // if license, skip
-  if (licensePosition === 0) continue;
+  if (licensePosition === expectedPosition) continue;
 
-  if (licensePosition > 0) {
+  if (licensePosition > expectedPosition) {
     if (!shouldFix) {
       console.log(`License not at top of ${file}`);
       passed = false;
@@ -46,7 +49,15 @@ for (const file of files) {
   }
   // if no license, add it
   console.log(`Adding license to ${file}`);
-  writeFileSync(file, `${LICENSE}\n\n${content}`);
+
+  // writeFileSync(file, `${LICENSE_HEADER}\n\n${content}`);
+  writeFileSync(
+    file,
+    content.slice(0, expectedPosition) +
+      LICENSE +
+      "\n\n" +
+      content.slice(expectedPosition),
+  );
 }
 
 console.log(`${files.length} files checked.`);

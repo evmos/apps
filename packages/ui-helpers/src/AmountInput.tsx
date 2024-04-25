@@ -11,8 +11,10 @@ import {
   ComponentRef,
 } from "react";
 import { formatUnits, parseUnits } from "viem";
-import { cn, clamp, E } from "helpers";
 import cx from "clsx";
+import { E } from "helpers/src/error-handling";
+import { clamp } from "helpers/src/bigint";
+import { cn } from "helpers/src/classnames";
 
 export const AmountInput = ({
   value,

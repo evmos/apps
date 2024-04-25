@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "lib": ["DOM", "ESNext"],
+    "target": "bundler",
+    "moduleResolution": "node",
+    "module": "ESNext",
+
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "types": ["@types/node"]
+  },
+  "include": [
+    "./**/*",
+    "./tc39.d.ts",
+    "../helpers/src/buffer-to-base64.ts",
+    "../helpers/src/image-store.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

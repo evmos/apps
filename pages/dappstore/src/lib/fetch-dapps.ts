@@ -1,11 +1,13 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
+"use server"
 import { ECOSYSTEM_PAGE_NOTION_ID } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
-import { Log, dappSchema } from "helpers";
+import { Log  } from "helpers";
 import { notion } from "helpers/src/clients/notion";
 import { cache } from "react";
 import { fetchNotionPaginated } from "./fetch-notion-paginated";
+import { dappSchema } from "helpers/src/schemas/entities/dappSchema";
 
 export const fetchNotionEcosystemDb = async () => {
   return fetchNotionPaginated((cursor) =>

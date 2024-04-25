@@ -9,7 +9,7 @@ import { getChains } from "../get-chain";
 export const IBC_DENOMS_MAP: Record<string, Token> = {};
 const chains = getChains();
 const evmos = chains.find(({ prefix }) => prefix === "evmos")!;
-const others = chains.filter(({ prefix }) => prefix !== "evmos")!;
+const others = chains.filter(({ prefix }) => prefix !== "evmos");
 /**
  * Evmos tokens in other networks
  */

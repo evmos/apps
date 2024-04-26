@@ -11,7 +11,6 @@ import { WebsiteIcon } from "@evmosapps/icons/WebsiteIcon";
 
 import { DescriptionItem } from "./description-item";
 import { DApp } from "../../../lib/fetch-explorer-data";
-//import { cn } from "helpers";
 import { EcosystemCard } from "../../landing/partials/ecosystem-card";
 import { translation } from "@evmosapps/i18n/server";
 import { EcosystemCardGrid } from "../../landing/partials/ecosystem-card-grid";
@@ -59,7 +58,7 @@ export const DescriptiondApp = async ({
 
   return (
     <div className=" md:space-y-12 mb-12 lg:mb-24">
-      <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 -mt-24 md:mt-0">
+      <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 mb-10 -mt-24 md:mt-0">
         {/* dapp icon */}
         <div className="relative w-20 h-20 aspect-square rounded-[1rem] overflow-hidden">
           {dapp.icon && (
@@ -76,12 +75,12 @@ export const DescriptiondApp = async ({
         </div>
         {/* dapp name */}
         <div className="flex flex-col grow shrink basis-0 justify-start items-baseline gap-2 md:flex-row">
-          <h1 className="text-xl md:text-5xl lg:text-4xl leading-[48px] text-heading dark:text-heading-dark">
+          <h1 className="text-xl md:text-5xl lg:text-4xl leading-[48px] mx-auto md:mx-0 text-heading dark:text-heading-dark">
             {dapp.name}
           </h1>
           {/* Instant dapp badge */}
           {dapp.instantDapp && (
-            <div className="flex items-center gap-px">
+            <div className="flex items-center gap-px mx-auto -ml-1 md:mx-0">
               <div className="relative">
                 <IconLightning className="h-3 w-3 mb-0.5 text-primary-container dark:text-primary-container-dark" />
               </div>
@@ -90,9 +89,24 @@ export const DescriptiondApp = async ({
               </p>
             </div>
           )}
+          {/* No-instant-dapp button mobile */}
+          {!dapp.instantDapp && dapp.dapp.url && (
+            <div className="block md:hidden mx-auto">
+              <DescriptionLink href={dapp.dapp.url}>
+                <Button variant={"primary"} className="w-full mb-3">
+                  {t("ecosystem.open")} <IconArrowRightRec />
+                </Button>
+              </DescriptionLink>
+              <div className="flex items-center justify-center">
+                <p className="text-xs text-subheading dark:text-subheading-dark">
+                  {t("ecosystem.noInstantdApps")}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
         {/* Share and favorite icons */}
-        <div className="flex justify-end items-center gap-4">
+        <div className="flex justify-end items-center gap-4 mx-auto md:mx-0">
           <IconButton variant={"low-emphasis"} outlined>
             <IconExport2 />
           </IconButton>
@@ -103,8 +117,8 @@ export const DescriptiondApp = async ({
       </div>
 
       {/* dApp body */}
-      <div className="flex flex-col lg:flex-row gap-y-12 lg:gap-y-24 gap-x-24 items-start">
-        <div className=" w-full grid gap-y-8">
+      <div className="flex flex-col lg:flex-row gap-y-12 lg:gap-y-24 gap-x-24 items-start mb-10">
+        <div className=" w-full grid gap-y-8 order-2 lg:order-1">
           {dapp.description && (
             <DescriptionItem
               title={t("instantdApp.description.title", {
@@ -190,42 +204,46 @@ export const DescriptiondApp = async ({
             </div>
           </div>
         </div>
-
-        {drawWidget() && (
-          <Frameline
-            className="w-full max-w-lg mx-auto grow"
-            variant="secondary"
-          >
-            <div className="flex items-center justify-center h-full">
-              {drawWidget()}
-            </div>
-          </Frameline>
-        )}
-        {!drawWidget() && (
-          <div className="w-full">
-            <div className="mb-6">
-              <Carousel images={images} />
-            </div>
-            {dapp.dapp.url && (
-              <div>
-                <DescriptionLink href={dapp.dapp.url}>
-                  <Button variant={"primary"} className="w-full mb-3">
-                    Open <IconArrowRightRec />
-                  </Button>
-                </DescriptionLink>
-                <div className="flex items-center justify-center">
-                  <p className="text-xs text-subheading dark:text-subheading-dark">
-                    This dApp will open in a new browser tab.
-                  </p>
-                </div>
+        {/* Widget or carousel */}
+        <div className="w-full order-1 lg:order-2">
+          {drawWidget() && (
+            <Frameline
+              className="w-full max-w-lg mx-auto grow"
+              variant="secondary"
+            >
+              <div className="flex items-center justify-center h-full">
+                {drawWidget()}
               </div>
-            )}
-          </div>
-        )}
+            </Frameline>
+          )}
+          {!drawWidget() && (
+            <div className="w-full">
+              <div className="mb-8">
+                <Carousel images={images} />
+              </div>
+              {dapp.dapp.url && (
+                <div className="hidden md:block">
+                  <DescriptionLink href={dapp.dapp.url}>
+                    <Button variant={"primary"} className="w-full mb-3">
+                      {t("ecosystem.open")}
+                      <IconArrowRightRec />
+                    </Button>
+                  </DescriptionLink>
+                  <div className="flex items-center justify-center">
+                    <p className="text-xs text-subheading dark:text-subheading-dark">
+                      {t("ecosystem.noInstantdApps")}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
 
+      {/* Related dapps */}
       <div className="flex justify-between items-center md:items-start">
-        <h2 className="text-xl text-heading dark:text-heading-dark ">
+        <h2 className="text-xl text-heading dark:text-heading-dark mb-5 md:-mb-10">
           {t("instantdApp.relatedApps.title")}
         </h2>
       </div>
@@ -234,7 +252,7 @@ export const DescriptiondApp = async ({
           ?.slice(0, 8)
           .map((dApp) => <EcosystemCard data={dApp} key={dApp.name} />)}
       </EcosystemCardGrid>
-
+      {/* Explore dapps banner */}
       <HeroSectionExplore totalApps={totalApps} />
     </div>
   );

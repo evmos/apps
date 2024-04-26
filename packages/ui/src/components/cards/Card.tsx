@@ -19,7 +19,6 @@ export const Card = forwardRef<HTMLElementTagNameMap["article"], CardProps>(
       <article
         className={cn(
           "rounded-xl cursor-pointer transition duration-300 ease-in-out w-fit bg-surface-container-lowest dark:bg-surface-container-lowest-dark ",
-          //"hover:bg-surface-container hover:dark:bg-surface-container-dark",
           {
             "w-full": fullWidth,
             "bg-no-repeat bg-cover bg-top-center after:bg-gradient-to-t after:from-black/100 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0":

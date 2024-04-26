@@ -11,7 +11,10 @@ export const EcosystemCardGrid = ({
 }: ComponentProps<"section"> & { children: React.ReactNode }) => {
   return (
     <section
-      className={cn("grid gap-8 sm:grid-cols-2 lg:grid-cols-4", className)}
+      className={cn(
+        "grid gap-4 grid-cols-2 md:gap-8 lg:grid-cols-4 mb-10",
+        className,
+      )}
       {...rest}
     ></section>
   );

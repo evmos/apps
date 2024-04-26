@@ -34,6 +34,8 @@
     },
     "explore": "<div>Explore all {{count}} dApps<div/>",
     "discover": "Discover a diverse array of innovative apps",
+    "noInstantdApps": "This dApp will open in a new browser tab.",
+    "open": "Open",
     "instantdApps": {
       "title": "Instant dApps",
       "description": "Discover the power of cross-chain apps - instantly, in one place",

@@ -29,14 +29,14 @@ export const Carousel: React.FC<{ images: string[] }> = ({ images }) => {
             objectFit="contain"
           />
         )}
-        <div className="flex justify-center space-x-6 mt-6">
+        <div className="flex justify-center space-x-2 lg:space-x-6 mt-2 lg:mt-6">
           {images.map(
             (image, index) =>
               index !== mainImageIndex && (
                 <button
                   key={index}
                   onClick={() => selectImage(index)}
-                  className={`w-full h-24 rounded-xl ${
+                  className={`w-full h-auto lg:h-24 rounded-xl ${
                     index === selectedImageIndex ? "border-blue-500" : ""
                   }`}
                 >

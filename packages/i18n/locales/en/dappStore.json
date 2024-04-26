@@ -78,14 +78,12 @@
     },
     "wormhole": {
       "disruption": "We are currently in maintenance mode with the Wormhole bridge. This will be addressed by the next upgrade of the Evmos chain."
-
     },
     "signRequired": "Sign in required.",
     "singInToInteract": "Please sign in order to interact with the ",
     "IdApp": "Instant dApp"
-
-    }
   },
+
   "profile": {
     "modal": {
       "title": "Edit Profile",
@@ -93,6 +91,5 @@
       "placeholder": "user.evmos",
       "button": "Save changes"
     }
-
   }
 }

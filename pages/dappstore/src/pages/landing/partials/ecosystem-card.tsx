@@ -14,7 +14,7 @@ import Image from "next/image";
 import { cn } from "helpers";
 import { Card } from "../../../../../../packages/ui/src/components/cards/Card";
 import { Icon } from "./Icon";
-import { IconLightning } from "../../../../../../packages/ui/src/icons/filled";
+import { IconLightning } from "../../../../../../packages/ui/src/icons/line/images";
 
 export const EcosystemCard = ({ data }: { data: DApp }) => {
   const img = data.cover;

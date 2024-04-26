@@ -17,21 +17,20 @@ import { EcosystemCardGrid } from "../../landing/partials/ecosystem-card-grid";
 import { DescriptionLink } from "./description-link";
 import { CLICK_SOCIAL_BUTTON } from "tracker";
 import { WIDGETS } from "./widgets-index";
-import {
-  IconExport2,
-  IconStar as IconStarLine,
-} from "../../../../../../packages/ui/src/icons/line";
-<IconExport2 />;
 
-import { IconLightning } from "../../../../../../packages/ui/src/icons/filled";
+import { IconArrowTopRight } from "../../../../../../packages/ui/src/icons/line/arrows";
+import { IconExport2 } from "../../../../../../packages/ui/src/icons/line/arrows";
+import { IconStar as IconStarLine } from "../../../../../../packages/ui/src/icons/line/basic";
+import { IconLightning } from "../../../../../../packages/ui/src/icons/line/images";
 import { IconButton } from "../../../../../../packages/ui/src/button/icon-button";
 import { Button } from "../../../../../../packages/ui/src/button";
-import { IconArrowRightRec } from "../../../../../../packages/ui/src/icons/line";
+
 import Image from "next/image";
 import { Carousel } from "./carousel";
 import { HeroSectionExplore } from "../../landing/partials/hero-section-explore";
 
 //Adapt the page to each Dapp
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getSlugClass = (slug: string): string => {
   const slugClasses: Record<string, string> = {
     "leap-elements": "max-w-5xl",
@@ -102,7 +101,7 @@ export const DescriptiondApp = async ({
             <div className="block md:hidden mx-auto">
               <DescriptionLink href={dapp.dapp.url}>
                 <Button variant={"primary"} className="w-full mb-3">
-                  {t("ecosystem.open")} <IconArrowRightRec />
+                  {t("ecosystem.open")} <IconArrowTopRight />
                 </Button>
               </DescriptionLink>
               <div className="flex items-center justify-center">
@@ -234,7 +233,7 @@ export const DescriptiondApp = async ({
                   <DescriptionLink href={dapp.dapp.url}>
                     <Button variant={"primary"} className="w-full mb-3">
                       {t("ecosystem.open")}
-                      <IconArrowRightRec />
+                      <IconArrowTopRight />
                     </Button>
                   </DescriptionLink>
                   <div className="flex items-center justify-center">

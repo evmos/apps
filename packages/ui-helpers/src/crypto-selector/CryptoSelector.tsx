@@ -7,8 +7,8 @@ import { Listbox, Transition } from "@headlessui/react";
 import { Fragment, PropsWithChildren } from "react";
 import Image from "next/image";
 import { DropdownArrowIcon } from "@evmosapps/icons/DropdownArrowIcon";
-import { cn } from "helpers";
 import cx from "clsx";
+import { cn } from "helpers/src/classnames";
 export function CryptoSelector<T>(
   props: PropsWithChildren<{
     value: T;

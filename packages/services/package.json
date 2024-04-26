@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
-    "@types/node": "18.11.14",
+    "@types/node": "20.12.7",
     "typescript": "^5.3.3"
   },
   "browserslist": [

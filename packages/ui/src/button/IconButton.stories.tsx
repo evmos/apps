@@ -2,10 +2,10 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import type { Meta, StoryObj } from "@storybook/react";
-import * as icons from "../icons/line";
 import { Button } from ".";
 import { Fragment } from "react";
 import { IconButton } from "./icon-button";
+import { IconHeart } from "../icons/line/basic";
 const variants = [
   "primary",
   "secondary",
@@ -29,14 +29,8 @@ export const IconButtons: Story = {
   args: {
     icon: "IconElements",
   },
-  argTypes: {
-    icon: {
-      options: Object.keys(icons),
-      control: { type: "select" },
-    },
-  },
   render: (props) => {
-    const Icon = icons[props.icon as keyof typeof icons];
+    const Icon = IconHeart;
     return (
       <div className="grid text-center grid-cols-5 gap-4 [&>*]:flex [&>*]:items-center [&>*]:justify-center">
         {variants.map((variant) => (

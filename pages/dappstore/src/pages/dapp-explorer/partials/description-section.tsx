@@ -31,6 +31,14 @@ import Image from "next/image";
 import { Carousel } from "./carousel";
 import { HeroSectionExplore } from "../../landing/partials/hero-section-explore";
 
+//Adapt the page to each Dapp
+const getSlugClass = (slug: string): string => {
+  const slugClasses: Record<string, string> = {
+    "leap-elements": "max-w-5xl",
+  };
+  return slugClasses[slug] || "max-w-lg";
+};
+
 export const DescriptiondApp = async ({
   dapp,
   relatedApps,

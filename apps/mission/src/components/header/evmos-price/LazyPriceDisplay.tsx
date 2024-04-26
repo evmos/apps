@@ -3,14 +3,12 @@
 
 "use client";
 import dynamic from "next/dynamic";
+import { Skeleton } from "@evmosapps/ui/skeleton/index.tsx";
 
 export const LazyPriceDisplay = dynamic(
   () => import("./PriceDisplay").then((mod) => mod.PriceDisplay),
   {
     ssr: false,
-
-    loading: () => (
-      <div className="w-[13ch] h-[1lh] bg-gray2/20 rounded-md animate-pulse" />
-    ),
+    loading: () => <Skeleton.Blob className="w-32" />,
   },
 );

@@ -4,14 +4,14 @@
 "use server";
 import { z } from "zod";
 import { EVMOS_UTILS_PAGE_NOTION_ID } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
+import { Log } from "helpers";
+import { notion } from "helpers/src/clients/notion";
 import {
-  Log,
   checkboxSchema,
   createNotionPropertiesSchema,
   richTextSchema,
   titleSchema,
-} from "helpers";
-import { notion } from "helpers/src/clients/notion";
+} from "helpers/src/schemas";
 
 const evmosStatusPropertiesSchema = createNotionPropertiesSchema(
   z.object({
@@ -32,7 +32,6 @@ const fetchNotionEvmosStatus = async () =>
 
 const fetchEvmosStatus = async () => {
   const evmosStatus = await fetchNotionEvmosStatus();
-
   return evmosStatus.results.map((result) => {
     const parsed = evmosStatusSchema.safeParse(result);
 

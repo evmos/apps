@@ -43,11 +43,13 @@ export const StepsSignIn = () => {
       !otherWallets
     ) {
       setIsOpen(!isOpen);
+      setDropdownStatus("profile");
     }
   };
   const closeOnEscapePressed = (e: KeyboardEvent) => {
     if (e.key === "Escape" && !editModalOpen && !otherWallets) {
       setIsOpen(!isOpen);
+      setDropdownStatus("profile");
     }
   };
 
@@ -122,6 +124,7 @@ export const StepsSignIn = () => {
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               e.preventDefault();
               setIsOpen(!isOpen);
+              setDropdownStatus("profile");
             }}
           >
             {drawButton()}

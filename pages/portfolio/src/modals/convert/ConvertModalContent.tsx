@@ -10,7 +10,6 @@ import { cn, raise } from "helpers";
 import { AddressDisplay, Modal, PrimaryButton } from "@evmosapps/ui-helpers";
 import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 
-import { useConnectModal } from "stateful-components/src/modals/ConnectModal/ConnectModal";
 import { RxExclamationTriangle } from "react-icons/rx";
 import {
   MsgConvertERC20,
@@ -24,7 +23,7 @@ import { useEvmosChainRef } from "@evmosapps/evmos-wallet/src/registry-actions/h
 import { formatUnits } from "@evmosapps/evmos-wallet/src/registry-actions/utils/format-units";
 import Image from "next/image";
 import { watchAsset } from "viem/actions";
-import { getActiveProviderKey } from "@evmosapps/evmos-wallet";
+import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
 import { Link } from "@evmosapps/i18n/client";
 import { EXPLORER_URL } from "constants-helper";
 import { UpRightArrowIcon } from "@evmosapps/icons/UpRightArrowIcon";
@@ -40,9 +39,8 @@ export const ConvertModalContent = ({
 }: ConvertModalProps) => {
   const { address, isConnected, isConnecting } = useAccount();
 
-  const connectModal = useConnectModal();
   const chainRef = useEvmosChainRef();
-
+  const { setIsOpen: setDropdown } = useWallet();
   const { data: connectorClient } = useConnectorClient();
 
   const { data: tokenEntity } = useTrpcQuery((t) => t.token.byDenom(token));
@@ -51,8 +49,8 @@ export const ConvertModalContent = ({
 
   useEffect(() => {
     if (isConnected || isConnecting) return;
-    connectModal.setIsOpen(true, undefined, true);
-  }, [isConnected, isConnecting, connectModal]);
+    setDropdown(true);
+  }, [isConnected, isConnecting, setDropdown]);
 
   const { data: feeBalance } = useTrpcQuery((t) =>
     t.account.balance.byDenom({

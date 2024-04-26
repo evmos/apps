@@ -4,8 +4,9 @@
 import { ErrorMessage, PrimaryButton } from "@evmosapps/ui-helpers";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { Trans } from "next-i18next";
-import { useConnectModal } from "stateful-components/src/modals/ConnectModal/ConnectModal";
+
 import { PROMPTED_TO, sendEvent } from "tracker";
+import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const ConnectToWalletWarning = ({
   modalType,
@@ -13,7 +14,7 @@ export const ConnectToWalletWarning = ({
   modalType: string;
 }) => {
   const { t } = useTranslation("transfer-modal");
-  const { setIsOpen } = useConnectModal();
+  const { setIsOpen: setDropdown } = useWallet();
   return (
     <>
       <ErrorMessage className="justify-center pl-0 mb-4" variant="info">
@@ -30,9 +31,8 @@ export const ConnectToWalletWarning = ({
         type="submit"
         variant={"primary-lg"}
         className="mt-8"
-        onClick={(e) => {
-          e.preventDefault();
-          setIsOpen(true, {}, true);
+        onClick={() => {
+          setDropdown(true);
           sendEvent(PROMPTED_TO, {
             "Prompt To": "Connect Account",
             Modal: modalType,

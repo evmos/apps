@@ -5,7 +5,7 @@ import { TrackerEvent } from "@evmosapps/ui-helpers";
 import { CLICK_ON_VIEW_ALL_DAPPS } from "tracker";
 import { translation } from "@evmosapps/i18n/server";
 import { cn } from "helpers";
-import { Button } from "../../../../../../packages/ui/src/button";
+import { Button } from "@evmosapps/ui/button/index.tsx";
 
 export const HeroSectionExplore = async ({
   totalApps,

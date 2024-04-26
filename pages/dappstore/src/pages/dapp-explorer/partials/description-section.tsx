@@ -18,19 +18,18 @@ import { DescriptionLink } from "./description-link";
 import { CLICK_SOCIAL_BUTTON } from "tracker";
 import { WIDGETS } from "./widgets-index";
 
-import { IconArrowTopRight } from "../../../../../../packages/ui/src/icons/line/arrows";
-import { IconExport2 } from "../../../../../../packages/ui/src/icons/line/arrows";
-import { IconStar as IconStarLine } from "../../../../../../packages/ui/src/icons/line/basic";
-import { IconLightning } from "../../../../../../packages/ui/src/icons/line/images";
-import { IconButton } from "../../../../../../packages/ui/src/button/icon-button";
-import { Button } from "../../../../../../packages/ui/src/button";
+import { IconArrowTopRight } from "@evmosapps/ui/icons/line/arrows/arrow-top-right.tsx";
+import { IconExport2 } from "@evmosapps/ui/icons/line/arrows/export-2.tsx";
+import { IconStar as IconStarLine } from "@evmosapps/ui/icons/line/basic/star.tsx";
+import { IconLightning } from "@evmosapps/ui/icons/line/images/lightning.tsx";
+import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
+import { Button } from "@evmosapps/ui/button/index.tsx";
 
 import Image from "next/image";
 import { Carousel } from "./carousel";
 import { HeroSectionExplore } from "../../landing/partials/hero-section-explore";
 
 //Adapt the page to each Dapp
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getSlugClass = (slug: string): string => {
   const slugClasses: Record<string, string> = {
     "leap-elements": "max-w-5xl",
@@ -215,7 +214,7 @@ export const DescriptiondApp = async ({
         <div className="w-full order-1 lg:order-2">
           {drawWidget() && (
             <Frameline
-              className="w-full max-w-lg mx-auto grow"
+              className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}
               variant="secondary"
             >
               <div className="flex items-center justify-center h-full">

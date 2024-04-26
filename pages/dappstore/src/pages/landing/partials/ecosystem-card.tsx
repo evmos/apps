@@ -12,9 +12,9 @@ import { DApp } from "../../../lib/fetch-explorer-data";
 
 import Image from "next/image";
 import { cn } from "helpers";
-import { Card } from "../../../../../../packages/ui/src/components/cards/Card";
+import { Card } from "@evmosapps/ui/components/cards/Card.tsx";
 import { Icon } from "./Icon";
-import { IconLightning } from "../../../../../../packages/ui/src/icons/line/images";
+import { IconLightning } from "@evmosapps/ui/icons/line/images/lightning.tsx";
 
 export const EcosystemCard = ({ data }: { data: DApp }) => {
   const img = data.cover;

@@ -17,7 +17,7 @@ export const DescriptionItem = ({
         {title}
       </h2>
       <div
-        className="text-sm md:text-base text-paragraph dark:text-paragraph-dark flex flex-row space-x-4"
+        className="text-sm md:text-base text-paragraph dark:text-paragraph flex flex-row space-x-4"
         {...rest}
       />
     </div>

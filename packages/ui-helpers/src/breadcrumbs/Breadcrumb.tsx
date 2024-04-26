@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { ReactNode } from "react";
-import { RightArrow } from "@evmosapps/icons/RightArrow";
+import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { CLICK_ON_BREADCRUMB } from "tracker";
 import { TrackerEvent } from "../TrackerEvent";
 import Link from "next/link";
@@ -24,8 +24,8 @@ export const Breadcrumb = ({ pages }: { pages: BreadcrumbItem[] }) => {
           <li key={index}>
             <div className="flex items-center">
               {index > 0 && (
-                <RightArrow
-                  className={cn("h-3 w-3 flex-shrink-0 !text-red-300")}
+                <IconChevronRight
+                  className={cn("h-5 w-5 flex-shrink-0 text-paragraph")}
                   aria-hidden="true"
                 />
               )}

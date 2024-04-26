@@ -24,10 +24,12 @@ import Link from "next/link";
 import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
+import { useTranslation } from "@evmosapps/i18n/client";
 
 export const SignInOptions = () => {
   const otherWalletsModal = useOtherWalletsModal();
   const { setIsOpen } = useWallet();
+  const { t } = useTranslation("dappStore");
   return (
     <Dropdown.Container>
       <Dropdown.Item
@@ -42,7 +44,7 @@ export const SignInOptions = () => {
           <IconWalletPlus className="w-7 text-paragraph dark:text-paragraph-dark" />
         }
         <div className="text-left flex justify-between w-full items-center">
-          Other wallets
+          {t("signIn.supportedWallets.title")}
           <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
         </div>
       </Dropdown.Item>
@@ -56,6 +58,7 @@ export const ProfileSettings = ({
   setDropdownStatus: Dispatch<SetStateAction<string>>;
 }) => {
   const { setIsOpen } = useWallet();
+  const { t } = useTranslation("dappStore");
   const { disconnect } = useDisconnect({
     mutation: {
       onSuccess: () => {},
@@ -72,7 +75,7 @@ export const ProfileSettings = ({
       >
         {<IconGear className="w-5 text-paragraph dark:text-paragraph-dark" />}
         <div className="text-left flex justify-between w-full items-center ">
-          Settings
+          {t("profile.options.settings")}
           {
             <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />
           }
@@ -91,7 +94,7 @@ export const ProfileSettings = ({
           <IconLogOut2 className="w-5 text-paragraph dark:text-paragraph-dark" />
         }
         <div className="text-left flex justify-between w-full items-center ">
-          Sign out
+          {t("profile.options.signOut")}
         </div>
       </Dropdown.Item>
     </Dropdown.Container>
@@ -101,6 +104,7 @@ export const ProfileSettings = ({
 export const ProfileOptions = () => {
   const { address } = useAccount();
   const { setIsOpen } = useWallet();
+  const { t } = useTranslation("dappStore");
   if (!address) return null;
 
   return (
@@ -145,7 +149,7 @@ export const ProfileOptions = () => {
               <IconArrowSwap />
             </IconButton>
           </Link>
-          <p>Portfolio</p>
+          <p>{t("profile.options.portfolio")}</p>
         </div>
         <div className="flex flex-col gap-2 items-center justify-center">
           <Link href="/dapps/on-ramps/transak">
@@ -158,62 +162,78 @@ export const ProfileOptions = () => {
               <IconPlus />
             </IconButton>
           </Link>
-          <p>Topup</p>
+          <p>{t("profile.options.topUp")}</p>
         </div>
       </div>
     </Dropdown.Container>
   );
 };
 
+const settingsOptions = [
+  {
+    icon: IconDollarCircle,
+    title: "signIn.settings.options.currency",
+    description: "USD",
+    isComingSoon: false,
+    isDisabled: true,
+  },
+  {
+    icon: IconGlobe,
+    title: "signIn.settings.options.language",
+    description: "signIn.settings.options.english",
+    isComingSoon: false,
+    isDisabled: true,
+  },
+  {
+    icon: IconBell,
+    title: "signIn.settings.options.notifications",
+    description: "",
+    isComingSoon: true,
+    isDisabled: true,
+  },
+  {
+    icon: IconHashtag,
+    title: "signIn.settings.options.addressFormat",
+    description: "",
+    isComingSoon: true,
+    isDisabled: true,
+  },
+];
+
 export const SettingsOptions = () => {
+  const { t } = useTranslation("dappStore");
   return (
     <div>
       <div>
         <p className="text-left text-subheading dark:text-subheading-dark text-xs leading-4 font-medium mb-2">
-          Account
+          {t("signIn.settings.options.title")}
         </p>
       </div>
       <Dropdown.Container>
-        <Dropdown.Item disabled as="div">
-          {
-            <IconDollarCircle className="w-4 text-paragraph dark:text-paragraph-dark" />
-          }
-          <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
-            Currency
-            <span className="text-paragraph dark:text-paragraph-dark">USD</span>
-          </div>
-        </Dropdown.Item>
-        <Dropdown.Item as="div" disabled>
-          {
-            <IconGlobe className="w-4 text-paragraph dark:text-paragraph-dark" />
-          }
-          <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
-            Language
-            <span className="text-paragraph dark:text-paragraph-dark">
-              English
-            </span>
-          </div>
-        </Dropdown.Item>
-        <Dropdown.Item as="div" disabled>
-          {<IconBell className="w-4 text-paragraph dark:text-paragraph-dark" />}
-          <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
-            Notifications
-            <Chip variant="tertiary" disabled>
-              Coming soon
-            </Chip>
-          </div>
-        </Dropdown.Item>
-        <Dropdown.Item as="div" disabled>
-          {
-            <IconHashtag className="w-4 text-paragraph dark:text-paragraph-dark" />
-          }
-          <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
-            Address Format
-            <Chip variant="tertiary" disabled>
-              Coming soon
-            </Chip>
-          </div>
-        </Dropdown.Item>
+        {settingsOptions.map((option) => {
+          return (
+            <Dropdown.Item
+              as="div"
+              key={option.title}
+              disabled={option.isDisabled}
+            >
+              {
+                <option.icon className="w-4 text-paragraph dark:text-paragraph-dark" />
+              }
+              <div className="text-left flex gap-3 w-full items-center text-sm text-heading dark:text-heading-dark leading-5 font-normal ">
+                {t(option.title)}
+                <span className="text-paragraph dark:text-paragraph-dark">
+                  {t(option.description)}
+                </span>
+                {option.isComingSoon && (
+                  <Chip variant="tertiary" disabled>
+                    {t("signIn.settings.options.comingSoon")}
+                  </Chip>
+                )}
+              </div>
+            </Dropdown.Item>
+          );
+        })}
       </Dropdown.Container>
     </div>
   );

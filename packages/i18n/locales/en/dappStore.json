@@ -84,6 +84,12 @@
       "placeholder": "user.evmos",
       "button": "Save changes"
     },
+    "options": {
+      "portfolio": "Portfolio",
+      "topUp": "Top up",
+      "settings": "Settings",
+      "signOut": "Sign out"
+    },
     "title": "Wallet"
   },
   "signIn": {
@@ -92,8 +98,27 @@
     "switchWallet": {
       "title": "Wallet"
     },
+    "wallet": {
+      "recommended": "Recommended",
+      "detected": "Detected"
+    },
     "settings": {
-      "title": "Settings"
+      "title": "Settings",
+      "options": {
+        "title": "Account",
+        "comingSoon": "Coming soon",
+        "currency": "Currency",
+        "language": "Language",
+        "english": "English",
+        "notifications": "Notifications",
+        "addressFormat": "Address Format"
+      }
+    },
+    "supportedWallets": {
+      "title": "Other wallets",
+      "search": {
+        "placeholder": "Search"
+      }
     }
   }
 }

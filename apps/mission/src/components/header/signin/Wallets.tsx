@@ -18,12 +18,13 @@ import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { getGlobalLeapProvider } from "@evmosapps/evmos-wallet/src/wallet/utils/leap/getLeapProvider";
 import { Connector } from "wagmi";
+import { useTranslation } from "@evmosapps/i18n/client";
 
 export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
   const { connectors, connect, error } = useSignIn();
   const { isConnecting, isConnected } = useWallet();
   const [walletSelectedToConnect, setWalletSelectedToConnect] = useState("");
-
+  const { t } = useTranslation("dappStore");
   const [setProviderStatus] = useInstallProvider(walletSelectedToConnect);
 
   const isWalletDetected = (
@@ -102,7 +103,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
               !isConnected &&
               !isConnecting && (
                 <div className="text-paragraph dark:text-paragraph-dark text-xs">
-                  Recommended
+                  {t("signIn.wallet.recommended")}
                 </div>
               )}
             {error && error.name === wallet.name && (
@@ -113,7 +114,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
           </div>
           {isWalletDetected(wallet.name, connector) && (
             <p className="text-paragraph dark:text-paragraph-dark text-xs font-medium leading-4">
-              Detected
+              {t("signIn.wallet.detected")}
             </p>
           )}
           {isConnecting &&

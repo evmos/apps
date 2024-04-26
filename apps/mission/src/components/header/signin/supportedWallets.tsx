@@ -7,16 +7,16 @@
 
 "use client";
 
-import { IconCoinbaseCirc } from "../../../../../../packages/ui/src/icons/wallet/coinbase-circ";
-import { IconMetamaskCirc } from "../../../../../../packages/ui/src/icons/wallet/metamask-circ";
-import { IconKeplrCirc } from "../../../../../../packages/ui/src/icons/wallet/keplr-circ";
-import { IconWalletConnectCirc } from "../../../../../../packages/ui/src/icons/wallet/wallet-connect-circ";
-import { IconBraveWalletCirc } from "../../../../../../packages/ui/src/icons/wallet/brave-wallet-circ";
-import { IconRabbyCirc } from "../../../../../../packages/ui/src/icons/wallet/rabby-circ";
-import { IconRainbowCirc } from "../../../../../../packages/ui/src/icons/wallet/rainbow-circ";
-import { IconTrustWalletCirc } from "../../../../../../packages/ui/src/icons/wallet/trust-wallet-circ";
-import { IconLeap } from "../../../../../../packages/ui/src/icons/wallet/leap";
-import { IconOkxWallet } from "../../../../../../packages/ui/src/icons/wallet/okx-wallet";
+import { IconCoinbaseCirc } from "@evmosapps/ui/icons/wallet/coinbase-circ.tsx";
+import { IconMetamaskCirc } from "@evmosapps/ui/icons/wallet/metamask-circ.tsx";
+import { IconKeplrCirc } from "@evmosapps/ui/icons/wallet/keplr-circ.tsx";
+import { IconWalletConnectCirc } from "@evmosapps/ui/icons/wallet/wallet-connect-circ.tsx";
+import { IconBraveWalletCirc } from "@evmosapps/ui/icons/wallet/brave-wallet-circ.tsx";
+import { IconRabbyCirc } from "@evmosapps/ui/icons/wallet/rabby-circ.tsx";
+import { IconRainbowCirc } from "@evmosapps/ui/icons/wallet/rainbow-circ.tsx";
+import { IconTrustWalletCirc } from "@evmosapps/ui/icons/wallet/trust-wallet-circ.tsx";
+import { IconLeap } from "@evmosapps/ui/icons/wallet/leap.tsx";
+import { IconOkxWallet } from "@evmosapps/ui/icons/wallet/okx-wallet.tsx";
 export type SUPPORTED_WALLETS_TYPE =
   | {
       name: string;

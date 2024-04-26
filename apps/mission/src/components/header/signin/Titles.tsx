@@ -8,7 +8,7 @@ import { Dispatch, SetStateAction } from "react";
 
 import { getIcon } from "./helpers";
 import { useTranslation } from "@evmosapps/i18n/client";
-import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
+import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 
 export const SignInTitle = () => {
   const { t } = useTranslation("dappStore");

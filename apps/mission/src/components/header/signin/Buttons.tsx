@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { Button } from "../../../../../../packages/ui/src/button/index";
+import { Button } from "@evmosapps/ui/button/index.tsx";
 import { getActiveProviderKey } from "@evmosapps/evmos-wallet";
 import { IconChevronDown } from "@evmosapps/ui/icons/line/arrows/chevron-down.tsx";
 import Image from "next/image";
@@ -11,7 +11,7 @@ import { cn } from "helpers";
 import { ProfileContext, useProfileContext } from "../edit/useEdit";
 import { useAccount } from "wagmi";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
-import { Pulse } from "../../../../../../packages/ui/src/components/pulse/Pulse";
+import { Pulse } from "@evmosapps/ui/components/pulse/Pulse.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
 export const SignInButton = ({ open }: { open: boolean }) => {
   const { t } = useTranslation("dappStore");

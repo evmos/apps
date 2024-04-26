@@ -3,10 +3,10 @@
 
 "use client";
 
-import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
-import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
-import { Label } from "../../../../../../packages/ui/src/components/labels/Label";
-import { Button } from "../../../../../../packages/ui/src/button/index";
+import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
+import { Input } from "@evmosapps/ui/components/inputs/Input.tsx";
+import { Label } from "@evmosapps/ui/components/labels/Label.tsx";
+import { Button } from "@evmosapps/ui/button/index.tsx";
 import { cn, useModal } from "helpers";
 import purple from "../../../../public/purple.png";
 import orange from "../../../../public/orange.png";

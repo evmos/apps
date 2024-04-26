@@ -12,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { Profile } from "./Profile";
 import { Settings } from "./Settings";
-import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
+import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 
 export const StepsSignIn = () => {
   const { defaultWallets } = useSignIn();

@@ -5,10 +5,10 @@
 
 import { useModal } from "helpers";
 
-import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
+import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
 
 import { SearchFilter } from "./Search";
-import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
+import { Input } from "@evmosapps/ui/components/inputs/Input.tsx";
 import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 import { Wallets } from "./Wallets";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";

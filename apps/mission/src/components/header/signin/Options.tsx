@@ -5,7 +5,7 @@
 
 import { useOtherWalletsModal } from "./WalletsModal";
 import { IconWalletPlus } from "@evmosapps/ui/icons/line/finances/wallet-plus.tsx";
-import { IconButton } from "../../../../../../packages/ui/src/button/icon-button";
+import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { CopyButton } from "./CopyButton";
@@ -21,8 +21,8 @@ import { IconGlobe } from "@evmosapps/ui/icons/line/map/globe.tsx";
 import { IconBell } from "@evmosapps/ui/icons/line/alerts/bell.tsx";
 import { IconHashtag } from "@evmosapps/ui/icons/line/basic/hashtag.tsx";
 import Link from "next/link";
-import { Chip } from "../../../../../../packages/ui/src/chips/Chip";
-import { Dropdown } from "../../../../../../packages/ui/src/components/dropdown/Dropdown";
+import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
+import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const SignInOptions = ({ close }: { close?: () => void }) => {

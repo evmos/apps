@@ -18,14 +18,14 @@ export const HeroSectionExplore = async ({
     <div className="flex relative h-[368px] rounded-xl border border-surface-container-low-dark flex-col justify-end lg:justify-center overflow-hidden">
       <div
         className={cn(
-          "absolute py-[250px] -z-5 h-full w-full",
+          "absolute py-[250px] z-10 h-full w-full",
           "bg-gradient-to-t from-surface-container-low-dark via-surface-container-low-dark via-35% to-transparent",
           "lg:bg-gradient-to-r lg:from-surface-container-low-dark lg:via-surface-container-low-dark lg:via-30% lg:to-transparent",
         )}
       />
       <div
         className={cn(
-          "absolute py-[250px] -z-10 h-full w-full bg-[url(/apps-bg-2.png)] bg-no-repeat lg:bg-[length:1200px] bg-[length:800px] ",
+          "absolute py-[250px] z-0 h-full w-full bg-[url(/apps-bg-2.png)] bg-no-repeat lg:bg-[length:1200px] bg-[length:800px] ",
           "lg:rotate-[7deg] lg:translate-x-[25%] xl:translate-x-[35%] xl:translate-y-[5%]",
         )}
       />

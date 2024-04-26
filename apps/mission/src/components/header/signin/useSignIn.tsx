@@ -21,6 +21,7 @@ export type WALLETS_TYPE =
   | {
       name: string;
       url: string;
+      displayName: string;
       icon: ForwardRefExoticComponent<
         Omit<SVGProps<SVGSVGElement>, "ref"> & RefAttributes<SVGSVGElement>
       >;

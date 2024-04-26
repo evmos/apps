@@ -1,14 +1,14 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { Connector } from "wagmi";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
 import { Dispatch, SetStateAction } from "react";
 
-import { getIcon } from "./helpers";
+import { getWalletByConnector } from "./helpers";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
+import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const SignInTitle = () => {
   const { t } = useTranslation("dappStore");
@@ -20,14 +20,18 @@ export const SignInTitle = () => {
 };
 
 export const ProfileTitle = ({
-  connector,
   setDropdownStatus,
 }: {
-  connector: Connector;
   setDropdownStatus: Dispatch<SetStateAction<string>>;
 }) => {
+  const { connector } = useWallet();
   const { t } = useTranslation("dappStore");
-  const Icon = getIcon(connector.name);
+
+  if (!connector) {
+    return null;
+  }
+  const walletByConnector = getWalletByConnector(connector.name);
+  const Icon = walletByConnector?.icon;
   return (
     <Dropdown.Title
       as="button"
@@ -39,7 +43,7 @@ export const ProfileTitle = ({
       <div className="flex items-center w-full gap-3 text-sm leading-5 font-medium">
         {Icon && <Icon className="w-5" />} {t("profile.title")}
         <span className="text-paragraph dark:text-paragraph-dark font-normal">
-          {connector?.name}
+          {walletByConnector?.displayName}
         </span>
       </div>
       <IconChevronRight className="w-5 text-paragraph dark:text-paragraph-dark" />

@@ -33,43 +33,61 @@ export const supportedWallets = [
     name: "MetaMask",
     url: "https://metamask.io/download/",
     icon: IconMetamaskCirc,
+    displayName: "MetaMask",
   },
   {
     name: "Coinbase Wallet",
     url: "https://www.coinbase.com/es-LA/wallet/downloads",
     icon: IconCoinbaseCirc,
+    displayName: "Coinbase",
   },
   {
     name: "BraveWallet",
     url: "https://brave.com/wallet/",
     icon: IconBraveWalletCirc,
+    displayName: "Brave",
   },
   {
     name: "Rabby Wallet",
     url: "https://rabby.io/",
     icon: IconRabbyCirc,
+    displayName: "Rabby",
   },
   {
     name: "Rainbow",
     url: "https://rainbow.me/download",
     icon: IconRainbowCirc,
+    displayName: "Rainbow",
   },
   {
     name: "Trust Wallet",
     url: "https://trustwallet.com/es/download",
     icon: IconTrustWalletCirc,
+    displayName: "Trust",
   },
   {
     name: "OKX Wallet",
     url: "https://www.okx.com/web3",
     icon: IconOkxWallet,
+    displayName: "OKX",
   },
 
-  { name: "Keplr", url: "https://www.keplr.app/download", icon: IconKeplrCirc },
+  {
+    name: "Keplr",
+    url: "https://www.keplr.app/download",
+    icon: IconKeplrCirc,
+    displayName: "Keplr",
+  },
   {
     name: "Leap",
     url: "https://www.leapwallet.io/#download",
     icon: IconLeap,
+    displayName: "Leap",
   },
-  { name: "WalletConnect", url: "", icon: IconWalletConnectCirc },
+  {
+    name: "WalletConnect",
+    url: "",
+    icon: IconWalletConnectCirc,
+    displayName: "WalletConnect",
+  },
 ];

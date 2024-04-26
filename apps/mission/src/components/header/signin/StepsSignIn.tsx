@@ -85,7 +85,7 @@ export const StepsSignIn = () => {
           <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark mt-5 ">
             <Wallets wallets={defaultWallets} />
           </div>
-          <SignInOptions close={() => setIsOpen(false)} />
+          <SignInOptions />
         </>
       );
     }
@@ -94,9 +94,7 @@ export const StepsSignIn = () => {
     }
 
     if (address && connector && dropdownStatus === "profile") {
-      return (
-        <Profile setDropdownStatus={setDropdownStatus} connector={connector} />
-      );
+      return <Profile setDropdownStatus={setDropdownStatus} />;
     }
   };
 

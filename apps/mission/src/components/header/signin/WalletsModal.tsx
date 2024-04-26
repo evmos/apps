@@ -12,7 +12,7 @@ import { Input } from "@evmosapps/ui/components/inputs/Input.tsx";
 import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 import { Wallets } from "./Wallets";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
-export const useOtherWalletsModal = () => useModal("supported-wallets2");
+export const useOtherWalletsModal = () => useModal("supported-wallets");
 
 export const WalletsModal = () => {
   const { isOpen, setIsOpen } = useOtherWalletsModal();

@@ -25,8 +25,9 @@ import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 
-export const SignInOptions = ({ close }: { close?: () => void }) => {
+export const SignInOptions = () => {
   const otherWalletsModal = useOtherWalletsModal();
+  const { setIsOpen } = useWallet();
   return (
     <Dropdown.Container>
       <Dropdown.Item
@@ -34,7 +35,7 @@ export const SignInOptions = ({ close }: { close?: () => void }) => {
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           otherWalletsModal.setIsOpen(true, {}, true);
-          close && close();
+          setIsOpen(false);
         }}
       >
         {

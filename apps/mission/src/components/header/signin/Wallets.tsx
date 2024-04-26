@@ -93,10 +93,10 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
           }
         }}
       >
-        {Icon && <Icon className="w-7 h-7" />}
+        {Icon && <Icon className="w-7 h-7 shrink-0" />}
         <div className="text-left flex justify-between w-full items-center ">
           <div className="text-sm">
-            {wallet.name}
+            {wallet.displayName}
             {wallet.name === "MetaMask" &&
               !error &&
               !isConnected &&

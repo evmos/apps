@@ -15,6 +15,7 @@ import { IconEdit2 } from "@evmosapps/ui/icons/line/editor/edit-2.tsx";
 import { ProfileContext, useProfileContext } from "../edit/useEdit";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { useAccount } from "wagmi";
+import { useWallet } from "@evmosapps/evmos-wallet";
 export const Settings = ({
   setDropdownStatus,
 }: {
@@ -24,6 +25,7 @@ export const Settings = ({
   const image = profileImages[img] as StaticImageData;
   const editModal = useEditModal();
   const { address } = useAccount();
+  const { setIsOpen } = useWallet();
 
   return (
     <>
@@ -31,6 +33,7 @@ export const Settings = ({
       <button
         onClick={() => {
           editModal.setIsOpen(true, {}, true);
+          setIsOpen(false);
         }}
         className="flex justify-between w-full rounded-xl bg-surface-container  dark:bg-surface-container-dark  p-3 gap-4"
       >

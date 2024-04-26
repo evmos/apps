@@ -5,13 +5,19 @@
 
 import { WALLETS_TYPE, useSignIn } from "./useSignIn";
 import { useMemo, useState } from "react";
-import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
+import {
+  getActiveProviderKey,
+  getGlobalKeplrProvider,
+  useWallet,
+} from "@evmosapps/evmos-wallet";
 import { Spinner } from "@evmosapps/ui/components/spinners/Spinner.tsx";
 import { IconCross } from "@evmosapps/ui/icons/line/basic/cross.tsx";
 import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
 import { useInstallProvider } from "./useWalletInstalled";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
+import { getGlobalLeapProvider } from "@evmosapps/evmos-wallet/src/wallet/utils/leap/getLeapProvider";
+import { Connector } from "wagmi";
 
 export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
   const { connectors, connect, error } = useSignIn();
@@ -19,6 +25,25 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
   const [walletSelectedToConnect, setWalletSelectedToConnect] = useState("");
 
   const [setProviderStatus] = useInstallProvider(walletSelectedToConnect);
+
+  const isWalletDetected = (
+    wallet: string,
+    connector: Connector | undefined,
+  ) => {
+    if (
+      (wallet === "Keplr" && getGlobalKeplrProvider() === null) ||
+      (wallet === "Leap" && getGlobalLeapProvider() === null) ||
+      (isConnected &&
+        getActiveProviderKey()?.toLowerCase() === wallet.toLowerCase()) ||
+      isConnected ||
+      error ||
+      isConnecting ||
+      !connector
+    ) {
+      return false;
+    }
+    return true;
+  };
 
   const tempWallet = useMemo(() => {
     if (getActiveProviderKey() !== null) {
@@ -50,8 +75,17 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
           e.preventDefault();
 
           if (connector) {
-            connect({ connector });
-            setWalletSelectedToConnect(connector.name);
+            if (
+              (wallet.name === "Keplr" && getGlobalKeplrProvider() === null) ||
+              (wallet.name === "Leap" && getGlobalLeapProvider() === null)
+            ) {
+              window.open(wallet.url, "_blank");
+              setProviderStatus("started-install");
+              localStorage.setItem("redirect-wallet", "true");
+            } else {
+              connect({ connector });
+              setWalletSelectedToConnect(connector.name);
+            }
           } else {
             window.open(wallet.url, "_blank");
             setProviderStatus("started-install");
@@ -77,19 +111,11 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
               </div>
             )}
           </div>
-          {((isConnected &&
-            getActiveProviderKey()?.toLowerCase() !==
-              wallet.name.toLowerCase()) ||
-            !isConnected) &&
-            !error &&
-            !isConnecting &&
-            connector && (
-              // TODO Miili: check if it is keplr or leap and check for the global provider to show detected
-              // same for the redirection when trying to connect
-              <p className="text-paragraph dark:text-paragraph-dark text-xs font-medium leading-4">
-                Detected
-              </p>
-            )}
+          {isWalletDetected(wallet.name, connector) && (
+            <p className="text-paragraph dark:text-paragraph-dark text-xs font-medium leading-4">
+              Detected
+            </p>
+          )}
           {isConnecting &&
             walletSelectedToConnect === wallet.name &&
             !error && <Spinner />}

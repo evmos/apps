@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/ui-helpers",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "type": "module",

@@ -13,10 +13,13 @@ import { useWallet } from "@evmosapps/evmos-wallet";
 import { Profile } from "./Profile";
 import { Settings } from "./Settings";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
+import { useEditModal } from "../edit/ModalEdit";
+import { useOtherWalletsModal } from "./WalletsModal";
 
 export const StepsSignIn = () => {
   const { defaultWallets } = useSignIn();
-
+  const { isOpen: editModalOpen } = useEditModal();
+  const { isOpen: otherWallets } = useOtherWalletsModal();
   const [dropdownStatus, setDropdownStatus] = useState("profile");
 
   const {
@@ -33,12 +36,17 @@ export const StepsSignIn = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (ref.current && !ref.current.contains(event.target as Node)) {
+    if (
+      ref.current &&
+      !ref.current.contains(event.target as Node) &&
+      !editModalOpen &&
+      !otherWallets
+    ) {
       setIsOpen(!isOpen);
     }
   };
   const closeOnEscapePressed = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
+    if (e.key === "Escape" && !editModalOpen && !otherWallets) {
       setIsOpen(!isOpen);
     }
   };
@@ -65,7 +73,7 @@ export const StepsSignIn = () => {
       return <SignInButton open={isOpen} />;
     }
     if (address && connector) {
-      return <ProfileButton />;
+      return <ProfileButton open={isOpen} />;
     }
   };
 

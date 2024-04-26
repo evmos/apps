@@ -23,7 +23,7 @@ export const SignInButton = ({ open }: { open: boolean }) => {
   );
 };
 
-export const ProfileButton = () => {
+export const ProfileButton = ({ open }: { open: boolean }) => {
   const { name: profileName, img } = useProfileContext() as ProfileContext;
 
   const { address } = useAccount();
@@ -49,7 +49,11 @@ export const ProfileButton = () => {
           <span>{profileName}</span>
         )}
       </div>
-      <IconChevronDown className="w-5 text-paragraph dark:text-paragraph-dark" />
+      <IconChevronDown
+        className={`w-5 text-paragraph dark:text-paragraph-dark transition-all duration-300 ${
+          open && "rotate-180"
+        }`}
+      />
     </div>
   );
 };

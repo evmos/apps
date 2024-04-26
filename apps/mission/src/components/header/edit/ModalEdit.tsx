@@ -14,12 +14,14 @@ import Image from "next/image";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { useState } from "react";
 import { ProfileContext, useProfileContext } from "./useEdit";
+import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const useEditModal = () => useModal("edit");
 export const profileImages = [purple, orange];
 
 export const EditModal = () => {
   const { isOpen, setIsOpen, modalProps } = useEditModal();
+  const { setIsOpen: setDropdown } = useWallet();
 
   const { name, handleSetName, img, handleSetImg } =
     useProfileContext() as ProfileContext;
@@ -31,6 +33,7 @@ export const EditModal = () => {
     handleSetImg(localImg);
     handleSetName(localName);
     setIsOpen(false);
+
     // TODO Mili: add notification when changes are saved.
   };
 
@@ -39,7 +42,14 @@ export const EditModal = () => {
   };
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      onClose={() => {
+        setIsOpen(false);
+        setDropdown(true);
+      }}
+    >
       <Modal.Body>
         {modalProps && (
           <div className="space-y-5">

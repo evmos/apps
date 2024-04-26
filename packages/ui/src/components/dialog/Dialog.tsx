@@ -19,9 +19,11 @@ import { IconCross } from "../../icons/line/basic";
 const ModalContext = createContext<{
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose: () => void;
 }>({
   isOpen: false,
   setIsOpen: () => {},
+  onClose: () => {},
 });
 
 export const useModal = () => {
@@ -31,23 +33,25 @@ export const useModal = () => {
 export type ModalProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  onClose: () => void;
 };
 
 export function Modal({
   isOpen,
   setIsOpen,
   children,
+  onClose,
 
   ...rest
 }: PropsWithChildren<ModalProps>) {
   return (
-    <ModalContext.Provider value={{ isOpen, setIsOpen }}>
+    <ModalContext.Provider value={{ isOpen, setIsOpen, onClose }}>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
           className="relative z-10"
           static
-          onClose={() => setIsOpen(false)}
+          onClose={onClose}
           {...rest}
         >
           <div className="fixed inset-0 h-full w-full flex py-4 overflow-y-auto">
@@ -62,9 +66,7 @@ export function Modal({
             >
               <div
                 className="fixed inset-0 bg-black bg-opacity-50"
-                onClick={() => {
-                  setIsOpen(false);
-                }}
+                onClick={onClose}
               />
             </Transition.Child>
             <Transition.Child
@@ -112,7 +114,7 @@ const ModalHeader = ({
   className,
   ...rest
 }: ComponentProps<"div">) => {
-  const { setIsOpen } = useModal();
+  const { onClose } = useModal();
   return (
     <div
       className={cn(
@@ -126,7 +128,7 @@ const ModalHeader = ({
       </h5>
       <button
         className="cursor-pointer focus-visible:outline-none"
-        onClick={() => setIsOpen(false)}
+        onClick={onClose}
       >
         <IconCross
           className={cn(

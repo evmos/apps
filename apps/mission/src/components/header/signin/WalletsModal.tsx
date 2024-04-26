@@ -12,15 +12,23 @@ import { Input } from "@evmosapps/ui/components/inputs/Input.tsx";
 import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 import { Wallets } from "./Wallets";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
+import { useWallet } from "@evmosapps/evmos-wallet";
 export const useOtherWalletsModal = () => useModal("supported-wallets");
 
 export const WalletsModal = () => {
   const { isOpen, setIsOpen } = useOtherWalletsModal();
-
+  const { setIsOpen: setDropdown } = useWallet();
   const { searchTerm, handleSearchChange, filteredOptions } = SearchFilter();
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      onClose={() => {
+        setIsOpen(false);
+        setDropdown(true);
+      }}
+    >
       <Modal.Body>
         <Modal.Header className="text-2xl">Other Wallets</Modal.Header>
         <div className="w-full flex justify-start items-center relative mt-8 mb-6">

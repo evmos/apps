@@ -52,7 +52,9 @@ const config = {
   ],
   theme: {
     extend: {
+
       // TODO Mili: ask Julia how should we manage this images
+
       // backgroundImage: {
       //   default: "url('./components/images/default-card.png')",
       //   ranking: "url('./components/images/ranking-bg.png')",

@@ -6,13 +6,18 @@ export const DescriptionItem = ({
   title,
   ...rest
 }: { title: string } & ComponentProps<"div">) => {
+  const isSpecialTitle = title === "Social" || title === "Website";
   return (
-    <div className="space-y-2">
-      <h2 className="text-[#E8DFD3] tracking-wide text-xl md:text-2xl ">
+    <div className="mb-3 space-y-5">
+      <h2
+        className={`text-heading dark:text-heading-dark tracking-wide ${
+          isSpecialTitle ? "text-base" : "text-xl md:text-xl"
+        }`}
+      >
         {title}
       </h2>
       <div
-        className="text-sm md:text-base text-white/70 flex flex-row space-x-10"
+        className="text-sm md:text-base text-paragraph dark:text-paragraph flex flex-row space-x-4"
         {...rest}
       />
     </div>

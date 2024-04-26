@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { IconUser } from "../../../packages/ui/src/icons/line";
+import { IconUser } from "../../../packages/ui/src/icons/line/users";
 import { useTranslation } from "@evmosapps/i18n/client";
 
 export const ConnectionRequired = ({

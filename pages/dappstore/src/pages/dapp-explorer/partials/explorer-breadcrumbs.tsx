@@ -5,7 +5,7 @@
 
 import { Breadcrumb } from "@evmosapps/ui-helpers";
 import { fetchExplorerData } from "../../../lib/fetch-explorer-data";
-import { IconHome } from "../../../../../../packages/ui/src/icons/line";
+import { IconHome } from "../../../../../../packages/ui/src/icons/line/basic";
 import { ReactElement } from "react";
 
 interface BreadcrumbItem {

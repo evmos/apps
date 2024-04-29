@@ -41,7 +41,6 @@ export function Modal({
   setIsOpen,
   children,
   onClose,
-
   ...rest
 }: PropsWithChildren<ModalProps>) {
   return (

@@ -6,7 +6,7 @@ import { cn } from "helpers/src/classnames";
 import omit from "lodash-es/omit";
 import React, { ForwardedRef } from "react";
 import { createElement, ElementType, forwardRef } from "react";
-import { omit } from "lodash-es";
+
 const button = cva({
   base: [
     "rounded-full transition-[background-color,outline-color,filter] transition-200 flex gap-x-1",

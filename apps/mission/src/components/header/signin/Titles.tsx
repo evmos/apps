@@ -43,7 +43,7 @@ export const ProfileTitle = ({
       }}
     >
       <div className="flex items-center w-full gap-3 text-sm leading-5 font-medium">
-        {Icon && <Icon className="w-5" />} {t("profile.title")}
+        {Icon && <Icon className="w-7 shrink-0" />} {t("profile.title")}
         <span className="text-paragraph dark:text-paragraph-dark font-normal">
           {walletByConnector?.displayName}
         </span>

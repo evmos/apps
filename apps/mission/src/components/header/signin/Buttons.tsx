@@ -13,6 +13,7 @@ import { useAccount } from "wagmi";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { Pulse } from "@evmosapps/ui/components/pulse/Pulse.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
+import useWindowResize from "../../useResize";
 export const SignInButton = ({ open }: { open: boolean }) => {
   const { t } = useTranslation("dappStore");
   return (
@@ -25,12 +26,17 @@ export const SignInButton = ({ open }: { open: boolean }) => {
 
 export const ProfileButton = ({ open }: { open: boolean }) => {
   const { name: profileName, img } = useProfileContext() as ProfileContext;
-
+  const { isDesktop } = useWindowResize();
   const { address } = useAccount();
 
   return (
     <div
-      className="text-pearl bg-darGray800 flex items-center justify-center space-x-3 rounded-full px-4 md:px-8 py-2 font-bold"
+      className={`text-heading dark:text-heading-dark  flex items-center justify-center space-x-3 rounded-full  font-bold 
+      ${
+        isDesktop
+          ? "bg-surface-container-lowest dark:bg-surface-container-lowest-dark px-4 md:px-8 py-2"
+          : "border border-surface-container-high dark:border-surface-container-high-dark rounded-full p-[3px]"
+      }`}
       data-testid={`wallet-profile-button wallet-profile-button-${getActiveProviderKey()}`}
     >
       <div className="flex items-center justify-center space-x-3">
@@ -43,17 +49,20 @@ export const ProfileButton = ({ open }: { open: boolean }) => {
             className={cn("rounded-full cursor-pointer")}
           />
         }
-        {profileName === "" ? (
-          <AddressDisplay address={address} />
-        ) : (
-          <span>{profileName}</span>
-        )}
+        {isDesktop &&
+          (profileName === "" ? (
+            <AddressDisplay address={address} />
+          ) : (
+            <span>{profileName}</span>
+          ))}
       </div>
-      <IconChevronDown
-        className={`w-5 text-paragraph dark:text-paragraph-dark transition-all duration-300 ${
-          open && "rotate-180"
-        }`}
-      />
+      {isDesktop && (
+        <IconChevronDown
+          className={`w-5 text-paragraph dark:text-paragraph-dark transition-all duration-300 ${
+            open && "rotate-180"
+          }`}
+        />
+      )}
     </div>
   );
 };

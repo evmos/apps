@@ -11,7 +11,6 @@ import {
   SVGProps,
   useState,
 } from "react";
-// import { WALLET_NOTIFICATIONS } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
 import { useWallet, wagmiConfig } from "@evmosapps/evmos-wallet";
 import { disconnect } from "wagmi/actions";
 import { WalletsContext, useWAlletsContext } from "./useWallets";

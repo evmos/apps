@@ -96,7 +96,7 @@ const ModalBody = forwardRef<
     <Dialog.Panel
       ref={ref}
       className={cn(
-        "text-sm flex text-heading dark:text-heading-dark bg-surface-container-low dark:bg-surface-container-low-dark m-auto rounded-2xl flex-col p-6 max-w-md w-full border border-surface-container-highest dark:border-surface-container-highest-dark shadow-elevation",
+        "text-sm flex text-heading dark:text-heading-dark bg-surface-container-low dark:bg-surface-container-low-dark m-auto rounded-2xl flex-col p-6 max-w-md w-full border border-surface-container-highest dark:border-surface-container-highest-dark shadow-elevation z-50",
         className as string,
       )}
       {...rest}

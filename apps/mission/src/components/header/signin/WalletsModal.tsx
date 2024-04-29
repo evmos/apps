@@ -14,6 +14,7 @@ import { Wallets } from "./Wallets";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { useTranslation } from "@evmosapps/i18n/client";
+
 export const useOtherWalletsModal = () => useModal("supported-wallets");
 
 export const WalletsModal = () => {

@@ -4,23 +4,14 @@
 import { useEffect } from "react";
 import { useEditModal } from "../edit/ModalEdit";
 import { useOtherWalletsModal } from "./WalletsModal";
+import { useWallet } from "@evmosapps/evmos-wallet";
 
-export type DropdownState = {
-  isDropdownOpen: boolean;
-  setIsDropdownOpen: (val: boolean) => void;
-  ref: React.MutableRefObject<HTMLDivElement | null>;
-  setDropdownStatus: (val: string) => void;
-};
-
-export const useDropdownState = ({
-  ref,
-  isDropdownOpen,
-  setDropdownStatus,
-  setIsDropdownOpen,
-}: DropdownState) => {
+export const useDropdownState = (
+  ref: React.MutableRefObject<HTMLDivElement | null>,
+) => {
   const { isOpen: editModalOpen } = useEditModal();
   const { isOpen: otherWallets } = useOtherWalletsModal();
-
+  const { setIsDropdownOpen, isDropdownOpen, setDropdownState } = useWallet();
   const handleClickOutside = (event: MouseEvent) => {
     if (
       ref.current &&
@@ -29,13 +20,13 @@ export const useDropdownState = ({
       !otherWallets
     ) {
       setIsDropdownOpen(!isDropdownOpen);
-      setDropdownStatus("profile");
+      setDropdownState("profile");
     }
   };
   const closeOnEscapePressed = (e: KeyboardEvent) => {
     if (e.key === "Escape" && !editModalOpen && !otherWallets) {
       setIsDropdownOpen(!isDropdownOpen);
-      setDropdownStatus("profile");
+      setDropdownState("profile");
     }
   };
 

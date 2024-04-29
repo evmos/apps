@@ -2,21 +2,24 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-
-import { ProfileButton, SignInButton } from "./Buttons";
-import { SignInTitle, WalletsTitle } from "./Titles";
+import { ProfileButton } from "./ProfileButton";
 import { Wallets } from "./Wallets";
-import { SignInOptions } from "./Options";
+
 import { useSignIn } from "./useSignIn";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { Profile } from "./Profile";
 import { Settings } from "./Settings";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useDropdownState } from "./useDropdownState";
+import {
+  SignInButton,
+  SignInTitle,
+  SignInOptions,
+  WalletsTitle,
+} from "./signInParts";
 export const StepsSignIn = () => {
   const { defaultWallets } = useSignIn();
-  const [dropdownStatus, setDropdownStatus] = useState("profile");
 
   const {
     connector,
@@ -27,16 +30,13 @@ export const StepsSignIn = () => {
     isConnecting,
     setIsDropdownOpen,
     isDropdownOpen,
+    setDropdownState,
+    dropdownState,
   } = useWallet();
 
   const ref = useRef<HTMLDivElement>(null);
 
-  useDropdownState({
-    ref,
-    setIsDropdownOpen,
-    isDropdownOpen,
-    setDropdownStatus,
-  });
+  useDropdownState(ref);
 
   const drawButton = () => {
     if (isDisconnected || isConnecting) {
@@ -51,28 +51,24 @@ export const StepsSignIn = () => {
     if (
       isDisconnected ||
       isConnecting ||
-      (address && connector && dropdownStatus === "wallets")
+      (address && connector && dropdownState === "wallets")
     ) {
       return (
         <>
-          {dropdownStatus === "wallets" ? (
-            <WalletsTitle setDropdownStatus={setDropdownStatus} />
-          ) : (
-            <SignInTitle />
-          )}
-          <div className="rounded-xl bg-surface-container dark:bg-surface-container-dark mt-5 ">
+          {dropdownState === "wallets" ? <WalletsTitle /> : <SignInTitle />}
+          <Dropdown.Container>
             <Wallets wallets={defaultWallets} />
-          </div>
+          </Dropdown.Container>
           <SignInOptions />
         </>
       );
     }
-    if (address && connector && dropdownStatus === "settings") {
-      return <Settings setDropdownStatus={setDropdownStatus} />;
+    if (address && connector && dropdownState === "settings") {
+      return <Settings />;
     }
 
-    if (address && connector && dropdownStatus === "profile") {
-      return <Profile setDropdownStatus={setDropdownStatus} />;
+    if (address && connector && dropdownState === "profile") {
+      return <Profile />;
     }
   };
 
@@ -92,7 +88,7 @@ export const StepsSignIn = () => {
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               e.preventDefault();
               setIsDropdownOpen(!isDropdownOpen);
-              setDropdownStatus("profile");
+              setDropdownState("profile");
             }}
           >
             {drawButton()}

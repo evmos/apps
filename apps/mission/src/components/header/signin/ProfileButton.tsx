@@ -2,7 +2,6 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { Button } from "@evmosapps/ui/button/index.tsx";
 import { getActiveProviderKey } from "@evmosapps/evmos-wallet";
 import { IconChevronDown } from "@evmosapps/ui/icons/line/arrows/chevron-down.tsx";
 import Image from "next/image";
@@ -11,20 +10,8 @@ import { cn } from "helpers";
 import { ProfileContext, useProfileContext } from "../edit/useEdit";
 import { useAccount } from "wagmi";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
-import { Pulse } from "@evmosapps/ui/components/pulse/Pulse.tsx";
-import { useTranslation } from "@evmosapps/i18n/client";
 import useWindowResize from "../../useResize";
 import { useWallet } from "@evmosapps/evmos-wallet";
-export const SignInButton = () => {
-  const { isDropdownOpen } = useWallet();
-  const { t } = useTranslation("dappStore");
-  return (
-    <Button as="div" className="relative" outlined={isDropdownOpen}>
-      {!isDropdownOpen && <Pulse />}
-      {t("signIn.button")}
-    </Button>
-  );
-};
 
 export const ProfileButton = () => {
   const { name: profileName, img } = useProfileContext() as ProfileContext;

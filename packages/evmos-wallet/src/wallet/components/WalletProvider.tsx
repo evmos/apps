@@ -27,17 +27,21 @@ import { useEffectEvent, useWatch } from "helpers";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
 
 type WalletProviderProps = PropsWithChildren<{}>;
-
+type DropdownState = "profile" | "settings" | "wallets";
 const WalletContext = createContext<{
   isWalletHydrated: boolean;
   config: typeof wagmiConfig;
   isDropdownOpen: boolean;
   setIsDropdownOpen: (val: boolean) => void;
+  dropdownState: string;
+  setDropdownState: (val: DropdownState) => void;
 }>({
   isWalletHydrated: false,
   config: wagmiConfig,
   isDropdownOpen: false,
   setIsDropdownOpen: () => {},
+  dropdownState: "",
+  setDropdownState: () => {},
 });
 
 const useWalletContext = () => {
@@ -49,8 +53,13 @@ const useWalletContext = () => {
 };
 
 export const useWallet = () => {
-  const { isWalletHydrated, isDropdownOpen, setIsDropdownOpen } =
-    useWalletContext();
+  const {
+    isWalletHydrated,
+    isDropdownOpen,
+    setIsDropdownOpen,
+    dropdownState,
+    setDropdownState,
+  } = useWalletContext();
 
   const account = useAccount();
 
@@ -60,12 +69,15 @@ export const useWallet = () => {
     isHydrating: !isWalletHydrated,
     isDropdownOpen,
     setIsDropdownOpen,
+    dropdownState,
+    setDropdownState,
   };
 };
 
 function Provider({ children }: WalletProviderProps) {
   const [isWalletHydrated, setIsWalletHydrated] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownState, setDropdownState] = useState<DropdownState>("profile");
   const { address, connector, isConnected } = useAccount();
 
   /**
@@ -157,6 +169,8 @@ function Provider({ children }: WalletProviderProps) {
         config: wagmiConfig,
         isDropdownOpen: dropdownOpen,
         setIsDropdownOpen: setDropdownOpen,
+        dropdownState,
+        setDropdownState,
       }}
     >
       {children}

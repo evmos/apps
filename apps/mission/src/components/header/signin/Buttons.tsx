@@ -16,11 +16,11 @@ import { useTranslation } from "@evmosapps/i18n/client";
 import useWindowResize from "../../useResize";
 import { useWallet } from "@evmosapps/evmos-wallet";
 export const SignInButton = () => {
-  const { isOpen } = useWallet();
+  const { isDropdownOpen } = useWallet();
   const { t } = useTranslation("dappStore");
   return (
-    <Button as="div" className="relative" outlined={isOpen}>
-      {!isOpen && <Pulse />}
+    <Button as="div" className="relative" outlined={isDropdownOpen}>
+      {!isDropdownOpen && <Pulse />}
       {t("signIn.button")}
     </Button>
   );
@@ -30,7 +30,7 @@ export const ProfileButton = () => {
   const { name: profileName, img } = useProfileContext() as ProfileContext;
   const { isDesktop } = useWindowResize();
   const { address } = useAccount();
-  const { isOpen } = useWallet();
+  const { isDropdownOpen } = useWallet();
 
   return (
     <div
@@ -62,7 +62,7 @@ export const ProfileButton = () => {
       {isDesktop && (
         <IconChevronDown
           className={`w-5 text-paragraph dark:text-paragraph-dark transition-all duration-300 ${
-            isOpen && "rotate-180"
+            isDropdownOpen && "rotate-180"
           }`}
         />
       )}

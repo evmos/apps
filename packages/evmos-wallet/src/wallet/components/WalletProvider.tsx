@@ -31,13 +31,13 @@ type WalletProviderProps = PropsWithChildren<{}>;
 const WalletContext = createContext<{
   isWalletHydrated: boolean;
   config: typeof wagmiConfig;
-  isOpen: boolean;
-  setIsOpen: (val: boolean) => void;
+  isDropdownOpen: boolean;
+  setIsDropdownOpen: (val: boolean) => void;
 }>({
   isWalletHydrated: false,
   config: wagmiConfig,
-  isOpen: false,
-  setIsOpen: () => {},
+  isDropdownOpen: false,
+  setIsDropdownOpen: () => {},
 });
 
 const useWalletContext = () => {
@@ -49,7 +49,8 @@ const useWalletContext = () => {
 };
 
 export const useWallet = () => {
-  const { isWalletHydrated, isOpen, setIsOpen } = useWalletContext();
+  const { isWalletHydrated, isDropdownOpen, setIsDropdownOpen } =
+    useWalletContext();
 
   const account = useAccount();
 
@@ -57,8 +58,8 @@ export const useWallet = () => {
     ...account,
     bech32Address: account.address ? normalizeToCosmos(account.address) : null,
     isHydrating: !isWalletHydrated,
-    isOpen,
-    setIsOpen,
+    isDropdownOpen,
+    setIsDropdownOpen,
   };
 };
 
@@ -154,8 +155,8 @@ function Provider({ children }: WalletProviderProps) {
       value={{
         isWalletHydrated,
         config: wagmiConfig,
-        isOpen: dropdownOpen,
-        setIsOpen: setDropdownOpen,
+        isDropdownOpen: dropdownOpen,
+        setIsDropdownOpen: setDropdownOpen,
       }}
     >
       {children}

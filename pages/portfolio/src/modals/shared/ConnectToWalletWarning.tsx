@@ -14,7 +14,7 @@ export const ConnectToWalletWarning = ({
   modalType: string;
 }) => {
   const { t } = useTranslation("transfer-modal");
-  const { setIsOpen: setDropdown } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
   return (
     <>
       <ErrorMessage className="justify-center pl-0 mb-4" variant="info">
@@ -32,7 +32,7 @@ export const ConnectToWalletWarning = ({
         variant={"primary-lg"}
         className="mt-8"
         onClick={() => {
-          setDropdown(true);
+          setIsDropdownOpen(true);
           sendEvent(PROMPTED_TO, {
             "Prompt To": "Connect Account",
             Modal: modalType,

@@ -21,7 +21,7 @@ export const profileImages = [purple, orange];
 
 export const EditModal = () => {
   const { isOpen, setIsOpen, modalProps } = useEditModal();
-  const { setIsOpen: setDropdown } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
 
   const { name, handleSetName, img, handleSetImg } =
     useProfileContext() as ProfileContext;
@@ -47,7 +47,7 @@ export const EditModal = () => {
       setIsOpen={setIsOpen}
       onClose={() => {
         setIsOpen(false);
-        setDropdown(true);
+        setIsDropdownOpen(true);
       }}
     >
       <Modal.Body>

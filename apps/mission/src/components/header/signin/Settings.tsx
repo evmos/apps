@@ -25,7 +25,7 @@ export const Settings = ({
   const image = profileImages[img] as StaticImageData;
   const editModal = useEditModal();
   const { address } = useAccount();
-  const { setIsOpen } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
 
   return (
     <>
@@ -33,7 +33,7 @@ export const Settings = ({
       <button
         onClick={() => {
           editModal.setIsOpen(true, {}, true);
-          setIsOpen(false);
+          setIsDropdownOpen(false);
         }}
         className="flex justify-between w-full rounded-xl bg-surface-container  dark:bg-surface-container-dark  p-3 gap-4"
       >

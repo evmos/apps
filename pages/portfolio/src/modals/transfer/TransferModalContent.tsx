@@ -73,7 +73,7 @@ export const TransferModalContent = ({
   const { isDisconnected } = useAccount();
   const receiptModal = useReceiptModal();
   const topupModal = useTopupModal();
-  const { setIsOpen: setDropdown } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
 
   const tokenAmount: TokenAmount = {
     ref: tokenRef,
@@ -289,7 +289,7 @@ export const TransferModalContent = ({
           }
 
           if (action === "CONNECT") {
-            setDropdown(true);
+            setIsDropdownOpen(true);
             sendEvent(PROMPTED_TO, {
               "Prompt To": "Connect Account",
               Modal: "Send Modal",

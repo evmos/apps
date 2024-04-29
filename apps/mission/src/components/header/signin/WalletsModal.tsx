@@ -18,7 +18,7 @@ export const useOtherWalletsModal = () => useModal("supported-wallets");
 
 export const WalletsModal = () => {
   const { isOpen, setIsOpen } = useOtherWalletsModal();
-  const { setIsOpen: setDropdown } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
   const { searchTerm, handleSearchChange, filteredOptions } = SearchFilter();
   const { t } = useTranslation("dappStore");
   return (
@@ -27,7 +27,7 @@ export const WalletsModal = () => {
       setIsOpen={setIsOpen}
       onClose={() => {
         setIsOpen(false);
-        setDropdown(true);
+        setIsDropdownOpen(true);
       }}
     >
       <Modal.Body>

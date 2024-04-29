@@ -28,7 +28,7 @@ import { useTranslation } from "@evmosapps/i18n/client";
 
 export const SignInOptions = () => {
   const otherWalletsModal = useOtherWalletsModal();
-  const { setIsOpen } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
   const { t } = useTranslation("dappStore");
   return (
     <Dropdown.Container>
@@ -37,7 +37,7 @@ export const SignInOptions = () => {
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           otherWalletsModal.setIsOpen(true, {}, true);
-          setIsOpen(false);
+          setIsDropdownOpen(false);
         }}
       >
         {
@@ -57,7 +57,7 @@ export const ProfileSettings = ({
 }: {
   setDropdownStatus: Dispatch<SetStateAction<string>>;
 }) => {
-  const { setIsOpen } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
   const { t } = useTranslation("dappStore");
   const { disconnect } = useDisconnect({
     mutation: {
@@ -86,7 +86,7 @@ export const ProfileSettings = ({
         as="button"
         onClick={() => {
           disconnect();
-          setIsOpen(false);
+          setIsDropdownOpen(false);
           // sendEvent(CLICK_DISCONNECT_WALLET_BUTTON);
         }}
       >
@@ -103,7 +103,7 @@ export const ProfileSettings = ({
 
 export const ProfileOptions = () => {
   const { address } = useAccount();
-  const { setIsOpen } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
   const { t } = useTranslation("dappStore");
   if (!address) return null;
 
@@ -143,7 +143,7 @@ export const ProfileOptions = () => {
             <IconButton
               variant="low-emphasis"
               onClick={() => {
-                setIsOpen(false);
+                setIsDropdownOpen(false);
               }}
             >
               <IconArrowSwap />
@@ -156,7 +156,7 @@ export const ProfileOptions = () => {
             <IconButton
               variant="low-emphasis"
               onClick={() => {
-                setIsOpen(false);
+                setIsDropdownOpen(false);
               }}
             >
               <IconPlus />

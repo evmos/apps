@@ -40,7 +40,7 @@ export const ConvertModalContent = ({
   const { address, isConnected, isConnecting } = useAccount();
 
   const chainRef = useEvmosChainRef();
-  const { setIsOpen: setDropdown } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
   const { data: connectorClient } = useConnectorClient();
 
   const { data: tokenEntity } = useTrpcQuery((t) => t.token.byDenom(token));
@@ -49,8 +49,8 @@ export const ConvertModalContent = ({
 
   useEffect(() => {
     if (isConnected || isConnecting) return;
-    setDropdown(true);
-  }, [isConnected, isConnecting, setDropdown]);
+    setIsDropdownOpen(true);
+  }, [isConnected, isConnecting, setIsDropdownOpen]);
 
   const { data: feeBalance } = useTrpcQuery((t) =>
     t.account.balance.byDenom({

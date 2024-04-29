@@ -40,7 +40,7 @@ export const useSignIn = () => {
     string | undefined
   >();
   const { setIsOpen } = useOtherWalletsModal();
-  const { setIsOpen: setDropdownOpen } = useWallet();
+  const { setIsDropdownOpen } = useWallet();
   const { wallets, setWallets } = useWAlletsContext() as WalletsContext;
   const defaultWallets = supportedWallets.filter((item) =>
     wallets.includes(item.name),
@@ -72,7 +72,7 @@ export const useSignIn = () => {
         setError(undefined);
         setIsOpen(false);
         setWallets(connector.name);
-        setDropdownOpen(true);
+        setIsDropdownOpen(true);
       },
 
       onError: (e, { connector }) => {

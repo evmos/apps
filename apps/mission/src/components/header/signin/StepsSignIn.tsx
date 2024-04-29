@@ -8,18 +8,14 @@ import { SignInTitle, WalletsTitle } from "./Titles";
 import { Wallets } from "./Wallets";
 import { SignInOptions } from "./Options";
 import { useSignIn } from "./useSignIn";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { Profile } from "./Profile";
 import { Settings } from "./Settings";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
-import { useEditModal } from "../edit/ModalEdit";
-import { useOtherWalletsModal } from "./WalletsModal";
-
+import { useDropdownState } from "./useDropdownState";
 export const StepsSignIn = () => {
   const { defaultWallets } = useSignIn();
-  const { isOpen: editModalOpen } = useEditModal();
-  const { isOpen: otherWallets } = useOtherWalletsModal();
   const [dropdownStatus, setDropdownStatus] = useState("profile");
 
   const {
@@ -29,46 +25,18 @@ export const StepsSignIn = () => {
     isReconnecting,
     isDisconnected,
     isConnecting,
-    setIsOpen,
-    isOpen,
+    setIsDropdownOpen,
+    isDropdownOpen,
   } = useWallet();
 
   const ref = useRef<HTMLDivElement>(null);
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      ref.current &&
-      !ref.current.contains(event.target as Node) &&
-      !editModalOpen &&
-      !otherWallets
-    ) {
-      setIsOpen(!isOpen);
-      setDropdownStatus("profile");
-    }
-  };
-  const closeOnEscapePressed = (e: KeyboardEvent) => {
-    if (e.key === "Escape" && !editModalOpen && !otherWallets) {
-      setIsOpen(!isOpen);
-      setDropdownStatus("profile");
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside, !isOpen);
-    document.addEventListener("keydown", closeOnEscapePressed, !isOpen);
-    return () => {
-      document.removeEventListener("click", handleClickOutside, !isOpen);
-      document.removeEventListener("keydown", closeOnEscapePressed, !isOpen);
-    };
+  useDropdownState({
+    ref,
+    setIsDropdownOpen,
+    isDropdownOpen,
+    setDropdownStatus,
   });
-
-  useEffect(() => {
-    const status = localStorage.getItem("redirect-wallet");
-    if (status === "true") {
-      setIsOpen(true);
-      localStorage.removeItem("redirect-wallet");
-    }
-  }, [setIsOpen]);
 
   const drawButton = () => {
     if (isDisconnected || isConnecting) {
@@ -123,13 +91,13 @@ export const StepsSignIn = () => {
           <Dropdown.Button
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               e.preventDefault();
-              setIsOpen(!isOpen);
+              setIsDropdownOpen(!isDropdownOpen);
               setDropdownStatus("profile");
             }}
           >
             {drawButton()}
           </Dropdown.Button>
-          {isOpen && (
+          {isDropdownOpen && (
             <Dropdown.Items ref={ref} static>
               {drawContent()}
             </Dropdown.Items>

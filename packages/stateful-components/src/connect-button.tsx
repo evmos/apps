@@ -7,16 +7,16 @@ import { CLICK_CONNECT_WALLET_BUTTON, sendEvent } from "tracker";
 import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const ConnectButton = () => {
-  const { isOpen, setIsOpen } = useWallet();
+  const { isDropdownOpen, setIsDropdownOpen } = useWallet();
 
   return (
     <PrimaryButton
       variant={"primary"}
-      disabled={isOpen}
+      disabled={isDropdownOpen}
       data-testid="open-connect-modal"
       className={cn("rounded-full px-8 py-2 text-sm font-bold")}
       onClick={() => {
-        setIsOpen(true);
+        setIsDropdownOpen(true);
         sendEvent(CLICK_CONNECT_WALLET_BUTTON);
       }}
     >

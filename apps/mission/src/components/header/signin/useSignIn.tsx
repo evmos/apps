@@ -16,6 +16,11 @@ import { useWallet, wagmiConfig } from "@evmosapps/evmos-wallet";
 import { disconnect } from "wagmi/actions";
 import { WalletsContext, useWAlletsContext } from "./useWallets";
 import { useOtherWalletsModal } from "./WalletsModal";
+import {
+  SUCCESSFUL_WALLET_CONNECTION,
+  UNSUCCESSFUL_WALLET_CONNECTION,
+  sendEvent,
+} from "tracker";
 
 export type WALLETS_TYPE =
   | {
@@ -61,9 +66,9 @@ export const useSignIn = () => {
           });
         }
 
-        // sendEvent(SUCCESSFUL_WALLET_CONNECTION, {
-        //   "Wallet Provider": connector.name,
-        // });
+        sendEvent(SUCCESSFUL_WALLET_CONNECTION, {
+          "Wallet Provider": connector.name,
+        });
 
         setError(undefined);
         setIsOpen(false);
@@ -72,11 +77,10 @@ export const useSignIn = () => {
       },
 
       onError: (e, { connector }) => {
-        // console.log(e);
-        // sendEvent(UNSUCCESSFUL_WALLET_CONNECTION, {
-        //   "Wallet Provider": connector.name,
-        //   "Error Message": `Failed to connect with ${connector.name}`,
-        // });
+        sendEvent(UNSUCCESSFUL_WALLET_CONNECTION, {
+          "Wallet Provider": connector.name,
+          "Error Message": `Failed to connect with ${connector.name}`,
+        });
         if (E.match.byPattern(e, /Connector not found/)) {
           setError({ error: "Connection failed.", name: connector.name });
 

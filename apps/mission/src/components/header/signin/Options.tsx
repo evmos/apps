@@ -210,7 +210,7 @@ export const SettingsOptions = () => {
         </p>
       </div>
       <Dropdown.Container>
-        {settingsOptions.map((option) => {
+        {settingsOptions?.map((option) => {
           return (
             <Dropdown.Item
               as="div"

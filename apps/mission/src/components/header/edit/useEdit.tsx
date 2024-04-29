@@ -15,7 +15,7 @@ export type ProfileContext = {
 
 const ProfileContext = createContext<ProfileContext | null>(null);
 
-export function ProfileWrapper({ children }: { children: JSX.Element }) {
+export function ProfileProvider({ children }: { children: JSX.Element }) {
   const setProfileNameDb = (profileName: string) => {
     localStorage.setItem(DISPLAY_NAME_KEY, JSON.stringify(profileName));
   };

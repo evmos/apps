@@ -14,20 +14,23 @@ import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { Pulse } from "@evmosapps/ui/components/pulse/Pulse.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
 import useWindowResize from "../../useResize";
-export const SignInButton = ({ open }: { open: boolean }) => {
+import { useWallet } from "@evmosapps/evmos-wallet";
+export const SignInButton = () => {
+  const { isOpen } = useWallet();
   const { t } = useTranslation("dappStore");
   return (
-    <Button as="div" className="relative" outlined={open}>
-      {!open && <Pulse />}
+    <Button as="div" className="relative" outlined={isOpen}>
+      {!isOpen && <Pulse />}
       {t("signIn.button")}
     </Button>
   );
 };
 
-export const ProfileButton = ({ open }: { open: boolean }) => {
+export const ProfileButton = () => {
   const { name: profileName, img } = useProfileContext() as ProfileContext;
   const { isDesktop } = useWindowResize();
   const { address } = useAccount();
+  const { isOpen } = useWallet();
 
   return (
     <div
@@ -59,7 +62,7 @@ export const ProfileButton = ({ open }: { open: boolean }) => {
       {isDesktop && (
         <IconChevronDown
           className={`w-5 text-paragraph dark:text-paragraph-dark transition-all duration-300 ${
-            open && "rotate-180"
+            isOpen && "rotate-180"
           }`}
         />
       )}

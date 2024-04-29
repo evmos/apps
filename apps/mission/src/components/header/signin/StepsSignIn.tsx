@@ -72,10 +72,10 @@ export const StepsSignIn = () => {
 
   const drawButton = () => {
     if (isDisconnected || isConnecting) {
-      return <SignInButton open={isOpen} />;
+      return <SignInButton />;
     }
     if (address && connector) {
-      return <ProfileButton open={isOpen} />;
+      return <ProfileButton />;
     }
   };
 

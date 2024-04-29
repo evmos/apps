@@ -5,15 +5,22 @@
 
 import { Breadcrumb } from "@evmosapps/ui-helpers";
 import { fetchExplorerData } from "../../../lib/fetch-explorer-data";
+import { IconHome } from "@evmosapps/ui/icons/line/basic/home.tsx";
+import { ReactElement } from "react";
+
+interface BreadcrumbItem {
+  name: string | ReactElement;
+  href: string;
+}
 
 export const ExplorerBreadcrumbs = async ({
   params,
 }: {
   params: { category?: string; dapp?: string };
 }) => {
-  const pages = [
+  const pages: BreadcrumbItem[] = [
     {
-      name: "dApp Store",
+      name: <IconHome className="h-5 w-5" />,
       href: "/dapps",
     },
   ];

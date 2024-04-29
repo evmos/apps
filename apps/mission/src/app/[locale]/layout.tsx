@@ -3,7 +3,6 @@
 
 import "../../globals.css";
 import "@evmosapps/ui/global.css";
-
 import { dir } from "i18next";
 import { type PropsWithChildren } from "react";
 import { languages } from "@evmosapps/i18n";

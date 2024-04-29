@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/instant-dapps",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "type": "module",
@@ -21,7 +21,7 @@
     "stateful-components": "workspace:*"
   },
   "dependencies": {
-    "@types/node": "18.11.14",
+    "@types/node": "20.12.7",
     "tracker": "workspace:*",
     "typescript": "^5.3.3"
   },

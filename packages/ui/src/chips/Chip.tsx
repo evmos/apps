@@ -3,7 +3,7 @@
 
 import { VariantProps, cva } from "cva";
 import { cn } from "helpers/src/classnames";
-import { ElementType, createElement, forwardRef } from "react";
+import { ElementType, ForwardedRef, createElement, forwardRef } from "react";
 
 const chip = cva({
   base: [
@@ -40,7 +40,7 @@ const chip = cva({
   },
 });
 
-export interface ChipStyleProps extends VariantProps<typeof chip> {}
+export interface ChipStyleProps extends VariantProps<typeof chip> { }
 
 export type ChipProps<T extends ElementType> = {
   as?: T;
@@ -48,16 +48,15 @@ export type ChipProps<T extends ElementType> = {
 } & React.ComponentPropsWithRef<T> &
   ChipStyleProps;
 
-function _Chips<T extends ElementType = "button">({
-  as,
-  className,
-  children,
-  ...props
-}: ChipProps<T>) {
+function _Chips<T extends ElementType = "button">(
+  { as, className, children, ...props }: ChipProps<T>,
+  ref: ForwardedRef<HTMLElement>,
+) {
   return createElement(
     (as as string) ?? "button",
     {
       ...props,
+      ref,
       className: cn(chip(props), className as string),
     },
     <>{children}</>,

@@ -14,7 +14,9 @@ import { updatedAtSchema } from "../partials/updatedAtSchema";
 import { selectSchema } from "../partials/selectSchema";
 import { parseUrl } from "helpers/src/parse/urls";
 import { createSlug } from "../utils/createSlug";
-import { generateBlurImage } from "./generateBlurImage";
+import { ImageStore } from "../../image-store";
+import { raise } from "../../error-handling";
+import { devMemo } from "../../dev/dev-memo";
 
 const dappPropertiesSchema = createNotionPropertiesSchema(
   z.object({
@@ -52,6 +54,17 @@ const dappPropertiesSchema = createNotionPropertiesSchema(
   }),
 );
 
+const fetchSelfHostedUrl = devMemo(async function (url: string) {
+  const { blurDataURL, source } = (await ImageStore.fetchManifest(url)) ??
+    raise(
+      `No manifest found for ${url}:\n\nMaybe this image is missing? Try running \`pnpm dappstore-images sync\``
+    );
+
+  return {
+    blurDataURL: blurDataURL,
+    src: source.url,
+  };
+}, { tags: ["fetchSelfHostedUrl"], revalidate: 60 * 5 });
 export const dappSchema = z
   .object({
     id: z.string(),
@@ -70,31 +83,9 @@ export const dappSchema = z
           description: string;
         }
       >,
-      icon: icon
-        ? {
-            ...icon,
-            src: `/api/dappimg/${slug}/icon`,
-
-            _originalSrc: icon.src,
-            blurDataURL: await generateBlurImage(icon.src),
-          }
-        : null,
-      thumbnail: thumbnail
-        ? {
-            ...thumbnail,
-            src: `/api/dappimg/${slug}/thumbnail`,
-            _originalSrc: thumbnail.src,
-            blurDataURL: await generateBlurImage(thumbnail.src),
-          }
-        : null,
-      cover: cover
-        ? {
-            ...cover,
-            src: `/api/dappimg/${slug}/cover`,
-            _originalSrc: cover.src,
-            blurDataURL: await generateBlurImage(cover.src),
-          }
-        : null,
+      icon: icon ? await fetchSelfHostedUrl(icon.src) : null,
+      thumbnail: thumbnail ? await fetchSelfHostedUrl(thumbnail.src) : null,
+      cover: cover ? await fetchSelfHostedUrl(cover.src) : null,
 
       ...otherProps,
       ...rest,

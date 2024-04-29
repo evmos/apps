@@ -11,28 +11,19 @@ import { fetchExplorerData } from "../../../lib/fetch-explorer-data";
 import { EcosystemCardGrid } from "./ecosystem-card-grid";
 import { CLICK_SEE_MORE_BUTTON } from "tracker";
 
-const landingdAppsOrder = [
-  "stride",
-  "osmosis",
-  "forge",
-  "squid",
-  "layerswap",
-  "wormhole",
-  "transak",
-];
 export const EcosystemSection = async () => {
   const { t } = await translation("dappStore");
   const { dApps } = await fetchExplorerData();
 
+  // if we want that some specific dApps don't appear in the instant dApps section
+  const blacklist = ["transak"];
+
   const instantDapps = dApps
     // get the instant dapps
     .filter((dApp) => dApp.instantDapp)
-    // sort them by the order in the array
-    .sort((a, b) => {
-      return (
-        landingdAppsOrder.indexOf(a.slug) - landingdAppsOrder.indexOf(b.slug)
-      );
-    });
+    // remove items from the blacklist
+    .filter((dApp) => !blacklist.includes(dApp.slug))
+    .slice(0, 8);
 
   return (
     <section className="space-y-8">

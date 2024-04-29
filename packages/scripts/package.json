@@ -1,0 +1,27 @@
+{
+  "name": "@evmosapps/scripts",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@commander-js/extra-typings": "^11.1.0",
+    "@evmosapps/evmos-wallet": "workspace:*",
+    "@types/node": "^20.12.7",
+    "@vercel/blob": "^0.23.2",
+    "dotenv": "^16.4.5",
+    "helpers": "workspace:*",
+    "lodash-es": "^4.17.21",
+    "sharp": "^0.33.3",
+    "string-width": "^7.1.0",
+    "typescript": "^5.3.3"
+  },
+  "bin": {
+    "dappstore-images": "./dappstore-images/index.ts"
+  }
+}

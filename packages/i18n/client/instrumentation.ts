@@ -13,7 +13,7 @@ import {
 } from "react-i18next";
 import resourcesToBackend from "i18next-resources-to-backend";
 import { getOptions, languages } from "../settings";
-import { useEffectEvent } from "helpers";
+import { useEffectEvent } from "helpers/src/hooks/use-effect-event";
 import { getLocaleFromPath } from "..";
 
 const isServer = typeof window === "undefined";
@@ -38,9 +38,9 @@ void i18next
 
 export function useTranslation<
   Ns extends
-    | FlatNamespace
-    | readonly [FlatNamespace?, ...FlatNamespace[]]
-    | undefined = undefined,
+  | FlatNamespace
+  | readonly [FlatNamespace?, ...FlatNamespace[]]
+  | undefined = undefined,
   KPrefix extends KeyPrefix<FallbackNs<Ns>> = undefined,
 >(namespace?: Ns, options?: UseTranslationOptions<KPrefix>) {
   const locale = getLocaleFromPath(usePathname() ?? "") || "en";

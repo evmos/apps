@@ -22,8 +22,8 @@
     "NEXT_PUBLIC_TRANSAK_API_KEY",
     "NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID",
     "NEXT_PUBLIC_MAVA_TOKEN",
-    "NEXT_PUBLIC_PROPOSALS_TO_REMOVE",
     "NEXT_PUBLIC_REGISTRY_NETWORK_BLOCK_LIST",
+    "NEXT_PUBLIC_EVMOS_BLOCKED_PROPOSALS_LIST_PAGE_NOTION_ID",
     "NEXT_PUBLIC_ENABLE_TESTNET",
     "E2E_TEST_EVMOS_CHAIN_NAME",
     "E2E_TEST_EVMOS_RPC_URL",
@@ -49,11 +49,15 @@
     "VERCEL_URL",
     "CHAIN_REGISTRY_REF",
     "NEXT_PUBLIC_EVMOS_COSMOS_REST_API",
-    "NEXT_PUBLIC_EVMOS_EVM_JSON_RPC"
+    "NEXT_PUBLIC_EVMOS_EVM_JSON_RPC",
+    "ENABLE_DEV_CACHE"
   ],
   "pipeline": {
+    "prebuild": {
+      "cache": false
+    },
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["prebuild"],
       "cache": true,
       "outputs": ["dist/**", ".next/**"]
     },

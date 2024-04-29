@@ -453,6 +453,7 @@
   },
   "yellow": {
     "colors": {
+
       "accent-yellow": {
         "name": "Yellow",
         "dark": "#F2C94C",

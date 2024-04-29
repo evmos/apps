@@ -3,7 +3,7 @@
 
 import { cva, VariantProps } from "cva";
 import { cn } from "helpers/src/classnames";
-import React from "react";
+import React, { ForwardedRef } from "react";
 import { createElement, ElementType, forwardRef } from "react";
 
 const button = cva({
@@ -147,7 +147,7 @@ const button = cva({
   },
 });
 
-export interface IconButtonStyleProps extends VariantProps<typeof button> {}
+export interface IconButtonStyleProps extends VariantProps<typeof button> { }
 
 export type IconButtonProps<T extends ElementType> = {
   as?: T;
@@ -155,13 +155,13 @@ export type IconButtonProps<T extends ElementType> = {
 } & React.ComponentPropsWithRef<T> &
   IconButtonStyleProps;
 
-function _IconButton<T extends ElementType = "button">({
-  as,
-  className,
-  ...props
-}: IconButtonProps<T>) {
+function _IconButton<T extends ElementType = "button">(
+  { as, className, ...props }: IconButtonProps<T>,
+  ref: ForwardedRef<HTMLElement>,
+) {
   return createElement((as as string) ?? "button", {
     ...props,
+    ref,
     className: cn(button(props), className as string),
   });
 }

@@ -17,11 +17,11 @@
   },
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
-    "@types/node": "18.11.14",
+    "@types/node": "20.12.7",
     "chain-token-registry": "github:evmos/chain-token-registry#main",
     "helpers": "workspace:*",
     "lodash-es": "^4.17.21",
-    "next": "14.1.0",
+    "next": "14.2.3",
     "typescript": "^5.3.3"
   },
   "browserslist": [

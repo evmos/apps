@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/ui-helpers",
-  "version": "1.0.23",
+  "version": "1.0.24",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "type": "module",
@@ -20,7 +20,7 @@
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
     "@evmosapps/icons": "workspace:*",
-    "@types/node": "18.11.14",
+    "@types/node": "20.12.7",
     "api-endpoints": "link:@notionhq/client/build/src/api-endpoints",
     "lodash-es": "^4.17.21",
     "typescript": "^5.3.3"
@@ -29,10 +29,10 @@
     "@notionhq/client": "^2.2.14",
     "clsx": "^2.0.0",
     "mixpanel-browser": "^2.47.0",
-    "next": "14.1.0",
-    "react": "18.2.0",
-    "react-dom": "^18.2.0",
-    "sharp": "^0.32.6"
+    "next": "14.2.3",
+    "react": "18.3.0",
+    "react-dom": "^18.3.0",
+    "sharp": "^0.33.3"
   },
   "browserslist": [
     "last 3 chrome version",

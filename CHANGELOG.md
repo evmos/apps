@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ## Unreleased
 
+- (chore) packages/widgets 1.0.9 | Update forge router URL
+
 ## 2.0.14 - 2024-04-25
 
 - (feat) apps/mission 1.0.36 | Implements script to sync notion images with vercel blobs

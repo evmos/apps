@@ -4,9 +4,18 @@
 export const Pulse = () => {
   // add relative position to the container of the pulse
   return (
-    <div
-      className="before:content-[''] before:absolute before:top-1.5 before:right-0 
-before:-translate-y-1/2 before:w-[15px] before:h-[15px] before:lg:w-[12px] before:lg:h-[12px] before:animate-pulse before:bg-primary before:dark:bg-primary-dark before:rounded-full"
-    />
+    <div>
+      <span className="absolute flex h-4 w-4 -right-0.5 top-1 -translate-y-1/2">
+        <span
+          className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary dark:bg-primary-dark opacity-75"
+          style={{ animationDuration: "3s" }}
+        ></span>
+        <span
+          className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary dark:bg-primary-dark opacity-75"
+          style={{ animationDuration: "3s", animationDelay: "1s" }}
+        ></span>
+      </span>
+      <span className="right-0 top-1 -translate-y-1/2 absolute inline-flex rounded-full h-3 w-3 bg-primary dark:bg-primary-dark"></span>
+    </div>
   );
 };

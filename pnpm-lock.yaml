@@ -893,13 +893,13 @@ importers:
         version: 5.32.0(react@18.2.0)
       '@trpc/client':
         specifier: 11.0.0-next-beta.221
-        version: 11.0.0-next-beta.221(@trpc/server@11.0.0-next-beta.221)
+        version: 11.0.0-next-beta.221(@trpc/server@11.0.0-rc.354)
       '@trpc/react-query':
         specifier: 11.0.0-next-beta.221
-        version: 11.0.0-next-beta.221(@tanstack/react-query@5.32.0)(@trpc/client@11.0.0-next-beta.221)(@trpc/server@11.0.0-next-beta.221)(react-dom@18.2.0)(react@18.2.0)
+        version: 11.0.0-next-beta.221(@tanstack/react-query@5.32.0)(@trpc/client@11.0.0-next-beta.221)(@trpc/server@11.0.0-rc.354)(react-dom@18.2.0)(react@18.2.0)
       '@trpc/server':
-        specifier: 11.0.0-next-beta.221
-        version: 11.0.0-next-beta.221
+        specifier: 11.0.0-rc.354
+        version: 11.0.0-rc.354
       '@types/lodash':
         specifier: ^4.14.202
         version: 4.17.0
@@ -12277,15 +12277,15 @@ packages:
     engines: {node: '>= 10'}
     dev: false
 
-  /@trpc/client@11.0.0-next-beta.221(@trpc/server@11.0.0-next-beta.221):
+  /@trpc/client@11.0.0-next-beta.221(@trpc/server@11.0.0-rc.354):
     resolution: {integrity: sha512-1DQptPbEOt6SgSRBduccAnjl70+EVNiv+C/vbomC1PaDNl+FJHJgRruSy5NfM3JLgTlsX5qq+m1h74qrzjwtDA==}
     peerDependencies:
       '@trpc/server': 11.0.0-next-beta.221+83786ca57
     dependencies:
-      '@trpc/server': 11.0.0-next-beta.221
+      '@trpc/server': 11.0.0-rc.354
     dev: false
 
-  /@trpc/react-query@11.0.0-next-beta.221(@tanstack/react-query@5.32.0)(@trpc/client@11.0.0-next-beta.221)(@trpc/server@11.0.0-next-beta.221)(react-dom@18.2.0)(react@18.2.0):
+  /@trpc/react-query@11.0.0-next-beta.221(@tanstack/react-query@5.32.0)(@trpc/client@11.0.0-next-beta.221)(@trpc/server@11.0.0-rc.354)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-2zOAF0d/UqF1X056DbMMDpTtEVK5r0f7cE4Bb39SjqcMeUr68xe6qMttpKcVPPRUK+3fr/fkogD5lWhSHz1bdQ==}
     peerDependencies:
       '@tanstack/react-query': ^5.0.0
@@ -12295,14 +12295,14 @@ packages:
       react-dom: '>=18.2.0'
     dependencies:
       '@tanstack/react-query': 5.32.0(react@18.2.0)
-      '@trpc/client': 11.0.0-next-beta.221(@trpc/server@11.0.0-next-beta.221)
-      '@trpc/server': 11.0.0-next-beta.221
+      '@trpc/client': 11.0.0-next-beta.221(@trpc/server@11.0.0-rc.354)
+      '@trpc/server': 11.0.0-rc.354
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@trpc/server@11.0.0-next-beta.221:
-    resolution: {integrity: sha512-mgTUHGCuYZ3BtF8VlQmeHixKLExcUcElvKNPS2tyhfBZxua36+5mPD2wZ71rMqqwN7NI0FoP1fMjFL/9VVqfEw==}
+  /@trpc/server@11.0.0-rc.354:
+    resolution: {integrity: sha512-45QgalVFW3+JnFqrfTWKRuqkDTOtl9tnPps6DG6kf2lwULwSW3v55+YpMWc6ZSrkZdBXGMON0bBR/Ab4hU0zbA==}
     dev: false
 
   /@types/aria-query@5.0.4:
@@ -18427,7 +18427,7 @@ packages:
     resolution: {integrity: sha512-iNZ576iTOGcfllftB73cPB5AN+XUQAT/T8xzsILsghXC1o8gJUqe3RHlcDqagu+biFpYQ61KQrZZJza8eRSYqw==}
     deprecated: Deprecated in favor of '@metamask/eth-sig-util'
     dependencies:
-      ethereumjs-abi: github.com/ethereumjs/ethereumjs-abi/ee3994657fa7a427238e6ba92a84d0b529bbcde0
+      ethereumjs-abi: git@github.com+ethereumjs/ethereumjs-abi/ee3994657fa7a427238e6ba92a84d0b529bbcde0
       ethereumjs-util: 5.2.1
     dev: false
 
@@ -18657,7 +18657,6 @@ packages:
     dependencies:
       is-hex-prefixed: 1.0.0
       strip-hex-prefix: 1.0.0
-    bundledDependencies: false
 
   /event-emitter@0.3.5:
     resolution: {integrity: sha512-D9rRn9y7kLPnJ+hMq7S/nhvoKwwvVJahBi2BPmx3bvbsEdK3W9ii8cBSGjP+72/LnM4n6fo3+dkCX5FeTQruXA==}
@@ -24744,7 +24743,6 @@ packages:
       react: 16.14.0
       scheduler: 0.19.1
     dev: false
-    bundledDependencies: false
 
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
@@ -25230,7 +25228,6 @@ packages:
       object-assign: 4.1.1
       prop-types: 15.8.1
     dev: false
-    bundledDependencies: false
 
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -28977,6 +28974,15 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
 
+  git@github.com+ethereumjs/ethereumjs-abi/ee3994657fa7a427238e6ba92a84d0b529bbcde0:
+    resolution: {commit: ee3994657fa7a427238e6ba92a84d0b529bbcde0, repo: git@github.com:ethereumjs/ethereumjs-abi.git, type: git}
+    name: ethereumjs-abi
+    version: 0.6.8
+    dependencies:
+      bn.js: 4.12.0
+      ethereumjs-util: 6.2.1
+    dev: false
+
   github.com/chainapsis/keplr-chain-registry/1f9419f5b5495bda4ed6d0fafa3e4c1c4880aa88(@babel/core@7.24.4)(react-is@18.2.0):
     resolution: {tarball: https://codeload.github.com/chainapsis/keplr-chain-registry/tar.gz/1f9419f5b5495bda4ed6d0fafa3e4c1c4880aa88}
     id: github.com/chainapsis/keplr-chain-registry/1f9419f5b5495bda4ed6d0fafa3e4c1c4880aa88
@@ -29012,15 +29018,6 @@ packages:
       - supports-color
       - utf-8-validate
     dev: true
-
-  github.com/ethereumjs/ethereumjs-abi/ee3994657fa7a427238e6ba92a84d0b529bbcde0:
-    resolution: {tarball: https://codeload.github.com/ethereumjs/ethereumjs-abi/tar.gz/ee3994657fa7a427238e6ba92a84d0b529bbcde0}
-    name: ethereumjs-abi
-    version: 0.6.8
-    dependencies:
-      bn.js: 4.12.0
-      ethereumjs-util: 6.2.1
-    dev: false
 
   github.com/evmos/chain-token-registry/0f977421dca39debb81e3cbd302b57ec1e942091:
     resolution: {tarball: https://codeload.github.com/evmos/chain-token-registry/tar.gz/0f977421dca39debb81e3cbd302b57ec1e942091}

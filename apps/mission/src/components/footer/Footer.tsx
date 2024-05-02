@@ -19,13 +19,13 @@ import { Link } from "@evmosapps/i18n/client";
 import { Container, TrackerEvent } from "@evmosapps/ui-helpers";
 import { CLICK_ON_FOOTER_CTA } from "tracker";
 import { translation } from "@evmosapps/i18n/server";
-import { IconComments2 } from "../../../../../packages/ui/src/icons/line";
+import { IconComment2Info } from "@evmosapps/ui/icons/line/chat/comment-2-info.tsx";
 
 export const Footer = async () => {
   const { t } = await translation();
 
   return (
-    <Container full className="mt-auto pt-5">
+    <Container full className="mt-auto px-14 pt-5">
       <footer className="text-subheading dark:text-subheading-dark text-base space-y-5 mt-10 mb-14 lg:space-y-0 flex lg:justify-between flex-col lg:flex-row items-center">
         <div className="flex lg:w-1/3 justify-start items-center lg:mb-0">
           <a
@@ -33,7 +33,7 @@ export const Footer = async () => {
             href={FEEDBACK_URL}
             className="flex items-center space-x-2"
           >
-            <IconComments2 className="h-5 w-5" />
+            <IconComment2Info className="h-5 w-5" />
             <p>{t("footer.shareFeedback")}</p>
           </a>
         </div>

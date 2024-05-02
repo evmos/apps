@@ -11,10 +11,12 @@
   },
   "footer": {
     "buildWithUs": "Build With Us",
-    "coingeckoAttribution": "Data by Coingecko API",
-    "termsOfService": "Terms of Service",
-    "privacyPolicy": "Privacy Policy",
-    "cookiesSettings": "Cookies Settings"
+    "dataProvided": "Data provided by ",
+    "coingecko": "CoinGecko",
+    "termsOfService": "Terms",
+    "privacyPolicy": "Privacy",
+    "cookiesSettings": "Cookies",
+    "shareFeedback": "Share feedback with us"
   },
   "launchPad": {
     "dApp": {

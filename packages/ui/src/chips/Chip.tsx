@@ -30,6 +30,9 @@ const chip = cva({
       error: [
         "bg-error-light dark:bg-error-dark text-error dark:text-error-dark",
       ],
+      tertiary: [
+        "bg-tertiary-container dark:bg-tertiary-container-dark text-on-tertiary-container dark:text-on-tertiary-container-dark",
+      ],
     },
   },
   defaultVariants: {

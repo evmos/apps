@@ -1,23 +1,26 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { ConnectModalTrigger } from "./modals/ConnectModal/ConnectModal";
+import { PrimaryButton } from "@evmosapps/ui-helpers";
+import { cn } from "helpers";
 import { CLICK_CONNECT_WALLET_BUTTON, sendEvent } from "tracker";
-import { Button } from "../../../packages/ui/src/button";
+import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const ConnectButton = () => {
+  const { isDropdownOpen, setIsDropdownOpen } = useWallet();
+
   return (
-    <ConnectModalTrigger>
-      <Button
-        variant={"primary"}
-        size="md"
-        data-testid="open-connect-modal"
-        onClick={() => {
-          sendEvent(CLICK_CONNECT_WALLET_BUTTON);
-        }}
-      >
-        Sign in
-      </Button>
-    </ConnectModalTrigger>
+    <PrimaryButton
+      variant={"primary"}
+      disabled={isDropdownOpen}
+      data-testid="open-connect-modal"
+      className={cn("rounded-full px-8 py-2 text-sm font-bold")}
+      onClick={() => {
+        setIsDropdownOpen(true);
+        sendEvent(CLICK_CONNECT_WALLET_BUTTON);
+      }}
+    >
+      Connect
+    </PrimaryButton>
   );
 };

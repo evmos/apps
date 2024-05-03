@@ -3,45 +3,53 @@
 
 "use client";
 
-import { Modal } from "../../../../../../packages/ui/src/components/dialog/Dialog";
-import { Input } from "../../../../../../packages/ui/src/components/inputs/Input";
-import { Label } from "../../../../../../packages/ui/src/components/labels/Label";
-import { Button } from "../../../../../../packages/ui/src/button/index";
+import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
+import { Input } from "@evmosapps/ui/components/inputs/Input.tsx";
+import { Label } from "@evmosapps/ui/components/labels/Label.tsx";
+import { Button } from "@evmosapps/ui/button/index.tsx";
 import { cn, useModal } from "helpers";
 import purple from "../../../../public/purple.png";
 import orange from "../../../../public/orange.png";
 import Image from "next/image";
-import { useEdit } from "./useEdit";
 import { useTranslation } from "@evmosapps/i18n/client";
-export const useEditModal = () => useModal("edit");
+import { useState } from "react";
+import { ProfileContext, useProfileContext } from "./useEdit";
+import { useWallet } from "@evmosapps/evmos-wallet";
 
-const profileImages = [purple, orange];
+export const useEditModal = () => useModal("edit");
+export const profileImages = [purple, orange];
 
 export const EditModal = () => {
   const { isOpen, setIsOpen, modalProps } = useEditModal();
-  const {
-    profileImg,
-    setProfileImg,
-    profileName,
-    setProfileName,
-    setProfileImgDb,
-    setProfileNameDb,
-  } = useEdit();
+  const { setIsDropdownOpen } = useWallet();
+
+  const { name, handleSetName, img, handleSetImg } =
+    useProfileContext() as ProfileContext;
+  const [localName, setLocalName] = useState(name);
+  const [localImg, setLocalImg] = useState(img);
   const { t } = useTranslation("dappStore");
 
   const handleOnClick = () => {
-    setProfileImgDb(profileImg);
-    setProfileNameDb(profileName);
+    handleSetImg(localImg);
+    handleSetName(localName);
     setIsOpen(false);
+
     // TODO Mili: add notification when changes are saved.
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setProfileName(e.target.value);
+    setLocalName(e.target.value);
   };
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      onClose={() => {
+        setIsOpen(false);
+        setIsDropdownOpen(true);
+      }}
+    >
       <Modal.Body>
         {modalProps && (
           <div className="space-y-5">
@@ -49,18 +57,23 @@ export const EditModal = () => {
             <div className="flex flex-col">
               <div className="flex items-center space-x-6">
                 {profileImages.map((img, index) => (
+                  // TODO Mili: add blur ?
                   <Image
                     key={index}
-                    src={img}
-                    width={50}
-                    height={50}
+                    src={img.src}
+                    width={80}
+                    height={80}
                     alt={img.src}
-                    className={cn("rounded-full cursor-pointer", {
-                      "ring-1 ring-tertiary-container dark:ring-tertiary-container-dark":
-                        profileImg === index,
-                    })}
-                    onClick={() => {
-                      setProfileImg(index);
+                    className={cn(
+                      "rounded-full cursor-pointer transition-all duration-150 ease-out hover:scale-105 overflow-hidden",
+                      {
+                        "ring-1 ring-tertiary-container dark:ring-tertiary-container-dark ":
+                          localImg === index,
+                      },
+                    )}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setLocalImg(index);
                     }}
                   />
                 ))}
@@ -71,7 +84,7 @@ export const EditModal = () => {
               <Input
                 fullWidth
                 placeholder={t("profile.modal.placeholder")}
-                value={profileName}
+                value={name}
                 onChange={handleOnChange}
               />
             </div>

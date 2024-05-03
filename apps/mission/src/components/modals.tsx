@@ -4,16 +4,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
-import { EditModal } from "./header/edit/ModalEdit";
 
-const ConnectModal = dynamic(
-  async () =>
-    (await import("stateful-components/src/modals/ConnectModal/ConnectModal"))
-      .ConnectModal,
-  {
-    ssr: false,
-  },
-);
 const SetupAccountModal = dynamic(
   () =>
     import(
@@ -23,15 +14,7 @@ const SetupAccountModal = dynamic(
     ssr: false,
   },
 );
-const ProfileModal = dynamic(
-  () =>
-    import("stateful-components/src/modals/ProfileModal/ProfileModal").then(
-      (mod) => mod.ProfileModal,
-    ),
-  {
-    ssr: false,
-  },
-);
+
 const TopupModal = dynamic(
   () =>
     import("stateful-components/src/modals/TopupModal/TopupModal").then(
@@ -61,15 +44,28 @@ const ConsentModal = dynamic(
   },
 );
 
+const EditModal = dynamic(
+  () => import("./header/edit/ModalEdit").then((mod) => mod.EditModal),
+  {
+    ssr: false,
+  },
+);
+
+const WalletsModal = dynamic(
+  () => import("./header/signin/WalletsModal").then((mod) => mod.WalletsModal),
+  {
+    ssr: false,
+  },
+);
+
 export const Modals = () => {
   return (
     <Suspense>
-      <ConnectModal />
       <SetupAccountModal />
-      <ProfileModal />
       <TopupModal />
       <TermsOfServiceModal />
       <ConsentModal />
+      <WalletsModal />
       <EditModal />
     </Suspense>
   );

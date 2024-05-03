@@ -55,10 +55,10 @@ export function ProfileProvider({ children }: { children: JSX.Element }) {
     setProfileNameDb(name);
   }, []);
 
-  const handleSetImage = useCallback((img: number) => {
+  const handleSetImage = (img: number) => {
     setProfileImg(img);
     setProfileImgDb(img);
-  }, []);
+  }
 
   return (
     <ProfileContext.Provider

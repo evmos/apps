@@ -3,8 +3,8 @@
 "use client";
 import { createContext, useCallback, useContext, useState } from "react";
 
-export const DISPLAY_NAME_KEY = "displayName";
-export const PROFILE_IMAGE_KEY = "profileImage";
+export const DISPLAY_NAME_KEY = "userProfile.displayName";
+export const PROFILE_IMAGE_KEY = "userProfile.profileImage";
 
 export type ProfileContext = {
   name: string;

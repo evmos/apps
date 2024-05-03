@@ -11,6 +11,7 @@ import { ExplorerBreadcrumbs } from "./partials/explorer-breadcrumbs";
 import { HeaderCategories } from "./partials/header-categories";
 import { translation } from "@evmosapps/i18n/server";
 import { pick, keys } from "lodash-es";
+import { Title } from "./partials/title";
 export const DappExplorerPage = async ({
   params,
 }: {
@@ -64,8 +65,8 @@ export const DappExplorerPage = async ({
         ]}
         params={params}
       />
-
-      <EcosystemCardGrid className="pt-8">
+      <Title categories={categories} params={params} />
+      <EcosystemCardGrid>
         {sortedApps?.map((dApp) => (
           <EcosystemCard data={dApp} key={dApp.name} />
         ))}

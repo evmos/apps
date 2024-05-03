@@ -64,7 +64,7 @@ export const DappDetailsPage = async ({
           </div>
         </div>
         <div className="container">
-          <div className="hidden md:block absolute -mt-5 w-screen -ml-3">
+          <div className="hidden md:block absolute -mt-5 w-screen">
             <ExplorerBreadcrumbs params={params} />
           </div>
         </div>

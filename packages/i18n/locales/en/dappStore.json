@@ -45,7 +45,7 @@
     }
   },
   "categories": {
-    "title": "Explore the <b>{{count}} {{name}}</b> on Evmos",
+    "title": "Explore the {{count}} {{name}} on Evmos",
     "description": "Explore the Evmos Ecosystem - dApps, tools, exchanges, infrastructure, and more.",
     "instantdApps": {
       "name": "Instant dApps",

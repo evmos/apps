@@ -22,7 +22,7 @@ export const Breadcrumb = ({ pages }: { pages: BreadcrumbItem[] }) => {
       <ol role="list" className="flex items-center space-x-3 tracking-wide">
         {pages.map((page, index) => (
           <li key={index}>
-            <div className="flex items-center">
+            <div className="flex items-center space-x-3">
               {index > 0 && (
                 <IconChevronRight
                   className={cn("h-5 w-5 flex-shrink-0 text-paragraph")}
@@ -35,7 +35,7 @@ export const Breadcrumb = ({ pages }: { pages: BreadcrumbItem[] }) => {
               >
                 <Link
                   href={page.href}
-                  className="pl-3 transition-all duration-200 text-paragraph hover:text-paragraph-dark font-light"
+                  className="transition-all duration-200 text-paragraph hover:text-paragraph-dark font-light"
                   aria-current={index === pages.length - 1 ? "page" : undefined}
                 >
                   {page.name}

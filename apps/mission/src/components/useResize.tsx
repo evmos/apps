@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 
 function useWindowResize() {
   const [windowSize, setWindowSize] = useState({
@@ -12,10 +12,10 @@ function useWindowResize() {
   useLayoutEffect(() => {
     // checking for window here is unnecessary, window is never undefined inside useEffect
     setWindowSize({ width: window.innerWidth });
-    
+
     // If it's not being used elsewhere, prefer creating this inside the useEffect so you don't need to pass it as a dependency of useEffect
     // I wonder why eslint  didn't complain about that btw
-   const handleResize = () => {
+    const handleResize = () => {
       setWindowSize({ width: window.innerWidth });
     };
     window.addEventListener("resize", handleResize);

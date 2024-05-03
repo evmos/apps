@@ -15,7 +15,6 @@ import { IconArrowSwap } from "@evmosapps/ui/icons/line/arrows/arrow-swap.tsx";
 import { IconPlus } from "@evmosapps/ui/icons/line/basic/plus.tsx";
 import { IconGear } from "@evmosapps/ui/icons/line/basic/gear.tsx";
 import { IconLogOut2 } from "@evmosapps/ui/icons/line/arrows/log-out-2.tsx";
-import Link from "next/link";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
@@ -86,29 +85,31 @@ const ProfileOptions = () => {
       </div>
       <div className="flex justify-center gap-4 text-paragraph dark:text-paragraph-dark text-xs">
         <div className="flex flex-col gap-2 items-center justify-center ">
-          <Link href="/portfolio">
-            <IconButton
-              variant="low-emphasis"
-              onClick={() => {
-                setIsDropdownOpen(false);
-              }}
-            >
-              <IconArrowSwap />
-            </IconButton>
-          </Link>
+          <IconButton
+            as="Link"
+            href="/portfolio"
+            variant="low-emphasis"
+            onClick={() => {
+              setIsDropdownOpen(false);
+            }}
+          >
+            <IconArrowSwap />
+          </IconButton>
+
           <p>{t("profile.options.portfolio")}</p>
         </div>
         <div className="flex flex-col gap-2 items-center justify-center">
-          <Link href="/dapps/on-ramps/transak">
-            <IconButton
-              variant="low-emphasis"
-              onClick={() => {
-                setIsDropdownOpen(false);
-              }}
-            >
-              <IconPlus />
-            </IconButton>
-          </Link>
+          <IconButton
+            as="Link"
+            href="/dapps/on-ramps/transak"
+            variant="low-emphasis"
+            onClick={() => {
+              setIsDropdownOpen(false);
+            }}
+          >
+            <IconPlus />
+          </IconButton>
+
           <p>{t("profile.options.topUp")}</p>
         </div>
       </div>

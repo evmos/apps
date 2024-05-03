@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 "use client";
-import { createContext, useCallback, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const DISPLAY_NAME_KEY = "userProfile.displayName";
 export const PROFILE_IMAGE_KEY = "userProfile.profileImage";
@@ -53,12 +53,12 @@ export function ProfileProvider({ children }: { children: JSX.Element }) {
   const handleSetValue = (name: string) => {
     setProfileName(name);
     setProfileNameDb(name);
-  }
+  };
 
   const handleSetImage = (img: number) => {
     setProfileImg(img);
     setProfileImgDb(img);
-  }
+  };
 
   return (
     <ProfileContext.Provider

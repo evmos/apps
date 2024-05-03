@@ -161,7 +161,7 @@ const button = cva({
   },
 });
 
-export interface ButtonStyleProps extends VariantProps<typeof button> { }
+export interface ButtonStyleProps extends VariantProps<typeof button> {}
 
 export type ButtonProps<T extends ElementType> = {
   as?: T;
@@ -184,4 +184,3 @@ type ButtonType = <T extends ElementType = "button">(
   props: ButtonProps<T>,
 ) => JSX.Element;
 export const Button = forwardRef(_Button) as ButtonType;
-// Button.Icon = IconButton;

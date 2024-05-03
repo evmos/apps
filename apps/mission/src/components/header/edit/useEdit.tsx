@@ -1,12 +1,28 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+"use client";
+import { createContext, useContext, useState } from "react";
 
-import { useState } from "react";
+export const DISPLAY_NAME_KEY = "userProfile.displayName";
+export const PROFILE_IMAGE_KEY = "userProfile.profileImage";
 
-export const PROFILE_IMAGE_KEY = "profileImage";
-export const DISPLAY_NAME_KEY = "displayName";
+export type ProfileContext = {
+  name: string;
+  handleSetName: (name: string) => void;
+  img: number;
+  handleSetImg: (img: number) => void;
+};
 
-export const useEdit = () => {
+const ProfileContext = createContext<ProfileContext | null>(null);
+
+export function ProfileProvider({ children }: { children: JSX.Element }) {
+  const setProfileNameDb = (profileName: string) => {
+    localStorage.setItem(DISPLAY_NAME_KEY, JSON.stringify(profileName));
+  };
+
+  const setProfileImgDb = (profileImg: number) => {
+    localStorage.setItem(PROFILE_IMAGE_KEY, JSON.stringify(profileImg));
+  };
   const getProfileImage = () => {
     const storedImg =
       typeof window === "undefined"
@@ -19,8 +35,6 @@ export const useEdit = () => {
     return JSON.parse(storedImg) as number;
   };
 
-  const [profileImg, setProfileImg] = useState(getProfileImage());
-
   const getProfileName = () => {
     const storedName =
       typeof window === "undefined"
@@ -30,25 +44,35 @@ export const useEdit = () => {
     if (!storedName) {
       return "";
     }
+
     return JSON.parse(storedName) as string;
   };
-
   const [profileName, setProfileName] = useState(getProfileName());
+  const [profileImg, setProfileImg] = useState(getProfileImage());
 
-  const setProfileImgDb = (profileImg: number) => {
-    window.localStorage.setItem(PROFILE_IMAGE_KEY, JSON.stringify(profileImg));
+  const handleSetValue = (name: string) => {
+    setProfileName(name);
+    setProfileNameDb(name);
   };
 
-  const setProfileNameDb = (profileName: string) => {
-    window.localStorage.setItem(DISPLAY_NAME_KEY, JSON.stringify(profileName));
+  const handleSetImage = (img: number) => {
+    setProfileImg(img);
+    setProfileImgDb(img);
   };
 
-  return {
-    profileImg,
-    setProfileImg,
-    profileName,
-    setProfileName,
-    setProfileImgDb,
-    setProfileNameDb,
-  };
-};
+  return (
+    <ProfileContext.Provider
+      value={{
+        name: profileName,
+        handleSetName: handleSetValue,
+        img: profileImg,
+        handleSetImg: handleSetImage,
+      }}
+    >
+      {children}
+    </ProfileContext.Provider>
+  );
+}
+export function useProfileContext() {
+  return useContext(ProfileContext);
+}

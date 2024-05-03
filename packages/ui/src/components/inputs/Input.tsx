@@ -32,7 +32,7 @@ export function Input({
       autoComplete="off"
       autoCorrect="off"
       className={cn(
-        "w-fit rounded-lg transition-all duration-200 p-3 focus:ring-1 focus:ring-primary dark:focus:ring-primary-dark focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-primary-dark bg-transparent hover:bg-on-surface/10 dark:hover:bg-on-surface-dark/10 outline-none placeholder:text-subheading dark:placeholder:text-subheading-dark text-paragraph dark:text-paragraph-dark border border-surface-container-highest dark:border-surface-container-highest-dark",
+        "w-fit rounded-lg transition-all duration-200 p-2 focus:ring-1 focus:ring-primary dark:focus:ring-primary-dark focus-visible:ring-1 focus-visible:ring-primary dark:focus-visible:ring-primary-dark bg-transparent hover:bg-on-surface/10 dark:hover:bg-on-surface-dark/10 outline-none placeholder:text-subheading dark:placeholder:text-subheading-dark text-paragraph dark:text-paragraph-dark border border-surface-container-highest dark:border-surface-container-highest-dark",
         {
           "w-full": fullWidth,
         },

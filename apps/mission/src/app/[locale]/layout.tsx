@@ -13,12 +13,11 @@ import { GoogleAnalytics } from "../../components/GoogleAnalytics";
 import type { Metadata } from "next";
 import { Modals } from "../../components/modals";
 import { Footer } from "../../components/footer/Footer";
-import { Logo } from "../../components/Logo";
 import { Sidebar } from "../../components/Sidebar";
 import { Header } from "../../components/header/Header";
-import { Link } from "@evmosapps/i18n/client";
-import { TrackerEvent } from "@evmosapps/ui-helpers/src/TrackerEvent";
-import { CLICK_EVMOS_LOGO } from "tracker/src/events";
+import { ProfileProvider } from "../../components/header/edit/useEdit";
+import { WalletsProvider } from "../../components/header/signin/useWallets";
+import { ContainerLogo } from "../../components/ContainerLogo";
 
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
@@ -81,27 +80,27 @@ function RootLayout({
         )}
       >
         <RootProviders>
-          <div className="px-6 py-6 md:px-4 bg-surface dark:bg-surface-dark w-full  md:col-span-1 md:row-span-1 ">
-            <TrackerEvent event={CLICK_EVMOS_LOGO}>
-              <Link href="/">
-                <Logo className="h-6" />
-              </Link>
-            </TrackerEvent>
-          </div>
-          <div className="bg-surface dark:bg-surface-dark w-full z-10 sticky top-0 md:col-span-1 md:row-start-2 md:row-span-1 h-full md:top-auto md:pt-5">
-            <Sidebar />
-          </div>
-          <div className="md:overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
-            <Header />
-            <div className="px-14">
-              <main className="flex flex-col dark:text-white min-h-screen relative">
-                {children}
-              </main>
-            </div>
-            <Footer />
-          </div>
-          <Modals />
-          <GoogleAnalytics />
+          <ProfileProvider>
+            <WalletsProvider>
+              <div className="px-6 py-6 md:px-4 bg-surface dark:bg-surface-dark w-full md:col-span-1 md:row-span-1 ">
+                <ContainerLogo />
+              </div>
+              <div className="bg-surface dark:bg-surface-dark w-full z-10 sticky top-0 md:col-span-1 md:row-start-2 md:row-span-1 h-full md:top-auto md:pt-5">
+                <Sidebar />
+              </div>
+              <div className="md:overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
+                <Header />
+                <div className="px-14">
+                  <main className="flex flex-col dark:text-white min-h-screen relative">
+                    {children}
+                  </main>
+                </div>
+                <Footer />
+              </div>
+              <Modals />
+              <GoogleAnalytics />
+            </WalletsProvider>
+          </ProfileProvider>
         </RootProviders>
       </body>
     </html>

@@ -50,10 +50,10 @@ export function ProfileProvider({ children }: { children: JSX.Element }) {
   const [profileName, setProfileName] = useState(getProfileName());
   const [profileImg, setProfileImg] = useState(getProfileImage());
 
-  const handleSetValue = useCallback((name: string) => {
+  const handleSetValue = (name: string) => {
     setProfileName(name);
     setProfileNameDb(name);
-  }, []);
+  }
 
   const handleSetImage = (img: number) => {
     setProfileImg(img);

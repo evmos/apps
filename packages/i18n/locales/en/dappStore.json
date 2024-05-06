@@ -57,6 +57,10 @@
     "amount": "results",
     "checkbox": {
       "label": "Instant"
+    },
+    "notFound": {
+      "title": "No results found.",
+      "description": "Try another search query or change your filter settings."
     }
   },
   "instantdApp": {

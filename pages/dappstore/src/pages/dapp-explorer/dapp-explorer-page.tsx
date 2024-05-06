@@ -32,7 +32,6 @@ export const DappExplorerPage = async ({
         ) // Filter by matching category
     : dApps; // Return all dApps if no category is provided
 
-  // sort apps -> should also use the searchParams for sorting
   const sortedApps =
     typeof searchParams === "object" && searchParams["instant-dapps"] === "true"
       ? sortApps(filteredApps.filter(({ instantDapp }) => instantDapp))

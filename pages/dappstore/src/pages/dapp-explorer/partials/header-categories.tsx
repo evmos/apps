@@ -77,7 +77,8 @@ const CategoryHeader = ({
   category?: Pick<Category, "categoryDapps" | "name" | "slug" | "description">;
   totalCategoryCount: number;
 } & ComponentProps<"div">) => {
-  const categoryName = category?.name ?? "dApps";
+  const categoryName =
+    category?.name === "All" ? "dApps" : category?.name ?? "dApps";
 
   return (
     <div className="mt-5" {...rest}>

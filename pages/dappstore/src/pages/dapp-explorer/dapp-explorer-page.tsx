@@ -11,8 +11,8 @@ import { ExplorerBreadcrumbs } from "./partials/explorer-breadcrumbs";
 import { HeaderCategories } from "./partials/header-categories";
 import { translation } from "@evmosapps/i18n/server";
 import { pick, keys } from "lodash-es";
-import { Title } from "./partials/title";
-import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
+import { FilterApps } from "./partials/filter-apps";
+import { NoPageFound } from "./partials/no-page-found";
 
 export const DappExplorerPage = async ({
   params,
@@ -25,13 +25,12 @@ export const DappExplorerPage = async ({
   const { dApps, categories } = await fetchExplorerData();
 
   const filteredApps = params.category
-    ? dApps.filter((dapp) => {
-        if (params.category === "instant-dapps") {
-          return dapp.instantDapp;
-        }
-        return dapp.categories.find(({ slug }) => slug === params.category);
-      })
-    : dApps;
+    ? params.category === "all"
+      ? dApps // Return all dApps if category is "all"
+      : dApps.filter((dapp) =>
+          dapp.categories.some(({ slug }) => slug === params.category),
+        ) // Filter by matching category
+    : dApps; // Return all dApps if no category is provided
 
   // sort apps -> should also use the searchParams for sorting
   const sortedApps =
@@ -39,14 +38,11 @@ export const DappExplorerPage = async ({
       ? sortApps(filteredApps.filter(({ instantDapp }) => instantDapp))
       : sortApps(filteredApps);
 
-  const instantDappCategory = {
-    categoryDapps: sortedApps
-      .filter(({ instantDapp }) => instantDapp)
-      .map(({ slug }) => slug),
-
-    description: t("categories.instantdApps.description"),
-    name: t("categories.instantdApps.name"),
-    slug: "instant-dapps",
+  const allDappsCategory = {
+    categoryDapps: sortedApps,
+    description: t("categories.all.description"),
+    name: t("categories.all.name"),
+    slug: "all",
   };
   const selectedCategory = categories?.find(
     (category) => category.slug === params.category,
@@ -60,38 +56,25 @@ export const DappExplorerPage = async ({
         amountAppsSelected={sortedApps?.length ?? 0}
         categories={[
           {
-            categoryDapps: sortedApps
-              .filter(({ instantDapp }) => instantDapp)
-              .map(({ slug }) => slug),
-
-            description: t("categories.instantdApps.description"),
-            name: t("categories.instantdApps.name"),
-            slug: "instant-dapps",
+            categoryDapps: sortedApps.map(({ slug }) => slug),
+            description: t("categories.all.description"),
+            name: t("categories.all.name"),
+            slug: "all",
           },
           ...categories.map((category) =>
             pick(
               category,
-              keys(instantDappCategory) as (keyof typeof instantDappCategory)[],
+              keys(allDappsCategory) as (keyof typeof allDappsCategory)[],
             ),
           ),
         ]}
         params={params}
       />
-      <Title
+      <FilterApps
         nameDapp={selectedCategory?.name}
         amountDapps={sortedApps?.length}
       />
-      {sortedApps?.length === 0 && (
-        <div className="pt-36 flex flex-col items-center ">
-          <IconSearch />
-          <h6 className="text-xl mt-6 font-medium text-heading dark:text-heading-dark">
-            No results found.
-          </h6>
-          <p className="mt-2 text-subheading dark:text-subheading-dark text-sm font-medium">
-            Try another search query or change your filter settings.
-          </p>
-        </div>
-      )}
+      {sortedApps?.length === 0 && <NoPageFound />}
       <EcosystemCardGrid>
         {sortedApps?.map((dApp) => (
           <EcosystemCard data={dApp} key={dApp.name} />

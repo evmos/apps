@@ -47,8 +47,8 @@
   "categories": {
     "title": "Explore the {{count}} {{name}} on Evmos",
     "description": "Explore the Evmos Ecosystem - dApps, tools, exchanges, infrastructure, and more.",
-    "instantdApps": {
-      "name": "Instant dApps",
+    "all": {
+      "name": "All",
       "description": "Discover the power of cross-chain apps - instantly, in one place."
     }
   },

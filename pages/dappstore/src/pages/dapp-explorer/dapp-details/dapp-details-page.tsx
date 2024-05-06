@@ -49,13 +49,13 @@ export const DappDetailsPage = async ({
             <Image
               {...(cover
                 ? ({
-                    src: cover.src,
-                    blurDataURL: cover.blurDataURL,
-                    placeholder: "blur",
-                  } as const)
+                  src: cover.src,
+                  blurDataURL: cover.blurDataURL,
+                  placeholder: "blur",
+                } as const)
                 : {
-                    src: "/ecosystem/galaxy.png",
-                  })}
+                  src: "/ecosystem/galaxy.png",
+                })}
               alt={dapp.name}
               fill={true}
               className="object-cover"
@@ -69,11 +69,7 @@ export const DappDetailsPage = async ({
           </div>
         </div>
       </div>
-      <DescriptiondApp
-        dapp={dapp}
-        relatedApps={sortApps(relatedApps)}
-        totalApps={dApps.length}
-      />
+      <DescriptiondApp dapp={dapp} relatedApps={sortApps(relatedApps)} />
     </>
   );
 };

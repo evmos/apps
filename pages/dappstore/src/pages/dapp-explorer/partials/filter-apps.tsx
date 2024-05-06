@@ -15,6 +15,7 @@ import {
 import { Listbox } from "@evmosapps/ui/components/listboxs/listbox.tsx";
 import { IconChevronDown } from "@evmosapps/ui/icons/line/arrows/chevron-down.tsx";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useTranslation } from "@evmosapps/i18n/client";
 
 const sortOptions = [
   {
@@ -47,13 +48,13 @@ export const FilterApps = ({
 
   const pathname = usePathname();
   const router = useRouter();
-
+  const { t } = useTranslation("dappStore");
   return (
     <div className="pt-14 flex items-center justify-between">
       <p className="hidden lg:inline-block text-heading dark:text-heading-dark text-xl font-medium">
-        {nameDapp ?? "All dApps"}
+        {nameDapp ?? t("filterdApps.all")}
         <span className="text-subheading dark:text-subheading-dark font-medium text-sm pl-2">
-          {amountDapps} results
+          {amountDapps} {t("filterdApps.amount")}
         </span>
       </p>
       <div className="flex w-full lg:w-fit justify-between lg:justify-end items-center  space-x-6">
@@ -76,7 +77,7 @@ export const FilterApps = ({
               <div className="flex items-center space-x-1">
                 <IconLightning className="h-3 w-3 text-primary-container dark:text-primary-container-dark" />
                 <p className="text-primary dark:text-primary-dark text-sm ">
-                  Instant
+                  {t("filterdApps.checkbox.label")}
                 </p>
               </div>
             }

@@ -52,6 +52,13 @@
       "description": "Discover the power of cross-chain apps - instantly, in one place."
     }
   },
+  "filterdApps": {
+    "all": "All dApps",
+    "amount": "results",
+    "checkbox": {
+      "label": "Instant"
+    }
+  },
   "instantdApp": {
     "badge": "Instant",
     "howTo": {

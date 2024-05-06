@@ -8,3 +8,4 @@ export * as wallet from "./wallet";
 export * as social from "./social";
 export * as crypto from "./crypto";
 export * as line from "./line";
+export * as filled from "./filled";

@@ -11,6 +11,7 @@ import { ExplorerBreadcrumbs } from "./partials/explorer-breadcrumbs";
 import { HeaderCategories } from "./partials/header-categories";
 import { translation } from "@evmosapps/i18n/server";
 import { pick, keys } from "lodash-es";
+
 export const DappExplorerPage = async ({
   params,
 }: {

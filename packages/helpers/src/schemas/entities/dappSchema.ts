@@ -14,9 +14,7 @@ import { updatedAtSchema } from "../partials/updatedAtSchema";
 import { selectSchema } from "../partials/selectSchema";
 import { parseUrl } from "helpers/src/parse/urls";
 import { createSlug } from "../utils/createSlug";
-import { ImageStore } from "../../image-store";
-import { raise } from "../../error-handling";
-import { devMemo } from "../../dev/dev-memo";
+import { resolveSelfHostedImage } from "../../clients/notion-utils";
 
 const dappPropertiesSchema = createNotionPropertiesSchema(
   z.object({
@@ -53,18 +51,22 @@ const dappPropertiesSchema = createNotionPropertiesSchema(
     categories: relationSchema,
   }),
 );
-
-const fetchSelfHostedUrl = devMemo(async function (url: string) {
-  const { blurDataURL, source } = (await ImageStore.fetchManifest(url)) ??
-    raise(
-      `No manifest found for ${url}:\n\nMaybe this image is missing? Try running \`pnpm dappstore-images sync\``
-    );
-
-  return {
-    blurDataURL: blurDataURL,
-    src: source.url,
-  };
-}, { tags: ["fetchSelfHostedUrl"], revalidate: 60 * 5 });
+//
+// const fetchSelfHostedUrl = devMemo(
+//   async function(url: string) {
+//     const { blurDataURL, source } =
+//       (await ImageStore.fetchManifest(url)) ??
+//       raise(
+//         `No manifest found for ${url}:\n\nMaybe this image is missing? Try running \`pnpm dappstore-images sync\``,
+//       );
+//
+//     return {
+//       blurDataURL: blurDataURL,
+//       src: source.url,
+//     };
+//   },
+//   { tags: ["fetchSelfHostedUrl"], revalidate: 60 * 5 },
+// );
 export const dappSchema = z
   .object({
     id: z.string(),
@@ -83,9 +85,9 @@ export const dappSchema = z
           description: string;
         }
       >,
-      icon: icon ? await fetchSelfHostedUrl(icon.src) : null,
-      thumbnail: thumbnail ? await fetchSelfHostedUrl(thumbnail.src) : null,
-      cover: cover ? await fetchSelfHostedUrl(cover.src) : null,
+      icon: icon ? await resolveSelfHostedImage(icon.src) : null,
+      thumbnail: thumbnail ? await resolveSelfHostedImage(thumbnail.src) : null,
+      cover: cover ? await resolveSelfHostedImage(cover.src) : null,
 
       ...otherProps,
       ...rest,

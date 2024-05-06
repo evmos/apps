@@ -24,7 +24,7 @@ const button = cva({
   ],
   variants: {
     size: {
-      sm: "px-3 py-[7px]  text-xs min-w-7",
+      sm: "px-3 py-[7px] text-xs min-w-7",
       md: "px-4 py-[9px] text-base min-w-9",
       lg: "px-5 py-[13px] text-lg min-w-[46px]",
     },

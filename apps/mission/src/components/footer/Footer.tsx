@@ -20,6 +20,7 @@ import { Container, TrackerEvent } from "@evmosapps/ui-helpers";
 import { CLICK_ON_FOOTER_CTA } from "tracker";
 import { translation } from "@evmosapps/i18n/server";
 import { IconComment2Info } from "@evmosapps/ui/icons/line/chat/comment-2-info.tsx";
+import { CookiesSettings } from "./cookies-settings";
 
 export const Footer = async () => {
   const { t } = await translation();
@@ -118,14 +119,15 @@ export const Footer = async () => {
                 </Link>
               </TrackerEvent>
 
-              <TrackerEvent
+              <CookiesSettings />
+              {/* <TrackerEvent
                 event={CLICK_ON_FOOTER_CTA}
                 properties={{ "Footer Social Type": "Cookie Statement" }}
               >
                 <Link href="/cookie-policy">
                   <p>{t("footer.cookiesSettings")}</p>
                 </Link>
-              </TrackerEvent>
+              </TrackerEvent> */}
             </div>
           </div>
         </div>

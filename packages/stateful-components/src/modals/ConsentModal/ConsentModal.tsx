@@ -3,7 +3,7 @@
 
 "use client";
 
-import { Modal } from "@evmosapps/ui-helpers";
+import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
 
 import { modalLink, useModal } from "helpers";
 import { Link, useTranslation } from "@evmosapps/i18n/client";
@@ -18,7 +18,13 @@ export const ConsentModal = () => {
   const { isOpen, setIsOpen, modalProps } = useConsentModal();
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+    <Modal
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      onClose={() => {
+        setIsOpen(false);
+      }}
+    >
       <Modal.Body>
         {modalProps && (
           <div className="space-y-5">
@@ -30,12 +36,12 @@ export const ConsentModal = () => {
                 t={t}
                 i18nKey="consent.description"
                 components={{
-                  privacy: (
-                    <Link
-                      className="cursor-pointer underline"
-                      href={"/privacy-policy"}
-                    />
-                  ),
+                  // privacy: (
+                  //   <Link
+                  //     className="cursor-pointer underline"
+                  //     href={"/privacy-policy"}
+                  //   />
+                  // ),
                   cookies: (
                     <Link
                       className="cursor-pointer underline"

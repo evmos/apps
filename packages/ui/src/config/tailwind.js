@@ -7,6 +7,7 @@ import forms from "@tailwindcss/forms";
 import path from "path";
 import colors from "./colors.json";
 import chroma from "chroma-js";
+import { shapeTailwindPlugin } from "./shape-tailwind-plugin";
 
 const { entries, values, fromEntries } = Object;
 
@@ -52,7 +53,6 @@ const config = {
   ],
   theme: {
     extend: {
-
       // TODO Mili: ask Julia how should we manage this images
 
       // backgroundImage: {
@@ -174,7 +174,7 @@ const config = {
       },
     },
   },
-  plugins: [typography, forms],
+  plugins: [typography, forms, shapeTailwindPlugin],
 };
 
 export default config;

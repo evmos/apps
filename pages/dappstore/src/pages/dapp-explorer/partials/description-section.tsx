@@ -1,6 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-
 import { Frameline, TrackerEvent } from "@evmosapps/ui-helpers";
 
 import { DiscordIcon } from "@evmosapps/icons/DiscordIcon";
@@ -20,7 +19,7 @@ import { WIDGETS } from "./widgets-index";
 
 import { IconArrowTopRight } from "@evmosapps/ui/icons/line/arrows/arrow-top-right.tsx";
 import { IconExport2 } from "@evmosapps/ui/icons/line/arrows/export-2.tsx";
-import { IconStar as IconStarLine } from "@evmosapps/ui/icons/line/basic/star.tsx";
+
 import { IconLightning } from "@evmosapps/ui/icons/line/images/lightning.tsx";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { Button } from "@evmosapps/ui/button/index.tsx";
@@ -28,6 +27,7 @@ import { Button } from "@evmosapps/ui/button/index.tsx";
 import Image from "next/image";
 import { Carousel } from "./carousel";
 import { HeroSectionExplore } from "../../landing/partials/hero-section-explore";
+import { FavoriteButton } from "./favorite-button";
 
 //Adapt the page to each Dapp
 const getSlugClass = (slug: string): string => {
@@ -116,9 +116,7 @@ export const DescriptiondApp = async ({
           <IconButton variant={"low-emphasis"} outlined>
             <IconExport2 />
           </IconButton>
-          <IconButton variant={"low-emphasis"} outlined>
-            <IconStarLine />
-          </IconButton>
+          <FavoriteButton dapp={dapp} />
         </div>
       </div>
 

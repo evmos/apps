@@ -27,10 +27,10 @@ export const ExplorerBreadcrumbs = async ({
   const { categories, dApps } = await fetchExplorerData();
 
   const categoryStep = (() => {
-    if (params.category === "instant-dapps") {
+    if (params.category === "all") {
       return {
-        name: "Instant dApps",
-        href: "/dapps/instant-dapps",
+        name: "All",
+        href: "/dapps/all",
       };
     }
     const category = categories.find((c) => c.slug === params.category);

@@ -4,6 +4,9 @@
 import { DApp } from "../fetch-explorer-data";
 
 export const sortApps = (apps: DApp[]) => {
+  // by default, sorty alphabetically (ascending)
+  // TODO: when we have more sort options, we can add them here using the sort by parameter
+  // on search Params
   return apps.sort((a, b) => {
     const alphabeticalOrder = a.name.localeCompare(b.name);
 

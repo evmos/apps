@@ -84,7 +84,7 @@ export const FilterApps = ({
           />
         </div>
         <div className="z-20">
-          <Listbox value={selected} onChange={setSelected}>
+          <Listbox.Menu value={selected} onChange={setSelected}>
             <Listbox.Button className="cursor-pointer border min-w-32 text-subheading dark:text-subheading-dark font-normal text-base flex items-center justify-between border-surface-container-highest dark:border-surface-container-highest-dark rounded-lg px-4 py-2 gap-2">
               <span className="block truncate">{selected?.name}</span>
               <IconChevronDown
@@ -107,7 +107,7 @@ export const FilterApps = ({
                 </Listbox.Option>
               ))}
             </Listbox.Options>
-          </Listbox>
+          </Listbox.Menu>
         </div>
       </div>
     </div>

@@ -92,7 +92,7 @@ export const FilterApps = ({
               />
             </Listbox.Button>
 
-            <Listbox.Options>
+            <Listbox.Options className="min-w-32">
               {sortOptions.map((option) => (
                 <Listbox.Option
                   onClick={() =>

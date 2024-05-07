@@ -48,7 +48,7 @@ export const DappExplorerPage = async ({
   );
 
   return (
-    <>
+    <div className="flex flex-col gap-y-8 container max-w-screen-xl mx-auto ">
       <ExplorerBreadcrumbs params={params} />
       <HeaderCategories
         dApps={dApps}
@@ -79,6 +79,6 @@ export const DappExplorerPage = async ({
           <EcosystemCard data={dApp} key={dApp.name} />
         ))}
       </EcosystemCardGrid>
-    </>
+    </div>
   );
 };

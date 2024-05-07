@@ -4,12 +4,11 @@
 "use client";
 
 import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
-
 import { modalLink, useModal } from "helpers";
 import { Link, useTranslation } from "@evmosapps/i18n/client";
-import GrayButton from "@evmosapps/ui-helpers/src/GrayButton";
 import { disableMixpanel, enableMixpanel } from "tracker";
 import { Trans } from "react-i18next";
+import { Button } from "@evmosapps/ui/button/index.tsx";
 
 export const useConsentModal = () => useModal("consent");
 export const ConsentModalTrigger = modalLink("consent");
@@ -36,12 +35,6 @@ export const ConsentModal = () => {
                 t={t}
                 i18nKey="consent.description"
                 components={{
-                  // privacy: (
-                  //   <Link
-                  //     className="cursor-pointer underline"
-                  //     href={"/privacy-policy"}
-                  //   />
-                  // ),
                   cookies: (
                     <Link
                       className="cursor-pointer underline"
@@ -52,24 +45,25 @@ export const ConsentModal = () => {
               />
             </div>
             <div className="flex items-center justify-center space-x-5">
-              <GrayButton
-                className="bg-red-300 hover:bg-red1 text-white"
+              <Button
+                className="w-full"
                 onClick={() => {
                   enableMixpanel();
-
                   setIsOpen(false);
                 }}
               >
                 {t("consent.acceptButton")}
-              </GrayButton>
-              <GrayButton
+              </Button>
+              <Button
+                variant="low-emphasis"
+                className="w-full"
                 onClick={() => {
                   disableMixpanel();
                   setIsOpen(false);
                 }}
               >
                 {t("consent.rejectButton")}
-              </GrayButton>
+              </Button>
             </div>
           </div>
         )}

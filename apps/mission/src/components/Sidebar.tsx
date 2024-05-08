@@ -22,7 +22,8 @@ import { IconGithub } from "@evmosapps/ui/icons/social/github.tsx";
 import { IconDiscord } from "@evmosapps/ui/icons/social/discord.tsx";
 import { IconTelegram } from "@evmosapps/ui/icons/social/telegram.tsx";
 import { IconMedium } from "@evmosapps/ui/icons/social/medium.tsx";
-
+import { TrackerEvent } from "@evmosapps/ui-helpers";
+import { CLICK_ON_FOOTER_CTA } from "tracker";
 const NavigationSection = () => (
   <nav>
     <h2 className="text-xs px-4 hidden md:block">dApp Store</h2>
@@ -93,15 +94,20 @@ const socials = [
 const SocialSection = () => (
   <nav className="px-4 mt-auto gap-x-3 hidden md:flex">
     {socials.map(({ name, Icon, href }) => (
-      <a
+      <TrackerEvent
         key={name}
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="hover:text-primary dark:hover:text-primary-dark"
+        event={CLICK_ON_FOOTER_CTA}
+        properties={{ "Footer Social Type": name }}
       >
-        <Icon className="w-4 h-4 opacity-60" />
-      </a>
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-primary dark:hover:text-primary-dark"
+        >
+          <Icon className="w-4 h-4 opacity-60" />
+        </a>
+      </TrackerEvent>
     ))}
   </nav>
 );

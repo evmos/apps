@@ -1,8 +1,8 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-export const CLICK_CONNECT_WALLET_BUTTON = "ClickConnectWallet";
-export const CLICK_DISCONNECT_WALLET_BUTTON = "ClickDisconnectWallet";
+export const CLICK_CONNECT_WALLET_BUTTON = "ClickedSignIn";
+export const CLICK_DISCONNECT_WALLET_BUTTON = "ClickedSignOut";
 export const CLICK_CONNECTED_WITH = "ConnectSpecificWallet";
 export const CLICK_ON_SEND_BUTTON = "StartedSend";
 export const CLICK_ON_RECEIVE_BUTTON = "StartedReceive";
@@ -79,13 +79,13 @@ export const CLICK_ON_VIEW_ALL_DAPPS = "ClickedCTAButton - See all dApps";
 export const CLICK_ON_APPLY_TO_BE_PART_OF_THE_ECOSYSTEM =
   "ClickedCTAButton - Add a dApp";
 export const CLICK_ON_DAPP_INSIDE_LAUNCHER = "AppLauncher";
-export const CLICK_ON_FEATURED_DAPP = "ClickedProductThumbnail";
+export const CLICK_ON_FEATURED_DAPP = "ClickCard";
 export const CLICK_ON_TOP_UP_ACCOUNT_DAPP = "ClickedTopUp";
 export const CLICK_ON_COPILOT_BANNER = "ClickedCopilotBanner";
 
-export const CLICK_SOCIAL_BUTTON = "ClickedSocialCTAButton";
-export const CLICK_ON_CATEGORY = "ClickedCategory";
-export const CLICK_ON_BREADCRUMB = "ClickedBreadcrumb";
+export const CLICK_SOCIAL_BUTTON = "ClickdAppDetails";
+export const CLICK_ON_CATEGORY = "ClickCategory";
+export const CLICK_ON_BREADCRUMB = "ClickBreadcrumb";
 export const CLICK_ON_FOOTER_CTA = "ClickedFooterCTA";
 export const CLICK_LEARN_BUTTON = "ClickedCTAButton - Learn to Build on Evmos";
 export const CLICK_SEE_MORE_BUTTON = "ClickedCTAButton - See more";

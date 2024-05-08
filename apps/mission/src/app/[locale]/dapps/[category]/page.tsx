@@ -11,7 +11,7 @@ export const generateStaticParams = async () => {
 
   return [
     {
-      category: "instant-dapps",
+      category: "all",
     },
     ...categories.map((category) => ({
       category: category.slug,
@@ -23,9 +23,9 @@ export async function generateMetadata({
 }: {
   params: { category: string };
 }) {
-  if (params.category === "instant-dapps") {
+  if (params.category === "all") {
     return {
-      title: `Instant dApps | Evmos dApp Store`,
+      title: `All dApps | Evmos dApp Store`,
     };
   }
   const { categories } = await fetchExplorerData();

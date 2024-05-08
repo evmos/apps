@@ -75,20 +75,13 @@ export const CREATED_ORDER_ON_TRANSAK = "CreatedOrderTransak";
 export const CANCELLED_ORDER_ON_TRANSAK = "CancelledOrderTransak";
 export const FAILED_ORDER_ON_TRANSAK = "FailedOrderTransak";
 export const SUCCESSFUL_ORDER_ON_TRANSAK = "SuccessfulOrderTransak";
-export const CLICK_ON_VIEW_ALL_DAPPS = "ClickedCTAButton - See all dApps";
-export const CLICK_ON_APPLY_TO_BE_PART_OF_THE_ECOSYSTEM =
-  "ClickedCTAButton - Add a dApp";
-export const CLICK_ON_DAPP_INSIDE_LAUNCHER = "AppLauncher";
+
 export const CLICK_ON_FEATURED_DAPP = "ClickCard";
-export const CLICK_ON_TOP_UP_ACCOUNT_DAPP = "ClickedTopUp";
-export const CLICK_ON_COPILOT_BANNER = "ClickedCopilotBanner";
 
 export const CLICK_SOCIAL_BUTTON = "ClickdAppDetails";
 export const CLICK_ON_CATEGORY = "ClickCategory";
 export const CLICK_ON_BREADCRUMB = "ClickBreadcrumb";
 export const CLICK_ON_FOOTER_CTA = "ClickedFooterCTA";
-export const CLICK_LEARN_BUTTON = "ClickedCTAButton - Learn to Build on Evmos";
-export const CLICK_SEE_MORE_BUTTON = "ClickedCTAButton - See more";
 
 export const CLICK_EVMOS_COPILOT_START_FLOW = "StartedCopilotOnboarding";
 export const EXIT_OUT_COPILOT = "ExitedCopilotOnboarding";

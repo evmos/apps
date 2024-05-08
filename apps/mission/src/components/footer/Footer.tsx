@@ -120,14 +120,6 @@ export const Footer = async () => {
               </TrackerEvent>
 
               <CookiesSettings />
-              {/* <TrackerEvent
-                event={CLICK_ON_FOOTER_CTA}
-                properties={{ "Footer Social Type": "Cookie Statement" }}
-              >
-                <Link href="/cookie-policy">
-                  <p>{t("footer.cookiesSettings")}</p>
-                </Link>
-              </TrackerEvent> */}
             </div>
           </div>
         </div>

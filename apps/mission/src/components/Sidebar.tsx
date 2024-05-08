@@ -23,7 +23,7 @@ import { IconDiscord } from "@evmosapps/ui/icons/social/discord.tsx";
 import { IconTelegram } from "@evmosapps/ui/icons/social/telegram.tsx";
 import { IconMedium } from "@evmosapps/ui/icons/social/medium.tsx";
 import { TrackerEvent } from "@evmosapps/ui-helpers";
-import { CLICK_ON_FOOTER_CTA } from "tracker";
+import { CLICK_ON_FOOTER_CTA, CLICK_ON_NAVIGATION } from "tracker";
 const NavigationSection = () => (
   <nav>
     <h2 className="text-xs px-4 hidden md:block">dApp Store</h2>
@@ -39,26 +39,32 @@ const NavigationSection = () => (
         { label: "Develop", Icon: IconWrench, href: "#" },
         { label: "Learn", Icon: IconBook, href: DOCS_EVMOS_URL },
       ].map(({ label, Icon, active, href }) => (
-        <li key={label}>
-          <Link
-            href={href}
-            className={cn(
-              "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 h-11 px-4 justify-center items-center text-base rounded-t-lg",
-              "border-b-2 -mb-px md:mb-0 gap-x-2",
-              "md:rounded-full md:border-none md:justify-start ",
-              {
-                "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark":
-                  active,
-              },
-            )}
-          >
-            <Icon className="hidden md:inline-flex w-5 h-5" />
-            {label}
-            {!href.startsWith("/") && (
-              <IconExternalLink className="hidden md:inline-flex ml-auto h-4 w-4 opacity-60" />
-            )}
-          </Link>
-        </li>
+        <TrackerEvent
+          key={label}
+          event={CLICK_ON_NAVIGATION}
+          properties={{ navigation: label }}
+        >
+          <li>
+            <Link
+              href={href}
+              className={cn(
+                "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 h-11 px-4 justify-center items-center text-base rounded-t-lg",
+                "border-b-2 -mb-px md:mb-0 gap-x-2",
+                "md:rounded-full md:border-none md:justify-start ",
+                {
+                  "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark":
+                    active,
+                },
+              )}
+            >
+              <Icon className="hidden md:inline-flex w-5 h-5" />
+              {label}
+              {!href.startsWith("/") && (
+                <IconExternalLink className="hidden md:inline-flex ml-auto h-4 w-4 opacity-60" />
+              )}
+            </Link>
+          </li>
+        </TrackerEvent>
       ))}
     </ul>
   </nav>

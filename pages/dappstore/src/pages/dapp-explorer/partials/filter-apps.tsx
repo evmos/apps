@@ -16,7 +16,7 @@ import { Listbox } from "@evmosapps/ui/components/listboxs/listbox.tsx";
 import { IconChevronDown } from "@evmosapps/ui/icons/line/arrows/chevron-down.tsx";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useTranslation } from "@evmosapps/i18n/client";
-
+import { sendEvent, CLICK_SORT, CLICK_FILTER, UNCLICK_FILTER } from "tracker";
 const sortOptions = [
   {
     id: 1,
@@ -29,6 +29,9 @@ const sortOptions = [
       const newParams = new URLSearchParams(params.toString());
       newParams.set("sort-by", "asc");
       router.push(`${pathname}?${newParams.toString()}`);
+      sendEvent(CLICK_SORT, {
+        "Sort Type": "A->Z",
+      });
     },
   },
 ];
@@ -67,8 +70,14 @@ export const FilterApps = ({
               const newParams = new URLSearchParams(params.toString());
               if (e.target.checked === false) {
                 newParams.set("instant-dapps", "false");
+                sendEvent(UNCLICK_FILTER, {
+                  "Filter Type": "Instant dApp",
+                });
               } else {
                 newParams.set("instant-dapps", "true");
+                sendEvent(CLICK_FILTER, {
+                  "Filter Type": "Instant dApp",
+                });
               }
 
               router.push(`${pathname}?${newParams.toString()}`);

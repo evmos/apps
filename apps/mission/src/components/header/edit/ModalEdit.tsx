@@ -15,7 +15,7 @@ import { useTranslation } from "@evmosapps/i18n/client";
 import { useState } from "react";
 import { ProfileContext, useProfileContext } from "./useEdit";
 import { useWallet } from "@evmosapps/evmos-wallet";
-
+import { sendEvent, SAVE_PROFILE_CHANGES } from "tracker";
 export const useEditModal = () => useModal("edit");
 export const profileImages = [purple, orange];
 
@@ -33,7 +33,7 @@ export const EditModal = () => {
     handleSetImg(localImg);
     handleSetName(localName);
     setIsOpen(false);
-
+    sendEvent(SAVE_PROFILE_CHANGES);
     // TODO Mili: add notification when changes are saved.
   };
 

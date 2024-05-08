@@ -102,3 +102,12 @@ export const SUCCESSFUL_SWAP_TX = "SuccessfulSwap";
 export const UNSUCCESSFUL_SWAP_TX = "UnsuccessfulSwap";
 export const SUCCESSFUL_STAKE_TX = "SuccessfulStake";
 export const UNSUCESSFUL_STAKE_TX = "UnsuccessfulStake";
+
+export const CLICK_ON_NAVIGATION = "ClickOnNavigation";
+export const SEARCH_FOR_WALLET = "SearchForWallet";
+export const CLICK_ON_PORTFOLIO = "ClickEvmosPortfolioProfile";
+export const CLICK_ON_TOP_UP = "ClickTopUpProfile";
+export const SAVE_PROFILE_CHANGES = "SaveProfileChanges";
+export const CLICK_FILTER = "ClickFilter";
+export const CLICK_SORT = "ClickSort";
+export const UNCLICK_FILTER = "UnclickFilter";

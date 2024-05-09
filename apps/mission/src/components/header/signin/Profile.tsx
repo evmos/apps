@@ -18,7 +18,12 @@ import { IconLogOut2 } from "@evmosapps/ui/icons/line/arrows/log-out-2.tsx";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
-
+import {
+  CLICK_DISCONNECT_WALLET_BUTTON,
+  sendEvent,
+  CLICK_ON_PORTFOLIO,
+  CLICK_ON_TOP_UP,
+} from "tracker";
 const ProfileTitle = () => {
   const { connector, setDropdownState } = useWallet();
   const { t } = useTranslation("dappStore");
@@ -91,6 +96,7 @@ const ProfileOptions = () => {
             variant="low-emphasis"
             onClick={() => {
               setIsDropdownOpen(false);
+              sendEvent(CLICK_ON_PORTFOLIO);
             }}
           >
             <IconArrowSwap />
@@ -105,6 +111,7 @@ const ProfileOptions = () => {
             variant="low-emphasis"
             onClick={() => {
               setIsDropdownOpen(false);
+              sendEvent(CLICK_ON_TOP_UP);
             }}
           >
             <IconPlus />
@@ -148,7 +155,7 @@ const ProfileSettings = () => {
         onClick={() => {
           disconnect();
           setIsDropdownOpen(false);
-          // sendEvent(CLICK_DISCONNECT_WALLET_BUTTON);
+          sendEvent(CLICK_DISCONNECT_WALLET_BUTTON);
         }}
       >
         {

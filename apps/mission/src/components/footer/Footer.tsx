@@ -29,14 +29,19 @@ export const Footer = async () => {
     <Container full className="mt-auto px-14 pt-5">
       <footer className="text-subheading dark:text-subheading-dark text-base space-y-5 mt-10 mb-14 lg:space-y-0 flex lg:justify-between flex-col lg:flex-row items-center">
         <div className="flex lg:w-1/3 justify-start items-center lg:mb-0">
-          <a
-            target="_blank"
-            href={FEEDBACK_URL}
-            className="flex items-center space-x-2"
+          <TrackerEvent
+            event={CLICK_ON_FOOTER_CTA}
+            properties={{ "Footer Social Type": "Give Feedback" }}
           >
-            <IconComment2Info className="h-5 w-5" />
-            <p>{t("footer.shareFeedback")}</p>
-          </a>
+            <a
+              target="_blank"
+              href={FEEDBACK_URL}
+              className="flex items-center space-x-2"
+            >
+              <IconComment2Info className="h-5 w-5" />
+              <p>{t("footer.shareFeedback")}</p>
+            </a>
+          </TrackerEvent>
         </div>
 
         {/* social networks */}

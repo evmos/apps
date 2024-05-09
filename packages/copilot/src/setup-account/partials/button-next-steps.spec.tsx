@@ -5,41 +5,11 @@ import { test, describe, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import mixpanel from "mixpanel-browser";
-import {
-  CLICK_ON_VIEW_ALL_DAPPS,
-  COMPLETED_COPILOT_ONBOARDING,
-  disableMixpanel,
-} from "tracker";
+import { COMPLETED_COPILOT_ONBOARDING, disableMixpanel } from "tracker";
 import { ButtonsNextSteps } from "./button-next-steps";
 import { MIXPANEL_TOKEN_FOR_TEST } from "../../../vitest.setup";
 
 describe("Testing Top up success message", () => {
-  test("should call mixpanel event for clicking on interact with dapp", async () => {
-    render(<ButtonsNextSteps />);
-    const button = await screen.findByRole("link", {
-      name: /interact with a dapp/i,
-    });
-    expect(button).toBeDefined();
-    await userEvent.click(button);
-    expect(mixpanel.init).toHaveBeenCalledOnce();
-    expect(mixpanel.track).toHaveBeenCalledWith(CLICK_ON_VIEW_ALL_DAPPS, {
-      Location: "Inside Copilot",
-      token: MIXPANEL_TOKEN_FOR_TEST,
-    });
-  });
-
-  test("should not call mixpanel event for clicking on interact with dapp", async () => {
-    disableMixpanel();
-    const { findByRole } = render(<ButtonsNextSteps />);
-    const button = await findByRole("link", {
-      name: /interact with a dapp/i,
-    });
-    expect(button).toBeDefined();
-    await userEvent.click(button);
-    expect(mixpanel.init).toHaveBeenCalledOnce();
-    expect(mixpanel.track).not.toHaveBeenCalled();
-  });
-
   test("should call mixpanel event for clicking on learn more", async () => {
     render(<ButtonsNextSteps />);
     const button = await screen.findByRole("link", { name: /learn more/i });

@@ -5,7 +5,7 @@ import { ComponentProps } from "react";
 
 import { Badge, TrackerEvent } from "@evmosapps/ui-helpers";
 
-import { CLICK_ON_VIEW_ALL_DAPPS, COMPLETED_COPILOT_ONBOARDING } from "tracker";
+import { COMPLETED_COPILOT_ONBOARDING } from "tracker";
 import { Link, useTranslation } from "@evmosapps/i18n/client";
 import { cn } from "helpers";
 import { TitleButton } from "../../partials/title-button";
@@ -18,21 +18,15 @@ export const ButtonsNextSteps = () => {
   return (
     <>
       <div className="grid w-full grid-cols-1 space-y-3 pb-3 pt-5 md:grid-cols-2 md:space-x-4 md:space-y-0">
-        <TrackerEvent
-          event={CLICK_ON_VIEW_ALL_DAPPS}
-          properties={{
-            Location: "Inside Copilot",
-          }}
-        >
-          <Button href="/dapps">
-            <p className="text-sm font-bold">
-              {t("nextsteps.interactWithdApp.title")}
-            </p>
-            <Badge variant="success">
-              {t("nextsteps.interactWithdApp.badge")}
-            </Badge>
-          </Button>
-        </TrackerEvent>
+        <Button href="/dapps">
+          <p className="text-sm font-bold">
+            {t("nextsteps.interactWithdApp.title")}
+          </p>
+          <Badge variant="success">
+            {t("nextsteps.interactWithdApp.badge")}
+          </Badge>
+        </Button>
+
         <TrackerEvent
           event={COMPLETED_COPILOT_ONBOARDING}
           properties={{

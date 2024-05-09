@@ -45,6 +45,9 @@ const sortOptions = [
       const newParams = new URLSearchParams(params.toString());
       newParams.set("sort-by", "desc");
       router.push(`${pathname}?${newParams.toString()}`);
+      sendEvent(CLICK_SORT, {
+        "Sort Type": "Z->A",
+      });
     },
   },
 ];

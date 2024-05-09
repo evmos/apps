@@ -22,7 +22,7 @@ export const profileImages = [purple, orange];
 
 export const EditModal = () => {
   const { isOpen, setIsOpen, modalProps } = useEditModal();
-  const { setIsDropdownOpen } = useWallet();
+  const { setIsDropdownOpen, address } = useWallet();
 
   const { name, handleSetName, img, handleSetImg } =
     useProfileContext() as ProfileContext;
@@ -89,7 +89,7 @@ export const EditModal = () => {
                 }
                 fullWidth
                 placeholder={t("profile.modal.placeholder")}
-                value={name}
+                value={name === "" ? address : name}
                 onChange={handleOnChange}
               />
             </div>

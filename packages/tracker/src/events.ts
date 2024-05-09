@@ -104,3 +104,4 @@ export const SAVE_PROFILE_CHANGES = "SaveProfileChanges";
 export const CLICK_FILTER = "ClickFilter";
 export const CLICK_SORT = "ClickSort";
 export const UNCLICK_FILTER = "UnclickFilter";
+export const EDIT_PROFILE = "EditProfile";

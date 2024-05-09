@@ -15,7 +15,8 @@ import { useTranslation } from "@evmosapps/i18n/client";
 import { useState } from "react";
 import { ProfileContext, useProfileContext } from "./useEdit";
 import { useWallet } from "@evmosapps/evmos-wallet";
-import { sendEvent, SAVE_PROFILE_CHANGES } from "tracker";
+import { sendEvent, SAVE_PROFILE_CHANGES, EDIT_PROFILE } from "tracker";
+
 export const useEditModal = () => useModal("edit");
 export const profileImages = [purple, orange];
 
@@ -74,6 +75,7 @@ export const EditModal = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setLocalImg(index);
+                      sendEvent(EDIT_PROFILE, { "Profile Details": "Picture" });
                     }}
                   />
                 ))}
@@ -82,6 +84,9 @@ export const EditModal = () => {
             <div className="flex flex-col space-y-2">
               <Label>{t("profile.modal.label")}</Label>
               <Input
+                onClick={() =>
+                  sendEvent(EDIT_PROFILE, { "Profile Details": "Display Name" })
+                }
                 fullWidth
                 placeholder={t("profile.modal.placeholder")}
                 value={name}

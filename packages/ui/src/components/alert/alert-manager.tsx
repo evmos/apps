@@ -48,12 +48,12 @@ type PromptOptionsInputList = [PromptOptionInput, ...PromptOptionInput[]];
 
 type NormalizePromptOptionsList<T extends PromptOptionsInputList | undefined> =
   T extends undefined
-    ? PromptOption<undefined>[]
-    : {
-        [K in number & keyof T]: T[K] extends PromptOptionInput
-          ? NormalizedPromptOption<T[K]>
-          : never;
-      }[number & keyof T][];
+  ? PromptOption<undefined>[]
+  : {
+    [K in number & keyof T]: T[K] extends PromptOptionInput
+    ? NormalizedPromptOption<T[K]>
+    : never;
+  }[number & keyof T][];
 
 type AlertArgs<T extends PromptOptionsInputList | undefined = undefined> = {
   type: AlertInstance["type"];
@@ -232,7 +232,6 @@ export class AlertManager extends EventTarget {
     const alert = this.get(id);
     if (!alert) return;
     if (alert.timeout) clearTimeout(alert.timeout);
-    // if (alert.type === "loading") return;
 
     if (alert.duration === Infinity) {
       alert.timeout = undefined;

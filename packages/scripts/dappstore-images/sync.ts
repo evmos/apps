@@ -13,6 +13,14 @@ import {
 } from "helpers/src/clients/notion-utils";
 import { E } from "helpers/src/error-handling";
 
+const printLoading = (total: number, complete: number) => {
+  const barLength = 40;
+  const percent = complete / total;
+  const filled = Math.round(percent * barLength);
+  const bar = "░".repeat(filled);
+  const empty = " ".repeat(barLength - filled);
+  log(`[${bar}${empty}] ${complete}/${total}`);
+};
 program
   .command("sync")
   .description("Sync images from Notion to Vercel Blob Storage")
@@ -46,7 +54,7 @@ program
       )) {
         const filesList = Array.isArray(files) ? files : [files];
         for (const file of filesList) {
-          const url = get(file, "file.url") || get(files, "external.url");
+          const url = get(file, "file.url") || get(file, "external.url");
           if (!url) {
             continue;
           }
@@ -74,14 +82,6 @@ program
       log(frame(`🏞️ Synchronizing ${taskCount} images...`));
     }
 
-    const printLoading = (total: number, complete: number) => {
-      const barLength = 40;
-      const percent = complete / total;
-      const filled = Math.round(percent * barLength);
-      const bar = "░".repeat(filled);
-      const empty = " ".repeat(barLength - filled);
-      log(`[${bar}${empty}] ${complete}/${total}`);
-    };
     let tasksExecuted = 0;
     printLoading(taskCount, tasksExecuted);
     const logWithBar = (message: string) => {

@@ -16,7 +16,7 @@ interface BreadcrumbItem {
 export const Breadcrumb = ({ pages }: { pages: BreadcrumbItem[] }) => {
   return (
     <nav
-      className="flex -mb-5 justify-center md:justify-start text-base"
+      className="hidden md:flex -mb-5 justify-center md:justify-start text-base"
       aria-label="breadcrumb"
     >
       <ol role="list" className="flex items-center space-x-3 tracking-wide">

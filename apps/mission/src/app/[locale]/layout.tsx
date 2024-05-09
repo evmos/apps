@@ -18,6 +18,7 @@ import { Header } from "../../components/header/Header";
 import { ProfileProvider } from "../../components/header/edit/useEdit";
 import { WalletsProvider } from "../../components/header/signin/useWallets";
 import { ContainerLogo } from "../../components/ContainerLogo";
+import { AlertStack } from "@evmosapps/ui/components/alert/alert-stack.tsx";
 
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
@@ -98,6 +99,7 @@ function RootLayout({
                 <Footer />
               </div>
               <Modals />
+              <AlertStack />
               <GoogleAnalytics />
             </WalletsProvider>
           </ProfileProvider>

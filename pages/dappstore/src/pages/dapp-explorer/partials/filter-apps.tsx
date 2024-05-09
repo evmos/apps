@@ -31,6 +31,19 @@ const sortOptions = [
       router.push(`${pathname}?${newParams.toString()}`);
     },
   },
+  {
+    id: 2,
+    name: "Z to A",
+    onClick: (
+      params: ReadonlyURLSearchParams,
+      router: AppRouterInstance,
+      pathname: string,
+    ) => {
+      const newParams = new URLSearchParams(params.toString());
+      newParams.set("sort-by", "desc");
+      router.push(`${pathname}?${newParams.toString()}`);
+    },
+  },
 ];
 
 export const FilterApps = ({

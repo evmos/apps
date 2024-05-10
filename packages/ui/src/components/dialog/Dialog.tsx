@@ -111,8 +111,9 @@ Modal.Body = ModalBody;
 const ModalHeader = ({
   children,
   className,
+  showCloseButton = true,
   ...rest
-}: ComponentProps<"div">) => {
+}: ComponentProps<"div"> & { showCloseButton?: boolean }) => {
   const { onClose } = useModal();
   return (
     <div
@@ -125,17 +126,19 @@ const ModalHeader = ({
       <h5 className="flex items-center text-2xl leading-8 font-medium">
         {children}
       </h5>
-      <button
-        className="cursor-pointer focus-visible:outline-none"
-        onClick={onClose}
-      >
-        <IconCross
-          className={cn(
-            "h-5 w-auto m-2 focus:outline-none focus-visible:outline-none text-paragraph dark:text-paragraph-dark",
-          )}
-          aria-hidden="true"
-        />
-      </button>
+      {showCloseButton && (
+        <button
+          className="cursor-pointer focus-visible:outline-none"
+          onClick={onClose}
+        >
+          <IconCross
+            className={cn(
+              "h-5 w-auto m-2 focus:outline-none focus-visible:outline-none text-paragraph dark:text-paragraph-dark",
+            )}
+            aria-hidden="true"
+          />
+        </button>
+      )}
     </div>
   );
 };
@@ -145,7 +148,7 @@ Modal.Header = ModalHeader;
 const ModalSeparator = ({ ...rest }: ComponentProps<"hr">) => {
   return (
     <hr
-      className="-m-6 text-surface-container-highest dark:text-surface-container-highest-dark"
+      className="-mx-6 text-surface-container-highest dark:text-surface-container-highest-dark"
       {...rest}
     />
   );

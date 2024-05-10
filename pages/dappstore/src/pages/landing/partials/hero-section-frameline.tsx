@@ -4,12 +4,8 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { ADD_DAPP_FORM_URL, DOCS_EVMOS_URL } from "constants-helper";
-import { Frameline, PrimaryButton, TrackerEvent } from "@evmosapps/ui-helpers";
+import { Frameline, PrimaryButton } from "@evmosapps/ui-helpers";
 import { translation } from "@evmosapps/i18n/server";
-import {
-  CLICK_LEARN_BUTTON,
-  CLICK_ON_APPLY_TO_BE_PART_OF_THE_ECOSYSTEM,
-} from "tracker";
 
 import { UpRightArrowIcon } from "@evmosapps/icons/UpRightArrowIcon";
 
@@ -58,29 +54,26 @@ export const HeroSectionFrameline = async () => {
           {t("ecosystem.description")}
         </p>
         <div className="flex flex-col md:flex-row items-center space-x-0 space-y-4 md:space-y-0 md:space-x-2 w-full">
-          <TrackerEvent event={CLICK_ON_APPLY_TO_BE_PART_OF_THE_ECOSYSTEM}>
-            <PrimaryButton
-              className="flex-1 font-normal rounded w-full self-stretch text-center"
-              as={"a"}
-              href={ADD_DAPP_FORM_URL}
-              target="_blank"
-              referrerPolicy="no-referrer"
-            >
-              {t("ecosystem.addAppButton")}
-            </PrimaryButton>
-          </TrackerEvent>
-          <TrackerEvent event={CLICK_LEARN_BUTTON}>
-            <PrimaryButton
-              as={"a"}
-              className="flex-1 font-normal rounded w-full text-center text-sm"
-              variant="secondary"
-              href={DOCS_EVMOS_URL}
-              target="_blank"
-              referrerPolicy="no-referrer"
-            >
-              {t("ecosystem.buildButton")}
-            </PrimaryButton>
-          </TrackerEvent>
+          <PrimaryButton
+            className="flex-1 font-normal rounded w-full self-stretch text-center"
+            as={"a"}
+            href={ADD_DAPP_FORM_URL}
+            target="_blank"
+            referrerPolicy="no-referrer"
+          >
+            {t("ecosystem.addAppButton")}
+          </PrimaryButton>
+
+          <PrimaryButton
+            as={"a"}
+            className="flex-1 font-normal rounded w-full text-center text-sm"
+            variant="secondary"
+            href={DOCS_EVMOS_URL}
+            target="_blank"
+            referrerPolicy="no-referrer"
+          >
+            {t("ecosystem.buildButton")}
+          </PrimaryButton>
         </div>
       </div>
     </Frameline>

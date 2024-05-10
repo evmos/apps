@@ -59,14 +59,18 @@ const genIconFileFromTemplate = ({
 }: {
   iconName: string;
   content: string;
-}) => `
+}) => {
+  content = content.replace(
+    ">",
+    "ref={ref} className={['icon', className].join(' ')} {...props}>",
+  );
+
+  content = content.replace("#2F384C", "currentColor");
+  return `
 import React, { forwardRef, ForwardedRef } from "react";
 
 function _Icon${iconName}({ className, ...props}: React.SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>){
-  return (${content.replace(
-    ">",
-    "ref={ref} className={['icon', className].join(' ')} {...props}>",
-  )});
+  return (${content});
 }
 
 _Icon${iconName}.isIcon = true;
@@ -76,6 +80,7 @@ export const Icon${iconName} = forwardRef<
   React.SVGProps<SVGSVGElement>
 >(_Icon${iconName});
 `;
+};
 
 const writeTsFile = async (filePath: string, content: string) => {
   // eslint-disable-next-line no-console

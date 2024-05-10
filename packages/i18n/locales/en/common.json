@@ -38,17 +38,17 @@
     "subtitle": "Favorites"
   },
   "tos": {
-    "title": "Evmos Terms of Service",
+    "title": "Evmos dApp Store",
     "checks": {
       "acknowledgeTOS": "I acknowledge to the Terms of Service.",
       "consentTracking": "I want to share usage data. <button>More information</button>"
     },
-    "acceptButton": "Accept and Proceed"
+    "acceptButton": "Continue"
   },
 
   "consent": {
     "title": "We value your privacy!",
-    "description": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking 'Accept All', you agree to our <privacy>privacy policy</privacy> and <cookies>cookie policy</cookies>.",
+    "description": "We use cookies to enhance your browsing experience and analyze our traffic. By clicking 'Accept All', you agree to our <cookies>cookie policy</cookies>.",
     "acceptButton": "Accept All",
     "rejectButton": "Reject"
   },

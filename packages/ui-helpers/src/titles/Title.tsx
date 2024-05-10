@@ -13,15 +13,16 @@ export const Title = ({
   children,
   ...rest
 }: ComponentProps<"h1"> & {
-  variant?: "lg" | "small";
+  variant?: "lg" | "small" | "xl";
   tag?: "h1" | "h2" | "h3" | "h4";
 }) => {
   return React.createElement(
     tag,
     {
       className: cn(
-        "text-[#E8DFD3] tracking-wide",
+        "text-heading dark:text-heading-dark tracking-wide",
         {
+          "text-2xl lg:text-3xl font-medium": variant === "xl",
           "text-xl lg:text-2xl tracking-wide": variant === "lg",
           "text-base lg:text-lg": variant === "small",
           ...rest,

@@ -15,13 +15,14 @@ import { useTranslation } from "@evmosapps/i18n/client";
 import { useState } from "react";
 import { ProfileContext, useProfileContext } from "./useEdit";
 import { useWallet } from "@evmosapps/evmos-wallet";
-
+import { sendEvent, SAVE_PROFILE_CHANGES, EDIT_PROFILE } from "tracker";
+import { alertsManager } from "@evmosapps/ui/components/alert/alert-manager.tsx";
 export const useEditModal = () => useModal("edit");
 export const profileImages = [purple, orange];
 
 export const EditModal = () => {
   const { isOpen, setIsOpen, modalProps } = useEditModal();
-  const { setIsDropdownOpen } = useWallet();
+  const { setIsDropdownOpen, address } = useWallet();
 
   const { name, handleSetName, img, handleSetImg } =
     useProfileContext() as ProfileContext;
@@ -33,8 +34,10 @@ export const EditModal = () => {
     handleSetImg(localImg);
     handleSetName(localName);
     setIsOpen(false);
-
-    // TODO Mili: add notification when changes are saved.
+    sendEvent(SAVE_PROFILE_CHANGES);
+    alertsManager.success({
+      title: "Changes are saved!",
+    });
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,6 +77,7 @@ export const EditModal = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setLocalImg(index);
+                      sendEvent(EDIT_PROFILE, { "Profile Details": "Picture" });
                     }}
                   />
                 ))}
@@ -82,9 +86,12 @@ export const EditModal = () => {
             <div className="flex flex-col space-y-2">
               <Label>{t("profile.modal.label")}</Label>
               <Input
+                onClick={() =>
+                  sendEvent(EDIT_PROFILE, { "Profile Details": "Display Name" })
+                }
                 fullWidth
                 placeholder={t("profile.modal.placeholder")}
-                value={name}
+                value={name === "" ? address : name}
                 onChange={handleOnChange}
               />
             </div>

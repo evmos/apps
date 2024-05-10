@@ -28,6 +28,7 @@ import Image from "next/image";
 import { Carousel } from "./carousel";
 import { HeroSectionExplore } from "../../landing/partials/hero-section-explore";
 import { FavoriteButton } from "./favorite-button";
+import { DynamicSections } from "../../landing/partials/DynamicSections";
 
 //Adapt the page to each Dapp
 const getSlugClass = (slug: string): string => {
@@ -40,11 +41,9 @@ const getSlugClass = (slug: string): string => {
 export const DescriptiondApp = async ({
   dapp,
   relatedApps,
-  totalApps,
 }: {
   dapp: DApp;
   relatedApps: DApp[];
-  totalApps: number;
 }) => {
   const { t } = await translation("dappStore");
 
@@ -265,7 +264,7 @@ export const DescriptiondApp = async ({
           .map((dApp) => <EcosystemCard data={dApp} key={dApp.name} />)}
       </EcosystemCardGrid>
       {/* Explore dapps banner */}
-      <HeroSectionExplore totalApps={totalApps} />
+      <DynamicSections placement={"DApp Details Page"} />
     </div>
   );
 };

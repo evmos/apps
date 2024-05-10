@@ -22,7 +22,11 @@ import { IconGithub } from "@evmosapps/ui/icons/social/github.tsx";
 import { IconDiscord } from "@evmosapps/ui/icons/social/discord.tsx";
 import { IconTelegram } from "@evmosapps/ui/icons/social/telegram.tsx";
 import { IconMedium } from "@evmosapps/ui/icons/social/medium.tsx";
+
 import { FavoriteSection } from "./FavoriteSection";
+
+import { TrackerEvent } from "@evmosapps/ui-helpers";
+import { CLICK_ON_FOOTER_CTA, CLICK_ON_NAVIGATION } from "tracker";
 
 const NavigationSection = () => (
   <nav>
@@ -39,26 +43,32 @@ const NavigationSection = () => (
         { label: "Develop", Icon: IconWrench, href: "#" },
         { label: "Learn", Icon: IconBook, href: DOCS_EVMOS_URL },
       ].map(({ label, Icon, active, href }) => (
-        <li key={label}>
-          <Link
-            href={href}
-            className={cn(
-              "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 h-11 px-4 justify-center items-center text-base rounded-t-lg",
-              "border-b-2 -mb-px md:mb-0 gap-x-2",
-              "md:rounded-full md:border-none md:justify-start ",
-              {
-                "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark":
-                  active,
-              },
-            )}
-          >
-            <Icon className="hidden md:inline-flex w-5 h-5" />
-            {label}
-            {!href.startsWith("/") && (
-              <IconExternalLink className="hidden md:inline-flex ml-auto h-4 w-4 opacity-60" />
-            )}
-          </Link>
-        </li>
+        <TrackerEvent
+          key={label}
+          event={CLICK_ON_NAVIGATION}
+          properties={{ navigation: label }}
+        >
+          <li>
+            <Link
+              href={href}
+              className={cn(
+                "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 h-11 px-4 justify-center items-center text-base rounded-t-lg",
+                "border-b-2 -mb-px md:mb-0 gap-x-2",
+                "md:rounded-full md:border-none md:justify-start ",
+                {
+                  "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark":
+                    active,
+                },
+              )}
+            >
+              <Icon className="hidden md:inline-flex w-5 h-5" />
+              {label}
+              {!href.startsWith("/") && (
+                <IconExternalLink className="hidden md:inline-flex ml-auto h-4 w-4 opacity-60" />
+              )}
+            </Link>
+          </li>
+        </TrackerEvent>
       ))}
     </ul>
   </nav>
@@ -94,15 +104,20 @@ const socials = [
 const SocialSection = () => (
   <nav className="px-4 mb-5 mt-auto gap-x-3 hidden md:flex">
     {socials.map(({ name, Icon, href }) => (
-      <a
+      <TrackerEvent
         key={name}
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        className="hover:text-primary dark:hover:text-primary-dark"
+        event={CLICK_ON_FOOTER_CTA}
+        properties={{ "Footer Social Type": name }}
       >
-        <Icon className="w-4 h-4 opacity-60" />
-      </a>
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-primary dark:hover:text-primary-dark"
+        >
+          <Icon className="w-4 h-4 opacity-60" />
+        </a>
+      </TrackerEvent>
     ))}
   </nav>
 );

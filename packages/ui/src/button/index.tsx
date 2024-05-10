@@ -24,7 +24,7 @@ const button = cva({
   ],
   variants: {
     size: {
-      sm: "px-3 py-[7px]  text-xs min-w-7",
+      sm: "px-3 py-[7px] text-xs min-w-7",
       md: "px-4 py-[9px] text-base min-w-9",
       lg: "px-5 py-[13px] text-lg min-w-[46px]",
     },
@@ -54,10 +54,24 @@ const button = cva({
         "before:focus:opacity-100 [&:not(:disabled)]:before:hover:opacity-100",
       ],
 
-      danger: [
+      error: [
         "bg-error-container dark:bg-error-container-dark",
         "text-on-error-container dark:text-on-error-container-dark",
         "before:bg-on-error-container/10 dark:before:bg-on-error-container-dark/10",
+        "before:focus:opacity-100 [&:not(:disabled)]:before:hover:opacity-100",
+      ],
+
+      success: [
+        "bg-success-container dark:bg-success-container-dark",
+        "text-on-success-container dark:text-on-success-container-dark",
+        "before:bg-on-success-container/10 dark:before:bg-on-success-container-dark/10",
+        "before:focus:opacity-100 [&:not(:disabled)]:before:hover:opacity-100",
+      ],
+
+      warning: [
+        "bg-warning-container dark:bg-warning-container-dark",
+        "text-on-warning-container dark:text-on-warning-container-dark",
+        "before:bg-on-warning-container/10 dark:before:bg-on-warning-container-dark/10",
         "before:focus:opacity-100 [&:not(:disabled)]:before:hover:opacity-100",
       ],
     },
@@ -135,22 +149,58 @@ const button = cva({
     },
 
     {
-      variant: "danger",
+      variant: "error",
       outlined: true,
       class:
         "text-error dark:text-error-container-dark [&:not(:disabled)]:border-current",
     },
     {
-      variant: "danger",
+      variant: "error",
       ghost: true,
       class: "text-error dark:text-error-container-dark",
     },
 
     {
-      variant: "danger",
+      variant: "error",
       tight: true,
       class:
         "text-error dark:text-error-container-dark disabled:text-error/40 disabled:dark:text-error-container-dark/40",
+    },
+
+    {
+      variant: "success",
+      outlined: true,
+      class:
+        "text-success dark:text-success-container-dark [&:not(:disabled)]:border-current",
+    },
+    {
+      variant: "success",
+      ghost: true,
+      class: "text-success dark:text-success-container-dark",
+    },
+    {
+      variant: "success",
+      tight: true,
+      class:
+        "text-success dark:text-success-container-dark disabled:text-success/40 disabled:dark:text-success-container-dark/40",
+    },
+
+    {
+      variant: "warning",
+      outlined: true,
+      class:
+        "text-warning dark:text-warning-container-dark [&:not(:disabled)]:border-current",
+    },
+    {
+      variant: "warning",
+      ghost: true,
+      class: "text-warning dark:text-warning-container-dark",
+    },
+    {
+      variant: "warning",
+      tight: true,
+      class:
+        "text-warning dark:text-warning-container-dark disabled:text-warning/40 disabled:dark:text-warning-container-dark/40",
     },
   ],
   defaultVariants: {

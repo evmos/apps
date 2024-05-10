@@ -1,6 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-import { Frameline, TrackerEvent } from "@evmosapps/ui-helpers";
+import { TrackerEvent } from "@evmosapps/ui-helpers";
 
 import { DiscordIcon } from "@evmosapps/icons/DiscordIcon";
 import { GithubIcon } from "@evmosapps/icons/GithubIcon";
@@ -116,7 +116,18 @@ export const DescriptiondApp = async ({
           <IconButton variant={"low-emphasis"} outlined>
             <IconExport2 />
           </IconButton>
-          <FavoriteButton dapp={dapp} />
+          <FavoriteButton
+            dapp={{
+              name: dapp.name,
+              icon: {
+                blurDataURL: dapp.icon?.blurDataURL || "",
+                src: dapp.icon?.src || "",
+              },
+              instantDapp: dapp.instantDapp,
+              slug: dapp.slug,
+              categorySlug: dapp.categorySlug,
+            }}
+          />
         </div>
       </div>
 
@@ -211,14 +222,11 @@ export const DescriptiondApp = async ({
         {/* Widget or carousel */}
         <div className="w-full order-1 lg:order-2">
           {drawWidget() && (
-            <Frameline
-              className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}
-              variant="secondary"
-            >
+            <div className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}>
               <div className="flex items-center justify-center h-full">
                 {drawWidget()}
               </div>
-            </Frameline>
+            </div>
           )}
           {!drawWidget() && (
             <div className="w-full">

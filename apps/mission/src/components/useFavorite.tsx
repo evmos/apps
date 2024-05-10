@@ -5,9 +5,18 @@ import { createContext, useContext, useState } from "react";
 
 const FAVORITES_KEY = "favorites_list";
 
+export interface FavoriteItem {
+  name: string;
+  blurDataURL: string;
+  iconSrc: string;
+  categorySlug: string;
+  slug: string;
+  instantDapp: boolean;
+}
+
 export interface FavoritesContext {
-  favorites: string[];
-  setFavorites: (newFavorites: string) => void;
+  favorites: FavoriteItem[];
+  setFavorites: (newFavorites: FavoriteItem) => void;
 }
 
 export const FavoritesContext = createContext<FavoritesContext | null>(null);
@@ -18,7 +27,7 @@ export const FavoritesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const setFavoritesDb = (favorites: string[]) => {
+  const setFavoritesDb = (favorites: FavoriteItem[]) => {
     if (typeof window !== "undefined") {
       window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
     }
@@ -29,19 +38,26 @@ export const FavoritesProvider = ({
       return [];
     }
     const values = window.localStorage.getItem(FAVORITES_KEY);
-    return values ? (JSON.parse(values) as string[]) : [];
+    return values ? (JSON.parse(values) as FavoriteItem[]) : [];
   };
 
-  const [favorites, setFavorites] = useState<string[]>(getFavoritesDb());
+  const [favorites, setFavorites] = useState<FavoriteItem[]>(getFavoritesDb());
 
-  const updateFavorites = (favorites: string) => {
+  const updateFavorites = (favorite: FavoriteItem) => {
     setFavorites((prevFavorites) => {
-      if (!prevFavorites.includes(favorites)) {
-        const newFavorites = [favorites, ...prevFavorites];
-        setFavoritesDb(newFavorites);
-        return newFavorites;
+      let fav;
+      if (prevFavorites.find((f) => f.name === favorite.name)) {
+        const indexForWallet = prevFavorites.findIndex(
+          (f) => f?.name === favorite.name,
+        );
+        const listWallets = prevFavorites.slice();
+        listWallets.splice(indexForWallet, 1);
+        fav = listWallets;
+      } else {
+        fav = [favorite, ...prevFavorites];
       }
-      return prevFavorites;
+      setFavoritesDb(fav);
+      return fav;
     });
   };
 
@@ -57,4 +73,3 @@ export const FavoritesProvider = ({
 export function useFavoritesContext() {
   return useContext(FavoritesContext);
 }
-

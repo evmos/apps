@@ -22,6 +22,7 @@ import { IconGithub } from "@evmosapps/ui/icons/social/github.tsx";
 import { IconDiscord } from "@evmosapps/ui/icons/social/discord.tsx";
 import { IconTelegram } from "@evmosapps/ui/icons/social/telegram.tsx";
 import { IconMedium } from "@evmosapps/ui/icons/social/medium.tsx";
+import { FavoriteSection } from "./FavoriteSection";
 
 const NavigationSection = () => (
   <nav>
@@ -91,7 +92,7 @@ const socials = [
 ];
 
 const SocialSection = () => (
-  <nav className="px-4 mt-auto gap-x-3 hidden md:flex">
+  <nav className="px-4 mb-5 mt-auto gap-x-3 hidden md:flex">
     {socials.map(({ name, Icon, href }) => (
       <a
         key={name}
@@ -109,6 +110,7 @@ const SocialSection = () => (
 export const Sidebar = () => (
   <div className="border-b border-outline-variant dark:border-outline-variant-dark px-6 md:px-4 md:border-none flex flex-col h-full">
     <NavigationSection />
+    <FavoriteSection />
     <SocialSection />
   </div>
 );

@@ -110,13 +110,9 @@ export const useSignIn = () => {
     },
   });
 
-  const walletsToShow = supportedWallets.filter(
-    (item) => !wallets.includes(item.name),
-  );
-
   return {
     defaultWallets,
-    walletsToShow,
+    walletsToShow: supportedWallets,
     connectors,
     connect,
     error,

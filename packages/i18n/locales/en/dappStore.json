@@ -133,7 +133,7 @@
       }
     },
     "supportedWallets": {
-      "title": "Other wallets",
+      "title": "All wallets",
       "search": {
         "placeholder": "Search"
       }

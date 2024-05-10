@@ -16,7 +16,7 @@ import { useState } from "react";
 import { ProfileContext, useProfileContext } from "./useEdit";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { sendEvent, SAVE_PROFILE_CHANGES, EDIT_PROFILE } from "tracker";
-
+import { alertsManager } from "@evmosapps/ui/components/alert/alert-manager.tsx";
 export const useEditModal = () => useModal("edit");
 export const profileImages = [purple, orange];
 
@@ -35,7 +35,11 @@ export const EditModal = () => {
     handleSetName(localName);
     setIsOpen(false);
     sendEvent(SAVE_PROFILE_CHANGES);
-    // TODO Mili: add notification when changes are saved.
+    alertsManager.push({
+      title: "",
+      type: "success",
+      message: "Changes are saved!",
+    });
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {

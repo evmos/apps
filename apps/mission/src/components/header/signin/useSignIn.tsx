@@ -20,6 +20,8 @@ import {
   UNSUCCESSFUL_WALLET_CONNECTION,
   sendEvent,
 } from "tracker";
+import { alertsManager } from "@evmosapps/ui/components/alert/alert-manager.tsx";
+import { IconBarchart } from "@evmosapps/ui/icons/line/basic/barchart.tsx";
 
 export type WALLETS_TYPE =
   | {
@@ -73,12 +75,23 @@ export const useSignIn = () => {
         setIsOpen(false);
         setWallets(connector.name);
         setIsDropdownOpen(true);
+        alertsManager.push({
+          type: "success",
+          title: "",
+          message: "Welcome to Evmos!",
+          icon: IconBarchart,
+        });
       },
 
       onError: (e, { connector }) => {
         sendEvent(UNSUCCESSFUL_WALLET_CONNECTION, {
           "Wallet Provider": connector.name,
           "Error Message": `Failed to connect with ${connector.name}`,
+        });
+        alertsManager.push({
+          message: "Connection failed. Please try again.",
+          title: "",
+          type: "error",
         });
         if (E.match.byPattern(e, /Connector not found/)) {
           setError({ error: "Connection failed.", name: connector.name });

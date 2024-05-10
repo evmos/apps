@@ -35,9 +35,8 @@ export const EditModal = () => {
     handleSetName(localName);
     setIsOpen(false);
     sendEvent(SAVE_PROFILE_CHANGES);
-    alertsManager.push({
+    alertsManager.success({
       title: "Changes are saved!",
-      type: "success",
     });
   };
 

@@ -75,8 +75,7 @@ export const useSignIn = () => {
         setIsOpen(false);
         setWallets(connector.name);
         setIsDropdownOpen(true);
-        alertsManager.push({
-          type: "success",
+        alertsManager.success({
           title: "Welcome to Evmos!",
           icon: IconBarchart,
         });
@@ -87,10 +86,10 @@ export const useSignIn = () => {
           "Wallet Provider": connector.name,
           "Error Message": `Failed to connect with ${connector.name}`,
         });
-        alertsManager.push({
+        alertsManager.error({
           title: "Connection failed. Please try again.",
-          type: "error",
         });
+
         if (E.match.byPattern(e, /Connector not found/)) {
           setError({ error: "Connection failed.", name: connector.name });
 

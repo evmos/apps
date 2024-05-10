@@ -139,8 +139,8 @@ function AlertActions({ className, children, ...rest }: ComponentProps<"div">) {
 
 type ForwardedComponent<T> =
   T extends ForwardRefRenderFunction<infer U, infer P>
-  ? ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<U>>
-  : never;
+    ? ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<U>>
+    : never;
 
 export const Alert = React.forwardRef(_Alert) as ForwardedComponent<
   typeof _Alert

@@ -36,9 +36,8 @@ export const EditModal = () => {
     setIsOpen(false);
     sendEvent(SAVE_PROFILE_CHANGES);
     alertsManager.push({
-      title: "",
+      title: "Changes are saved!",
       type: "success",
-      message: "Changes are saved!",
     });
   };
 

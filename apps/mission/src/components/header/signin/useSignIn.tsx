@@ -77,8 +77,7 @@ export const useSignIn = () => {
         setIsDropdownOpen(true);
         alertsManager.push({
           type: "success",
-          title: "",
-          message: "Welcome to Evmos!",
+          title: "Welcome to Evmos!",
           icon: IconBarchart,
         });
       },
@@ -89,8 +88,7 @@ export const useSignIn = () => {
           "Error Message": `Failed to connect with ${connector.name}`,
         });
         alertsManager.push({
-          message: "Connection failed. Please try again.",
-          title: "",
+          title: "Connection failed. Please try again.",
           type: "error",
         });
         if (E.match.byPattern(e, /Connector not found/)) {

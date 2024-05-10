@@ -125,7 +125,9 @@ const SocialSection = () => (
 export const Sidebar = () => (
   <div className="border-b border-outline-variant dark:border-outline-variant-dark px-6 md:px-4 md:border-none flex flex-col h-full">
     <NavigationSection />
-    <FavoriteSection />
+    <div className="hidden md:block">
+      <FavoriteSection />
+    </div>
     <SocialSection />
   </div>
 );

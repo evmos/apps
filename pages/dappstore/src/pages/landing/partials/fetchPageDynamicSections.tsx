@@ -37,7 +37,7 @@ const parsePageSection = async (
 
   const order =
     "number" in orderProp.formula &&
-      typeof orderProp.formula.number === "number"
+    typeof orderProp.formula.number === "number"
       ? orderProp.formula.number
       : -1;
   if (order < 0) {
@@ -74,9 +74,9 @@ const parsePageSection = async (
       ctaLabel: ctaLabelProp.rich_text.map((prop) => prop.plain_text).join(" "),
       ctaTarget: ctaTargetProp.url
         ? {
-          external: ctaTargetProp.url.startsWith("http"),
-          url: ctaTargetProp.url,
-        }
+            external: ctaTargetProp.url.startsWith("http"),
+            url: ctaTargetProp.url,
+          }
         : undefined,
       description: replaceVars(
         descriptionProp.rich_text.map((prop) => prop.plain_text).join(" "),

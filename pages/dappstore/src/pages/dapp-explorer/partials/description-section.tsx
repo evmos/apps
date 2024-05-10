@@ -221,7 +221,7 @@ export const DescriptiondApp = async ({
         <div className="w-full order-1 lg:order-2">
           {drawWidget() && (
             <div className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}>
-              <div className="flex items-end justify-end h-full">
+              <div className="flex items-center justify-center h-full">
                 {drawWidget()}
               </div>
             </div>

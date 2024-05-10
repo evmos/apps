@@ -26,7 +26,6 @@ import { Button } from "@evmosapps/ui/button/index.tsx";
 
 import Image from "next/image";
 import { Carousel } from "./carousel";
-import { HeroSectionExplore } from "../../landing/partials/hero-section-explore";
 import { FavoriteButton } from "./favorite-button";
 import { DynamicSections } from "../../landing/partials/DynamicSections";
 

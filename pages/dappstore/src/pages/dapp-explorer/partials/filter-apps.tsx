@@ -3,7 +3,7 @@
 
 "use client";
 import { useState } from "react";
-import { IconLightning } from "@evmosapps/ui/icons/line/images/lightning.tsx";
+import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 import { Checkbox } from "@evmosapps/ui/components/checkboxs/checkbox.tsx";
 import {
   ReadonlyURLSearchParams,

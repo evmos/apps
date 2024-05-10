@@ -20,7 +20,7 @@ import { WIDGETS } from "./widgets-index";
 import { IconArrowTopRight } from "@evmosapps/ui/icons/line/arrows/arrow-top-right.tsx";
 import { IconExport2 } from "@evmosapps/ui/icons/line/arrows/export-2.tsx";
 
-import { IconLightning } from "@evmosapps/ui/icons/line/images/lightning.tsx";
+import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { Button } from "@evmosapps/ui/button/index.tsx";
 
@@ -221,7 +221,7 @@ export const DescriptiondApp = async ({
         <div className="w-full order-1 lg:order-2">
           {drawWidget() && (
             <div className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}>
-              <div className="flex items-center justify-center h-full">
+              <div className="flex items-end justify-end h-full">
                 {drawWidget()}
               </div>
             </div>

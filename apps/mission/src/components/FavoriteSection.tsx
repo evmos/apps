@@ -4,7 +4,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { IconLightning } from "@evmosapps/ui/icons/line/images/lightning.tsx";
+import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning-stroke.tsx";
 import {
   FavoritesContext,
   useFavoritesContext,
@@ -55,7 +55,7 @@ export const FavoriteSection = () => {
                       <div className="relative w-5 h-5 aspect-square">
                         {favorite.instantDapp === true && (
                           <div className="absolute z-10 top-2.5 right-2">
-                            <IconLightning className="absolute z-20 h-3 w-3 mb-0.5 text-primary-container dark:text-primary-container-dark" />
+                            <IconLightning className="absolute z-20 h-3.5 w-3.5 mb-0.5 text-primary-container dark:text-primary-container-dark" />
                           </div>
                         )}
                         {favorite.iconSrc && (

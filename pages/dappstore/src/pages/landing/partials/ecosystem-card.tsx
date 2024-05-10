@@ -14,7 +14,7 @@ import Image from "next/image";
 import { cn } from "helpers";
 import { Card } from "@evmosapps/ui/components/cards/Card.tsx";
 import { Icon } from "./Icon";
-import { IconLightning } from "@evmosapps/ui/icons/line/images/lightning.tsx";
+import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 
 export const EcosystemCard = ({ data }: { data: DApp }) => {
   const img = data.cover;

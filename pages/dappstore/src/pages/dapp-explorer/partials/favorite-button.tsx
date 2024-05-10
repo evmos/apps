@@ -8,6 +8,7 @@ import {
 } from "../../../../../../apps/mission/src/components/useFavorite";
 
 import { IconStar as IconStarLine } from "@evmosapps/ui/icons/line/basic/star.tsx";
+import { IconStar as IconStarFilled } from "@evmosapps/ui/icons/filled/basic/star.tsx";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 
 export const FavoriteButton = ({
@@ -46,7 +47,11 @@ export const FavoriteButton = ({
       onClick={handleFavoriteClick}
       outlined
     >
-      <IconStarLine className={`${isFavorite && "text-primary-dark"}`} />
+      {isFavorite ? (
+        <IconStarFilled className="text-primary-dark" />
+      ) : (
+        <IconStarLine />
+      )}
     </IconButton>
   );
 };

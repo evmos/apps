@@ -26,7 +26,7 @@ export const Footer = async () => {
   const { t } = await translation();
 
   return (
-    <Container full className="mt-auto px-14 pt-5">
+    <Container full className="mt-auto px-5 md:px-14 pt-5">
       <footer className="text-subheading dark:text-subheading-dark text-base space-y-5 mt-10 mb-14 lg:space-y-0 flex lg:justify-between flex-col lg:flex-row items-center">
         <div className="flex lg:w-1/3 justify-start items-center lg:mb-0">
           <TrackerEvent

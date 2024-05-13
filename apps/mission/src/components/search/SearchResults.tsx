@@ -10,6 +10,7 @@ import flexsearch from "flexsearch";
 import { memoize } from "lodash-es";
 import { useQuery } from "@tanstack/react-query";
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
+import { useTranslation } from "@evmosapps/i18n/client";
 const { Index } = flexsearch;
 
 const fetchEntries = memoize(fetchSearchableItems);
@@ -53,6 +54,7 @@ function* iterHighlightRegions(query: string, text: string) {
   }
 }
 export const SearchResults = ({ query }: { query: string }) => {
+  const { t } = useTranslation("dappSearch");
   const search = useQuery({
     queryKey: ["search", query],
     queryFn: async () => {
@@ -82,9 +84,9 @@ export const SearchResults = ({ query }: { query: string }) => {
         <div className="text-center flex flex-col items-center pt-20">
           <IconSearch />
           <h2 className="text-heading dark:text-heading-dark mt-6">
-            No results found
+            {t("noResults.title")}
           </h2>
-          <p>Try another search query or change your filter settings.</p>
+          <p>{t("noResults.description")}</p>
         </div>
       )}
       {!!results.length && (

@@ -25,8 +25,6 @@ export const Carousel: React.FC<{ images: string[] }> = ({ images }) => {
             width={900}
             height={600}
             className="w-full h-auto rounded-2xl"
-            layout="responsive"
-            objectFit="contain"
           />
         )}
         <div className="flex justify-center space-x-2 lg:space-x-6 mt-2 lg:mt-6">
@@ -47,8 +45,6 @@ export const Carousel: React.FC<{ images: string[] }> = ({ images }) => {
                     width={50}
                     height={50}
                     className="w-full h-full object-cover rounded-xl"
-                    layout="responsive"
-                    objectFit="cover"
                   />
                 </button>
               ),

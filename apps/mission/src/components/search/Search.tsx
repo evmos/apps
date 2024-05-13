@@ -71,17 +71,12 @@ export const Search = ({
         onClick={(e) => {
           e.stopPropagation();
         }}
-        // autoFocus={true}
-        // data-open={isActive}
         className={cn(
           "w-full md:max-w-xl relative flex flex-col cursor-auto",
           "md:mt-[20vh] md:h-auto",
           "md:bg-surface-container-low md:dark:bg-surface-container-low-dark",
           "md:border-surface-container-high md:dark:border-surface-container-high-dark md:border",
           "md:rounded-lg md:overflow-hidden",
-          // {
-          //   "md:hidden": !isActive,
-          // }
         )}
         onChange={(
           entry: Awaited<

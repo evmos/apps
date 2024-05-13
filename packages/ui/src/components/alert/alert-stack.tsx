@@ -9,7 +9,7 @@ import { Transition } from "@headlessui/react";
 import { Alert } from ".";
 import { useAlerts } from "./alert-manager";
 
-export function AlertStack({ }: ComponentProps<"div">) {
+export function AlertStack({}: ComponentProps<"div">) {
   const [alerts, manager] = useAlerts();
 
   return (
@@ -18,7 +18,6 @@ export function AlertStack({ }: ComponentProps<"div">) {
         return (
           <Transition
             appear={true}
-            className=""
             key={alert.id}
             show={!alert.dismissed}
             enter="transition-[max-height,transform] duration-[400ms]"

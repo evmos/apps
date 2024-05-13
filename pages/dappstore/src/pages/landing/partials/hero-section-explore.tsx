@@ -19,7 +19,6 @@ export const HeroSectionExplore = async () => {
       <BannerCard.BgImage
         src={bgImage}
         alt="bg"
-        objectFit="cover"
         className="scale-150 lg:scale-100 lg:rotate-[7deg] lg:translate-x-[25%] xl:translate-x-[35%] xl:translate-y-[5%]"
         sizes="100vw"
       />

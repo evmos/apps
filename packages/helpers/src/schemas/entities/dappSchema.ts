@@ -51,22 +51,6 @@ const dappPropertiesSchema = createNotionPropertiesSchema(
     categories: relationSchema,
   }),
 );
-//
-// const fetchSelfHostedUrl = devMemo(
-//   async function(url: string) {
-//     const { blurDataURL, source } =
-//       (await ImageStore.fetchManifest(url)) ??
-//       raise(
-//         `No manifest found for ${url}:\n\nMaybe this image is missing? Try running \`pnpm dappstore-images sync\``,
-//       );
-//
-//     return {
-//       blurDataURL: blurDataURL,
-//       src: source.url,
-//     };
-//   },
-//   { tags: ["fetchSelfHostedUrl"], revalidate: 60 * 5 },
-// );
 export const dappSchema = z
   .object({
     id: z.string(),
@@ -75,21 +59,29 @@ export const dappSchema = z
   .transform(async ({ id, properties, ...rest }) => {
     const slug = createSlug(properties.name);
     const { icon, thumbnail, cover, ...otherProps } = properties;
-    return {
-      notionId: id,
-      slug,
-      localized: {} as Record<
-        string,
-        {
-          name: string;
-          description: string;
-        }
-      >,
-      icon: icon ? await resolveSelfHostedImage(icon.src) : null,
-      thumbnail: thumbnail ? await resolveSelfHostedImage(thumbnail.src) : null,
-      cover: cover ? await resolveSelfHostedImage(cover.src) : null,
+    try {
+      return {
+        notionId: id,
+        slug,
+        localized: {} as Record<
+          string,
+          {
+            name: string;
+            description: string;
+          }
+        >,
+        icon: icon ? await resolveSelfHostedImage(icon.src) : null,
+        thumbnail: thumbnail
+          ? await resolveSelfHostedImage(thumbnail.src)
+          : null,
+        cover: cover ? await resolveSelfHostedImage(cover.src) : null,
 
-      ...otherProps,
-      ...rest,
-    };
+        ...otherProps,
+        ...rest,
+      };
+    } catch (error) {
+      throw Error(
+        `Error resolving images for dapp ${slug}:\n ${(error as Error).message}`,
+      );
+    }
   });

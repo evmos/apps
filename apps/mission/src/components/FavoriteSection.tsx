@@ -5,15 +5,12 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning-stroke.tsx";
-import {
-  FavoritesContext,
-  useFavoritesContext,
-} from "../../src/components/useFavorite";
+import { useFavoritesContext } from "../../src/components/useFavorite";
 import Link from "next/link";
 import { Suspense } from "react";
 
 export const FavoriteSection = () => {
-  const { favorites } = useFavoritesContext() as FavoritesContext;
+  const { favorites } = useFavoritesContext();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

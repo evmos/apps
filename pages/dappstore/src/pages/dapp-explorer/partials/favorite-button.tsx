@@ -2,10 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import {
-  FavoritesContext,
-  useFavoritesContext,
-} from "../../../../../../apps/mission/src/components/useFavorite";
+import { useFavoritesContext } from "../../../../../../apps/mission/src/components/useFavorite";
 
 import { IconStar as IconStarLine } from "@evmosapps/ui/icons/line/basic/star.tsx";
 import { IconStar as IconStarFilled } from "@evmosapps/ui/icons/filled/basic/star.tsx";
@@ -25,7 +22,7 @@ export const FavoriteButton = ({
     instantDapp: boolean;
   };
 }) => {
-  const { favorites, setFavorites } = useFavoritesContext() as FavoritesContext;
+  const { favorites, setFavorites } = useFavoritesContext();
 
   const isFavorite = favorites.some((fav) => fav.name === dapp.name);
 

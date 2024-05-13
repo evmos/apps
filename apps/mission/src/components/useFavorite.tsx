@@ -1,6 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 "use client";
+import { useEffectEvent } from "helpers";
 import { createContext, useContext, useState } from "react";
 
 const FAVORITES_KEY = "favorites_list";
@@ -72,6 +73,9 @@ export const FavoritesProvider = ({
 
 export function useFavoritesContext() {
   const context = useContext(FavoritesContext);
-  if (!context) throw new Error("`FavoritesContext` can only be used inside `FavoritesProvider`")
+  if (!context)
+    throw new Error(
+      "`FavoritesContext` can only be used inside `FavoritesProvider`",
+    );
   return context;
 }

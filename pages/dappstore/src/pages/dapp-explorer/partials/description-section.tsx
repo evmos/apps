@@ -18,16 +18,15 @@ import { CLICK_SOCIAL_BUTTON } from "tracker";
 import { WIDGETS } from "./widgets-index";
 
 import { IconArrowTopRight } from "@evmosapps/ui/icons/line/arrows/arrow-top-right.tsx";
-import { IconExport2 } from "@evmosapps/ui/icons/line/arrows/export-2.tsx";
 
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
-import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { Button } from "@evmosapps/ui/button/index.tsx";
 
 import Image from "next/image";
 import { Carousel } from "./carousel";
 import { FavoriteButton } from "./favorite-button";
 import { DynamicSections } from "../../landing/partials/DynamicSections";
+import { ShareDropdown } from "../share-dropdown";
 
 //Adapt the page to each Dapp
 const getSlugClass = (slug: string): string => {
@@ -111,9 +110,12 @@ export const DescriptiondApp = async ({
         </div>
         {/* Share and favorite icons */}
         <div className="flex justify-end items-center gap-4 mx-auto md:mx-0">
-          <IconButton variant={"low-emphasis"} outlined>
-            <IconExport2 />
-          </IconButton>
+          <ShareDropdown
+            dapp={{
+              slug: dapp.slug,
+              categorySlug: dapp.categorySlug,
+            }}
+          />
           <FavoriteButton
             dapp={{
               name: dapp.name,

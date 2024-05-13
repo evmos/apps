@@ -1,12 +1,16 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { QueryDatabaseParameters, QueryDatabaseResponse } from "@notionhq/client/build/src/api-endpoints";
+import {
+  QueryDatabaseParameters,
+  QueryDatabaseResponse,
+} from "@notionhq/client/build/src/api-endpoints";
 import { get } from "lodash-es";
 import { raise } from "../error-handling";
 import { notionWith } from "./notion.ts";
 import { arrayFromAsync } from "../array-from-async";
 import { ImageStore } from "../image-store.ts";
+import { Log } from "../index.tsx";
 
 export type DatabaseEntryList = QueryDatabaseResponse["results"];
 export type DatabaseEntry = QueryDatabaseResponse["results"][number];
@@ -21,7 +25,7 @@ export type DatabaseEntryProperty = Extract<
 type QueryDatabaseOptions = {
   id: string;
   init?: RequestInit;
-} & Omit<QueryDatabaseParameters, 'database_id' | 'start_cursor'>;
+} & Omit<QueryDatabaseParameters, "database_id" | "start_cursor">;
 
 export async function* iterateDatabaseEntries({
   id,
@@ -42,8 +46,7 @@ export async function* iterateDatabaseEntries({
   } while (next_cursor);
 }
 
-
-export async function fetchDatabaseEntries(options:QueryDatabaseOptions) {
+export async function fetchDatabaseEntries(options: QueryDatabaseOptions) {
   return arrayFromAsync(iterateDatabaseEntries(options));
 }
 
@@ -55,7 +58,6 @@ export function* iterateDatabaseEntryProperties(entry: DatabaseEntry) {
     yield [key, entry.properties[key]] as const;
   }
 }
-
 
 export const iteratePropertiesOfType = function* <
   T extends DatabaseEntryProperty["type"],
@@ -85,19 +87,33 @@ export const tryReadPropertyAs = <T extends DatabaseEntryProperty["type"]>(
   return prop as Extract<DatabaseEntryProperty, { type: T }>;
 };
 
-export const resolveSelfHostedImage = async function(url: string) {
-  const { blurDataURL, source } =
-    (await ImageStore.fetchManifest(url)) ??
-    raise(
-      `No manifest found for ${url}:\n\nMaybe this image is missing? Try running \`pnpm dappstore-images sync\``,
-    );
+const blankImage =
+  // eslint-disable-next-line no-secrets/no-secrets
+  "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAADCAYAAACasY9UAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAYElEQVR4nI2OsQ5AMAAF/f8/2Y1iMFhEGgNCldIq7UkkFgyGWy4vlxdhPU+COXDKIEXL2k/geG1uorcM+HXHmx0rF3Qz4mZ7Rdl+BA7t0J0ijROqrGBuJHVeMoiW8PHgBI/Kut5al1DBAAAAAElFTkSuQmCC";
+export const resolveSelfHostedImage = async function (url: string) {
+  const manifest = await ImageStore.fetchManifest(url);
+
+  if (!manifest) {
+    const errorMessage = `No manifest found for ${url}:\n\nMaybe this image is missing? Try running \`pnpm dappstore-images sync\``;
+    // This should be fatal at build time, but trigger a warning in development so it's not too annoying
+    if (process.env.NODE_ENV !== "development") {
+      raise(errorMessage);
+    } else {
+      Log().warn(errorMessage);
+    }
+
+    return {
+      blurDataURL: blankImage,
+      src: blankImage,
+    };
+  }
 
   return {
-    blurDataURL: blurDataURL,
-    src: source.url,
+    blurDataURL: manifest.blurDataURL,
+    src: manifest.source.url,
   };
 };
-export const tryResolveImageProp = async function(
+export const tryResolveImageProp = async function (
   entry: DatabaseEntry,
   key: string,
 ) {

@@ -9,8 +9,7 @@ import { CLICK_EVMOS_LOGO } from "tracker";
 import { SignIn } from "./header/signin/SignIn";
 import useWindowResize from "./useResize";
 export const ContainerLogo = () => {
-  const { isDesktop } = useWindowResize();
-
+  const { windowSize, isDesktop } = useWindowResize();
   return (
     <div className="flex justify-between items-center">
       <TrackerEvent event={CLICK_EVMOS_LOGO}>
@@ -19,7 +18,7 @@ export const ContainerLogo = () => {
         </Link>
       </TrackerEvent>
 
-      {!isDesktop && <SignIn />}
+      {!isDesktop && windowSize !== 0 && <SignIn />}
     </div>
   );
 };

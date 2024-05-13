@@ -3,7 +3,7 @@
 
 "use client";
 import { useState } from "react";
-import { IconLightning } from "@evmosapps/ui/icons/line/images/lightning.tsx";
+import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 import { Checkbox } from "@evmosapps/ui/components/checkboxs/checkbox.tsx";
 import {
   ReadonlyURLSearchParams,
@@ -47,6 +47,22 @@ const sortOptions = [
       router.push(`${pathname}?${newParams.toString()}`);
       sendEvent(CLICK_SORT, {
         "Sort Type": "Z->A",
+      });
+    },
+  },
+  {
+    id: 3,
+    name: "Newly Added",
+    onClick: (
+      params: ReadonlyURLSearchParams,
+      router: AppRouterInstance,
+      pathname: string,
+    ) => {
+      const newParams = new URLSearchParams(params.toString());
+      newParams.set("sort-by", "created-at");
+      router.push(`${pathname}?${newParams.toString()}`);
+      sendEvent(CLICK_SORT, {
+        "Sort Type": "Newly Added",
       });
     },
   },

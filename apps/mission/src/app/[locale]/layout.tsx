@@ -90,7 +90,7 @@ function RootLayout({
               </div>
               <div className="overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
                 <Header />
-                <div className="md:px-14 px-4 max-w-full overflow-x-hidden">
+                <div className="px-5 md:px-14 max-w-full overflow-x-hidden">
                   <main className="flex flex-col dark:text-white min-h-screen relative">
                     {children}
                   </main>

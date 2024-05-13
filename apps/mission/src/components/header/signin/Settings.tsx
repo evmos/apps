@@ -8,7 +8,7 @@ import { profileImages, useEditModal } from "../edit/ModalEdit";
 import { cn } from "helpers";
 import { IconEdit2 } from "@evmosapps/ui/icons/line/editor/edit-2.tsx";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
-import { ProfileContext, useProfileContext } from "../edit/useEdit";
+import { useProfileContext } from "../edit/useEdit";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { useAccount } from "wagmi";
 import { useWallet } from "@evmosapps/evmos-wallet";
@@ -108,7 +108,7 @@ const SettingsTitle = () => {
 };
 
 const SettingsAddress = () => {
-  const { name: profileName, img } = useProfileContext() as ProfileContext;
+  const { name: profileName, img } = useProfileContext();
   const image = profileImages[img] as StaticImageData;
   const editModal = useEditModal();
   const { address } = useAccount();

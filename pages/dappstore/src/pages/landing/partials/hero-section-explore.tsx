@@ -1,8 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 import { Link, Trans } from "@evmosapps/i18n/client";
-import { TrackerEvent } from "@evmosapps/ui-helpers";
-import { CLICK_ON_VIEW_ALL_DAPPS } from "tracker";
 import { translation } from "@evmosapps/i18n/server";
 import { Button } from "@evmosapps/ui/button/index.tsx";
 import { fetchExplorerData } from "../../../lib/fetch-explorer-data";
@@ -39,21 +37,17 @@ export const HeroSectionExplore = async () => {
         <p className="dark:text-subheading-dark text-sm mb-6">
           {t("ecosystem.discover")}
         </p>
-        <TrackerEvent
-          event={CLICK_ON_VIEW_ALL_DAPPS}
-          properties={{ Location: "Graphic" }}
+
+        <Button
+          className="px-8"
+          as={Link}
+          href="/dapps"
+          variant={"primary"}
+          size="md"
+          data-testid="open-connect-modal"
         >
-          <Button
-            className="px-8"
-            as={Link}
-            href="/dapps"
-            variant={"primary"}
-            size="md"
-            data-testid="open-connect-modal"
-          >
-            Explore
-          </Button>
-        </TrackerEvent>
+          Explore
+        </Button>
       </BannerCard.Body>
     </BannerCard>
   );

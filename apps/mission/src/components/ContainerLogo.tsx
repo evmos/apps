@@ -16,7 +16,7 @@ export const ContainerLogo = ({
   className,
   ...props
 }: ComponentProps<"div">) => {
-  const { isDesktop } = useWindowResize();
+  const { windowSize, isDesktop } = useWindowResize();
   const [isActive, setIsActive] = useState(false);
   useEffect(() => {
     const fn = () => {
@@ -45,7 +45,7 @@ export const ContainerLogo = ({
           </Link>
         </TrackerEvent>
 
-        {!isDesktop && <SignIn />}
+        {!isDesktop && windowSize !== 0 && <SignIn />}
       </div>
       <Search
         isActive={isActive}

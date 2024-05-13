@@ -19,7 +19,7 @@ export const DappExplorerPage = async ({
   searchParams,
 }: {
   params: { category?: string };
-  searchParams: () => { values: string };
+  searchParams: () => { "sort-by"?: string; "instant-dapps"?: string };
 }) => {
   const { t } = await translation("dappStore");
   const { dApps, categories } = await fetchExplorerData();
@@ -32,10 +32,18 @@ export const DappExplorerPage = async ({
         ) // Filter by matching category
     : dApps; // Return all dApps if no category is provided
 
+  const orderBy =
+    typeof searchParams === "object" && searchParams["sort-by"]
+      ? searchParams["sort-by"]
+      : undefined;
+
   const sortedApps =
     typeof searchParams === "object" && searchParams["instant-dapps"] === "true"
-      ? sortApps(filteredApps.filter(({ instantDapp }) => instantDapp))
-      : sortApps(filteredApps);
+      ? sortApps(
+          filteredApps.filter(({ instantDapp }) => instantDapp),
+          orderBy,
+        )
+      : sortApps(filteredApps, orderBy);
 
   const allDappsCategory = {
     categoryDapps: sortedApps,
@@ -48,8 +56,10 @@ export const DappExplorerPage = async ({
   );
 
   return (
-    <div className="flex flex-col gap-y-8 container max-w-screen-xl mx-auto ">
-      <ExplorerBreadcrumbs params={params} />
+    <div className="flex flex-col gap-y-8 mx-auto">
+      <div className="md:mt-10">
+        <ExplorerBreadcrumbs params={params} />
+      </div>
       <HeaderCategories
         dApps={dApps}
         amountAppsSelected={sortedApps?.length ?? 0}

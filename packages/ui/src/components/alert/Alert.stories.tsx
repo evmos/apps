@@ -31,7 +31,7 @@ export const Alerts: Story = {
   },
 };
 
-const importLine = `import { alertManager } from "@evmosapps/ui/components/alert";\n`;
+const importLine = `import { alertsManager } from "@evmosapps/ui/components/alert";\n`;
 const alertTypes = [
   "success",
   "error",

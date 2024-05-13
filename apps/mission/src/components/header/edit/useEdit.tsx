@@ -74,5 +74,10 @@ export function ProfileProvider({ children }: { children: JSX.Element }) {
   );
 }
 export function useProfileContext() {
-  return useContext(ProfileContext);
+  const context = useContext(ProfileContext);
+  if (!context)
+    throw new Error(
+      "`ProfileContext` can only be used inside `ProfileProvider`",
+    );
+  return context;
 }

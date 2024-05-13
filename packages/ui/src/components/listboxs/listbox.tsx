@@ -57,7 +57,7 @@ const ListboxOptions = forwardRef<
       <ListboxLocal.Options
         ref={ref}
         className={cn(
-          "space-y-2 z-30 text-sm absolute right-0 w-fit mt-4 max-h-60 overflow-auto origin-top-right bg-surface-container-low dark:bg-surface-container-low-dark border border-surface-container dark:border-surface-container-dark text-surface-container-high-dark dark:text-surface-container-high rounded-2xl pt-6 p-3",
+          "space-y-2 z-30 text-sm absolute w-fit mt-4 max-h-60 overflow-auto origin-top-right bg-surface-container-low dark:bg-surface-container-low-dark border border-surface-container dark:border-surface-container-dark text-surface-container-high-dark dark:text-surface-container-high rounded-2xl pt-6 p-3",
           className as string,
         )}
         {...rest}

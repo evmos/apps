@@ -13,13 +13,15 @@ import {
 } from "react";
 import { useWallet, wagmiConfig } from "@evmosapps/evmos-wallet";
 import { disconnect } from "wagmi/actions";
-import { WalletsContext, useWAlletsContext } from "./useWallets";
+import { useWAlletsContext } from "./useWallets";
 import { useOtherWalletsModal } from "./WalletsModal";
 import {
   SUCCESSFUL_WALLET_CONNECTION,
   UNSUCCESSFUL_WALLET_CONNECTION,
   sendEvent,
 } from "tracker";
+import { alertsManager } from "@evmosapps/ui/components/alert/alert-manager.tsx";
+import { IconBarchart } from "@evmosapps/ui/icons/line/basic/barchart.tsx";
 
 export type WALLETS_TYPE =
   | {
@@ -41,7 +43,7 @@ export const useSignIn = () => {
   >();
   const { setIsOpen } = useOtherWalletsModal();
   const { setIsDropdownOpen } = useWallet();
-  const { wallets, setWallets } = useWAlletsContext() as WalletsContext;
+  const { wallets, setWallets } = useWAlletsContext();
   const defaultWallets = supportedWallets.filter((item) =>
     wallets.includes(item.name),
   );
@@ -73,6 +75,10 @@ export const useSignIn = () => {
         setIsOpen(false);
         setWallets(connector.name);
         setIsDropdownOpen(true);
+        alertsManager.success({
+          title: "Welcome to Evmos!",
+          icon: IconBarchart,
+        });
       },
 
       onError: (e, { connector }) => {
@@ -80,6 +86,10 @@ export const useSignIn = () => {
           "Wallet Provider": connector.name,
           "Error Message": `Failed to connect with ${connector.name}`,
         });
+        alertsManager.error({
+          title: "Connection failed. Please try again.",
+        });
+
         if (E.match.byPattern(e, /Connector not found/)) {
           setError({ error: "Connection failed.", name: connector.name });
 
@@ -110,13 +120,9 @@ export const useSignIn = () => {
     },
   });
 
-  const walletsToShow = supportedWallets.filter(
-    (item) => !wallets.includes(item.name),
-  );
-
   return {
     defaultWallets,
-    walletsToShow,
+    walletsToShow: supportedWallets,
     connectors,
     connect,
     error,

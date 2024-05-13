@@ -14,7 +14,8 @@ import { Wallets } from "./Wallets";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { useTranslation } from "@evmosapps/i18n/client";
-
+import { sendEvent, SEARCH_FOR_WALLET } from "tracker";
+import { getActiveProviderKey } from "@evmosapps/evmos-wallet";
 export const useOtherWalletsModal = () => useModal("supported-wallets");
 
 export const WalletsModal = () => {
@@ -38,6 +39,11 @@ export const WalletsModal = () => {
         <div className="w-full flex justify-start items-center relative mt-8 mb-6">
           <IconSearch className="absolute w-4 shrink-0 left-3" />
           <Input
+            onClick={() =>
+              sendEvent(SEARCH_FOR_WALLET, {
+                "Wallet provider": getActiveProviderKey(),
+              })
+            }
             value={searchTerm}
             onChange={handleSearchChange}
             placeholder={t("signIn.supportedWallets.search.placeholder")}
@@ -46,7 +52,7 @@ export const WalletsModal = () => {
           />
         </div>
 
-        <div className="max-h-[350px] overflow-auto">
+        <div className="max-h-[350px] overflow-auto scrollbar-hidden">
           <Dropdown.Menu as="div">
             <Wallets wallets={filteredOptions} />
           </Dropdown.Menu>

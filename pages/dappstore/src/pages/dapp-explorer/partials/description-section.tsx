@@ -21,7 +21,7 @@ import { WIDGETS } from "./widgets-index";
 import { IconArrowTopRight } from "@evmosapps/ui/icons/line/arrows/arrow-top-right.tsx";
 import { IconExport2 } from "@evmosapps/ui/icons/line/arrows/export-2.tsx";
 import { IconStar as IconStarLine } from "@evmosapps/ui/icons/line/basic/star.tsx";
-import { IconLightning } from "@evmosapps/ui/icons/line/images/lightning.tsx";
+import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { Button } from "@evmosapps/ui/button/index.tsx";
 

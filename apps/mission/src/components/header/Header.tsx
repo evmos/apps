@@ -10,7 +10,7 @@ import useWindowResize from "../useResize";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 export const Header = () => {
-  const { isDesktop } = useWindowResize();
+  const { windowSize, isDesktop } = useWindowResize();
   return (
     <header
       className={cn(
@@ -29,7 +29,7 @@ export const Header = () => {
       >
         <IconSearch />
       </IconButton>
-      {isDesktop && <SignIn />}
+      {isDesktop && windowSize !== 0 && <SignIn />}
     </header>
   );
 };

@@ -71,5 +71,7 @@ export const FavoritesProvider = ({
 };
 
 export function useFavoritesContext() {
-  return useContext(FavoritesContext);
+  const context = useContext(FavoritesContext);
+  if (!context) throw new Error("`FavoritesContext` can only be used inside `FavoritesProvider`")
+  return context;
 }

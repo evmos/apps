@@ -4,19 +4,25 @@
 import { DApp } from "../fetch-explorer-data";
 
 export const sortApps = (apps: DApp[], sortBy?: string) => {
-  // by default, sorty alphabetically (ascending)
-  // TODO: when we have more sort options, we can add them here using the sort by parameter
-  // on search Params
   if (sortBy === "desc") {
-    return sortDesc(apps);
+    return sortAlphabeticalDesc(apps);
   }
-  return sortAsc(apps);
+  if (sortBy === "created-at") {
+    return sortCreatedAt(apps);
+  }
+  return sortAlphabeticalAsc(apps);
 };
 
-const sortAsc = (apps: DApp[]) => {
+const sortAlphabeticalAsc = (apps: DApp[]) => {
   return apps.sort((a, b) => a.name.localeCompare(b.name));
 };
 
-const sortDesc = (apps: DApp[]) => {
+const sortAlphabeticalDesc = (apps: DApp[]) => {
   return apps.sort((a, b) => b.name.localeCompare(a.name));
+};
+
+const sortCreatedAt = (apps: DApp[]) => {
+  return apps.sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
 };

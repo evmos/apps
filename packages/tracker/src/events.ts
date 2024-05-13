@@ -78,7 +78,7 @@ export const SUCCESSFUL_ORDER_ON_TRANSAK = "SuccessfulOrderTransak";
 
 export const CLICK_ON_FEATURED_DAPP = "ClickCard";
 
-export const CLICK_SOCIAL_BUTTON = "ClickdAppDetails";
+export const CLICK_SOCIAL_BUTTON = "ClickedAppDetails";
 export const CLICK_ON_CATEGORY = "ClickCategory";
 export const CLICK_ON_BREADCRUMB = "ClickBreadcrumb";
 export const CLICK_ON_FOOTER_CTA = "ClickedFooterCTA";

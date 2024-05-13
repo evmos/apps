@@ -13,7 +13,7 @@ import orange from "../../../../public/orange.png";
 import Image from "next/image";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { useState } from "react";
-import { ProfileContext, useProfileContext } from "./useEdit";
+import { useProfileContext } from "./useEdit";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { sendEvent, SAVE_PROFILE_CHANGES, EDIT_PROFILE } from "tracker";
 import { alertsManager } from "@evmosapps/ui/components/alert/alert-manager.tsx";
@@ -24,8 +24,7 @@ export const EditModal = () => {
   const { isOpen, setIsOpen, modalProps } = useEditModal();
   const { setIsDropdownOpen, address } = useWallet();
 
-  const { name, handleSetName, img, handleSetImg } =
-    useProfileContext() as ProfileContext;
+  const { name, handleSetName, img, handleSetImg } = useProfileContext();
   const [localName, setLocalName] = useState(name);
   const [localImg, setLocalImg] = useState(img);
   const { t } = useTranslation("dappStore");

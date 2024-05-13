@@ -10,7 +10,8 @@ import { raise } from "../error-handling";
 import { notionWith } from "./notion.ts";
 import { arrayFromAsync } from "../array-from-async";
 import { ImageStore } from "../image-store.ts";
-import { Log } from "../index.tsx";
+
+import { Log } from "../logger.ts";
 
 export type DatabaseEntryList = QueryDatabaseResponse["results"];
 export type DatabaseEntry = QueryDatabaseResponse["results"][number];
@@ -94,7 +95,12 @@ export const resolveSelfHostedImage = async function (url: string) {
   const manifest = await ImageStore.fetchManifest(url);
 
   if (!manifest) {
-    const errorMessage = `No manifest found for ${url}:\n\nMaybe this image is missing? Try running \`pnpm dappstore-images sync\``;
+    const errorMessage = [
+      `No manifest found for ${url}:`,
+      `Expected manifest at ${ImageStore.resolveManifestPathname(url)}`,
+      "",
+      "Maybe this image is missing? Try running `pnpm dappstore-images sync`",
+    ].join("\n");
     // This should be fatal at build time, but trigger a warning in development so it's not too annoying
     if (process.env.NODE_ENV !== "development") {
       raise(errorMessage);
@@ -113,6 +119,7 @@ export const resolveSelfHostedImage = async function (url: string) {
     src: manifest.source.url,
   };
 };
+
 export const tryResolveImageProp = async function (
   entry: DatabaseEntry,
   key: string,

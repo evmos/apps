@@ -56,8 +56,10 @@ export const DappExplorerPage = async ({
   );
 
   return (
-    <div className="flex flex-col gap-y-8 container max-w-screen-xl mx-auto ">
-      <ExplorerBreadcrumbs params={params} />
+    <div className="flex flex-col gap-y-8 mx-auto">
+      <div className="md:mt-10">
+        <ExplorerBreadcrumbs params={params} />
+      </div>
       <HeaderCategories
         dApps={dApps}
         amountAppsSelected={sortedApps?.length ?? 0}

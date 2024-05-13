@@ -8,6 +8,7 @@ import {
   MEDIUM_URL,
   TELEGRAM_EVMOS_URL,
   TWITTER_EVMOS_URL,
+  GITHUB_EVMOS_URL,
 } from "constants-helper";
 
 import { DiscordIcon } from "@evmosapps/icons/DiscordIcon";
@@ -21,12 +22,13 @@ import { CLICK_ON_FOOTER_CTA } from "tracker";
 import { translation } from "@evmosapps/i18n/server";
 import { IconComment2Info } from "@evmosapps/ui/icons/line/chat/comment-2-info.tsx";
 import { CookiesSettings } from "./cookies-settings";
+import { GithubIcon } from "@evmosapps/icons/GithubIcon";
 
 export const Footer = async () => {
   const { t } = await translation();
 
   return (
-    <Container full className="mt-auto px-14 pt-5">
+    <Container full className="mt-auto px-5 md:px-14 pt-5">
       <footer className="text-subheading dark:text-subheading-dark text-base space-y-5 mt-10 mb-14 lg:space-y-0 flex lg:justify-between flex-col lg:flex-row items-center">
         <div className="flex lg:w-1/3 justify-start items-center lg:mb-0">
           <TrackerEvent
@@ -45,7 +47,7 @@ export const Footer = async () => {
         </div>
 
         {/* social networks */}
-        <div className="lg:hidden flex flex-row">
+        <div className="md:hidden flex flex-row">
           <div className="flex items-center space-x-10 mt-2 lg:mt-0">
             <TrackerEvent
               event={CLICK_ON_FOOTER_CTA}
@@ -58,6 +60,19 @@ export const Footer = async () => {
                 aria-label="twitter evmos"
               >
                 <TwitterIcon width={15} height={15} />
+              </a>
+            </TrackerEvent>
+            <TrackerEvent
+              event={CLICK_ON_FOOTER_CTA}
+              properties={{ "Footer Social Type": "Github" }}
+            >
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={GITHUB_EVMOS_URL}
+                aria-label="github evmos"
+              >
+                <GithubIcon width={15} height={15} />
               </a>
             </TrackerEvent>
             <TrackerEvent
@@ -130,7 +145,7 @@ export const Footer = async () => {
         </div>
 
         {/* CoinGecko */}
-        <div className="hidden lg:flex lg:w-1/3 lg:justify-end">
+        <div className="flex lg:w-1/3 lg:justify-end">
           <p>
             {t("footer.dataProvided")}
             <a

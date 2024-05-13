@@ -2,9 +2,9 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import Image, { ImageProps } from "next/image";
-import { Surface } from "@evmosapps/ui/components/surface/index.tsx";
 import { cn } from "helpers/src/classnames";
 import { PartialBy } from "viem/chains";
+import { Surface } from "../components/surface";
 
 export const MaybeImage = ({
   src,

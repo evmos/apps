@@ -3,6 +3,7 @@
 
 import { cva, VariantProps } from "cva";
 import { cn } from "helpers/src/classnames";
+import omit from "lodash-es/omit";
 import React, { ForwardedRef } from "react";
 import { createElement, ElementType, forwardRef } from "react";
 
@@ -147,7 +148,7 @@ const button = cva({
   },
 });
 
-export interface IconButtonStyleProps extends VariantProps<typeof button> { }
+export interface IconButtonStyleProps extends VariantProps<typeof button> {}
 
 export type IconButtonProps<T extends ElementType> = {
   as?: T;
@@ -160,7 +161,7 @@ function _IconButton<T extends ElementType = "button">(
   ref: ForwardedRef<HTMLElement>,
 ) {
   return createElement((as as string) ?? "button", {
-    ...props,
+    ...omit(props, ["variant", "size", "outlined", "tight", "ghost"]),
     ref,
     className: cn(button(props), className as string),
   });

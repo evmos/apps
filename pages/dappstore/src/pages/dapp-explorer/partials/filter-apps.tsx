@@ -50,6 +50,22 @@ const sortOptions = [
       });
     },
   },
+  {
+    id: 3,
+    name: "Newly Added",
+    onClick: (
+      params: ReadonlyURLSearchParams,
+      router: AppRouterInstance,
+      pathname: string,
+    ) => {
+      const newParams = new URLSearchParams(params.toString());
+      newParams.set("sort-by", "created-at");
+      router.push(`${pathname}?${newParams.toString()}`);
+      sendEvent(CLICK_SORT, {
+        "Sort Type": "Newly Added",
+      });
+    },
+  },
 ];
 
 export const FilterApps = ({
@@ -69,7 +85,7 @@ export const FilterApps = ({
   const router = useRouter();
   const { t } = useTranslation("dappStore");
   return (
-    <div className="pt-14 flex items-center justify-between">
+    <div className="md:pt-4 flex items-center justify-between">
       <p className="hidden lg:inline-block text-heading dark:text-heading-dark text-xl font-medium">
         {nameDapp ?? t("filterdApps.all")}
         <span className="text-subheading dark:text-subheading-dark font-medium text-sm pl-2">
@@ -110,14 +126,14 @@ export const FilterApps = ({
         </div>
         <div className="z-20">
           <Listbox.Menu value={selected} onChange={setSelected}>
-            <Listbox.Button className="cursor-pointer border min-w-32 text-subheading dark:text-subheading-dark font-normal text-base flex items-center justify-between border-surface-container-highest dark:border-surface-container-highest-dark rounded-lg px-4 py-2 gap-2">
+            <Listbox.Button className="cursor-pointer border w-44 text-subheading dark:text-subheading-dark font-normal text-base flex items-center justify-between border-surface-container-highest dark:border-surface-container-highest-dark rounded-lg px-4 py-2 gap-2">
               <span className="block truncate">{selected?.name}</span>
               <IconChevronDown
                 className={`w-5 text-paragraph dark:text-paragraph-dark`}
               />
             </Listbox.Button>
 
-            <Listbox.Options className="min-w-32">
+            <Listbox.Options className="w-44">
               {sortOptions.map((option) => (
                 <Listbox.Option
                   onClick={() =>

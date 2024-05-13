@@ -81,7 +81,7 @@ const CategoryHeader = ({
     category?.name === "All" ? "dApps" : category?.name ?? "dApps";
 
   return (
-    <div className="mt-5" {...rest}>
+    <div className="md:mt-5" {...rest}>
       <Title variant="xl" tag="h4">
         <Trans
           ns="dappStore"

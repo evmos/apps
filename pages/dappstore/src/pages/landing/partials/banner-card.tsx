@@ -37,13 +37,7 @@ BannerCard.BgImage = function BannerBgImage({
     >
       {/* alt prop will be provided by this component consumer, so we can ignore it here */}
       {/* eslint-disable-next-line jsx-a11y/alt-text  */}
-      <Image
-        className="object-center"
-        objectFit="cover"
-        sizes="100vw"
-        fill
-        {...props}
-      />
+      <Image className="object-cover" sizes="100vw" fill {...props} />
     </div>
   );
 };

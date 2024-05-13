@@ -39,9 +39,9 @@
     "husky": "^8.0.0",
     "knip": "4.0.0-canary.8",
     "prettier": "^3.0.1",
-    "react-dom": "^18.3.0",
-    "viem": "^2.9.25",
-    "wagmi": "^2.5.20"
+    "react-dom": "^18.3.1",
+    "viem": "^2.10.2",
+    "wagmi": "^2.8.3"
   },
   "browserslist": [
     "last 3 chrome version",
@@ -52,10 +52,10 @@
     "@babel/eslint-parser": "^7.23.3",
     "@babel/plugin-syntax-import-assertions": "^7.22.5",
     "@evmosapps/i18n": "workspace:*",
-    "@headlessui/react": "^1.7.15",
+    "@headlessui/react": "^2.0.3",
     "@hookform/resolvers": "^3.1.0",
     "@playwright/test": "^1.43.1",
-    "@tanstack/react-query": "^5.32.0",
+    "@tanstack/react-query": "^5.35.1",
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
     "@types/lodash-es": "^4.17.12",

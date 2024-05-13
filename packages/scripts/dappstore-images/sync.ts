@@ -60,9 +60,17 @@ program
           }
           const destinationPath = ImageStore.resolvePathname(url);
 
+          const manifestDestionationPath =
+            ImageStore.resolveManifestPathname(url);
+
           unusedImagesPathnames.delete(destinationPath);
 
-          if (blobsByPathname.has(destinationPath) && !options.all) continue;
+          if (
+            blobsByPathname.has(destinationPath) &&
+            blobsByPathname.has(manifestDestionationPath) &&
+            !options.all
+          )
+            continue;
           const taskFn = async () => {
             await ImageStore.uploadFromUrl(url);
           };

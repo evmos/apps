@@ -6,13 +6,17 @@ import {
   DApp,
   fetchExplorerData,
 } from "../../../lib/fetch-explorer-data";
+import { notion } from "helpers/src/clients/notion";
+import {
+  tryReadPropertyAs,
+  tryResolveImageProp,
+} from "helpers/src/clients/notion-utils";
 import Image from "next/image";
 import {
   Surface,
   SurfaceProps,
 } from "@evmosapps/ui/components/surface/index.tsx";
 import { Card, CardRanking } from "@evmosapps/ui/components/cards/Card.tsx";
-import { Badge } from "@evmosapps/ui/components/badges/Badge.tsx";
 import { ScrollableSection } from "../ScrollableSection";
 import { Link } from "@evmosapps/i18n/client";
 import { BannerCard } from "./banner-card";
@@ -21,12 +25,31 @@ import { cn } from "helpers/src/classnames";
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 import { ComponentProps, PropsWithChildren } from "react";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
+import { MaybeImage } from "@evmosapps/ui/headless/maybe-image.tsx";
 import { IconArrowRight } from "@evmosapps/ui/icons/line/arrows/arrow-right.tsx";
-import { MaybeImage } from "./MaybeImage";
 import {
   fetchPageDynamicSections,
   DynamicSection,
 } from "./fetchPageDynamicSections";
+import { IconChartPie } from "@evmosapps/ui/icons/line/editor/chart-pie.tsx";
+import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
+import { IconArrowSwap } from "@evmosapps/ui/icons/line/arrows/arrow-swap.tsx";
+import { IconShare } from "@evmosapps/ui/icons/line/basic/share.tsx";
+import { IconDollarCircle } from "@evmosapps/ui/icons/line/finances/dollar-circle.tsx";
+import { IconGrid07 } from "@evmosapps/ui/icons/line/grid/grid-07.tsx";
+import { IconLink2 } from "@evmosapps/ui/icons/line/editor/link-2.tsx";
+import { IconGames } from "@evmosapps/ui/icons/line/audiovisual/games.tsx";
+import { IconGlobe } from "@evmosapps/ui/icons/line/map/globe.tsx";
+import { IconListUnorderedRec } from "@evmosapps/ui/icons/line/editor/list-unordered-rec.tsx";
+import { IconImage3 } from "@evmosapps/ui/icons/line/images/image-3.tsx";
+import { IconLogIn2 } from "@evmosapps/ui/icons/line/arrows/log-in-2.tsx";
+import { IconWallet } from "@evmosapps/ui/icons/line/finances/wallet.tsx";
+import { IconElements } from "@evmosapps/ui/icons/line/grid/elements.tsx";
+import { IconCalendarPerson } from "@evmosapps/ui/icons/line/time/calendar-person.tsx";
+import { IconProcentCircle } from "@evmosapps/ui/icons/line/finances/procent-circle.tsx";
+import { IconCloud } from "@evmosapps/ui/icons/line/weather/cloud.tsx";
+import { IconUsers } from "@evmosapps/ui/icons/line/users/users.tsx";
+import { getBackgroundImage } from "../../../getBackgroundImage";
 
 export const getDAppsMapByNotionId = async () => {
   const { dApps } = await fetchExplorerData();
@@ -35,12 +58,14 @@ export const getDAppsMapByNotionId = async () => {
     return acc;
   }, {});
 };
-export async function DynamicSections({ placement }: {  placement: string }) {
+export async function DynamicSections({ placement }: { placement: string }) {
   const sections = await fetchPageDynamicSections(placement);
   return (
     <div className="flex flex-col gap-y-8">
       {sections.map((section, i) => {
         switch (section.displayType) {
+          case "HighlightCards":
+            return <HighlightCardsSection key={i} {...section} />;
           case "DAppListCarousel":
             return <DAppListCarouselSection key={i} {...section} />;
           case "Banner":
@@ -59,6 +84,70 @@ export async function DynamicSections({ placement }: {  placement: string }) {
   );
 }
 
+const fetchCardInfo = async (cardId: string) => {
+  const cardPage = await notion.pages.retrieve({ page_id: cardId });
+  const titleProp = tryReadPropertyAs(cardPage, "Name", "title");
+  const subtitleProp = tryReadPropertyAs(cardPage, "Subtitle", "rich_text");
+  const tagProp = tryReadPropertyAs(cardPage, "Tag", "rich_text");
+  const targetProp = tryReadPropertyAs(cardPage, "Target", "url");
+  const imageProp = await tryResolveImageProp(cardPage, "Background Image");
+  return {
+    title: titleProp.title.map((t) => t.plain_text).join(""),
+    subtitle: subtitleProp.rich_text.map((t) => t.plain_text).join(""),
+    tag: tagProp.rich_text.map((t) => t.plain_text).join(""),
+    target: targetProp.url ?? "/",
+    image: imageProp.at(0) ?? null,
+  };
+};
+
+const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
+  const cards = await Promise.all(cardsIds.map((id) => fetchCardInfo(id)));
+
+  return (
+    <div
+      className={cn(
+        "gap-4 flex-none relative flex overflow-x-auto",
+
+        "w-[calc(100%+40px)] -ml-5 px-5",
+        "md:w-[calc(100%+112px)] md:-ml-14 md:px-14",
+        "lg:w-auto lg:ml-0 lg:px-0 lg:overflow-x-visible",
+      )}
+    >
+      {cards.map(({ title, subtitle, image, tag, target }, i) => (
+        <Link
+          key={i}
+          href={target}
+          className="w-11/12 max-w-96 lg:max-w-none lg:w-full lg:flex-1 flex-none"
+        >
+          <Card
+            lowest
+            className="h-56 shape-binding px-8 py-8 flex-col flex relative bg-cover w-full shrink-0"
+            style={{
+              backgroundImage: image
+                ? getBackgroundImage({
+                    src: image.src,
+                    sizes: "500w",
+                  })
+                : undefined,
+            }}
+            fullWidth
+            background="bg-galaxy-red"
+          >
+            <h3 className="text-subheading dark:text-subheading-dark grow tracking-widest uppercase text-xs">
+              {tag}
+            </h3>
+            <div className="mt-auto">
+              <h3 className="text-base text-heading dark:text-heading-dark">
+                {title}
+              </h3>
+              <h4 className="text-sm">{subtitle}</h4>
+            </div>
+          </Card>
+        </Link>
+      ))}
+    </div>
+  );
+};
 async function DAppListGridSection({
   dAppIds,
   ctaLabel,
@@ -86,7 +175,6 @@ async function DAppListGridSection({
     </DAppStorePicks>
   );
 }
-
 async function CategoryListSection({
   categoryIds,
   ctaLabel,
@@ -134,13 +222,13 @@ async function DAppListCarouselSection({ title, dAppIds }: DynamicSection) {
   return (
     <ScrollableSection title={title}>
       {resolvedDApps.map(
-        ({ name, icon, categories, categorySlug, slug, instantDapp }, i) => (
-          <Link href={`/dapps/${categorySlug}/${slug}`} key={slug}>
-            <Surface
-              lowest
-              className="w-60 flex-none flex flex-col gap-y-2  p-4"
-              key={i}
-            >
+        ({ name, icon, categories, categorySlug, slug, instantDapp }) => (
+          <Surface
+            lowest
+            className="w-60 flex-none flex flex-col gap-y-2  p-4"
+            key={slug}
+          >
+            <Link href={`/dapps/${categorySlug}/${slug}`}>
               <MaybeImage
                 className="rounded-lg"
                 {...icon}
@@ -148,15 +236,19 @@ async function DAppListCarouselSection({ title, dAppIds }: DynamicSection) {
                 width={48}
                 height={48}
               />
-              <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
+            </Link>
 
-              <div className="gap-1 inline-flex">
-                {categories.map((category) => (
-                  <Badge key={category.slug}>{category.name}</Badge>
-                ))}
-              </div>
-            </Surface>
-          </Link>
+            <Link href={`/dapps/${categorySlug}/${slug}`}>
+              <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
+            </Link>
+            <div className="gap-1 inline-flex">
+              {categories.map((category) => (
+                <Badge key={category.slug} href={`/dapps/${category.slug}`}>
+                  {category.name}
+                </Badge>
+              ))}
+            </div>
+          </Surface>
         ),
       )}
     </ScrollableSection>
@@ -276,6 +368,25 @@ function DAppStorePicks({ className, ...props }: SurfaceProps) {
     <Surface className={cn("gap-5 flex flex-col py-6", className)} {...props} />
   );
 }
+
+const Badge = ({
+  children,
+  className,
+  ...props
+}: ComponentProps<typeof Link>) => (
+  <Link
+    className={cn(
+      "text-xs rounded-[4px] px-2 leading-normal",
+      "text-paragraph dark:text-paragraph-dark",
+      "bg-surface-container-high dark:bg-surface-container-high-dark",
+
+      className,
+    )}
+    {...props}
+  >
+    {children}
+  </Link>
+);
 DAppStorePicks.Header = function DAppStorePicksHeader({
   className,
   children,
@@ -321,47 +432,80 @@ DAppStorePicks.DAppCard = function DAppStorePicksDAppCard({
   slug,
 }: Pick<DApp, "name" | "icon" | "categorySlug" | "categories" | "slug">) {
   return (
-    <Link href={`/dapps/${categorySlug}/${slug}`}>
-      <Card
-        low
-        className="overflow-hidden flex-row shrink-0 gap-4 p-3 w-full hover:bg-surface-container hover:dark:bg-surface-container-dark transition-colors duration-150 items-center group"
-      >
+    <Card
+      low
+      className="overflow-hidden flex-row shrink-0 gap-4 p-3 w-full hover:bg-surface-container hover:dark:bg-surface-container-dark transition-colors duration-150 items-center group"
+    >
+      <Link href={`/dapps/${categorySlug}/${slug}`}>
         <MaybeImage {...icon} alt={name} width={56} height={56} />
-        <div className="">
+      </Link>
+      <div className="">
+        <Link href={`/dapps/${categorySlug}/${slug}`}>
           <DAppTitle instantDapp={false}>{name}</DAppTitle>
-          <div className="gap-1 inline-flex">
-            {categories.map((category) => (
-              <Badge key={category.slug}> {category.name}</Badge>
-            ))}
-          </div>
+        </Link>
+        <div className="gap-1 inline-flex">
+          {categories.map((category) => (
+            <Badge key={category.slug} href={`/dapps/${category.slug}`}>
+              {category.name}
+            </Badge>
+          ))}
         </div>
+      </div>
 
-        <Button
-          as={"span"}
-          href={`/dapps/${categorySlug}/${slug}`}
-          className="ml-auto hidden group-hover:block"
-          variant="low-emphasis"
-        >
-          Open
-        </Button>
-      </Card>
-    </Link>
+      <Button
+        as={"span"}
+        href={`/dapps/${categorySlug}/${slug}`}
+        className="ml-auto hidden group-hover:block"
+        variant="low-emphasis"
+      >
+        Open
+      </Button>
+    </Card>
   );
 };
 // TODO: Different categories should have different icons and color, we should populate the table below
+const colors = {
+  primary: "#FF8C5C",
+  purple: "#D8B9FF",
+  indigo: "#AFC6FF",
+  green: "#9BD679",
+  rose: "#FA9DB2",
+  pink: "#FFAEDB",
+  cyan: "#AAEDFF",
+};
 const CATEGORY_PROPS: Record<
   string,
   {
-    className: string;
+    color: string;
     Icon: React.ComponentType;
   }
-> = {};
+> = {
+  "instant-dapps": { color: colors.primary, Icon: IconLightning },
+  analytics: { color: colors.purple, Icon: IconChartPie },
+  "block-explorers": { color: colors.indigo, Icon: IconSearch },
+  "bridge-and-swap": { color: colors.green, Icon: IconArrowSwap },
+  bridges: { color: colors.rose, Icon: IconShare },
+  "centralized-exchanges": { color: colors.pink, Icon: IconDollarCircle },
+  dashboard: { color: colors.cyan, Icon: IconGrid07 },
+  defi: { color: colors.purple, Icon: IconLink2 },
+  gaming: { color: colors.indigo, Icon: IconGames },
+  "governance-and-daos": { color: colors.green, Icon: IconGlobe },
+  indexer: { color: colors.rose, Icon: IconListUnorderedRec },
+  launchpad: { color: colors.cyan, Icon: IconElements },
+  nfts: { color: colors.purple, Icon: IconImage3 },
+  "on-ramps": { color: colors.indigo, Icon: IconLogIn2 },
+  oracles: { color: colors.green, Icon: IconCloud },
+  otc: { color: colors.rose, Icon: IconUsers },
+  services: { color: colors.pink, Icon: IconCalendarPerson },
+  staking: { color: colors.cyan, Icon: IconProcentCircle },
+  wallets: { color: colors.purple, Icon: IconWallet },
+};
 DAppStorePicks.CategoryCard = function DAppStorePicksCategoryCard({
   name,
   slug,
 }: Pick<Category, "name" | "slug">) {
-  const { Icon, className } = CATEGORY_PROPS[slug] ?? {
-    className:
+  const { Icon, color } = CATEGORY_PROPS[slug] ?? {
+    color:
       "bg-primary/10 dark:bg-primary-dark/10 text-primary-container dark:text-primary-container-dark",
     Icon: IconLightning,
   };
@@ -374,8 +518,8 @@ DAppStorePicks.CategoryCard = function DAppStorePicksCategoryCard({
         <div
           className={cn(
             "rounded-xl w-14 h-14 flex items-center justify-center shadow flex-none",
-            className,
           )}
+          style={{ backgroundColor: color + "1A", color }}
         >
           <Icon className="h-6 w-6" />
         </div>

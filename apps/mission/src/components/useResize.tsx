@@ -26,7 +26,7 @@ function useWindowResize() {
   const isMobile = windowSize.width <= 640;
   const isTablet = windowSize.width >= 641 && windowSize.width <= 768;
   return {
-    windowSize,
+    windowSize: windowSize.width,
     isMobile: isMobile,
     isTablet: isTablet,
     isDesktop: !isMobile && !isTablet,

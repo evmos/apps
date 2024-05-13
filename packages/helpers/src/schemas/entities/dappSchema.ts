@@ -7,7 +7,7 @@ import { relationSchema } from "../partials/relationSchema";
 import { titleSchema } from "../partials/titleSchema";
 import { checkboxSchema } from "../partials/checkboxSchema";
 import { urlSchema } from "../partials/urlSchema";
-import { filesSchema } from "../partials/fileSchema";
+import { filesSchema, singleFileSchema } from "../partials/fileSchema";
 import { createNotionPropertiesSchema } from "../utils/createNotionPropertiesSchema";
 import { createdAtSchema } from "../partials/createdAtSchema";
 import { updatedAtSchema } from "../partials/updatedAtSchema";
@@ -18,9 +18,9 @@ import { resolveSelfHostedImage } from "../../clients/notion-utils";
 
 const dappPropertiesSchema = createNotionPropertiesSchema(
   z.object({
-    icon: filesSchema,
-    cover: filesSchema,
-    thumbnail: filesSchema,
+    icon: singleFileSchema,
+    cover: singleFileSchema,
+    thumbnail: singleFileSchema,
     instantDapp: checkboxSchema,
     name: titleSchema,
     description: richTextSchema,
@@ -28,6 +28,7 @@ const dappPropertiesSchema = createNotionPropertiesSchema(
     howTo: richTextSchema,
     subItem: relationSchema,
     listed: checkboxSchema,
+    gallery: filesSchema,
     x: urlSchema.transform((url) => ({
       url,
       label: url && parseUrl(url),
@@ -58,7 +59,7 @@ export const dappSchema = z
   })
   .transform(async ({ id, properties, ...rest }) => {
     const slug = createSlug(properties.name);
-    const { icon, thumbnail, cover, ...otherProps } = properties;
+    const { icon, thumbnail, cover, gallery, ...otherProps } = properties;
     try {
       return {
         notionId: id,
@@ -75,6 +76,9 @@ export const dappSchema = z
           ? await resolveSelfHostedImage(thumbnail.src)
           : null,
         cover: cover ? await resolveSelfHostedImage(cover.src) : null,
+        gallery: await Promise.all(
+          gallery.map((file) => resolveSelfHostedImage(file.src)),
+        ),
 
         ...otherProps,
         ...rest,

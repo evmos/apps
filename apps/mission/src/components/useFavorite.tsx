@@ -43,7 +43,7 @@ export const FavoritesProvider = ({
 
   const [favorites, setFavorites] = useState<FavoriteItem[]>(getFavoritesDb());
 
-  const updateFavorites = (favorite: FavoriteItem) => {
+  const updateFavorites = useEffectEvent((favorite: FavoriteItem) => {
     setFavorites((prevFavorites) => {
       let fav;
       if (prevFavorites.find((f) => f.name === favorite.name)) {
@@ -59,7 +59,7 @@ export const FavoritesProvider = ({
       setFavoritesDb(fav);
       return fav;
     });
-  };
+  });
 
   return (
     <FavoritesContext.Provider

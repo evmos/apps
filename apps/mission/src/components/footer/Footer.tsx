@@ -145,7 +145,7 @@ export const Footer = async () => {
         </div>
 
         {/* CoinGecko */}
-        <div className="hidden lg:flex lg:w-1/3 lg:justify-end">
+        <div className="flex lg:w-1/3 lg:justify-end">
           <p>
             {t("footer.dataProvided")}
             <a

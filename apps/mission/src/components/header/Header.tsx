@@ -8,7 +8,7 @@ import { EvmosPrice } from "./evmos-price/EvmosPrice";
 import { SignIn } from "./signin/SignIn";
 import useWindowResize from "../useResize";
 export const Header = () => {
-  const { isDesktop } = useWindowResize();
+  const { windowSize, isDesktop } = useWindowResize();
   return (
     <header
       className={cn(
@@ -18,7 +18,7 @@ export const Header = () => {
       )}
     >
       <EvmosPrice />
-      {isDesktop && <SignIn />}
+      {isDesktop && windowSize !== 0 && <SignIn />}
     </header>
   );
 };

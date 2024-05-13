@@ -64,5 +64,10 @@ export const WalletsProvider = ({
 };
 
 export function useWAlletsContext() {
-  return useContext(WalletsContext);
+  const context = useContext(WalletsContext);
+  if (!context)
+    throw new Error(
+      "`WalletsContext` can only be used inside `WalletsProvider`",
+    );
+  return context;
 }

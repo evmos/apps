@@ -7,14 +7,14 @@ import { IconChevronDown } from "@evmosapps/ui/icons/line/arrows/chevron-down.ts
 import Image from "next/image";
 import { profileImages } from "../edit/ModalEdit";
 import { cn } from "helpers";
-import { ProfileContext, useProfileContext } from "../edit/useEdit";
+import { useProfileContext } from "../edit/useEdit";
 import { useAccount } from "wagmi";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import useWindowResize from "../../useResize";
 import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const ProfileButton = () => {
-  const { name: profileName, img } = useProfileContext() as ProfileContext;
+  const { name: profileName, img } = useProfileContext();
   const { isDesktop } = useWindowResize();
   const { address } = useAccount();
   const { isDropdownOpen } = useWallet();

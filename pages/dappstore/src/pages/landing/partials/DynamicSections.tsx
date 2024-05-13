@@ -21,8 +21,8 @@ import { cn } from "helpers/src/classnames";
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 import { ComponentProps, PropsWithChildren } from "react";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
+import { MaybeImage } from "@evmosapps/ui/headless/maybe-image.tsx";
 import { IconArrowRight } from "@evmosapps/ui/icons/line/arrows/arrow-right.tsx";
-import { MaybeImage } from "./MaybeImage";
 import {
   fetchPageDynamicSections,
   DynamicSection,
@@ -35,7 +35,7 @@ export const getDAppsMapByNotionId = async () => {
     return acc;
   }, {});
 };
-export async function DynamicSections({ placement }: {  placement: string }) {
+export async function DynamicSections({ placement }: { placement: string }) {
   const sections = await fetchPageDynamicSections(placement);
   return (
     <div className="flex flex-col gap-y-8">

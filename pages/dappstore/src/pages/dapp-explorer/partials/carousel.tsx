@@ -6,7 +6,9 @@
 import React, { useState } from "react";
 import Image from "next/image";
 
-export const Carousel: React.FC<{ images: string[] }> = ({ images }) => {
+export const Carousel: React.FC<{
+  images: { src: string; blurDataURL: string }[];
+}> = ({ images }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [mainImageIndex, setMainImageIndex] = useState(0);
 
@@ -15,18 +17,17 @@ export const Carousel: React.FC<{ images: string[] }> = ({ images }) => {
     setSelectedImageIndex(index);
   };
 
+  const image = images[mainImageIndex];
   return (
     <div className="w-full mx-auto">
       <div className="relative">
-        {images[mainImageIndex] && (
+        {image && (
           <Image
-            src={images[mainImageIndex]!}
+            {...image}
             alt={`Image ${mainImageIndex + 1}`}
             width={900}
             height={600}
             className="w-full h-auto rounded-2xl"
-            layout="responsive"
-            objectFit="contain"
           />
         )}
         <div className="flex justify-center space-x-2 lg:space-x-6 mt-2 lg:mt-6">
@@ -42,13 +43,11 @@ export const Carousel: React.FC<{ images: string[] }> = ({ images }) => {
                 >
                   <Image
                     key={index}
-                    src={image}
+                    {...image}
                     alt={`Thumbnail ${index + 1}`}
                     width={50}
                     height={50}
                     className="w-full h-full object-cover rounded-xl"
-                    layout="responsive"
-                    objectFit="cover"
                   />
                 </button>
               ),

@@ -44,6 +44,8 @@
     "NEXT_PUBLIC_PRIVACY_POLICY_PAGE_NOTION_ID",
     "NEXT_PUBLIC_EVMOS_UTILS_PAGE_NOTION_ID",
     "NEXT_PUBLIC_EVMOS_LANDING_PAGE_NOTION_ID",
+    "NEXT_PUBLIC_EVMOS_HIGHLIGHT_CARDS_DB_NOTION_ID",
+
     "NEXT_PUBLIC_VERCEL_URL",
     "VERCEL",
     "VERCEL_ENV",
@@ -58,14 +60,9 @@
       "cache": false
     },
     "build": {
-      "dependsOn": [
-        "prebuild"
-      ],
+      "dependsOn": ["prebuild"],
       "cache": true,
-      "outputs": [
-        "dist/**",
-        ".next/**"
-      ]
+      "outputs": ["dist/**", ".next/**"]
     },
     "clean": {
       "cache": false
@@ -75,9 +72,7 @@
       "persistent": true
     },
     "start": {
-      "dependsOn": [
-        "^build"
-      ],
+      "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },
@@ -96,14 +91,10 @@
     "lint": {},
     "test:coverage": {
       "cache": false,
-      "outputs": [
-        "coverage/**"
-      ]
+      "outputs": ["coverage/**"]
     },
     "test:e2e": {
-      "env": [
-        "CI"
-      ],
+      "env": ["CI"],
       "cache": false
     }
   }

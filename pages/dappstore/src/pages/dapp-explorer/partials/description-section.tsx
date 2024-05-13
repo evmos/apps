@@ -46,22 +46,13 @@ export const DescriptiondApp = async ({
 }) => {
   const { t } = await translation("dappStore");
 
-  //TODO: temporary images for non-instant-dapps
-  const images = [
-    "https://via.placeholder.com/600x400?text=Image1",
-    "https://via.placeholder.com/600x400?text=Image2",
-    "https://via.placeholder.com/600x400?text=Image3",
-    "https://via.placeholder.com/600x400?text=Image4",
-    "https://via.placeholder.com/600x400?text=Image5",
-  ];
-
   const drawWidget = () => {
     const Widget = WIDGETS[dapp.slug];
     if (Widget) return <Widget />;
   };
 
   return (
-    <div className=" md:space-y-12 mb-12 lg:mb-24">
+    <div className="md:space-y-12 mb-12 lg:mb-24">
       <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 mb-10 -mt-24 md:mt-0">
         {/* dapp icon */}
         <div className="relative w-20 h-20 aspect-square rounded-[1rem] overflow-hidden">
@@ -223,7 +214,7 @@ export const DescriptiondApp = async ({
           {!drawWidget() && (
             <div className="w-full">
               <div className="mb-8">
-                <Carousel images={images} />
+                <Carousel images={dapp.gallery} />
               </div>
               {dapp.dapp.url && (
                 <div className="hidden md:block">

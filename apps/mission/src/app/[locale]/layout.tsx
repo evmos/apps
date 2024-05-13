@@ -23,6 +23,7 @@ import { AlertStack } from "@evmosapps/ui/components/alert/alert-stack.tsx";
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
 }
+
 export const metadata: Metadata = {
   title: "Evmos Apps",
   metadataBase: new URL("https://app.evmos.org"),
@@ -83,9 +84,7 @@ function RootLayout({
         <RootProviders>
           <ProfileProvider>
             <WalletsProvider>
-              <div className="px-6 py-6 md:px-4 bg-surface dark:bg-surface-dark w-full md:col-span-1 md:row-span-1">
-                <ContainerLogo />
-              </div>
+              <ContainerLogo />
               <div className="bg-surface dark:bg-surface-dark w-full z-10 sticky top-0 md:col-span-1 md:row-start-2 md:row-span-1 h-full md:top-auto md:pt-5">
                 <Sidebar />
               </div>

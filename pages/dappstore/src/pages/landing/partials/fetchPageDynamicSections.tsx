@@ -51,6 +51,7 @@ const parsePageSection = async (
   const dAppsProp = tryReadPropertyAs(entry, "dApps", "relation");
   const descriptionProp = tryReadPropertyAs(entry, "Description", "rich_text");
   const categoriesProp = tryReadPropertyAs(entry, "Categories", "relation");
+  const cardsProp = tryReadPropertyAs(entry, "Cards", "relation");
   const displayTypeProp = tryReadPropertyAs(entry, "Display Type", "select");
   const ctaLabelProp = tryReadPropertyAs(entry, "CTA Label", "rich_text");
   const ctaTargetProp = tryReadPropertyAs(entry, "CTA Target", "url");
@@ -66,6 +67,7 @@ const parsePageSection = async (
         | "DAppListCarousel"
         | "DAppRanking"
         | "CategoryList"
+        | "HighlightCards"
         | undefined,
       title: replaceVars(
         titleProp.title.map((prop) => prop.plain_text).join(" "),
@@ -85,6 +87,7 @@ const parsePageSection = async (
 
       dAppIds: dAppsProp.relation.map((prop) => prop.id),
       categoryIds: categoriesProp.relation.map((prop) => prop.id),
+      cardsIds: cardsProp.relation.map((prop) => prop.id),
       mobileBannerImage: mobileBannerImage.at(0),
       desktopBannerImage: desktopBannerImage.at(0),
 

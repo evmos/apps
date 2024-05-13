@@ -85,7 +85,7 @@ export const FilterApps = ({
   const router = useRouter();
   const { t } = useTranslation("dappStore");
   return (
-    <div className="pt-14 flex items-center justify-between">
+    <div className="md:pt-14 flex items-center justify-between">
       <p className="hidden lg:inline-block text-heading dark:text-heading-dark text-xl font-medium">
         {nameDapp ?? t("filterdApps.all")}
         <span className="text-subheading dark:text-subheading-dark font-medium text-sm pl-2">

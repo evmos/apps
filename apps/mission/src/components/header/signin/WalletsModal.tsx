@@ -52,7 +52,7 @@ export const WalletsModal = () => {
           />
         </div>
 
-        <div className="max-h-[350px] overflow-auto">
+        <div className="max-h-[350px] overflow-auto scrollbar-hidden">
           <Dropdown.Menu as="div">
             <Wallets wallets={filteredOptions} />
           </Dropdown.Menu>

@@ -1,7 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-
-import { Frameline, TrackerEvent } from "@evmosapps/ui-helpers";
+import { TrackerEvent } from "@evmosapps/ui-helpers";
 
 import { DiscordIcon } from "@evmosapps/icons/DiscordIcon";
 import { GithubIcon } from "@evmosapps/icons/GithubIcon";
@@ -19,15 +18,16 @@ import { CLICK_SOCIAL_BUTTON } from "tracker";
 import { WIDGETS } from "./widgets-index";
 
 import { IconArrowTopRight } from "@evmosapps/ui/icons/line/arrows/arrow-top-right.tsx";
-import { IconExport2 } from "@evmosapps/ui/icons/line/arrows/export-2.tsx";
-import { IconStar as IconStarLine } from "@evmosapps/ui/icons/line/basic/star.tsx";
+
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
-import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
+
 import { Button } from "@evmosapps/ui/button/index.tsx";
 
 import Image from "next/image";
 import { Carousel } from "./carousel";
+import { FavoriteButton } from "./favorite-button";
 import { DynamicSections } from "../../landing/partials/DynamicSections";
+import { ShareDropdown } from "../share-dropdown";
 
 //Adapt the page to each Dapp
 const getSlugClass = (slug: string): string => {
@@ -102,12 +102,24 @@ export const DescriptiondApp = async ({
         </div>
         {/* Share and favorite icons */}
         <div className="flex justify-end items-center gap-4 mx-auto md:mx-0">
-          <IconButton variant={"low-emphasis"} outlined>
-            <IconExport2 />
-          </IconButton>
-          <IconButton variant={"low-emphasis"} outlined>
-            <IconStarLine />
-          </IconButton>
+          <ShareDropdown
+            dapp={{
+              slug: dapp.slug,
+              categorySlug: dapp.categorySlug,
+            }}
+          />
+          <FavoriteButton
+            dapp={{
+              name: dapp.name,
+              icon: {
+                blurDataURL: dapp.icon?.blurDataURL || "",
+                src: dapp.icon?.src || "",
+              },
+              instantDapp: dapp.instantDapp,
+              slug: dapp.slug,
+              categorySlug: dapp.categorySlug,
+            }}
+          />
         </div>
       </div>
 
@@ -202,14 +214,11 @@ export const DescriptiondApp = async ({
         {/* Widget or carousel */}
         <div className="w-full order-1 lg:order-2">
           {drawWidget() && (
-            <Frameline
-              className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}
-              variant="secondary"
-            >
+            <div className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}>
               <div className="flex items-center justify-center h-full">
                 {drawWidget()}
               </div>
-            </Frameline>
+            </div>
           )}
           {!drawWidget() && (
             <div className="w-full">

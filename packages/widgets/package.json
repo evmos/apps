@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/widgets",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "type": "module",

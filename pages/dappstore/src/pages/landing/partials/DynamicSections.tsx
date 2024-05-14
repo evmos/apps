@@ -120,7 +120,10 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
         >
           <Card
             lowest
-            className="h-56 shape-binding px-8 py-8 flex-col flex relative bg-cover w-full shrink-0"
+            className={cn(
+              "h-56 shape-binding px-8 py-8 flex-col flex relative bg-cover w-full shrink-0",
+              "before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-surface-dark/50",
+            )}
             style={{
               backgroundImage: image
                 ? getBackgroundImage({
@@ -133,10 +136,10 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
             fullWidth
             background="bg-galaxy-red"
           >
-            <h3 className="text-subheading dark:text-subheading-dark grow tracking-widest uppercase text-xs">
+            <h3 className="relative text-subheading dark:text-subheading-dark grow tracking-widest uppercase text-xs">
               {tag}
             </h3>
-            <div className="mt-auto">
+            <div className="relative mt-auto">
               <h3 className="text-base text-heading dark:text-heading-dark">
                 {title}
               </h3>

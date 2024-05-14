@@ -489,31 +489,31 @@ const CATEGORY_PROPS: Record<
 > = {
   "instant-dapps": { color: colors.primary, Icon: IconLightning },
   analytics: { color: colors.purple, Icon: IconChartPie },
-  "block-explorers": { color: colors.indigo, Icon: IconSearch },
+  "block-explorer": { color: colors.indigo, Icon: IconSearch },
   "bridge-and-swap": { color: colors.green, Icon: IconArrowSwap },
-  bridges: { color: colors.rose, Icon: IconShare },
-  "centralized-exchanges": { color: colors.pink, Icon: IconDollarCircle },
+  bridge: { color: colors.rose, Icon: IconShare },
+  "centralized-exchange": { color: colors.pink, Icon: IconDollarCircle },
   dashboard: { color: colors.cyan, Icon: IconGrid07 },
   defi: { color: colors.purple, Icon: IconLink2 },
   gaming: { color: colors.indigo, Icon: IconGames },
-  "governance-and-daos": { color: colors.green, Icon: IconGlobe },
+  "governance-and-dao": { color: colors.green, Icon: IconGlobe },
   indexer: { color: colors.rose, Icon: IconListUnorderedRec },
   launchpad: { color: colors.cyan, Icon: IconElements },
-  nfts: { color: colors.purple, Icon: IconImage3 },
-  "on-ramps": { color: colors.indigo, Icon: IconLogIn2 },
+  nft: { color: colors.purple, Icon: IconImage3 },
+  "on-ramp": { color: colors.indigo, Icon: IconLogIn2 },
   oracles: { color: colors.green, Icon: IconCloud },
   otc: { color: colors.rose, Icon: IconUsers },
   services: { color: colors.pink, Icon: IconCalendarPerson },
   staking: { color: colors.cyan, Icon: IconProcentCircle },
-  wallets: { color: colors.purple, Icon: IconWallet },
+  wallet: { color: colors.purple, Icon: IconWallet },
 };
+
 DAppStorePicks.CategoryCard = function DAppStorePicksCategoryCard({
   name,
   slug,
 }: Pick<Category, "name" | "slug">) {
   const { Icon, color } = CATEGORY_PROPS[slug] ?? {
-    color:
-      "bg-primary/10 dark:bg-primary-dark/10 text-primary-container dark:text-primary-container-dark",
+    color: colors.purple,
     Icon: IconLightning,
   };
   return (

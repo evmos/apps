@@ -29,16 +29,12 @@ export const FavoriteSection = () => {
             <div className="animate-pulse w-full h-5 inline-flex align-bottom bg-white/5 rounded-full my-3"></div>
           </>
         ) : (
-          <div
-            className="max-h-[50vh] overflow-y-auto"
-            style={{ scrollbarWidth: "none" }}
-          >
-            {/* Styles for hiding the scrollbar in webkit browsers */}
-            <style jsx>{`
-              div::-webkit-scrollbar {
-                display: none;
-              }
-            `}</style>
+          <div className="max-h-[50vh] overflow-y-auto scrollbar-hidden">
+            {favorites.length === 0 && (
+              <p className="text-sm opacity-70 mt-5 font-medium">
+                Ping your favorites dApps
+              </p>
+            )}
             {favorites.map((favorite) => {
               return (
                 <>

@@ -94,7 +94,7 @@ export const StepsSignIn = () => {
             {drawButton()}
           </Dropdown.Button>
           {isDropdownOpen && (
-            <Dropdown.Items ref={ref} static>
+            <Dropdown.Items className="w-80" ref={ref} static>
               {drawContent()}
             </Dropdown.Items>
           )}

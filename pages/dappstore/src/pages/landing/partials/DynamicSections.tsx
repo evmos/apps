@@ -200,7 +200,7 @@ async function CategoryListSection({
       <DAppStorePicks.Header href="/dapps" cta={ctaLabel}>
         {title}
       </DAppStorePicks.Header>
-      <DAppStorePicks.Body>
+      <DAppStorePicks.Body className="lg:grid-cols-2 xl:grid-cols-4">
         {resolvedCategories.map((category) => (
           <DAppStorePicks.CategoryCard key={category.slug} {...category} />
         ))}
@@ -427,40 +427,43 @@ DAppStorePicks.Body = function DAppStorePicksBody({
 DAppStorePicks.DAppCard = function DAppStorePicksDAppCard({
   name,
   icon,
+  instantDapp,
   categorySlug,
   categories,
   slug,
-}: Pick<DApp, "name" | "icon" | "categorySlug" | "categories" | "slug">) {
+}: Pick<
+  DApp,
+  "name" | "icon" | "categorySlug" | "categories" | "slug" | "instantDapp"
+>) {
   return (
-    <Card
-      low
-      className="overflow-hidden flex-row shrink-0 gap-4 p-3 w-full hover:bg-surface-container hover:dark:bg-surface-container-dark transition-colors duration-150 items-center group"
-    >
-      <Link href={`/dapps/${categorySlug}/${slug}`}>
-        <MaybeImage {...icon} alt={name} width={56} height={56} />
-      </Link>
-      <div className="">
-        <Link href={`/dapps/${categorySlug}/${slug}`}>
-          <DAppTitle instantDapp={false}>{name}</DAppTitle>
-        </Link>
-        <div className="gap-1 inline-flex">
-          {categories.map((category) => (
-            <Badge key={category.slug} href={`/dapps/${category.slug}`}>
-              {category.name}
-            </Badge>
-          ))}
-        </div>
-      </div>
-
-      <Button
-        as={"span"}
-        href={`/dapps/${categorySlug}/${slug}`}
-        className="ml-auto hidden group-hover:block"
-        variant="low-emphasis"
+    <Link href={`/dapps/${categorySlug}/${slug}`}>
+      <Card
+        low
+        className="overflow-hidden flex-row shrink-0 gap-4 p-3 w-full hover:bg-surface-container hover:dark:bg-surface-container-dark transition-colors duration-150 items-center group"
       >
-        Open
-      </Button>
-    </Card>
+        <MaybeImage {...icon} alt={name} width={56} height={56} />
+
+        <div>
+          <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
+
+          <div className="gap-1 inline-flex">
+            {categories.map((category) => (
+              <Badge key={category.slug} href={`/dapps/${category.slug}`}>
+                {category.name}
+              </Badge>
+            ))}
+          </div>
+        </div>
+
+        <Button
+          as={"span"}
+          className="ml-auto hidden group-hover:block"
+          variant="low-emphasis"
+        >
+          Open
+        </Button>
+      </Card>
+    </Link>
   );
 };
 // TODO: Different categories should have different icons and color, we should populate the table below

@@ -50,7 +50,7 @@ const MenuItems = forwardRef<
     <Menu.Items
       ref={ref}
       className={cn(
-        "space-y-5 z-30 text-center text-sm absolute right-0 mt-7 w-[296px] origin-top-right bg-surface-container-low dark:bg-surface-container-low-dark border border-surface-container dark:border-surface-container-dark text-surface-container-high-dark dark:text-surface-container-high  rounded-2xl pt-6 p-3",
+        "space-y-5 z-30 text-center text-sm absolute right-0 mt-7 w-96 origin-top-right bg-surface-container-low dark:bg-surface-container-low-dark border border-surface-container dark:border-surface-container-dark text-surface-container-high-dark dark:text-surface-container-high  rounded-2xl pt-6 p-3",
         className as string,
       )}
       {...rest}

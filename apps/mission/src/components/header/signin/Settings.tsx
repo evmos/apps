@@ -77,7 +77,7 @@ const SettingsOptions = () => {
                   {t(option.description)}
                 </span>
                 {option.isComingSoon && (
-                  <Chip variant="tertiary" disabled>
+                  <Chip variant="tertiary" className="-ml-3 pl-0" disabled>
                     {t("signIn.settings.options.comingSoon")}
                   </Chip>
                 )}

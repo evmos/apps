@@ -31,9 +31,14 @@ export const FavoriteSection = () => {
         ) : (
           <div className="max-h-[50vh] overflow-y-auto scrollbar-hidden">
             {favorites.length === 0 && (
-              <p className="text-sm opacity-70 mt-5 font-medium">
-                Ping your favorites dApps
-              </p>
+              <>
+                <p className="text-sm opacity-70 mt-5 font-medium">
+                  Ping your favorite dApps here.
+                </p>
+                <p className="text-sm opacity-70 mt-5 font-medium">
+                  You can do this by going into a dApp page and starring it.
+                </p>
+              </>
             )}
             {favorites.map((favorite) => {
               return (

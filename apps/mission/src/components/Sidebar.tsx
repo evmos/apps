@@ -46,7 +46,7 @@ const NavigationSection = () => (
           target: "_self",
         },
         {
-          label: "Learn",
+          label: "Develop",
           Icon: IconBook,
           href: DOCS_EVMOS_URL,
           target: "_blank",

@@ -15,7 +15,6 @@ import { translation } from "@evmosapps/i18n/server";
 import { EcosystemCardGrid } from "../../landing/partials/ecosystem-card-grid";
 import { DescriptionLink } from "./description-link";
 import { CLICK_SOCIAL_BUTTON } from "tracker";
-import { WIDGETS } from "./widgets-index";
 
 import { IconArrowTopRight } from "@evmosapps/ui/icons/line/arrows/arrow-top-right.tsx";
 
@@ -40,16 +39,13 @@ const getSlugClass = (slug: string): string => {
 export const DescriptiondApp = async ({
   dapp,
   relatedApps,
+  widget,
 }: {
   dapp: DApp;
   relatedApps: DApp[];
+  widget?: React.ReactNode;
 }) => {
   const { t } = await translation("dappStore");
-
-  const drawWidget = () => {
-    const Widget = WIDGETS[dapp.slug];
-    if (Widget) return <Widget />;
-  };
 
   return (
     <div className="md:space-y-12 mb-12 lg:mb-24">
@@ -213,14 +209,14 @@ export const DescriptiondApp = async ({
         </div>
         {/* Widget or carousel */}
         <div className="w-full order-1 lg:order-2">
-          {drawWidget() && (
+          {!!widget && (
             <div className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}>
               <div className="flex items-center justify-center h-full">
-                {drawWidget()}
+                {widget}
               </div>
             </div>
           )}
-          {!drawWidget() && (
+          {!widget && (
             <div className="w-full">
               <div className="mb-8">
                 <Carousel images={dapp.gallery} />

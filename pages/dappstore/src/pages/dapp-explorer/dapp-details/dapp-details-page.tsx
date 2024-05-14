@@ -11,12 +11,14 @@ import { cn } from "helpers";
 
 export const DappDetailsPage = async ({
   params,
+  widget,
 }: {
   params: {
     dapp: string;
     category: string;
     locale: string;
   };
+  widget?: React.ReactNode;
 }) => {
   const { dApps } = await fetchExplorerData();
 
@@ -43,19 +45,19 @@ export const DappDetailsPage = async ({
           <div
             className={cn(
               // gradient overlay
-              " after:bg-gradient-to-t after:from-[#0b0a09]/100 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
+              "after:bg-gradient-to-t after:from-[#0b0a09]/100 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
             )}
           >
             <Image
               {...(cover
                 ? ({
-                  src: cover.src,
-                  blurDataURL: cover.blurDataURL,
-                  placeholder: "blur",
-                } as const)
+                    src: cover.src,
+                    blurDataURL: cover.blurDataURL,
+                    placeholder: "blur",
+                  } as const)
                 : {
-                  src: "/ecosystem/galaxy.png",
-                })}
+                    src: "/ecosystem/galaxy.png",
+                  })}
               alt={dapp.name}
               fill={true}
               className="object-cover"
@@ -69,7 +71,11 @@ export const DappDetailsPage = async ({
           </div>
         </div>
       </div>
-      <DescriptiondApp dapp={dapp} relatedApps={sortApps(relatedApps)} />
+      <DescriptiondApp
+        dapp={dapp}
+        relatedApps={sortApps(relatedApps)}
+        widget={widget}
+      />
     </>
   );
 };

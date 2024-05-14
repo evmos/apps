@@ -158,7 +158,7 @@ importers:
         version: 2.50.0
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -291,13 +291,13 @@ importers:
         version: 0.20.0(eslint@8.57.0)
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
       typescript:
         specifier: ^5.3.3
         version: 5.4.5
       vitest:
         specifier: ^1.1.3
-        version: 1.6.0(@types/node@20.12.7)(jsdom@23.2.0)
+        version: 1.6.0
 
   packages/constants-helper:
     dependencies:
@@ -352,7 +352,7 @@ importers:
         version: 2.50.0
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -364,7 +364,7 @@ importers:
         version: 18.3.1(react@18.3.1)
       react-i18next:
         specifier: ^14.1.1
-        version: 14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)
+        version: 14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react@18.3.1)
       react-redux:
         specifier: ^8.1.2
         version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
@@ -531,7 +531,7 @@ importers:
         version: 0.23.2
       abitype:
         specifier: ^0.10.3
-        version: 0.10.3(typescript@5.4.5)(zod@3.23.8)
+        version: 0.10.3(typescript@5.4.5)
       bech32:
         specifier: ^2.0.0
         version: 2.0.0
@@ -549,7 +549,7 @@ importers:
         version: 3.0.4
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       octokit:
         specifier: ^3.1.1
         version: 3.2.1
@@ -592,7 +592,7 @@ importers:
     dependencies:
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       typescript:
         specifier: ^5.3.3
         version: 5.4.5
@@ -614,7 +614,7 @@ importers:
         version: 18.3.1
       react-i18next:
         specifier: ^14.1.1
-        version: 14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)
+        version: 14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react@18.3.1)
 
   packages/icons:
     devDependencies:
@@ -682,7 +682,7 @@ importers:
         version: 4.17.21
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       typescript:
         specifier: ^5.3.3
         version: 5.4.5
@@ -773,13 +773,13 @@ importers:
         version: link:../constants-helper
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       react-i18next:
         specifier: ^14.1.1
-        version: 14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)
+        version: 14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react@18.3.1)
       react-redux:
         specifier: ^8.1.2
-        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
+        version: 8.1.3(react-dom@18.3.1)(react@18.3.1)(redux@4.2.1)
       redux:
         specifier: ^4.2.1
         version: 4.2.1
@@ -945,7 +945,7 @@ importers:
         version: link:../helpers
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       typescript:
         specifier: ^5.3.3
         version: 5.4.5
@@ -984,7 +984,7 @@ importers:
         version: 4.17.21
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
       prettier:
         specifier: ^3.0.1
         version: 3.2.5
@@ -996,7 +996,7 @@ importers:
         version: 18.3.1(react@18.3.1)
       storybook:
         specifier: ^8.0.0
-        version: 8.0.10(@babel/preset-env@7.24.5)(react-dom@18.3.1)(react@18.3.1)
+        version: 8.0.10(react-dom@18.3.1)(react@18.3.1)
       svg-to-jsx:
         specifier: ^1.0.4
         version: 1.0.4
@@ -1021,7 +1021,7 @@ importers:
         version: 8.0.10(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
       '@storybook/addon-interactions':
         specifier: ^8.0.0
-        version: 8.0.10(vitest@1.6.0)
+        version: 8.0.10
       '@storybook/addon-links':
         specifier: ^8.0.0
         version: 8.0.10(react@18.3.1)
@@ -1039,7 +1039,7 @@ importers:
         version: 8.0.10(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)
       '@storybook/test':
         specifier: ^8.0.0
-        version: 8.0.10(vitest@1.6.0)
+        version: 8.0.10
       '@types/chroma-js':
         specifier: ^2.4.4
         version: 2.4.4
@@ -1078,7 +1078,7 @@ importers:
         version: 2.50.0
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1121,25 +1121,25 @@ importers:
         version: 0.32.3
       '@cosmos-kit/core':
         specifier: ^2.8.9
-        version: 2.10.0(@chain-registry/types@0.29.0)
+        version: 2.10.0(@chain-registry/types@0.29.1)
       '@cosmos-kit/keplr':
         specifier: ^2.6.9
-        version: 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
+        version: 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
       '@cosmos-kit/leap':
         specifier: ^2.6.11
-        version: 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)(cosmjs-types@0.9.0)
+        version: 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)(cosmjs-types@0.9.0)
       '@cosmos-kit/leap-metamask-cosmos-snap':
         specifier: ^0.6.2
-        version: 0.6.2(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(cosmjs-types@0.9.0)
+        version: 0.6.2(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(cosmjs-types@0.9.0)
       '@cosmos-kit/react':
         specifier: ^2.10.11
-        version: 2.12.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@interchain-ui/react@1.23.11)(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
+        version: 2.12.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@interchain-ui/react@1.23.11)(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
       '@evmosapps/icons':
         specifier: workspace:*
         version: link:../icons
       '@leapwallet/elements':
         specifier: ^0.12.8
-        version: 0.12.9(@leapwallet/elements-core@0.12.9)(@leapwallet/elements-hooks@0.12.9)(@leapwallet/name-matcha@1.6.0)(@rainbow-me/rainbowkit@1.2.1)(@types/react@18.3.2)(chain-registry@1.47.5)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(swr@2.2.5)(typescript@5.4.5)(uuid@9.0.1)(viem@1.4.2)(wagmi@1.4.13)(zod@3.23.8)
+        version: 0.12.9(@leapwallet/elements-core@0.12.9)(@leapwallet/elements-hooks@0.12.9)(@leapwallet/name-matcha@1.6.0)(@rainbow-me/rainbowkit@1.2.1)(@types/react@18.3.2)(chain-registry@1.47.5)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(swr@2.2.5)(typescript@5.4.5)(uuid@9.0.1)(viem@1.4.2)(wagmi@1.4.13)
       '@tippyjs/react':
         specifier: ^4.2.6
         version: 4.2.6(react-dom@18.3.1)(react@18.3.1)
@@ -1166,13 +1166,13 @@ importers:
         version: 0.9.0
       cosmos-kit:
         specifier: ^2.9.2
-        version: 2.12.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(@walletconnect/types@2.11.0)(axios@0.27.2)(cosmjs-types@0.9.0)(react@18.3.1)
+        version: 2.12.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(@walletconnect/types@2.11.0)(axios@0.27.2)(cosmjs-types@0.9.0)(react@18.3.1)
       forgetwidgets:
         specifier: ^1.2.8
-        version: 1.2.8(@babel/core@7.24.5)(@babel/runtime@7.24.5)(@ethersproject/abi@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/contracts@5.7.0)(@types/react@18.3.2)(ethers@5.7.2)(hardhat@2.22.3)(react-dom@18.3.1)(react-redux@8.1.3)(react@18.3.1)(redux@4.2.1)(styled-components@6.1.11)
+        version: 1.2.8(@babel/core@7.24.5)(@babel/runtime@7.24.5)(@ethersproject/abi@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/contracts@5.7.0)(@types/react@18.3.2)(ethers@5.7.2)(hardhat@2.22.4)(react-dom@18.3.1)(react-redux@8.1.3)(react@18.3.1)(redux@5.0.1)(styled-components@6.1.11)
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1215,7 +1215,7 @@ importers:
         version: 4.17.21
       react-redux:
         specifier: ^8.1.2
-        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
+        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(redux@5.0.1)
       utility-types:
         specifier: ^3.10.0
         version: 3.11.0
@@ -1251,7 +1251,7 @@ importers:
         version: link:../../packages/helpers
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1312,7 +1312,7 @@ importers:
         version: link:../../packages/helpers
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1340,7 +1340,7 @@ importers:
         version: 9.0.1(@types/react@18.3.2)(react@18.3.1)
       react-redux:
         specifier: ^8.1.2
-        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
+        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(redux@5.0.1)
       remark-gfm:
         specifier: ^4.0.0
         version: 4.0.0
@@ -1370,7 +1370,7 @@ importers:
         version: link:../../packages/helpers
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1437,7 +1437,7 @@ importers:
         version: 2.0.13(react@18.3.1)
       react-redux:
         specifier: ^8.1.2
-        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
+        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(redux@5.0.1)
 
   pages/staking:
     dependencies:
@@ -1464,7 +1464,7 @@ importers:
         version: link:../../packages/helpers
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1492,7 +1492,7 @@ importers:
         version: 2.50.0
       react-redux:
         specifier: ^8.1.2
-        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
+        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(redux@5.0.1)
 
   pages/vesting:
     dependencies:
@@ -1516,7 +1516,7 @@ importers:
         version: link:../../packages/helpers
       next:
         specifier: 14.2.3
-        version: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+        version: 14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
       react:
         specifier: 18.3.1
         version: 18.3.1
@@ -1550,7 +1550,7 @@ importers:
         version: 6.12.1
       react-redux:
         specifier: ^8.1.2
-        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
+        version: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(redux@5.0.1)
 
 packages:
 
@@ -1810,7 +1810,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/highlight': 7.24.5
-      picocolors: 1.0.0
+      picocolors: 1.0.1
 
   /@babel/compat-data@7.24.4:
     resolution: {integrity: sha512-vg8Gih2MLK+kOkHJp4gBEIkyaIi00jgWot2D9QOmmfLC8jINSOzmCLta6Bvz/JSBCqnegV0L80jhxkol5GWNfQ==}
@@ -2054,7 +2054,7 @@ packages:
       '@babel/helper-validator-identifier': 7.24.5
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.0.0
+      picocolors: 1.0.1
 
   /@babel/parser@7.24.5:
     resolution: {integrity: sha512-EOv5IK8arwh3LI47dz1b0tKUb/1uhHAnHJOrjgtQMIpu1uXd9mlFrJg9IUgGUgZ41Ch0K8REPTYpO7B76b4vJg==}
@@ -3592,6 +3592,10 @@ packages:
     resolution: {integrity: sha512-62oOUxD4tgSkv04drULpaLtCLW6IpnQ9ieNGLg5pVvbrD886yE6m3iO9ddOLqf6z6tcMFlxKxZ5c9vl6jdnIZg==}
     dev: false
 
+  /@chain-registry/types@0.29.1:
+    resolution: {integrity: sha512-IFPoj3oUaxCHvZH8pVawD4wOCvbuvRfgxeFeRKip1Md/MablQUWyhMc4G1SrN1DbSAvSQqmBePrwitym79HhxA==}
+    dev: false
+
   /@chain-registry/utils@1.30.0:
     resolution: {integrity: sha512-qVXAH4X3h3/b4cr/YTr7JlEMH00Mh2g8alJV/+L5oZL/rkuZuuLbopv6m73xgcbvSMQe2JvvAhIqaYSJjv/TIw==}
     dependencies:
@@ -3638,6 +3642,23 @@ packages:
       sha.js: 2.4.11
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@coinbase/wallet-sdk@3.9.3:
+    resolution: {integrity: sha512-N/A2DRIf0Y3PHc1XAMvbBUu4zisna6qAdqABMZwBMNEfWrXpAwx16pZGkYCLGE+Rvv1edbcB2LYDRnACNcmCiw==}
+    dependencies:
+      bn.js: 5.2.1
+      buffer: 6.0.3
+      clsx: 1.2.1
+      eth-block-tracker: 7.1.0
+      eth-json-rpc-filters: 6.0.1
+      eventemitter3: 5.0.1
+      keccak: 3.0.4
+      preact: 10.21.0
+      sha.js: 2.4.11
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
 
   /@colors/colors@1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -4350,7 +4371,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/coin98-extension@2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/coin98-extension@2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-uyDEKBBB8Z1DZ1hF6pHpR2y1NuswqJbjB/lY04YD8GBxeP6rxrtFMUWkFFcCfPOSM931Sumu8gmP+BwSi+iMKA==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -4359,7 +4380,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       cosmjs-types: 0.9.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -4383,10 +4404,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/coin98@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/coin98@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-j9d0t4JNR5rGDb7SF6hYFs8zPcdgO4zPp2YfTtN0Kz5TjgAO+59Vw4/NdISHxEdFBgeHaW1b9xRmYmMHsl0FEQ==}
     dependencies:
-      '@cosmos-kit/coin98-extension': 2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/coin98-extension': 2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4411,7 +4432,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/compass-extension@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/compass-extension@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-WInvm28V3ZQNf3IW4Q2O9C7+FAYcQePwxIoK41VMt8bkQ3u1lNw7dRRQVJp8210Y1Ej7wrHNgHvpYDVNS7bLaA==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -4420,7 +4441,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4443,10 +4464,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/compass@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/compass@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-Ky1RxiNHrZyfg16qSdX92Lhtfu3utKeplwrtiqe4rfZvyVoue967ol0Vi0GH1250fqoFSxlcdRf1oL62FLKhyQ==}
     dependencies:
-      '@cosmos-kit/compass-extension': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/compass-extension': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4545,13 +4566,13 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/core@2.10.0(@chain-registry/types@0.29.0):
+  /@cosmos-kit/core@2.10.0(@chain-registry/types@0.29.1):
     resolution: {integrity: sha512-9gSmTCHh2xpG6rfcsVjxDUq1mvAKaS7Nre47ddEzLLrRni685I5ppokPwURsUZpm4lsNpDKKum0nV0P1WtYJhQ==}
     peerDependencies:
       '@chain-registry/types': '>= 0.17'
     dependencies:
       '@chain-registry/client': 1.32.0
-      '@chain-registry/types': 0.29.0
+      '@chain-registry/types': 0.29.1
       '@cosmjs/amino': 0.32.3
       '@cosmjs/cosmwasm-stargate': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
@@ -4583,7 +4604,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/cosmostation-extension@2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/cosmostation-extension@2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-HgMkcebGr/x6Z3p8o8LyBFs4EZrma8Kq70YDsdRHwsZFz6KC1Mjmh9/L4esgrXaYiZQ8EvcjtQ6yHI8lh+b9YA==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -4592,7 +4613,7 @@ packages:
       '@chain-registry/cosmostation': 1.50.5
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       cosmjs-types: 0.9.0
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -4616,12 +4637,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/cosmostation-mobile@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/cosmostation-mobile@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-AbkL7a8DJR9Nb2cNpJNDPeS23qh975GsOW2jrEJ1uWpXmtsl95GnN86/SUo01Ypdfc5SiHKWTEzgiUC74sq0Tw==}
     dependencies:
       '@chain-registry/cosmostation': 1.26.0
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
-      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
+      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4646,11 +4667,11 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/cosmostation@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/cosmostation@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-GbkdVsSPSTOyv1lJ4SYf7s7jpRLUBAkx6QBGy3lZHbfLGm78C4kCBMoJZTizSugQmC5bYc20516tpMgrOPN3yA==}
     dependencies:
-      '@cosmos-kit/cosmostation-extension': 2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/cosmostation-mobile': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/cosmostation-extension': 2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/cosmostation-mobile': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4676,7 +4697,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/exodus-extension@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(react@18.3.1):
+  /@cosmos-kit/exodus-extension@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(react@18.3.1):
     resolution: {integrity: sha512-9eN4kwVMQ77hAxD3bAkwKhLyOnK182B5LXfFlMoS2LEyEOY8hHtPha/ZPGKWoWZXq4uSUbEYXY1z29fj0ax1Hg==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -4684,7 +4705,7 @@ packages:
     dependencies:
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       react-icons: 4.4.0(react@18.3.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -4709,10 +4730,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/exodus@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(react@18.3.1):
+  /@cosmos-kit/exodus@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(react@18.3.1):
     resolution: {integrity: sha512-3nj/42NaMRemqlr7NmIrpuZENld9NKd/6+aUIZfbCOD3Y7RzTppRjUHBmTHE8p+FXlZASTk+Cc2+670ze5SeOA==}
     dependencies:
-      '@cosmos-kit/exodus-extension': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(react@18.3.1)
+      '@cosmos-kit/exodus-extension': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(react@18.3.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4738,7 +4759,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/fin-extension@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/fin-extension@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-HpJBm9hvXUdBBPXkExtvn8dXBoqEJXNkFC6ktQ8oOmIawRv/sD8ay7ySParatSAyvgcrpmZ38UCWJW7SKcuosA==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -4747,7 +4768,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4770,10 +4791,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/fin@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/fin@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-9nu0HC+KUo/m2toGCCA6sHkUcdFh8o/T8som3HWzEzfuuLeuVyUZy30y0y4fcOXYT0DF7phaby8p7v0nTgPnmg==}
     dependencies:
-      '@cosmos-kit/fin-extension': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/fin-extension': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4798,7 +4819,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/frontier-extension@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/frontier-extension@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-TnBq41cEQ6bgRn3Jf7H/45Y/ulJdf1hHhXCaVLw8W//U+4cUB5Oq/T1U8+La1HLv3VbTIwKZRf/SR5HnrkhF/w==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -4806,7 +4827,7 @@ packages:
     dependencies:
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4829,10 +4850,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/frontier@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/frontier@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-ouNG/oQZkbLvq9lhhQoHRkmAC1M3Dt/Cthfndlx2GPLGTqx/9mUbNU157tMu4AeSw7e5BDsYXgy0FTEHDWMs+A==}
     dependencies:
-      '@cosmos-kit/frontier-extension': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/frontier-extension': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4919,7 +4940,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/keplr-extension@2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/keplr-extension@2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-95mDqZvkuDSep65wVs802MD83xTTIgjbMkV+VnX8GzLAK5dU4DRzklpK9ONlZopceVON6YEPLeGX4q33NXgbTA==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -4928,7 +4949,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       '@keplr-wallet/types': 0.12.88
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -4952,7 +4973,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/keplr-mobile@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/keplr-mobile@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-d2JelVYMvihcN8TlRrObeFw7IZZeEgziM5nxTUjm3nqOYh9KjR+m/w2nIoTzxDxStsxWa8+DPTZ7a2MuEwLftg==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -4961,8 +4982,8 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
-      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
+      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -4986,11 +5007,11 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/keplr@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/keplr@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-S+pQ2hKI8G0S+YvKwZGUyXdE0agu8Cb+kOdokXu/LXxNYgo5ESEAh3PbRnrKjps/2Wt0N5qXxNVNsSMi3i1Sjg==}
     dependencies:
-      '@cosmos-kit/keplr-extension': 2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/keplr-mobile': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/keplr-extension': 2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/keplr-mobile': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5016,7 +5037,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/leap-extension@2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/leap-extension@2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-a+FuMz+vPn9csGxSCNslWE6aTZOiDKjF8CogAgEM+xBKrLcMQ+x08eIKfVg9GdDEiLmW7p1VHBqAleZL3grn1w==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5025,7 +5046,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5048,7 +5069,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/leap-metamask-cosmos-snap@0.6.2(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(cosmjs-types@0.9.0):
+  /@cosmos-kit/leap-metamask-cosmos-snap@0.6.2(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(cosmjs-types@0.9.0):
     resolution: {integrity: sha512-47Kq0ZrXNinbTfNH0i0GtxdfIDkq7iaixLQ5p9qc56CtiqBtT4bSrZoYqUl3nlM7iFKTtrb7FdCPkAVkWpYUew==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.2'
@@ -5058,7 +5079,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       '@leapwallet/cosmos-snap-provider': 0.1.25
       '@metamask/providers': 11.1.2
       cosmjs-types: 0.9.0
@@ -5084,7 +5105,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/leap-metamask-cosmos-snap@0.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(cosmjs-types@0.9.0):
+  /@cosmos-kit/leap-metamask-cosmos-snap@0.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(cosmjs-types@0.9.0):
     resolution: {integrity: sha512-fWLKnpuyROugsjdSQsIKaCTk6azVq4g0OiOtxgUFA8qNx7/lzu++k1yt86WdgRNOeJ5AV7EVBqGu/wR55QUxEg==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5094,7 +5115,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       '@leapwallet/cosmos-snap-provider': 0.1.25
       '@metamask/providers': 11.1.2
       cosmjs-types: 0.9.0
@@ -5120,12 +5141,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/leap-mobile@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/leap-mobile@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-OskIE4kqPYTKHmiwfKYm0fvk7PZYwjtn6G/AHhgt4a8T71I/xpgf0XvaxKqR3lNRuXWiIDWClQPBK9W7ETfvrg==}
     dependencies:
       '@chain-registry/keplr': 1.28.0
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
-      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
+      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5150,12 +5171,12 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/leap@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)(cosmjs-types@0.9.0):
+  /@cosmos-kit/leap@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)(cosmjs-types@0.9.0):
     resolution: {integrity: sha512-Lf2roaDgL+lAsWYLajS62e1CxhHgVQefGTOrgpb7AHfVxoGyZdAyul9JnuBnRmw0qt9SVU1ZWrEzLWNOBQYl2w==}
     dependencies:
-      '@cosmos-kit/leap-extension': 2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/leap-metamask-cosmos-snap': 0.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(cosmjs-types@0.9.0)
-      '@cosmos-kit/leap-mobile': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/leap-extension': 2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/leap-metamask-cosmos-snap': 0.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(cosmjs-types@0.9.0)
+      '@cosmos-kit/leap-mobile': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5182,7 +5203,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/ledger@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/ledger@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-rEPX229WQCmTspJRmXOPQq7lVyKyO9HROFCrVnx7idmbWOOYkGfFvGSWQROuMXbGaYPDD2QiCfywbg9xRItNDg==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5190,7 +5211,7 @@ packages:
     dependencies:
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       '@ledgerhq/hw-app-cosmos': 6.29.6
       '@ledgerhq/hw-transport-webhid': 6.28.6
       '@ledgerhq/hw-transport-webusb': 6.28.6
@@ -5216,7 +5237,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/okxwallet-extension@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/okxwallet-extension@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-55R7SqcGQcvhLeVEFni2B5SURcHArh/xz8f+k3kXvPrzPou9SrOMbCn6qZMqibIhtC2z5jeB1b007Lx2Jc513Q==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5224,7 +5245,7 @@ packages:
     dependencies:
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5247,7 +5268,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/omni-mobile@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/omni-mobile@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-3L80PHRDreVj1f3tU5FRmlsemoE/YZbRIuZb5cBIfNLJXvkNhOEu3ZT6p+dONAcRbwWcvv+RRHjCD+rwd2slwA==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5255,8 +5276,8 @@ packages:
     dependencies:
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
-      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
+      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5280,10 +5301,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/omni@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/omni@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-eS8nnTaMuBLNUrI5M3rCFlzfMgPQWYnsBaMd1Nxl+q4CZN2ROBai1rtExWYrjJP1+g/G/NnWViRPDNZzhKPzvA==}
     dependencies:
-      '@cosmos-kit/omni-mobile': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/omni-mobile': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5309,7 +5330,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/owallet-extension@2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/owallet-extension@2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-eb69KS2IqqjnomuEmNiRoAkFm3P2/P2Fdov8KJf7k002QR5v2yfBdw3qDxzxTr4QmA0VDqlMV8wpO7cFxyWkdg==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5318,7 +5339,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       '@keplr-wallet/types': 0.12.88
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -5342,10 +5363,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/owallet@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/owallet@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-1IRTYNYRVaLlC7/NLzJtnXdSJnK6MuCE6vH611iF08r2jU+hqdTgegCm/9Curee8oNRU6t6qAldj7H0Jdmv9KQ==}
     dependencies:
-      '@cosmos-kit/owallet-extension': 2.9.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/owallet-extension': 2.9.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5370,7 +5391,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/react-lite@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1):
+  /@cosmos-kit/react-lite@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-FSmnmpvVZ2It9Bjop+XX9c/U5emtDSn1VtA3+L+K0Ym5kxrO5udN6tLgCGpyHH+9VNkgO89EFhTuwfhNeKqhug==}
     peerDependencies:
       '@chain-registry/types': '>= 0.17'
@@ -5379,8 +5400,8 @@ packages:
       react: ^18
       react-dom: ^18
     dependencies:
-      '@chain-registry/types': 0.29.0
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@chain-registry/types': 0.29.1
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       '@dao-dao/cosmiframe': 0.1.0(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
       '@types/react': 18.3.2
       '@types/react-dom': 18.3.0
@@ -5409,7 +5430,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/react@2.12.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@interchain-ui/react@1.23.11)(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1):
+  /@cosmos-kit/react@2.12.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@interchain-ui/react@1.23.11)(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-hgB8U5ABdiomD3/Sx0f18IhgZVhso0vR3ZEhdYkDpLR2b4LEs9x/mruZF7WOoSWZYKq+GAIhlCofiB2uKCf6vA==}
     peerDependencies:
       '@chain-registry/types': '>= 0.17'
@@ -5419,9 +5440,9 @@ packages:
       react: ^18
       react-dom: ^18
     dependencies:
-      '@chain-registry/types': 0.29.0
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
-      '@cosmos-kit/react-lite': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
+      '@chain-registry/types': 0.29.1
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
+      '@cosmos-kit/react-lite': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
       '@interchain-ui/react': 1.23.11(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
       '@react-icons/all-files': 4.1.0(react@18.3.1)
       '@types/react': 18.3.2
@@ -5451,7 +5472,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/shell-extension@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/shell-extension@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-4gG6X1WLuVYzgiReNS964By9a+GfzVlkISUrIkDCS4fGW+24uaBZ0vSsxzVtYvTobb6e0zDM7/kEO60tE+XgnQ==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5460,7 +5481,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5483,10 +5504,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/shell@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/shell@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-5CB7TP5MKLv/mmFn8oA81OWwPireMwYEm68i67Q0Ufcb//Q1O5iDEA22IyubFbqzVPipq2BDDdfSYz0vWl3cjQ==}
     dependencies:
-      '@cosmos-kit/shell-extension': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/shell-extension': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5511,17 +5532,17 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/station-extension@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(axios@0.27.2):
+  /@cosmos-kit/station-extension@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(axios@0.27.2):
     resolution: {integrity: sha512-m7RNxGsBAta7/Jjzb1BqU35noZbb4ROaifOMvoQRqgpPiDGQQ9oIx8V4DscAmwcfbuOKjUBWnZYdcm0BU3o3Yg==}
     peerDependencies:
       '@chain-registry/types': '>= 0.17'
       '@cosmjs/amino': '>=0.32.3'
       '@cosmjs/proto-signing': '>=0.32.3'
     dependencies:
-      '@chain-registry/types': 0.29.0
+      '@chain-registry/types': 0.29.1
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       '@terra-money/feather.js': 1.2.1
       '@terra-money/station-connector': 1.1.4(@cosmjs/amino@0.32.3)(axios@0.27.2)
       '@terra-money/wallet-types': 3.11.2(@terra-money/terra.js@3.1.10)
@@ -5548,10 +5569,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/station@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(axios@0.27.2):
+  /@cosmos-kit/station@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(axios@0.27.2):
     resolution: {integrity: sha512-pBjePco/EVqqyVgy52wBHPLBOmLz3qhJCB+7nJJeXb7d3IrLtdfaxLWANFiLdgRdulV9i87s0rvLKkou8N9TNg==}
     dependencies:
-      '@cosmos-kit/station-extension': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(axios@0.27.2)
+      '@cosmos-kit/station-extension': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(axios@0.27.2)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5578,10 +5599,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/tailwind-extension@1.2.0(@chain-registry/types@0.29.0):
+  /@cosmos-kit/tailwind-extension@1.2.0(@chain-registry/types@0.29.1):
     resolution: {integrity: sha512-ogrc+Vznuz+xVHRswSC9Zh0dWVPrEeg0ZqkSr1WEnG2jzYRiMUbdGYoAB1FrdLg0+qdq10u5ZoXUfAdXh2DwZw==}
     dependencies:
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5604,10 +5625,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/tailwind@1.2.0(@chain-registry/types@0.29.0):
+  /@cosmos-kit/tailwind@1.2.0(@chain-registry/types@0.29.1):
     resolution: {integrity: sha512-vhIMLUiZ3F0mfoHy++G4hMIqx08uNsUB0Ep3OvVIs2fyUwRM0lnGMRx3saq8HLitgYYBNgd0WVloH5PKhBkQEQ==}
     dependencies:
-      '@cosmos-kit/tailwind-extension': 1.2.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/tailwind-extension': 1.2.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5630,7 +5651,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/trust-extension@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/trust-extension@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-QLQKxoqz4UQpvkFGwZPPQyQmy5DyrocQlO6qZdT8p0SRWL4noJFisN44ikec6s5u4/9MioR1WPKWFHBdUNwRxQ==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5638,7 +5659,7 @@ packages:
     dependencies:
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5661,7 +5682,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/trust-mobile@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/trust-mobile@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-Z5E28Ce00iITomaB+2nBiQSaVNxN6G3TO1kHHmQUSy2UVOVyHoTZoQcu8aeH0ZL7qOtkvoE6XFcPXYiDms+7Pw==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5669,8 +5690,8 @@ packages:
     dependencies:
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
-      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
+      '@cosmos-kit/walletconnect': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5694,11 +5715,11 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/trust@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/trust@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-eAdXGG2Ab9FT1vHynI9SWDJ/MzVLuojbAzJ2QQvI4rY15aTqNoWY2XVQSxYsb4lUqF49cprMg3A66p88NTCaWQ==}
     dependencies:
-      '@cosmos-kit/trust-extension': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/trust-mobile': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/trust-extension': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/trust-mobile': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5724,7 +5745,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/vectis-extension@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/vectis-extension@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-rUB9+bDF/Qz2hzzMuleRBMe8gaSl044MYKNRZaFk7ibdQZtPkNyOdND0EqqJt4GIywj6Of93BvVWA46KSZ75zA==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5733,7 +5754,7 @@ packages:
       '@chain-registry/keplr': 1.28.0
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5756,10 +5777,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/vectis@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/vectis@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-NDvirIOolkOYCAlHvh6yXt+/FXC/5bxclYhd6227Fl8jQDsheNCpk0V3/J6cRRrpb8yg38HIePTbC9U5ggfYpA==}
     dependencies:
-      '@cosmos-kit/vectis-extension': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/vectis-extension': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5784,7 +5805,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/walletconnect@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0):
+  /@cosmos-kit/walletconnect@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@walletconnect/types@2.11.0):
     resolution: {integrity: sha512-LhAuBt1zPxsC9TSp2GSd8Mtx9X9Id1S5c54m4SSzEWIxk78rb1dZGLrXCEjaO1nlh8Bz9MijJDCOhaN6NuBZeA==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5792,7 +5813,7 @@ packages:
     dependencies:
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
       '@walletconnect/sign-client': 2.13.0(bufferutil@4.0.8)(encoding@0.1.13)(utf-8-validate@5.0.10)
       '@walletconnect/types': 2.11.0
       '@walletconnect/utils': 2.13.0
@@ -5819,7 +5840,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/xdefi-extension@2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/xdefi-extension@2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-NFia6S2HlD4/fMxhN/p72OysKj9w2Cocdkjhz28L+A6LeiYd8mcuS3NRDBrb99jZvZzte0Gr2EPlOvvdZtSOqw==}
     peerDependencies:
       '@cosmjs/amino': '>=0.32.3'
@@ -5827,7 +5848,7 @@ packages:
     dependencies:
       '@cosmjs/amino': 0.32.3
       '@cosmjs/proto-signing': 0.32.3
-      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.0)
+      '@cosmos-kit/core': 2.10.0(@chain-registry/types@0.29.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -5850,10 +5871,10 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@cosmos-kit/xdefi@2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
+  /@cosmos-kit/xdefi@2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3):
     resolution: {integrity: sha512-4sMuasxJkttfVXXdhYX/mFFNI1koWZSVzXKkQu3aLj4x+lItgNMtWagFTf2Svi85lGjVSpefad6PonuHD8HBiw==}
     dependencies:
-      '@cosmos-kit/xdefi-extension': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/xdefi-extension': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -7075,34 +7096,34 @@ packages:
     resolution: {integrity: sha512-FzleM9AxZQK2nqsTDtBiY0PMEVWvnKnuu2i09+p6DHvrHsuucoV2j0tmw+kAT3L4hvsLdAIDv6MdGehsPIdT+Q==}
     dev: false
 
-  /@forge-trade/router-sdk@1.7.2(hardhat@2.22.3):
+  /@forge-trade/router-sdk@1.7.2(hardhat@2.22.4):
     resolution: {integrity: sha512-cLw0tfKhTVyhy7fSVpwvgdjyzaHj6ffE/CySp1uXqzooQARM5Ay4OVFyvvNSnvAH7v4nZITEemO/WSONmz20LA==}
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@orbitalapes/sdk-core': 3.2.6
-      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.3)
+      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.4)
       '@uniswap/v2-sdk': 3.3.0
-      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.3)
+      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.4)
     transitivePeerDependencies:
       - hardhat
     dev: false
 
-  /@forge-trade/smart-order-router@3.5.8(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.3)(jsbi@3.2.5)(utf-8-validate@5.0.10):
+  /@forge-trade/smart-order-router@3.5.8(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.4)(jsbi@3.2.5)(utf-8-validate@5.0.10):
     resolution: {integrity: sha512-ci0Rbj7sOqcOUStUlIPPa8y52s3zc4PuR3ytE6VQ3Ww8MEPdih1qAnxXx/73k7XEaMZE43igmptJ6ChRXGRmIA==}
     engines: {node: '>=10'}
     peerDependencies:
       jsbi: ^3.2.0
     dependencies:
-      '@orbitalapes/smart-order-router': 3.5.7(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.3)(jsbi@3.2.5)(utf-8-validate@5.0.10)
+      '@orbitalapes/smart-order-router': 3.5.7(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.4)(jsbi@3.2.5)(utf-8-validate@5.0.10)
       '@uniswap/default-token-list': 2.3.0
       '@uniswap/permit2-sdk': 1.2.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.3)
-      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.3)
+      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.4)
+      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.4)
       '@uniswap/token-lists': 1.0.0-beta.34
       '@uniswap/universal-router': 1.6.0
-      '@uniswap/universal-router-sdk': 1.9.0(bufferutil@4.0.8)(hardhat@2.22.3)(utf-8-validate@5.0.10)
+      '@uniswap/universal-router-sdk': 1.9.0(bufferutil@4.0.8)(hardhat@2.22.4)(utf-8-validate@5.0.10)
       '@uniswap/v2-sdk': 3.3.0
-      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.3)
+      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.4)
       async-retry: 1.3.3
       await-timeout: 1.1.1
       axios: 0.21.4
@@ -8338,14 +8359,14 @@ packages:
       long: 5.2.3
       react: 18.3.1
       swr: 2.2.5(react@18.3.1)
-      wagmi: 1.4.13(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)(zod@3.23.8)
+      wagmi: 1.4.13(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)
     transitivePeerDependencies:
       - bufferutil
       - debug
       - utf-8-validate
     dev: false
 
-  /@leapwallet/elements@0.12.9(@leapwallet/elements-core@0.12.9)(@leapwallet/elements-hooks@0.12.9)(@leapwallet/name-matcha@1.6.0)(@rainbow-me/rainbowkit@1.2.1)(@types/react@18.3.2)(chain-registry@1.47.5)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(swr@2.2.5)(typescript@5.4.5)(uuid@9.0.1)(viem@1.4.2)(wagmi@1.4.13)(zod@3.23.8):
+  /@leapwallet/elements@0.12.9(@leapwallet/elements-core@0.12.9)(@leapwallet/elements-hooks@0.12.9)(@leapwallet/name-matcha@1.6.0)(@rainbow-me/rainbowkit@1.2.1)(@types/react@18.3.2)(chain-registry@1.47.5)(ethers@5.7.2)(react-dom@18.3.1)(react@18.3.1)(swr@2.2.5)(typescript@5.4.5)(uuid@9.0.1)(viem@1.4.2)(wagmi@1.4.13):
     resolution: {integrity: sha512-naBTOm6aY86EULTASC3tizSCy5uurr7UrBNnts2dawSk0jbGE8M4GjtzzJodEZzRnMKzGCsCNLKyRaLBAH/+ng==}
     peerDependencies:
       '@leapwallet/elements-core': 0.12.9
@@ -8370,7 +8391,7 @@ packages:
       '@leapwallet/name-matcha': 1.6.0(@cosmjs/cosmwasm-stargate@0.31.3)
       '@phosphor-icons/react': 2.0.10(react-dom@18.3.1)(react@18.3.1)
       '@rainbow-me/rainbowkit': 1.2.1(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(viem@1.4.2)(wagmi@1.4.13)
-      '@skip-router/core': 1.5.2(@types/react@18.3.2)(chain-registry@1.47.5)(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)(zod@3.23.8)
+      '@skip-router/core': 1.5.2(@types/react@18.3.2)(chain-registry@1.47.5)(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)
       '@vanilla-extract/css': 1.12.0
       '@vanilla-extract/dynamic': 2.0.3
       '@vanilla-extract/recipes': 0.4.0(@vanilla-extract/css@1.12.0)
@@ -8388,8 +8409,8 @@ packages:
       swr: 2.2.5(react@18.3.1)
       tiny-invariant: 1.3.3
       uuid: 9.0.1
-      viem: 1.4.2(typescript@5.4.5)(zod@3.23.8)
-      wagmi: 1.4.13(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)(zod@3.23.8)
+      viem: 1.4.2(typescript@5.4.5)
+      wagmi: 1.4.13(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)
     transitivePeerDependencies:
       - '@types/react'
       - bufferutil
@@ -9798,7 +9819,7 @@ packages:
       toformat: 2.0.0
     dev: false
 
-  /@orbitalapes/smart-order-router@3.5.7(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.3)(jsbi@3.2.5)(utf-8-validate@5.0.10):
+  /@orbitalapes/smart-order-router@3.5.7(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.4)(jsbi@3.2.5)(utf-8-validate@5.0.10):
     resolution: {integrity: sha512-u/pS06uI8H8ecXNtxMJX7P/Hu02Y5Fm5+oyI+UwW3/B04yM3V8pjOxtzl2dM8KGCQFNW5SIcH6xRrSsiEnyTzg==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -9806,13 +9827,13 @@ packages:
     dependencies:
       '@uniswap/default-token-list': 2.3.0
       '@uniswap/permit2-sdk': 1.2.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.3)
-      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.3)
+      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.4)
+      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.4)
       '@uniswap/token-lists': 1.0.0-beta.34
       '@uniswap/universal-router': 1.6.0
-      '@uniswap/universal-router-sdk': 1.9.0(bufferutil@4.0.8)(hardhat@2.22.3)(utf-8-validate@5.0.10)
+      '@uniswap/universal-router-sdk': 1.9.0(bufferutil@4.0.8)(hardhat@2.22.4)(utf-8-validate@5.0.10)
       '@uniswap/v2-sdk': 3.3.0
-      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.3)
+      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.4)
       async-retry: 1.3.3
       await-timeout: 1.1.1
       axios: 0.21.4
@@ -9984,6 +10005,7 @@ packages:
   /@pkgjs/parseargs@0.11.0:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
+    requiresBuild: true
 
   /@playwright/test@1.44.0:
     resolution: {integrity: sha512-rNX5lbNidamSUorBhB4XZ9SQTjAqfe5M+p37Z8ic0jPFBMo5iCtQz1kRWkEMg+rYOKSlVycpQmpqjSFq7LXOfg==}
@@ -10243,8 +10265,8 @@ packages:
       react-dom: 18.3.1(react@18.3.1)
       react-remove-scroll: 2.5.4(@types/react@18.3.2)(react@18.3.1)
       ua-parser-js: 1.0.37
-      viem: 1.4.2(typescript@5.4.5)(zod@3.23.8)
-      wagmi: 1.4.13(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)(zod@3.23.8)
+      viem: 1.4.2(typescript@5.4.5)
+      wagmi: 1.4.13(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)
     transitivePeerDependencies:
       - '@types/react'
     dev: false
@@ -11737,7 +11759,7 @@ packages:
     dependencies:
       immer: 9.0.21
       react: 18.3.1
-      react-redux: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
+      react-redux: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(redux@5.0.1)
       redux: 4.2.1
       redux-thunk: 2.4.2(redux@4.2.1)
       reselect: 4.1.8
@@ -11888,11 +11910,23 @@ packages:
       - zod
     dev: true
 
-  /@safe-global/safe-apps-provider@0.18.2(typescript@5.4.5)(zod@3.23.8):
+  /@safe-global/safe-apps-provider@0.18.2(typescript@5.4.5):
     resolution: {integrity: sha512-yHHAcppwE7aIUWEeZiYAClQzZCdP5l0Kbd0CBlhKAsTcqZnx4Gh3G3G3frY5LlWcGzp9qmQ5jv+J1GBpaZLDgw==}
     dependencies:
-      '@safe-global/safe-apps-sdk': 9.0.0(typescript@5.4.5)(zod@3.23.8)
+      '@safe-global/safe-apps-sdk': 9.0.0(typescript@5.4.5)
       events: 3.3.0
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
+    dev: false
+
+  /@safe-global/safe-apps-sdk@8.1.0(typescript@5.4.5):
+    resolution: {integrity: sha512-XJbEPuaVc7b9n23MqlF6c+ToYIS3f7P2Sel8f3cSBQ9WORE4xrSuvhMpK9fDSFqJ7by/brc+rmJR/5HViRr0/w==}
+    dependencies:
+      '@safe-global/safe-gateway-typescript-sdk': 3.21.1
+      viem: 1.4.2(typescript@5.4.5)
     transitivePeerDependencies:
       - bufferutil
       - typescript
@@ -11910,12 +11944,13 @@ packages:
       - typescript
       - utf-8-validate
       - zod
+    dev: true
 
-  /@safe-global/safe-apps-sdk@9.0.0(typescript@5.4.5)(zod@3.23.8):
+  /@safe-global/safe-apps-sdk@9.0.0(typescript@5.4.5):
     resolution: {integrity: sha512-fEqmQBU3JqTjORSl3XYrcaxdxkUqeeM39qsQjqCzzTHioN8DEfg3JCLq6EBoXzcKTVOYi8SPzLV7KJccdDw+4w==}
     dependencies:
       '@safe-global/safe-gateway-typescript-sdk': 3.21.1
-      viem: 1.21.4(typescript@5.4.5)(zod@3.23.8)
+      viem: 1.21.4(typescript@5.4.5)
     transitivePeerDependencies:
       - bufferutil
       - typescript
@@ -11942,7 +11977,7 @@ packages:
     resolution: {integrity: sha512-bcKpo1oj54hGholplGLpqPHRbIsnbixFtc06nwuNM5/dwSXOq/AAYoIBRsBmnZJSdfeNW5rnff7NTAz3ZCqR9Q==}
     dependencies:
       '@noble/curves': 1.0.0
-      '@noble/hashes': 1.3.3
+      '@noble/hashes': 1.3.0
       '@scure/base': 1.1.6
     dev: false
 
@@ -11970,7 +12005,7 @@ packages:
   /@scure/bip39@1.2.0:
     resolution: {integrity: sha512-SX/uKq52cuxm4YFXWFaVByaSHJh2w3BnokVSeUJVCv6K7WulT9u2BuNRBhuFl8vAuYnzx9bEu9WgpcNYTrYieg==}
     dependencies:
-      '@noble/hashes': 1.3.3
+      '@noble/hashes': 1.3.0
       '@scure/base': 1.1.6
     dev: false
 
@@ -12089,7 +12124,7 @@ packages:
     dependencies:
       '@sinonjs/commons': 3.0.1
 
-  /@skip-router/core@1.5.2(@types/react@18.3.2)(chain-registry@1.47.5)(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)(zod@3.23.8):
+  /@skip-router/core@1.5.2(@types/react@18.3.2)(chain-registry@1.47.5)(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5):
     resolution: {integrity: sha512-/kkVRL4BmaneiCy3TWboi+lss1w5d53ID/Hud4cvzYgxY4fuX4Wmt9KmrIjh1/m96Ltx6ozVekZNaXruaftBzA==}
     peerDependencies:
       chain-registry: ^1.28.0
@@ -12333,12 +12368,12 @@ packages:
       '@storybook/global': 5.0.0
     dev: true
 
-  /@storybook/addon-interactions@8.0.10(vitest@1.6.0):
+  /@storybook/addon-interactions@8.0.10:
     resolution: {integrity: sha512-6yFNmk6+7082/8TRVyjUsKlwumalEdO0XQ5amPbVGuECzc3HFn0ELwzPrQ4TBlN5MRtX4+buoh5dc/1RUDrh9w==}
     dependencies:
       '@storybook/global': 5.0.0
       '@storybook/instrumenter': 8.0.10
-      '@storybook/test': 8.0.10(vitest@1.6.0)
+      '@storybook/test': 8.0.10
       '@storybook/types': 8.0.10
       polished: 4.3.1
       ts-dedent: 2.2.0
@@ -12519,7 +12554,7 @@ packages:
       telejson: 7.2.0
       tiny-invariant: 1.3.3
 
-  /@storybook/cli@8.0.10(@babel/preset-env@7.24.5)(react-dom@18.3.1)(react@18.3.1):
+  /@storybook/cli@8.0.10(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-KUZEO2lyvOS2sRJEFXovt6+5b65iWsh7F8e8S1cM20fCM1rZAlWtwmoxmDVXDmyEp0wTrq4FrRxKnbo9UO518w==}
     hasBin: true
     dependencies:
@@ -12871,7 +12906,7 @@ packages:
       fs-extra: 11.2.0
       image-size: 1.1.1
       loader-utils: 3.2.1
-      next: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+      next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
       node-polyfill-webpack-plugin: 2.0.1(webpack@5.91.0)
       pnp-webpack-plugin: 1.7.0(typescript@5.4.5)
       postcss: 8.4.38
@@ -13067,7 +13102,7 @@ packages:
       - supports-color
     dev: false
 
-  /@storybook/test@8.0.10(vitest@1.6.0):
+  /@storybook/test@8.0.10:
     resolution: {integrity: sha512-VqjzKJiOCjaZ0CjLeKygYk8uetiaiKbpIox+BrND9GtpEBHcRZA5AeFY2P1aSCOhsaDwuh4KRBxJWFug7DhWGQ==}
     dependencies:
       '@storybook/client-logger': 8.0.10
@@ -13075,7 +13110,7 @@ packages:
       '@storybook/instrumenter': 8.0.10
       '@storybook/preview-api': 8.0.10
       '@testing-library/dom': 9.3.4
-      '@testing-library/jest-dom': 6.4.5(vitest@1.6.0)
+      '@testing-library/jest-dom': 6.4.5
       '@testing-library/user-event': 14.5.2(@testing-library/dom@9.3.4)
       '@vitest/expect': 1.3.1
       '@vitest/spy': 1.6.0
@@ -13297,10 +13332,10 @@ packages:
       '@tanstack/react-query': ^4.36.1
     dependencies:
       '@tanstack/query-persist-client-core': 4.36.1
-      '@tanstack/react-query': 4.36.1(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)
+      '@tanstack/react-query': 4.36.1(react-dom@18.3.1)(react@18.3.1)
     dev: false
 
-  /@tanstack/react-query@4.36.1(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1):
+  /@tanstack/react-query@4.36.1(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-y7ySVHFyyQblPl3J3eQBWpXZkliroki3ARnBKsdJchlgt7yJLRDUcf4B8soufgiYt3pEQIkBWBx1N9/ZPIeUWw==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -13315,7 +13350,6 @@ packages:
       '@tanstack/query-core': 4.36.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-native: 0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5)(@types/react@18.3.2)(react@18.3.1)
       use-sync-external-store: 1.2.2(react@18.3.1)
     dev: false
 
@@ -13550,7 +13584,7 @@ packages:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  /@testing-library/jest-dom@6.4.5(vitest@1.6.0):
+  /@testing-library/jest-dom@6.4.5:
     resolution: {integrity: sha512-AguB9yvTXmCnySBP1lWjfNNUwpbElsaQ567lt2VdGqAdHtpieLgjmcVyv1q7PMIvLbgpDdkWV5Ydv3FEejyp2A==}
     engines: {node: '>=14', npm: '>=6', yarn: '>=1'}
     peerDependencies:
@@ -13579,7 +13613,6 @@ packages:
       dom-accessibility-api: 0.6.3
       lodash: 4.17.21
       redent: 3.0.0
-      vitest: 1.6.0(@types/node@20.12.7)(jsdom@23.2.0)
     dev: true
 
   /@testing-library/react@14.3.1(react-dom@18.3.1)(react@18.3.1):
@@ -14475,17 +14508,17 @@ packages:
       '@ethersproject/contracts': 5.7.0
       '@reduxjs/toolkit': 1.9.7(react-redux@8.1.3)(react@18.3.1)
       react: 18.3.1
-      react-redux: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
+      react-redux: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(redux@5.0.1)
     dev: false
 
-  /@uniswap/router-sdk@1.9.2(hardhat@2.22.3):
+  /@uniswap/router-sdk@1.9.2(hardhat@2.22.4):
     resolution: {integrity: sha512-J63Of3HRpV0s3ZtEnhGlyvbBuZFfjK7NtnMwflzFMKzfdm+75APHYqnvHAnVARKuL/hMYHF4hni0o84bHem2Ng==}
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@uniswap/sdk-core': 5.0.0
-      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.3)
+      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.4)
       '@uniswap/v2-sdk': 4.3.2
-      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.3)
+      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.4)
     transitivePeerDependencies:
       - hardhat
     dev: false
@@ -14514,7 +14547,7 @@ packages:
       toformat: 2.0.0
     dev: false
 
-  /@uniswap/smart-order-router@3.29.0(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.3)(jsbi@3.2.5)(utf-8-validate@5.0.10):
+  /@uniswap/smart-order-router@3.29.0(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.4)(jsbi@3.2.5)(utf-8-validate@5.0.10):
     resolution: {integrity: sha512-Wim0KqdwSVBiEl1U5sg2SXkVHhs4kG7GsXo3WhoqqwIVDy1KEpjJUBAFR2uWMNX7a+3/imEabAlpysedx1ePug==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -14524,14 +14557,14 @@ packages:
       '@types/brotli': 1.3.4
       '@uniswap/default-token-list': 11.19.0
       '@uniswap/permit2-sdk': 1.2.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.3)
+      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.4)
       '@uniswap/sdk-core': 4.2.1
-      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.3)
+      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.4)
       '@uniswap/token-lists': 1.0.0-beta.34
       '@uniswap/universal-router': 1.6.0
-      '@uniswap/universal-router-sdk': 1.9.0(bufferutil@4.0.8)(hardhat@2.22.3)(utf-8-validate@5.0.10)
+      '@uniswap/universal-router-sdk': 1.9.0(bufferutil@4.0.8)(hardhat@2.22.4)(utf-8-validate@5.0.10)
       '@uniswap/v2-sdk': 4.3.2
-      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.3)
+      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.4)
       async-retry: 1.3.3
       await-timeout: 1.1.1
       axios: 0.21.4
@@ -14554,7 +14587,7 @@ packages:
       - utf-8-validate
     dev: false
 
-  /@uniswap/swap-router-contracts@1.3.1(hardhat@2.22.3):
+  /@uniswap/swap-router-contracts@1.3.1(hardhat@2.22.4):
     resolution: {integrity: sha512-mh/YNbwKb7Mut96VuEtL+Z5bRe0xVIbjjiryn+iMMrK2sFKhR4duk/86mEz0UO5gSx4pQIw9G5276P5heY/7Rg==}
     engines: {node: '>=10'}
     dependencies:
@@ -14563,7 +14596,7 @@ packages:
       '@uniswap/v3-core': 1.0.1
       '@uniswap/v3-periphery': 1.4.4
       dotenv: 14.3.2
-      hardhat-watcher: 2.5.0(hardhat@2.22.3)
+      hardhat-watcher: 2.5.0(hardhat@2.22.4)
     transitivePeerDependencies:
       - hardhat
     dev: false
@@ -14573,16 +14606,16 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /@uniswap/universal-router-sdk@1.9.0(bufferutil@4.0.8)(hardhat@2.22.3)(utf-8-validate@5.0.10):
+  /@uniswap/universal-router-sdk@1.9.0(bufferutil@4.0.8)(hardhat@2.22.4)(utf-8-validate@5.0.10):
     resolution: {integrity: sha512-B6iEczP2WdMsq/aVIdQfvHWWLJyhaUD7enfxO6koxaH3huYOqUWRAzmZLl026fRK7R7P+tVFcA6AqImWLG6tYQ==}
     engines: {node: '>=14'}
     dependencies:
       '@uniswap/permit2-sdk': 1.2.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.3)
+      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.4)
       '@uniswap/sdk-core': 4.2.1
       '@uniswap/universal-router': 1.6.0
       '@uniswap/v2-sdk': 4.3.2
-      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.3)
+      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.4)
       bignumber.js: 9.1.2
       ethers: 5.7.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
@@ -14648,14 +14681,14 @@ packages:
       base64-sol: 1.0.1
     dev: false
 
-  /@uniswap/v3-sdk@3.11.2(hardhat@2.22.3):
+  /@uniswap/v3-sdk@3.11.2(hardhat@2.22.4):
     resolution: {integrity: sha512-TktyuMHVqlhtUxXK3cUaijlvlqiyWfpEYgzd2JD1EcvsVB55zLmtRKb/1fbtLbjRqOapcFsVihD5pVW9nyFlTg==}
     engines: {node: '>=10'}
     dependencies:
       '@ethersproject/abi': 5.7.0
       '@ethersproject/solidity': 5.7.0
       '@uniswap/sdk-core': 5.0.0
-      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.3)
+      '@uniswap/swap-router-contracts': 1.3.1(hardhat@2.22.4)
       '@uniswap/v3-periphery': 1.4.4
       '@uniswap/v3-staker': 1.0.0
       tiny-invariant: 1.3.3
@@ -14872,7 +14905,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.5)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.2.11(@types/node@20.12.7)
+      vite: 5.2.11
     transitivePeerDependencies:
       - supports-color
     dev: false
@@ -14966,7 +14999,7 @@ packages:
       typescript: 5.4.5
     dev: false
 
-  /@wagmi/connectors@3.1.11(@types/react@18.3.2)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)(zod@3.23.8):
+  /@wagmi/connectors@3.1.11(@types/react@18.3.2)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2):
     resolution: {integrity: sha512-wzxp9f9PtSUFjDUP/QDjc1t7HON4D8wrVKsw35ejdO8hToDpx1gU9lwH/47Zo/1zExGezQc392sjoHSszYd7OA==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -14975,17 +15008,17 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@coinbase/wallet-sdk': 3.9.1
-      '@safe-global/safe-apps-provider': 0.18.2(typescript@5.4.5)(zod@3.23.8)
-      '@safe-global/safe-apps-sdk': 8.1.0(typescript@5.4.5)(zod@3.23.8)
+      '@coinbase/wallet-sdk': 3.9.3
+      '@safe-global/safe-apps-provider': 0.18.2(typescript@5.4.5)
+      '@safe-global/safe-apps-sdk': 8.1.0(typescript@5.4.5)
       '@walletconnect/ethereum-provider': 2.11.0(@types/react@18.3.2)(react@18.3.1)
       '@walletconnect/legacy-provider': 2.0.0
       '@walletconnect/modal': 2.6.2(@types/react@18.3.2)(react@18.3.1)
       '@walletconnect/utils': 2.11.0
-      abitype: 0.8.7(typescript@5.4.5)(zod@3.23.8)
+      abitype: 0.8.7(typescript@5.4.5)
       eventemitter3: 4.0.7
       typescript: 5.4.5
-      viem: 1.4.2(typescript@5.4.5)(zod@3.23.8)
+      viem: 1.4.2(typescript@5.4.5)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -15057,7 +15090,7 @@ packages:
       - zod
     dev: true
 
-  /@wagmi/core@1.4.13(@types/react@18.3.2)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)(zod@3.23.8):
+  /@wagmi/core@1.4.13(@types/react@18.3.2)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2):
     resolution: {integrity: sha512-ytMCvXbBOgfDu9Qw67279wq/jNEe7EZLjLyekX7ROnvHRADqFr3lwZI6ih41UmtRZAmXAx8Ghyuqy154EjB5mQ==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -15066,11 +15099,11 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@wagmi/connectors': 3.1.11(@types/react@18.3.2)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)(zod@3.23.8)
-      abitype: 0.8.7(typescript@5.4.5)(zod@3.23.8)
+      '@wagmi/connectors': 3.1.11(@types/react@18.3.2)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)
+      abitype: 0.8.7(typescript@5.4.5)
       eventemitter3: 4.0.7
       typescript: 5.4.5
-      viem: 1.4.2(typescript@5.4.5)(zod@3.23.8)
+      viem: 1.4.2(typescript@5.4.5)
       zustand: 4.5.2(@types/react@18.3.2)(immer@10.1.1)(react@18.3.1)
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -16271,7 +16304,7 @@ packages:
       rimraf: 3.0.2
     dev: true
 
-  /abitype@0.10.3(typescript@5.4.5)(zod@3.23.8):
+  /abitype@0.10.3(typescript@5.4.5):
     resolution: {integrity: sha512-tRN+7XIa7J9xugdbRzFv/95ka5ivR/sRe01eiWvM0HWWjHuigSZEACgKa0sj4wGuekTDtghCx+5Izk/cOi78pQ==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -16283,10 +16316,9 @@ packages:
         optional: true
     dependencies:
       typescript: 5.4.5
-      zod: 3.23.8
     dev: false
 
-  /abitype@0.8.7(typescript@5.4.5)(zod@3.23.8):
+  /abitype@0.8.7(typescript@5.4.5):
     resolution: {integrity: sha512-wQ7hV8Yg/yKmGyFpqrNZufCxbszDe5es4AZGYPBitocfSqXtjrTG9JMWFcc4N30ukl2ve48aBTwt7NJxVQdU3w==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -16296,10 +16328,9 @@ packages:
         optional: true
     dependencies:
       typescript: 5.4.5
-      zod: 3.23.8
     dev: false
 
-  /abitype@0.9.3(typescript@5.4.5)(zod@3.23.8):
+  /abitype@0.9.3(typescript@5.4.5):
     resolution: {integrity: sha512-dz4qCQLurx97FQhnb/EIYTk/ldQ+oafEDUqC0VVIeQS1Q48/YWt/9YNfMmp9SLFqN41ktxny3c8aYxHjmFIB/w==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -16311,7 +16342,20 @@ packages:
         optional: true
     dependencies:
       typescript: 5.4.5
-      zod: 3.23.8
+    dev: false
+
+  /abitype@0.9.8(typescript@5.4.5):
+    resolution: {integrity: sha512-puLifILdm+8sjyss4S+fsUN09obiT1g2YW6CtcQF+QDzxR0euzgEB29MZujC6zMk2a6SVmtttq1fc6+YFA7WYQ==}
+    peerDependencies:
+      typescript: '>=5.0.4'
+      zod: ^3 >=3.19.1
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+      zod:
+        optional: true
+    dependencies:
+      typescript: 5.4.5
     dev: false
 
   /abitype@0.9.8(typescript@5.4.5)(zod@3.23.8):
@@ -16327,6 +16371,7 @@ packages:
     dependencies:
       typescript: 5.4.5
       zod: 3.23.8
+    dev: true
 
   /abitype@1.0.0(typescript@5.4.5)(zod@3.23.8):
     resolution: {integrity: sha512-NMeMah//6bJ56H5XRj8QCV4AwuW6hB6zqz2LnhhLdcWVQOsXki6/Pn3APeqxCma62nXIcmZWdu1DlHWS74umVQ==}
@@ -17352,7 +17397,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001617
+      caniuse-lite: 1.0.30001618
       electron-to-chromium: 1.4.765
       node-releases: 2.0.14
       update-browserslist-db: 1.0.15(browserslist@4.23.0)
@@ -17582,6 +17627,9 @@ packages:
 
   /caniuse-lite@1.0.30001617:
     resolution: {integrity: sha512-mLyjzNI9I+Pix8zwcrpxEbGlfqOkF9kM3ptzmKNw5tizSyYwMe+nGLTqMK9cO+0E+Bh6TsBxNAaHWEM8xwSsmA==}
+
+  /caniuse-lite@1.0.30001618:
+    resolution: {integrity: sha512-p407+D1tIkDvsEAPS22lJxLQQaG8OTBEqo0KhzfABGk0TU4juBNDSfH0hyAp/HRyx+M8L17z/ltyhxh27FTfQg==}
 
   /case-sensitive-paths-webpack-plugin@2.4.0:
     resolution: {integrity: sha512-roIFONhcxog0JSSWbvVAh3OocukmSgpqOH6YpMkCvav/ySIV3JKg4Dc8vYtQjYi/UxpNE36r/9v+VqTQqgkYmw==}
@@ -18296,28 +18344,28 @@ packages:
     resolution: {integrity: sha512-MN/yUe6mkJwHnCFfsNPeCfXVhyxHYW6c/xDUzrSbBycYzw++XvWDMJArXp2pLdgD6FQ8DW79vkPjeNKVrXaHeQ==}
     dev: false
 
-  /cosmos-kit@2.12.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(@walletconnect/types@2.11.0)(axios@0.27.2)(cosmjs-types@0.9.0)(react@18.3.1):
+  /cosmos-kit@2.12.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(@walletconnect/types@2.11.0)(axios@0.27.2)(cosmjs-types@0.9.0)(react@18.3.1):
     resolution: {integrity: sha512-2hBJbm3qoUAAXZzjjETGo29O9Fwl3kiffUclSMPAUyuXLKVOHqOCb8G7us2aRqMNWOkBvbVpBvRrzg/eFiFT2A==}
     dependencies:
-      '@cosmos-kit/coin98': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/compass': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/cosmostation': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
-      '@cosmos-kit/exodus': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(react@18.3.1)
-      '@cosmos-kit/fin': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/frontier': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/coin98': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/compass': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/cosmostation': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/exodus': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(react@18.3.1)
+      '@cosmos-kit/fin': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/frontier': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
       '@cosmos-kit/galaxy-station': 2.7.0(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(axios@0.27.2)
-      '@cosmos-kit/keplr': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
-      '@cosmos-kit/leap': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)(cosmjs-types@0.9.0)
-      '@cosmos-kit/ledger': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/okxwallet-extension': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/omni': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
-      '@cosmos-kit/owallet': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/shell': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/station': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(axios@0.27.2)
-      '@cosmos-kit/tailwind': 1.2.0(@chain-registry/types@0.29.0)
-      '@cosmos-kit/trust': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
-      '@cosmos-kit/vectis': 2.8.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
-      '@cosmos-kit/xdefi': 2.7.0(@chain-registry/types@0.29.0)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/keplr': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/leap': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)(cosmjs-types@0.9.0)
+      '@cosmos-kit/ledger': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/okxwallet-extension': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/omni': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/owallet': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/shell': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/station': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@terra-money/terra.js@3.1.10)(axios@0.27.2)
+      '@cosmos-kit/tailwind': 1.2.0(@chain-registry/types@0.29.1)
+      '@cosmos-kit/trust': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)(@walletconnect/types@2.11.0)
+      '@cosmos-kit/vectis': 2.8.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
+      '@cosmos-kit/xdefi': 2.7.0(@chain-registry/types@0.29.1)(@cosmjs/amino@0.32.3)(@cosmjs/proto-signing@0.32.3)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -21064,7 +21112,7 @@ packages:
     resolution: {integrity: sha512-j0KLYPhm6zeac4lz3oJ3o65qvgQCcPubiyotZrXqEaG4hNagNYO8qdlUrX5vwqv9ohqeT/Z3j6+yW067yWWdUw==}
     dev: false
 
-  /forgetwidgets@1.2.8(@babel/core@7.24.5)(@babel/runtime@7.24.5)(@ethersproject/abi@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/contracts@5.7.0)(@types/react@18.3.2)(ethers@5.7.2)(hardhat@2.22.3)(react-dom@18.3.1)(react-redux@8.1.3)(react@18.3.1)(redux@4.2.1)(styled-components@6.1.11):
+  /forgetwidgets@1.2.8(@babel/core@7.24.5)(@babel/runtime@7.24.5)(@ethersproject/abi@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/contracts@5.7.0)(@types/react@18.3.2)(ethers@5.7.2)(hardhat@2.22.4)(react-dom@18.3.1)(react-redux@8.1.3)(react@18.3.1)(redux@5.0.1)(styled-components@6.1.11):
     resolution: {integrity: sha512-tglQzpZz7i7Z/wTrtKTT4/1meMHcmy8IDzxhd0LvzKkWHzqlUeeaF66ULgwVPKDyX6o0Y/FgJMn4hpqEVPDK6g==}
     requiresBuild: true
     peerDependencies:
@@ -21079,21 +21127,21 @@ packages:
       '@babel/runtime': 7.24.5
       '@fontsource/ibm-plex-mono': 4.5.13
       '@fontsource/inter': 4.5.15
-      '@forge-trade/router-sdk': 1.7.2(hardhat@2.22.3)
-      '@forge-trade/smart-order-router': 3.5.8(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.3)(jsbi@3.2.5)(utf-8-validate@5.0.10)
+      '@forge-trade/router-sdk': 1.7.2(hardhat@2.22.4)
+      '@forge-trade/smart-order-router': 3.5.8(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.4)(jsbi@3.2.5)(utf-8-validate@5.0.10)
       '@orbitalapes/sdk-core': 3.2.6
       '@popperjs/core': 2.11.8
       '@reduxjs/toolkit': 1.9.7(react-redux@8.1.3)(react@18.3.1)
       '@uniswap/conedison': 1.8.0(@uniswap/sdk-core@4.2.1)(ethers@5.7.2)
       '@uniswap/permit2-sdk': 1.2.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       '@uniswap/redux-multicall': 1.1.8(@ethersproject/abi@5.7.0)(@ethersproject/bignumber@5.7.0)(@ethersproject/contracts@5.7.0)(@reduxjs/toolkit@1.9.7)(react-redux@8.1.3)(react@18.3.1)
-      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.3)
+      '@uniswap/router-sdk': 1.9.2(hardhat@2.22.4)
       '@uniswap/sdk-core': 4.2.1
-      '@uniswap/smart-order-router': 3.29.0(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.3)(jsbi@3.2.5)(utf-8-validate@5.0.10)
+      '@uniswap/smart-order-router': 3.29.0(bufferutil@4.0.8)(encoding@0.1.13)(hardhat@2.22.4)(jsbi@3.2.5)(utf-8-validate@5.0.10)
       '@uniswap/token-lists': 1.0.0-beta.34
-      '@uniswap/universal-router-sdk': 1.9.0(bufferutil@4.0.8)(hardhat@2.22.3)(utf-8-validate@5.0.10)
+      '@uniswap/universal-router-sdk': 1.9.0(bufferutil@4.0.8)(hardhat@2.22.4)(utf-8-validate@5.0.10)
       '@uniswap/v2-sdk': 3.3.0
-      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.3)
+      '@uniswap/v3-sdk': 3.11.2(hardhat@2.22.4)
       '@web3-react/core': 8.2.3(@types/react@18.3.2)(bufferutil@4.0.8)(immer@9.0.21)(react@18.3.1)(utf-8-validate@5.0.10)
       '@web3-react/eip1193': 8.2.3(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1)
       '@web3-react/empty': 8.2.3(@types/react@18.3.2)(immer@9.0.21)(react@18.3.1)
@@ -21123,11 +21171,11 @@ packages:
       react-dom: 18.3.1(react@18.3.1)
       react-feather: 2.0.10(react@18.3.1)
       react-popper: 2.3.0(@popperjs/core@2.11.8)(react-dom@18.3.1)(react@18.3.1)
-      react-redux: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(redux@4.2.1)
+      react-redux: 8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(redux@5.0.1)
       react-virtualized-auto-sizer: 1.0.24(react-dom@18.3.1)(react@18.3.1)
       react-window: 1.8.10(react-dom@18.3.1)(react@18.3.1)
       rebass: 4.0.7(react@18.3.1)
-      redux: 4.2.1
+      redux: 5.0.1
       resize-observer-polyfill: 1.5.1
       setimmediate: 1.0.5
       styled-components: 6.1.11(react-dom@18.3.1)(react@18.3.1)
@@ -21623,7 +21671,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 5.1.6
+      minimatch: 5.0.1
       once: 1.4.0
     dev: false
 
@@ -21836,17 +21884,17 @@ packages:
       har-schema: 2.0.0
     dev: false
 
-  /hardhat-watcher@2.5.0(hardhat@2.22.3):
+  /hardhat-watcher@2.5.0(hardhat@2.22.4):
     resolution: {integrity: sha512-Su2qcSMIo2YO2PrmJ0/tdkf+6pSt8zf9+4URR5edMVti6+ShI8T3xhPrwugdyTOFuyj8lKHrcTZNKUFYowYiyA==}
     peerDependencies:
       hardhat: ^2.0.0
     dependencies:
       chokidar: 3.6.0
-      hardhat: 2.22.3(typescript@5.4.5)
+      hardhat: 2.22.4(typescript@5.4.5)
     dev: false
 
-  /hardhat@2.22.3(typescript@5.4.5):
-    resolution: {integrity: sha512-k8JV2ECWNchD6ahkg2BR5wKVxY0OiKot7fuxiIpRK0frRqyOljcR2vKwgWSLw6YIeDcNNA4xybj7Og7NSxr2hA==}
+  /hardhat@2.22.4(typescript@5.4.5):
+    resolution: {integrity: sha512-09qcXJFBHQUaraJkYNr7XlmwjOj27xBB0SL2rYS024hTj9tPMbp26AFjlf5quBMO9SR4AJFg+4qWahcYcvXBuQ==}
     hasBin: true
     peerDependencies:
       ts-node: '*'
@@ -22350,6 +22398,7 @@ packages:
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       safer-buffer: 2.1.2
 
@@ -25431,9 +25480,9 @@ packages:
       hoist-non-react-statics: 3.3.2
       i18next: 23.11.4
       i18next-fs-backend: 2.3.1
-      next: 14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+      next: 14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1)
       react: 18.3.1
-      react-i18next: 14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)
+      react-i18next: 14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react@18.3.1)
     dev: true
 
   /next-tick@1.1.0:
@@ -25460,7 +25509,7 @@ packages:
     dependencies:
       '@next/env': 13.1.0
       '@swc/helpers': 0.4.14
-      caniuse-lite: 1.0.30001617
+      caniuse-lite: 1.0.30001618
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -25484,7 +25533,48 @@ packages:
       - babel-plugin-macros
     dev: true
 
-  /next@14.2.3(@babel/core@7.24.5)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1):
+  /next@14.2.3(@babel/core@7.24.5)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
+    engines: {node: '>=18.17.0'}
+    hasBin: true
+    peerDependencies:
+      '@opentelemetry/api': ^1.1.0
+      '@playwright/test': ^1.41.2
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      sass: ^1.3.0
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
+      '@playwright/test':
+        optional: true
+      sass:
+        optional: true
+    dependencies:
+      '@next/env': 14.2.3
+      '@swc/helpers': 0.5.5
+      busboy: 1.6.0
+      caniuse-lite: 1.0.30001618
+      graceful-fs: 4.2.11
+      postcss: 8.4.31
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      styled-jsx: 5.1.1(@babel/core@7.24.5)(react@18.3.1)
+    optionalDependencies:
+      '@next/swc-darwin-arm64': 14.2.3
+      '@next/swc-darwin-x64': 14.2.3
+      '@next/swc-linux-arm64-gnu': 14.2.3
+      '@next/swc-linux-arm64-musl': 14.2.3
+      '@next/swc-linux-x64-gnu': 14.2.3
+      '@next/swc-linux-x64-musl': 14.2.3
+      '@next/swc-win32-arm64-msvc': 14.2.3
+      '@next/swc-win32-ia32-msvc': 14.2.3
+      '@next/swc-win32-x64-msvc': 14.2.3
+    transitivePeerDependencies:
+      - '@babel/core'
+      - babel-plugin-macros
+
+  /next@14.2.3(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
     engines: {node: '>=18.17.0'}
     hasBin: true
@@ -25506,7 +25596,7 @@ packages:
       '@playwright/test': 1.44.0
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001617
+      caniuse-lite: 1.0.30001618
       graceful-fs: 4.2.11
       postcss: 8.4.31
       react: 18.3.1
@@ -26451,6 +26541,9 @@ packages:
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
 
+  /picocolors@1.0.1:
+    resolution: {integrity: sha512-anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==}
+
   /picomatch@2.3.1:
     resolution: {integrity: sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==}
     engines: {node: '>=8.6'}
@@ -26793,7 +26886,7 @@ packages:
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.0
+      picocolors: 1.0.1
       source-map-js: 1.2.0
     dev: true
 
@@ -26802,7 +26895,7 @@ packages:
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.0
+      picocolors: 1.0.1
       source-map-js: 1.2.0
 
   /postcss@8.4.38:
@@ -27506,7 +27599,7 @@ packages:
       react-native: 0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5)(@types/react@18.3.2)(react@18.3.1)
     dev: true
 
-  /react-i18next@14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1):
+  /react-i18next@14.1.1(i18next@23.11.4)(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-QSiKw+ihzJ/CIeIYWrarCmXJUySHDwQr5y8uaNIkbxoGRm/5DukkxZs+RPla79IKyyDPzC/DRlgQCABHtrQuQQ==}
     peerDependencies:
       i18next: '>= 23.2.3'
@@ -27524,7 +27617,6 @@ packages:
       i18next: 23.11.4
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-native: 0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5)(@types/react@18.3.2)(react@18.3.1)
 
   /react-icons@4.12.0(react@18.3.1):
     resolution: {integrity: sha512-IBaDuHiShdZqmfc/TwHu6+d6k2ltNCf3AszxNmjJc1KUfXdEeRJOKyNvLmAHaarhzGmTSVygNdyu8/opXv2gaw==}
@@ -27743,6 +27835,72 @@ packages:
       react-native: 0.74.1(@babel/core@7.24.5)(@babel/preset-env@7.24.5)(@types/react@18.3.2)(react@18.3.1)
       redux: 4.2.1
       use-sync-external-store: 1.2.2(react@18.3.1)
+    dev: false
+
+  /react-redux@8.1.3(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(redux@5.0.1):
+    resolution: {integrity: sha512-n0ZrutD7DaX/j9VscF+uTALI3oUPa/pO4Z3soOBIjuRn/FzVu6aehhysxZCLi6y7duMf52WNZGMl7CtuK5EnRw==}
+    peerDependencies:
+      '@types/react': ^16.8 || ^17.0 || ^18.0
+      '@types/react-dom': ^16.8 || ^17.0 || ^18.0
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+      react-native: '>=0.59'
+      redux: ^4 || ^5.0.0-beta.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+      redux:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@types/hoist-non-react-statics': 3.3.5
+      '@types/react': 18.3.2
+      '@types/react-dom': 18.3.0
+      '@types/use-sync-external-store': 0.0.3
+      hoist-non-react-statics: 3.3.2
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-is: 18.3.1
+      redux: 5.0.1
+      use-sync-external-store: 1.2.2(react@18.3.1)
+
+  /react-redux@8.1.3(react-dom@18.3.1)(react@18.3.1)(redux@4.2.1):
+    resolution: {integrity: sha512-n0ZrutD7DaX/j9VscF+uTALI3oUPa/pO4Z3soOBIjuRn/FzVu6aehhysxZCLi6y7duMf52WNZGMl7CtuK5EnRw==}
+    peerDependencies:
+      '@types/react': ^16.8 || ^17.0 || ^18.0
+      '@types/react-dom': ^16.8 || ^17.0 || ^18.0
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+      react-native: '>=0.59'
+      redux: ^4 || ^5.0.0-beta.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+      redux:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.24.5
+      '@types/hoist-non-react-statics': 3.3.5
+      '@types/use-sync-external-store': 0.0.3
+      hoist-non-react-statics: 3.3.2
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-is: 18.3.1
+      redux: 4.2.1
+      use-sync-external-store: 1.2.2(react@18.3.1)
+    dev: true
 
   /react-refresh@0.14.2:
     resolution: {integrity: sha512-jCvmsr+1IUSMUyzOkRcvnVbX3ZYC6g9TDrDbFuFmRDq7PD4yaGbLKNQL6k2jnArV8hjYxh7hVhAZB6s9HDGpZA==}
@@ -28117,6 +28275,9 @@ packages:
     resolution: {integrity: sha512-LAUYz4lc+Do8/g7aeRa8JkyDErK6ekstQaqWQrNRW//MY1TvCEpMtpTWvlQ+FPbWCx+Xixu/6SHt5N0HR+SB4w==}
     dependencies:
       '@babel/runtime': 7.24.5
+
+  /redux@5.0.1:
+    resolution: {integrity: sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==}
 
   /reflect.getprototypeof@1.0.6:
     resolution: {integrity: sha512-fmfw4XgoDke3kdI6h4xcUz1dG8uaiv5q9gcEwLS4Pnth2kxT+GZ7YehS1JTMGBQmtV7Y4GFGbs2re2NqhdozUg==}
@@ -29314,11 +29475,11 @@ packages:
   /store2@2.14.3:
     resolution: {integrity: sha512-4QcZ+yx7nzEFiV4BMLnr/pRa5HYzNITX2ri0Zh6sT9EyQHbBHacC6YigllUPU9X3D0f/22QCgfokpKs52YRrUg==}
 
-  /storybook@8.0.10(@babel/preset-env@7.24.5)(react-dom@18.3.1)(react@18.3.1):
+  /storybook@8.0.10(react-dom@18.3.1)(react@18.3.1):
     resolution: {integrity: sha512-9/4oxISopLyr5xz7Du27mmQgcIfB7UTLlNzkK4IklWTiSgsOgYgZpsmIwymoXNtkrvh+QsqskdcUP1C7nNiEtw==}
     hasBin: true
     dependencies:
-      '@storybook/cli': 8.0.10(@babel/preset-env@7.24.5)(react-dom@18.3.1)(react@18.3.1)
+      '@storybook/cli': 8.0.10(react-dom@18.3.1)(react@18.3.1)
     transitivePeerDependencies:
       - '@babel/preset-env'
       - bufferutil
@@ -31049,6 +31210,29 @@ packages:
       vfile-message: 4.0.2
     dev: true
 
+  /viem@1.21.4(typescript@5.4.5):
+    resolution: {integrity: sha512-BNVYdSaUjeS2zKQgPs+49e5JKocfo60Ib2yiXOWBT6LuVxY1I/6fFX3waEtpXvL1Xn4qu+BVitVtMh9lyThyhQ==}
+    peerDependencies:
+      typescript: '>=5.0.4'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@adraffy/ens-normalize': 1.10.0
+      '@noble/curves': 1.2.0
+      '@noble/hashes': 1.3.2
+      '@scure/bip32': 1.3.2
+      '@scure/bip39': 1.2.1
+      abitype: 0.9.8(typescript@5.4.5)
+      isows: 1.0.3(ws@8.13.0)
+      typescript: 5.4.5
+      ws: 8.13.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+      - zod
+    dev: false
+
   /viem@1.21.4(typescript@5.4.5)(zod@3.23.8):
     resolution: {integrity: sha512-BNVYdSaUjeS2zKQgPs+49e5JKocfo60Ib2yiXOWBT6LuVxY1I/6fFX3waEtpXvL1Xn4qu+BVitVtMh9lyThyhQ==}
     peerDependencies:
@@ -31070,8 +31254,9 @@ packages:
       - bufferutil
       - utf-8-validate
       - zod
+    dev: true
 
-  /viem@1.4.2(typescript@5.4.5)(zod@3.23.8):
+  /viem@1.4.2(typescript@5.4.5):
     resolution: {integrity: sha512-125E7HoOr5PrL+Iwt8853dQexwRoiPpLwPsrRvlDX94su2xoe7AYqrdfR6N9nmy6vd6mt8eQy8+LWiP3A+1dqw==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -31085,7 +31270,7 @@ packages:
       '@scure/bip32': 1.3.0
       '@scure/bip39': 1.2.0
       '@wagmi/chains': 1.6.0(typescript@5.4.5)
-      abitype: 0.9.3(typescript@5.4.5)(zod@3.23.8)
+      abitype: 0.9.3(typescript@5.4.5)
       isomorphic-ws: 5.0.0(ws@8.12.0)
       typescript: 5.4.5
       ws: 8.12.0
@@ -31117,6 +31302,27 @@ packages:
       - utf-8-validate
       - zod
 
+  /vite-node@1.6.0:
+    resolution: {integrity: sha512-de6HJgzC+TFzOu0NTC4RAIsyf/DY/ibWDYQUcuEA84EMHhcefTUGkjFHKKEJhQN4A+6I0u++kr3l36ZF2d7XRw==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    dependencies:
+      cac: 6.7.14
+      debug: 4.3.4(supports-color@5.5.0)
+      pathe: 1.1.2
+      picocolors: 1.0.0
+      vite: 5.2.11
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+    dev: false
+
   /vite-node@1.6.0(@types/node@20.12.7):
     resolution: {integrity: sha512-de6HJgzC+TFzOu0NTC4RAIsyf/DY/ibWDYQUcuEA84EMHhcefTUGkjFHKKEJhQN4A+6I0u++kr3l36ZF2d7XRw==}
     engines: {node: ^18.0.0 || >=20.0.0}
@@ -31136,6 +31342,41 @@ packages:
       - sugarss
       - supports-color
       - terser
+
+  /vite@5.2.11:
+    resolution: {integrity: sha512-HndV31LWW05i1BLPMUCE1B9E9GFbOu1MbenhS58FuK6owSO5qHm7GiCotrNY1YE5rMeQSFBGmT5ZaLEjFizgiQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': ^18.0.0 || >=20.0.0
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.20.2
+      postcss: 8.4.38
+      rollup: 4.17.2
+    optionalDependencies:
+      fsevents: 2.3.3
+    dev: false
 
   /vite@5.2.11(@types/node@20.12.7):
     resolution: {integrity: sha512-HndV31LWW05i1BLPMUCE1B9E9GFbOu1MbenhS58FuK6owSO5qHm7GiCotrNY1YE5rMeQSFBGmT5ZaLEjFizgiQ==}
@@ -31171,6 +31412,61 @@ packages:
       rollup: 4.17.2
     optionalDependencies:
       fsevents: 2.3.3
+
+  /vitest@1.6.0:
+    resolution: {integrity: sha512-H5r/dN06swuFnzNFhq/dnz37bPXnq8xB2xB5JOVk8K09rUtoeNN+LHWkoQ0A/i3hvbUKKcCei9KpbxqHMLhLLA==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    hasBin: true
+    peerDependencies:
+      '@edge-runtime/vm': '*'
+      '@types/node': ^18.0.0 || >=20.0.0
+      '@vitest/browser': 1.6.0
+      '@vitest/ui': 1.6.0
+      happy-dom: '*'
+      jsdom: '*'
+    peerDependenciesMeta:
+      '@edge-runtime/vm':
+        optional: true
+      '@types/node':
+        optional: true
+      '@vitest/browser':
+        optional: true
+      '@vitest/ui':
+        optional: true
+      happy-dom:
+        optional: true
+      jsdom:
+        optional: true
+    dependencies:
+      '@vitest/expect': 1.6.0
+      '@vitest/runner': 1.6.0
+      '@vitest/snapshot': 1.6.0
+      '@vitest/spy': 1.6.0
+      '@vitest/utils': 1.6.0
+      acorn-walk: 8.3.2
+      chai: 4.4.1
+      debug: 4.3.4(supports-color@5.5.0)
+      execa: 8.0.1
+      local-pkg: 0.5.0
+      magic-string: 0.30.10
+      pathe: 1.1.2
+      picocolors: 1.0.0
+      std-env: 3.7.0
+      strip-literal: 2.1.0
+      tinybench: 2.8.0
+      tinypool: 0.8.4
+      vite: 5.2.11
+      vite-node: 1.6.0
+      why-is-node-running: 2.2.2
+    transitivePeerDependencies:
+      - less
+      - lightningcss
+      - sass
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+    dev: false
 
   /vitest@1.6.0(@types/node@20.12.7)(jsdom@23.2.0):
     resolution: {integrity: sha512-H5r/dN06swuFnzNFhq/dnz37bPXnq8xB2xB5JOVk8K09rUtoeNN+LHWkoQ0A/i3hvbUKKcCei9KpbxqHMLhLLA==}
@@ -31249,7 +31545,7 @@ packages:
     dependencies:
       xml-name-validator: 5.0.0
 
-  /wagmi@1.4.13(@types/react@18.3.2)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)(zod@3.23.8):
+  /wagmi@1.4.13(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2):
     resolution: {integrity: sha512-AScVYFjqNt1wMgL99Bob7MLdhoTZ3XKiOZL5HVBdy4W1sh7QodA3gQ8IsmTuUrQ7oQaTxjiXEhwg7sWNrPBvJA==}
     peerDependencies:
       react: '>=17.0.0'
@@ -31260,14 +31556,14 @@ packages:
         optional: true
     dependencies:
       '@tanstack/query-sync-storage-persister': 4.36.1
-      '@tanstack/react-query': 4.36.1(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)
+      '@tanstack/react-query': 4.36.1(react-dom@18.3.1)(react@18.3.1)
       '@tanstack/react-query-persist-client': 4.36.1(@tanstack/react-query@4.36.1)
-      '@wagmi/core': 1.4.13(@types/react@18.3.2)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)(zod@3.23.8)
-      abitype: 0.8.7(typescript@5.4.5)(zod@3.23.8)
+      '@wagmi/core': 1.4.13(@types/react@18.3.2)(react@18.3.1)(typescript@5.4.5)(viem@1.4.2)
+      abitype: 0.8.7(typescript@5.4.5)
       react: 18.3.1
       typescript: 5.4.5
       use-sync-external-store: 1.2.2(react@18.3.1)
-      viem: 1.4.2(typescript@5.4.5)(zod@3.23.8)
+      viem: 1.4.2(typescript@5.4.5)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'

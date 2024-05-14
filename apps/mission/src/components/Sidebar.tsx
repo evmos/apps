@@ -3,7 +3,6 @@
 
 import { IconHome3 } from "@evmosapps/ui/icons/line/basic/home-3.tsx";
 import { IconPlanet } from "@evmosapps/ui/icons/line/basic/planet.tsx";
-import { IconWrench } from "@evmosapps/ui/icons/line/basic/wrench.tsx";
 import { IconBook } from "@evmosapps/ui/icons/line/basic/book.tsx";
 import { IconExternalLink } from "@evmosapps/ui/icons/line/arrows/external-link.tsx";
 import { cn } from "helpers";
@@ -34,15 +33,25 @@ const NavigationSection = () => (
     <ul className="flex md:flex-col md:gap-y-2">
       {[
         {
-          label: "Discovery",
+          label: "Discover",
           Icon: IconHome3,
           active: true,
           href: "/",
+          target: "_self",
         },
-        { label: "Categories", Icon: IconPlanet, href: "/dapps" },
-        { label: "Develop", Icon: IconWrench, href: "#" },
-        { label: "Learn", Icon: IconBook, href: DOCS_EVMOS_URL },
-      ].map(({ label, Icon, active, href }) => (
+        {
+          label: "Categories",
+          Icon: IconPlanet,
+          href: "/dapps",
+          target: "_self",
+        },
+        {
+          label: "Learn",
+          Icon: IconBook,
+          href: DOCS_EVMOS_URL,
+          target: "_blank",
+        },
+      ].map(({ label, Icon, active, href, target }) => (
         <TrackerEvent
           key={label}
           event={CLICK_ON_NAVIGATION}
@@ -51,6 +60,7 @@ const NavigationSection = () => (
           <li>
             <Link
               href={href}
+              target={target}
               className={cn(
                 "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 h-11 px-4 justify-center items-center text-base rounded-t-lg",
                 "border-b-2 -mb-px md:mb-0 gap-x-2",

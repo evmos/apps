@@ -4,11 +4,9 @@
 import React from "react";
 
 import { PRIVACY_POLICY_PAGE_NOTION_ID } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
-import {
-  NotionBlocks,
-  NotionPageTitle,
-} from "@evmosapps/ui-helpers/src/notion";
 import { Metadata } from "next";
+import { NotionPageTitle } from "@evmosapps/ui-helpers/src/notion/NotionPageTitle";
+import { NotionBlocks } from "@evmosapps/ui-helpers/src/notion/NotionBlocks";
 export const metadata: Metadata = {
   title: "Privacy Policy",
 };

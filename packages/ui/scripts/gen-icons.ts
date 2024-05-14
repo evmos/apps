@@ -6,7 +6,7 @@ import { mkdir, readFile, writeFile } from "fs/promises";
 import { glob } from "glob";
 import path from "path";
 import camelCase from "lodash-es/camelCase";
-import { groupBy, upperFirst } from "lodash-es";
+import { get, set, upperFirst } from "lodash-es";
 import prettier from "prettier";
 
 /**
@@ -59,11 +59,18 @@ const genIconFileFromTemplate = ({
 }: {
   iconName: string;
   content: string;
-}) => `
+}) => {
+  content = content.replace(
+    ">",
+    "ref={ref} className={['icon', className].join(' ')} {...props}>",
+  );
+
+  content = content.replace("#2F384C", "currentColor");
+  return `
 import React, { forwardRef, ForwardedRef } from "react";
 
 function _Icon${iconName}({ className, ...props}: React.SVGProps<SVGSVGElement>, ref: ForwardedRef<SVGSVGElement>){
-  return (${content.replace(">", "ref={ref} className={['icon', className].join(' ')} {...props}>")});
+  return (${content});
 }
 
 _Icon${iconName}.isIcon = true;
@@ -73,6 +80,7 @@ export const Icon${iconName} = forwardRef<
   React.SVGProps<SVGSVGElement>
 >(_Icon${iconName});
 `;
+};
 
 const writeTsFile = async (filePath: string, content: string) => {
   // eslint-disable-next-line no-console
@@ -80,12 +88,12 @@ const writeTsFile = async (filePath: string, content: string) => {
   await mkdir(path.dirname(filePath), {
     recursive: true,
   });
-  await writeFile(
-    filePath,
-    await prettier.format(HEADER + "\n" + content, {
-      parser: "typescript",
-    }),
-  );
+  const out = await prettier.format(HEADER + "\n" + content, {
+    parser: "typescript",
+  });
+  // console.log(filePath, out)
+  // return
+  await writeFile(filePath, out);
 };
 
 // Create icon files
@@ -104,29 +112,43 @@ const iconsDestPaths = await all(
 );
 
 // Create barrel files
-const barrelFilePaths = groupBy(iconsDestPaths, (iconPath) => {
-  return path.dirname(iconPath);
+const iconTree: Record<string, unknown> = {};
+
+iconsDestPaths.forEach((iconPath) => {
+  const dir = path.dirname(iconPath).split("/");
+  const fileName = path.basename(iconPath);
+  const icons = get(iconTree, dir, []) as string[];
+  icons.push(fileName);
+  set(iconTree, dir, icons);
 });
 
+const barrels: { path: string[]; items: string[] }[] = [];
+const flattenIconsTree = (path: string[] = [], branch: unknown) => {
+  if (Array.isArray(branch)) {
+    barrels.push({
+      path,
+      items: branch as string[],
+    });
+    return;
+  }
+  Object.entries(branch as Record<string, unknown>).forEach(([key, value]) => {
+    flattenIconsTree([...path, key], value);
+  });
+  barrels.push({ path, items: Object.keys(branch as Record<string, unknown>) });
+};
+
+flattenIconsTree([], iconTree);
+
 await all(
-  Object.entries(barrelFilePaths).map(async ([dir, iconPaths]) => {
+  barrels.map(async (barrel) => {
     await writeTsFile(
-      path.join(ICONS_DIR, dir, "index.tsx"),
-      iconPaths
-        .map(
-          (iconPath) =>
-            `export * from './${path
-              .basename(iconPath)
-              .replace(/\.tsx$/, "")}'`,
-        )
+      path.join(ICONS_DIR, ...barrel.path, "index.tsx"),
+      barrel.items
+        .map((_path) => {
+          if (_path.endsWith(".tsx")) return `export * from './${_path}'`;
+          return `export * as ${_path} from './${_path}'`;
+        })
         .join("\n"),
     );
   }),
-);
-
-await writeTsFile(
-  path.join(ICONS_DIR, "index.tsx"),
-  Object.keys(barrelFilePaths)
-    .map((dir) => `export * as ${camelCase(dir)} from './${dir}'`)
-    .join("\n"),
 );

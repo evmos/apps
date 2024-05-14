@@ -2,19 +2,24 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import "../../globals.css";
+import "@evmosapps/ui/global.css";
 import { dir } from "i18next";
 import { type PropsWithChildren } from "react";
 import { languages } from "@evmosapps/i18n";
 import { cn } from "helpers";
-import { nb, evmos, poppins, inter } from "@evmosapps/ui-helpers/src/fonts";
+import { nb, evmos } from "@evmosapps/ui/fonts/index.ts";
 import { RootProviders } from "stateful-components/src/root-providers";
 import { GoogleAnalytics } from "../../components/GoogleAnalytics";
-import { Header } from "../../components/header/Header";
-import { Footer } from "../../components/footer/Footer";
 import type { Metadata } from "next";
 import { Modals } from "../../components/modals";
-import { Container } from "@evmosapps/ui-helpers/src/Container";
-import { StatefulBanner } from "stateful-components/src/banner/banner";
+import { Footer } from "../../components/footer/Footer";
+import { Sidebar } from "../../components/Sidebar";
+import { Header } from "../../components/header/Header";
+import { ProfileProvider } from "../../components/header/edit/useEdit";
+import { WalletsProvider } from "../../components/header/signin/useWallets";
+import { ContainerLogo } from "../../components/ContainerLogo";
+import { FavoritesProvider } from "../../components/useFavorite";
+import { AlertStack } from "@evmosapps/ui/components/alert/alert-stack.tsx";
 
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
@@ -62,25 +67,44 @@ function RootLayout({
       <head />
       <body
         className={cn(
-          nb.variable,
           evmos.variable,
-          poppins.variable,
-          inter.variable,
-          "h-full",
+          nb.variable,
+          "bg-background",
+          "dark:bg-background-dark",
+          "dark:text-paragraph-dark",
+          "text-paragraph",
+          "font-body",
+          "relative",
+          "grid",
+          "md:grid-cols-[256px,1fr]",
+          "md:grid-rows-[64px,1fr]",
+          "md:h-full",
+          "md:w-full",
         )}
       >
         <RootProviders>
-          <main className="flex flex-col dark:text-white min-h-screen relative">
-            <StatefulBanner />
-            <Header />
-
-            <Container className="grow">{children}</Container>
-            <Footer />
-          </main>
-
-          <Modals />
-
-          <GoogleAnalytics />
+          <ProfileProvider>
+            <WalletsProvider>
+              <FavoritesProvider>
+                <ContainerLogo />
+                <div className="bg-surface dark:bg-surface-dark w-full z-10 sticky top-0 md:col-span-1 md:row-start-2 md:row-span-1 h-full md:top-auto md:pt-5">
+                  <Sidebar />
+                </div>
+                <div className="overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
+                  <Header />
+                  <div className="px-5 md:px-14 max-w-full overflow-x-hidden">
+                    <main className="flex flex-col dark:text-white min-h-screen relative">
+                      {children}
+                    </main>
+                  </div>
+                  <Footer />
+                </div>
+                <Modals />
+                <AlertStack />
+                <GoogleAnalytics />
+              </FavoritesProvider>
+            </WalletsProvider>
+          </ProfileProvider>
         </RootProviders>
       </body>
     </html>

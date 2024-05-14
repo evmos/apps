@@ -115,10 +115,12 @@ export const Trending: Story = {
         <div
           className={cn(
             "relative h-[129px]",
-            "after:bg-gradient-to-t after:from-black/70 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
+            "after:bg-gradient-to-t after:from-surface-container-lowest-dark/100 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
           )}
         >
-          <CardRanking className="text-yellow">1</CardRanking>
+          <CardRanking className="text-accent-yellow dark:text-accent-yellow-dark">
+            1
+          </CardRanking>
           <Image
             src={defaultBg}
             alt="dApp Name"

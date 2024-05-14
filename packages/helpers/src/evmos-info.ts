@@ -13,8 +13,9 @@ export const evmosmainnet = {
     },
   },
   rpcUrls: {
-    default: { http: [`${getPubUrl()}/api/eth-json-rpc/evmos`] },
-    public: { http: [`${getPubUrl()}/api/eth-json-rpc/evmos`] },
+    // TODO Mili: use evmos.org/web3 rpc - it's giving cors error
+    default: { http: ["https://evmos.lava.build"] },
+    public: { http: ["https://evmos.lava.build"] },
   },
 
   networkType: "mainnet",

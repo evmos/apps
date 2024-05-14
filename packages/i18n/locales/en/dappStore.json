@@ -32,7 +32,10 @@
       "text": "See all ",
       "text2": "dApps"
     },
-    "explore": "Explore all <div>{{count}} dApps</div>",
+    "explore": "<div>Explore all {{count}} dApps<div/>",
+    "discover": "Discover a diverse array of innovative apps",
+    "noInstantdApps": "This dApp will open in a new browser tab.",
+    "open": "Open",
     "instantdApps": {
       "title": "Instant dApps",
       "description": "Discover the power of cross-chain apps - instantly, in one place",
@@ -42,15 +45,26 @@
     }
   },
   "categories": {
-    "title": "Explore the <b>{{count}} {{name}}</b> on Evmos",
+    "title": "Explore the {{count}} {{name}} on Evmos",
     "description": "Explore the Evmos Ecosystem - dApps, tools, exchanges, infrastructure, and more.",
-    "instantdApps": {
-      "name": "Instant dApps",
+    "all": {
+      "name": "All",
       "description": "Discover the power of cross-chain apps - instantly, in one place."
     }
   },
+  "filterdApps": {
+    "all": "All dApps",
+    "amount": "results",
+    "checkbox": {
+      "label": "Instant"
+    },
+    "notFound": {
+      "title": "No results found.",
+      "description": "Try another search query or change your filter settings."
+    }
+  },
   "instantdApp": {
-    "badge": "Instant dApp",
+    "badge": "Instant",
     "howTo": {
       "title": "How to use {{name}} Instant dApp"
     },
@@ -75,6 +89,54 @@
     },
     "wormhole": {
       "disruption": "We are currently in maintenance mode with the Wormhole bridge. This will be addressed by the next upgrade of the Evmos chain."
+    },
+    "signRequired": "Sign in required.",
+    "singInToInteract": "Please sign in order to interact with the ",
+    "IdApp": "Instant dApp"
+  },
+
+  "profile": {
+    "modal": {
+      "title": "Edit Profile",
+      "label": "Display Name",
+      "placeholder": "user.evmos",
+      "button": "Save changes"
+    },
+    "options": {
+      "portfolio": "Portfolio",
+      "topUp": "Top up",
+      "settings": "Settings",
+      "signOut": "Sign out"
+    },
+    "title": "Wallet"
+  },
+  "signIn": {
+    "button": "Sign in ",
+    "title": "Sign in with wallet",
+    "switchWallet": {
+      "title": "Wallet"
+    },
+    "wallet": {
+      "recommended": "Recommended",
+      "detected": "Detected"
+    },
+    "settings": {
+      "title": "Settings",
+      "options": {
+        "title": "Account",
+        "comingSoon": "Coming soon",
+        "currency": "Currency",
+        "language": "Language",
+        "english": "English",
+        "notifications": "Notifications",
+        "addressFormat": "Address Format"
+      }
+    },
+    "supportedWallets": {
+      "title": "All wallets",
+      "search": {
+        "placeholder": "Search"
+      }
     }
   }
 }

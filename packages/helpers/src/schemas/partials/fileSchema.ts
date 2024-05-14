@@ -18,7 +18,7 @@ const fileSchema = z
     expiryTime: file.expiry_time,
   }));
 
-export const filesSchema = z
+export const singleFileSchema = z
   .object({
     type: z.literal("files"),
     files: z.array(z.union([fileSchema, externalSchema])),
@@ -31,4 +31,19 @@ export const filesSchema = z
           expiryTime: "expiryTime" in file ? file.expiryTime : null,
         }
       : null,
+  );
+
+export const filesSchema = z
+  .object({
+    type: z.literal("files"),
+    files: z.array(z.union([fileSchema, externalSchema])),
+  })
+  .transform(({ files }) =>
+    files.map((file) => {
+      return {
+        type: file.type,
+        src: file.url,
+        expiryTime: "expiryTime" in file ? file.expiryTime : null,
+      };
+    }),
   );

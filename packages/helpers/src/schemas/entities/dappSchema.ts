@@ -7,20 +7,20 @@ import { relationSchema } from "../partials/relationSchema";
 import { titleSchema } from "../partials/titleSchema";
 import { checkboxSchema } from "../partials/checkboxSchema";
 import { urlSchema } from "../partials/urlSchema";
-import { filesSchema } from "../partials/fileSchema";
+import { filesSchema, singleFileSchema } from "../partials/fileSchema";
 import { createNotionPropertiesSchema } from "../utils/createNotionPropertiesSchema";
 import { createdAtSchema } from "../partials/createdAtSchema";
 import { updatedAtSchema } from "../partials/updatedAtSchema";
 import { selectSchema } from "../partials/selectSchema";
 import { parseUrl } from "helpers/src/parse/urls";
 import { createSlug } from "../utils/createSlug";
-import { generateBlurImage } from "./generateBlurImage";
+import { resolveSelfHostedImage } from "../../clients/notion-utils";
 
 const dappPropertiesSchema = createNotionPropertiesSchema(
   z.object({
-    icon: filesSchema,
-    cover: filesSchema,
-    thumbnail: filesSchema,
+    icon: singleFileSchema,
+    cover: singleFileSchema,
+    thumbnail: singleFileSchema,
     instantDapp: checkboxSchema,
     name: titleSchema,
     description: richTextSchema,
@@ -28,6 +28,7 @@ const dappPropertiesSchema = createNotionPropertiesSchema(
     howTo: richTextSchema,
     subItem: relationSchema,
     listed: checkboxSchema,
+    gallery: filesSchema,
     x: urlSchema.transform((url) => ({
       url,
       label: url && parseUrl(url),
@@ -51,7 +52,6 @@ const dappPropertiesSchema = createNotionPropertiesSchema(
     categories: relationSchema,
   }),
 );
-
 export const dappSchema = z
   .object({
     id: z.string(),
@@ -59,44 +59,33 @@ export const dappSchema = z
   })
   .transform(async ({ id, properties, ...rest }) => {
     const slug = createSlug(properties.name);
-    const { icon, thumbnail, cover, ...otherProps } = properties;
-    return {
-      notionId: id,
-      slug,
-      localized: {} as Record<
-        string,
-        {
-          name: string;
-          description: string;
-        }
-      >,
-      icon: icon
-        ? {
-            ...icon,
-            src: `/api/dappimg/${slug}/icon`,
+    const { icon, thumbnail, cover, gallery, ...otherProps } = properties;
+    try {
+      return {
+        notionId: id,
+        slug,
+        localized: {} as Record<
+          string,
+          {
+            name: string;
+            description: string;
+          }
+        >,
+        icon: icon ? await resolveSelfHostedImage(icon.src) : null,
+        thumbnail: thumbnail
+          ? await resolveSelfHostedImage(thumbnail.src)
+          : null,
+        cover: cover ? await resolveSelfHostedImage(cover.src) : null,
+        gallery: await Promise.all(
+          gallery.map((file) => resolveSelfHostedImage(file.src)),
+        ),
 
-            _originalSrc: icon.src,
-            blurDataURL: await generateBlurImage(icon.src),
-          }
-        : null,
-      thumbnail: thumbnail
-        ? {
-            ...thumbnail,
-            src: `/api/dappimg/${slug}/thumbnail`,
-            _originalSrc: thumbnail.src,
-            blurDataURL: await generateBlurImage(thumbnail.src),
-          }
-        : null,
-      cover: cover
-        ? {
-            ...cover,
-            src: `/api/dappimg/${slug}/cover`,
-            _originalSrc: cover.src,
-            blurDataURL: await generateBlurImage(cover.src),
-          }
-        : null,
-
-      ...otherProps,
-      ...rest,
-    };
+        ...otherProps,
+        ...rest,
+      };
+    } catch (error) {
+      throw Error(
+        `Error resolving images for dapp ${slug}:\n ${(error as Error).message}`,
+      );
+    }
   });

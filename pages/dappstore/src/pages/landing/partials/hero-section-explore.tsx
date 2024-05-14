@@ -1,42 +1,54 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-import { Trans } from "@evmosapps/i18n/client";
-import { ButtonWithLink, TrackerEvent } from "@evmosapps/ui-helpers";
-import { CLICK_ON_VIEW_ALL_DAPPS } from "tracker";
+import { Link, Trans } from "@evmosapps/i18n/client";
 import { translation } from "@evmosapps/i18n/server";
+import { Button } from "@evmosapps/ui/button/index.tsx";
+import { fetchExplorerData } from "../../../lib/fetch-explorer-data";
+import bgImage from "../../../static/apps-bg-2.png";
 
-export const HeroSectionExplore = async ({
-  totalApps,
-}: {
-  totalApps: number;
-}) => {
+import { BannerCard } from "./banner-card";
+
+export const HeroSectionExplore = async () => {
   const { t } = await translation("dappStore");
-
+  const { dApps } = await fetchExplorerData();
+  const totalApps = dApps.length;
   return (
-    <div className="h-full flex flex-col items-center justify-center bg-[url(/apps-bg.png)] bg-cover bg-center bg-no-repeat font-evmos text-4xl space-y-4 text-pearl">
-      <Trans
-        ns="dappStore"
-        shouldUnescape={true}
-        i18nKey="ecosystem.explore"
-        components={{
-          div: <div className="" />,
-        }}
-        values={{
-          count: totalApps,
-        }}
+    <BannerCard>
+      <BannerCard.BgImage
+        src={bgImage}
+        alt="bg"
+        className="scale-150 lg:scale-100 lg:rotate-[7deg] lg:translate-x-[25%] xl:translate-x-[35%] xl:translate-y-[5%]"
+        sizes="100vw"
       />
-      <TrackerEvent
-        event={CLICK_ON_VIEW_ALL_DAPPS}
-        properties={{ Location: "Graphic" }}
-      >
-        <ButtonWithLink
+      <BannerCard.Body>
+        <Trans
+          ns="dappStore"
+          shouldUnescape={true}
+          i18nKey="ecosystem.explore"
+          components={{
+            div: (
+              <div className="text-heading dark:text-heading-dark text-lg md:text-xl mb-1" />
+            ),
+          }}
+          values={{
+            count: totalApps,
+          }}
+        />
+        <p className="dark:text-subheading-dark text-sm mb-6">
+          {t("ecosystem.discover")}
+        </p>
+
+        <Button
+          className="px-8"
+          as={Link}
           href="/dapps"
-          className="flex self-center bg-[#A4A189CC] font-brand px-11"
+          variant={"primary"}
+          size="md"
+          data-testid="open-connect-modal"
         >
-          {t("ecosystem.button.text")}
-          {t("ecosystem.button.text2")}
-        </ButtonWithLink>
-      </TrackerEvent>
-    </div>
+          Explore
+        </Button>
+      </BannerCard.Body>
+    </BannerCard>
   );
 };

@@ -1,6 +1,6 @@
 {
   "name": "@evmosapps/ui",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "license": "SEE LICENSE IN LICENSE",
   "sideEffects": false,
@@ -10,7 +10,10 @@
         "types": "./src/*",
         "default": "./src/*"
       },
-      "require": "./src/*"
+      "require": {
+        "types": "./src/*",
+        "default": "./src/*"
+      }
     },
     "./config/tailwind": "./src/config/tailwind.js"
   },
@@ -35,10 +38,10 @@
     "glob": "^10.3.4",
     "html-to-react": "^1.7.0",
     "lodash-es": "^4.17.21",
-    "next": "14.1.3",
+    "next": "14.2.3",
     "prettier": "^3.0.1",
-    "react": "^18",
-    "react-dom": "^18",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "storybook": "^8.0.0",
     "svg-to-jsx": "^1.0.4",
     "svgo": "^3.2.0",
@@ -57,7 +60,7 @@
     "@storybook/react": "^8.0.0",
     "@storybook/test": "^8.0.0",
     "@types/chroma-js": "^2.4.4",
-    "@types/node": "^20",
+    "@types/node": "^20.12.7",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "helpers": "workspace:*",

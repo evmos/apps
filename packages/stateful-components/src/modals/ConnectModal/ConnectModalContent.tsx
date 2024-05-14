@@ -21,8 +21,8 @@ import {
   notifyError,
 } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/errors";
 import { useSetupCopilotModal } from "../SetupAccountModal/SetupAccountModal";
-import { ProvidersIcons } from "../../providerIcons";
-import Image from "next/image";
+// import { ProvidersIcons } from "../../providerIcons";
+
 import { EvmosRedIcon } from "@evmosapps/icons/EvmosRedIcon";
 export const ButtonWallet = ({
   className,
@@ -145,14 +145,15 @@ export const ConnectModalContent = ({
       <div className="flex flex-col space-y-3">
         {connectors
           .filter((connector) => {
-            if (connector.id.startsWith("io.")) {
-              return false;
-            }
+            // if (connector.id.startsWith("io.")) {
+            //   return false;
+            // }
             if (connector.name === "Safe") return false;
             return true;
           })
           .map((connector) => {
-            const Icon = ProvidersIcons[connector.name];
+            // TODO Mili: update icons
+            // const Icon = ProvidersIcons[connector.name];
 
             return (
               <ButtonWallet
@@ -167,7 +168,7 @@ export const ConnectModalContent = ({
                   });
                 }}
               >
-                {Icon && <Icon className="w-7" />}
+                {/* {Icon && <Icon className="w-7" />}
                 {connector.icon && (
                   <Image
                     src={connector.icon}
@@ -175,7 +176,7 @@ export const ConnectModalContent = ({
                     width={100}
                     height={100}
                   />
-                )}
+                )} */}
                 <span>{connector.name}</span>
               </ButtonWallet>
             );

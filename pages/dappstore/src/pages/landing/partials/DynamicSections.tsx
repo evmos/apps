@@ -106,8 +106,7 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
   return (
     <div
       className={cn(
-        "gap-4 flex-none relative flex overflow-x-auto",
-
+        "gap-4 flex-none relative flex overflow-x-auto scrollbar-hidden",
         "w-[calc(100%+40px)] -ml-5 px-5",
         "md:w-[calc(100%+112px)] md:-ml-14 md:px-14",
         "lg:w-auto lg:ml-0 lg:px-0 lg:overflow-x-visible",

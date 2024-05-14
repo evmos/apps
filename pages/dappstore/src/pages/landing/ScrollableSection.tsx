@@ -105,7 +105,9 @@ export const ScrollableSection = ({
       >
         <div
           ref={ref}
-          className={"overflow-x-auto flex gap-4 px-4 pb-4 w-full"}
+          className={
+            "overflow-x-auto scrollbar-hidden flex gap-4 px-4 pb-4 w-full"
+          }
           onScroll={() => updateNavigationEnabledState()}
         >
           {children}

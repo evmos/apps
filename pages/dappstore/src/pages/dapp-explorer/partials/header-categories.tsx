@@ -92,12 +92,7 @@ const CategoryHeader = ({
               ? categoryName
               : `${categoryName} dApps`,
 
-            count:
-              category === undefined
-                ? totalCategoryCount
-                : category.categoryDapps.length > 3
-                  ? category.categoryDapps.length
-                  : undefined,
+            count: totalCategoryCount === 0 ? undefined : totalCategoryCount,
           }}
         />
       </Title>

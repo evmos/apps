@@ -150,5 +150,12 @@
       "categories": "Categories",
       "develop": "Develop"
     }
+  },
+  "share": {
+    "description": "Hey, check out this cool dApp I discovered on the Evmos dApp Store!",
+    "options": {
+      "twitter": "X",
+      "telegram": "Telegram"
+    }
   }
 }

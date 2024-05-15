@@ -10,6 +10,7 @@ import { IconTelegram } from "@evmosapps/ui/icons/social/telegram.tsx";
 import { useState } from "react";
 import { TwitterShareButton, TelegramShareButton } from "react-share";
 import { Container } from "@evmosapps/ui-helpers";
+import { useTranslation } from "@evmosapps/i18n/client";
 
 export const ShareDropdown = ({
   dapp,
@@ -37,6 +38,8 @@ export const ShareDropdown = ({
     } catch (error) {}
   };
 
+  const { t } = useTranslation("dappStore");
+
   return (
     <div className="relative">
       {/* Button share */}
@@ -49,9 +52,9 @@ export const ShareDropdown = ({
       {isOpen && (
         <div className="absolute z-10 mt-2 left-1/2 transform -translate-x-1/2 w-56 h-48 gap-4 align-middle items-center rounded-3xl border-[1px] border-surface-container-highest-dark shadow-lg bg-surface-container-low dark:bg-surface-container-low-dark ring-1 ring-black ring-opacity-5">
           <div className="flex justify-center">
-            {/* Opciones de redes sociales */}
+            {/* Social media */}
             <div className="flex justify-center mt-4 gap-8">
-              <TwitterShareButton url={urlShare}>
+              <TwitterShareButton url={urlShare} title={t("share.description")}>
                 <div
                   className="block p-4 mt-2 rounded-[20px] text-on-background dark:text-on-background-dark bg-surface-container-highest dark:bg-surface-container-highest-dark hover:bg-gray-100 hover:text-gray-900"
                   onClick={closeDropdown}
@@ -59,10 +62,13 @@ export const ShareDropdown = ({
                   <IconX className="h-6 w-6" />
                 </div>
                 <p className="text-paragraph dark:text-paragraph-dark text-xs mt-2">
-                  X
+                  {t("share.options.twitter")}
                 </p>
               </TwitterShareButton>
-              <TelegramShareButton url={urlShare}>
+              <TelegramShareButton
+                url={urlShare}
+                title={t("share.description")}
+              >
                 <div
                   className="block p-4 mt-2 rounded-[20px] text-on-background dark:text-on-background-dark bg-surface-container-highest dark:bg-surface-container-highest-dark hover:bg-gray-100 hover:text-gray-900"
                   onClick={closeDropdown}
@@ -70,7 +76,7 @@ export const ShareDropdown = ({
                   <IconTelegram className="h-6 w-6" />
                 </div>
                 <p className="text-paragraph dark:text-paragraph-dark text-xs mt-2">
-                  Telegram
+                  {t("share.options.telegram")}
                 </p>
               </TelegramShareButton>
             </div>

@@ -6,7 +6,7 @@ import { raise } from "helpers";
 import React from "react";
 import { DappDetailsPage } from "@evmosapps/dappstore-page/src/pages/dapp-explorer/dapp-details/dapp-details-page";
 import { WIDGETS } from "@evmosapps/dappstore-page/src/pages/dapp-explorer/partials/widgets-index";
-export const dynamic = "force-static";
+
 export default function Layout({
   params,
 }: {

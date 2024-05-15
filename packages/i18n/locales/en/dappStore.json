@@ -60,7 +60,7 @@
       "description": "Discover the power of cross-chain apps - instantly, in one place."
     }
   },
-  "filterdApps": {
+  "filteredApps": {
     "all": "All dApps",
     "amount": "results",
     "checkbox": {
@@ -69,7 +69,8 @@
     "notFound": {
       "title": "No results found.",
       "description": "Try another search query or change your filter settings."
-    }
+    },
+    "loading": "Loading..."
   },
   "instantdApp": {
     "badge": "Instant",

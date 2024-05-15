@@ -38,9 +38,11 @@ export const FilterApps = ({
   return (
     <div className="md:pt-4 flex items-center justify-between">
       <p className="hidden lg:inline-block text-heading dark:text-heading-dark text-xl font-medium">
-        {categoryName ?? t("filterdApps.all")}
+        {categoryName ?? t("filteredApps.all")}
         <span className="text-subheading dark:text-subheading-dark font-medium text-sm pl-2">
-          {dApps.data?.length ?? 0} {t("filterdApps.amount")}
+          {dApps.data
+            ? `${dApps.data.length} ${t("filteredApps.amount")}`
+            : t("filteredApps.loading")}
         </span>
       </p>
       <div className="flex w-full lg:w-fit justify-between lg:justify-end items-center  space-x-6">
@@ -68,7 +70,7 @@ export const FilterApps = ({
               <div className="flex items-center space-x-1">
                 <IconLightning className="h-3 w-3 text-primary-container dark:text-primary-container-dark" />
                 <p className="text-primary dark:text-primary-dark text-sm ">
-                  {t("filterdApps.checkbox.label")}
+                  {t("filteredApps.checkbox.label")}
                 </p>
               </div>
             }

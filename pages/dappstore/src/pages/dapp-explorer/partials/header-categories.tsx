@@ -16,6 +16,7 @@ export const HeaderCategories = ({
   amountAppsSelected,
   categories,
   params,
+  searchParams,
 }: {
   dApps: DApp[];
   amountAppsSelected: number;
@@ -24,6 +25,7 @@ export const HeaderCategories = ({
     "categoryDapps" | "name" | "slug" | "description"
   >[];
   params: { category?: string };
+  searchParams: { "sort-by"?: string; "instant-dapps"?: string };
 }) => {
   const selectedCategory = useMemo(() => {
     return categories.find((category) => category.slug === params.category);
@@ -35,6 +37,7 @@ export const HeaderCategories = ({
         <CategoryHeader
           category={selectedCategory}
           totalCategoryCount={amountAppsSelected}
+          isInstantDapps={searchParams["instant-dapps"] === "true"}
         />
       </div>
       <div className="flex gap-3 md:gap-4 flex-wrap">
@@ -72,14 +75,16 @@ export const HeaderCategories = ({
 const CategoryHeader = ({
   category,
   totalCategoryCount,
+  isInstantDapps,
   ...rest
 }: {
   category?: Pick<Category, "categoryDapps" | "name" | "slug" | "description">;
   totalCategoryCount: number;
+  isInstantDapps: boolean | undefined;
 } & ComponentProps<"div">) => {
   const categoryName =
     category?.name === "All" ? "dApps" : category?.name ?? "dApps";
-
+  const instantDapp = isInstantDapps === true ? "Instant" : "";
   return (
     <div className="md:mt-5" {...rest}>
       <Title variant="xl" tag="h4">
@@ -89,10 +94,15 @@ const CategoryHeader = ({
           i18nKey="categories.title"
           values={{
             name: categoryName.endsWith("dApps")
-              ? categoryName
-              : `${categoryName} dApps`,
+              ? `${instantDapp} ${categoryName} `
+              : `${categoryName} ${instantDapp} dApps`,
 
-            count: totalCategoryCount === 0 ? undefined : totalCategoryCount,
+            count:
+              totalCategoryCount === 0
+                ? undefined
+                : totalCategoryCount > 3
+                  ? totalCategoryCount
+                  : undefined,
           }}
         />
       </Title>

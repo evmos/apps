@@ -265,46 +265,62 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
   });
   return (
     <ScrollableSection title={title}>
-      {resolvedDApps.map(({ name, icon, categorySlug, slug, thumbnail }, i) => (
-        <Link href={`/dapps/${categorySlug}/${slug}`} key={slug}>
-          <Card
-            low
-            className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
-          >
-            <div
-              className={cn(
-                "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
-                "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
-              )}
+      {resolvedDApps.map(
+        (
+          {
+            name,
+            icon,
+            categorySlug,
+            slug,
+            thumbnail,
+            categories,
+            instantDapp,
+          },
+          i,
+        ) => (
+          <Link href={`/dapps/${categorySlug}/${slug}`} key={slug}>
+            <Card
+              low
+              className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
             >
-              {thumbnail && (
-                <Image
-                  className="relative w-full"
-                  {...thumbnail}
-                  alt={name}
-                  width={240}
-                  height={132}
-                />
-              )}
-            </div>
-            <CardRanking>{i + 1}</CardRanking>
-            <div className="relative px-4 py-4 flex gap-4 -mt-8 items-center w-full">
-              <MaybeImage
-                className="rounded-lg"
-                {...icon}
-                alt={name}
-                width={48}
-                height={48}
-              />
-              <div className="w-full flex grow-1 overflow-hidden">
-                <h3 className="heading text-base overflow-hidden w-full overflow-ellipsis">
-                  {name}
-                </h3>
+              <div
+                className={cn(
+                  "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
+                  "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
+                )}
+              >
+                {thumbnail && (
+                  <Image
+                    className="relative w-full"
+                    {...thumbnail}
+                    alt={name}
+                    width={240}
+                    height={132}
+                  />
+                )}
               </div>
-            </div>
-          </Card>
-        </Link>
-      ))}
+              <CardRanking>{i + 1}</CardRanking>
+              <div className="relative px-4 py-4 flex gap-4 -mt-8 items-center w-full">
+                <MaybeImage
+                  className="rounded-lg"
+                  {...icon}
+                  alt={name}
+                  width={48}
+                  height={48}
+                />
+                <div className="w-full flex flex-col grow-1 overflow-hidden">
+                  <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
+                  <div className="gap-1 inline-flex">
+                    {categories.map((category) => (
+                      <Badge key={category.slug}>{category.name}</Badge>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Card>
+          </Link>
+        ),
+      )}
     </ScrollableSection>
   );
 }

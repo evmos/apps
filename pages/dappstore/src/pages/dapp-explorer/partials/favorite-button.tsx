@@ -8,6 +8,8 @@ import { IconStar as IconStarLine } from "@evmosapps/ui/icons/line/basic/star.ts
 import { IconStar as IconStarFilled } from "@evmosapps/ui/icons/filled/basic/star.tsx";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 
+import { CLICK_FAVORITE, UNCLICK_FAVORITE, sendEvent } from "tracker";
+
 export const FavoriteButton = ({
   dapp,
 }: {
@@ -27,6 +29,17 @@ export const FavoriteButton = ({
   const isFavorite = favorites.some((fav) => fav.name === dapp.name);
 
   const handleFavoriteClick = () => {
+    if (isFavorite) {
+      sendEvent(UNCLICK_FAVORITE, {
+        "dApp Type": dapp.instantDapp ? "Instant" : "Non - Instant",
+        "dApp Name": dapp.name,
+      });
+    } else {
+      sendEvent(CLICK_FAVORITE, {
+        "dApp Type": dapp.instantDapp ? "Instant" : "Non - Instant",
+        "dApp Name": dapp.name,
+      });
+    }
     setFavorites({
       name: dapp.name,
       iconSrc: dapp.icon.src,

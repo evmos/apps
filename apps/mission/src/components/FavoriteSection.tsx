@@ -8,6 +8,7 @@ import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning-strok
 import { useFavoritesContext } from "../../src/components/useFavorite";
 import Link from "next/link";
 import { Suspense } from "react";
+import { CLICK_ON_NAVIGATION, sendEvent } from "tracker";
 
 export const FavoriteSection = () => {
   const { favorites } = useFavoritesContext();
@@ -42,37 +43,41 @@ export const FavoriteSection = () => {
             )}
             {favorites.map((favorite) => {
               return (
-                <>
-                  <Link
-                    href={`/dapps/${favorite.categorySlug}/${favorite.slug}`}
-                  >
-                    <div
-                      className={`flex flex-row my-6 grow shrink basis-0 justify-start place-items-center gap-3
+                <Link
+                  href={`/dapps/${favorite.categorySlug}/${favorite.slug}`}
+                  key={favorite.name}
+                  onClick={() => {
+                    sendEvent(CLICK_ON_NAVIGATION, {
+                      navigation: favorite.name,
+                    });
+                  }}
+                >
+                  <div
+                    className={`flex flex-row my-6 grow shrink basis-0 justify-start place-items-center gap-3
                      transition-transform duration-300 ease-out transform-gpu hover:scale-110 hover:translate-x-4`}
-                    >
-                      <div className="relative w-5 h-5 aspect-square">
-                        {favorite.instantDapp === true && (
-                          <div className="absolute z-10 top-2.5 right-2">
-                            <IconLightning className="absolute z-20 h-3.5 w-3.5 mb-0.5 text-primary-container dark:text-primary-container-dark" />
-                          </div>
-                        )}
-                        {favorite.iconSrc && (
-                          <Image
-                            src={favorite.iconSrc}
-                            blurDataURL={favorite.blurDataURL}
-                            fill={true}
-                            className="object-cover rounded-[7px]"
-                            sizes={"20px"}
-                            alt={""}
-                          />
-                        )}
-                      </div>
-                      <div className="text-paragraph dark:text-paragraph-dark text-sm">
-                        {favorite.name}
-                      </div>
+                  >
+                    <div className="relative w-5 h-5 aspect-square">
+                      {favorite.instantDapp === true && (
+                        <div className="absolute z-10 top-2.5 right-2">
+                          <IconLightning className="absolute z-20 h-3.5 w-3.5 mb-0.5 text-primary-container dark:text-primary-container-dark" />
+                        </div>
+                      )}
+                      {favorite.iconSrc && (
+                        <Image
+                          src={favorite.iconSrc}
+                          blurDataURL={favorite.blurDataURL}
+                          fill={true}
+                          className="object-cover rounded-[7px]"
+                          sizes={"20px"}
+                          alt={""}
+                        />
+                      )}
                     </div>
-                  </Link>
-                </>
+                    <div className="text-paragraph dark:text-paragraph-dark text-sm">
+                      {favorite.name}
+                    </div>
+                  </div>
+                </Link>
               );
             })}
           </div>

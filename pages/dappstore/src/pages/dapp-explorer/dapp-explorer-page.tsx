@@ -19,7 +19,7 @@ export const DappExplorerPage = async ({
   searchParams,
 }: {
   params: { category?: string };
-  searchParams: () => { "sort-by"?: string; "instant-dapps"?: string };
+  searchParams: { "sort-by"?: string; "instant-dapps"?: string };
 }) => {
   const { t } = await translation("dappStore");
   const { dApps, categories } = await fetchExplorerData();
@@ -37,13 +37,16 @@ export const DappExplorerPage = async ({
       ? searchParams["sort-by"]
       : undefined;
 
-  const sortedApps =
-    typeof searchParams === "object" && searchParams["instant-dapps"] === "true"
-      ? sortApps(
-          filteredApps.filter(({ instantDapp }) => instantDapp),
-          orderBy,
-        )
-      : sortApps(filteredApps, orderBy);
+  const sortBy =
+    typeof searchParams === "object" &&
+    searchParams["instant-dapps"] === "true";
+
+  const sortedApps = sortBy
+    ? sortApps(
+        filteredApps.filter(({ instantDapp }) => instantDapp),
+        orderBy,
+      )
+    : sortApps(filteredApps, orderBy);
 
   const allDappsCategory = {
     categoryDapps: sortedApps,
@@ -78,6 +81,7 @@ export const DappExplorerPage = async ({
           ),
         ]}
         params={params}
+        searchParams={searchParams}
       />
       <FilterApps
         nameDapp={selectedCategory?.name}

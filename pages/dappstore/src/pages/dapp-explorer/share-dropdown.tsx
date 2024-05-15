@@ -4,12 +4,11 @@
 "use client";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { IconExport2 } from "@evmosapps/ui/icons/line/arrows/export-2.tsx";
-import { IconCopy } from "@evmosapps/ui/icons/line/basic/copy.tsx";
 import { IconX } from "@evmosapps/ui/icons/social/x.tsx";
 import { IconTelegram } from "@evmosapps/ui/icons/social/telegram.tsx";
 import { useState } from "react";
 import { TwitterShareButton, TelegramShareButton } from "react-share";
-import { Container } from "@evmosapps/ui-helpers";
+import { Container, CopyButton } from "@evmosapps/ui-helpers";
 
 export const ShareDropdown = ({
   dapp,
@@ -30,12 +29,6 @@ export const ShareDropdown = ({
   };
 
   const urlShare = `https://store.evmos.org/dapps/${dapp.categorySlug}/${dapp.slug}`;
-
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(urlShare);
-    } catch (error) {}
-  };
 
   return (
     <div className="relative">
@@ -80,12 +73,7 @@ export const ShareDropdown = ({
             <div className="mt-5 p-2 rounded-[8px] border-[1px] border-surface-container-highest-dark text-sm">
               <div className="flex items-center bg-none text-paragraph dark:text-paragraph-dark">
                 <p className="flex-grow overflow-hidden truncate">{urlShare}</p>
-                <button
-                  onClick={copyToClipboard}
-                  className="px-1 py-1 flex-shrink-0 rounded-md hover:bg-paragraph hover:text-surface-container-low hover:dark:text-surface-container-low-dark"
-                >
-                  <IconCopy className="h-4 w-4" />
-                </button>
+                <CopyButton text={urlShare} />
               </div>
             </div>
           </Container>

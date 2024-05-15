@@ -3,8 +3,9 @@
 
 "use client";
 import { CopyIcon } from "@evmosapps/icons/CopyIcon";
-import { Tooltip } from "@evmosapps/ui-helpers";
+
 import { useEffect, useState } from "react";
+import { Tooltip } from ".";
 
 export const CopyButton = ({ text }: { text: string }) => {
   const [isCopied, setIsCopied] = useState(false);

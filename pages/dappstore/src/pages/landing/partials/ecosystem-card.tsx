@@ -17,7 +17,7 @@ import { Icon } from "./Icon";
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 
 export const EcosystemCard = ({ data }: { data: DApp }) => {
-  const img = data.cover;
+  const img = data.thumbnail;
 
   return (
     <TrackerEvent

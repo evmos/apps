@@ -226,12 +226,11 @@ async function DAppListCarouselSection({ title, dAppIds }: DynamicSection) {
     <ScrollableSection title={title}>
       {resolvedDApps.map(
         ({ name, icon, categories, categorySlug, slug, instantDapp }) => (
-          <Surface
-            lowest
-            className="w-60 flex-none flex flex-col gap-y-2  p-4"
-            key={slug}
-          >
-            <Link href={`/dapps/${categorySlug}/${slug}`}>
+          <Link href={`/dapps/${categorySlug}/${slug}`} key={slug}>
+            <Surface
+              lowest
+              className="w-60 flex-none flex flex-col gap-y-2  p-4"
+            >
               <MaybeImage
                 className="rounded-lg"
                 {...icon}
@@ -239,19 +238,15 @@ async function DAppListCarouselSection({ title, dAppIds }: DynamicSection) {
                 width={48}
                 height={48}
               />
-            </Link>
 
-            <Link href={`/dapps/${categorySlug}/${slug}`}>
               <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
-            </Link>
-            <div className="gap-1 inline-flex">
-              {categories.map((category) => (
-                <Badge key={category.slug} href={`/dapps/${category.slug}`}>
-                  {category.name}
-                </Badge>
-              ))}
-            </div>
-          </Surface>
+              <div className="gap-1 inline-flex">
+                {categories.map((category) => (
+                  <Badge key={category.slug}>{category.name}</Badge>
+                ))}
+              </div>
+            </Surface>
+          </Link>
         ),
       )}
     </ScrollableSection>
@@ -373,12 +368,8 @@ function DAppStorePicks({ className, ...props }: SurfaceProps) {
   );
 }
 
-const Badge = ({
-  children,
-  className,
-  ...props
-}: ComponentProps<typeof Link>) => (
-  <Link
+const Badge = ({ children, className, ...props }: ComponentProps<"span">) => (
+  <span
     className={cn(
       "text-xs rounded-[4px] px-2 leading-normal",
       "text-paragraph dark:text-paragraph-dark",
@@ -389,7 +380,7 @@ const Badge = ({
     {...props}
   >
     {children}
-  </Link>
+  </span>
 );
 DAppStorePicks.Header = function DAppStorePicksHeader({
   className,
@@ -440,34 +431,30 @@ DAppStorePicks.DAppCard = function DAppStorePicksDAppCard({
   "name" | "icon" | "categorySlug" | "categories" | "slug" | "instantDapp"
 >) {
   return (
-    <Card
-      low
-      className="overflow-hidden flex-row shrink-0 gap-4 p-3 w-full hover:bg-surface-container hover:dark:bg-surface-container-dark transition-colors duration-150 items-center group"
-    >
-      <Link href={`/dapps/${categorySlug}/${slug}`}>
-        <MaybeImage {...icon} alt={name} width={56} height={56} />
-      </Link>
-      <div>
-        <Link href={`/dapps/${categorySlug}/${slug}`}>
-          <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
-        </Link>
-        <div className="gap-1 inline-flex">
-          {categories.map((category) => (
-            <Badge key={category.slug} href={`/dapps/${category.slug}`}>
-              {category.name}
-            </Badge>
-          ))}
-        </div>
-      </div>
-      <Button
-        href={`/dapps/${categorySlug}/${slug}`}
-        as={Link}
-        className="ml-auto hidden group-hover:block"
-        variant="low-emphasis"
+    <Link href={`/dapps/${categorySlug}/${slug}`}>
+      <Card
+        low
+        className="overflow-hidden flex-row shrink-0 gap-4 p-3 w-full hover:bg-surface-container hover:dark:bg-surface-container-dark transition-colors duration-150 items-center group"
       >
-        Open
-      </Button>
-    </Card>
+        <MaybeImage {...icon} alt={name} width={56} height={56} />
+        <div>
+          <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
+          <div className="gap-1 inline-flex">
+            {categories.map((category) => (
+              <Badge key={category.slug}>{category.name}</Badge>
+            ))}
+          </div>
+        </div>
+        <Button
+          href={`/dapps/${categorySlug}/${slug}`}
+          as={Link}
+          className="ml-auto hidden group-hover:block"
+          variant="low-emphasis"
+        >
+          Open
+        </Button>
+      </Card>
+    </Link>
   );
 };
 // TODO: Different categories should have different icons and color, we should populate the table below

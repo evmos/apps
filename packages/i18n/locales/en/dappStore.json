@@ -142,5 +142,13 @@
   "favorites": {
     "title": "Favorites",
     "description": "Pin your favorite dApps here. <p>You can do this by going into a dApp page and starring it.</p>"
+  },
+  "navigation": {
+    "title": "dApp Store",
+    "options": {
+      "discover": "Discover",
+      "categories": "Categories",
+      "develop": "Develop"
+    }
   }
 }

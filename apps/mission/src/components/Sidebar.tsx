@@ -8,9 +8,8 @@ import { IconPlanet } from "@evmosapps/ui/icons/line/basic/planet.tsx";
 import { IconBook } from "@evmosapps/ui/icons/line/basic/book.tsx";
 import { IconExternalLink } from "@evmosapps/ui/icons/line/arrows/external-link.tsx";
 import { cn } from "helpers";
-import { Link } from "@evmosapps/i18n/client";
+import { Link, useTranslation } from "@evmosapps/i18n/client";
 import {
-  // COMMONWEALTH_URL,
   DISCORD_EVMOS_URL,
   DOCS_EVMOS_URL,
   GITHUB_EVMOS_URL,
@@ -32,26 +31,28 @@ import { usePathname } from "next/navigation";
 
 const NavigationSection = () => {
   const pathname = usePathname();
-
+  const { t } = useTranslation("dappStore");
   return (
     <nav>
-      <h2 className="text-xs px-4 hidden md:block">dApp Store</h2>
+      <h2 className="text-xs px-4 hidden md:block mb-3">
+        {t("navigation.title")}
+      </h2>
       <ul className="flex md:flex-col md:gap-y-2">
         {[
           {
-            label: "Discover",
+            label: "navigation.options.discover",
             Icon: IconHome3,
             href: "/",
             target: "_self",
           },
           {
-            label: "Categories",
+            label: "navigation.options.categories",
             Icon: IconPlanet,
             href: "/dapps",
             target: "_self",
           },
           {
-            label: "Develop",
+            label: "navigation.options.develop",
             Icon: IconBook,
             href: DOCS_EVMOS_URL,
             target: "_blank",
@@ -60,7 +61,7 @@ const NavigationSection = () => {
           <TrackerEvent
             key={label}
             event={CLICK_ON_NAVIGATION}
-            properties={{ navigation: label }}
+            properties={{ navigation: t(label) } as { [key: string]: string }}
           >
             <li>
               <Link
@@ -77,7 +78,7 @@ const NavigationSection = () => {
                 )}
               >
                 <Icon className="hidden md:inline-flex w-5 h-5" />
-                {label}
+                {t(label)}
                 {!href.startsWith("/") && (
                   <IconExternalLink className="hidden md:inline-flex ml-auto h-4 w-4 opacity-60" />
                 )}

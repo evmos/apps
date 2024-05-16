@@ -21,7 +21,7 @@ export const DappExplorerPage = async ({
     cachedFetchCategories(),
     getFilteredDApps({
       category: params.category ?? "all",
-      sortBy: "created-at",
+      sortBy: "asc",
       instantDApps: false,
     }),
   ]);

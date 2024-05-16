@@ -14,7 +14,6 @@ export default withEvmosConfig({
     ];
   },
   images: {
-    // domains: ["via.placeholder.com"],
     remotePatterns: [
       {
         protocol: "https",

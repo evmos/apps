@@ -2,149 +2,105 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { useState } from "react";
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 import { Checkbox } from "@evmosapps/ui/components/checkboxs/checkbox.tsx";
-import {
-  ReadonlyURLSearchParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Listbox } from "@evmosapps/ui/components/listboxs/listbox.tsx";
 import { IconChevronDown } from "@evmosapps/ui/icons/line/arrows/chevron-down.tsx";
-import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { sendEvent, CLICK_SORT, CLICK_FILTER, UNCLICK_FILTER } from "tracker";
-const sortOptions = [
-  {
-    id: 1,
-    name: "A to Z",
-    onClick: (
-      params: ReadonlyURLSearchParams,
-      router: AppRouterInstance,
-      pathname: string,
-    ) => {
-      const newParams = new URLSearchParams(params.toString());
-      newParams.set("sort-by", "asc");
-      router.push(`${pathname}?${newParams.toString()}`);
-      sendEvent(CLICK_SORT, {
-        "Sort Type": "A->Z",
-      });
-    },
-  },
-  {
-    id: 2,
-    name: "Z to A",
-    onClick: (
-      params: ReadonlyURLSearchParams,
-      router: AppRouterInstance,
-      pathname: string,
-    ) => {
-      const newParams = new URLSearchParams(params.toString());
-      newParams.set("sort-by", "desc");
-      router.push(`${pathname}?${newParams.toString()}`);
-      sendEvent(CLICK_SORT, {
-        "Sort Type": "Z->A",
-      });
-    },
-  },
-  {
-    id: 3,
-    name: "Newly Added",
-    onClick: (
-      params: ReadonlyURLSearchParams,
-      router: AppRouterInstance,
-      pathname: string,
-    ) => {
-      const newParams = new URLSearchParams(params.toString());
-      newParams.set("sort-by", "created-at");
-      router.push(`${pathname}?${newParams.toString()}`);
-      sendEvent(CLICK_SORT, {
-        "Sort Type": "Newly Added",
-      });
-    },
-  },
-];
+import { FilteredDAppsResults, SortBy } from "./get-filtered-dapps";
+import { useParams } from "next/navigation";
+import { useFilteredDapps } from "./use-filtered-dapps";
+
+const sortLabels = {
+  asc: "A to Z",
+  desc: "Z to A",
+  "created-at": "Newly Added",
+};
 
 export const FilterApps = ({
-  nameDapp,
-  amountDapps,
+  initialData,
+  categories,
 }: {
-  nameDapp: string | undefined;
-  amountDapps: number | undefined;
+  initialData: FilteredDAppsResults;
+  categories: { slug: string; name: string }[];
 }) => {
+  const dApps = useFilteredDapps(initialData);
+  const { category = "all" } = useParams<{ category?: string }>();
+  const categoryName = categories.find((c) => c.slug === category)?.name;
   const params = useSearchParams();
-  const [isChecked, setIsChecked] = useState(
-    params.get("instant-dapps") === "true" ?? false,
-  );
-  const [selected, setSelected] = useState(sortOptions[0]);
-
-  const pathname = usePathname();
+  const instantDapps = params.get("instant-dapps") === "true";
+  const sortBy = params.get("sort-by") as SortBy;
   const router = useRouter();
   const { t } = useTranslation("dappStore");
   return (
     <div className="md:pt-4 flex items-center justify-between">
       <p className="hidden lg:inline-block text-heading dark:text-heading-dark text-xl font-medium">
-        {nameDapp ?? t("filterdApps.all")}
+        {categoryName ?? t("filteredApps.all")}
         <span className="text-subheading dark:text-subheading-dark font-medium text-sm pl-2">
-          {amountDapps} {t("filterdApps.amount")}
+          {dApps.data
+            ? `${dApps.data.length} ${t("filteredApps.amount")}`
+            : t("filteredApps.loading")}
         </span>
       </p>
       <div className="flex w-full lg:w-fit justify-between lg:justify-end items-center  space-x-6">
         <div className="flex items-center space-x-2">
           <Checkbox
             id="instant-dapp"
-            checked={isChecked}
+            checked={instantDapps}
             onChange={(e) => {
-              setIsChecked(e.target.checked);
-              const newParams = new URLSearchParams(params.toString());
-              if (e.target.checked === false) {
-                newParams.set("instant-dapps", "false");
+              const url = new URL(window.location.href);
+              const checked = e.target.checked;
+              url.searchParams.set("instant-dapps", checked.toString());
+              if (checked) {
                 sendEvent(UNCLICK_FILTER, {
                   "Filter Type": "Instant dApp",
                 });
               } else {
-                newParams.set("instant-dapps", "true");
                 sendEvent(CLICK_FILTER, {
                   "Filter Type": "Instant dApp",
                 });
               }
 
-              router.push(`${pathname}?${newParams.toString()}`);
+              router.push(url.toString());
             }}
             label={
               <div className="flex items-center space-x-1">
                 <IconLightning className="h-3 w-3 text-primary-container dark:text-primary-container-dark" />
                 <p className="text-primary dark:text-primary-dark text-sm ">
-                  {t("filterdApps.checkbox.label")}
+                  {t("filteredApps.checkbox.label")}
                 </p>
               </div>
             }
           />
         </div>
         <div className="z-20">
-          <Listbox.Menu value={selected} onChange={setSelected}>
+          <Listbox.Menu
+            value={sortBy}
+            onChange={(selected) => {
+              const url = new URL(window.location.href);
+              url.searchParams.set("sort-by", selected);
+              sendEvent(CLICK_SORT, {
+                "Sort Type": sortLabels[selected],
+              });
+              router.push(url.toString());
+            }}
+          >
             <Listbox.Button className="cursor-pointer border w-44 text-subheading dark:text-subheading-dark font-normal text-base flex items-center justify-between border-surface-container-highest dark:border-surface-container-highest-dark rounded-lg px-4 py-2 gap-2">
-              <span className="block truncate">{selected?.name}</span>
+              <span className="block truncate">
+                {sortLabels[sortBy] ?? sortLabels["created-at"]}
+              </span>
               <IconChevronDown
                 className={`w-5 text-paragraph dark:text-paragraph-dark`}
               />
             </Listbox.Button>
 
             <Listbox.Options className="w-44">
-              {sortOptions.map((option) => (
-                <Listbox.Option
-                  onClick={() =>
-                    selected?.id !== option.id &&
-                    option.onClick(params, router, pathname)
-                  }
-                  key={option.id}
-                  selected={selected?.id === option.id}
-                  value={option}
-                >
-                  {option.name}
+              {Object.entries(sortLabels).map(([id, label]) => (
+                <Listbox.Option key={id} value={id}>
+                  {label}
                 </Listbox.Option>
               ))}
             </Listbox.Options>

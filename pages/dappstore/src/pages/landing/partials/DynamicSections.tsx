@@ -265,46 +265,66 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
   });
   return (
     <ScrollableSection title={title}>
-      {resolvedDApps.map(({ name, icon, categorySlug, slug, thumbnail }, i) => (
-        <Link href={`/dapps/${categorySlug}/${slug}`} key={slug}>
+      {resolvedDApps.map(
+        (
+          {
+            name,
+            icon,
+            categorySlug,
+            slug,
+            thumbnail,
+            categories,
+            instantDapp,
+          },
+          i,
+        ) => (
           <Card
             low
             className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
+            key={slug}
           >
-            <div
-              className={cn(
-                "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
-                "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
-              )}
-            >
-              {thumbnail && (
-                <Image
-                  className="relative w-full"
-                  {...thumbnail}
-                  alt={name}
-                  width={240}
-                  height={132}
-                />
-              )}
-            </div>
-            <CardRanking>{i + 1}</CardRanking>
-            <div className="relative px-4 py-4 flex gap-4 -mt-8 items-center w-full">
-              <MaybeImage
-                className="rounded-lg"
-                {...icon}
-                alt={name}
-                width={48}
-                height={48}
-              />
-              <div className="w-full flex grow-1 overflow-hidden">
-                <h3 className="heading text-base overflow-hidden w-full overflow-ellipsis">
-                  {name}
-                </h3>
+            <Link href={`/dapps/${categorySlug}/${slug}`}>
+              <div
+                className={cn(
+                  "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
+                  "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
+                )}
+              >
+                {thumbnail && (
+                  <Image
+                    className="relative w-full"
+                    {...thumbnail}
+                    alt={name}
+                    width={240}
+                    height={132}
+                  />
+                )}
               </div>
-            </div>
+              <CardRanking>{i + 1}</CardRanking>
+              <div className="relative px-4 py-4 flex gap-4 -mt-8 items-center w-full">
+                <MaybeImage
+                  className="rounded-lg"
+                  {...icon}
+                  alt={name}
+                  width={48}
+                  height={48}
+                />
+                <div className="w-full flex flex-col grow-1 overflow-hidden">
+                  <DAppTitle instantDapp={instantDapp} displayText={false}>
+                    {name}
+                  </DAppTitle>
+                  {/* add space between title and badge */}
+                  <div className="gap-1 inline-flex pt-1">
+                    <Badge key={categories[0]?.slug}>
+                      {categories[0]?.name}
+                    </Badge>
+                  </div>
+                </div>
+              </div>
+            </Link>
           </Card>
-        </Link>
-      ))}
+        ),
+      )}
     </ScrollableSection>
   );
 }
@@ -446,8 +466,6 @@ DAppStorePicks.DAppCard = function DAppStorePicksDAppCard({
           </div>
         </div>
         <Button
-          href={`/dapps/${categorySlug}/${slug}`}
-          as={Link}
           className="ml-auto hidden group-hover:block"
           variant="low-emphasis"
         >
@@ -526,8 +544,10 @@ DAppStorePicks.CategoryCard = function DAppStorePicksCategoryCard({
 function DAppTitle({
   children,
   instantDapp = false,
+  displayText = true,
 }: PropsWithChildren<{
   instantDapp?: boolean;
+  displayText?: boolean;
 }>) {
   return (
     <div className="overflow-hidden [&>*]align-middle line-clamp-1 leading-4 overflow-ellipsis">
@@ -535,9 +555,11 @@ function DAppTitle({
       {instantDapp && (
         <>
           <IconLightning className="inline-flex shrink-0 text-primary-container dark:text-primary-container-dark h-3 w-3" />{" "}
-          <span className="gap-1 text-primary dark:text-primary-dark text-xs font-bold">
-            Instant
-          </span>
+          {displayText && (
+            <span className="gap-1 text-primary dark:text-primary-dark text-xs font-bold">
+              Instant
+            </span>
+          )}
         </>
       )}
     </div>

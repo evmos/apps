@@ -1,8 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-"use server";
-
 import { TrackerEvent } from "@evmosapps/ui-helpers";
 
 import { CLICK_ON_FEATURED_DAPP } from "tracker";
@@ -17,7 +15,7 @@ import { Icon } from "./Icon";
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 
 export const EcosystemCard = ({ data }: { data: DApp }) => {
-  const img = data.cover;
+  const img = data.thumbnail;
 
   return (
     <TrackerEvent

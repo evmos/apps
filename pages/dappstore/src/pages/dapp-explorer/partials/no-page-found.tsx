@@ -11,10 +11,10 @@ export const NoPageFound = () => {
     <div className="pt-36 flex flex-col items-center ">
       <IconSearch />
       <h6 className="text-xl mt-6 font-medium text-heading dark:text-heading-dark">
-        {t("filterdApps.notFound.title")}
+        {t("filteredApps.notFound.title")}
       </h6>
       <p className="mt-2 text-subheading dark:text-subheading-dark text-sm font-medium">
-        {t("filterdApps.notFound.description")}
+        {t("filteredApps.notFound.description")}
       </p>
     </div>
   );

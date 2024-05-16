@@ -7,7 +7,7 @@ import { getWalletByConnector } from "./helpers";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
-import { CopyButton } from "./CopyButton";
+import { CopyButton } from "@evmosapps/ui-helpers/src/CopyButton.tsx";
 import { Suspense } from "react";
 import { TotalEvmos, TotalUsd } from "./useEvmosBalance";
 import { useAccount, useDisconnect } from "wagmi";

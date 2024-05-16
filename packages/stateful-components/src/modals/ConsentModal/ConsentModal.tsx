@@ -27,9 +27,7 @@ export const ConsentModal = () => {
       <Modal.Body>
         {modalProps && (
           <div className="space-y-5">
-            <Modal.Header>
-              <h2 className="font-bold">{t("tos.title")}</h2>
-            </Modal.Header>
+            <Modal.Header className="font-bold">{t("tos.title")}</Modal.Header>
             <div>
               <Trans
                 t={t}

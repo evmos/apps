@@ -31,7 +31,7 @@ BannerCard.BgImage = function BannerBgImage({
 
         "after:absolute after:top-0 after:left-0 after:w-full after:h-full",
         "after:bg-gradient-to-t after:from-surface after:dark:from-surface-dark after:to-transparent",
-        "lg:after:from-0% lg:after:to-50% lg:after:to-transparent lg:after:bg-gradient-to-r after:from-5%",
+        "lg:after:from-40% lg:after:to-75% lg:after:to-transparent lg:after:bg-gradient-to-r after:from-5%",
         className,
       )}
     >

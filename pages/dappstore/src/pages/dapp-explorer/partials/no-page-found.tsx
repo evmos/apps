@@ -8,7 +8,7 @@ import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 export const NoPageFound = () => {
   const { t } = useTranslation("dappStore");
   return (
-    <div className="pt-36 flex flex-col items-center ">
+    <div className="pt-36 flex flex-col items-center text-center ">
       <IconSearch />
       <h6 className="text-xl mt-6 font-medium text-heading dark:text-heading-dark">
         {t("filteredApps.notFound.title")}

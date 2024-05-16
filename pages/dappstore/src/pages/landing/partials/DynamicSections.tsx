@@ -309,11 +309,14 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
                   height={48}
                 />
                 <div className="w-full flex flex-col grow-1 overflow-hidden">
-                  <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
-                  <div className="gap-1 inline-flex">
-                    {categories.map((category) => (
-                      <Badge key={category.slug}>{category.name}</Badge>
-                    ))}
+                  <DAppTitle instantDapp={instantDapp} showText={false}>
+                    {name}
+                  </DAppTitle>
+                  {/* add space between title and badge */}
+                  <div className="gap-1 inline-flex pt-1">
+                    <Badge key={categories[0]?.slug}>
+                      {categories[0]?.name}
+                    </Badge>
                   </div>
                 </div>
               </div>
@@ -462,8 +465,6 @@ DAppStorePicks.DAppCard = function DAppStorePicksDAppCard({
           </div>
         </div>
         <Button
-          href={`/dapps/${categorySlug}/${slug}`}
-          as={Link}
           className="ml-auto hidden group-hover:block"
           variant="low-emphasis"
         >
@@ -542,8 +543,10 @@ DAppStorePicks.CategoryCard = function DAppStorePicksCategoryCard({
 function DAppTitle({
   children,
   instantDapp = false,
+  showText = true,
 }: PropsWithChildren<{
   instantDapp?: boolean;
+  showText?: boolean;
 }>) {
   return (
     <div className="overflow-hidden [&>*]align-middle line-clamp-1 leading-4 overflow-ellipsis">
@@ -551,9 +554,11 @@ function DAppTitle({
       {instantDapp && (
         <>
           <IconLightning className="inline-flex shrink-0 text-primary-container dark:text-primary-container-dark h-3 w-3" />{" "}
-          <span className="gap-1 text-primary dark:text-primary-dark text-xs font-bold">
-            Instant
-          </span>
+          {showText && (
+            <span className="gap-1 text-primary dark:text-primary-dark text-xs font-bold">
+              Instant
+            </span>
+          )}
         </>
       )}
     </div>

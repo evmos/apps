@@ -278,11 +278,12 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
           },
           i,
         ) => (
-          <Link href={`/dapps/${categorySlug}/${slug}`} key={slug}>
-            <Card
-              low
-              className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
-            >
+          <Card
+            low
+            className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
+            key={slug}
+          >
+            <Link href={`/dapps/${categorySlug}/${slug}`}>
               <div
                 className={cn(
                   "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
@@ -320,8 +321,8 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
                   </div>
                 </div>
               </div>
-            </Card>
-          </Link>
+            </Link>
+          </Card>
         ),
       )}
     </ScrollableSection>

@@ -66,25 +66,28 @@ export const DescriptiondApp = async ({
         </div>
         {/* dapp name */}
         <div className="flex flex-col grow shrink basis-0 justify-start items-baseline gap-2 lg:flex-row">
-          <div>
-            <h1 className="text-xl lg:text-5xl lg:text-4xl leading-[48px] mx-auto lg:mx-0 text-heading dark:text-heading-dark">
-              {dapp.name}
-            </h1>
-            <h1 className=" mt-3 mx-auto lg:mx-0 text-paragraph dark:text-paragraph-dark">
-              {dapp.oneLiner}
-            </h1>
-          </div>
-          {/* Instant dapp badge */}
-          {dapp.instantDapp && (
-            <div className="flex items-center gap-px mx-auto -ml-1 lg:mx-0">
-              <div className="relative">
-                <IconLightning className="h-3 w-3 mb-0.5 text-primary-container dark:text-primary-container-dark" />
-              </div>
-              <p className="text-primary dark:text-primary-dark text-[13px] mb-0.5">
-                {t("instantdApp.badge")}
-              </p>
+          <div className="flex flex-col lg:block">
+            <div className="flex flex-col grow shrink basis-0 justify-center lg:justify-start items-center lg:items-baseline gap-2 lg:flex-row">
+              <h1 className="text-xl xl:text-5xl lg:text-4xl leading-[48px] mx-auto lg:mx-0 text-heading dark:text-heading-dark">
+                {dapp.name}
+              </h1>
+              {/* Instant dapp badge */}
+              {dapp.instantDapp && (
+                <div className="flex items-center w-full lg:w-fit justify-center gap-px mx-auto -ml-1 lg:mx-0">
+                  <div className="relative">
+                    <IconLightning className="h-3 w-3 mb-0.5 text-primary-container dark:text-primary-container-dark" />
+                  </div>
+                  <p className="text-primary dark:text-primary-dark text-[13px] mb-0.5">
+                    {t("instantdApp.badge")}
+                  </p>
+                </div>
+              )}
             </div>
-          )}
+            <h2 className="text-center lg:text-left mt-3 mx-auto lg:mx-0 text-paragraph dark:text-paragraph-dark">
+              {dapp.oneLiner}
+            </h2>
+          </div>
+
           {/* No-instant-dapp button mobile */}
           {!dapp.instantDapp && dapp.dapp.url && (
             <div className="block lg:hidden mx-auto">

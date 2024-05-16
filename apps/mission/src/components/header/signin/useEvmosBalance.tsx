@@ -13,7 +13,7 @@ import { formatUnits } from "@evmosapps/evmos-wallet/src/registry-actions/utils"
 export const useTotalBalance = (address: Address) => {
   const chainRef = useEvmosChainRef();
 
-  const [[balance, rewards, staked]] = trpc.useSuspenseQueries((t) => [
+  const [[balance, rewards]] = trpc.useSuspenseQueries((t) => [
     t.account.balance.byDenom({
       address,
       denom: "EVMOS",
@@ -24,14 +24,9 @@ export const useTotalBalance = (address: Address) => {
       address,
       chainRef,
     }),
-
-    t.account.balance.staked.evmos({
-      address,
-      chainRef,
-    }),
   ]);
 
-  const total = balance.balance.total + rewards.total + staked.total;
+  const total = balance.balance.total + rewards.total;
 
   return {
     totalUsd:

@@ -309,7 +309,7 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
                   height={48}
                 />
                 <div className="w-full flex flex-col grow-1 overflow-hidden">
-                  <DAppTitle instantDapp={instantDapp} showText={false}>
+                  <DAppTitle instantDapp={instantDapp} displayText={false}>
                     {name}
                   </DAppTitle>
                   {/* add space between title and badge */}
@@ -543,10 +543,10 @@ DAppStorePicks.CategoryCard = function DAppStorePicksCategoryCard({
 function DAppTitle({
   children,
   instantDapp = false,
-  showText = true,
+  displayText = true,
 }: PropsWithChildren<{
   instantDapp?: boolean;
-  showText?: boolean;
+  displayText?: boolean;
 }>) {
   return (
     <div className="overflow-hidden [&>*]align-middle line-clamp-1 leading-4 overflow-ellipsis">
@@ -554,7 +554,7 @@ function DAppTitle({
       {instantDapp && (
         <>
           <IconLightning className="inline-flex shrink-0 text-primary-container dark:text-primary-container-dark h-3 w-3" />{" "}
-          {showText && (
+          {displayText && (
             <span className="gap-1 text-primary dark:text-primary-dark text-xs font-bold">
               Instant
             </span>

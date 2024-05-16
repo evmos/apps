@@ -52,7 +52,9 @@ export const EcosystemCard = ({ data }: { data: DApp }) => {
               <Icon data={data} />
               <div>
                 <div className="flex gap-1">
-                  <h5 className="heading text-base px-0.5">{data.name}</h5>
+                  <h5 className="heading text-base px-0.5 overflow-hidden line-clamp-1 overflow-ellipsis">
+                    {data.name}
+                  </h5>
                   {data.instantDapp && (
                     <div className="justify-start items-center gap-px flex">
                       <div className="relative">

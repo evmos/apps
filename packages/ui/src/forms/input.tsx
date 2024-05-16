@@ -46,6 +46,7 @@ const Input = forwardRef(function _Input(
   return (
     <input
       ref={ref}
+      autoComplete="off"
       className={cn(
         `w-full font-body bg-transparent active:outline-none border-none focus:outline-none first:pl-4 placeholder-subheading dark:placeholder-subheading-dark`,
         "text-paragraph dark:text-paragraph-dark",

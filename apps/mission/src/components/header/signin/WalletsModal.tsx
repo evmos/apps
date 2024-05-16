@@ -48,7 +48,7 @@ export const WalletsModal = () => {
             onChange={handleSearchChange}
             placeholder={t("signIn.supportedWallets.search.placeholder")}
             type="text"
-            className="w-full rounded-full pl-8"
+            className="w-full rounded-full pl-10"
           />
         </div>
 

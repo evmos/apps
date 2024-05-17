@@ -20,6 +20,7 @@ import { WalletsProvider } from "../../components/header/signin/useWallets";
 import { ContainerLogo } from "../../components/ContainerLogo";
 import { FavoritesProvider } from "../../components/useFavorite";
 import { AlertStack } from "@evmosapps/ui/components/alert/alert-stack.tsx";
+import { fetchExplorerData } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
 
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
@@ -58,10 +59,11 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
-function RootLayout({
+async function RootLayout({
   children,
   params: { locale },
 }: PropsWithChildren<{ params: { locale: string } }>) {
+  const { dApps } = await fetchExplorerData();
   return (
     <html lang={locale} dir={dir(locale)} className="dark bg-darkGray1 h-full">
       <head />
@@ -79,7 +81,7 @@ function RootLayout({
           "md:grid-cols-[256px,1fr]",
           "md:grid-rows-[64px,1fr]",
           "md:h-full",
-          "md:w-full",
+          "w-full",
         )}
       >
         <RootProviders>
@@ -87,9 +89,7 @@ function RootLayout({
             <WalletsProvider>
               <FavoritesProvider>
                 <ContainerLogo />
-                <div className="bg-surface dark:bg-surface-dark w-full z-10 sticky top-0 md:col-span-1 md:row-start-2 md:row-span-1 h-full md:top-auto md:pt-5">
-                  <Sidebar />
-                </div>
+                <Sidebar dApps={dApps}/>
                 <div className="overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
                   <Header />
                   <div className="px-5 md:px-14 max-w-full overflow-x-hidden">
@@ -112,3 +112,5 @@ function RootLayout({
 }
 
 export default RootLayout;
+
+

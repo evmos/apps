@@ -2,25 +2,37 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 "use client";
 import { useEffectEvent } from "helpers";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useAccount } from "wagmi";
 
 const FAVORITES_KEY = "favorites_list";
 
-export interface FavoriteItem {
-  name: string;
-  blurDataURL: string;
-  iconSrc: string;
-  categorySlug: string;
-  slug: string;
-  instantDapp: boolean;
-}
-
+type Slug = string;
 export interface FavoritesContext {
-  favorites: FavoriteItem[];
-  setFavorites: (newFavorites: FavoriteItem) => void;
+  favorites: Slug[] | null;
+  addFavorite: (favorite: Slug) => void;
+  removeFavorite: (slug: string) => void;
+  isLoading: boolean;
 }
 
 export const FavoritesContext = createContext<FavoritesContext | null>(null);
+
+const readFavorites = (address: string) => {
+  if (typeof window === "undefined") {
+    return [];
+  }
+  const values = window.localStorage.getItem(`${FAVORITES_KEY}.${address}`);
+  return values ? (JSON.parse(values) as Slug[]) : [];
+};
+
+const writeFavorites = (address: string, favorites: Slug[]) => {
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(
+      `${FAVORITES_KEY}.${address}`,
+      JSON.stringify(favorites),
+    );
+  }
+};
 
 // Create the provider component
 export const FavoritesProvider = ({
@@ -28,43 +40,44 @@ export const FavoritesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const setFavoritesDb = (favorites: FavoriteItem[]) => {
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+  const [favorites, setFavorites] = useState<Slug[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const { address } = useAccount();
+
+  useEffect(() => {
+    setIsLoading(false);
+    if (!address) {
+      setFavorites(null);
+      return;
     }
-  };
+    setFavorites(readFavorites(address));
+  }, [address]);
 
-  const getFavoritesDb = () => {
-    if (typeof window === "undefined") {
-      return [];
+  useEffect(() => {
+    if (!address || !favorites) {
+      return;
     }
-    const values = window.localStorage.getItem(FAVORITES_KEY);
-    return values ? (JSON.parse(values) as FavoriteItem[]) : [];
-  };
+    writeFavorites(address, favorites);
+  }, [address, favorites]);
 
-  const [favorites, setFavorites] = useState<FavoriteItem[]>(getFavoritesDb());
-
-  const updateFavorites = useEffectEvent((favorite: FavoriteItem) => {
+  const addFavorite = useEffectEvent((favorite: Slug) => {
     setFavorites((prevFavorites) => {
-      let fav;
-      if (prevFavorites.find((f) => f.name === favorite.name)) {
-        const indexForWallet = prevFavorites.findIndex(
-          (f) => f?.name === favorite.name,
-        );
-        const listWallets = prevFavorites.slice();
-        listWallets.splice(indexForWallet, 1);
-        fav = listWallets;
-      } else {
-        fav = [favorite, ...prevFavorites];
+      if (!prevFavorites) return prevFavorites;
+      if (prevFavorites.includes(favorite)) {
+        return prevFavorites;
       }
-      setFavoritesDb(fav);
-      return fav;
+      return [...prevFavorites, favorite];
     });
   });
 
+  const removeFavorite = useEffectEvent((slug: string) => {
+    setFavorites((prevFavorites) => {
+      return prevFavorites?.filter((favorite) => favorite !== slug) ?? null;
+    });
+  });
   return (
     <FavoritesContext.Provider
-      value={{ favorites, setFavorites: updateFavorites }}
+      value={{ favorites, addFavorite, removeFavorite, isLoading }}
     >
       {children}
     </FavoritesContext.Provider>

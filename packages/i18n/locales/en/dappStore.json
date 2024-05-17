@@ -157,7 +157,8 @@
     "options": {
       "discover": "Discover",
       "categories": "Categories",
-      "develop": "Develop"
+      "develop": "Develop",
+      "favorites": "Favorites"
     }
   },
   "share": {

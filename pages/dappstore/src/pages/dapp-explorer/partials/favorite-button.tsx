@@ -25,9 +25,9 @@ export const FavoriteButton = ({
     instantDapp: boolean;
   };
 }) => {
-  const { favorites, setFavorites } = useFavoritesContext();
+  const { favorites, addFavorite, removeFavorite } = useFavoritesContext();
 
-  const isFavorite = favorites.some((fav) => fav.name === dapp.name);
+  const isFavorite = favorites?.some((fav) => fav === dapp.slug);
 
   const { isDisconnected } = useWallet();
   const handleFavoriteClick = () => {
@@ -36,20 +36,15 @@ export const FavoriteButton = ({
         "dApp Type": dapp.instantDapp ? "Instant" : "Non - Instant",
         "dApp Name": dapp.name,
       });
-    } else {
-      sendEvent(CLICK_FAVORITE, {
-        "dApp Type": dapp.instantDapp ? "Instant" : "Non - Instant",
-        "dApp Name": dapp.name,
-      });
+      removeFavorite(dapp.slug);
+      return;
     }
-    setFavorites({
-      name: dapp.name,
-      iconSrc: dapp.icon.src,
-      blurDataURL: dapp.icon.blurDataURL,
-      categorySlug: dapp.categorySlug,
-      slug: dapp.slug,
-      instantDapp: dapp.instantDapp,
+
+    sendEvent(CLICK_FAVORITE, {
+      "dApp Type": dapp.instantDapp ? "Instant" : "Non - Instant",
+      "dApp Name": dapp.name,
     });
+    addFavorite(dapp.slug);
   };
 
   return (

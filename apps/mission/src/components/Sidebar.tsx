@@ -28,61 +28,88 @@ import { FavoriteSection } from "./FavoriteSection";
 import { TrackerEvent } from "@evmosapps/ui-helpers";
 import { CLICK_ON_FOOTER_CTA, CLICK_ON_NAVIGATION } from "tracker";
 import { usePathname } from "next/navigation";
+import { Dispatch, createElement, useState } from "react";
+import { DApp } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
 
-const NavigationSection = () => {
+const NavigationSection = ({
+  setFavoritesIsOpen,
+  favoritesIsOpen,
+}: {
+  setFavoritesIsOpen: Dispatch<React.SetStateAction<boolean>>;
+  favoritesIsOpen: boolean;
+}) => {
   const pathname = usePathname();
   const { t } = useTranslation("dappStore");
   return (
-    <nav>
+    <nav className="flex flex-col relative w-full z-10">
       <h2 className="text-xs px-4 hidden md:block mb-3">
         {t("navigation.title")}
       </h2>
-      <ul className="flex md:flex-col md:gap-y-2">
+      <ul className="flex md:flex-col w-full max-w-[100vw] md:gap-y-2 overflow-x-auto scrollbar-hidden px-6 md:px-4 -mb-px md:mb-0 ">
         {[
           {
             label: "navigation.options.discover",
             Icon: IconHome3,
             href: "/",
             target: "_self",
+            isActive: pathname === "/",
           },
           {
             label: "navigation.options.categories",
             Icon: IconPlanet,
             href: "/dapps",
             target: "_self",
+            isActive: pathname.startsWith("/dapps"),
           },
           {
             label: "navigation.options.develop",
             Icon: IconBook,
             href: DOCS_EVMOS_URL,
             target: "_blank",
+            isActive: false,
           },
-        ].map(({ label, Icon, href, target }) => (
+
+          {
+            label: "navigation.options.favorites",
+            className: "md:hidden",
+            Icon: IconBook,
+            isActive: favoritesIsOpen,
+            onClick: () => {
+              setFavoritesIsOpen((v) => !v);
+            },
+          },
+        ].map(({ className, label, Icon, target, isActive, href, onClick }) => (
           <TrackerEvent
             key={label}
             event={CLICK_ON_NAVIGATION}
             properties={{ navigation: t(label) } as { [key: string]: string }}
           >
             <li>
-              <Link
-                href={href}
-                target={target}
-                className={cn(
-                  "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 hover:dark:text-primary-dark hover:text-primary  h-11 px-4 justify-center items-center text-base rounded-t-lg",
-                  "border-b-2 -mb-px md:mb-0 gap-x-3",
-                  "md:rounded-full md:border-none md:justify-start",
-                  {
-                    "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark dark:bg-primary-dark/10 bg-primary/10":
-                      pathname === href || pathname.startsWith(`${href}/`),
-                  },
-                )}
-              >
-                <Icon className="hidden md:inline-flex w-5 h-5" />
-                {t(label)}
-                {!href.startsWith("/") && (
-                  <IconExternalLink className="hidden md:inline-flex ml-auto h-4 w-4 opacity-60" />
-                )}
-              </Link>
+              {createElement(
+                href ? Link : "button",
+                {
+                  className: cn(
+                    "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 hover:dark:text-primary-dark hover:text-primary  h-11 px-4 justify-center items-center text-base rounded-t-lg",
+                    "border-b-2 gap-x-3",
+                    "md:rounded-full md:border-none md:justify-start",
+                    {
+                      "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark":
+                        isActive,
+                    },
+                    className,
+                  ),
+                  target,
+                  onClick,
+                  href: href || "",
+                },
+                <>
+                  <Icon className="hidden md:inline-flex w-5 h-5" />
+                  {t(label)}
+                  {!href?.startsWith("/") && (
+                    <IconExternalLink className="hidden md:inline-flex ml-auto h-4 w-4 opacity-60" />
+                  )}
+                </>,
+              )}
             </li>
           </TrackerEvent>
         ))}
@@ -139,12 +166,23 @@ const SocialSection = () => (
   </nav>
 );
 
-export const Sidebar = () => (
-  <div className="border-b border-outline-variant dark:border-outline-variant-dark px-6 md:px-4 md:border-none flex flex-col h-full">
-    <NavigationSection />
-    <div className="hidden md:block">
-      <FavoriteSection />
+export const Sidebar = ({ dApps }: { dApps: DApp[] }) => {
+  const [favoritesIsOpen, setFavoritesIsOpen] = useState(false);
+
+  return (
+    <div className="bg-surface dark:bg-surface-dark w-full z-10 sticky top-0 md:col-span-1 md:row-start-2 md:row-span-1 h-full md:top-auto md:pt-5">
+      <div className="border-b border-outline-variant dark:border-outline-variant-dark md:border-none flex flex-col h-full">
+        <NavigationSection
+          setFavoritesIsOpen={setFavoritesIsOpen}
+          favoritesIsOpen={favoritesIsOpen}
+        />
+        <FavoriteSection
+          setFavoritesIsOpen={setFavoritesIsOpen}
+          favoritesIsOpen={favoritesIsOpen}
+          dApps={dApps}
+        />
+        <SocialSection />
+      </div>
     </div>
-    <SocialSection />
-  </div>
-);
+  );
+};

@@ -18,15 +18,14 @@
   * {
     @apply focus-visible:rounded-xl focus-visible:outline focus-visible:outline-tertiary-container dark:focus-visible:outline-tertiary-container-dark tracking-wide;
   }
-}
+  /* For Webkit-based browsers (Chrome, Safari and Opera) */
+  .scrollbar-hidden::-webkit-scrollbar {
+    @apply hidden;
+  }
 
-/* For Webkit-based browsers (Chrome, Safari and Opera) */
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
-}
-
-/* For IE, Edge and Firefox */
-.scrollbar-hidden {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  /* For IE, Edge and Firefox */
+  .scrollbar-hidden {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

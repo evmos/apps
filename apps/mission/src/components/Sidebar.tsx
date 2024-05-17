@@ -68,12 +68,12 @@ const NavigationSection = () => {
                 href={href}
                 target={target}
                 className={cn(
-                  "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 h-11 px-4 justify-center items-center text-base rounded-t-lg",
-                  "border-b-2 -mb-px md:mb-0 gap-x-2",
+                  "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 hover:dark:text-primary-dark hover:text-primary  h-11 px-4 justify-center items-center text-base rounded-t-lg",
+                  "border-b-2 -mb-px md:mb-0 gap-x-3",
                   "md:rounded-full md:border-none md:justify-start",
                   {
-                    "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark":
-                      pathname === href,
+                    "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark dark:bg-primary-dark/10 bg-primary/10":
+                      pathname === href || pathname.startsWith(`${href}/`),
                   },
                 )}
               >

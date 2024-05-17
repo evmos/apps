@@ -38,7 +38,7 @@ export const ContainerLogo = ({
       onClick={() => setIsActive(false)}
       {...props}
     >
-      <div className="flex justify-between items-center py-6 md:col-span-1 md:row-span-1">
+      <div className="px-0 flex justify-between items-center py-6 md:col-span-1 md:row-span-1 md:px-4">
         <TrackerEvent event={CLICK_EVMOS_LOGO}>
           <Link href="/">
             <Logo className="h-6" />

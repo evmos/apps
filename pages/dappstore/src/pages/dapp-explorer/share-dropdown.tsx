@@ -10,6 +10,7 @@ import { TwitterShareButton, TelegramShareButton } from "react-share";
 import { Container, CopyButton } from "@evmosapps/ui-helpers";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
+import { CLICK_COPY_ON_SHARE, CLICK_SHARE, sendEvent } from "tracker";
 export const ShareDropdown = ({
   dapp,
 }: {
@@ -21,6 +22,7 @@ export const ShareDropdown = ({
   const urlShare = `https://store.evmos.org/dapps/${dapp.categorySlug}/${dapp.slug}`;
 
   const { t } = useTranslation("dappStore");
+  const utmParams = `?utm_source=store.evmos.org&utm_medium=share&utm_campaign=dapp-`;
 
   return (
     <div className="relative">
@@ -39,12 +41,15 @@ export const ShareDropdown = ({
                 {/* Social media */}
                 <div className="flex justify-center mt-4 gap-8">
                   <TwitterShareButton
-                    url={urlShare}
+                    url={urlShare+utmParams+"twitter"}
                     title={t("share.description")}
                   >
                     <div
                       className="block p-4 mt-2 rounded-[20px] text-on-background dark:text-on-background-dark bg-surface-container-high dark:bg-surface-container-high-dark hover:bg-surface-container-highest hover:dark:bg-surface-container-highest-dark transition-all ease-in-out duration-200"
-                      onClick={close}
+                      onClick={() => {
+                        sendEvent(CLICK_SHARE, { "Share Social Type": "X" });
+                        close();
+                      }}
                     >
                       <IconX className="h-6 w-6" />
                     </div>
@@ -53,12 +58,17 @@ export const ShareDropdown = ({
                     </p>
                   </TwitterShareButton>
                   <TelegramShareButton
-                    url={urlShare}
+                    url={urlShare+utmParams+"telegram"}
                     title={t("share.description")}
                   >
                     <div
                       className="block p-4 mt-2 rounded-[20px] text-on-background dark:text-on-background-dark bg-surface-container-high dark:bg-surface-container-high-dark hover:bg-surface-container-highest hover:dark:bg-surface-container-highest-dark transition-all ease-in-out duration-200"
-                      onClick={close}
+                      onClick={() => {
+                        sendEvent(CLICK_SHARE, {
+                          "Share Social Type": "Telegram",
+                        });
+                        close();
+                      }}
                     >
                       <IconTelegram className="h-6 w-6" />
                     </div>
@@ -75,7 +85,7 @@ export const ShareDropdown = ({
                     <p className="flex-grow overflow-hidden truncate">
                       {urlShare}
                     </p>
-                    <CopyButton text={urlShare} />
+                    <CopyButton event={CLICK_COPY_ON_SHARE} text={urlShare} />
                   </div>
                 </div>
               </Container>

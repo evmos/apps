@@ -13,6 +13,7 @@ import { IconArrowLeft } from "@evmosapps/ui/icons/filled/arrows/arrow-left.tsx"
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { IconCross } from "@evmosapps/ui/icons/line/basic/cross.tsx";
+import { CLICKED_DAPP_FROM_SEARCH, CLICK_SEARCH, sendEvent } from "tracker";
 
 const SearchResults = dynamic(
   () => import("./SearchResults").then((mod) => mod.SearchResults),
@@ -87,6 +88,7 @@ export const Search = ({
           setQuery("");
           setIsActive?.(false);
           router.push(entry.href);
+          sendEvent(CLICKED_DAPP_FROM_SEARCH, { "dApp Name": entry.name });
         }}
         onClose={() => {
           setIsActive?.(false);
@@ -132,6 +134,9 @@ export const Search = ({
               onChange={(event) => {
                 if (!isActive) setIsActive?.(true);
                 setQuery(event.target.value);
+              }}
+              onClick={() => {
+                sendEvent(CLICK_SEARCH);
               }}
             />
 

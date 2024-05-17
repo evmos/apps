@@ -73,7 +73,7 @@ const NavigationSection = () => {
                   "md:rounded-full md:border-none md:justify-start",
                   {
                     "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark":
-                      pathname === href,
+                      pathname === href || pathname.startsWith(`${href}/`),
                   },
                 )}
               >

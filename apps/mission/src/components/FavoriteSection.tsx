@@ -8,6 +8,7 @@ import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning-strok
 import { useFavoritesContext } from "../../src/components/useFavorite";
 import Link from "next/link";
 import { Suspense } from "react";
+import { CLICK_ON_NAVIGATION, sendEvent } from "tracker";
 import { Trans, useTranslation } from "@evmosapps/i18n/client";
 
 export const FavoriteSection = () => {
@@ -46,7 +47,12 @@ export const FavoriteSection = () => {
               return (
                 <Link
                   href={`/dapps/${favorite.categorySlug}/${favorite.slug}`}
-                  key={favorite.slug}
+                  key={favorite.name}
+                  onClick={() => {
+                    sendEvent(CLICK_ON_NAVIGATION, {
+                      navigation: favorite.name,
+                    });
+                  }}
                 >
                   <div
                     className={`flex flex-row my-6 grow shrink basis-0 justify-start place-items-center gap-3

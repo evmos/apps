@@ -69,6 +69,8 @@ export const useSignIn = () => {
 
         sendEvent(SUCCESSFUL_WALLET_CONNECTION, {
           "Wallet Provider": connector.name,
+          // TODO: check if we can send the address here
+          // "User wallet address":
         });
 
         setError(undefined);
@@ -84,7 +86,7 @@ export const useSignIn = () => {
       onError: (e, { connector }) => {
         sendEvent(UNSUCCESSFUL_WALLET_CONNECTION, {
           "Wallet Provider": connector.name,
-          "Error Message": `Failed to connect with ${connector.name}`,
+          "Error Message": e.message,
         });
         alertsManager.error({
           title: "Connection failed. Please try again.",

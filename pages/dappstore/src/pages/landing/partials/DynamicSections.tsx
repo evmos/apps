@@ -123,7 +123,7 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
           <TrackerEvent
             event={CLICK_ON_FEATURED_DAPP}
             properties={{
-              "dApp Name": title,
+              Category: title,
               Section: "Highlighted Category",
             }}
           >
@@ -228,7 +228,7 @@ async function CategoryListSection({
             key={category.slug}
             event={CLICK_ON_FEATURED_DAPP}
             properties={{
-              "dApp Name": category.name,
+              Category: category.name,
               Section: title,
             }}
           >

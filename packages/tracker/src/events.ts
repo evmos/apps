@@ -109,3 +109,6 @@ export const CLICK_SEARCH = "ClickSearch";
 export const CLICK_FAVORITE = "ClickFavorite";
 export const UNCLICK_FAVORITE = "UnclickFavorite";
 export const CLICKED_DAPP_FROM_SEARCH = "ClickedAppfromSearch";
+export const CLICK_SHARE = "ClickShare";
+export const CLICK_COPY_ON_SHARE = "ClickCopyinShare";
+export const CLICK_WIDGET = "ClickWidget";

@@ -6,15 +6,26 @@ import { CopyIcon } from "@evmosapps/icons/CopyIcon";
 
 import { useEffect, useState } from "react";
 import { Tooltip } from ".";
-
-export const CopyButton = ({ text }: { text: string }) => {
+import { TrackerEvents, sendEvent } from "tracker";
+import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
+import { alertsManager } from "@evmosapps/ui/components/alert/alert-manager.tsx";
+import { IconBarchart } from "@evmosapps/ui/icons/line/basic/barchart.tsx";
+export const CopyButton = ({
+  text,
+  event,
+  properties,
+}: {
+  text: string;
+  event?: TrackerEvents;
+  properties?: { [key: string]: string };
+}) => {
   const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     if (!isCopied) return;
     const timeout = setTimeout(() => {
       setIsCopied(false);
-    }, 2000);
+    }, 3500);
     return () => {
       clearTimeout(timeout);
     };
@@ -27,10 +38,21 @@ export const CopyButton = ({ text }: { text: string }) => {
         e.preventDefault();
         await navigator.clipboard.writeText(text);
         setIsCopied(true);
+        event && sendEvent(event, properties);
+        alertsManager.primary({
+          title: "Copied to clipboard!",
+          icon: IconBarchart,
+        });
       }}
     >
       <Tooltip
-        element={<CopyIcon width={14} height={14} />}
+        element={
+          isCopied ? (
+            <IconCheck width={14} height={14} />
+          ) : (
+            <CopyIcon width={14} height={14} />
+          )
+        }
         text={isCopied ? "Copied!" : "Copy"}
       />
     </button>

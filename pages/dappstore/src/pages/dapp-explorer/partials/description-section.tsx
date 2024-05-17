@@ -14,7 +14,7 @@ import { EcosystemCard } from "../../landing/partials/ecosystem-card";
 import { translation } from "@evmosapps/i18n/server";
 import { EcosystemCardGrid } from "../../landing/partials/ecosystem-card-grid";
 import { DescriptionLink } from "./description-link";
-import { CLICK_SOCIAL_BUTTON } from "tracker";
+import { CLICK_SOCIAL_BUTTON, CLICK_WIDGET } from "tracker";
 
 import { IconArrowTopRight } from "@evmosapps/ui/icons/line/arrows/arrow-top-right.tsx";
 
@@ -231,12 +231,17 @@ export const DescriptiondApp = async ({
               </div>
               {dapp.dapp.url && (
                 <div className="hidden md:block">
-                  <DescriptionLink href={dapp.dapp.url}>
-                    <Button variant={"primary"} className="w-full mb-3">
-                      {t("ecosystem.open")}
-                      <IconArrowTopRight />
-                    </Button>
-                  </DescriptionLink>
+                  <TrackerEvent
+                    event={CLICK_WIDGET}
+                    properties={{ "dApp Details Type": "Open" }}
+                  >
+                    <DescriptionLink href={dapp.dapp.url}>
+                      <Button variant={"primary"} className="w-full mb-3">
+                        {t("ecosystem.open")}
+                        <IconArrowTopRight />
+                      </Button>
+                    </DescriptionLink>
+                  </TrackerEvent>
                   <div className="flex items-center justify-center">
                     <p className="text-xs text-subheading dark:text-subheading-dark">
                       {t("ecosystem.noInstantdApps")}

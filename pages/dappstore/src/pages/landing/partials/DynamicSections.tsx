@@ -50,6 +50,8 @@ import { IconProcentCircle } from "@evmosapps/ui/icons/line/finances/procent-cir
 import { IconCloud } from "@evmosapps/ui/icons/line/weather/cloud.tsx";
 import { IconUsers } from "@evmosapps/ui/icons/line/users/users.tsx";
 import { getBackgroundImage } from "../../../getBackgroundImage";
+import { CLICK_ON_FEATURED_DAPP } from "tracker";
+import { TrackerEvent } from "@evmosapps/ui-helpers";
 
 export const getDAppsMapByNotionId = async () => {
   const { dApps } = await fetchExplorerData();
@@ -118,34 +120,42 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
           href={target}
           className="w-11/12 max-w-96 lg:max-w-none lg:w-full lg:flex-1 flex-none"
         >
-          <Card
-            lowest
-            className={cn(
-              "h-56 shape-binding px-8 py-8 flex-col flex relative bg-cover w-full shrink-0",
-              "before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-surface-dark/50",
-            )}
-            style={{
-              backgroundImage: image
-                ? getBackgroundImage({
-                    src: image.src,
-                    width: 560,
-                    height: 240,
-                  })
-                : undefined,
+          <TrackerEvent
+            event={CLICK_ON_FEATURED_DAPP}
+            properties={{
+              Category: title,
+              Section: "Highlighted Category",
             }}
-            fullWidth
-            background="bg-galaxy-red"
           >
-            <h3 className="relative text-subheading dark:text-subheading-dark grow tracking-widest uppercase text-xs">
-              {tag}
-            </h3>
-            <div className="relative mt-auto">
-              <h3 className="text-base text-heading dark:text-heading-dark">
-                {title}
+            <Card
+              lowest
+              className={cn(
+                "h-56 shape-binding px-8 py-8 flex-col flex relative bg-cover w-full shrink-0",
+                "before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-surface-dark/50",
+              )}
+              style={{
+                backgroundImage: image
+                  ? getBackgroundImage({
+                      src: image.src,
+                      width: 560,
+                      height: 240,
+                    })
+                  : undefined,
+              }}
+              fullWidth
+              background="bg-galaxy-red"
+            >
+              <h3 className="relative text-subheading dark:text-subheading-dark grow tracking-widest uppercase text-xs">
+                {tag}
               </h3>
-              <h4 className="text-sm">{subtitle}</h4>
-            </div>
-          </Card>
+              <div className="relative mt-auto">
+                <h3 className="text-base text-heading dark:text-heading-dark">
+                  {title}
+                </h3>
+                <h4 className="text-sm">{subtitle}</h4>
+              </div>
+            </Card>
+          </TrackerEvent>
         </Link>
       ))}
     </div>
@@ -172,7 +182,16 @@ async function DAppListGridSection({
       </DAppStorePicks.Header>
       <DAppStorePicks.Body>
         {resolvedDApps.map((dapp) => (
-          <DAppStorePicks.DAppCard key={dapp.slug} {...dapp} />
+          <TrackerEvent
+            key={dapp.slug}
+            event={CLICK_ON_FEATURED_DAPP}
+            properties={{
+              "dApp Name": dapp.name,
+              Section: title,
+            }}
+          >
+            <DAppStorePicks.DAppCard {...dapp} />
+          </TrackerEvent>
         ))}
       </DAppStorePicks.Body>
     </DAppStorePicks>
@@ -205,7 +224,16 @@ async function CategoryListSection({
       </DAppStorePicks.Header>
       <DAppStorePicks.Body className="lg:grid-cols-2 xl:grid-cols-4">
         {resolvedCategories.map((category) => (
-          <DAppStorePicks.CategoryCard key={category.slug} {...category} />
+          <TrackerEvent
+            key={category.slug}
+            event={CLICK_ON_FEATURED_DAPP}
+            properties={{
+              Category: category.name,
+              Section: title,
+            }}
+          >
+            <DAppStorePicks.CategoryCard key={category.slug} {...category} />
+          </TrackerEvent>
         ))}
       </DAppStorePicks.Body>
     </DAppStorePicks>
@@ -227,25 +255,34 @@ async function DAppListCarouselSection({ title, dAppIds }: DynamicSection) {
       {resolvedDApps.map(
         ({ name, icon, categories, categorySlug, slug, instantDapp }) => (
           <Link href={`/dapps/${categorySlug}/${slug}`} key={slug}>
-            <Surface
-              lowest
-              className="w-60 flex-none flex flex-col gap-y-2  p-4"
+            <TrackerEvent
+              event={CLICK_ON_FEATURED_DAPP}
+              properties={{
+                "dApp Name": name,
+                Section: title,
+              }}
             >
-              <MaybeImage
-                className="rounded-lg"
-                {...icon}
-                alt={name}
-                width={48}
-                height={48}
-              />
+              <Surface
+                lowest
+                className="w-60 flex-none flex flex-col gap-y-2  p-4"
+              >
+                <MaybeImage
+                  className="rounded-lg"
+                  {...icon}
+                  alt={name}
+                  width={48}
+                  height={48}
+                />
 
-              <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
-              <div className="gap-1 inline-flex">
-                {categories.map((category) => (
-                  <Badge key={category.slug}>{category.name}</Badge>
-                ))}
-              </div>
-            </Surface>
+                <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
+
+                <div className="gap-1 inline-flex">
+                  {categories.map((category) => (
+                    <Badge key={category.slug}>{category.name}</Badge>
+                  ))}
+                </div>
+              </Surface>
+            </TrackerEvent>
           </Link>
         ),
       )}
@@ -283,45 +320,53 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
             className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
             key={slug}
           >
-            <Link href={`/dapps/${categorySlug}/${slug}`} className="h-full">
-              <div
-                className={cn(
-                  "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
-                  "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
-                )}
-              >
-                {thumbnail && (
-                  <Image
-                    className="relative w-full h-40 object-cover"
-                    {...thumbnail}
+            <TrackerEvent
+              event={CLICK_ON_FEATURED_DAPP}
+              properties={{
+                "dApp Name": name,
+                Section: title,
+              }}
+            >
+              <Link href={`/dapps/${categorySlug}/${slug}`} className="h-full">
+                <div
+                  className={cn(
+                    "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
+                    "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
+                  )}
+                >
+                  {thumbnail && (
+                    <Image
+                      className="relative w-full h-40 object-cover"
+                      {...thumbnail}
+                      alt={name}
+                      width={240}
+                      height={132}
+                    />
+                  )}
+                </div>
+                <CardRanking>{i + 1}</CardRanking>
+                <div className="relative px-4 py-4 flex gap-4 -mt-8 items-center w-full">
+                  <MaybeImage
+                    className="rounded-lg"
+                    {...icon}
                     alt={name}
-                    width={240}
-                    height={132}
+                    width={48}
+                    height={48}
                   />
-                )}
-              </div>
-              <CardRanking>{i + 1}</CardRanking>
-              <div className="relative px-4 py-4 flex gap-4 -mt-8 items-center w-full">
-                <MaybeImage
-                  className="rounded-lg"
-                  {...icon}
-                  alt={name}
-                  width={48}
-                  height={48}
-                />
-                <div className="w-full flex flex-col grow-1 overflow-hidden">
-                  <DAppTitle instantDapp={instantDapp} displayText={false}>
-                    {name}
-                  </DAppTitle>
-                  {/* add space between title and badge */}
-                  <div className="gap-1 inline-flex pt-1">
-                    <Badge key={categories[0]?.slug}>
-                      {categories[0]?.name}
-                    </Badge>
+                  <div className="w-full flex flex-col grow-1 overflow-hidden">
+                    <DAppTitle instantDapp={instantDapp} displayText={false}>
+                      {name}
+                    </DAppTitle>
+                    {/* add space between title and badge */}
+                    <div className="gap-1 inline-flex pt-1">
+                      <Badge key={categories[0]?.slug}>
+                        {categories[0]?.name}
+                      </Badge>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </TrackerEvent>
           </Card>
         ),
       )}
@@ -348,7 +393,6 @@ function BannerSection({
           className="lg:hidden"
         />
       )}
-
       {desktopBannerImage && (
         <BannerCard.BgImage
           fill
@@ -358,7 +402,6 @@ function BannerSection({
           className="hidden lg:block"
         />
       )}
-
       <BannerCard.Body>
         <h3 className="text-heading dark:text-heading-dark text-lg md:text-xl mb-1">
           {title}
@@ -367,16 +410,24 @@ function BannerSection({
         <p className="dark:text-subheading-dark text-sm mb-6">{description}</p>
 
         {ctaTarget && (
-          <Button
-            className="px-8"
-            as={Link}
-            href={ctaTarget.url}
-            variant={"primary"}
-            size="md"
-            data-testid="open-connect-modal"
+          <TrackerEvent
+            event={CLICK_ON_FEATURED_DAPP}
+            properties={{
+              "dApp Name": description,
+              Section: "Banner",
+            }}
           >
-            {ctaLabel}
-          </Button>
+            <Button
+              className="px-8"
+              as={Link}
+              href={ctaTarget.url}
+              variant={"primary"}
+              size="md"
+              data-testid="open-connect-modal"
+            >
+              {ctaLabel}
+            </Button>
+          </TrackerEvent>
         )}
       </BannerCard.Body>
     </BannerCard>

@@ -11,6 +11,7 @@ import { memoize } from "lodash-es";
 import { useQuery } from "@tanstack/react-query";
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
+
 const { Index } = flexsearch;
 
 const fetchEntries = memoize(fetchSearchableItems);

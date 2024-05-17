@@ -9,6 +9,7 @@ import { SignIn } from "./signin/SignIn";
 import useWindowResize from "../useResize";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
+import { CLICK_SEARCH, sendEvent } from "tracker";
 export const Header = () => {
   const { windowSize, isDesktop } = useWindowResize();
   return (
@@ -24,6 +25,7 @@ export const Header = () => {
         ghost
         className="ml-auto"
         onClick={() => {
+          sendEvent(CLICK_SEARCH);
           window.dispatchEvent(new Event("open-search"));
         }}
       >

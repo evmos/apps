@@ -9,6 +9,8 @@ import { IconStar as IconStarFilled } from "@evmosapps/ui/icons/filled/basic/sta
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 
+import { CLICK_FAVORITE, UNCLICK_FAVORITE, sendEvent } from "tracker";
+
 export const FavoriteButton = ({
   dapp,
 }: {
@@ -29,6 +31,17 @@ export const FavoriteButton = ({
 
   const { isDisconnected } = useWallet();
   const handleFavoriteClick = () => {
+    if (isFavorite) {
+      sendEvent(UNCLICK_FAVORITE, {
+        "dApp Type": dapp.instantDapp ? "Instant" : "Non - Instant",
+        "dApp Name": dapp.name,
+      });
+    } else {
+      sendEvent(CLICK_FAVORITE, {
+        "dApp Type": dapp.instantDapp ? "Instant" : "Non - Instant",
+        "dApp Name": dapp.name,
+      });
+    }
     setFavorites({
       name: dapp.name,
       iconSrc: dapp.icon.src,

@@ -48,7 +48,7 @@ export const EcosystemCard = ({ data }: { data: DApp }) => {
               )}
             </div>
 
-            <div className="px-4 py-4 flex gap-4 -mt-5 pb-6">
+            <div className="px-4 py-4 flex gap-4 -mt-5 pb-6 bg-surface-container-lowest dark:bg-surface-container-lowest-dark rounded-b-lg">
               <Icon data={data} />
               <div>
                 <div className="flex gap-1">

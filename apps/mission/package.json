@@ -1,5 +1,4 @@
 {
-
   "name": "dappstore",
   "version": "1.0.38",
   "private": true,
@@ -21,6 +20,7 @@
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
     "@evmosapps/copilot": "workspace:*",
+    "@evmosapps/instant-dapps": "workspace:*",
     "@evmosapps/dappstore-page": "workspace:*",
     "@evmosapps/governance-page": "workspace:*",
     "@evmosapps/i18n": "workspace:*",

@@ -37,7 +37,7 @@ export const Carousel: React.FC<{
                 <button
                   key={index}
                   onClick={() => selectImage(index)}
-                  className={`w-full h-auto lg:h-24 rounded-xl ${
+                  className={`relative aspect-square overflow-hidden w-full h-auto lg:h-24 rounded-xl ${
                     index === selectedImageIndex ? "border-blue-500" : ""
                   }`}
                 >
@@ -45,9 +45,9 @@ export const Carousel: React.FC<{
                     key={index}
                     {...image}
                     alt={`Thumbnail ${index + 1}`}
-                    width={50}
-                    height={50}
-                    className="w-full h-full object-cover rounded-xl"
+                    fill={true}
+                    className="object-cover"
+                    sizes={"400w"}
                   />
                 </button>
               ),

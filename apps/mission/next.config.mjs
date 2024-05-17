@@ -14,7 +14,6 @@ export default withEvmosConfig({
     ];
   },
   images: {
-    domains: ["via.placeholder.com"],
     remotePatterns: [
       {
         protocol: "https",
@@ -35,11 +34,10 @@ export default withEvmosConfig({
       {
         protocol: "https",
         hostname: "raw.githubusercontent.com",
-        pathname: `/evmos/chain-token-registry/${process.env.CHAIN_REGISTRY_REF ?? "main"
-          }/assets/**`,
+        pathname: `/evmos/chain-token-registry/${
+          process.env.CHAIN_REGISTRY_REF ?? "main"
+        }/assets/**`,
       },
-
-      //https://xjrue5nunmcnbzqo.public.blob.vercel-storage.com/dappstore/img-1ayv-n/src.png
       {
         protocol: "https",
         hostname: "**.vercel-storage.com",

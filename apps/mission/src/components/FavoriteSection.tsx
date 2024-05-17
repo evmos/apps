@@ -9,11 +9,12 @@ import { useFavoritesContext } from "../../src/components/useFavorite";
 import Link from "next/link";
 import { Suspense } from "react";
 import { CLICK_ON_NAVIGATION, sendEvent } from "tracker";
+import { Trans, useTranslation } from "@evmosapps/i18n/client";
 
 export const FavoriteSection = () => {
   const { favorites } = useFavoritesContext();
   const [loading, setLoading] = useState(true);
-
+  const { t } = useTranslation("dappStore");
   useEffect(() => {
     setLoading(false);
   }, []);
@@ -21,7 +22,7 @@ export const FavoriteSection = () => {
   return (
     <div className="mt-6 px-4">
       <hr className="text-surface-container dark:text-surface-container-dark "></hr>
-      <h2 className="text-xs mt-4">Favorites</h2>
+      <h2 className="text-xs mt-4">{t("favorites.title")}</h2>
       <Suspense>
         {loading ? (
           <>
@@ -32,14 +33,15 @@ export const FavoriteSection = () => {
         ) : (
           <div className="max-h-[50vh] overflow-y-auto scrollbar-hidden">
             {favorites.length === 0 && (
-              <>
-                <p className="text-sm opacity-70 mt-5 font-medium">
-                  Ping your favorite dApps here.
-                </p>
-                <p className="text-sm opacity-70 mt-5 font-medium">
-                  You can do this by going into a dApp page and starring it.
-                </p>
-              </>
+              <div className="text-sm opacity-70 mt-5 font-medium">
+                <Trans
+                  t={t}
+                  i18nKey="favorites.description"
+                  components={{
+                    p: <p className="mt-5" />,
+                  }}
+                />
+              </div>
             )}
             {favorites.map((favorite) => {
               return (

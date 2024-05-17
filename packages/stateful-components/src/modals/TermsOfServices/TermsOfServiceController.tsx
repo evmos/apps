@@ -41,11 +41,11 @@ export const TermsOfServicesModalController = () => {
 
   return (
     <Modal isOpen={isOpen} setIsOpen={guardedSetIsOpen} onClose={() => {}}>
-      <Modal.Body className="px-8 w-80">
+      <Modal.Body className="px-8 w-[510px]">
         <Modal.Header showCloseButton={false}>{t("tos.title")}</Modal.Header>
         {modalProps && (
           <div className="relative rounded-lg w-full mt-8 max-w-2xl">
-            <div className="mb-32 border-surface-container-highest dark:border-surface-container-highest-dark space-y-3 overflow-y-auto border p-3 rounded-lg text-subheading dark:text-subheading-dark">
+            <div className="mb-8 border-surface-container-highest dark:border-surface-container-highest-dark space-y-3 overflow-y-auto border p-3 rounded-lg text-subheading dark:text-subheading-dark">
               <p>You are now launching the Evmos dApp Store.</p>
               <p>
                 By continuing, you are acknowledging to the{" "}

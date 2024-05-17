@@ -5,7 +5,7 @@ import { DynamicSections } from "./partials/DynamicSections";
 
 export const LandingPage = () => {
   return (
-    <div className="flex flex-col gap-y-8 container max-w-screen-xl mx-auto py-8">
+    <div className="flex flex-col gap-y-8 max-w-full mx-auto py-8">
       {/* TODO: */}
       {/* <Stories /> */}
       <DynamicSections placement={"Landing Page"} />

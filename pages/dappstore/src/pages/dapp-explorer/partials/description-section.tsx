@@ -15,7 +15,6 @@ import { translation } from "@evmosapps/i18n/server";
 import { EcosystemCardGrid } from "../../landing/partials/ecosystem-card-grid";
 import { DescriptionLink } from "./description-link";
 import { CLICK_SOCIAL_BUTTON } from "tracker";
-import { WIDGETS } from "./widgets-index";
 
 import { IconArrowTopRight } from "@evmosapps/ui/icons/line/arrows/arrow-top-right.tsx";
 
@@ -40,22 +39,19 @@ const getSlugClass = (slug: string): string => {
 export const DescriptiondApp = async ({
   dapp,
   relatedApps,
+  widget,
 }: {
   dapp: DApp;
   relatedApps: DApp[];
+  widget?: React.ReactNode;
 }) => {
   const { t } = await translation("dappStore");
 
-  const drawWidget = () => {
-    const Widget = WIDGETS[dapp.slug];
-    if (Widget) return <Widget />;
-  };
-
   return (
-    <div className="md:space-y-12 mb-12 lg:mb-24">
-      <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 mb-10 -mt-24 md:mt-0">
+    <div className="lg:space-y-12 mb-12 lg:mb-24">
+      <div className="flex flex-col lg:flex-row items-center gap-4 md:gap-8 mb-10 -mt-24 md:mt-0">
         {/* dapp icon */}
-        <div className="relative w-20 h-20 aspect-square rounded-[1rem] overflow-hidden">
+        <div className="relative w-20 h-20 aspect-square rounded-[1rem] overflow-hidden flex shrink-0">
           {dapp.icon && (
             <Image
               src={dapp.icon.src}
@@ -63,30 +59,38 @@ export const DescriptiondApp = async ({
               placeholder="blur"
               alt={dapp.name}
               fill={true}
-              className="object-cover"
+              className="object-cover shrink-0"
               sizes={"400w"}
             />
           )}
         </div>
         {/* dapp name */}
-        <div className="flex flex-col grow shrink basis-0 justify-start items-baseline gap-2 md:flex-row">
-          <h1 className="text-xl md:text-5xl lg:text-4xl leading-[48px] mx-auto md:mx-0 text-heading dark:text-heading-dark">
-            {dapp.name}
-          </h1>
-          {/* Instant dapp badge */}
-          {dapp.instantDapp && (
-            <div className="flex items-center gap-px mx-auto -ml-1 md:mx-0">
-              <div className="relative">
-                <IconLightning className="h-3 w-3 mb-0.5 text-primary-container dark:text-primary-container-dark" />
-              </div>
-              <p className="text-primary dark:text-primary-dark text-[13px] mb-0.5">
-                {t("instantdApp.badge")}
-              </p>
+        <div className="flex flex-col grow shrink basis-0 justify-start items-baseline gap-2 lg:flex-row">
+          <div className="flex flex-col lg:block">
+            <div className="flex flex-col grow shrink basis-0 justify-center lg:justify-start items-center lg:items-baseline gap-2 lg:flex-row">
+              <h1 className="text-xl xl:text-5xl lg:text-4xl leading-[48px] mx-auto lg:mx-0 text-heading dark:text-heading-dark">
+                {dapp.name}
+              </h1>
+              {/* Instant dapp badge */}
+              {dapp.instantDapp && (
+                <div className="flex items-center w-full lg:w-fit justify-center gap-px mx-auto -ml-1 lg:mx-0">
+                  <div className="relative">
+                    <IconLightning className="h-3 w-3 mb-0.5 text-primary-container dark:text-primary-container-dark" />
+                  </div>
+                  <p className="text-primary dark:text-primary-dark text-[13px] mb-0.5">
+                    {t("instantdApp.badge")}
+                  </p>
+                </div>
+              )}
             </div>
-          )}
+            <h2 className="text-center lg:text-left mt-3 mx-auto lg:mx-0 text-paragraph dark:text-paragraph-dark">
+              {dapp.oneLiner}
+            </h2>
+          </div>
+
           {/* No-instant-dapp button mobile */}
           {!dapp.instantDapp && dapp.dapp.url && (
-            <div className="block md:hidden mx-auto">
+            <div className="block lg:hidden mx-auto">
               <DescriptionLink href={dapp.dapp.url}>
                 <Button variant={"primary"} className="w-full mb-3">
                   {t("ecosystem.open")} <IconArrowTopRight />
@@ -101,7 +105,7 @@ export const DescriptiondApp = async ({
           )}
         </div>
         {/* Share and favorite icons */}
-        <div className="flex justify-end items-center gap-4 mx-auto md:mx-0">
+        <div className="flex justify-end items-center gap-4 mx-auto lg:mx-0">
           <ShareDropdown
             dapp={{
               slug: dapp.slug,
@@ -213,14 +217,14 @@ export const DescriptiondApp = async ({
         </div>
         {/* Widget or carousel */}
         <div className="w-full order-1 lg:order-2">
-          {drawWidget() && (
+          {!!widget && (
             <div className={`w-full  mx-auto grow ${getSlugClass(dapp.slug)}`}>
               <div className="flex items-center justify-center h-full">
-                {drawWidget()}
+                {widget}
               </div>
             </div>
           )}
-          {!drawWidget() && (
+          {!widget && (
             <div className="w-full">
               <div className="mb-8">
                 <Carousel images={dapp.gallery} />

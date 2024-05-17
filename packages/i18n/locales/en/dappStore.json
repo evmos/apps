@@ -45,14 +45,22 @@
     }
   },
   "categories": {
-    "title": "Explore the {{count}} {{name}} on Evmos",
+    "title": {
+      "all": "Explore the {{count}} dApps on Evmos",
+      "allInstant": "Explore the {{count}} Instant dApps on Evmos",
+      "few": "Explore the {{categoryName}} dApps on Evmos",
+      "fewInstant": "Explore the {{categoryName}} Instant dApps on Evmos",
+      "many": "Explore the {{count}} {{categoryName}} dApps on Evmos",
+      "manyInstant": "Explore the {{count}} Instant {{categoryName}} dApps on Evmos"
+    },
+    "title_few": "Explore the {{count}} {{name}} dApps on Evmos",
     "description": "Explore the Evmos Ecosystem - dApps, tools, exchanges, infrastructure, and more.",
     "all": {
       "name": "All",
       "description": "Discover the power of cross-chain apps - instantly, in one place."
     }
   },
-  "filterdApps": {
+  "filteredApps": {
     "all": "All dApps",
     "amount": "results",
     "checkbox": {
@@ -61,7 +69,8 @@
     "notFound": {
       "title": "No results found.",
       "description": "Try another search query or change your filter settings."
-    }
+    },
+    "loading": "Loading..."
   },
   "instantdApp": {
     "badge": "Instant",
@@ -137,6 +146,25 @@
       "search": {
         "placeholder": "Search"
       }
+    }
+  },
+  "favorites": {
+    "title": "Favorites",
+    "description": "Pin your favorite dApps here. <p>You can do this by going into a dApp page and starring it.</p>"
+  },
+  "navigation": {
+    "title": "dApp Store",
+    "options": {
+      "discover": "Discover",
+      "categories": "Categories",
+      "develop": "Develop"
+    }
+  },
+  "share": {
+    "description": "Hey, check out this cool dApp I discovered on the Evmos dApp Store!",
+    "options": {
+      "twitter": "X",
+      "telegram": "Telegram"
     }
   }
 }

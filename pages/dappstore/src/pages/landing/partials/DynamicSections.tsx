@@ -265,7 +265,6 @@ async function DAppListCarouselSection({ title, dAppIds }: DynamicSection) {
               <Surface
                 lowest
                 className="w-60 flex-none flex flex-col gap-y-2  p-4"
-                key={slug}
               >
                 <MaybeImage
                   className="rounded-lg"
@@ -303,54 +302,74 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
   });
   return (
     <ScrollableSection title={title}>
-      {resolvedDApps.map(({ name, icon, categorySlug, slug, thumbnail }, i) => (
-        <Link href={`/dapps/${categorySlug}/${slug}`} key={slug}>
-          <TrackerEvent
-            event={CLICK_ON_FEATURED_DAPP}
-            properties={{
-              "dApp Name": name,
-              Section: title,
-            }}
+      {resolvedDApps.map(
+        (
+          {
+            name,
+            icon,
+            categorySlug,
+            slug,
+            thumbnail,
+            categories,
+            instantDapp,
+          },
+          i,
+        ) => (
+          <Card
+            low
+            className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
+            key={slug}
           >
-            <Card
-              low
-              className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
+            <TrackerEvent
+              event={CLICK_ON_FEATURED_DAPP}
+              properties={{
+                "dApp Name": name,
+                Section: title,
+              }}
             >
-              <div
-                className={cn(
-                  "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
-                  "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
-                )}
-              >
-                {thumbnail && (
-                  <Image
-                    className="relative w-full"
-                    {...thumbnail}
-                    alt={name}
-                    width={240}
-                    height={132}
-                  />
-                )}
-              </div>
-              <CardRanking>{i + 1}</CardRanking>
-              <div className="relative px-4 py-4 flex gap-4 -mt-8 items-center w-full">
-                <MaybeImage
-                  className="rounded-lg"
-                  {...icon}
-                  alt={name}
-                  width={48}
-                  height={48}
-                />
-                <div className="w-full flex grow-1 overflow-hidden">
-                  <h3 className="heading text-base overflow-hidden w-full overflow-ellipsis">
-                    {name}
-                  </h3>
+              <Link href={`/dapps/${categorySlug}/${slug}`}>
+                <div
+                  className={cn(
+                    "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
+                    "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
+                  )}
+                >
+                  {thumbnail && (
+                    <Image
+                      className="relative w-full"
+                      {...thumbnail}
+                      alt={name}
+                      width={240}
+                      height={132}
+                    />
+                  )}
                 </div>
-              </div>
-            </Card>
-          </TrackerEvent>
-        </Link>
-      ))}
+                <CardRanking>{i + 1}</CardRanking>
+                <div className="relative px-4 py-4 flex gap-4 -mt-8 items-center w-full">
+                  <MaybeImage
+                    className="rounded-lg"
+                    {...icon}
+                    alt={name}
+                    width={48}
+                    height={48}
+                  />
+                  <div className="w-full flex flex-col grow-1 overflow-hidden">
+                    <DAppTitle instantDapp={instantDapp} displayText={false}>
+                      {name}
+                    </DAppTitle>
+                    {/* add space between title and badge */}
+                    <div className="gap-1 inline-flex pt-1">
+                      <Badge key={categories[0]?.slug}>
+                        {categories[0]?.name}
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </TrackerEvent>
+          </Card>
+        ),
+      )}
     </ScrollableSection>
   );
 }
@@ -483,34 +502,28 @@ DAppStorePicks.DAppCard = function DAppStorePicksDAppCard({
   "name" | "icon" | "categorySlug" | "categories" | "slug" | "instantDapp"
 >) {
   return (
-    <Card
-      low
-      className="overflow-hidden flex-row shrink-0 gap-4 p-3 w-full hover:bg-surface-container hover:dark:bg-surface-container-dark transition-colors duration-150 items-center group"
-    >
-      <Link href={`/dapps/${categorySlug}/${slug}`}>
-        <MaybeImage {...icon} alt={name} width={56} height={56} />
-      </Link>
-      <div>
-        <Link href={`/dapps/${categorySlug}/${slug}`}>
-          <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
-        </Link>
-        <div className="gap-1 inline-flex">
-          {categories.map((category) => (
-            <Badge key={category.slug} href="">
-              {category.name}
-            </Badge>
-          ))}
-        </div>
-      </div>
-      <Button
-        href={`/dapps/${categorySlug}/${slug}`}
-        as={Link}
-        className="ml-auto hidden group-hover:block"
-        variant="low-emphasis"
+    <Link href={`/dapps/${categorySlug}/${slug}`}>
+      <Card
+        low
+        className="overflow-hidden flex-row shrink-0 gap-4 p-3 w-full hover:bg-surface-container hover:dark:bg-surface-container-dark transition-colors duration-150 items-center group"
       >
-        Open
-      </Button>
-    </Card>
+        <MaybeImage {...icon} alt={name} width={56} height={56} />
+        <div>
+          <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
+          <div className="gap-1 inline-flex">
+            {categories.map((category) => (
+              <Badge key={category.slug}>{category.name}</Badge>
+            ))}
+          </div>
+        </div>
+        <Button
+          className="ml-auto hidden group-hover:block"
+          variant="low-emphasis"
+        >
+          Open
+        </Button>
+      </Card>
+    </Link>
   );
 };
 // TODO: Different categories should have different icons and color, we should populate the table below
@@ -532,31 +545,31 @@ const CATEGORY_PROPS: Record<
 > = {
   "instant-dapps": { color: colors.primary, Icon: IconLightning },
   analytics: { color: colors.purple, Icon: IconChartPie },
-  "block-explorers": { color: colors.indigo, Icon: IconSearch },
+  "block-explorer": { color: colors.indigo, Icon: IconSearch },
   "bridge-and-swap": { color: colors.green, Icon: IconArrowSwap },
-  bridges: { color: colors.rose, Icon: IconShare },
-  "centralized-exchanges": { color: colors.pink, Icon: IconDollarCircle },
+  bridge: { color: colors.rose, Icon: IconShare },
+  "centralized-exchange": { color: colors.pink, Icon: IconDollarCircle },
   dashboard: { color: colors.cyan, Icon: IconGrid07 },
   defi: { color: colors.purple, Icon: IconLink2 },
   gaming: { color: colors.indigo, Icon: IconGames },
-  "governance-and-daos": { color: colors.green, Icon: IconGlobe },
+  "governance-and-dao": { color: colors.green, Icon: IconGlobe },
   indexer: { color: colors.rose, Icon: IconListUnorderedRec },
   launchpad: { color: colors.cyan, Icon: IconElements },
-  nfts: { color: colors.purple, Icon: IconImage3 },
-  "on-ramps": { color: colors.indigo, Icon: IconLogIn2 },
+  nft: { color: colors.purple, Icon: IconImage3 },
+  "on-ramp": { color: colors.indigo, Icon: IconLogIn2 },
   oracles: { color: colors.green, Icon: IconCloud },
   otc: { color: colors.rose, Icon: IconUsers },
   services: { color: colors.pink, Icon: IconCalendarPerson },
   staking: { color: colors.cyan, Icon: IconProcentCircle },
-  wallets: { color: colors.purple, Icon: IconWallet },
+  wallet: { color: colors.purple, Icon: IconWallet },
 };
+
 DAppStorePicks.CategoryCard = function DAppStorePicksCategoryCard({
   name,
   slug,
 }: Pick<Category, "name" | "slug">) {
   const { Icon, color } = CATEGORY_PROPS[slug] ?? {
-    color:
-      "bg-primary/10 dark:bg-primary-dark/10 text-primary-container dark:text-primary-container-dark",
+    color: colors.purple,
     Icon: IconLightning,
   };
   return (
@@ -582,8 +595,10 @@ DAppStorePicks.CategoryCard = function DAppStorePicksCategoryCard({
 function DAppTitle({
   children,
   instantDapp = false,
+  displayText = true,
 }: PropsWithChildren<{
   instantDapp?: boolean;
+  displayText?: boolean;
 }>) {
   return (
     <div className="overflow-hidden [&>*]align-middle line-clamp-1 leading-4 overflow-ellipsis">
@@ -591,9 +606,11 @@ function DAppTitle({
       {instantDapp && (
         <>
           <IconLightning className="inline-flex shrink-0 text-primary-container dark:text-primary-container-dark h-3 w-3" />{" "}
-          <span className="gap-1 text-primary dark:text-primary-dark text-xs font-bold">
-            Instant
-          </span>
+          {displayText && (
+            <span className="gap-1 text-primary dark:text-primary-dark text-xs font-bold">
+              Instant
+            </span>
+          )}
         </>
       )}
     </div>

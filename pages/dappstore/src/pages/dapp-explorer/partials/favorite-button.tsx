@@ -7,6 +7,7 @@ import { useFavoritesContext } from "../../../../../../apps/mission/src/componen
 import { IconStar as IconStarLine } from "@evmosapps/ui/icons/line/basic/star.tsx";
 import { IconStar as IconStarFilled } from "@evmosapps/ui/icons/filled/basic/star.tsx";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
+import { useWallet } from "@evmosapps/evmos-wallet";
 
 import { CLICK_FAVORITE, UNCLICK_FAVORITE, sendEvent } from "tracker";
 
@@ -28,6 +29,7 @@ export const FavoriteButton = ({
 
   const isFavorite = favorites.some((fav) => fav.name === dapp.name);
 
+  const { isDisconnected } = useWallet();
   const handleFavoriteClick = () => {
     if (isFavorite) {
       sendEvent(UNCLICK_FAVORITE, {
@@ -56,6 +58,7 @@ export const FavoriteButton = ({
       variant={"low-emphasis"}
       onClick={handleFavoriteClick}
       outlined
+      disabled={isDisconnected}
     >
       {isFavorite ? (
         <IconStarFilled className="text-primary-dark" />

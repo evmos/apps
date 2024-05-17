@@ -122,7 +122,7 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
             lowest
             className={cn(
               "h-56 shape-binding px-8 py-8 flex-col flex relative bg-cover w-full shrink-0",
-              "before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-surface-dark/50",
+              "before:absolute before:top-0 before:left-0 before:w-[101%] before:h-[101%] before:bg-surface-dark/50 before:rounded-lg",
             )}
             style={{
               backgroundImage: image
@@ -143,7 +143,9 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
               <h3 className="text-base text-heading dark:text-heading-dark">
                 {title}
               </h3>
-              <h4 className="text-sm">{subtitle}</h4>
+              <h4 className="text-sm text-subheading dark:text-subheading-dark">
+                {subtitle}
+              </h4>
             </div>
           </Card>
         </Link>

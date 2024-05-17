@@ -134,7 +134,8 @@ export const FavoriteSection = ({
                 </div>
 
                 <IconButton
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.stopPropagation();
                     removeFavorite(favorite.slug);
                   }}
                   className="ml-auto md:p-0 md:invisible md:group-hover:visible md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"

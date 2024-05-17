@@ -72,7 +72,7 @@ const NavigationSection = () => {
                   "border-b-2 -mb-px md:mb-0 gap-x-3",
                   "md:rounded-full md:border-none md:justify-start",
                   {
-                    "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark":
+                    "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark dark:bg-primary-dark/10 bg-primary/10":
                       pathname === href || pathname.startsWith(`${href}/`),
                   },
                 )}

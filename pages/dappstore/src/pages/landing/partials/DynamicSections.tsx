@@ -283,7 +283,7 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
             className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
             key={slug}
           >
-            <Link href={`/dapps/${categorySlug}/${slug}`}>
+            <Link href={`/dapps/${categorySlug}/${slug}`} className="h-full">
               <div
                 className={cn(
                   "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
@@ -292,7 +292,7 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
               >
                 {thumbnail && (
                   <Image
-                    className="relative w-full"
+                    className="relative w-full h-40 object-cover"
                     {...thumbnail}
                     alt={name}
                     width={240}

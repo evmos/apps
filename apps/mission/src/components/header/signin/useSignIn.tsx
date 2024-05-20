@@ -13,7 +13,7 @@ import {
 } from "react";
 import { useWallet, wagmiConfig } from "@evmosapps/evmos-wallet";
 import { disconnect } from "wagmi/actions";
-import { useWAlletsContext } from "./useWallets";
+import { useWalletsContext } from "./useWallets";
 import { useOtherWalletsModal } from "./WalletsModal";
 import {
   SUCCESSFUL_WALLET_CONNECTION,
@@ -43,7 +43,7 @@ export const useSignIn = () => {
   >();
   const { setIsOpen } = useOtherWalletsModal();
   const { setIsDropdownOpen } = useWallet();
-  const { wallets, setWallets } = useWAlletsContext();
+  const { wallets, setWallets } = useWalletsContext();
   const defaultWallets = supportedWallets.filter((item) =>
     wallets.includes(item.name),
   );

@@ -6,6 +6,7 @@ import { raise } from "helpers";
 import React from "react";
 import { DappDetailsPage } from "@evmosapps/dappstore-page/src/pages/dapp-explorer/dapp-details/dapp-details-page";
 import { WIDGETS } from "@evmosapps/dappstore-page/src/pages/dapp-explorer/partials/widgets-index";
+import { ResolvingMetadata } from "next";
 
 export default function Layout({
   params,
@@ -33,10 +34,15 @@ export const generateStaticParams = async () => {
 
 export async function generateMetadata({
   params,
+  parent,
 }: {
   params: { dapp: string };
+  parent: ResolvingMetadata;
 }) {
   const { dApps } = await fetchExplorerData();
+
+  // optionally access and extend (rather than replace) parent metadata
+  const previousImages = (await parent)?.openGraph?.images || [];
   const dapp =
     dApps.find((c) => c.slug === params.dapp) ?? raise("DApp not found");
 
@@ -44,27 +50,15 @@ export async function generateMetadata({
     return {
       title: `${dapp.name} Instant dApp | Evmos dApp Store`,
       openGraph: {
-        title: "dapp test Apps",
-        type: "article",
-        images: dapp.thumbnail?.src,
-        url: "https://evmos-dapp-git-test-changing-metadata-evmos-apps.vercel.app/",
-        description:
-          "Evmos Apps is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team.",
-        siteName: "test instant  Apps",
-      },
-
-      twitter: {
-        card: "summary_large_image",
-        images: dapp.thumbnail?.src,
-
-        description:
-          "testing Evmos Apps is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team.",
-        site: "@EvmosOrg",
+        images: [dapp.thumbnail?.src, ...previousImages],
       },
     };
   }
 
   return {
     title: `${dapp.name} dApp | Evmos dApp Store`,
+    openGraph: {
+      images: [dapp.thumbnail?.src, ...previousImages],
+    },
   };
 }

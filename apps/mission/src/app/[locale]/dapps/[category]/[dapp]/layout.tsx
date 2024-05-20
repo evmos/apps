@@ -6,7 +6,7 @@ import { raise } from "helpers";
 import React from "react";
 import { DappDetailsPage } from "@evmosapps/dappstore-page/src/pages/dapp-explorer/dapp-details/dapp-details-page";
 import { WIDGETS } from "@evmosapps/dappstore-page/src/pages/dapp-explorer/partials/widgets-index";
-import { ResolvingMetadata } from "next";
+import { Metadata, ResolvingMetadata } from "next";
 
 export default function Layout({
   params,
@@ -32,13 +32,14 @@ export const generateStaticParams = async () => {
   }));
 };
 
-export async function generateMetadata({
-  params,
-  parent,
-}: {
+type Props = {
   params: { dapp: string };
-  parent: ResolvingMetadata;
-}) {
+};
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const { dApps } = await fetchExplorerData();
 
   // optionally access and extend (rather than replace) parent metadata
@@ -50,7 +51,9 @@ export async function generateMetadata({
     return {
       title: `${dapp.name} Instant dApp | Evmos dApp Store`,
       openGraph: {
-        images: [dapp.thumbnail?.src, ...previousImages],
+        images: dapp.thumbnail
+          ? [dapp.thumbnail?.src, ...previousImages]
+          : [...previousImages],
       },
     };
   }
@@ -58,7 +61,9 @@ export async function generateMetadata({
   return {
     title: `${dapp.name} dApp | Evmos dApp Store`,
     openGraph: {
-      images: [dapp.thumbnail?.src, ...previousImages],
+      images: dapp.thumbnail
+        ? [dapp.thumbnail?.src, ...previousImages]
+        : [...previousImages],
     },
   };
 }

@@ -37,13 +37,13 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Evmos Apps",
+    title: "Test Apps",
     type: "article",
     images: "https://storage.evmos.org/social_previews/social_share_apps.jpg",
     url: "https://app.evmos.org/",
     description:
       "Evmos Apps is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team.",
-    siteName: "Evmos Apps",
+    siteName: "Test Apps",
   },
 
   twitter: {
@@ -89,7 +89,7 @@ async function RootLayout({
             <WalletsProvider>
               <FavoritesProvider>
                 <ContainerLogo />
-                <Sidebar dApps={dApps}/>
+                <Sidebar dApps={dApps} />
                 <div className="overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
                   <Header />
                   <div className="px-5 md:px-14 max-w-full overflow-x-hidden">
@@ -112,5 +112,3 @@ async function RootLayout({
 }
 
 export default RootLayout;
-
-

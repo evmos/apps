@@ -43,6 +43,24 @@ export async function generateMetadata({
   if (dapp.instantDapp) {
     return {
       title: `${dapp.name} Instant dApp | Evmos dApp Store`,
+      openGraph: {
+        title: "dapp test Apps",
+        type: "article",
+        images: dapp.thumbnail?.src,
+        url: "https://evmos-dapp-git-test-changing-metadata-evmos-apps.vercel.app/",
+        description:
+          "Evmos Apps is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team.",
+        siteName: "test instant  Apps",
+      },
+
+      twitter: {
+        card: "summary_large_image",
+        images: dapp.thumbnail?.src,
+
+        description:
+          "testing Evmos Apps is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team.",
+        site: "@EvmosOrg",
+      },
     };
   }
 

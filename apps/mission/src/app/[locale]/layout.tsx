@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: "Test Apps",
     type: "article",
     images: "https://storage.evmos.org/social_previews/social_share_apps.jpg",
-    url: "https://evmos-dapp-git-test-changing-metadata-evmos-apps.vercel.app//",
+    url: "https://evmos-dapp-git-test-changing-metadata-evmos-apps.vercel.app/",
     description:
       "Evmos Apps is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team.",
     siteName: "Test Apps",

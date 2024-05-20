@@ -1,72 +1,79 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 "use client";
-import { createContext, useContext, useState } from "react";
+import { useEffectEvent } from "helpers";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useAccount } from "wagmi";
+import { profileImages } from "./ModalEdit";
+import { StaticImageData } from "next/image";
+export const PROFILE_KEY = "userProfile";
 
-export const DISPLAY_NAME_KEY = "userProfile.displayName";
-export const PROFILE_IMAGE_KEY = "userProfile.profileImage";
+export const DEFAULT_PROFILE = {
+  name: "",
+  img: {
+    src: "",
+    height: 0,
+    width: 0,
+  },
+};
 
-export type ProfileContext = {
+type Profile = {
   name: string;
-  handleSetName: (name: string) => void;
-  img: number;
-  handleSetImg: (img: number) => void;
+  img: StaticImageData | undefined;
+};
+export type ProfileContext = {
+  profile: Profile;
+  updateProfile: (profile: Profile) => void;
 };
 
 const ProfileContext = createContext<ProfileContext | null>(null);
 
+const readProfile = (address: string) => {
+  if (typeof window === "undefined") {
+    return DEFAULT_PROFILE;
+  }
+  const values = window.localStorage.getItem(`${PROFILE_KEY}.${address}`);
+  return values
+    ? (JSON.parse(values) as Profile)
+    : { name: "", img: profileImages[0] };
+};
+
+const writeProfile = (address: string, profile: Profile) => {
+  if (typeof window !== "undefined") {
+    window.localStorage.setItem(
+      `${PROFILE_KEY}.${address}`,
+      JSON.stringify(profile),
+    );
+  }
+};
+
 export function ProfileProvider({ children }: { children: JSX.Element }) {
-  const setProfileNameDb = (profileName: string) => {
-    localStorage.setItem(DISPLAY_NAME_KEY, JSON.stringify(profileName));
-  };
+  const [profile, setProfile] = useState<Profile>(DEFAULT_PROFILE);
+  const { address } = useAccount();
 
-  const setProfileImgDb = (profileImg: number) => {
-    localStorage.setItem(PROFILE_IMAGE_KEY, JSON.stringify(profileImg));
-  };
-  const getProfileImage = () => {
-    const storedImg =
-      typeof window === "undefined"
-        ? undefined
-        : window.localStorage.getItem(PROFILE_IMAGE_KEY);
-
-    if (!storedImg) {
-      return 0;
+  useEffect(() => {
+    if (!address) {
+      return;
     }
-    return JSON.parse(storedImg) as number;
-  };
+    setProfile(readProfile(address));
+  }, [address]);
 
-  const getProfileName = () => {
-    const storedName =
-      typeof window === "undefined"
-        ? undefined
-        : window.localStorage.getItem(DISPLAY_NAME_KEY);
-
-    if (!storedName) {
-      return "";
+  useEffect(() => {
+    if (!address || !profile) {
+      return;
     }
+    writeProfile(address, profile);
+  }, [address, profile]);
 
-    return JSON.parse(storedName) as string;
-  };
-  const [profileName, setProfileName] = useState(getProfileName());
-  const [profileImg, setProfileImg] = useState(getProfileImage());
-
-  const handleSetValue = (name: string) => {
-    setProfileName(name);
-    setProfileNameDb(name);
-  };
-
-  const handleSetImage = (img: number) => {
-    setProfileImg(img);
-    setProfileImgDb(img);
-  };
+  const updateProfile = useEffectEvent((profile: Profile) => {
+    setProfile({ name: profile?.name, img: profile.img });
+  });
 
   return (
     <ProfileContext.Provider
       value={{
-        name: profileName,
-        handleSetName: handleSetValue,
-        img: profileImg,
-        handleSetImg: handleSetImage,
+        profile,
+        updateProfile,
       }}
     >
       {children}

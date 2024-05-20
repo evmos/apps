@@ -3,7 +3,7 @@
 
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { profileImages, useEditModal } from "../edit/ModalEdit";
 import { cn } from "helpers";
 import { IconEdit2 } from "@evmosapps/ui/icons/line/editor/edit-2.tsx";
@@ -108,8 +108,8 @@ const SettingsTitle = () => {
 };
 
 const SettingsAddress = () => {
-  const { name: profileName, img } = useProfileContext();
-  const image = profileImages[img] as StaticImageData;
+  const { profile } = useProfileContext();
+  const image = profileImages.find((image) => image.src === profile.img?.src);
   const editModal = useEditModal();
   const { address } = useAccount();
   const { setIsDropdownOpen } = useWallet();
@@ -122,20 +122,21 @@ const SettingsAddress = () => {
       className="flex justify-between w-full rounded-xl bg-surface-container dark:bg-surface-container-dark p-3 gap-4"
     >
       <div className="flex items-center space-x-3">
-        <Image
-          // TODO Mili: add blur ?
-          src={image.src}
-          width={24}
-          height={24}
-          alt={image.src}
-          className={cn("rounded-full")}
-        />
-
-        {profileName === "" ? (
+        {image && (
+          <Image
+            src={image.src}
+            blurDataURL={image.blurDataURL}
+            width={24}
+            height={24}
+            alt={image.src}
+            className={cn("rounded-full")}
+          />
+        )}
+        {profile.name === "" ? (
           <AddressDisplay address={address} />
         ) : (
           <span className="text-sm leading-5 font-medium text-heading dark:text-heading-dark">
-            {profileName}
+            {profile.name}
           </span>
         )}
       </div>

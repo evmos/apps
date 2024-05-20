@@ -69,20 +69,20 @@ const ProfileOptions = () => {
       </div>
       <div>
         <h6 className="text-2xl font-medium text-heading dark:text-heading-dark leading-8">
+          {!address && "-"}
           <Suspense
             fallback={
-              <span className="bg-white/5 w-16 h-[0.8lh] animate-pulse rounded-lg "></span>
+              <span className="animate-pulse w-24 h-7 inline-flex bg-white/20 rounded-full my-1" />
             }
           >
-            {address && <TotalEvmos address={address} />}
+            {address && <TotalEvmos address={address} />} EVMOS
           </Suspense>
-          {!address && "-"} <span className="">EVMOS</span>
         </h6>
         <p className="font-medium text-paragraph dark:text-paragraph-dark leading-5 text-sm">
           {!address && "-"}
           <Suspense
             fallback={
-              <span className="bg-white/5 w-16 h-[0.8lh] animate-pulse rounded-lg "></span>
+              <span className="animate-pulse w-24 h-5 inline-flex bg-white/20 rounded-full" />
             }
           >
             {address && <TotalUsd address={address} />} USD

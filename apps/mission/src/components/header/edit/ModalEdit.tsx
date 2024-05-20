@@ -24,14 +24,13 @@ export const EditModal = () => {
   const { isOpen, setIsOpen, modalProps } = useEditModal();
   const { setIsDropdownOpen, address } = useWallet();
 
-  const { name, handleSetName, img, handleSetImg } = useProfileContext();
-  const [localName, setLocalName] = useState(name);
-  const [localImg, setLocalImg] = useState(img);
+  const { profile, updateProfile } = useProfileContext();
+  const [localName, setLocalName] = useState(profile?.name);
+  const [localImg, setLocalImg] = useState(profile?.img);
   const { t } = useTranslation("dappStore");
 
   const handleOnClick = () => {
-    handleSetImg(localImg);
-    handleSetName(localName);
+    localName && localImg && updateProfile({ name: localName, img: localImg });
     setIsOpen(false);
     sendEvent(SAVE_PROFILE_CHANGES);
     alertsManager.success({
@@ -59,10 +58,10 @@ export const EditModal = () => {
             <div className="flex flex-col">
               <div className="flex items-center space-x-6">
                 {profileImages.map((img, index) => (
-                  // TODO Mili: add blur ?
                   <Image
                     key={index}
-                    src={img.src}
+                    src={img}
+                    blurDataURL={img.blurDataURL}
                     width={80}
                     height={80}
                     alt={img.src}
@@ -70,12 +69,12 @@ export const EditModal = () => {
                       "rounded-full cursor-pointer transition-all duration-150 ease-out hover:scale-105 overflow-hidden",
                       {
                         "ring-1 ring-tertiary-container dark:ring-tertiary-container-dark ":
-                          localImg === index,
+                          localImg?.src === img.src,
                       },
                     )}
                     onClick={(e) => {
                       e.preventDefault();
-                      setLocalImg(index);
+                      setLocalImg(img);
                       sendEvent(EDIT_PROFILE, { "Profile Details": "Picture" });
                     }}
                   />
@@ -90,7 +89,9 @@ export const EditModal = () => {
                 }
                 fullWidth
                 placeholder={t("profile.modal.placeholder")}
-                value={name === "" ? address : name}
+                value={
+                  profile && profile?.name === "" ? address : profile?.name
+                }
                 onChange={handleOnChange}
               />
             </div>

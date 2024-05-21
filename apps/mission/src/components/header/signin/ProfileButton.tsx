@@ -14,11 +14,11 @@ import useWindowResize from "../../useResize";
 import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const ProfileButton = () => {
-  const { name: profileName, img } = useProfileContext();
+  const { profile } = useProfileContext();
   const { isDesktop } = useWindowResize();
   const { address } = useAccount();
   const { isDropdownOpen } = useWallet();
-
+  const getImg = profileImages.find((image) => image.src === profile.img?.src);
   return (
     <div
       className={`text-heading dark:text-heading-dark  flex items-center justify-center space-x-3 rounded-full  font-bold 
@@ -30,20 +30,22 @@ export const ProfileButton = () => {
       data-testid={`wallet-profile-button wallet-profile-button-${getActiveProviderKey()}`}
     >
       <div className="flex items-center justify-center space-x-3">
-        {
+        {getImg && (
           <Image
-            src={profileImages[img]?.src ?? ""}
+            blurDataURL={getImg.blurDataURL}
+            placeholder="blur"
+            src={getImg.src}
             width={24}
             height={24}
-            alt={profileImages[img]?.src ?? ""}
+            alt={getImg.src}
             className={cn("rounded-full cursor-pointer")}
           />
-        }
+        )}
         {isDesktop &&
-          (profileName === "" ? (
+          (profile.name === "" ? (
             <AddressDisplay address={address} />
           ) : (
-            <span>{profileName}</span>
+            <span>{profile.name}</span>
           ))}
       </div>
       {isDesktop && (

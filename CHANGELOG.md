@@ -41,6 +41,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 -(fix) DAPP-59 | packages/i18n 1.0.6 apps/mission 1.0.38 | footer airfoil
 -(fix) DAPP-14 | apps/mission 1.0.37 packages/i18n 1.0.6 packages/stateful-components 1.0.7 packages/ui-helpers 1.0.24 packages/ui 1.0.2 pages/dappstore 1.1.10 | dapps detail pages, airfoil design
 -(fix) DAPP-22 | packages/ui 1.0.1 | storybooks: chips
+- (chore) packages/widgets 1.0.9 | Update forge router URL
 
 ## 2.0.14 - 2024-04-25
 

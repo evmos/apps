@@ -10,6 +10,7 @@ import {
   getFilteredDApps,
   cachedFetchCategories,
 } from "./partials/get-filtered-dapps";
+import { DynamicSections } from "../landing/partials/DynamicSections";
 
 export const DappExplorerPage = async ({
   params,
@@ -47,6 +48,9 @@ export const DappExplorerPage = async ({
         categories={listedCategories}
         initialData={filteredDApps}
       />
+
+      {/* Explore dapps banner */}
+      <DynamicSections placement={"Categories Page"} />
     </div>
   );
 };

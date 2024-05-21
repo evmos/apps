@@ -12,7 +12,6 @@ import { Suspense } from "react";
 import { raise } from "helpers";
 import { FilteredDAppsResults } from "./get-filtered-dapps";
 import { useFilteredDapps } from "./use-filtered-dapps";
-import { DynamicSections } from "../../landing/partials/DynamicSections";
 
 type DAppsResultsProps = {
   selectedCategory: string;
@@ -44,8 +43,6 @@ export const _DAppsResults = ({
       <EcosystemCardGrid>
         {data?.map((dApp) => <EcosystemCard data={dApp} key={dApp.name} />)}
       </EcosystemCardGrid>
-      {/* Explore dapps banner */}
-      <DynamicSections placement={"Categories Page"} />
     </>
   );
 };

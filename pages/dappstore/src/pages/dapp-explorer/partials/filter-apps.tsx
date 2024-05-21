@@ -90,7 +90,7 @@ export const FilterApps = ({
           >
             <Listbox.Button className="cursor-pointer border w-44 text-subheading dark:text-subheading-dark font-normal text-base flex items-center justify-between border-surface-container-highest dark:border-surface-container-highest-dark rounded-lg px-4 py-2 gap-2">
               <span className="block truncate">
-                {sortLabels[sortBy] ?? sortLabels["asc"]}
+                {sortLabels[sortBy] ?? sortLabels["created-at"]}
               </span>
               <IconChevronDown
                 className={`w-5 text-paragraph dark:text-paragraph-dark`}

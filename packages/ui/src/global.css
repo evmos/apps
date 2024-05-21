@@ -15,9 +15,6 @@
     @apply text-heading-dark;
   }
 
-  * {
-    @apply focus-visible:rounded-xl focus-visible:outline focus-visible:outline-tertiary-container dark:focus-visible:outline-tertiary-container-dark tracking-wide;
-  }
   /* For Webkit-based browsers (Chrome, Safari and Opera) */
   .scrollbar-hidden::-webkit-scrollbar {
     @apply hidden;
@@ -27,5 +24,151 @@
   .scrollbar-hidden {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  .animation {
+    animation-duration: 10s;
+    animation-name: slidein;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes slidein {
+    0% {
+      margin-left: -500px;
+    }
+    8.33%,
+    25% {
+      margin-left: 0px;
+    }
+    33.33%,
+    50% {
+      margin-left: 0px;
+    }
+    58.33%,
+    75% {
+      margin-left: 0px;
+    }
+    83.33%,
+    100% {
+      margin-left: -500px;
+    }
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* For Webkit-based browsers (Chrome, Safari and Opera) */
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  /* Custom */
+  ::selection {
+    background-color: #f5e8d4;
+    color: #0b0a09;
+  }
+  .loader {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 4px solid #fff;
+    border-right: 4px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  .loader::after {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border-left: 4px solid #ff7700;
+    border-bottom: 4px solid transparent;
+    animation: rotation 0.5s linear infinite reverse;
+  }
+
+  #cyd-popup-background {
+    max-height: 900px !important;
+  }
+
+  .markdown {
+    @apply text-pearl space-y-2;
+  }
+  .markdown h2,
+  .markdown h1,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6 {
+    @apply text-xl font-bold;
+  }
+
+  .markdown p {
+    @apply text-base;
+  }
+
+  .markdown a {
+    @apply underline;
+  }
+
+  .markdown ul li {
+    list-style-type: circle;
+    margin-left: 1rem;
+  }
+
+  .blur-image:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    z-index: -1;
+
+    filter: blur(10px);
+    -moz-filter: blur(10px);
+    -webkit-filter: blur(10px);
+    -o-filter: blur(10px);
+  }
+
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 300ms;
   }
 }

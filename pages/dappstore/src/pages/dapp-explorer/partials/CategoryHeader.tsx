@@ -2,8 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { ComponentProps, useMemo } from "react";
-import { Trans } from "@evmosapps/i18n/client";
+import { ComponentProps, useMemo } from "react"; import { Trans } from "@evmosapps/i18n/client";
 import { Title } from "@evmosapps/ui-helpers/src/titles/Title";
 import { Category } from "../../../lib/fetch-explorer-data";
 import { useSearchParams } from "next/navigation";

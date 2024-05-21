@@ -3,7 +3,7 @@
 
 import { useTranslation } from "@evmosapps/i18n/client";
 
-import { usePubKey, wagmiConfig } from "@evmosapps/evmos-wallet";
+import { wagmiConfig } from "@evmosapps/evmos-wallet";
 import { METAMASK_DOWNLOAD_URL } from "constants-helper";
 import { useEffect, useMemo, useState } from "react";
 import { E, raise, useEffectEvent } from "helpers";
@@ -74,12 +74,8 @@ export const SetupWithMetamaskSteps = ({
 
   const { switchChain, error: switchError } = useSwitchChain();
 
-  const { pubkey, error: pubkeyError, refetch } = usePubKey();
   const mappedConnectError = useMemo(() => {
-    if (!connectError && !switchError && !pubkeyError) return;
-    if (pubkeyError) {
-      return t("connectStep.actions.connect.error.signRejected");
-    }
+    if (!connectError && !switchError)  return;
     if (
       E.match.byPattern(connectError, /Already processing eth_requestAccounts/)
     ) {
@@ -96,7 +92,7 @@ export const SetupWithMetamaskSteps = ({
     }
 
     return connectError?.message;
-  }, [connectError, switchError, pubkeyError, t]);
+  }, [connectError, switchError,  t]);
 
   useEffect(() => {
     if (!mappedConnectError) return;
@@ -109,8 +105,7 @@ export const SetupWithMetamaskSteps = ({
 
   const completedConnection =
     isConnected &&
-    getChainId(wagmiConfig) === evmosInfo.id &&
-    pubkey !== undefined;
+    getChainId(wagmiConfig) === evmosInfo.id 
 
   const _onComplete = useEffectEvent(onComplete || (() => {}));
 
@@ -127,9 +122,6 @@ export const SetupWithMetamaskSteps = ({
     }
     if (mappedConnectError) {
       return t("connectStep.actions.connect.tryAgain");
-    }
-    if (isConnected && pubkey === undefined) {
-      return t("connectStep.actions.connect.signPubkey");
     }
     if (!isConnecting && !completedConnection) {
       return t("connectStep.actions.connect.request");
@@ -156,10 +148,6 @@ export const SetupWithMetamaskSteps = ({
 
       <SetupStep
         onClick={() => {
-          if (isConnected && pubkey !== undefined) {
-            void refetch();
-            return;
-          }
           sendEvent(CLICK_ON_CONNECT_ACCOUNT_COPILOT);
 
           connect({

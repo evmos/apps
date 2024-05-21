@@ -1,7 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import "../../globals.css";
 import "@evmosapps/ui/global.css";
 import { dir } from "i18next";
 import { type PropsWithChildren } from "react";
@@ -89,7 +88,7 @@ async function RootLayout({
             <WalletsProvider>
               <FavoritesProvider>
                 <ContainerLogo />
-                <Sidebar dApps={dApps}/>
+                <Sidebar dApps={dApps} />
                 <div className="overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
                   <Header />
                   <div className="px-5 md:px-14 max-w-full overflow-x-hidden">
@@ -112,5 +111,3 @@ async function RootLayout({
 }
 
 export default RootLayout;
-
-

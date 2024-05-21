@@ -19,7 +19,6 @@ export const DAppOgImage = async ({
   }
   return new ImageResponse(
     (
-      // ImageResponse JSX element
       <div>
         {/* we should not use next/image in the og image */}
         {/* eslint-disable-next-line @next/next/no-img-element */}

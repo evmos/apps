@@ -6,7 +6,6 @@ import { IconContainer, Modal, PrimaryButton } from "@evmosapps/ui-helpers";
 import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 import { useCopilot } from "../../copilot";
-import { CLICK_ON_TOP_UP_ACCOUNT_DAPP, sendEvent } from "tracker";
 import { createPortal } from "react-dom";
 
 export const SetupAccountSuccesStep = () => {
@@ -43,9 +42,6 @@ export const SetupAccountSuccesStep = () => {
       <PrimaryButton
         className="self-center"
         onClick={() => {
-          sendEvent(CLICK_ON_TOP_UP_ACCOUNT_DAPP, {
-            Location: "Inside Copilot",
-          });
           nextStep();
         }}
       >

@@ -43,6 +43,9 @@
     "NEXT_PUBLIC_TERMS_OF_SERVICE_PAGE_NOTION_ID",
     "NEXT_PUBLIC_PRIVACY_POLICY_PAGE_NOTION_ID",
     "NEXT_PUBLIC_EVMOS_UTILS_PAGE_NOTION_ID",
+    "NEXT_PUBLIC_EVMOS_LANDING_PAGE_NOTION_ID",
+    "NEXT_PUBLIC_EVMOS_HIGHLIGHT_CARDS_DB_NOTION_ID",
+
     "NEXT_PUBLIC_VERCEL_URL",
     "VERCEL",
     "VERCEL_ENV",
@@ -65,7 +68,6 @@
       "cache": false
     },
     "dev": {
-      "dependsOn": ["^build"],
       "cache": false,
       "persistent": true
     },
@@ -82,7 +84,6 @@
       "cache": false,
       "persistent": true
     },
-
     "test": {},
     "kill": {
       "cache": false

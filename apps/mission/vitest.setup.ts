@@ -12,7 +12,7 @@ setConfig(config);
 
 export const MIXPANEL_TOKEN_FOR_TEST = "testToken";
 const initializeMixpanelAndEnable = () => {
-  mixpanel.init(MIXPANEL_TOKEN_FOR_TEST, { ip: false });
+  mixpanel.init(MIXPANEL_TOKEN_FOR_TEST, { ip: false, track_pageview: true });
   enableMixpanel();
 };
 

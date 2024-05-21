@@ -1,11 +1,12 @@
 {
   "name": "@evmosapps/dappstore-page",
-  "version": "1.1.9",
+  "version": "1.1.10",
   "private": true,
   "type": "module",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@evmosapps/config": "workspace:*",
     "@evmosapps/copilot": "workspace:*",
     "@evmosapps/evmos-wallet": "workspace:*",
     "@evmosapps/icons": "workspace:*",
@@ -14,9 +15,10 @@
     "@evmosapps/ui-helpers": "workspace:*",
     "constants-helper": "workspace:*",
     "helpers": "workspace:*",
-    "next": "14.2.2",
-    "react": "18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "14.2.3",
+    "react-share": "^5.1.0",
+    "react": "18.3.1",
+    "react-dom": "^18.3.1",
     "sharp": "^0.33.3",
     "stateful-components": "workspace:*",
     "tracker": "workspace:*"

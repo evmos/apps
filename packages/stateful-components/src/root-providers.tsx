@@ -12,7 +12,6 @@ import { Snackbars, wagmiConfig } from "@evmosapps/evmos-wallet";
 // import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { GiveFeedback } from "./give-feedback";
 import { WagmiProvider } from "wagmi";
 import { queryClient } from "helpers/src/clients/query";
 import { trpc, createTrpcClient } from "@evmosapps/trpc/client";
@@ -45,7 +44,7 @@ export const RootProviders = ({ children }: PropsWithChildren) => {
   }));
   return (
     <Provider store={store}>
-      <WagmiProvider config={wagmiConfig} reconnectOnMount={false}>
+      <WagmiProvider config={wagmiConfig}>
         <trpc.Provider client={trpcClient} queryClient={queryClient}>
           <QueryClientProvider client={queryClient}>
             {/* <PersistQueryClientProvider
@@ -57,7 +56,6 @@ export const RootProviders = ({ children }: PropsWithChildren) => {
 
               <SnackbarsInternal />
               <MavaWidget />
-              <GiveFeedback />
             </WalletProvider>
             <ReactQueryDevtools
               initialIsOpen={false}

@@ -1,6 +1,6 @@
 {
   "name": "stateful-components",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "type": "module",
@@ -23,11 +23,11 @@
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
     "@evmosapps/trpc": "workspace:*",
-    "@tanstack/query-sync-storage-persister": "^5.32.0",
-    "@tanstack/react-query-devtools": "^5.32.0",
+    "@tanstack/query-sync-storage-persister": "^5.35.1",
+    "@tanstack/react-query-devtools": "^5.35.1",
     "@types/node": "20.12.7",
     "constants-helper": "workspace:*",
-    "next": "14.2.2",
+    "next": "14.2.3",
     "react-i18next": "^14.1.1",
     "react-redux": "^8.1.2",
     "redux": "^4.2.1",

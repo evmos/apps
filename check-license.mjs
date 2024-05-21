@@ -4,10 +4,12 @@
 
 import { globby } from "globby";
 import { readFileSync, writeFileSync } from "fs";
-const LICENSE = [
-  "// Copyright Tharsis Labs Ltd.(Evmos)",
-  "// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)",
-].join("\n");
+
+const LICENSE_HEADER = readFileSync("./license-header.txt", "utf8")
+  .split("\n")
+  .filter(Boolean)
+  .map((line) => `// ${line}`)
+  .join("\n");
 
 const shouldFix = process.argv.includes("--fix");
 
@@ -19,7 +21,7 @@ const files = await globby(["./**/*.{ts,tsx,js}", "!**/node_modules/**"], {
 let passed = true;
 for (const file of files) {
   let content = readFileSync(file, "utf8");
-  let licensePosition = content.indexOf(LICENSE);
+  let licensePosition = content.indexOf(LICENSE_HEADER);
   const expectedPosition = content.startsWith("#!")
     ? content.indexOf("\n") + 1
     : 0;
@@ -36,7 +38,7 @@ for (const file of files) {
     // if license exists, but not at the top, remove it so we add it back in the next step
     content =
       content.substring(0, licensePosition - 1) +
-      content.substring(licensePosition + LICENSE.length);
+      content.substring(licensePosition + LICENSE_HEADER.length);
     licensePosition = -1;
   }
 
@@ -50,13 +52,13 @@ for (const file of files) {
   // if no license, add it
   console.log(`Adding license to ${file}`);
 
-  // writeFileSync(file, `${LICENSE_HEADER}\n\n${content}`);
+
   writeFileSync(
     file,
     content.slice(0, expectedPosition) +
-      LICENSE +
-      "\n\n" +
-      content.slice(expectedPosition),
+    LICENSE_HEADER +
+    "\n\n" +
+    content.slice(expectedPosition),
   );
 }
 

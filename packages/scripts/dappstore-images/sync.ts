@@ -4,10 +4,23 @@
 import { get } from "lodash-es";
 import { frame, clearPrevline } from "../utils/terminal";
 import { program } from "@commander-js/extra-typings";
-import { fetchDAppsDb, isImageBlob, log, trackedProperties } from "./utils";
+import { isImageBlob, iterateEntries, log } from "./utils";
 import { ImageStore } from "helpers/src/image-store";
 import { arrayFromAsync } from "helpers/src/array-from-async";
+import {
+  iteratePropertiesOfType,
+  tryReadPropertyAs,
+} from "helpers/src/clients/notion-utils";
+import { E } from "helpers/src/error-handling";
 
+const printLoading = (total: number, complete: number) => {
+  const barLength = 40;
+  const percent = complete / total;
+  const filled = Math.round(percent * barLength);
+  const bar = "░".repeat(filled);
+  const empty = " ".repeat(barLength - filled);
+  log(`[${bar}${empty}] ${complete}/${total}`);
+};
 program
   .command("sync")
   .description("Sync images from Notion to Vercel Blob Storage")
@@ -21,59 +34,52 @@ program
     const blobsByPathname = await ImageStore.getBlobsByPathname();
 
     log("Loading uploaded images info...");
-    const pagesIter = fetchDAppsDb();
+    type Task = [name: string, () => Promise<void>];
+
     const taskGroups: {
-      tasks: [name: string, () => Promise<void>][];
+      tasks: Task[];
       name: string;
     }[] = [];
-    for await (const page of pagesIter) {
-      if (!("properties" in page)) {
-        continue;
-      }
-      const properties = page.properties;
-      const name = get(
-        properties,
-        "Name.title[0].plain_text",
-        page.id,
-      ) as unknown;
 
-      if (typeof name !== "string") {
-        continue;
-      }
-
-      const tasks: [name: string, () => Promise<void>][] = [];
-
-      for (const notionPropertyName of trackedProperties) {
-        const images = get(properties, notionPropertyName);
-
-        if (!images || !("files" in images)) {
-          continue;
-        }
-        const files = images.files;
-
-        if (!Array.isArray(files)) {
-          continue;
-        }
-
-        for (const file of files) {
+    for await (const entry of iterateEntries()) {
+      const [, name] = E.try(() =>
+        tryReadPropertyAs(entry, "Name", "title")
+          .title.map(({ plain_text }) => plain_text)
+          .join(" "),
+      );
+      const tasks: Task[] = [];
+      for (const [propertyName, { files }] of iteratePropertiesOfType(
+        entry,
+        "files",
+      )) {
+        const filesList = Array.isArray(files) ? files : [files];
+        for (const file of filesList) {
           const url = get(file, "file.url") || get(file, "external.url");
           if (!url) {
             continue;
           }
           const destinationPath = ImageStore.resolvePathname(url);
 
+          const manifestDestionationPath =
+            ImageStore.resolveManifestPathname(url);
+
           unusedImagesPathnames.delete(destinationPath);
 
-          if (blobsByPathname.has(destinationPath) && !options.all) continue;
+          if (
+            blobsByPathname.has(destinationPath) &&
+            blobsByPathname.has(manifestDestionationPath) &&
+            !options.all
+          )
+            continue;
           const taskFn = async () => {
             await ImageStore.uploadFromUrl(url);
           };
-          const taskName = `Uploading ${notionPropertyName}`;
+          const taskName = `Uploading ${propertyName}`;
 
           tasks.push([taskName, taskFn]);
         }
       }
-      if (tasks.length > 0) taskGroups.push({ tasks, name });
+      if (tasks.length > 0) taskGroups.push({ tasks, name: name ?? entry.id });
     }
     const taskCount = taskGroups.reduce(
       (acc, { tasks }) => acc + tasks.length,
@@ -84,14 +90,6 @@ program
       log(frame(`🏞️ Synchronizing ${taskCount} images...`));
     }
 
-    const printLoading = (total: number, complete: number) => {
-      const barLength = 40;
-      const percent = complete / total;
-      const filled = Math.round(percent * barLength);
-      const bar = "░".repeat(filled);
-      const empty = " ".repeat(barLength - filled);
-      log(`[${bar}${empty}] ${complete}/${total}`);
-    };
     let tasksExecuted = 0;
     printLoading(taskCount, tasksExecuted);
     const logWithBar = (message: string) => {

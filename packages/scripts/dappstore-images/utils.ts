@@ -1,39 +1,26 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { ECOSYSTEM_PAGE_NOTION_ID } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
+import {
+  ECOSYSTEM_PAGE_NOTION_ID,
+  EVMOS_HIGHLIGHT_CARDS_DB_NOTION_ID,
+  EVMOS_LANDING_PAGE_NOTION_ID,
+} from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
 import { ListBlobResultBlob } from "@vercel/blob";
-import { notionWith } from "helpers/src/clients/notion";
-import { devMemo } from "helpers/src/dev/dev-memo";
+import { iterateDatabaseEntries } from "helpers/src/clients/notion-utils";
 import { Log } from "helpers/src/logger";
 
 export const trackedProperties = ["Thumbnail", "Cover", "Icon", "Gallery"];
 
-const notion = notionWith({});
-export const queryNotionDb = devMemo(async function queryDb(options: {
-  id: string;
-  startCursor?: string | null;
-}) {
-  return await notion.databases.query({
-    database_id: options.id,
-    start_cursor: options.startCursor ?? undefined,
-  });
-});
-export const fetchDAppsDb = async function* fetchDAppsDb() {
-  let nextCursor: string | null = null;
-  while (true) {
-    const query = await queryNotionDb({
-      id: ECOSYSTEM_PAGE_NOTION_ID,
-      startCursor: nextCursor,
-    });
+export const watchedDbs = [
+  ECOSYSTEM_PAGE_NOTION_ID,
+  EVMOS_LANDING_PAGE_NOTION_ID,
+  EVMOS_HIGHLIGHT_CARDS_DB_NOTION_ID,
+];
 
-    for (const page of query.results) {
-      yield page;
-    }
-    nextCursor = query.next_cursor;
-    if (!nextCursor) {
-      break;
-    }
+export const iterateEntries = async function* () {
+  for (const db of watchedDbs) {
+    yield* iterateDatabaseEntries({ id: db });
   }
 };
 

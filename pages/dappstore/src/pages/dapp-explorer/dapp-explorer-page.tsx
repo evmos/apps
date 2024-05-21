@@ -3,73 +3,50 @@
 
 "use server";
 
-import { fetchExplorerData } from "../../lib/fetch-explorer-data";
-import { sortApps } from "../../lib/sort/sort-dapps";
-import { EcosystemCard } from "../landing/partials/ecosystem-card";
-import { EcosystemCardGrid } from "../landing/partials/ecosystem-card-grid";
 import { ExplorerBreadcrumbs } from "./partials/explorer-breadcrumbs";
-import { HeaderCategories } from "./partials/header-categories";
 import { translation } from "@evmosapps/i18n/server";
-import { pick, keys } from "lodash-es";
+import { DAppsResults } from "./partials/dapps-results";
+import {
+  getFilteredDApps,
+  cachedFetchCategories,
+} from "./partials/get-filtered-dapps";
+
 export const DappExplorerPage = async ({
   params,
 }: {
   params: { category?: string };
 }) => {
-  const { t } = await translation("dappStore");
-  const { dApps, categories } = await fetchExplorerData();
-
-  const filteredApps = params.category
-    ? dApps.filter((dapp) => {
-        if (params.category === "instant-dapps") {
-          return dapp.instantDapp;
-        }
-        return dapp.categories.find(({ slug }) => slug === params.category);
-      })
-    : dApps;
-
-  const sortedApps = sortApps(filteredApps);
-  const instantDappCategory = {
-    categoryDapps: sortedApps
-      .filter(({ instantDapp }) => instantDapp)
-      .map(({ slug }) => slug),
-
-    description: t("categories.instantdApps.description"),
-    name: t("categories.instantdApps.name"),
-    slug: "instant-dapps",
-  };
-
+  const [{ t }, categories, filteredDApps] = await Promise.all([
+    translation("dappStore"),
+    cachedFetchCategories(),
+    getFilteredDApps({
+      category: params.category ?? "all",
+      sortBy: "asc",
+      instantDApps: false,
+    }),
+  ]);
+  const listedCategories = [
+    {
+      description: t("categories.all.description"),
+      name: t("categories.all.name"),
+      slug: "all",
+    },
+    ...categories.map((category) => ({
+      slug: category.slug,
+      name: category.name,
+      description: category.description,
+    })),
+  ];
   return (
-    <>
-      <ExplorerBreadcrumbs params={params} />
-      <HeaderCategories
-        dApps={dApps}
-        amountAppsSelected={sortedApps?.length ?? 0}
-        categories={[
-          {
-            categoryDapps: sortedApps
-              .filter(({ instantDapp }) => instantDapp)
-              .map(({ slug }) => slug),
-
-            description: t("categories.instantdApps.description"),
-            name: t("categories.instantdApps.name"),
-            slug: "instant-dapps",
-          },
-          ...categories.map((category) =>
-            pick(
-              category,
-              keys(instantDappCategory) as (keyof typeof instantDappCategory)[],
-            ),
-          ),
-        ]}
-        params={params}
+    <div className="flex flex-col gap-y-8 mx-auto">
+      <div className="md:mt-10">
+        <ExplorerBreadcrumbs params={params} />
+      </div>
+      <DAppsResults
+        selectedCategory={params.category ?? "all"}
+        categories={listedCategories}
+        initialData={filteredDApps}
       />
-
-      <EcosystemCardGrid className="pt-8">
-        {sortedApps?.map((dApp) => (
-          <EcosystemCard data={dApp} key={dApp.name} />
-        ))}
-      </EcosystemCardGrid>
-    </>
+    </div>
   );
 };

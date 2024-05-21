@@ -1,6 +1,6 @@
 {
   "name": "dappstore",
-  "version": "1.0.36",
+  "version": "1.0.38",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
     "@evmosapps/copilot": "workspace:*",
+    "@evmosapps/instant-dapps": "workspace:*",
     "@evmosapps/dappstore-page": "workspace:*",
     "@evmosapps/governance-page": "workspace:*",
     "@evmosapps/i18n": "workspace:*",
@@ -29,6 +30,7 @@
     "@evmosapps/staking-page": "workspace:*",
     "@evmosapps/test-utils": "workspace:*",
     "@evmosapps/trpc": "workspace:*",
+    "@evmosapps/ui": "workspace:*",
     "@evmosapps/ui-helpers": "workspace:*",
     "@evmosapps/vesting-page": "workspace:*",
     "@types/node": "20.12.7",
@@ -53,10 +55,11 @@
     "@playwright/test": "^1.43.1",
     "accept-language": "^3.0.18",
     "dotenv": "^16.4.5",
+    "flexsearch": "^0.7.43",
     "mixpanel-browser": "^2.47.0",
-    "next": "14.2.2",
-    "react": "18.2.0",
-    "react-dom": "^18.2.0",
+    "next": "14.2.3",
+    "react": "18.3.1",
+    "react-dom": "^18.3.1",
     "react-error-boundary": "^4.0.12"
   }
 }

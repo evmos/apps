@@ -12,8 +12,8 @@ export const metadata: Metadata = {
 };
 export default function Page() {
   return (
-    <section className="mx-auto prose prose-invert">
-      <h1>
+    <section className="mx-auto prose prose-invert text-subheading dark:text-subheading-dark">
+      <h1 className="text-subheading dark:text-subheading-dark">
         <NotionPageTitle id={COOKIE_POLICY_PAGE_NOTION_ID} />
       </h1>
       <NotionBlocks id={COOKIE_POLICY_PAGE_NOTION_ID} />

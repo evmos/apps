@@ -24,6 +24,7 @@ import {
   getActiveProviderKey,
   getChain,
   getGlobalKeplrProvider,
+  useWallet,
 } from "@evmosapps/evmos-wallet";
 import { AccountSelector } from "../shared/AccountSelector";
 
@@ -48,7 +49,7 @@ import { TransferModalProps } from "./TransferModal";
 import { useReceiptModal } from "../receipt/ReceiptModal";
 
 import { useTopupModal } from "stateful-components/src/modals/TopupModal/TopupModal";
-import { useConnectModal } from "stateful-components/src/modals/ConnectModal/ConnectModal";
+
 import { getTokenByRef } from "@evmosapps/evmos-wallet/src/registry-actions/get-token-by-ref";
 import { createPortal } from "react-dom";
 import { useSend } from "../hooks/useSend";
@@ -72,7 +73,7 @@ export const TransferModalContent = ({
   const { isDisconnected } = useAccount();
   const receiptModal = useReceiptModal();
   const topupModal = useTopupModal();
-  const connectModal = useConnectModal();
+  const { setIsDropdownOpen } = useWallet();
 
   const tokenAmount: TokenAmount = {
     ref: tokenRef,
@@ -288,7 +289,7 @@ export const TransferModalContent = ({
           }
 
           if (action === "CONNECT") {
-            connectModal.setIsOpen(true, {}, true);
+            setIsDropdownOpen(true);
             sendEvent(PROMPTED_TO, {
               "Prompt To": "Connect Account",
               Modal: "Send Modal",

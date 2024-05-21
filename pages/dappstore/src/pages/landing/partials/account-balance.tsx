@@ -7,8 +7,6 @@
 
 import { useTranslation } from "@evmosapps/i18n/client";
 
-import { CLICK_ON_TOP_UP_ACCOUNT_DAPP, sendEvent } from "tracker";
-
 import { useAccount } from "wagmi";
 import { TopupModalTrigger } from "stateful-components/src/modals/TopupModal/TopupModal";
 
@@ -101,15 +99,7 @@ export const AccountBalance = () => {
         {isConnected && (
           <div className="md:relative md:left-[16px] md:top-[1px] ">
             <TopupModalTrigger>
-              <PrimaryButton
-                onClick={() => {
-                  sendEvent(CLICK_ON_TOP_UP_ACCOUNT_DAPP, {
-                    Location: "Home Page",
-                  });
-                }}
-              >
-                {t("account.balance.topUp")}
-              </PrimaryButton>
+              <PrimaryButton>{t("account.balance.topUp")}</PrimaryButton>
             </TopupModalTrigger>
           </div>
         )}

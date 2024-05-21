@@ -115,52 +115,52 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
       )}
     >
       {cards.map(({ title, subtitle, image, tag, target }, i) => (
-        <Link
+        <div
           key={i}
-          href={target}
-          className="w-11/12 max-w-96 lg:max-w-none lg:w-full lg:flex-1 flex-none"
+          className="transition-all duration-150 ease-out hover:scale-105 w-11/12 max-w-96 lg:max-w-none lg:w-full lg:flex-1 flex-none"
         >
-
-          <TrackerEvent
-            event={CLICK_ON_FEATURED_DAPP}
-            properties={{
-              Category: title,
-              Section: "Highlighted Category",
-            }}
-          >
-            <Card
-              lowest
-              className={cn(
-              "h-56 shape-binding px-8 py-8 flex-col flex relative bg-cover w-full shrink-0",
-              "before:absolute before:top-0 before:left-0 before:w-[101%] before:h-[101%] before:bg-surface-dark/50 before:rounded-lg",
-            )}
-              style={{
-                backgroundImage: image
-                  ? getBackgroundImage({
-                      src: image.src,
-                      width: 560,
-                      height: 240,
-                    })
-                  : undefined,
+          <Link href={target}>
+            <TrackerEvent
+              event={CLICK_ON_FEATURED_DAPP}
+              properties={{
+                Category: title,
+                Section: "Highlighted Category",
               }}
-              fullWidth
-              background="bg-galaxy-red"
             >
-              <h3 className="relative text-subheading dark:text-subheading-dark grow tracking-widest uppercase text-xs">
-                {tag}
-              </h3>
-
-              <div className="relative mt-auto">
-                <h3 className="text-base text-heading dark:text-heading-dark">
-                  {title}
+              <Card
+                lowest
+                className={cn(
+                  "h-56 shape-binding px-8 py-8 flex-col flex relative bg-cover w-full shrink-0",
+                  "before:absolute before:top-0 before:left-0 before:w-[101%] before:h-[101%] before:bg-surface-dark/50 before:rounded-lg",
+                )}
+                style={{
+                  backgroundImage: image
+                    ? getBackgroundImage({
+                        src: image.src,
+                        width: 560,
+                        height: 240,
+                      })
+                    : undefined,
+                }}
+                fullWidth
+                background="bg-galaxy-red"
+              >
+                <h3 className="relative text-subheading dark:text-subheading-dark grow tracking-widest uppercase text-xs">
+                  {tag}
                 </h3>
-                 <h4 className="text-sm text-subheading dark:text-subheading-dark">
-                {subtitle}
-              </h4>
-              </div>
-            </Card>
-          </TrackerEvent>
-        </Link>
+
+                <div className="relative mt-auto">
+                  <h3 className="text-base text-heading dark:text-heading-dark">
+                    {title}
+                  </h3>
+                  <h4 className="text-sm text-subheading dark:text-subheading-dark">
+                    {subtitle}
+                  </h4>
+                </div>
+              </Card>
+            </TrackerEvent>
+          </Link>
+        </div>
       ))}
     </div>
   );
@@ -258,36 +258,41 @@ async function DAppListCarouselSection({ title, dAppIds }: DynamicSection) {
     <ScrollableSection title={title}>
       {resolvedDApps.map(
         ({ name, icon, categories, categorySlug, slug, instantDapp }) => (
-          <Link href={`/dapps/${categorySlug}/${slug}`} key={slug}>
-            <TrackerEvent
-              event={CLICK_ON_FEATURED_DAPP}
-              properties={{
-                "dApp Name": name,
-                Section: title,
-              }}
-            >
-              <Surface
-                lowest
-                className="w-60 flex-none flex flex-col gap-y-2  p-4"
+          <div
+            key={slug}
+            className="transition-all duration-150 ease-out hover:scale-105 hover:translate-y-1"
+          >
+            <Link href={`/dapps/${categorySlug}/${slug}`}>
+              <TrackerEvent
+                event={CLICK_ON_FEATURED_DAPP}
+                properties={{
+                  "dApp Name": name,
+                  Section: title,
+                }}
               >
-                <MaybeImage
-                  className="rounded-lg"
-                  {...icon}
-                  alt={name}
-                  width={48}
-                  height={48}
-                />
+                <Surface
+                  lowest
+                  className="w-60 flex-none flex flex-col gap-y-2  p-4"
+                >
+                  <MaybeImage
+                    className="rounded-lg"
+                    {...icon}
+                    alt={name}
+                    width={48}
+                    height={48}
+                  />
 
-                <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
+                  <DAppTitle instantDapp={instantDapp}>{name}</DAppTitle>
 
-                <div className="gap-1 inline-flex">
-                  {categories.map((category) => (
-                    <Badge key={category.slug}>{category.name}</Badge>
-                  ))}
-                </div>
-              </Surface>
-            </TrackerEvent>
-          </Link>
+                  <div className="gap-1 inline-flex">
+                    {categories.map((category) => (
+                      <Badge key={category.slug}>{category.name}</Badge>
+                    ))}
+                  </div>
+                </Surface>
+              </TrackerEvent>
+            </Link>
+          </div>
         ),
       )}
     </ScrollableSection>
@@ -319,9 +324,10 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
           },
           i,
         ) => (
+          //renzo
           <Card
             low
-            className="bg-cover overflow-hidden flex-col w-60 flex shrink-0"
+            className="bg-cover overflow-hidden flex-col w-60 flex shrink-0 transition-all duration-150 ease-out hover:scale-105 hover:translate-y-1 group"
             key={slug}
           >
             <TrackerEvent
@@ -336,6 +342,7 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
                   className={cn(
                     "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
                     "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
+                    "group-hover:after:scale-110 group-hover:after:translate-y-1",
                   )}
                 >
                   {thumbnail && (

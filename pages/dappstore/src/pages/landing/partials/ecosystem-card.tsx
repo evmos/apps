@@ -33,6 +33,7 @@ export const EcosystemCard = ({ data }: { data: DApp }) => {
               className={cn(
                 "relative h-[150px]",
                 "after:bg-gradient-to-t after:from-surface-container-lowest-dark/100 after:to-transparent after:absolute after:w-full after:h-full after:bottom-0",
+                "group-hover:after:scale-110 group-hover:after:translate-y-1",
               )}
             >
               {img && (

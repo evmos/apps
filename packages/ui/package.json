@@ -15,7 +15,8 @@
         "default": "./src/*"
       }
     },
-    "./config/tailwind": "./src/config/tailwind.js"
+    "./config/tailwind": "./src/config/tailwind.js",
+    "./global.css": "./src/global.css"
   },
   "scripts": {
     "dev": "storybook dev -p 6006",

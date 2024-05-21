@@ -9,7 +9,8 @@ import { TrackerEvent } from "@evmosapps/ui-helpers";
 import { cn } from "helpers";
 import { CLICK_ON_CATEGORY } from "tracker";
 import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import { startTransition } from "./startTransition";
 
 export const HeaderCategories = ({
   categories,
@@ -19,6 +20,7 @@ export const HeaderCategories = ({
   categories: Pick<Category, "name" | "slug" | "description">[];
 }) => {
   const searchParams = useSearchParams().toString();
+  const router = useRouter();
   return (
     <div className="flex gap-3 md:gap-4 flex-wrap">
       {categories.map((category) => {
@@ -36,7 +38,17 @@ export const HeaderCategories = ({
             event={CLICK_ON_CATEGORY}
             properties={{ Category: category.name }}
           >
-            <Link href={href} key={category.slug} scroll={false}>
+            <Link
+              onClick={(e) => {
+                e.preventDefault();
+                startTransition(() => {
+                  router.push(href);
+                });
+              }}
+              href={href}
+              key={category.slug}
+              scroll={false}
+            >
               <Chip
                 className={cn("px-4 font-light", {
                   "bg-primary/25 dark:bg-primary-dark/25 text-primary dark:text-primary-dark":

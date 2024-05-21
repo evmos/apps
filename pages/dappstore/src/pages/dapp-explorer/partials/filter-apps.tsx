@@ -13,6 +13,7 @@ import { sendEvent, CLICK_SORT, CLICK_FILTER, UNCLICK_FILTER } from "tracker";
 import { FilteredDAppsResults, SortBy } from "./get-filtered-dapps";
 import { useParams } from "next/navigation";
 import { useFilteredDapps } from "./use-filtered-dapps";
+import { startTransition } from "./startTransition";
 
 const sortLabels = {
   asc: "A to Z",
@@ -35,6 +36,7 @@ export const FilterApps = ({
   const sortBy = params.get("sort-by") as SortBy;
   const router = useRouter();
   const { t } = useTranslation("dappStore");
+
   return (
     <div className="md:pt-4 flex items-center justify-between">
       <p className="hidden lg:inline-block text-heading dark:text-heading-dark text-xl font-medium">
@@ -51,9 +53,12 @@ export const FilterApps = ({
             id="instant-dapp"
             checked={instantDapps}
             onChange={(e) => {
-              const url = new URL(window.location.href);
               const checked = e.target.checked;
-              url.searchParams.set("instant-dapps", checked.toString());
+              startTransition(() => {
+                const url = new URL(window.location.href);
+                url.searchParams.set("instant-dapps", checked.toString());
+                router.push(url.toString());
+              });
               if (checked) {
                 sendEvent(UNCLICK_FILTER, {
                   "Filter Type": "Instant dApp",
@@ -63,8 +68,6 @@ export const FilterApps = ({
                   "Filter Type": "Instant dApp",
                 });
               }
-
-              router.push(url.toString());
             }}
             label={
               <div className="flex items-center space-x-1">
@@ -81,11 +84,13 @@ export const FilterApps = ({
             value={sortBy}
             onChange={(selected) => {
               const url = new URL(window.location.href);
-              url.searchParams.set("sort-by", selected);
+              startTransition(() => {
+                url.searchParams.set("sort-by", selected);
+                router.push(url.toString());
+              });
               sendEvent(CLICK_SORT, {
                 "Sort Type": sortLabels[selected],
               });
-              router.push(url.toString());
             }}
           >
             <Listbox.Button className="cursor-pointer border w-44 text-subheading dark:text-subheading-dark font-normal text-base flex items-center justify-between border-surface-container-highest dark:border-surface-container-highest-dark rounded-lg px-4 py-2 gap-2">

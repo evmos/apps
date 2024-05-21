@@ -10,21 +10,16 @@ import {
   createContext,
   useContext,
 } from "react";
-import { useAccount, useAccountEffect, useDisconnect } from "wagmi";
-import { usePubKey, wagmiConfig } from "../wagmi";
-import // WALLET_NOTIFICATIONS,
-// notifyError,
-// notifySuccess,
-"../../internal/wallet/functionality/errors";
-// import { truncateAddress } from "../../internal/wallet/style/format";
-import { getActiveProviderKey, store } from "../..";
+import { useAccount, useAccountEffect } from "wagmi";
+import {  wagmiConfig } from "../wagmi";
 import { resetWallet, setWallet } from "../redux/WalletSlice";
 import {
   RemoveWalletFromLocalStorage,
   SaveProviderToLocalStorate,
 } from "../../internal/wallet/functionality/localstorage";
-import { useEffectEvent, useWatch } from "helpers";
+import { useEffectEvent } from "helpers";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
+import { store } from "../../redux/Store";
 
 type WalletProviderProps = PropsWithChildren<{}>;
 type DropdownState = "profile" | "settings" | "wallets";
@@ -39,9 +34,9 @@ const WalletContext = createContext<{
   isWalletHydrated: false,
   config: wagmiConfig,
   isDropdownOpen: false,
-  setIsDropdownOpen: () => {},
+  setIsDropdownOpen: () => { },
   dropdownState: "",
-  setDropdownState: () => {},
+  setDropdownState: () => { },
 });
 
 const useWalletContext = () => {
@@ -117,18 +112,10 @@ function Provider({ children }: WalletProviderProps) {
       store.dispatch(resetWallet());
     },
   });
-  // const { variables } = useConnect();
-  const { disconnect } = useDisconnect();
-  const { pubkey, error: pubkeyError, isFetching } = usePubKey();
 
   useEffect(() => {
     const connectorId = connector?.id.toLowerCase();
-    if (
-      !connectorId ||
-      !address ||
-      (!pubkey && getActiveProviderKey() !== "Safe")
-    )
-      return;
+    if (!connectorId || !address) return;
     /**
      * TODO: this is to sync with the current wallet redux store
      * In a future PR I intent to remove this store
@@ -141,27 +128,13 @@ function Provider({ children }: WalletProviderProps) {
         extensionName: connectorId,
         evmosAddressEthFormat: address,
         evmosAddressCosmosFormat: normalizeToCosmos(address),
-        evmosPubkey: pubkey ?? "",
+        evmosPubkey: "",
         osmosisPubkey: null,
         accountName: null,
       }),
     );
-  }, [isConnected, connector, pubkey, address]);
+  }, [isConnected, connector, address]);
 
-  useWatch(() => {
-    if (getActiveProviderKey() === "Safe") return;
-    if (!pubkeyError || isFetching) return;
-
-    disconnect();
-
-    // TODO Mili: ask about pubkey and it we still need to show this, handle the error
-    // ask swan how to handle this
-    // notifyError(
-    //   WALLET_NOTIFICATIONS.ErrorTitle,
-    //   WALLET_NOTIFICATIONS.PubkeySubtext,
-    //   { walletName: variables?.connector?.name ?? "" },
-    // );
-  }, [isFetching]);
   return (
     <WalletContext.Provider
       value={{

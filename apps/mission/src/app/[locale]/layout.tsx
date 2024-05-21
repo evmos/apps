@@ -27,7 +27,6 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: "Evmos Apps",
-  metadataBase: new URL("https://app.evmos.org"),
 
   keywords:
     "evmos, landing page, portfolio, overview, assets, stake, governance, vote",

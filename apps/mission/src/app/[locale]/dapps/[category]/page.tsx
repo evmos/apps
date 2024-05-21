@@ -9,23 +9,26 @@ export { DappExplorerPage as default } from "@evmosapps/dappstore-page/src/pages
 export const generateStaticParams = async () => {
   const { categories } = await fetchExplorerData();
 
-  return [
-    {
-      category: "all",
-    },
-    ...categories.map((category) => ({
-      category: category.slug,
-    })),
-  ];
+  return categories.map((category) => ({
+    category: category.slug,
+  }));
 };
+
 export async function generateMetadata({
   params,
 }: {
   params: { category: string };
 }) {
-  if (params.category === "all") {
+  if (!params.category) {
+    const title = `All dApps | Evmos dApp Store`;
     return {
-      title: `All dApps | Evmos dApp Store`,
+      title,
+      twitter: {
+        title,
+      },
+      openGraph: {
+        title,
+      },
     };
   }
   const { categories } = await fetchExplorerData();
@@ -34,7 +37,14 @@ export async function generateMetadata({
     categories.find((c) => c.slug === params.category) ??
     raise(`category not found: ${params.category}`);
 
+  const title = `${category.name} dApps | Evmos dApp Store`;
   return {
-    title: `${category.name} dApps | Evmos dApp Store`,
+    title,
+    twitter: {
+      title,
+    },
+    openGraph: {
+      title,
+    },
   };
 }

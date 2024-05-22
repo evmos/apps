@@ -30,7 +30,7 @@ const description = "Discover, explore, and interact with a range of dApps on th
 export const metadata: Metadata = {
   title,
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://store.evmos.org",
+    process.env.VERCEL_PROJECT_PRODUCTION_URL || "https://store.evmos.org",
   ),
   keywords:
     "evmos, landing page, portfolio, overview, assets, stake, governance, vote",

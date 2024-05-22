@@ -24,10 +24,14 @@ import { fetchExplorerData } from "@evmosapps/dappstore-page/src/lib/fetch-explo
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
 }
+const title = "Evmos dApp Store"
+const description = "Discover, explore, and interact with a range of dApps on the Evmos dApp Store."
 
 export const metadata: Metadata = {
-  title: "Evmos Apps",
-
+  title,
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://store.evmos.org",
+  ),
   keywords:
     "evmos, landing page, portfolio, overview, assets, stake, governance, vote",
   alternates: {
@@ -35,21 +39,17 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "Evmos Apps",
+    title,
     type: "article",
-    images: "https://storage.evmos.org/social_previews/social_share_apps.jpg",
-    url: "https://app.evmos.org/",
-    description:
-      "Evmos Apps is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team.",
+    url: "https://store.evmos.org/",
+    description,
     siteName: "Evmos Apps",
   },
 
   twitter: {
     card: "summary_large_image",
-    images: "https://storage.evmos.org/social_previews/social_share_apps.jpg",
-
-    description:
-      "Evmos Apps is the official landing page of Evmos, giving you an overview of your Evmos portfolio and any updates from the Evmos development team.",
+    title,
+    description,
     site: "@EvmosOrg",
   },
   // Other links

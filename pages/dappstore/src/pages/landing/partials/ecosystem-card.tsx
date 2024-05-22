@@ -40,7 +40,7 @@ export const EcosystemCard = ({ data }: { data: DApp }) => {
                   src={img.src}
                   blurDataURL={img.blurDataURL}
                   placeholder="blur"
-                  className="object-cover rounded-t-xl"
+                  className="object-cover rounded-t-xl [view-transition-name='dapp-image']"
                   alt={data.name}
                   fill={true}
                   sizes="400w"

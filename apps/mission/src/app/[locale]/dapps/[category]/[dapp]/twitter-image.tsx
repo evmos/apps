@@ -3,6 +3,9 @@
 
 import { DAppOgImage } from "./dapp-og-image";
 
+export const dynamic = "force-static";
+export const revalidate = "force-cache";
+
 export default function Image({
   params,
 }: {
@@ -12,7 +15,7 @@ export default function Image({
     params,
     size: {
       width: 1200,
-      height: 630,
+      height: 670,
     },
   });
 }

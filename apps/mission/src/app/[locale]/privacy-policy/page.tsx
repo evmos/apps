@@ -7,9 +7,11 @@ import { PRIVACY_POLICY_PAGE_NOTION_ID } from "@evmosapps/evmos-wallet/src/inter
 import { Metadata } from "next";
 import { NotionPageTitle } from "@evmosapps/ui-helpers/src/notion/NotionPageTitle";
 import { NotionBlocks } from "@evmosapps/ui-helpers/src/notion/NotionBlocks";
+
 export const metadata: Metadata = {
   title: "Privacy Policy",
 };
+
 export default function Page() {
   return (
     <section className="mx-auto prose prose-invert text-subheading dark:text-subheading-dark">

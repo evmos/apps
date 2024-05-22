@@ -324,7 +324,6 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
           },
           i,
         ) => (
-          //renzo
           <Card
             low
             className="bg-cover overflow-hidden flex-col w-60 flex shrink-0 transition-all duration-150 ease-out hover:scale-105 hover:translate-y-1 group"

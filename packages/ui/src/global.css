@@ -15,6 +15,10 @@
     @apply text-heading-dark;
   }
 
+  .disabled {
+    @apply pointer-events-none select-none opacity-50 cursor-not-allowed;
+  }
+
   /* For Webkit-based browsers (Chrome, Safari and Opera) */
   .scrollbar-hidden::-webkit-scrollbar {
     @apply hidden;

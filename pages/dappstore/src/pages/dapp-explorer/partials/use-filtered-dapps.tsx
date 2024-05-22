@@ -18,10 +18,10 @@ export const useFilteredDapps = (initialData: FilteredDAppsResults) => {
     if (sortBy && ["asc", "desc", "created-at"].includes(sortBy)) {
       return sortBy as SortBy;
     }
-    return "asc";
+    return "created-at";
   }, [sortBy]);
   const instantDApps = searchParams.get("instant-dapps") === "true";
-  const hasCustomFilter = instantDApps || sanitizedSortBy !== "asc";
+  const hasCustomFilter = instantDApps || sanitizedSortBy !== "created-at";
   return useQuery({
     queryKey: ["dapps", category, sanitizedSortBy, instantDApps],
     refetchOnMount: hasCustomFilter,

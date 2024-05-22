@@ -6,7 +6,11 @@ import Image from "next/image";
 import { IconLightning } from "@evmosapps/ui/icons/filled/images/lightning-stroke.tsx";
 import { useFavoritesContext } from "../../src/components/useFavorite";
 import Link from "next/link";
-import { CLICK_ON_NAVIGATION, sendEvent } from "tracker";
+import {
+  CLICK_ON_NAVIGATION,
+  UNCLICK_FAVORITE_NAVBAR,
+  sendEvent,
+} from "tracker";
 import { Trans, useTranslation } from "@evmosapps/i18n/client";
 import { cn } from "helpers/src/classnames";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
@@ -137,6 +141,9 @@ export const FavoriteSection = ({
                   onClick={(e) => {
                     e.stopPropagation();
                     removeFavorite(favorite.slug);
+                    sendEvent(UNCLICK_FAVORITE_NAVBAR, {
+                      "dApp Type": favorite.name,
+                    });
                   }}
                   className="ml-auto md:p-0 md:invisible md:group-hover:visible md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300"
                   size="sm"

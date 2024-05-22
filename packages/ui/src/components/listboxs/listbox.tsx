@@ -85,6 +85,8 @@ const ListboxOption = forwardRef<
     <ListboxLocal.Option
       ref={ref}
       className={cn(
+        "data-[focus]:bg-primary/10 data-[focus]:dark:bg-primary-dark/10 data-[focus]:rounded-lg",
+        "data-[selected]:bg-primary/10 data-[selected]:dark:bg-primary-dark/10 data-[selected]:rounded-lg",
         "cursor-pointer truncate flex items-center justify-between w-full py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 hover:rounded-lg focus-visible:rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10",
         disabled && "disabled",
         selected && "bg-primary/10 dark:bg-primary-dark/10 rounded-lg",

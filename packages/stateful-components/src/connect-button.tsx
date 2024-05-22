@@ -20,7 +20,7 @@ export const ConnectButton = () => {
         sendEvent(CLICK_WIDGET, { "dApp Details Type": "Sign in" });
       }}
     >
-      Connect
+      Sign in
     </PrimaryButton>
   );
 };

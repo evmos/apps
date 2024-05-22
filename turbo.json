@@ -25,6 +25,7 @@
     "NEXT_PUBLIC_REGISTRY_NETWORK_BLOCK_LIST",
     "NEXT_PUBLIC_EVMOS_BLOCKED_PROPOSALS_LIST_PAGE_NOTION_ID",
     "NEXT_PUBLIC_ENABLE_TESTNET",
+    "NEXT_PUBLIC_BASE_URL",
     "E2E_TEST_EVMOS_CHAIN_NAME",
     "E2E_TEST_EVMOS_RPC_URL",
     "E2E_TEST_EVMOS_CHAIN_ID",
@@ -45,8 +46,8 @@
     "NEXT_PUBLIC_EVMOS_UTILS_PAGE_NOTION_ID",
     "NEXT_PUBLIC_EVMOS_LANDING_PAGE_NOTION_ID",
     "NEXT_PUBLIC_EVMOS_HIGHLIGHT_CARDS_DB_NOTION_ID",
-
     "NEXT_PUBLIC_VERCEL_URL",
+    "VERCEL_PROJECT_PRODUCTION_URL",
     "VERCEL",
     "VERCEL_ENV",
     "VERCEL_URL",
@@ -60,9 +61,14 @@
       "cache": false
     },
     "build": {
-      "dependsOn": ["prebuild"],
+      "dependsOn": [
+        "prebuild"
+      ],
       "cache": true,
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": [
+        "dist/**",
+        ".next/**"
+      ]
     },
     "clean": {
       "cache": false
@@ -72,7 +78,9 @@
       "persistent": true
     },
     "start": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "cache": false,
       "persistent": true
     },
@@ -91,10 +99,14 @@
     "lint": {},
     "test:coverage": {
       "cache": false,
-      "outputs": ["coverage/**"]
+      "outputs": [
+        "coverage/**"
+      ]
     },
     "test:e2e": {
-      "env": ["CI"],
+      "env": [
+        "CI"
+      ],
       "cache": false
     }
   }

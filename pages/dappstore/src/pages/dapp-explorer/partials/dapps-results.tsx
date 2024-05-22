@@ -12,7 +12,6 @@ import { Suspense } from "react";
 import { raise } from "helpers";
 import { FilteredDAppsResults } from "./get-filtered-dapps";
 import { useFilteredDapps } from "./use-filtered-dapps";
-
 type DAppsResultsProps = {
   selectedCategory: string;
   initialData: FilteredDAppsResults;

@@ -3,15 +3,20 @@
 
 import { Metadata } from "next";
 export { PortfolioPage as default } from "@evmosapps/portfolio-page";
+
+const title = "Evmos Portfolio";
+const description =
+  "Evmos Portfolio is the official Evmos dApp to withdraw, deposit and convert your Evmos assets.";
+
 export const metadata: Metadata = {
-  description:
-    "Evmos Portfolio is the official Evmos dApp to withdraw, deposit and convert your Evmos assets.",
-  title: "Evmos Portfolio",
+  title,
+  description,
   twitter: {
-    description:
-      "Evmos Portfolio is the official Evmos dApp to withdraw, deposit and convert your Evmos assets.",
+    title,
+    description,
   },
   openGraph: {
-    title: "Evmos Portfolio",
+    title,
+    description,
   },
 };

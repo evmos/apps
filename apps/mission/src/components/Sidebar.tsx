@@ -31,6 +31,9 @@ import { usePathname } from "next/navigation";
 import { Dispatch, createElement, useState } from "react";
 import { DApp } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
 
+const normalizePathname = (pathname: string) =>
+  "/" + pathname.split("/").filter(Boolean).join("/");
+
 const NavigationSection = ({
   setFavoritesIsOpen,
   favoritesIsOpen,
@@ -38,7 +41,7 @@ const NavigationSection = ({
   setFavoritesIsOpen: Dispatch<React.SetStateAction<boolean>>;
   favoritesIsOpen: boolean;
 }) => {
-  const pathname = usePathname();
+  const pathname = normalizePathname(usePathname());
   const { t } = useTranslation("dappStore");
   return (
     <nav className="flex flex-col relative w-full z-10">
@@ -52,14 +55,14 @@ const NavigationSection = ({
             Icon: IconHome3,
             href: "/",
             target: "_self",
-            isActive: pathname === "/",
+            isActive: !favoritesIsOpen && pathname === "/",
           },
           {
             label: "navigation.options.categories",
             Icon: IconPlanet,
             href: "/dapps",
             target: "_self",
-            isActive: pathname.startsWith("/dapps"),
+            isActive: !favoritesIsOpen && pathname.startsWith("/dapps"),
           },
           {
             label: "navigation.options.develop",

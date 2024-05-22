@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { fetchExplorerData } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
-import { Metadata } from "next/types";
+import { Metadata, ResolvingMetadata } from "next/types";
 import { raise } from "helpers";
 
 export default function DappDetailsPage() {
@@ -18,11 +18,14 @@ export const generateStaticParams = async () => {
   }));
 };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { dapp: string };
-}): Promise<Metadata> {
+export async function generateMetadata(
+  {
+    params,
+  }: {
+    params: { dapp: string };
+  },
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
   const { dApps } = await fetchExplorerData();
   const dapp =
     dApps.find((c) => c.slug === params.dapp) ?? raise("DApp not found");
@@ -32,14 +35,14 @@ export async function generateMetadata({
     title = `${dapp.name} Instant dApp | Evmos dApp Store`;
   }
 
+  const resolvedParent = await parent;
+  const metadataBase = resolvedParent.metadataBase ?? undefined;
+
   const { oneLiner: description } = dapp;
   return {
     title,
     description,
-    metadataBase: new URL(
-      `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` ||
-      "https://store.evmos.org",
-    ),
+    metadataBase,
     twitter: {
       title,
       description,

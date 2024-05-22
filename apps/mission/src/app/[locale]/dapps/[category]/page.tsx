@@ -3,6 +3,7 @@
 
 import { fetchExplorerData } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
 import { raise } from "helpers";
+import { ResolvingMetadata } from "next/types";
 
 export { DappExplorerPage as default } from "@evmosapps/dappstore-page/src/pages/dapp-explorer/dapp-explorer-page";
 
@@ -14,11 +15,20 @@ export const generateStaticParams = async () => {
   }));
 };
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { category: string };
-}) {
+export async function generateMetadata(
+  {
+    params,
+  }: {
+    params: { category: string };
+  },
+  parent: ResolvingMetadata,
+) {
+  const resolvedParent = await parent;
+  const description = resolvedParent.description ?? undefined;
+  const twitter = resolvedParent.twitter ?? undefined;
+  const openGraph = resolvedParent.openGraph ?? undefined;
+  const metadataBase = resolvedParent.metadataBase ?? undefined;
+
   if (!params.category) {
     const title = `All dApps | Evmos dApp Store`;
     return {
@@ -40,11 +50,18 @@ export async function generateMetadata({
   const title = `${category.name} dApps | Evmos dApp Store`;
   return {
     title,
+    metadataBase,
+
+    description,
     twitter: {
       title,
+      description,
+      images: twitter?.images,
     },
     openGraph: {
       title,
+      description,
+      images: openGraph?.images,
     },
   };
 }

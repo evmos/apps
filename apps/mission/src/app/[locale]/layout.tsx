@@ -31,10 +31,10 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  metadataBase: new URL(
-    `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` ||
-    "https://store.evmos.org",
-  ),
+  // metadataBase: new URL(
+  //   `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` ||
+  //   "https://store.evmos.org",
+  // ),
   keywords:
     "evmos, landing page, portfolio, overview, assets, stake, governance, vote",
   alternates: {

@@ -24,13 +24,15 @@ import { fetchExplorerData } from "@evmosapps/dappstore-page/src/lib/fetch-explo
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
 }
-const title = "Evmos dApp Store"
-const description = "Discover, explore, and interact with a range of dApps on the Evmos dApp Store."
+const title = "Evmos dApp Store";
+const description =
+  "Discover, explore, and interact with a range of dApps on the Evmos dApp Store.";
 
 export const metadata: Metadata = {
   title,
   metadataBase: new URL(
-    process.env.VERCEL_PROJECT_PRODUCTION_URL || "https://store.evmos.org",
+    `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` ||
+    "https://store.evmos.org",
   ),
   keywords:
     "evmos, landing page, portfolio, overview, assets, stake, governance, vote",

@@ -256,9 +256,11 @@ export const DescriptiondApp = async ({
 
       {/* Related dapps */}
       <div className="flex justify-between items-center md:items-start">
-        <h2 className="text-xl text-heading dark:text-heading-dark mb-5 md:-mb-10">
-          {t("instantdApp.relatedApps.title")}
-        </h2>
+        {relatedApps.length > 0 && (
+          <h2 className="text-xl text-heading dark:text-heading-dark mb-5 md:-mb-10">
+            {t("instantdApp.relatedApps.title")}
+          </h2>
+        )}
       </div>
       <EcosystemCardGrid>
         {relatedApps

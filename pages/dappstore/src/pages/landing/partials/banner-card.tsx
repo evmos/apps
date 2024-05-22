@@ -11,7 +11,7 @@ export const BannerCard = ({ className, ...props }: ComponentProps<"div">) => {
   return (
     <Surface
       className={cn(
-        "flex relative lg:h-96 flex-col justify-end lg:justify-center overflow-hidden",
+        "flex relative lg:h-[310px] flex-col justify-end lg:justify-center overflow-hidden",
         className,
       )}
       {...props}

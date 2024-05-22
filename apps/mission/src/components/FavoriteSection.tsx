@@ -84,7 +84,7 @@ export const FavoriteSection = ({
         </div>
       )}
       {!loading && (
-        <div className="max-h-[50vh] md:overflow-y-auto scrollbar-hidden px-8 md:px-4 flex flex-col py-2 md:py-0">
+        <div className="max-h-[50vh] md:overflow-y-auto scrollbar-hidden px-8 md:px-8 flex flex-col py-2 md:py-0">
           {(!favorites || favorites?.length === 0) && (
             <div className="text-sm opacity-70 mt-5 font-medium">
               <Trans

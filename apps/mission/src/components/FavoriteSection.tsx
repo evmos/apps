@@ -72,7 +72,7 @@ export const FavoriteSection = ({
         "md:static md:bg-transparent md:dark:bg-transparent md:min-h-none",
       )}
     >
-      <div className="mt-6 px-4 hidden md:block mb-4">
+      <div className="mt-6 px-8 hidden md:block mb-4">
         <hr className="text-surface-container dark:text-surface-container-dark"></hr>
         <h2 className="text-xs mt-4">{t("favorites.title")}</h2>
       </div>

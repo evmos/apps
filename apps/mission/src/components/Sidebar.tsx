@@ -42,7 +42,7 @@ const NavigationSection = ({
   const { t } = useTranslation("dappStore");
   return (
     <nav className="flex flex-col relative w-full z-10">
-      <h2 className="text-xs px-4 hidden md:block mb-3">
+      <h2 className="text-xs px-8 hidden md:block mb-3">
         {t("navigation.title")}
       </h2>
       <ul className="flex md:flex-col w-full max-w-[100vw] md:gap-y-2 overflow-x-auto scrollbar-hidden px-6 md:px-4 -mb-px md:mb-0 ">

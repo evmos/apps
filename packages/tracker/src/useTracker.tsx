@@ -10,6 +10,7 @@ import { useMemo } from "react";
 
 mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_TOKEN ?? "", {
   ip: false,
+  track_pageview: true,
 });
 
 export const isTrackerEnabled = () => {

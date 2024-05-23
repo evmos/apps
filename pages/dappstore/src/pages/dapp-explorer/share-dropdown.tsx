@@ -22,7 +22,8 @@ export const ShareDropdown = ({
   const urlShare = `https://store.evmos.org/dapps/${dapp.categorySlug}/${dapp.slug}`;
 
   const { t } = useTranslation("dappStore");
-  const utmParams = `?utm_source=store.evmos.org&utm_medium=share&utm_campaign=dapp-`;
+  const utmSource = `?utm_source=`;
+  const utmMedium = `utm_medium=social`;
 
   return (
     <div className="relative">
@@ -41,7 +42,7 @@ export const ShareDropdown = ({
                 {/* Social media */}
                 <div className="flex justify-center mt-4 gap-8">
                   <TwitterShareButton
-                    url={urlShare+utmParams+"twitter"}
+                    url={urlShare + utmSource + "x" + "&" + utmMedium}
                     title={t("share.description")}
                   >
                     <div
@@ -58,7 +59,7 @@ export const ShareDropdown = ({
                     </p>
                   </TwitterShareButton>
                   <TelegramShareButton
-                    url={urlShare+utmParams+"telegram"}
+                    url={urlShare + utmSource + "telegram" + "&" + utmMedium}
                     title={t("share.description")}
                   >
                     <div

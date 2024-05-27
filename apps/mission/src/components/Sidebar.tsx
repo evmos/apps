@@ -7,7 +7,7 @@ import { IconHome3 } from "@evmosapps/ui/icons/line/basic/home-3.tsx";
 import { IconPlanet } from "@evmosapps/ui/icons/line/basic/planet.tsx";
 import { IconBook } from "@evmosapps/ui/icons/line/basic/book.tsx";
 import { IconExternalLink } from "@evmosapps/ui/icons/line/arrows/external-link.tsx";
-import { cn } from "helpers";
+import { Log, cn } from "helpers";
 import { Link, useTranslation } from "@evmosapps/i18n/client";
 import {
   DISCORD_EVMOS_URL,
@@ -42,6 +42,8 @@ const NavigationSection = ({
   favoritesIsOpen: boolean;
 }) => {
   const pathname = normalizePathname(usePathname());
+
+  console.log("pathname value: ", pathname);
   const { t } = useTranslation("dappStore");
   return (
     <nav className="flex flex-col relative w-full z-10">

@@ -57,32 +57,30 @@ export const EditModal = () => {
             <Modal.Header>{t("profile.modal.title")}</Modal.Header>
             <div className="flex flex-col">
               <div className="flex items-center space-x-6">
-                {profileImages.map((img, index) => {
-                  return (
-                    <Image
-                      key={index}
-                      src={img}
-                      blurDataURL={img.blurDataURL}
-                      width={80}
-                      height={80}
-                      alt={img.src}
-                      className={cn(
-                        "rounded-full cursor-pointer transition-all duration-150 ease-out hover:scale-105 overflow-hidden",
-                        {
-                          "ring-1 ring-tertiary-container dark:ring-tertiary-container-dark ":
-                            localImg?.src === img.src,
-                        },
-                      )}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setLocalImg(img);
-                        sendEvent(EDIT_PROFILE, {
-                          "Profile Details": "Picture",
-                        });
-                      }}
-                    />
-                  );
-                })}
+                {profileImages.map((img, index) => (
+                  <Image
+                    key={index}
+                    src={img}
+                    blurDataURL={img.blurDataURL}
+                    width={80}
+                    height={80}
+                    alt={img.src}
+                    className={cn(
+                      "rounded-full cursor-pointer transition-all duration-150 ease-out hover:scale-105 overflow-hidden",
+                      {
+                        "ring-1 ring-tertiary-container dark:ring-tertiary-container-dark ":
+                          localImg?.src === img.src,
+                      },
+                    )}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setLocalImg(img);
+                      sendEvent(EDIT_PROFILE, {
+                        "Profile Details": "Picture",
+                      });
+                    }}
+                  />
+                ))}
               </div>
             </div>
             <div className="flex flex-col space-y-2">

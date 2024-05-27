@@ -85,44 +85,42 @@ const NavigationSection = ({
               setFavoritesIsOpen((v) => !v);
             },
           },
-        ].map(({ className, label, Icon, target, isActive, href, onClick }) => {
-          return (
-            <TrackerEvent
-              key={label}
-              event={CLICK_ON_NAVIGATION}
-              properties={{ navigation: t(label) } as { [key: string]: string }}
-            >
-              <li>
-                {createElement(
-                  href ? Link : "button",
-                  {
-                    className: cn(
-                      {
-                        "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark bg-primary/10 dark:bg-primary-dark/10":
-                          isActive,
-                      },
-                      "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 hover:dark:text-primary-dark hover:text-primary  h-11 px-4 justify-center items-center text-base rounded-t-lg",
-                      "border-b-2 gap-x-3",
-                      "md:rounded-full md:border-none md:justify-start",
+        ].map(({ className, label, Icon, target, isActive, href, onClick }) => (
+          <TrackerEvent
+            key={label}
+            event={CLICK_ON_NAVIGATION}
+            properties={{ navigation: t(label) } as { [key: string]: string }}
+          >
+            <li>
+              {createElement(
+                href ? Link : "button",
+                {
+                  className: cn(
+                    {
+                      "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark bg-primary/10 dark:bg-primary-dark/10":
+                        isActive,
+                    },
+                    "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 hover:dark:text-primary-dark hover:text-primary  h-11 px-4 justify-center items-center text-base rounded-t-lg",
+                    "border-b-2 gap-x-3",
+                    "md:rounded-full md:border-none md:justify-start",
 
-                      className,
-                    ),
-                    target,
-                    onClick,
-                    href: href || "",
-                  },
-                  <>
-                    <Icon className="hidden md:inline-flex w-5 h-5" />
-                    {t(label)}
-                    {!href?.startsWith("/") && (
-                      <IconExternalLink className="hidden md:inline-flex ml-auto h-4 w-4 opacity-60" />
-                    )}
-                  </>,
-                )}
-              </li>
-            </TrackerEvent>
-          );
-        })}
+                    className,
+                  ),
+                  target,
+                  onClick,
+                  href: href || "",
+                },
+                <>
+                  <Icon className="hidden md:inline-flex w-5 h-5" />
+                  {t(label)}
+                  {!href?.startsWith("/") && (
+                    <IconExternalLink className="hidden md:inline-flex ml-auto h-4 w-4 opacity-60" />
+                  )}
+                </>,
+              )}
+            </li>
+          </TrackerEvent>
+        ))}
       </ul>
     </nav>
   );
@@ -163,7 +161,12 @@ const SocialSection = () => (
         event={CLICK_ON_FOOTER_CTA}
         properties={{ "Footer Social Type": name }}
       >
-        <a href={href} target="_blank" rel="noreferrer">
+        <a
+          href={href}
+          target="_blank"
+          rel="noreferrer"
+          className="hover:text-primary dark:hover:text-primary-dark"
+        >
           <Icon className="w-4 h-4 opacity-60" />
         </a>
       </TrackerEvent>

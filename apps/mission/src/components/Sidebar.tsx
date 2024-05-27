@@ -28,7 +28,7 @@ import { FavoriteSection } from "./FavoriteSection";
 import { TrackerEvent } from "@evmosapps/ui-helpers";
 import { CLICK_ON_FOOTER_CTA, CLICK_ON_NAVIGATION } from "tracker";
 import { usePathname } from "next/navigation";
-import { Dispatch, createElement, useState } from "react";
+import { Dispatch, createElement, useEffect, useState } from "react";
 import { DApp } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
 
 const normalizePathname = (pathname: string) =>
@@ -41,8 +41,12 @@ const NavigationSection = ({
   setFavoritesIsOpen: Dispatch<React.SetStateAction<boolean>>;
   favoritesIsOpen: boolean;
 }) => {
-  const pathname = normalizePathname(usePathname()) || "/";
-
+  const [active, setActive] = useState("/");
+  const pathname = normalizePathname(usePathname());
+  useEffect(() => {
+    setActive(pathname);
+    // Do something here...
+  }, [pathname]);
   const { t } = useTranslation("dappStore");
   return (
     <nav className="flex flex-col relative w-full z-10">
@@ -56,14 +60,14 @@ const NavigationSection = ({
             Icon: IconHome3,
             href: "/",
             target: "_self",
-            isActive: !favoritesIsOpen && pathname === "/",
+            isActive: !favoritesIsOpen && active === "/",
           },
           {
             label: "navigation.options.categories",
             Icon: IconPlanet,
             href: "/dapps",
             target: "_self",
-            isActive: !favoritesIsOpen && pathname.startsWith("/dapps"),
+            isActive: !favoritesIsOpen && active.startsWith("/dapps"),
           },
           {
             label: "navigation.options.develop",

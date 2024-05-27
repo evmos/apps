@@ -131,7 +131,10 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
                 lowest
                 className={cn(
                   "h-56 shape-binding px-8 py-8 flex-col flex relative bg-cover w-full shrink-0",
-                  "before:absolute before:top-0 before:left-0 before:w-[101%] before:h-[101%] before:bg-surface-dark/50 before:rounded-lg",
+                  "bg-center",
+                  "md:bg-cover",
+                  "sm:bg-left sm:bg-[length:200%]",
+                  "before:absolute before:top-0 before:left-0 before:w-[101%] before:h-[101%] before:bg-gradient-to-r before:from-surface-dark/100 before:to-transparent before:rounded-lg",
                 )}
                 style={{
                   backgroundImage: image

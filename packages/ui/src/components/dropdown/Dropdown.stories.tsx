@@ -24,8 +24,13 @@ export const Default = () => {
 
   return (
     <>
-      <Dropdown isOpen={isOpen} setIsOpen={setIsOpen}>
-        <Dropdown.Button ref={buttonRef} onClick={() => setIsOpen(!isOpen)}>
+      <Dropdown.Menu>
+        <Dropdown.Button
+          as="div"
+          className="flex justify-end w-full"
+          ref={buttonRef}
+          onClick={() => setIsOpen(!isOpen)}
+        >
           <Button>Dropdown</Button>
         </Dropdown.Button>
         <Dropdown.Items ref={dropdwonRef}>
@@ -37,7 +42,7 @@ export const Default = () => {
             <Dropdown.Item as="div">Test 2</Dropdown.Item>
           </Dropdown.Container>
         </Dropdown.Items>
-      </Dropdown>
+      </Dropdown.Menu>
     </>
   );
 };

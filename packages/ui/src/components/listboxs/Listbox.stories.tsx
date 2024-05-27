@@ -33,7 +33,7 @@ export const Default = () => {
 
   return (
     <>
-      <Listbox value={selected} onChange={setSelected}>
+      <Listbox.Menu value={selected} onChange={setSelected}>
         <Listbox.Button className="cursor-pointer border min-w-32 text-subheading dark:text-subheading-dark font-normal text-base flex items-center justify-between border-surface-container-highest dark:border-surface-container-highest-dark rounded-lg px-4 py-2 gap-2">
           <span className="block truncate">{selected?.name}</span>
 
@@ -41,11 +41,23 @@ export const Default = () => {
             className={`w-5 text-paragraph dark:text-paragraph-dark`}
           />
         </Listbox.Button>
-        <Listbox.Options className="max-w-32">
-          <Listbox.Option as="div">Test 1</Listbox.Option>
-          <Listbox.Option as="div">Test 2</Listbox.Option>
+        <Listbox.Options className="min-w-32">
+          <Listbox.Option
+            as="div"
+            value={options[0]}
+            activeSort={selected?.id === options[0]?.id}
+          >
+            Test 1
+          </Listbox.Option>
+          <Listbox.Option
+            as="div"
+            value={options[1]}
+            activeSort={selected?.id === options[1]?.id}
+          >
+            Test 2
+          </Listbox.Option>
         </Listbox.Options>
-      </Listbox>
+      </Listbox.Menu>
     </>
   );
 };

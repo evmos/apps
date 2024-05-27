@@ -154,7 +154,7 @@ const socials = [
 ];
 
 const SocialSection = () => (
-  <nav className="px-4 mb-5 mt-auto gap-x-3 hidden md:flex">
+  <nav className="px-8 mb-5 mt-auto gap-x-3 hidden md:flex">
     {socials.map(({ name, Icon, href }) => (
       <TrackerEvent
         key={name}

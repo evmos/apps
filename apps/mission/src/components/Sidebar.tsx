@@ -7,7 +7,7 @@ import { IconHome3 } from "@evmosapps/ui/icons/line/basic/home-3.tsx";
 import { IconPlanet } from "@evmosapps/ui/icons/line/basic/planet.tsx";
 import { IconBook } from "@evmosapps/ui/icons/line/basic/book.tsx";
 import { IconExternalLink } from "@evmosapps/ui/icons/line/arrows/external-link.tsx";
-import { Log, cn } from "helpers";
+import { cn } from "helpers";
 import { Link, useTranslation } from "@evmosapps/i18n/client";
 import {
   DISCORD_EVMOS_URL,
@@ -41,17 +41,8 @@ const NavigationSection = ({
   setFavoritesIsOpen: Dispatch<React.SetStateAction<boolean>>;
   favoritesIsOpen: boolean;
 }) => {
-  const pathname = normalizePathname(usePathname());
+  const pathname = normalizePathname(usePathname()) || "/";
 
-  console.log(
-    "pathname value: ",
-    pathname,
-    "pathname igual a /",
-    pathname === "/",
-    "pathname igual a /dapps",
-    pathname.startsWith("/dapps"),
-    favoritesIsOpen,
-  );
   const { t } = useTranslation("dappStore");
   return (
     <nav className="flex flex-col relative w-full z-10">
@@ -92,7 +83,6 @@ const NavigationSection = ({
             },
           },
         ].map(({ className, label, Icon, target, isActive, href, onClick }) => {
-          console.log("isActive: ", isActive, "con value: ", label);
           return (
             <TrackerEvent
               key={label}
@@ -104,13 +94,14 @@ const NavigationSection = ({
                   href ? Link : "button",
                   {
                     className: cn(
-                      "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 hover:dark:text-primary-dark hover:text-primary  h-11 px-4 justify-center items-center text-base rounded-t-lg",
-                      "border-b-2 gap-x-3",
-                      "md:rounded-full md:border-none md:justify-start",
                       {
                         "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark bg-primary/10 dark:bg-primary-dark/10":
                           isActive,
                       },
+                      "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 hover:dark:text-primary-dark hover:text-primary  h-11 px-4 justify-center items-center text-base rounded-t-lg",
+                      "border-b-2 gap-x-3",
+                      "md:rounded-full md:border-none md:justify-start",
+
                       className,
                     ),
                     target,

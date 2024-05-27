@@ -43,7 +43,15 @@ const NavigationSection = ({
 }) => {
   const pathname = normalizePathname(usePathname());
 
-  console.log("pathname value: ", pathname);
+  console.log(
+    "pathname value: ",
+    pathname,
+    "pathname igual a /",
+    pathname === "/",
+    "pathname igual a /dapps",
+    pathname.startsWith("/dapps"),
+    favoritesIsOpen,
+  );
   const { t } = useTranslation("dappStore");
   return (
     <nav className="flex flex-col relative w-full z-10">

@@ -27,7 +27,11 @@ export const Default = () => {
         Show dialog
       </Button>
       {isOpen && (
-        <Modal isOpen={isOpen} setIsOpen={onDialogClose}>
+        <Modal
+          isOpen={isOpen}
+          setIsOpen={onDialogClose}
+          onClose={onDialogClose}
+        >
           <Modal.Body>Modal Test</Modal.Body>
         </Modal>
       )}

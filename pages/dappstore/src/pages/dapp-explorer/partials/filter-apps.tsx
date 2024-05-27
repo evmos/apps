@@ -14,6 +14,7 @@ import { FilteredDAppsResults, SortBy } from "./get-filtered-dapps";
 import { useParams } from "next/navigation";
 import { useFilteredDapps } from "./use-filtered-dapps";
 import { startTransition } from "./startTransition";
+import { useState } from "react";
 
 const sortLabels = {
   asc: "A to Z",
@@ -36,7 +37,9 @@ export const FilterApps = ({
   const sortBy = params.get("sort-by") as SortBy;
   const router = useRouter();
   const { t } = useTranslation("dappStore");
-
+  const [selectedSort, setSelectedSort] = useState(
+    sortLabels[sortBy] ?? sortLabels["created-at"],
+  );
   return (
     <div className="md:pt-4 flex items-center justify-between">
       <p className="hidden lg:inline-block text-heading dark:text-heading-dark text-xl font-medium">
@@ -91,6 +94,7 @@ export const FilterApps = ({
               sendEvent(CLICK_SORT, {
                 "Sort Type": sortLabels[selected],
               });
+              setSelectedSort(selected);
             }}
           >
             <Listbox.Button className="cursor-pointer border w-44 text-subheading dark:text-subheading-dark font-normal text-base flex items-center justify-between border-surface-container-highest dark:border-surface-container-highest-dark rounded-lg px-4 py-2 gap-2">
@@ -104,7 +108,11 @@ export const FilterApps = ({
 
             <Listbox.Options className="w-44">
               {Object.entries(sortLabels).map(([id, label]) => (
-                <Listbox.Option key={id} value={id}>
+                <Listbox.Option
+                  key={id}
+                  value={id}
+                  activeSort={selectedSort === label}
+                >
                   {label}
                 </Listbox.Option>
               ))}

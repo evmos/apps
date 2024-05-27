@@ -28,7 +28,7 @@ import { FavoriteSection } from "./FavoriteSection";
 import { TrackerEvent } from "@evmosapps/ui-helpers";
 import { CLICK_ON_FOOTER_CTA, CLICK_ON_NAVIGATION } from "tracker";
 import { usePathname } from "next/navigation";
-import { Dispatch, createElement, useState } from "react";
+import { Dispatch, createElement, useEffect, useState } from "react";
 import { DApp } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
 
 const normalizePathname = (pathname: string) =>
@@ -41,7 +41,11 @@ const NavigationSection = ({
   setFavoritesIsOpen: Dispatch<React.SetStateAction<boolean>>;
   favoritesIsOpen: boolean;
 }) => {
+  const [active, setActive] = useState("");
   const pathname = normalizePathname(usePathname());
+  useEffect(() => {
+    setActive(pathname);
+  }, [pathname]);
   const { t } = useTranslation("dappStore");
   return (
     <nav className="flex flex-col relative w-full z-10">
@@ -55,14 +59,14 @@ const NavigationSection = ({
             Icon: IconHome3,
             href: "/",
             target: "_self",
-            isActive: !favoritesIsOpen && pathname === "/",
+            isActive: !favoritesIsOpen && active === "/",
           },
           {
             label: "navigation.options.categories",
             Icon: IconPlanet,
             href: "/dapps",
             target: "_self",
-            isActive: !favoritesIsOpen && pathname.startsWith("/dapps"),
+            isActive: !favoritesIsOpen && active.startsWith("/dapps"),
           },
           {
             label: "navigation.options.develop",
@@ -92,13 +96,14 @@ const NavigationSection = ({
                 href ? Link : "button",
                 {
                   className: cn(
-                    "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 hover:dark:text-primary-dark hover:text-primary  h-11 px-4 justify-center items-center text-base rounded-t-lg",
-                    "border-b-2 gap-x-3",
-                    "md:rounded-full md:border-none md:justify-start",
                     {
                       "border-primary dark:border-primary-container-dark text-primary dark:text-primary-dark bg-primary/10 dark:bg-primary-dark/10":
                         isActive,
                     },
+                    "flex hover:bg-primary/10 border-transparent dark:hover:bg-primary-dark/10 hover:dark:text-primary-dark hover:text-primary  h-11 px-4 justify-center items-center text-base rounded-t-lg",
+                    "border-b-2 gap-x-3",
+                    "md:rounded-full md:border-none md:justify-start",
+
                     className,
                   ),
                   target,

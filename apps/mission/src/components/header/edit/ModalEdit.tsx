@@ -75,7 +75,9 @@ export const EditModal = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       setLocalImg(img);
-                      sendEvent(EDIT_PROFILE, { "Profile Details": "Picture" });
+                      sendEvent(EDIT_PROFILE, {
+                        "Profile Details": "Picture",
+                      });
                     }}
                   />
                 ))}

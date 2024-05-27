@@ -76,9 +76,11 @@ const ListboxOption = forwardRef<
     className?: string;
     disabled?: boolean;
     selected?: boolean;
+    focus?: boolean;
+    activeSort: boolean;
   } & ComponentPropsWithoutRef<typeof ListboxLocal.Option>
 >(function ListboxOption(
-  { children, className, disabled, selected, ...rest },
+  { children, className, disabled, activeSort, ...rest },
   ref,
 ) {
   return (
@@ -89,7 +91,7 @@ const ListboxOption = forwardRef<
         "data-[selected]:bg-primary/10 data-[selected]:dark:bg-primary-dark/10 data-[selected]:rounded-lg",
         "cursor-pointer truncate flex items-center justify-between w-full py-3 px-3 gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 hover:rounded-lg focus-visible:rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10",
         disabled && "disabled",
-        selected && "bg-primary/10 dark:bg-primary-dark/10 rounded-lg",
+        activeSort && "bg-primary/10 dark:bg-primary-dark/10 rounded-lg",
         className as string,
       )}
       {...rest}

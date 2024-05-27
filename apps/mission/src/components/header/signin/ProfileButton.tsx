@@ -33,7 +33,6 @@ export const ProfileButton = () => {
         {getImg && (
           <Image
             blurDataURL={getImg.blurDataURL}
-            placeholder="blur"
             src={getImg.src}
             width={24}
             height={24}

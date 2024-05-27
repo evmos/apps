@@ -41,11 +41,10 @@ const NavigationSection = ({
   setFavoritesIsOpen: Dispatch<React.SetStateAction<boolean>>;
   favoritesIsOpen: boolean;
 }) => {
-  const [active, setActive] = useState("/");
+  const [active, setActive] = useState("");
   const pathname = normalizePathname(usePathname());
   useEffect(() => {
     setActive(pathname);
-    // Do something here...
   }, [pathname]);
   const { t } = useTranslation("dappStore");
   return (
@@ -164,12 +163,7 @@ const SocialSection = () => (
         event={CLICK_ON_FOOTER_CTA}
         properties={{ "Footer Social Type": name }}
       >
-        <a
-          href={href}
-          target="_blank"
-          rel="noreferrer"
-          className="hover:text-primary dark:hover:text-primary-dark"
-        >
+        <a href={href} target="_blank" rel="noreferrer">
           <Icon className="w-4 h-4 opacity-60" />
         </a>
       </TrackerEvent>

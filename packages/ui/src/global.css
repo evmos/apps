@@ -23,6 +23,11 @@
     border-width: 1px !important ;
   }
 
+  footer a,
+  footer svg {
+    @apply hover:text-gray-800 transition-all duration-300 ease-in-out;
+  }
+
   /* For Webkit-based browsers (Chrome, Safari and Opera) */
   .scrollbar-hidden::-webkit-scrollbar {
     @apply hidden;

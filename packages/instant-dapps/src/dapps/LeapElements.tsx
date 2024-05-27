@@ -10,7 +10,7 @@ export default function LeapElementsInstantDapp() {
   return (
     <InstantDappContainer
       image="bg-[url(/ecosystem/blur/leap-elements-blur.png)]"
-      dappName="LeapElements"
+      dappName="Leap Elements"
       widget={<LeapElements />}
     />
   );

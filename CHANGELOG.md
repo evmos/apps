@@ -34,7 +34,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
-## Unreleased
+## 2.0.15 - 2024-05-28
 
 
 -(fix) DAPP-35 | apps/mission 1.0.36 | change text color to Privacy, Terms and Cookies

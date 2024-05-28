@@ -1,8 +1,8 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-export const CLICK_CONNECT_WALLET_BUTTON = "ClickConnectWallet";
-export const CLICK_DISCONNECT_WALLET_BUTTON = "ClickDisconnectWallet";
+export const CLICK_CONNECT_WALLET_BUTTON = "ClickedSignIn";
+export const CLICK_DISCONNECT_WALLET_BUTTON = "ClickedSignOut";
 export const CLICK_CONNECTED_WITH = "ConnectSpecificWallet";
 export const CLICK_ON_SEND_BUTTON = "StartedSend";
 export const CLICK_ON_RECEIVE_BUTTON = "StartedReceive";
@@ -75,25 +75,18 @@ export const CREATED_ORDER_ON_TRANSAK = "CreatedOrderTransak";
 export const CANCELLED_ORDER_ON_TRANSAK = "CancelledOrderTransak";
 export const FAILED_ORDER_ON_TRANSAK = "FailedOrderTransak";
 export const SUCCESSFUL_ORDER_ON_TRANSAK = "SuccessfulOrderTransak";
-export const CLICK_ON_VIEW_ALL_DAPPS = "ClickedCTAButton - See all dApps";
-export const CLICK_ON_APPLY_TO_BE_PART_OF_THE_ECOSYSTEM =
-  "ClickedCTAButton - Add a dApp";
-export const CLICK_ON_DAPP_INSIDE_LAUNCHER = "AppLauncher";
-export const CLICK_ON_FEATURED_DAPP = "ClickedProductThumbnail";
-export const CLICK_ON_TOP_UP_ACCOUNT_DAPP = "ClickedTopUp";
-export const CLICK_ON_COPILOT_BANNER = "ClickedCopilotBanner";
 
-export const CLICK_SOCIAL_BUTTON = "ClickedSocialCTAButton";
-export const CLICK_ON_CATEGORY = "ClickedCategory";
-export const CLICK_ON_BREADCRUMB = "ClickedBreadcrumb";
+export const CLICK_ON_FEATURED_DAPP = "ClickCard";
+
+export const CLICK_SOCIAL_BUTTON = "ClickedAppDetails";
+export const CLICK_ON_CATEGORY = "ClickCategory";
+export const CLICK_ON_BREADCRUMB = "ClickBreadcrumb";
 export const CLICK_ON_FOOTER_CTA = "ClickedFooterCTA";
-export const CLICK_LEARN_BUTTON = "ClickedCTAButton - Learn to Build on Evmos";
-export const CLICK_SEE_MORE_BUTTON = "ClickedCTAButton - See more";
 
 export const CLICK_EVMOS_COPILOT_START_FLOW = "StartedCopilotOnboarding";
 export const EXIT_OUT_COPILOT = "ExitedCopilotOnboarding";
 export const CLICK_EVMOS_LOGO = "ClickedEvmosLogo";
-export const CLICK_ON_GIVE_FEEDBACK = "ClickedGiveFeedback";
+
 export const CLICK_BUTTON_CONVERT = "ClickedConvert";
 export const CLICK_HIDE_ZERO_BALANCE = "HideZeroBalance";
 export const CLICK_CTA_LINKS_REGISTER_TOKEN = "ClickedRegisterToken";
@@ -102,3 +95,21 @@ export const SUCCESSFUL_SWAP_TX = "SuccessfulSwap";
 export const UNSUCCESSFUL_SWAP_TX = "UnsuccessfulSwap";
 export const SUCCESSFUL_STAKE_TX = "SuccessfulStake";
 export const UNSUCESSFUL_STAKE_TX = "UnsuccessfulStake";
+
+export const CLICK_ON_NAVIGATION = "ClickOnNavigation";
+export const SEARCH_FOR_WALLET = "SearchForWallet";
+export const CLICK_ON_PORTFOLIO = "ClickEvmosPortfolioProfile";
+export const CLICK_ON_TOP_UP = "ClickTopUpProfile";
+export const SAVE_PROFILE_CHANGES = "SaveProfileChanges";
+export const CLICK_FILTER = "ClickFilter";
+export const CLICK_SORT = "ClickSort";
+export const UNCLICK_FILTER = "UnclickFilter";
+export const EDIT_PROFILE = "EditProfile";
+export const CLICK_SEARCH = "ClickSearch";
+export const CLICK_FAVORITE = "ClickFavorite";
+export const UNCLICK_FAVORITE = "UnclickFavorite";
+export const CLICKED_DAPP_FROM_SEARCH = "ClickedAppfromSearch";
+export const CLICK_SHARE = "ClickShare";
+export const CLICK_COPY_ON_SHARE = "ClickCopyinShare";
+export const CLICK_WIDGET = "ClickWidget";
+export const UNCLICK_FAVORITE_NAVBAR = "UnclickFavoriteNavBar";

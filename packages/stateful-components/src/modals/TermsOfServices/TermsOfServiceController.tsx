@@ -2,33 +2,25 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { Modal } from "@evmosapps/ui-helpers";
-import { cn, modalLink, useModal } from "helpers";
-import { useTranslation } from "@evmosapps/i18n/client";
+import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
+import { modalLink, useModal } from "helpers";
+import { Link, useTranslation } from "@evmosapps/i18n/client";
 import { EVMOS_TOS_VERSION } from "constants-helper";
-import { disableMixpanel, enableMixpanel, isTrackerEnabled } from "tracker";
+import { enableMixpanel } from "tracker";
 
-import { PropsWithChildren, useEffect, useState } from "react";
-import { useConsentModal } from "../ConsentModal/ConsentModal";
-import { Trans } from "react-i18next";
+import { useEffect, useState } from "react";
+import { Button } from "@evmosapps/ui/button/index.tsx";
 
 export const useTOSModal = () => useModal("tos");
 export const TOSModalTrigger = modalLink("tos");
 
-export const TermsOfServicesModalController = ({
-  children,
-}: PropsWithChildren) => {
+export const TermsOfServicesModalController = () => {
   const { t } = useTranslation();
   const { isOpen, setIsOpen, modalProps } = useTOSModal();
-
-  const consentModal = useConsentModal();
-
   const [acknowledgeTOS, setAcknowledgeTOS] = useState(false);
-  const [consent, setConsent] = useState(false);
 
   useEffect(() => {
     setAcknowledgeTOS(window.localStorage.getItem(EVMOS_TOS_VERSION) !== null);
-    setConsent(isTrackerEnabled());
   }, [isOpen]);
 
   useEffect(() => {
@@ -48,76 +40,41 @@ export const TermsOfServicesModalController = ({
   };
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={guardedSetIsOpen}>
-      <Modal.Body>
+    <Modal isOpen={isOpen} setIsOpen={guardedSetIsOpen} onClose={() => {}}>
+      <Modal.Body className="px-8 w-[510px]">
+        <Modal.Header showCloseButton={false}>{t("tos.title")}</Modal.Header>
         {modalProps && (
-          <div className="relative rounded-lg w-full space-y-4 max-w-2xl">
-            <h2 className="font-bold">{t("tos.title")}</h2>
-            <div className="border-darkGray5 h-80 w-full space-y-3 overflow-y-auto border p-4 font-display">
-              {children}
+          <div className="relative rounded-lg w-full mt-8 max-w-2xl">
+            <div className="mb-8 border-surface-container-highest dark:border-surface-container-highest-dark space-y-3 overflow-y-auto border p-3 rounded-lg text-subheading dark:text-subheading-dark">
+              <p>You are now launching the Evmos dApp Store.</p>
+              <p>
+                By continuing, you are acknowledging to the{" "}
+                <Link className="underline" href="/terms-of-service">
+                  Terms of Service
+                </Link>
+                ,{" "}
+                <Link className="underline" href="/privacy-policy">
+                  Privacy Policy
+                </Link>
+                , and{" "}
+                <Link className="underline" href="/cookie-policy">
+                  Cookie Policy.
+                </Link>
+              </p>
             </div>
-            <div className={`flex items-center space-x-2`}>
-              <input
-                type="checkbox"
-                id="acknowledgeTOS"
-                data-testid="accept-tos-checkbox"
-                checked={acknowledgeTOS}
-                onChange={(e) => {
-                  setAcknowledgeTOS(e.target.checked);
-                }}
-              />
-              <label htmlFor="acknowledgeTOS" className="cursor-pointer">
-                {t("tos.checks.acknowledgeTOS")}
-              </label>
-            </div>
-            <div className={`flex items-center space-x-2 `}>
-              <input
-                type="checkbox"
-                id="consent"
-                data-testid="consent-checkbox"
-                checked={consent}
-                onChange={(e) => {
-                  setConsent(e.target.checked);
-                }}
-              />
-              <label htmlFor="consent" className="cursor-pointer">
-                <Trans
-                  t={t}
-                  i18nKey={"tos.checks.consentTracking"}
-                  components={{
-                    button: (
-                      <a
-                        className="font-bold cursor-pointer hover:underline"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          consentModal.setIsOpen(true, {}, true);
-                        }}
-                      />
-                    ),
-                  }}
-                />
-              </label>
-            </div>
-            <button
-              className={cn(
-                "bg-red-300 text-pearl hover:bg-red1 rounded px-8 py-2 text-lg font-bold uppercase w-full",
-                {
-                  disabled: !acknowledgeTOS,
-                },
-              )}
-              data-testid="accept-tos-button"
-              onClick={() => {
-                localStorage.setItem(EVMOS_TOS_VERSION, "true");
-                if (consent) {
+            <Modal.Separator />
+            <div className="flex justify-end mt-6 ">
+              <Button
+                data-testid="accept-tos-button"
+                onClick={() => {
+                  localStorage.setItem(EVMOS_TOS_VERSION, "true");
                   enableMixpanel();
-                } else {
-                  disableMixpanel();
-                }
-                setIsOpen(false);
-              }}
-            >
-              {t("tos.acceptButton")}
-            </button>
+                  setIsOpen(false);
+                }}
+              >
+                {t("tos.acceptButton")}
+              </Button>
+            </div>
           </div>
         )}
       </Modal.Body>

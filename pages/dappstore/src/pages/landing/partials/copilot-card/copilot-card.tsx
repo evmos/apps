@@ -9,9 +9,9 @@ import { cn, raise } from "helpers";
 import { ComponentProps } from "react";
 import { SetupAccountModalTrigger } from "stateful-components/src/modals/SetupAccountModal/SetupAccountModal";
 import { Link, useTranslation } from "@evmosapps/i18n/client";
-import { CLICK_ON_COPILOT_BANNER, sendEvent } from "tracker";
+
 import { Frameline } from "@evmosapps/ui-helpers/src/container/FrameLine";
-import { TrackerEvent } from "@evmosapps/ui-helpers/src/TrackerEvent";
+
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
 import { useQuery } from "@tanstack/react-query";
 import { cosmos } from "helpers/src/clients/cosmos";
@@ -100,14 +100,7 @@ export const CopilotCard = () => {
         {setupAccountActive && (
           <Frameline className="w-full p-2">
             <SetupAccountModalTrigger>
-              <button
-                onClick={() => {
-                  sendEvent(CLICK_ON_COPILOT_BANNER, {
-                    "Copilot Actions": "Let's go",
-                  });
-                }}
-                className={`${linkCn} bg-red-300`}
-              >
+              <button className={`${linkCn} bg-red-300`}>
                 {t("copilotCard.letsGo")}
               </button>
             </SetupAccountModalTrigger>
@@ -120,14 +113,7 @@ export const CopilotCard = () => {
                 step: "intro-topup",
               }}
             >
-              <button
-                onClick={() => {
-                  sendEvent(CLICK_ON_COPILOT_BANNER, {
-                    "Copilot Actions": "Top up account",
-                  });
-                }}
-                className={`${linkCn} bg-red-300`}
-              >
+              <button className={`${linkCn} bg-red-300`}>
                 {t("copilotCard.topUp")}
               </button>
             </SetupAccountModalTrigger>
@@ -135,22 +121,15 @@ export const CopilotCard = () => {
         )}
         {nextStepsActive && (
           <div className="space-x-4">
-            <TrackerEvent
-              event={CLICK_ON_COPILOT_BANNER}
-              properties={{
-                "Copilot Actions": "Use a dApp",
-              }}
+            <Link
+              className={cn(
+                linkCn,
+                "text-sm py-3 rounded-lg bg-pearl/10 text-pearl",
+              )}
+              href={"/dapps/instant-dapps"}
             >
-              <Link
-                className={cn(
-                  linkCn,
-                  "text-sm py-3 rounded-lg bg-pearl/10 text-pearl",
-                )}
-                href={"/dapps/instant-dapps"}
-              >
-                {t("copilotCard.useADapp")}
-              </Link>
-            </TrackerEvent>
+              {t("copilotCard.useADapp")}
+            </Link>
           </div>
         )}
       </div>

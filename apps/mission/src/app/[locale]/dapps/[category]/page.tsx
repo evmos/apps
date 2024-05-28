@@ -3,29 +3,42 @@
 
 import { fetchExplorerData } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
 import { raise } from "helpers";
+import { ResolvingMetadata } from "next/types";
 
 export { DappExplorerPage as default } from "@evmosapps/dappstore-page/src/pages/dapp-explorer/dapp-explorer-page";
 
 export const generateStaticParams = async () => {
   const { categories } = await fetchExplorerData();
 
-  return [
-    {
-      category: "instant-dapps",
-    },
-    ...categories.map((category) => ({
-      category: category.slug,
-    })),
-  ];
+  return categories.map((category) => ({
+    category: category.slug,
+  }));
 };
-export async function generateMetadata({
-  params,
-}: {
-  params: { category: string };
-}) {
-  if (params.category === "instant-dapps") {
+
+export async function generateMetadata(
+  {
+    params,
+  }: {
+    params: { category: string };
+  },
+  parent: ResolvingMetadata,
+) {
+  const resolvedParent = await parent;
+  const description = resolvedParent.description ?? undefined;
+  const twitter = resolvedParent.twitter ?? undefined;
+  const openGraph = resolvedParent.openGraph ?? undefined;
+  const metadataBase = resolvedParent.metadataBase ?? undefined;
+
+  if (!params.category) {
+    const title = `All dApps | Evmos dApp Store`;
     return {
-      title: `Instant dApps | Evmos dApp Store`,
+      title,
+      twitter: {
+        title,
+      },
+      openGraph: {
+        title,
+      },
     };
   }
   const { categories } = await fetchExplorerData();
@@ -34,7 +47,21 @@ export async function generateMetadata({
     categories.find((c) => c.slug === params.category) ??
     raise(`category not found: ${params.category}`);
 
+  const title = `${category.name} dApps | Evmos dApp Store`;
   return {
-    title: `${category.name} dApps | Evmos dApp Store`,
+    title,
+    metadataBase,
+
+    description,
+    twitter: {
+      title,
+      description,
+      images: twitter?.images,
+    },
+    openGraph: {
+      title,
+      description,
+      images: openGraph?.images,
+    },
   };
 }

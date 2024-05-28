@@ -5,7 +5,7 @@
  * this tailwind is only used for vscode tailwindcss intellisense
  */
 
-const sharedConfig = require("@evmosapps/config/tailwind/base.js");
+const sharedConfig = require("@evmosapps/ui/config/tailwind.js");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   ...sharedConfig,

@@ -21,7 +21,7 @@
     "@evmosapps/config": "workspace:*",
     "@evmosapps/registry": "workspace:*",
     "helpers": "workspace:*",
-    "next": "14.2.2",
+    "next": "14.2.3",
     "typescript": "^5.3.3"
   },
   "browserslist": [
@@ -30,7 +30,7 @@
     "last 3 safari version"
   ],
   "dependencies": {
-    "@tanstack/react-query": "^5.32.0",
+    "@tanstack/react-query": "^5.35.1",
     "@trpc/client": "11.0.0-next-beta.221",
     "@trpc/react-query": "11.0.0-next-beta.221",
     "@trpc/server": "11.0.0-next-beta.221",
@@ -41,7 +41,7 @@
     "lodash-es": "^4.17.21",
     "pnpm": "^8.14.1",
     "superjson": "^2.2.1",
-    "viem": "^2.9.25",
+    "viem": "^2.10.2",
     "zod": "^3.22.1"
   }
 }

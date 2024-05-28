@@ -14,8 +14,8 @@ export const Tooltip = ({
     <div className="group flex relative">
       {element}
       <span
-        className={`text-pearl absolute left-0 z-[40] m-4 mx-auto -translate-x-1/2 break-words pointer-events-none
-        rounded-md bg-black p-1 px-1 text-center text-[9px] font-normal opacity-0 transition-opacity group-hover:opacity-100 ${
+        className={`text-heading dark:text-heading-dark absolute left-0 z-[40] m-4 mx-auto -translate-x-1/2 break-words pointer-events-none
+        rounded-md bg-surface-container dark:bg-surface-container-dark p-1 px-1 text-center  font-normal opacity-0 transition-opacity group-hover:opacity-100 ${
           className !== undefined ? className : "max-w-[6rem]"
         } `}
       >

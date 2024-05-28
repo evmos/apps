@@ -8,8 +8,7 @@ import { useEffect, useState } from "react";
 import { Tooltip } from ".";
 import { TrackerEvents, sendEvent } from "tracker";
 import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
-import { alertsManager } from "@evmosapps/ui/components/alert/alert-manager.tsx";
-import { IconBarchart } from "@evmosapps/ui/icons/line/basic/barchart.tsx";
+
 export const CopyButton = ({
   text,
   event,
@@ -39,10 +38,6 @@ export const CopyButton = ({
         await navigator.clipboard.writeText(text);
         setIsCopied(true);
         event && sendEvent(event, properties);
-        alertsManager.primary({
-          title: "Copied to clipboard!",
-          icon: IconBarchart,
-        });
       }}
     >
       <Tooltip

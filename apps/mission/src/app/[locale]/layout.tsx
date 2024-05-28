@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     type: "article",
     url: "https://store.evmos.org/",
     description,
-    siteName: "Evmos Apps",
+    siteName: "Evmos dApps",
   },
 
   twitter: {

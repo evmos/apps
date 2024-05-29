@@ -108,7 +108,7 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
   return (
     <div
       className={cn(
-        "gap-4 flex-none relative flex overflow-x-auto scrollbar-hidden",
+        "gap-4 flex-none relative flex overflow-x-auto scrollbar-hidden overflow-y-hidden",
         "w-[calc(100%+40px)] -ml-5 px-5",
         "md:w-[calc(100%+112px)] md:-ml-14 md:px-14",
         "lg:w-auto lg:ml-0 lg:px-0 lg:overflow-x-visible",
@@ -139,10 +139,10 @@ const HighlightCardsSection = async ({ cardsIds }: DynamicSection) => {
                 style={{
                   backgroundImage: image
                     ? getBackgroundImage({
-                        src: image.src,
-                        width: 560,
-                        height: 240,
-                      })
+                      src: image.src,
+                      width: 560,
+                      height: 240,
+                    })
                     : undefined,
                 }}
                 fullWidth
@@ -344,6 +344,7 @@ async function DAppRankingSection({ title, dAppIds }: DynamicSection) {
                   className={cn(
                     "relative after:absolute after:top-0 after:left-0 after:w-full after:h-full",
                     "after:bg-gradient-to-t after:from-surface-container-low-dark after:to-surface-container-low-dark/30 after:from-10%",
+                    "after:pointer-events-none",
                     "group-hover:after:scale-110 group-hover:after:translate-y-1",
                   )}
                 >

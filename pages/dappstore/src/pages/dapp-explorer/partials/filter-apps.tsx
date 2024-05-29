@@ -60,7 +60,7 @@ export const FilterApps = ({
               startTransition(() => {
                 const url = new URL(window.location.href);
                 url.searchParams.set("instant-dapps", checked.toString());
-                router.push(url.toString());
+                router.push(url.toString(), { scroll: false });
               });
               if (checked) {
                 sendEvent(UNCLICK_FILTER, {
@@ -89,7 +89,9 @@ export const FilterApps = ({
               const url = new URL(window.location.href);
               startTransition(() => {
                 url.searchParams.set("sort-by", selected);
-                router.push(url.toString());
+                router.push(url.toString(), {
+                  scroll: false,
+                });
               });
               sendEvent(CLICK_SORT, {
                 "Sort Type": sortLabels[selected],

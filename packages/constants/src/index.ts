@@ -1,5 +1,6 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+export * from "./env-variables";
 
 export const COMMONWEALTH_URL = "https://commonwealth.im/evmos";
 export const NAV_TO_VESTING = "Back to Vesting";
@@ -49,3 +50,6 @@ export const COINGECKO_URL = "https://www.coingecko.com";
 export const TWITTER_EVMOS_URL = "https://twitter.com/evmosorg";
 export const DISCORD_EVMOS_URL = "https://discord.com/invite/evmos";
 export const TELEGRAM_EVMOS_URL = "https://t.me/EvmosOrg";
+
+
+

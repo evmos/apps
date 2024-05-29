@@ -1,5 +1,5 @@
 {
-  "name": "constants-helper",
+  "name": "@evmosapps/constants",
   "version": "1.0.12",
   "main": "./src/index.ts",
   "types": "./src/index.ts",

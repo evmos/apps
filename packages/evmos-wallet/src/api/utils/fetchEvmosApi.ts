@@ -3,7 +3,7 @@
 
 import { z } from "zod";
 import { fetchAndValidate } from "./fetchAndValidate";
-import { EVMOS_BACKEND } from "../../internal/wallet/functionality/networkConfig";
+import { EVMOS_BACKEND } from "@evmosapps/constants";
 
 export async function fetchEvmosApi<TSchema extends z.ZodType<unknown>>(
   method: "GET" | "POST",

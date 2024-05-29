@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use server";
-import { EVMOS_BLOCKED_PROPOSALS_LIST_NOTION_ID } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
+import { EVMOS_BLOCKED_PROPOSALS_LIST_NOTION_ID } from "@evmosapps/constants";
 import { notionWith } from "helpers/src/clients/notion";
 import { get } from "lodash-es";
 

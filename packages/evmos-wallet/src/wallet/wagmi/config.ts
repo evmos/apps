@@ -4,7 +4,7 @@
 import { createConfig, http } from "wagmi";
 
 import { injected, safe, walletConnect } from "wagmi/connectors";
-import { WALLET_CONNECT_PROJECT_ID } from "../../internal/wallet/functionality/networkConfig";
+import { WALLET_CONNECT_PROJECT_ID } from "@evmosapps/constants";
 
 import {
   evmoslocalnet,

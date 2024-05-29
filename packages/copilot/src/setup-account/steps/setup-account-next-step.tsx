@@ -5,7 +5,7 @@ import { useTranslation } from "@evmosapps/i18n/client";
 import { IconContainer, Modal } from "@evmosapps/ui-helpers";
 import { useFireworks } from "../../partials/use-fireworks";
 import { useEffect } from "react";
-import { ICONS_TYPES } from "constants-helper";
+import { ICONS_TYPES } from "@evmosapps/constants";
 import { ButtonsNextSteps } from "../partials/button-next-steps";
 import Fireworks from "@fireworks-js/react";
 import { createPortal } from "react-dom";

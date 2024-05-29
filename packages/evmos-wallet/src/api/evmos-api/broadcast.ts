@@ -5,7 +5,7 @@ import { z } from "zod";
 import type { createTxRaw } from "@evmos/proto";
 
 import { raise } from "helpers";
-import { EVMOS_NETWORK_FOR_BACKEND } from "../../internal/wallet/functionality/networkConfig";
+import { EVMOS_NETWORK_FOR_BACKEND } from "@evmosapps/constants";
 import { makeApiRequester } from "../utils/makeApiRequester";
 
 const BroadcastResponseSchema = z.union([

@@ -5,7 +5,7 @@
 
 import { Header } from "./header/Header";
 import { Navigation } from "@evmosapps/ui-helpers";
-import { NAV_TO_VESTING } from "constants-helper";
+import { NAV_TO_VESTING } from "@evmosapps/constants";
 import { AccountDetails } from "./content/AccountDetails";
 
 import { useLayoutEffect, useState } from "react";

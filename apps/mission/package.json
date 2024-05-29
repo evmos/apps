@@ -35,7 +35,7 @@
     "@evmosapps/vesting-page": "workspace:*",
     "@types/node": "20.12.7",
     "autoprefixer": "^10.4.13",
-    "constants-helper": "workspace:*",
+    "@evmosapps/constants": "workspace:*",
     "helpers": "workspace:*",
     "i18next": "^23.11.2",
     "postcss": "^8.4.35",

@@ -30,9 +30,14 @@ import { CLICK_ON_FOOTER_CTA, CLICK_ON_NAVIGATION } from "tracker";
 import { usePathname } from "next/navigation";
 import { Dispatch, createElement, useEffect, useState } from "react";
 import { DApp } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
+import { languages } from "@evmosapps/i18n/settings";
 
 const normalizePathname = (pathname: string) =>
-  "/" + pathname.split("/").filter(Boolean).join("/");
+  "/" +
+  pathname
+    .split("/")
+    .filter((part) => !part || !languages.includes(part))
+    .join("/");
 
 const NavigationSection = ({
   setFavoritesIsOpen,

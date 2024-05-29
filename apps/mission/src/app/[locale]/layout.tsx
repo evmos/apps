@@ -62,8 +62,9 @@ async function RootLayout({
 }: PropsWithChildren<{ params: { locale: string } }>) {
   const { dApps } = await fetchExplorerData();
   return (
-    <html lang={locale} dir={dir(locale)} className="dark bg-darkGray1 h-full">
+    <html lang={locale} dir={dir(locale)} className={cn("dark", "h-full")}>
       <head />
+
       <body
         className={cn(
           evmos.variable,
@@ -90,7 +91,7 @@ async function RootLayout({
                 <div className="overflow-y-auto md:row-span-2 md:col-start-2 md:col-span-1">
                   <Header />
                   <div className="px-5 md:px-14 max-w-full overflow-x-hidden">
-                    <main className="flex flex-col dark:text-white min-h-screen relative">
+                    <main className="flex flex-col dark:text-white min-h-screen relative 2xl:container 2xl:mx-auto">
                       {children}
                     </main>
                   </div>

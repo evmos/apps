@@ -42,7 +42,7 @@ export const HeaderCategories = ({
               onClick={(e) => {
                 e.preventDefault();
                 startTransition(() => {
-                  router.push(href);
+                  router.push(href, { scroll: false });
                 });
               }}
               href={href}

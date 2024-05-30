@@ -39,7 +39,7 @@ export const DappExplorerPage = async ({
     })),
   ];
   return (
-    <div className="flex flex-col gap-y-8 mx-auto">
+    <div className="flex flex-col gap-y-8">
       <div className="md:mt-10">
         <ExplorerBreadcrumbs params={params} />
       </div>

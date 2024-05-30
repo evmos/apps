@@ -20,7 +20,7 @@
     "@evmosapps/trpc": "workspace:*",
     "@evmosapps/ui-helpers": "workspace:*",
     "@types/node": "20.12.7",
-    "constants-helper": "workspace:*",
+    "@evmosapps/constants": "workspace:*",
     "helpers": "workspace:*",
     "tracker": "workspace:*",
     "typescript": "^5.3.3",

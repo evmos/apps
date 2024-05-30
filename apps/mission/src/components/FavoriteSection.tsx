@@ -139,7 +139,7 @@ export const FavoriteSection = ({
 
                 <IconButton
                   onClick={(e) => {
-                    e.stopPropagation();
+                    e.preventDefault();
                     removeFavorite(favorite.slug);
                     sendEvent(UNCLICK_FAVORITE_NAVBAR, {
                       "dApp Type": favorite.name,

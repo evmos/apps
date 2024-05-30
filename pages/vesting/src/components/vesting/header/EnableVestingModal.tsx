@@ -22,7 +22,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useVestingPrecompile } from "../../../internal/useVestingPrecompile";
 
 import { Log } from "helpers";
-import { EXPLORER_URL } from "constants-helper";
+import { EXPLORER_URL } from "@evmosapps/constants";
 
 import { E } from "helpers";
 import { ModalTitle } from "../../ModalTitle";

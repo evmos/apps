@@ -13,7 +13,7 @@
     "@evmosapps/icons": "workspace:*",
     "@evmosapps/trpc": "workspace:*",
     "@evmosapps/ui-helpers": "workspace:*",
-    "constants-helper": "workspace:*",
+    "@evmosapps/constants": "workspace:*",
     "helpers": "workspace:*",
     "next": "14.2.3",
     "react": "18.3.1",

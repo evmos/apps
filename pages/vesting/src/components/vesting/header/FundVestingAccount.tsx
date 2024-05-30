@@ -46,7 +46,7 @@ import { getVesting } from "../../../internal/fetch";
 import { VestingResponse } from "../../../internal/types";
 
 import { ethers } from "ethers";
-import { EXPLORER_URL } from "constants-helper";
+import { EXPLORER_URL } from "@evmosapps/constants";
 import { E } from "helpers";
 import { ModalTitle } from "../../ModalTitle";
 import { useAccount } from "wagmi";

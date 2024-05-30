@@ -5,7 +5,7 @@
 import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
 import { modalLink, useModal } from "helpers";
 import { Link, useTranslation } from "@evmosapps/i18n/client";
-import { EVMOS_TOS_VERSION } from "constants-helper";
+import { EVMOS_TOS_VERSION } from "@evmosapps/constants";
 import { enableMixpanel } from "tracker";
 
 import { useEffect, useState } from "react";

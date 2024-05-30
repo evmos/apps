@@ -17,7 +17,7 @@ import Image from "next/image";
 import { useOsmosisPrecompile } from "./useOsmosisPrecompile";
 import { parseUnits } from "viem";
 import { formatUnits } from "@evmosapps/evmos-wallet/src/registry-actions/utils";
-import { EXPLORER_URL } from "constants-helper";
+import { EXPLORER_URL } from "@evmosapps/constants";
 
 export default function Osmosis() {
   const { data } = useOsmosisData();
@@ -141,10 +141,10 @@ export default function Osmosis() {
                 onClick={() => {
                   setSwapAmountInputValue(String(inputNumberBalance / 2));
                 }}
-                className={`flex place-content-center items-center  text-center 
-              transition-colors disabled:cursor-default border 
-              border-wosmongton-300 hover:border-wosmongton-200 text-wosmongton-300 hover:text-wosmongton-200 
-              rounded-md disabled:border-osmoverse-600 disabled:text-osmoverse-400 h-[24px] w-auto text-caption 
+                className={`flex place-content-center items-center  text-center
+              transition-colors disabled:cursor-default border
+              border-wosmongton-300 hover:border-wosmongton-200 text-wosmongton-300 hover:text-wosmongton-200
+              rounded-md disabled:border-osmoverse-600 disabled:text-osmoverse-400 h-[24px] w-auto text-caption
               font-semibold tracking-wider py-1 px-1.5 text-xs bg-transparent
               ${inputNumberBalance === 0 && "pointer-events-none opacity-50"}`}
               >
@@ -154,11 +154,11 @@ export default function Osmosis() {
                 onClick={() => {
                   setSwapAmountInputValue(String(inputNumberBalance));
                 }}
-                className={`flex place-content-center items-center text-center transition-colors 
+                className={`flex place-content-center items-center text-center transition-colors
                 disabled:cursor-default border
                  border-wosmongton-300 hover:border-wosmongton-200
                   text-wosmongton-300 hover:text-wosmongton-200 rounded-md disabled:border-osmoverse-600
-                   disabled:text-osmoverse-400 h-[24px] w-auto text-caption font-semibold 
+                   disabled:text-osmoverse-400 h-[24px] w-auto text-caption font-semibold
                    tracking-wider py-1 px-1.5 text-xs bg-transparent
                    ${
                      inputNumberBalance === 0 &&

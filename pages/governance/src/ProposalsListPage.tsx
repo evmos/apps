@@ -3,7 +3,7 @@
 
 "use client";
 
-import { COMMONWEALTH_URL } from "constants-helper";
+import { COMMONWEALTH_URL } from "@evmosapps/constants";
 import BannerBlack from "./components/common/banners/BannerBlack";
 
 import { Suspense } from "react";

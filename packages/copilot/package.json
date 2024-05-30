@@ -28,7 +28,7 @@
     "@evmosapps/widgets": "workspace:*",
     "@fireworks-js/react": "^2.10.7",
     "@types/node": "20.12.7",
-    "constants-helper": "workspace:*",
+    "@evmosapps/constants": "workspace:*",
     "helpers": "workspace:*",
     "lodash-es": "^4.17.21",
     "mixpanel-browser": "^2.47.0",

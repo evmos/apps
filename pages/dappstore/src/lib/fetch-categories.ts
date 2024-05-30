@@ -3,7 +3,7 @@
 "use server";
 import { z } from "zod";
 
-import { CATEGORIES_PAGE_NOTION_ID } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
+import { CATEGORIES_PAGE_NOTION_ID } from "@evmosapps/constants";
 import { Log } from "helpers";
 import { categorySchema } from "helpers/src/schemas/entities/categorySchema";
 import { notion } from "helpers/src/clients/notion";

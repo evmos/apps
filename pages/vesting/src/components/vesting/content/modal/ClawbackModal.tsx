@@ -18,7 +18,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useVestingPrecompile } from "../../../../internal/useVestingPrecompile";
 
-import { EXPLORER_URL } from "constants-helper";
+import { EXPLORER_URL } from "@evmosapps/constants";
 
 import { E } from "helpers";
 import { ModalTitle } from "../../../ModalTitle";

@@ -14,7 +14,7 @@ import {
   truncateNumber,
 } from "helpers";
 
-import { FEE_STAKING_ACTIONS } from "constants-helper";
+import { FEE_STAKING_ACTIONS } from "@evmosapps/constants";
 import {
   ContainerInput,
   ErrorMessage,

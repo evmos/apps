@@ -98,6 +98,7 @@ export const ScrollableSection = ({
           "after:from-surface dark:after:from-surface-dark",
           "after:from-10% after:to-transparent",
           "after:opacity-100 after:transition-opacity after:duration-300",
+          "after:pointer-events-none",
           {
             "after:opacity-0": !navigationEnabled.next,
           },

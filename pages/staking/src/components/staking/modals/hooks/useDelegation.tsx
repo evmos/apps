@@ -16,7 +16,7 @@ import {
   sendEvent,
 } from "tracker";
 
-import { EXPLORER_URL } from "constants-helper";
+import { EXPLORER_URL } from "@evmosapps/constants";
 import { E } from "helpers";
 import { useStakingPrecompile } from "../../../../utils/hooks/useStakingPrecompile";
 

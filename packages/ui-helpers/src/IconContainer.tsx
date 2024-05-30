@@ -8,7 +8,7 @@ import { LeapIcon } from "@evmosapps/icons/LeapWalletIcon";
 import { MetamaskIcon } from "@evmosapps/icons/MetamaskIcon";
 import { WalletConnectIcon } from "@evmosapps/icons/WalletConnectIcon";
 import { ComponentProps } from "react";
-import { EMOJIS, ICONS_TYPES } from "constants-helper";
+import { EMOJIS, ICONS_TYPES } from "@evmosapps/constants";
 
 const BIG_ICONS_STYLE =
   "border-lightYellow2 bg-lightYellow2 mb-4 h-56 w-56 border text-9xl";

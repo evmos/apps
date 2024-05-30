@@ -11,7 +11,7 @@ import {
   BROADCASTED_NOTIFICATIONS,
   GENERATING_TX_NOTIFICATIONS,
 } from "@evmosapps/evmos-wallet";
-import { EXPLORER_URL } from "constants-helper";
+import { EXPLORER_URL } from "@evmosapps/constants";
 import { ModalTitle } from "../../ModalTitle";
 import { useTranslation } from "@evmosapps/i18n/client";
 

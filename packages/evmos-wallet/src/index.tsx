@@ -34,11 +34,11 @@ export * from "./internal/wallet/functionality/wallet";
 // components
 
 // configs
-export { EVMOS_SYMBOL } from "./internal/wallet/functionality/networkConfig";
-export { EVMOS_DECIMALS } from "./internal/wallet/functionality/networkConfig";
-export { EVMOS_BACKEND } from "./internal/wallet/functionality/networkConfig";
+export { EVMOS_SYMBOL } from "@evmosapps/constants";
+export { EVMOS_DECIMALS } from "@evmosapps/constants";
+export { EVMOS_BACKEND } from "@evmosapps/constants";
 
-export { EVMOS_MINIMAL_COIN_DENOM } from "./internal/wallet/functionality/networkConfig";
+export { EVMOS_MINIMAL_COIN_DENOM } from "@evmosapps/constants";
 
 // utils
 export { truncateAddress } from "./internal/wallet/style/format";

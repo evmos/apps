@@ -9,7 +9,7 @@ import {
 } from "@evmosapps/ui-helpers";
 
 import { CLICK_ON_NEXT_STEPS_COPILOT } from "tracker";
-import { ICONS_TYPES } from "constants-helper";
+import { ICONS_TYPES } from "@evmosapps/constants";
 import { useModal } from "@evmosapps/ui-helpers/src/Modal";
 import { useCopilot } from "../../copilot";
 

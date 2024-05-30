@@ -8,7 +8,7 @@ import {
   tryResolveImageProp,
 } from "helpers/src/clients/notion-utils";
 import { devMemo } from "helpers/src/dev/dev-memo";
-import { EVMOS_LANDING_PAGE_NOTION_ID } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
+import { EVMOS_LANDING_PAGE_NOTION_ID } from "@evmosapps/constants";
 
 const fetchEntries = devMemo(async (placement: string) => {
   return await fetchDatabaseEntries({

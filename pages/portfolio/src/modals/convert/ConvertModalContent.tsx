@@ -25,7 +25,7 @@ import Image from "next/image";
 import { watchAsset } from "viem/actions";
 import { getActiveProviderKey, useWallet } from "@evmosapps/evmos-wallet";
 import { Link } from "@evmosapps/i18n/client";
-import { EXPLORER_URL } from "constants-helper";
+import { EXPLORER_URL } from "@evmosapps/constants";
 import { UpRightArrowIcon } from "@evmosapps/icons/UpRightArrowIcon";
 import { TokenAmountInput } from "./TokenAmountInput";
 import { BalanceDisplay } from "./BalanceDisplay";

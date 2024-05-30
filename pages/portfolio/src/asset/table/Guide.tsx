@@ -4,7 +4,7 @@
 import { QuestionMarkIcon } from "@evmosapps/icons/QuestionMarkIcon";
 
 import { CLICK_CTA_LINKS_REGISTER_TOKEN } from "tracker";
-import { REGISTER_TOKEN_URL } from "constants-helper";
+import { REGISTER_TOKEN_URL } from "@evmosapps/constants";
 import { PrimaryLink, TrackerEvent } from "@evmosapps/ui-helpers";
 const Guide = () => {
   return (

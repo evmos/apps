@@ -16,7 +16,7 @@ import {
 
 import ValidatorsDropdown from "../../dropdown/ValidatorsDropdown";
 import { useRedelegation } from "../hooks/useRedelegation";
-import { FEE_STAKING_ACTIONS } from "constants-helper";
+import { FEE_STAKING_ACTIONS } from "@evmosapps/constants";
 import {
   ContainerInput,
   ErrorMessage,

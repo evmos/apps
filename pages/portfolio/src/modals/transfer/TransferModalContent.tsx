@@ -34,7 +34,7 @@ import { E, useWatch } from "helpers";
 import { useRequestWalletAccount } from "../hooks/useAccountByPrefix";
 import { getChainByAddress } from "@evmosapps/evmos-wallet/src/registry-actions/get-chain-by-account";
 
-import { ICONS_TYPES } from "constants-helper";
+import { ICONS_TYPES } from "@evmosapps/constants";
 import { connectKeplr, installKeplr, reloadPage } from "./utils";
 
 import {

@@ -16,7 +16,7 @@ import {
   MEDIUM_URL,
   TELEGRAM_EVMOS_URL,
   TWITTER_EVMOS_URL,
-} from "constants-helper";
+} from "@evmosapps/constants";
 import { IconX } from "@evmosapps/ui/icons/social/x.tsx";
 import { IconGithub } from "@evmosapps/ui/icons/social/github.tsx";
 import { IconDiscord } from "@evmosapps/ui/icons/social/discord.tsx";

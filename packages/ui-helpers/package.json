@@ -14,7 +14,7 @@
     "lint": "eslint ."
   },
   "peerDependencies": {
-    "constants-helper": "workspace:*",
+    "@evmosapps/constants": "workspace:*",
     "tracker": "workspace:*"
   },
   "devDependencies": {

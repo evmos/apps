@@ -9,7 +9,7 @@ import {
   TELEGRAM_EVMOS_URL,
   TWITTER_EVMOS_URL,
   GITHUB_EVMOS_URL,
-} from "constants-helper";
+} from "@evmosapps/constants";
 
 import { DiscordIcon } from "@evmosapps/icons/DiscordIcon";
 import { MediumIcon } from "@evmosapps/icons/MediumIcon";

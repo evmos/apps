@@ -5,7 +5,7 @@ import {
   ECOSYSTEM_PAGE_NOTION_ID,
   EVMOS_HIGHLIGHT_CARDS_DB_NOTION_ID,
   EVMOS_LANDING_PAGE_NOTION_ID,
-} from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
+} from "@evmosapps/constants";
 import { ListBlobResultBlob } from "@vercel/blob";
 import { iterateDatabaseEntries } from "helpers/src/clients/notion-utils";
 import { Log } from "helpers/src/logger";

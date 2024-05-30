@@ -4,7 +4,7 @@
 import { useTranslation } from "@evmosapps/i18n/client";
 
 import { wagmiConfig } from "@evmosapps/evmos-wallet";
-import { METAMASK_DOWNLOAD_URL } from "constants-helper";
+import { METAMASK_DOWNLOAD_URL } from "@evmosapps/constants";
 import { useEffect, useMemo, useState } from "react";
 import { E, raise, useEffectEvent } from "helpers";
 import { useAccount, useConnect, useSwitchChain } from "wagmi";
@@ -75,7 +75,7 @@ export const SetupWithMetamaskSteps = ({
   const { switchChain, error: switchError } = useSwitchChain();
 
   const mappedConnectError = useMemo(() => {
-    if (!connectError && !switchError)  return;
+    if (!connectError && !switchError) return;
     if (
       E.match.byPattern(connectError, /Already processing eth_requestAccounts/)
     ) {
@@ -92,7 +92,7 @@ export const SetupWithMetamaskSteps = ({
     }
 
     return connectError?.message;
-  }, [connectError, switchError,  t]);
+  }, [connectError, switchError, t]);
 
   useEffect(() => {
     if (!mappedConnectError) return;
@@ -104,8 +104,7 @@ export const SetupWithMetamaskSteps = ({
   }, [mappedConnectError]);
 
   const completedConnection =
-    isConnected &&
-    getChainId(wagmiConfig) === evmosInfo.id 
+    isConnected && getChainId(wagmiConfig) === evmosInfo.id;
 
   const _onComplete = useEffectEvent(onComplete || (() => {}));
 

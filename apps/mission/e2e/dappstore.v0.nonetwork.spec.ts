@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { noNetworkMMFixture } from "@evmosapps/test-utils";
-import { ADD_DAPP_FORM_URL, DOCS_EVMOS_REVENUE } from "constants-helper";
+import { ADD_DAPP_FORM_URL, DOCS_EVMOS_REVENUE } from "@evmosapps/constants";
 
 const { test, beforeEach, describe, expect } = noNetworkMMFixture;
 

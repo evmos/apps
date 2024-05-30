@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { getChains, getTokens } from "@evmosapps/evmos-wallet";
-import { REGISTRY_NETWORK_BLOCK_LIST } from "@evmosapps/evmos-wallet/src/internal/wallet/functionality/networkConfig";
+import { REGISTRY_NETWORK_BLOCK_LIST } from "@evmosapps/constants";
 
 export const sortedChains = getChains()
   .filter(

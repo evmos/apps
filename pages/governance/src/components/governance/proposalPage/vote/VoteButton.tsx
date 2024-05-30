@@ -8,7 +8,7 @@ import IdContainer from "../../common/IdContainer";
 
 import { MODAL_NOTIFICATIONS } from "@evmosapps/evmos-wallet";
 import { getReservedForFeeText, raise } from "helpers";
-import { FEE_VOTE } from "constants-helper";
+import { FEE_VOTE } from "@evmosapps/constants";
 import { BigNumber } from "@ethersproject/bignumber";
 import {
   CLICK_VOTE_BUTTON,

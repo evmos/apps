@@ -4,7 +4,7 @@
 import { TabProps } from "./types";
 import cx from "clsx";
 import { IconContainer } from "../../IconContainer";
-import { ICONS_TYPES } from "constants-helper";
+import { ICONS_TYPES } from "@evmosapps/constants";
 import { ComponentProps } from "react";
 
 export const Button = ({

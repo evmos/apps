@@ -8,7 +8,7 @@ import mixpanel from "mixpanel-browser";
 
 import { CLICK_COMMONWEALTH_OUTLINK, disableMixpanel } from "tracker";
 import BannerBlack from "./BannerBlack";
-import { COMMONWEALTH_URL } from "constants-helper";
+import { COMMONWEALTH_URL } from "@evmosapps/constants";
 
 import { RootProviders } from "stateful-components/src/root-providers";
 import { PropsWithChildren } from "react";

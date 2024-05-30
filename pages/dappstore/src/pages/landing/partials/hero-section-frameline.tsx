@@ -3,7 +3,7 @@
 
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { ADD_DAPP_FORM_URL, DOCS_EVMOS_URL } from "constants-helper";
+import { ADD_DAPP_FORM_URL, DOCS_EVMOS_URL } from "@evmosapps/constants";
 import { Frameline, PrimaryButton } from "@evmosapps/ui-helpers";
 import { translation } from "@evmosapps/i18n/server";
 
@@ -25,7 +25,7 @@ export const HeroSectionFrameline = async () => {
 
         <div className={`flex justify-between items-center ${textStyle}`}>
           <div
-            className="relative before:content-[''] before:absolute before:top-[50%] before:left-0 
+            className="relative before:content-[''] before:absolute before:top-[50%] before:left-0
         before:-translate-y-1/2 before:w-[15px] before:h-[15px] before:lg:w-[20px] before:lg:h-[20px] before:animate-pulse before:bg-[#9F05FE] before:rounded-full"
           />
           <UpRightArrowIcon

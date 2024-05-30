@@ -23,7 +23,7 @@ import useStrideData from "./useStrideData";
 import { useStridePrecompile } from "./useStridePrecompile";
 import { formatUnits, parseUnits } from "viem";
 import Link from "next/link";
-import { EXPLORER_URL } from "constants-helper";
+import { EXPLORER_URL } from "@evmosapps/constants";
 import { useEvmosData } from "./query-evmos-values";
 
 const StrideWidget = () => {

@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@evmosapps/constants": "workspace:*",
     "@commander-js/extra-typings": "^11.1.0",
     "@evmosapps/evmos-wallet": "workspace:*",
     "@types/node": "^20.12.7",

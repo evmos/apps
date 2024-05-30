@@ -7,7 +7,7 @@ import { AddressDisplay, Modal, Tooltip } from "@evmosapps/ui-helpers";
 // import { ProvidersIcons } from "../../providerIcons";
 import { useAccount, useDisconnect } from "wagmi";
 
-import { EXPLORER_URL } from "constants-helper";
+import { EXPLORER_URL } from "@evmosapps/constants";
 import { CopyIcon } from "@evmosapps/icons/CopyIcon";
 import { ExternalLinkIcon } from "@evmosapps/icons/ExternalLinkIcon";
 import { useEffect, useState } from "react";

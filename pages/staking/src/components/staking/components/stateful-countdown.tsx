@@ -3,7 +3,7 @@
 
 import { Countdown } from "@evmosapps/ui-helpers";
 import { useEpochDay } from "../../../utils/hooks/useEpochDay";
-import { FULL_DAY_MINUS_ONE_SECOND } from "constants-helper";
+import { FULL_DAY_MINUS_ONE_SECOND } from "@evmosapps/constants";
 
 export const StatefulCountdown = () => {
   const { epochs, error } = useEpochDay();

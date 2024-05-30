@@ -15,7 +15,7 @@ import {
 } from "helpers";
 
 import { useUndelegation } from "../hooks/useUndelegations";
-import { FEE_STAKING_ACTIONS } from "constants-helper";
+import { FEE_STAKING_ACTIONS } from "@evmosapps/constants";
 import {
   ContainerInput,
   ErrorMessage,

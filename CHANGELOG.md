@@ -35,6 +35,9 @@ Ref: https://keepachangelog.com/en/1.0.0/
 # Changelog
 
 # Unreleased
+
+## 2.0.16 - 2024-05-30
+
 - (fix) pages/dappstore 1.1.11 | fix horizontal scrolling on the home page and some other minor UX improvements
 
 ## 2.0.15 - 2024-05-28

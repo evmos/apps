@@ -32,12 +32,15 @@ import { Dispatch, createElement, useEffect, useState } from "react";
 import { DApp } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
 import { languages } from "@evmosapps/i18n/settings";
 
-const normalizePathname = (pathname: string) =>
-  "/" +
-  pathname
-    .split("/")
-    .filter((part) => !part || !languages.includes(part))
-    .join("/");
+const normalizePathname = (pathname: string) => {
+  return (
+    "/" +
+    pathname
+      .split("/")
+      .filter((part) => part && !languages.includes(part))
+      .join("/")
+  );
+};
 
 const NavigationSection = ({
   setFavoritesIsOpen,

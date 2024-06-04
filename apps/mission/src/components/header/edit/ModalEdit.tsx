@@ -30,7 +30,7 @@ export const EditModal = () => {
   const { t } = useTranslation("dappStore");
 
   const handleOnClick = () => {
-    localName && localImg && updateProfile({ name: localName, img: localImg });
+    updateProfile({ name: localName, img: localImg });
     setIsOpen(false);
     sendEvent(SAVE_PROFILE_CHANGES);
     alertsManager.success({

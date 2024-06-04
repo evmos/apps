@@ -19,6 +19,7 @@ import { Address } from "helpers/src/crypto/addresses/types";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
 import { wagmiConfig } from "../..";
 import { getChainId } from "wagmi/actions";
+import { getAminoName } from "./getAminoName";
 
 const evmos = getEvmosChainInfo();
 
@@ -33,15 +34,17 @@ export const createTypedMessage = async ({
 }) => {
   const account = await getChainAccountInfo(sender);
 
-  const serializedMsgs = messages.map((msg) => {
-    const parts = msg.getType().typeName.split(".");
-    return {
-      type: `${parts.at(0)}/${parts.at(-1)}`,
-      value: msg.toJson({
-        useProtoFieldName: true,
-      }) as Record<string, unknown>,
-    };
-  });
+  const serializedMsgs = await Promise.all(
+    messages.map(async (msg) => {
+      const type = await getAminoName(msg.getType().typeName);
+      return {
+        type,
+        value: msg.toJson({
+          useProtoFieldName: true,
+        }) as Record<string, unknown>,
+      };
+    }),
+  );
 
   return {
     messages,
@@ -69,7 +72,6 @@ export const createTypedMessage = async ({
               denom: evmos.registry.feeToken,
             },
           ],
-          // feePayer: normalizeToCosmos(sender),
           gas: gasLimit.toString(),
         },
         memo: "",
@@ -133,5 +135,10 @@ export const broadcastTypedMessage = async ({
     signatures: [fromHex(signature as Hex, "bytes")],
   });
 
-  return apiCosmosTxBroadcast(evmos.registry.cosmosRest, protoTx);
+  const res = await apiCosmosTxBroadcast(evmos.registry.cosmosRest, protoTx);
+  if (res.tx_response.height === "0") {
+    throw new Error("Transaction failed");
+  }
+
+  return res;
 };

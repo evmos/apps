@@ -13,8 +13,8 @@ export const evmosmainnet = {
     },
   },
   rpcUrls: {
-    default: { http: [`${getPubUrl()}/api/eth-json-rpc/evmos`] },
-    public: { http: [`${getPubUrl()}/api/eth-json-rpc/evmos`] },
+    default: { http: [`https://evmos-evm.publicnode.com`] },
+    public: { http: [`https://evmos-evm.publicnode.com`] },
   },
 
   networkType: "mainnet",

@@ -31,6 +31,7 @@ export const useSignTypedDataMessage = () => {
       });
 
       const signature = await signTypedDataMessage(typedMessage.tx);
+
       return broadcastTypedMessage({
         ...typedMessage,
         signature,

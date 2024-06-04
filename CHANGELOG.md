@@ -36,6 +36,8 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Unreleased
 
+- (fix) apps/mission 1.0.40 | fix profile picture
+
 ## 2.0.17 - 2024-06-04
 
 - (fix) apps/mission 1.0.39 | fix the highlighted navigation bar

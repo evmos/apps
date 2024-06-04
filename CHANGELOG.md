@@ -36,6 +36,10 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Unreleased
 
+## 2.0.17 - 2024-06-04
+
+- (fix) apps/mission 1.0.39 | fix the highlighted navigation bar
+
 ## 2.0.16 - 2024-05-30
 
 - (fix) pages/dappstore 1.1.11 | fix horizontal scrolling on the home page and some other minor UX improvements

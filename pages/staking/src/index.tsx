@@ -5,8 +5,8 @@ import Content from "./components/staking/Content";
 
 export const StakingPage = () => {
   return (
-    <>
+    <div className="py-4">
       <Content />
-    </>
+    </div>
   );
 };

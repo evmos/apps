@@ -71,3 +71,5 @@ export const CHAIN_REGISTRY_REF = process.env.CHAIN_REGISTRY_REF || "main";
 export const CLAIM_REWARDS_THRESHOLD = BigInt(
   process.env.NEXT_PUBLIC_CLAIM_REWARDS_THRESHOLD || "5000000000000000",
 );
+
+export const ENABLE_TESTNET = process.env.NEXT_PUBLIC_ENABLE_TESTNET === "true";

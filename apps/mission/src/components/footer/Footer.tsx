@@ -9,6 +9,7 @@ import {
   TELEGRAM_EVMOS_URL,
   TWITTER_EVMOS_URL,
   GITHUB_EVMOS_URL,
+  ENABLE_TESTNET,
 } from "@evmosapps/constants";
 
 import { DiscordIcon } from "@evmosapps/icons/DiscordIcon";
@@ -33,7 +34,7 @@ export const Footer = async () => {
 
   return (
     <Container full className="mt-auto px-5 md:px-14 pt-5">
-      {process.env.NODE_ENV !== "production" && <NetworkModeSelector />}
+      {ENABLE_TESTNET && <NetworkModeSelector />}
       <footer className="text-subheading dark:text-subheading-dark text-base space-y-5 mt-10 mb-14 lg:space-y-0 flex lg:justify-between flex-col lg:flex-row items-center">
         <div className="flex lg:w-1/3 justify-start items-center lg:mb-0">
           <TrackerEvent

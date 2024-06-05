@@ -10,5 +10,5 @@ const EVMOS_CONFIG_BY_EVM_ID = new Map(
 
 export const useEvmosChainRef = () => {
   const chainId = useChainId();
-  return EVMOS_CONFIG_BY_EVM_ID.get(chainId)?.ref ?? EVMOS_CONFIG_MAP.evmos;
+  return EVMOS_CONFIG_BY_EVM_ID.get(chainId)?.ref ?? EVMOS_CONFIG_MAP.evmos.ref;
 };

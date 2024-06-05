@@ -13,16 +13,18 @@ export const evmosmainnet = {
     },
   },
   rpcUrls: {
-    default: { http: [`https://evmos-evm.publicnode.com`] },
-    public: { http: [`https://evmos-evm.publicnode.com`] },
+    default: { http: ["https://proxy.evmos.org/cosmos"] },
+    public: { http: ["https://proxy.evmos.org/cosmos"] },
   },
 
   networkType: "mainnet",
   ref: "evmos" as const,
   cosmosChainId: "evmos_9001-2",
 } satisfies Chain & Record<string, unknown>;
+
 export const evmostestnet = {
   ...wagmiEvmos,
+  name: "Evmos Testnet",
   id: 9000,
 
   contracts: {
@@ -42,6 +44,7 @@ export const evmostestnet = {
 
 export const evmoslocalnet = {
   ...wagmiEvmos,
+  name: "Evmos Localnet",
   id: 9002,
   contracts: {
     multicall3: {

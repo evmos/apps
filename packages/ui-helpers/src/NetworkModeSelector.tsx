@@ -3,17 +3,17 @@
 
 "use client";
 import { cn } from "helpers";
-import { useConfig, useSwitchChain } from "wagmi";
-import { getChainId } from "wagmi/actions";
+import { useChainId, useConfig, useSwitchChain } from "wagmi";
 import { Chain } from "viem";
 
 export const NetworkModeSelector = () => {
   const { switchChain } = useSwitchChain();
+  const chainId = useChainId();
 
   const config = useConfig();
 
   return (
-    <div className="border-2 border-red-300 rounded-md m-4 flex">
+    <div className="border-2 border-red-300 rounded-md m-4 flex max-w-sm mx-auto">
       {config.chains.map((chain) => {
         const networkType = (
           chain as Chain & {
@@ -29,9 +29,9 @@ export const NetworkModeSelector = () => {
               switchChain({ chainId: chain.id });
             }}
             className={cn(
-              "text-white py-2 px-3 uppercase text-xxs font-bold grow ",
+              "py-2 px-3 uppercase font-bold grow dark:text-heading-dark text-xxs",
               {
-                "bg-red-300": chain.id === getChainId(config),
+                "bg-red-300": chain.id === chainId,
               },
             )}
           >

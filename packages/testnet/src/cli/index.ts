@@ -46,11 +46,15 @@ const startCommand = createCommand("start")
   .description("Starts local testnet")
   .action(async ({ recreate, compactLogging }) => {
     Log().info("Starting testnet...", recreate, compactLogging);
-    await setupTestnet({
-      compactLogging,
-      enableLogging: true,
-      overwrite: recreate,
-    });
+    try {
+      await setupTestnet({
+        compactLogging,
+        enableLogging: true,
+        overwrite: recreate,
+      });
+    } catch (e) {
+      Log().error(e);
+    }
   });
 
 accountsProgram.command("add").action(async () => {

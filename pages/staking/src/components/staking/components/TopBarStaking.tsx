@@ -16,13 +16,15 @@ import { useStakingInfo } from "@evmosapps/evmos-wallet/src/api/useStake";
 import { useAccount } from "wagmi";
 import { StatefulCountdown } from "./stateful-countdown";
 import { useEvmosBalance } from "@evmosapps/evmos-wallet/src/api/useEvmosBalance";
+import { formatUnits } from "@evmosapps/evmos-wallet/src/registry-actions/utils";
+import { CLAIM_REWARDS_THRESHOLD } from "@evmosapps/constants";
 
 const TopBarStaking = () => {
   const { isDisconnected } = useAccount();
   const { totalDelegations, totalUndelegations, totalRewards } =
     useStakingInfo();
   const { evmosBalance } = useEvmosBalance();
-  const { claimRewards, isPending } = useRewards();
+  const { claimRewards, isPending, isSuccess } = useRewards();
 
   return (
     <TopBarContainer>
@@ -52,8 +54,8 @@ const TopBarStaking = () => {
                   {evmosBalance.eq(BigNumber.from(-1))
                     ? "0.00"
                     : Number(convertFromAtto(evmosBalance))
-                        .toFixed(6)
-                        .replace(/\.?0+$/, "")}{" "}
+                      .toFixed(6)
+                      .replace(/\.?0+$/, "")}{" "}
                   EVMOS
                 </p>
               }
@@ -118,15 +120,20 @@ const TopBarStaking = () => {
       <TopBarItem text="Reward Distribution" value={<StatefulCountdown />} />
 
       <ConfirmButton
+        title={`Claim Rewards: ${formatUnits(totalRewards, 18)} EVMOS`}
         className="w-fit px-4 text-xs"
         text={
           <div>
-            Claim Rewards: <p>{totalRewards.toFixed(2)} EVMOS</p>
+            Claim Rewards: <p>{formatUnits(totalRewards, 18, 3)} EVMOS</p>
           </div>
         }
         onClick={claimRewards}
         disabled={
-          isDisconnected || !totalRewards || isPending || totalRewards < 0.005 // insure that small residual is covered
+          isDisconnected ||
+          !totalRewards ||
+          isPending ||
+          isSuccess ||
+          totalRewards < CLAIM_REWARDS_THRESHOLD // ensure that small residual is covered
         }
       />
     </TopBarContainer>

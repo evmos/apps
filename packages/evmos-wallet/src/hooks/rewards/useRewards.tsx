@@ -44,7 +44,7 @@ export const useRewards = () => {
               validatorAddress: reward.validatorAddress,
             }),
         ),
-        gasLimit: 3000000n,
+        gasLimit: 600000n,
       });
     } finally {
       setRewardsDataPending(false);
@@ -81,13 +81,14 @@ export const useRewards = () => {
           href={`https://escan.live/tx/${data.tx_response.txhash}`}
           target="_blank"
         >
-          Tx: {data.tx_response.txhash}
+          Tx: {data.tx_response.txhash?.slice(0, 18)}...
         </Link>
       ),
     });
   });
 
   useEffect(onSuccess, [data, onSuccess]);
+  
 
   return {
     claimRewards,

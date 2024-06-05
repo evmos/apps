@@ -12,11 +12,12 @@ export const cosmos = (
     baseUrl?: string;
     fetch?: typeof fetch;
   } = {},
-) =>
-  createClient<paths>({
+) => {
+  return createClient<paths>({
     baseUrl: getPubUrl() + `/api/cosmos-rest/${chain}/`,
     fetch,
     ...config,
   });
+};
 
 export type CosmosClientPaths = paths;

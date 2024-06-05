@@ -24,9 +24,15 @@ export const initializeChain = async (config: Config) => {
   const allAccounts = await getAllAccounts();
   await addGenesisAccountsFromList(config, allAccounts);
 
+  const gentxCommand = ["gentx"];
+  try {
+    await client([...gentxCommand, "--help"]).exited;
+  } catch (e) {
+    gentxCommand.unshift("genesis");
+  }
   logger.info(`Creating genesis files for ${chainName} testnet`);
   await client([
-    "gentx",
+    ...gentxCommand,
     TEST_ACCOUNTS.thevalidator.key,
     `1000000000000000000${baseDenom}`,
     "--keyring-backend",

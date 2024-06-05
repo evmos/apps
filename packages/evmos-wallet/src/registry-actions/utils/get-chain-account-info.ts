@@ -9,6 +9,7 @@ import * as ethsecp256k1 from "@buf/evmos_evmos.bufbuild_es/ethermint/crypto/v1/
 import { get } from "lodash-es";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
 import { Address } from "helpers/src/crypto/addresses/types";
+
 type BaseAccount = {
   address: string;
   sequence: string;
@@ -18,6 +19,7 @@ type BaseAccount = {
     key: string;
   } | null;
 };
+
 const isBaseAccount = (account: unknown): account is BaseAccount => {
   return (
     typeof account === "object" &&
@@ -70,7 +72,7 @@ export const getChainAccountInfo = async (address: Address) => {
       pubkey = await getPubkey({
         cosmosChainId: chain.cosmosId,
       });
-    } catch (e) {}
+    } catch (e) { }
   }
   return {
     address: cosmosAddress,
@@ -78,11 +80,11 @@ export const getChainAccountInfo = async (address: Address) => {
     publicKey:
       chain.prefix === "evmos"
         ? new ethsecp256k1.PubKey({
-            key: pubkey ?? new Uint8Array(),
-          })
+          key: pubkey ?? new Uint8Array(),
+        })
         : new secp256k1.PubKey({
-            key: pubkey ?? new Uint8Array(),
-          }),
+          key: pubkey ?? new Uint8Array(),
+        }),
     accountNumber: baseAccount.account_number,
   };
 };

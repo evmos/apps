@@ -18,7 +18,7 @@ const killPreviousProcess = async (config: Config) => {
   try {
     await fetch(`http://127.0.0.1:${config.api.rpc}`);
     await killPort(config.api.rpc);
-  } catch (e) {}
+  } catch (e) { }
 };
 export const createNetwork = async (
   configParameters: Omit<Parameters<typeof createConfig>[0], "executable"> & {
@@ -35,6 +35,12 @@ export const createNetwork = async (
   await killPreviousProcess(config);
   if (overwrite) await rm(config.homeDir, { recursive: true, force: true });
 
+  const collectGentxsCommand = ["collect-gentxs"];
+  try {
+    await client([...collectGentxsCommand, "--help"]).exited;
+  } catch (e) {
+    collectGentxsCommand.unshift("genesis");
+  }
   try {
     logger.info(`Checking existing chain configuration`);
     await stat(config.homeDir);
@@ -43,7 +49,7 @@ export const createNetwork = async (
     logger.info(`No existing chain configuration found`);
     await initializeChain(config);
 
-    await client(["collect-gentxs"]).exited;
+    await client(collectGentxsCommand).exited;
 
     if (customizeGenesis) {
       await updateJson<Genesis>(

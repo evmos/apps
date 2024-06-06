@@ -3,8 +3,6 @@
 
 "use client";
 
-import { useSelector } from "react-redux";
-import { useState } from "react";
 import {
   TopBarItem,
   TopBarContainer,
@@ -12,142 +10,132 @@ import {
   Tooltip,
 } from "@evmosapps/ui-helpers";
 import { useRewards } from "@evmosapps/evmos-wallet";
-import { StoreType } from "@evmosapps/evmos-wallet";
 import { convertFromAtto, displayTopBarTooltip } from "helpers";
 import { BigNumber } from "@ethersproject/bignumber";
 import { useStakingInfo } from "@evmosapps/evmos-wallet/src/api/useStake";
 import { useAccount } from "wagmi";
 import { StatefulCountdown } from "./stateful-countdown";
 import { useEvmosBalance } from "@evmosapps/evmos-wallet/src/api/useEvmosBalance";
+import { formatUnits } from "@evmosapps/evmos-wallet/src/registry-actions/utils";
+import { CLAIM_REWARDS_THRESHOLD } from "@evmosapps/constants";
 
 const TopBarStaking = () => {
-  const wallet = useSelector((state: StoreType) => state.wallet.value);
   const { isDisconnected } = useAccount();
   const { totalDelegations, totalUndelegations, totalRewards } =
     useStakingInfo();
   const { evmosBalance } = useEvmosBalance();
+  const { claimRewards, isPending, isSuccess } = useRewards();
 
-  const [confirmClicked, setConfirmClicked] = useState(false);
-
-  const { handleConfirmButton } = useRewards({
-    wallet,
-    setConfirmClicked,
-  });
   return (
     <TopBarContainer>
-      <>
-        <TopBarItem
-          text="Available"
-          value={
-            !displayTopBarTooltip(evmosBalance) ? (
-              <p>
-                {evmosBalance.eq(BigNumber.from(-1))
-                  ? "0.00"
-                  : Number(convertFromAtto(evmosBalance)).toFixed(2)}{" "}
-                EVMOS
-              </p>
-            ) : (
-              <Tooltip
-                className="left-1/2 top-5"
-                element={
-                  <p className="cursor-default">
-                    {evmosBalance.eq(BigNumber.from(-1))
-                      ? "0.00"
-                      : Number(convertFromAtto(evmosBalance)).toFixed(2)}{" "}
-                    EVMOS
-                  </p>
-                }
-                text={
-                  <p className="text-sm opacity-80">
-                    {evmosBalance.eq(BigNumber.from(-1))
-                      ? "0.00"
-                      : Number(convertFromAtto(evmosBalance))
-                          .toFixed(6)
-                          .replace(/\.?0+$/, "")}{" "}
-                    EVMOS
-                  </p>
-                }
-              />
-            )
-          }
-        />
-        <TopBarItem
-          text="Total Staked"
-          value={
-            !displayTopBarTooltip(totalDelegations) ? (
-              <p>
-                {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
-              </p>
-            ) : (
-              <Tooltip
-                className="left-1/2 top-5"
-                element={
-                  <p className="cursor-default">
-                    {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
-                  </p>
-                }
-                text={
-                  <p className="text-sm opacity-80">
-                    {Number(convertFromAtto(totalDelegations))
+      <TopBarItem
+        text="Available"
+        value={
+          !displayTopBarTooltip(evmosBalance) ? (
+            <p>
+              {evmosBalance.eq(BigNumber.from(-1))
+                ? "0.00"
+                : Number(convertFromAtto(evmosBalance)).toFixed(2)}{" "}
+              EVMOS
+            </p>
+          ) : (
+            <Tooltip
+              className="left-1/2 top-5"
+              element={
+                <p className="cursor-default">
+                  {evmosBalance.eq(BigNumber.from(-1))
+                    ? "0.00"
+                    : Number(convertFromAtto(evmosBalance)).toFixed(2)}{" "}
+                  EVMOS
+                </p>
+              }
+              text={
+                <p className="text-sm opacity-80">
+                  {evmosBalance.eq(BigNumber.from(-1))
+                    ? "0.00"
+                    : Number(convertFromAtto(evmosBalance))
                       .toFixed(6)
                       .replace(/\.?0+$/, "")}{" "}
-                    EVMOS
-                  </p>
-                }
-              />
-            )
-          }
-        />
+                  EVMOS
+                </p>
+              }
+            />
+          )
+        }
+      />
+      <TopBarItem
+        text="Total Staked"
+        value={
+          !displayTopBarTooltip(totalDelegations) ? (
+            <p>{Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS</p>
+          ) : (
+            <Tooltip
+              className="left-1/2 top-5"
+              element={
+                <p className="cursor-default">
+                  {Number(convertFromAtto(totalDelegations)).toFixed(2)} EVMOS
+                </p>
+              }
+              text={
+                <p className="text-sm opacity-80">
+                  {Number(convertFromAtto(totalDelegations))
+                    .toFixed(6)
+                    .replace(/\.?0+$/, "")}{" "}
+                  EVMOS
+                </p>
+              }
+            />
+          )
+        }
+      />
 
-        <TopBarItem
-          text="Total Unstaked"
-          value={
-            !displayTopBarTooltip(totalUndelegations) ? (
-              <p>
-                {Number(convertFromAtto(totalUndelegations)).toFixed(2)} EVMOS
-              </p>
-            ) : (
-              <Tooltip
-                className="left-1/2 top-5"
-                element={
-                  <p className="cursor-default">
-                    {Number(convertFromAtto(totalUndelegations)).toFixed(2)}{" "}
-                    EVMOS
-                  </p>
-                }
-                text={
-                  <p className="text-sm opacity-80">
-                    {Number(convertFromAtto(totalUndelegations))
-                      .toFixed(6)
-                      .replace(/\.?0+$/, "")}{" "}
-                    EVMOS
-                  </p>
-                }
-              />
-            )
-          }
-        />
+      <TopBarItem
+        text="Total Unstaked"
+        value={
+          !displayTopBarTooltip(totalUndelegations) ? (
+            <p>
+              {Number(convertFromAtto(totalUndelegations)).toFixed(2)} EVMOS
+            </p>
+          ) : (
+            <Tooltip
+              className="left-1/2 top-5"
+              element={
+                <p className="cursor-default">
+                  {Number(convertFromAtto(totalUndelegations)).toFixed(2)} EVMOS
+                </p>
+              }
+              text={
+                <p className="text-sm opacity-80">
+                  {Number(convertFromAtto(totalUndelegations))
+                    .toFixed(6)
+                    .replace(/\.?0+$/, "")}{" "}
+                  EVMOS
+                </p>
+              }
+            />
+          )
+        }
+      />
 
-        <TopBarItem text="Reward Distribution" value={<StatefulCountdown />} />
+      <TopBarItem text="Reward Distribution" value={<StatefulCountdown />} />
 
-        <div className=" ">
-          <ConfirmButton
-            className="w-fit px-4 text-xs"
-            text={
-              <div>
-                Claim Rewards: <p>{totalRewards.toFixed(2)} EVMOS</p>
-              </div>
-            }
-            onClick={handleConfirmButton}
-            disabled={
-              isDisconnected ||
-              !totalRewards ||
-              confirmClicked ||
-              totalRewards < 0.005 // insure that small residual is covered
-            }
-          />
-        </div>
-      </>
+      <ConfirmButton
+        title={`Claim Rewards: ${formatUnits(totalRewards, 18)} EVMOS`}
+        className="w-fit px-4 text-xs"
+        text={
+          <div>
+            Claim Rewards: <p>{formatUnits(totalRewards, 18, 3)} EVMOS</p>
+          </div>
+        }
+        onClick={claimRewards}
+        disabled={
+          isDisconnected ||
+          !totalRewards ||
+          isPending ||
+          isSuccess ||
+          totalRewards < CLAIM_REWARDS_THRESHOLD // ensure that small residual is covered
+        }
+      />
     </TopBarContainer>
   );
 };

@@ -34,10 +34,15 @@
   "bip44": {
     "coinType": 60
   },
-  "chainId": "evmoslocal_9000-10",
+  "chainId": "evmoslocal_9002-10",
   "chainName": "Evmos Local",
   "rpc": "http://localhost:26657",
   "rest": "http://localhost:1317",
   "beta": true,
-  "features": ["ibc-transfer", "ibc-go", "eth-address-gen", "eth-key-sign"]
+  "features": [
+    "ibc-transfer",
+    "ibc-go",
+    "eth-address-gen",
+    "eth-key-sign"
+  ]
 }

@@ -34,10 +34,13 @@ type PromptOption<T> = {
   dismiss: boolean;
   buttonProps?: ComponentProps<typeof Button>;
 };
+
 type PromptOptionValue<T extends PromptOption<unknown>> = T["value"];
+
 type AlertOptionValue<T extends PromptOption<unknown>[]> = {
   [K in number & keyof T]: PromptOptionValue<T[K]>;
 }[number];
+
 type PromptOptionInput = string | PartialBy<PromptOption<unknown>, "dismiss">;
 
 type NormalizedPromptOption<T extends PromptOptionInput> = T extends string
@@ -59,7 +62,7 @@ type AlertArgs<T extends PromptOptionsInputList | undefined = undefined> = {
   type: AlertInstance["type"];
   title: string;
   icon?: ComponentType<ComponentProps<"svg">>;
-  message?: string;
+  message?: React.ReactNode;
   priority?: number;
   duration?: number;
   options?: T;

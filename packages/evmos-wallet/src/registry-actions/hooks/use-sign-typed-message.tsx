@@ -10,9 +10,11 @@ import {
 } from "../transfers/prepare-typed-message";
 import { signTypedDataMessage } from "../..";
 import { switchToEvmosChain } from "../../wallet/actions/switchToEvmosChain";
+import { useEvmosChainRef } from "./use-evmos-chain-ref";
 
 export const useSignTypedDataMessage = () => {
   const { address } = useAccount();
+  const chainRef = useEvmosChainRef()
   return useMutation({
     mutationFn: async ({
       messages,
@@ -24,14 +26,15 @@ export const useSignTypedDataMessage = () => {
       if (!address) throw new Error("No address");
       await switchToEvmosChain();
 
-      const typedMessage = await createTypedMessage({
+      const typedMessage = await createTypedMessage(chainRef, {
         messages,
         sender: address,
         gasLimit,
       });
 
       const signature = await signTypedDataMessage(typedMessage.tx);
-      return broadcastTypedMessage({
+
+      return broadcastTypedMessage(chainRef, {
         ...typedMessage,
         signature,
       });

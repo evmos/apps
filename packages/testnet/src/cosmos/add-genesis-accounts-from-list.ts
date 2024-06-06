@@ -14,6 +14,12 @@ export const addGenesisAccountsFromList = async (
 ) => {
   const client = await getChainClient(config);
 
+  const genesisCommand = ["add-genesis-account"];
+  try {
+    await client([...genesisCommand, "--help"]).exited;
+  } catch (e) {
+    genesisCommand.unshift("genesis");
+  }
   const createdAccounts: {
     address: string;
     name: string;
@@ -37,6 +43,9 @@ export const addGenesisAccountsFromList = async (
       ],
       account.mnemonic,
     ).exited;
+    if (!registeredAccount) {
+      throw new Error(`Failed to register account ${account.key}`);
+    }
     const parsedAccount = JSON.parse(registeredAccount) as {
       address: string;
       name: string;
@@ -50,7 +59,7 @@ export const addGenesisAccountsFromList = async (
     });
 
     await client([
-      "add-genesis-account",
+      ...genesisCommand,
       account.key,
       `${account.initialBalance}${config.baseDenom}`,
       "--keyring-backend",

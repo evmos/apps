@@ -13,12 +13,13 @@ import {
 import { mnemonicToAccount } from "viem/accounts";
 import { multicallBin } from "../utils/multicallcontract";
 import { pool } from "../utils/pool";
+import { getEvmId } from "./getEvmId";
 
 export const deployMulticallContract = async (config: Config) => {
   const url = `http://127.0.0.1:${config.api.jsonRpc}`;
   const clientParameters = {
     chain: {
-      id: 9000,
+      id: getEvmId(config.chainId),
       network: "evmos",
       nativeCurrency: {
         decimals: 18,

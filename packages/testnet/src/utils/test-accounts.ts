@@ -30,7 +30,7 @@ export const TEST_ACCOUNTS = {
   ci: makeAccount(
     "ci",
     process.env.E2E_TEST_SEED ??
-      "upper recycle exhibit spin kit able pause donate region expire lumber absurd",
+    "upper recycle exhibit spin kit able pause donate region expire lumber absurd",
     100000000000000000000000000000000n,
   ),
 

@@ -19,7 +19,7 @@ export const getPubUrl = () => {
       );
     }
     return (
-      VERCEL_URL || NEXT_PUBLIC_VERCEL_URL || "https://staging-app.evmos.org"
+      VERCEL_URL || NEXT_PUBLIC_VERCEL_URL || "https://staging-store.evmos.org"
     );
   }
   return window.location.origin;

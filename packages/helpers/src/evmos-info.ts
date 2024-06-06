@@ -13,8 +13,8 @@ export const evmosmainnet = {
     },
   },
   rpcUrls: {
-    default: { http: ["https://proxy.evmos.org/cosmos"] },
-    public: { http: ["https://proxy.evmos.org/cosmos"] },
+    default: { http: [`${getPubUrl()}/api/eth-json-rpc/evmos`] },
+    public: { http: [`${getPubUrl()}/api/eth-json-rpc/evmos`] },
   },
 
   networkType: "mainnet",

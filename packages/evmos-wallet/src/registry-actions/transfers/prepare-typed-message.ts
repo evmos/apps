@@ -31,7 +31,6 @@ export const createTypedMessage = async (
     gasLimit?: bigint;
   },
 ) => {
-  // const account = await getChainAccountInfo(sender);
   const account = await cosmos(chainRef).GET(
     "/cosmos/auth/v1beta1/account_info/{address}",
     { params: { path: { address: normalizeToCosmos(sender) } } },

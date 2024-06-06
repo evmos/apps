@@ -37,6 +37,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 # Unreleased
 
 - (fix) pages/staking  1.1.5 | refactor and fix claim rewards, fix testnet setup
+- (fix) apps/mission 1.0.40 | fix profile picture
 
 ## 2.0.17 - 2024-06-04
 

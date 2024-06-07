@@ -207,7 +207,7 @@ export const executeCosmosIBCTransfer = async (params: {
     const msgs = tx.body?.messages ?? [];
     if (activeProvider && isCosmosBasedWallet(activeProvider)) {
       tx = await signAmino(tx, chain.cosmosId, params.sender, {
-        account_number: accountNumber,
+        account_number: accountNumber.toString(),
         chain_id: chain.cosmosId,
         fee: {
           amount: fee?.amount ?? [],

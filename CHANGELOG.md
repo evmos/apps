@@ -36,7 +36,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Unreleased
 
-- (fix) pages/portfolio 1.1.12 | fix account info fetching
+- (fix) pages/portfolio 1.1.12 | fix account info request 
 - (fix) pages/staking  1.1.5 | refactor and fix claim rewards, fix testnet setup
 - (fix) apps/mission 1.0.40 | fix profile picture
 

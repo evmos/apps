@@ -1,6 +1,8 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
+"use server"
+
 import { z } from "zod";
 
 import { apiCosmosFetch } from "./api-cosmos-fetch";
@@ -12,12 +14,26 @@ export const apiCosmosAccountByAddress = (
 ) =>
   apiCosmosFetch(
     z.object({
-      account: z
+      info: z
         .object({
-          "@type": z.string(),
+          address: z.string(),
+          pub_key: z
+            .object({
+              "@type": z.string(),
+              key: z.string(),
+            })
+            .nullable(),
+          account_number: z.coerce.bigint(),
+          sequence: z.coerce.bigint(),
         })
-        .passthrough(),
+        .passthrough()
+        .transform((data) => ({
+          address: data.address,
+          accountNumber: data.account_number,
+          sequence: data.sequence,
+          pubKey: data.pub_key,
+        })),
     }),
     urls,
-    `/cosmos/auth/v1beta1/accounts/${address}`,
+    `/cosmos/auth/v1beta1/account_info/${address}`,
   );

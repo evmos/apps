@@ -61,7 +61,7 @@ Certainly! Here's a more detailed version with separate sections for local and l
 
 ## Releasing
 
-We use [changeset][https://github.com/changesets/changesets] to manage semver and release of our packages.
+We use [changeset](https://github.com/changesets/changesets) to manage semver and release of our packages.
 
 - To merge a feature, make sure to add a changeset to your PR by running `pnpm changeset add` and following the instructions.
 

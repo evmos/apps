@@ -1,6 +1,6 @@
 {
   "name": "dappstore",
-  "version": "1.0.40",
+  "version": "2.0.17",
   "private": true,
   "scripts": {
     "dev": "next dev",

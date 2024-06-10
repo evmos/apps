@@ -32,13 +32,7 @@ Types of changes (Stanzas):
 Ref: https://keepachangelog.com/en/1.0.0/
 -->
 
-# Changelog
-
-# Unreleased
-
-- (fix) pages/portfolio 1.1.12 | fix account info request 
-- (fix) pages/staking  1.1.5 | refactor and fix claim rewards, fix testnet setup
-- (fix) apps/mission 1.0.40 | fix profile picture
+# dappstore 
 
 ## 2.0.17 - 2024-06-04
 

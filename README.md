@@ -18,11 +18,6 @@ The frontend of [Evmos Dashboard Apps](https://app.evmos.org). It contains apps 
 
 > https://app.evmos.org
 
-## Repositories
-
-- [Evmos Apps Frontend](https://github.com/evmos/apps)
-- [Evmos Apps Backend](https://github.com/evmos/backend)
-
 ## Documentation
 
 Pre-requisites:
@@ -63,6 +58,14 @@ If you need to change the value of any of these constants we recommend the follo
 3. Build and run the apps as highlighted by the instructions above
 
 Certainly! Here's a more detailed version with separate sections for local and live testnets, as well as an introduction:
+
+## Releasing
+
+We use [changeset][https://github.com/changesets/changesets] to manage semver and release of our packages.
+
+- To merge a feature, make sure to add a changeset to your PR by running `pnpm changeset add` and following the instructions.
+
+- To create release PRs, make sure you don't have any uncommited change, then run `pnpm release dappstore`. If successful, the script will return two PR links.
 
 ## Testnet Environment Setup
 

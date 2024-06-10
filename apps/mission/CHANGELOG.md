@@ -1,4 +1,14 @@
-# dappstore 
+# dappstore
+
+## 2.0.18
+
+### Patch Changes
+
+- [`059a073`](https://github.com/evmos/apps/commit/059a073c021204e9b60fec0b0c1b547dcd1d582e) Thanks [@julia-script](https://github.com/julia-script)! - Fix profile picture
+
+- Updated dependencies [[`059a073`](https://github.com/evmos/apps/commit/059a073c021204e9b60fec0b0c1b547dcd1d582e), [`059a073`](https://github.com/evmos/apps/commit/059a073c021204e9b60fec0b0c1b547dcd1d582e)]:
+  - @evmosapps/portfolio-page@1.1.13
+  - @evmosapps/staking-page@1.1.6
 
 ## 2.0.17 - 2024-06-04
 

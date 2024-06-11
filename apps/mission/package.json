@@ -1,6 +1,6 @@
 {
   "name": "dappstore",
-  "version": "1.0.39",
+  "version": "2.0.18",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -18,6 +18,19 @@
     "kill": "kill-port 3000"
   },
   "devDependencies": {
+    "@types/node": "20.12.7",
+    "autoprefixer": "^10.4.13",
+    "i18next": "^23.11.2",
+    "postcss": "^8.4.35",
+    "sharp": "^0.33.3",
+    "typescript": "^5.3.3"
+  },
+  "browserslist": [
+    "last 3 chrome version",
+    "last 3 firefox version",
+    "last 3 safari version"
+  ],
+  "dependencies": {
     "@evmosapps/config": "workspace:*",
     "@evmosapps/copilot": "workspace:*",
     "@evmosapps/instant-dapps": "workspace:*",
@@ -33,23 +46,10 @@
     "@evmosapps/ui": "workspace:*",
     "@evmosapps/ui-helpers": "workspace:*",
     "@evmosapps/vesting-page": "workspace:*",
-    "@types/node": "20.12.7",
-    "autoprefixer": "^10.4.13",
     "@evmosapps/constants": "workspace:*",
     "helpers": "workspace:*",
-    "i18next": "^23.11.2",
-    "postcss": "^8.4.35",
-    "sharp": "^0.33.3",
     "stateful-components": "workspace:*",
     "tracker": "workspace:*",
-    "typescript": "^5.3.3"
-  },
-  "browserslist": [
-    "last 3 chrome version",
-    "last 3 firefox version",
-    "last 3 safari version"
-  ],
-  "dependencies": {
     "@evmosapps/evmos-wallet": "workspace:*",
     "@google-cloud/storage": "^7.7.0",
     "@playwright/test": "^1.43.1",

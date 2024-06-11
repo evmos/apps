@@ -21,6 +21,7 @@ const printLoading = (total: number, complete: number) => {
   const empty = " ".repeat(barLength - filled);
   log(`[${bar}${empty}] ${complete}/${total}`);
 };
+
 program
   .command("sync")
   .description("Sync images from Notion to Vercel Blob Storage")

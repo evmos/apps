@@ -3,16 +3,15 @@
 
 import { config } from "dotenv";
 import path from "path";
-import { fileURLToPath } from "url";
+import { REPO_ROOT } from "./constants";
 
 export const loadEnv = () => {
-  const dirname = path.join(fileURLToPath(import.meta.url), "../../../../");
   const envFiles = [
-    path.join(dirname, ".env.local"),
-    path.join(dirname, ".env"),
-    path.join(dirname, ".env.development"),
-    path.join(dirname, ".env.production"),
-    path.join(dirname, ".env.test"),
+    path.join(REPO_ROOT, ".env.local"),
+    path.join(REPO_ROOT, ".env"),
+    path.join(REPO_ROOT, ".env.development"),
+    path.join(REPO_ROOT, ".env.production"),
+    path.join(REPO_ROOT, ".env.test"),
   ];
   config({
     path: envFiles,

@@ -18,6 +18,7 @@ import { watchProposalsByTitle } from "./watch-proposals-by-title";
 import { getChainClient } from "../utils/get-chain-client";
 import { logger } from "../utils/logger";
 import { getAllAccounts } from "../utils/add-account";
+import { getEvmId } from "./getEvmId";
 
 export const deployERC20Contract = async (
   config: Config,
@@ -32,7 +33,7 @@ export const deployERC20Contract = async (
   const url = `http://127.0.0.1:${config.api.jsonRpc}`;
   const clientParameters = {
     chain: {
-      id: 9000,
+      id: getEvmId(config.chainId),
       network: "evmos",
       nativeCurrency: {
         decimals: 18,

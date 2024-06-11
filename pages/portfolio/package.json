@@ -1,17 +1,17 @@
 {
   "name": "@evmosapps/portfolio-page",
-  "version": "1.1.11",
+  "version": "1.1.13",
   "private": true,
   "type": "module",
   "main": "./src/index.tsx",
   "types": "./src/index.tsx",
   "dependencies": {
+    "@evmosapps/constants": "workspace:*",
     "@evmosapps/copilot": "workspace:*",
     "@evmosapps/evmos-wallet": "workspace:*",
     "@evmosapps/registry": "workspace:*",
     "@evmosapps/trpc": "workspace:*",
     "@evmosapps/ui-helpers": "workspace:*",
-    "@evmosapps/constants": "workspace:*",
     "helpers": "workspace:*",
     "next": "14.2.3",
     "react": "18.3.1",
@@ -21,8 +21,8 @@
     "tracker": "workspace:*"
   },
   "devDependencies": {
-    "@buf/evmos_evmos.bufbuild_es": "1.9.0-20240422150009-01e2a00b63f4.1",
-    "@bufbuild/protobuf": "^1.9.0",
+    "@buf/evmos_evmos.bufbuild_es": "1.10.0-20240422150009-01e2a00b63f4.1",
+    "@bufbuild/protobuf": "^1.10.0",
     "@ethersproject/abi": "^5.7.0",
     "@ethersproject/bignumber": "^5.7.0",
     "@ethersproject/bytes": "^5.7.0",

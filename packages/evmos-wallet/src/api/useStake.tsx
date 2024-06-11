@@ -3,11 +3,11 @@
 
 import { useMemo } from "react";
 import { BigNumber } from "@ethersproject/bignumber";
-import { convertStringFromAtto, raise } from "helpers";
-
+import { raise } from "helpers";
 import { useTrpcQuery } from "@evmosapps/trpc/client";
 import { useAccount } from "wagmi";
 import { useEvmosChainRef } from "../registry-actions/hooks/use-evmos-chain-ref";
+import { safeBigInt } from "helpers/src/bigint/safe-bigint";
 
 export const useStakingInfo = () => {
   const { address } = useAccount();
@@ -53,8 +53,7 @@ export const useStakingInfo = () => {
 
   const totalRewards = useMemo(() => {
     const total = stakingInfo?.data?.rewards?.total?.[0]?.amount ?? "0";
-
-    return convertStringFromAtto(total);
+    return safeBigInt(total);
   }, [stakingInfo]);
 
   const delegations = useMemo(() => {

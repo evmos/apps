@@ -34,6 +34,9 @@ export const createProtobufTransaction = async ({
   const chain = getChainByAddress(sender);
   const { publicKey, sequence } = await getChainAccountInfo(sender);
 
+  if (!publicKey) {
+    throw new Error("Public key not found");
+  }
   return new Tx({
     body: {
       memo: memo,

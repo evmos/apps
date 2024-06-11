@@ -9,6 +9,7 @@ import {
   TELEGRAM_EVMOS_URL,
   TWITTER_EVMOS_URL,
   GITHUB_EVMOS_URL,
+  ENABLE_TESTNET,
 } from "@evmosapps/constants";
 
 import { DiscordIcon } from "@evmosapps/icons/DiscordIcon";
@@ -17,7 +18,11 @@ import { TelegramIcon } from "@evmosapps/icons/TelegramIcon";
 import { TwitterIcon } from "@evmosapps/icons/TwitterIcon";
 
 import { Link } from "@evmosapps/i18n/client";
-import { Container, TrackerEvent } from "@evmosapps/ui-helpers";
+import {
+  Container,
+  NetworkModeSelector,
+  TrackerEvent,
+} from "@evmosapps/ui-helpers";
 import { CLICK_ON_FOOTER_CTA } from "tracker";
 import { translation } from "@evmosapps/i18n/server";
 import { IconComment2Info } from "@evmosapps/ui/icons/line/chat/comment-2-info.tsx";
@@ -29,6 +34,7 @@ export const Footer = async () => {
 
   return (
     <Container full className="mt-auto px-5 md:px-14 pt-5">
+      {ENABLE_TESTNET && <NetworkModeSelector />}
       <footer className="text-subheading dark:text-subheading-dark text-base space-y-5 mt-10 mb-14 lg:space-y-0 flex lg:justify-between flex-col lg:flex-row items-center">
         <div className="flex lg:w-1/3 justify-start items-center lg:mb-0">
           <TrackerEvent

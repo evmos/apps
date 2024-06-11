@@ -28,8 +28,12 @@
         "https://tm.evmos-testnet.lava.build",
         "https://evmos-testnet-rpc.polkachu.com/"
       ],
-      "web3": ["https://evmos-testnet.lava.build"],
-      "rpc": ["https://grpc.evmos-testnet.lava.build"],
+      "web3": [
+        "https://evmos-testnet.lava.build"
+      ],
+      "rpc": [
+        "https://grpc.evmos-testnet.lava.build"
+      ],
       "currencies": [
         {
           "coinDenom": "EVMOS",
@@ -41,7 +45,9 @@
         "sourceChannel": "",
         "sourceIBCDenomToEvmos": "",
         "destinationChannel": "",
-        "jsonRPC": [""]
+        "jsonRPC": [
+          ""
+        ]
       },
       "explorer": [
         {
@@ -61,7 +67,7 @@
       }
     },
     {
-      "chainId": "evmoslocal_9000-10",
+      "chainId": "evmoslocal_9002-10",
       "chainName": "Evmos Local",
       "clientId": "",
       "configurationType": "localnet",
@@ -72,17 +78,23 @@
           "coinMinDenom": "aevmos"
         }
       ],
-
       "identifier": "evmoslocalnet",
-      "rpc": ["http://localhost:26657"],
-      "rest": ["http://localhost:1317"],
-      "web3": ["http://localhost:8545"],
-
+      "rpc": [
+        "http://localhost:26657"
+      ],
+      "rest": [
+        "http://localhost:1317"
+      ],
+      "web3": [
+        "http://localhost:8545"
+      ],
       "source": {
         "sourceChannel": "",
         "sourceIBCDenomToEvmos": "",
         "destinationChannel": "",
-        "jsonRPC": [""]
+        "jsonRPC": [
+          ""
+        ]
       },
       "explorerTxUrl": "",
       "img": {

@@ -2,16 +2,11 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 import { Message } from "@bufbuild/protobuf";
-
-import { getChainAccountInfo } from "../utils/get-chain-account-info";
-import { getEvmosChainInfo } from "../../wallet/wagmi/chains";
 import { Hex, fromHex, toHex } from "viem";
 import { encodeEvmosEIP712Types } from "helpers/src/crypto/eip712/encode-evmos-types";
 import { SignMode } from "@buf/cosmos_cosmos-sdk.bufbuild_es/cosmos/tx/signing/v1beta1/signing_pb";
 import { multiply } from "helpers";
-
 import { PubKey } from "@buf/evmos_evmos.bufbuild_es/ethermint/crypto/v1/ethsecp256k1/keys_pb";
-
 import { Tx } from "@buf/cosmos_cosmos-sdk.bufbuild_es/cosmos/tx/v1beta1/tx_pb";
 import { apiCosmosTxBroadcast } from "../../api/cosmos-rest/api-cosmos-tx-broadcast";
 import { recoverPubkeyFromTypedMessage } from "helpers/src/crypto/eip712/recover-pubkey-from-typed-message";
@@ -19,29 +14,49 @@ import { Address } from "helpers/src/crypto/addresses/types";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
 import { wagmiConfig } from "../..";
 import { getChainId } from "wagmi/actions";
+import { getAminoName } from "./getAminoName";
+import { getEvmosConfig } from "../../wallet/actions/getEvmosIdentifier";
+import { fetchChainByRef } from "@evmosapps/trpc/procedures/chains/queries/chain-by-ref/fetch-chain-by-ref";
+import { cosmos } from "helpers/src/clients/cosmos";
 
-const evmos = getEvmosChainInfo();
+export const createTypedMessage = async (
+  chainRef: string,
+  {
+    sender,
+    messages,
+    gasLimit = 10500000n,
+  }: {
+    sender: Address;
+    messages: Message[];
+    gasLimit?: bigint;
+  },
+) => {
+  const account = await cosmos(chainRef).GET(
+    "/cosmos/auth/v1beta1/account_info/{address}",
+    { params: { path: { address: normalizeToCosmos(sender) } } },
+  );
+  const accountNumber = account.data?.info?.account_number;
+  const sequence = account.data?.info?.sequence;
+  if (!accountNumber || !sequence) {
+    throw new Error("Account number or sequence not found");
+  }
 
-export const createTypedMessage = async ({
-  sender,
-  messages,
-  gasLimit = 10500000n,
-}: {
-  sender: Address;
-  messages: Message[];
-  gasLimit?: bigint;
-}) => {
-  const account = await getChainAccountInfo(sender);
+  const serializedMsgs = await Promise.all(
+    messages.map(async (msg) => {
+      const type = await getAminoName(msg.getType().typeName);
+      return {
+        type,
+        value: msg.toJson({
+          useProtoFieldName: true,
+        }) as Record<string, unknown>,
+      };
+    }),
+  );
 
-  const serializedMsgs = messages.map((msg) => {
-    const parts = msg.getType().typeName.split(".");
-    return {
-      type: `${parts.at(0)}/${parts.at(-1)}`,
-      value: msg.toJson({
-        useProtoFieldName: true,
-      }) as Record<string, unknown>,
-    };
-  });
+  const chainInfo = await fetchChainByRef(chainRef);
+
+  const chainId = getChainId(wagmiConfig);
+  const chainConfig = getEvmosConfig();
 
   return {
     messages,
@@ -52,43 +67,44 @@ export const createTypedMessage = async ({
       domain: {
         name: "Cosmos Web3",
         version: "1.0.0",
-        chainId: toHex(getChainId(wagmiConfig)),
+        chainId: toHex(chainId),
         verifyingContract: "cosmos",
         salt: "0",
       },
       message: {
-        account_number: account.accountNumber,
-        chain_id: evmos.cosmosId,
+        account_number: accountNumber,
+        chain_id: chainConfig.cosmosChainId,
         fee: {
           amount: [
             {
               amount: multiply(
                 gasLimit,
-                evmos.registry.gasPriceStep.average,
+                chainInfo.gasPriceStep.average,
               ).toString(),
-              denom: evmos.registry.feeToken,
+              denom: chainInfo.currencies[0]?.coinMinDenom ?? "aevmos",
             },
           ],
-          // feePayer: normalizeToCosmos(sender),
           gas: gasLimit.toString(),
         },
         memo: "",
         ...Object.fromEntries(serializedMsgs.map((msg, i) => [`msg${i}`, msg])),
-        sequence: account.sequence.toString(),
+        sequence,
       },
     } as const,
-    account,
+    account: {
+      address: sender,
+      accountNumber,
+      sequence,
+    },
   } as const;
 };
 
 type PreparedTypedTx = Awaited<ReturnType<typeof createTypedMessage>>;
 
-export const broadcastTypedMessage = async ({
-  messages,
-  account,
-  tx,
-  signature,
-}: PreparedTypedTx & { signature: string }) => {
+export const broadcastTypedMessage = async (
+  chainRef: string,
+  { messages, account, tx, signature }: PreparedTypedTx & { signature: string },
+) => {
   const pubkey = recoverPubkeyFromTypedMessage(signature as Hex, tx);
 
   const protoTx = new Tx({
@@ -120,7 +136,7 @@ export const broadcastTypedMessage = async ({
             },
           },
 
-          sequence: account.sequence,
+          sequence: BigInt(account.sequence),
           publicKey: {
             typeUrl: `/${PubKey.typeName}`,
             value: new PubKey({
@@ -133,5 +149,15 @@ export const broadcastTypedMessage = async ({
     signatures: [fromHex(signature as Hex, "bytes")],
   });
 
-  return apiCosmosTxBroadcast(evmos.registry.cosmosRest, protoTx);
+  const chainInfo = await fetchChainByRef(chainRef);
+
+  const res = await apiCosmosTxBroadcast(
+    chainInfo.rest as [string, ...string[]],
+    protoTx,
+  );
+  if (res.tx_response.code !== 0) {
+    throw new Error(`Transaction failed: ${res.tx_response.raw_log}`);
+  }
+
+  return res;
 };

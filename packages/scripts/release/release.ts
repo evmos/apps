@@ -14,7 +14,6 @@ import { Octokit } from "octokit";
 
 const logger = Log("release");
 
-
 // Clear GITHUB_TOKEN from the environment
 // Because Octokit will prioritize it, but the token from .env doesn't have
 // the necessary permissions
@@ -32,13 +31,13 @@ const getGithubClient = async () => {
       [
         `This release script requires GitHub Cli to be installed and authenticated.`,
         "",
-        'Check https://cli.github.com/ for more information on how to set it up.',
+        "Check https://cli.github.com/ for more information on how to set it up.",
       ].join("\n"),
     );
   }
 };
 
-export const github = await getGithubClient(); 
+export const github = await getGithubClient();
 
 const getProjectReleasePlan = memoize(async (project: string) => {
   const releasePlan = await getReleasePlan(REPO_ROOT);
@@ -68,11 +67,15 @@ const getProjectReleasePlan = memoize(async (project: string) => {
   }
   return { ...releasePlan, projectRelease };
 });
-type NewChangeset = Awaited<ReturnType<typeof getReleasePlan>>["changesets"][number]; 
+type NewChangeset = Awaited<
+  ReturnType<typeof getReleasePlan>
+>["changesets"][number];
 const getSummary = async (project: string) => {
   const releasePlan = await getProjectReleasePlan(project);
 
-  const changesetMap = releasePlan.changesets.reduce<Record<string, NewChangeset>>((acc, changeset) => {
+  const changesetMap = releasePlan.changesets.reduce<
+    Record<string, NewChangeset>
+  >((acc, changeset) => {
     acc[changeset.id] = changeset;
     return acc;
   }, {});
@@ -81,7 +84,6 @@ const getSummary = async (project: string) => {
     ({ name, newVersion, type, changesets }) => [
       `${type.toLocaleUpperCase()} ${name}@${newVersion}`,
       ...changesets.flatMap((id) => {
-
         const changeset = changesetMap[id];
         if (!changeset) return [];
         return `- ${changeset.summary}`;
@@ -156,8 +158,6 @@ const createReleasePr = async (project: string, baseBranch: string) => {
     body: summary,
     base: baseBranch,
     head: await getReleaseBranchName(project),
-    draft: true,
-  
   });
 };
 
@@ -171,39 +171,37 @@ const deleteReleaseBranch = async (project: string) => {
   await git.deleteLocalBranch(branch, true);
 };
 
-program
-  .argument("<project>")
-  .action(async (project) => {
-    const currentBranch = await getCurrentBranch();
-    try {
-      logger.info(`Fetching origin/main`);
-      await fetchMainBranch();
+program.argument("<project>").action(async (project) => {
+  const currentBranch = await getCurrentBranch();
+  try {
+    logger.info(`Fetching origin/main`);
+    await fetchMainBranch();
 
-      logger.info(`Creating release branch for ${project}`);
-      await createReleaseBranch(project);
+    logger.info(`Creating release branch for ${project}`);
+    await createReleaseBranch(project);
 
-      logger.info(`Consuming changesets`);
-      await consumeChangesets();
+    logger.info(`Consuming changesets`);
+    await consumeChangesets();
 
-      logger.info(`Committing release for ${project}`);
-      await commitRelease(project);
+    logger.info(`Committing release for ${project}`);
+    await commitRelease(project);
 
-      logger.info(`Pushing release branch`);
-      await pushReleaseBranch(project);
+    logger.info(`Pushing release branch`);
+    await pushReleaseBranch(project);
 
-      logger.info(`Creating release PRs`);
-      const mainPr = await createReleasePr(project, "main");
-      logger.info(` - main: ${mainPr.data.html_url}`);
+    logger.info(`Creating release PRs`);
+    const mainPr = await createReleasePr(project, "main");
+    logger.info(` - main: ${mainPr.data.html_url}`);
 
-      const prodPr = await createReleasePr(project, "production");
-      logger.info(` - prod: ${prodPr.data.html_url}`);
-    } catch (e) {
-      logger.error(e);
-    } finally {
-      logger.info(`Switching back to branch ${currentBranch}`);
-      await git.checkout(currentBranch);
+    const prodPr = await createReleasePr(project, "production");
+    logger.info(` - prod: ${prodPr.data.html_url}`);
+  } catch (e) {
+    logger.error(e);
+  } finally {
+    logger.info(`Switching back to branch ${currentBranch}`);
+    await git.checkout(currentBranch);
 
-      logger.info(`Cleaning up release branch`);
-      await deleteReleaseBranch(project);
-    }
-  });
+    logger.info(`Cleaning up release branch`);
+    await deleteReleaseBranch(project);
+  }
+});

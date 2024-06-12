@@ -25,6 +25,7 @@ async function handler(
   const res = await fetch(url.toString(), {
     method: request.method,
     body: request.body,
+    // @ts-expect-error - this prop is required but it's not typed on RequestInit
     duplex: "half",
   });
   return new NextResponse(res.body, {

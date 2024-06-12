@@ -1,0 +1,27 @@
+{
+  "name": "db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prisma:generate": "pnpm run prisma:dappstore:generate",
+    "prisma:push": "pnpm run prisma:dappstore:push",
+    "prisma:studio": "pnpm run prisma:dappstore:studio",
+    "prisma:dappstore:generate": "prisma generate --schema src/dappstore/prisma/schema.prisma",
+    "prisma:dappstore:push": "dotenv -e ../../.env -c -- prisma db push --schema ./src/dappstore/prisma/schema.prisma",
+    "prisma:dappstore:studio": "dotenv -e ../../.env -c -- prisma studio --schema src/dappstore/prisma/schema.prisma -p 5555",
+    "postinstall": "pnpm run prisma:generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prisma": "^5.15.0"
+  },
+  "dependencies": {
+    "@prisma/client": "5.15.0",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.14.2",
+    "lodash-es": "^4.17.21"
+  }
+}

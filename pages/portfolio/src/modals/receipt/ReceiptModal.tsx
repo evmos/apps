@@ -2,10 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import {
-  ChainPrefixSchema,
-  HexSchema,
-} from "@evmosapps/evmos-wallet/src/registry-actions/utils";
+import { ChainPrefixSchema } from "@evmosapps/evmos-wallet/src/registry-actions/utils";
 import { z } from "zod";
 
 import { Modal } from "@evmosapps/ui-helpers";
@@ -14,7 +11,7 @@ import { ReceiptModalContent } from "./ReceiptModalContent";
 import { ModalProps, useModal } from "helpers";
 
 const ReceiptModalSchema = z.object({
-  hash: HexSchema,
+  hash: z.string().min(1),
   chainPrefix: ChainPrefixSchema,
 });
 

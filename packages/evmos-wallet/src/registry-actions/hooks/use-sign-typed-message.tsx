@@ -11,10 +11,38 @@ import {
 import { signTypedDataMessage } from "../..";
 import { switchToEvmosChain } from "../../wallet/actions/switchToEvmosChain";
 import { useEvmosChainRef } from "./use-evmos-chain-ref";
+import { Address } from "helpers/src/crypto/addresses/types";
 
+export const signAndBroadcastTypedMessage = async (
+  chainRef: string,
+  {
+    sender,
+    messages,
+    gasLimit,
+  }: {
+    sender: Address;
+    messages: Message[];
+    gasLimit: bigint;
+  },
+) => {
+  await switchToEvmosChain();
+
+  const typedMessage = await createTypedMessage(chainRef, {
+    messages,
+    sender,
+    gasLimit,
+  });
+
+  const signature = await signTypedDataMessage(typedMessage.tx);
+
+  return broadcastTypedMessage(chainRef, {
+    ...typedMessage,
+    signature,
+  });
+};
 export const useSignTypedDataMessage = () => {
   const { address } = useAccount();
-  const chainRef = useEvmosChainRef()
+  const chainRef = useEvmosChainRef();
   return useMutation({
     mutationFn: async ({
       messages,
@@ -25,18 +53,10 @@ export const useSignTypedDataMessage = () => {
     }) => {
       if (!address) throw new Error("No address");
       await switchToEvmosChain();
-
-      const typedMessage = await createTypedMessage(chainRef, {
-        messages,
+      return await signAndBroadcastTypedMessage(chainRef, {
         sender: address,
+        messages,
         gasLimit,
-      });
-
-      const signature = await signTypedDataMessage(typedMessage.tx);
-
-      return broadcastTypedMessage(chainRef, {
-        ...typedMessage,
-        signature,
       });
     },
   });

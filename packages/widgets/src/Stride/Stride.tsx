@@ -26,7 +26,7 @@ import Link from "next/link";
 import { EXPLORER_URL } from "@evmosapps/constants";
 import { useEvmosData } from "./query-evmos-values";
 
-const StrideWidget = () => {
+export const StrideWidget = () => {
   const { themeClass, setTheme } = useTheme();
 
   const { balance, evmosPrice } = useEvmosData();
@@ -271,7 +271,15 @@ const StrideWidget = () => {
 export default function Stride() {
   return (
     <ThemeProvider>
-      <StrideWidget />
+          <div
+      className={`relative blur-image after:absolute after:top-0 after:left-0 after:right-0 after:bottom-0 after:z-10 after:bg-[rgba(0,0,0,.3)] z-[10] h-[450px] bg-center bg-no-repeat bg-cover ${"bg-[url(/ecosystem/blur/stride-blur.png)]"} flex flex-col justify-center`}
+    >
+      <div className="z-[9999] text-center flex flex-col items-center space-y-3 text-lg px-8">
+        <p className="font-light text-black">
+        We are currently in maintenance mode with the Stride instant dapp. This will be addressed by the next upgrade of the Evmos chain
+        </p>
+      </div>
+    </div>
     </ThemeProvider>
   );
 }

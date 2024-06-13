@@ -4,7 +4,8 @@
 import { fetchPreferredCosmosRestUrl } from "@evmosapps/trpc/procedures/metrics/queries/fetch-preferred-cosmos-rest-url";
 import { NextResponse } from "next/server";
 import path from "path";
-export async function GET(
+
+async function handler(
   request: Request,
   {
     params: { chainId, route = [] },
@@ -21,7 +22,12 @@ export async function GET(
   url.pathname = path.join(url.pathname, ...route);
   url.search = new URL(request.url).search;
 
-  const res = await fetch(url.toString());
+  const res = await fetch(url.toString(), {
+    method: request.method,
+    body: request.body,
+    // @ts-expect-error - this prop is required but it's not typed on RequestInit
+    duplex: "half",
+  });
   return new NextResponse(res.body, {
     status: res.status,
     headers: {
@@ -29,3 +35,6 @@ export async function GET(
     },
   });
 }
+
+export const GET = handler;
+export const POST = handler;

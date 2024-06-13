@@ -60,9 +60,8 @@ const generateReceipt = ({
 }) => ({
   sender: normalizeToCosmos(sender),
   receiver: normalizeToCosmos(receiver),
-  formattedAmount: `${formatUnits(BigInt(amount), token.decimals)} ${
-    token.denom
-  }`,
+  formattedAmount: `${formatUnits(BigInt(amount), token.decimals)} ${token.denom
+    }`,
   height: BigInt(height),
 });
 
@@ -135,7 +134,7 @@ const isIBCMsgTransfer = (message: unknown): message is MsgTransfer => {
   );
 };
 
-const useReceipt = (hash?: Hex, chainPrefix?: string) => {
+const useReceipt = (hash?: string, chainPrefix?: string) => {
   const config = useConfig();
   const { data, ...rest } = useQuery({
     queryKey: ["receipt", hash],
@@ -145,13 +144,9 @@ const useReceipt = (hash?: Hex, chainPrefix?: string) => {
     refetchOnWindowFocus: false,
     queryFn: async () => {
       if (!hash || !chainPrefix) throw new Error("Missing parameters");
-      /**
-       * All transactions originated on Evmos are sent through Precompiles, so we fetch the results as
-       * ethereum transactions
-       */
-      if (chainPrefix === "evmos") {
+      if (chainPrefix === "evmos" && hash.startsWith("0x")) {
         const result = await getTransaction(config, {
-          hash: hash,
+          hash: hash as Hex,
         });
 
         if (result.input === "0x") {
@@ -318,18 +313,18 @@ export const ReceiptModalContent = ({
               )}
               {((isReceiptLoading && isReceiptStillLoading) ||
                 (!!error && txHasNotFoundError)) && (
-                <>
-                  {t("transfer.confirmation.message.takingLonger.description")}
-                  <br />
-                  {t("transfer.confirmation.message.takingLonger.description2")}
-                </>
-              )}
+                  <>
+                    {t("transfer.confirmation.message.takingLonger.description")}
+                    <br />
+                    {t("transfer.confirmation.message.takingLonger.description2")}
+                  </>
+                )}
             </SkeletonLoading>
           </ConfirmationMessage>
         </div>
         <Divider variant="info" className="w-full">
           <ViewExplorer
-            txHash={chainPrefix !== "evmos" ? hash?.slice(2) ?? "" : hash ?? ""}
+            txHash={hash}
             explorerTxUrl={chain.explorerUrl}
             text={`Transaction ID: ${hash?.slice(0, 10)}...`}
           />

@@ -18,6 +18,7 @@ import { getAminoName } from "./getAminoName";
 import { getEvmosConfig } from "../../wallet/actions/getEvmosIdentifier";
 import { fetchChainByRef } from "@evmosapps/trpc/procedures/chains/queries/chain-by-ref/fetch-chain-by-ref";
 import { cosmos } from "helpers/src/clients/cosmos";
+import { getPubUrl } from "helpers/src/clients/get-pub-url";
 
 export const createTypedMessage = async (
   chainRef: string,
@@ -149,12 +150,16 @@ export const broadcastTypedMessage = async (
     signatures: [fromHex(signature as Hex, "bytes")],
   });
 
-  const chainInfo = await fetchChainByRef(chainRef);
 
   const res = await apiCosmosTxBroadcast(
-    chainInfo.rest as [string, ...string[]],
+    [
+      chainRef === "evmos"
+        ? "https://proxy.evmos.org/cosmos"
+        : `${getPubUrl()}/api/cosmos-rest/${chainRef}`,
+    ],
     protoTx,
   );
+
   if (res.tx_response.code !== 0) {
     throw new Error(`Transaction failed: ${res.tx_response.raw_log}`);
   }

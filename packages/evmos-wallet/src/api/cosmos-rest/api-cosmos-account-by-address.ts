@@ -1,7 +1,7 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-"use server"
+"use server";
 
 import { z } from "zod";
 
@@ -36,4 +36,5 @@ export const apiCosmosAccountByAddress = (
     }),
     urls,
     `/cosmos/auth/v1beta1/account_info/${address}`,
+    { cache: 'no-cache' },
   );

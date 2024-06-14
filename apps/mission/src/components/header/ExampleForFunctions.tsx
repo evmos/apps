@@ -1,7 +1,7 @@
 "use client";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
-import { createMessage, hasProfile } from "../../app/api/authTest/auth";
+import { createMessage, hasProfile } from "../../app/api/testAuth/auth";
 
 import { useSignMessage } from "wagmi";
 import { SiweMessage } from "siwe";

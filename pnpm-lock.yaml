@@ -83,12 +83,18 @@ importers:
       kill-port:
         specifier: ^2.0.1
         version: 2.0.1
+      next-auth:
+        specifier: ^4.24.7
+        version: 4.24.7(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)
       playwright:
         specifier: ^1.43.1
         version: 1.44.0
       react-hook-form:
         specifier: ^7.44.3
         version: 7.51.4(react@18.3.1)
+      siwe:
+        specifier: ^2.3.2
+        version: 2.3.2(ethers@6.12.1)
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.3
@@ -1455,7 +1461,7 @@ importers:
         version: link:../../packages/icons
       chainapsis-suggest-chain:
         specifier: github:chainapsis/keplr-chain-registry
-        version: github.com/chainapsis/keplr-chain-registry/b018d947300b96c9d774b18e183aebb552001695(@babel/core@7.24.6)(react-is@18.3.1)
+        version: github.com/chainapsis/keplr-chain-registry/4184250c8ec87b4d5ce6c2df98e38524f60ad674(@babel/core@7.24.6)(react-is@18.3.1)
       ethers:
         specifier: ^6.9.2
         version: 6.12.1
@@ -1707,7 +1713,6 @@ packages:
 
   /@adraffy/ens-normalize@1.10.1:
     resolution: {integrity: sha512-96Z2IP3mYmF1Xg2cDm8f1gWGf/HUVedQ3FMifV4kG/PQ4yEP51xDtRAEfhVNt5f/uzpNkZHwWQuUcu6D6K+Ekw==}
-    dev: true
 
   /@adraffy/ens-normalize@1.9.0:
     resolution: {integrity: sha512-iowxq3U30sghZotgl4s/oJRci6WPBfNO5YYgk2cIOMCHr3LeGPcsZjCEr+33Q4N+oV3OABDAtA+pyvWjbvBifQ==}
@@ -3243,7 +3248,7 @@ packages:
     dev: false
 
   /@buf/cosmos_cosmos-proto.bufbuild_es@1.0.0-20211202220400-1935555c206d.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-proto.bufbuild_es/-/cosmos_cosmos-proto.bufbuild_es-1.0.0-20211202220400-1935555c206d.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-proto.bufbuild_es/-/cosmos_cosmos-proto.bufbuild_es-1.0.0-20211202220400-1935555c206d.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3251,14 +3256,14 @@ packages:
     dev: false
 
   /@buf/cosmos_cosmos-proto.bufbuild_es@1.10.0-20211202220400-1935555c206d.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-proto.bufbuild_es/-/cosmos_cosmos-proto.bufbuild_es-1.10.0-20211202220400-1935555c206d.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-proto.bufbuild_es/-/cosmos_cosmos-proto.bufbuild_es-1.10.0-20211202220400-1935555c206d.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
       '@bufbuild/protobuf': 1.10.0
 
   /@buf/cosmos_cosmos-proto.bufbuild_es@1.2.0-20211202220400-1935555c206d.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-proto.bufbuild_es/-/cosmos_cosmos-proto.bufbuild_es-1.2.0-20211202220400-1935555c206d.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-proto.bufbuild_es/-/cosmos_cosmos-proto.bufbuild_es-1.2.0-20211202220400-1935555c206d.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.2.0
     dependencies:
@@ -3266,7 +3271,7 @@ packages:
     dev: false
 
   /@buf/cosmos_cosmos-sdk.bufbuild_es@1.0.0-20230719110346-aa25660f4ff7.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.0.0-20230719110346-aa25660f4ff7.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.0.0-20230719110346-aa25660f4ff7.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3277,7 +3282,7 @@ packages:
     dev: false
 
   /@buf/cosmos_cosmos-sdk.bufbuild_es@1.0.0-20240220165237-05419252bcc2.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.0.0-20240220165237-05419252bcc2.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.0.0-20240220165237-05419252bcc2.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3290,7 +3295,7 @@ packages:
     dev: false
 
   /@buf/cosmos_cosmos-sdk.bufbuild_es@1.10.0-20221115045553-508e19f5f375.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.10.0-20221115045553-508e19f5f375.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.10.0-20221115045553-508e19f5f375.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3300,7 +3305,7 @@ packages:
       '@bufbuild/protobuf': 1.10.0
 
   /@buf/cosmos_cosmos-sdk.bufbuild_es@1.10.0-20230719110346-aa25660f4ff7.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.10.0-20230719110346-aa25660f4ff7.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.10.0-20230719110346-aa25660f4ff7.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3311,7 +3316,7 @@ packages:
     dev: false
 
   /@buf/cosmos_cosmos-sdk.bufbuild_es@1.10.0-20240220165237-05419252bcc2.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.10.0-20240220165237-05419252bcc2.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.10.0-20240220165237-05419252bcc2.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3324,7 +3329,7 @@ packages:
     dev: false
 
   /@buf/cosmos_cosmos-sdk.bufbuild_es@1.2.0-20221115045553-508e19f5f375.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.2.0-20221115045553-508e19f5f375.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_cosmos-sdk.bufbuild_es/-/cosmos_cosmos-sdk.bufbuild_es-1.2.0-20221115045553-508e19f5f375.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.2.0
     dependencies:
@@ -3335,7 +3340,7 @@ packages:
     dev: false
 
   /@buf/cosmos_gogo-proto.bufbuild_es@1.0.0-20221020125208-34d970b699f8.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.0.0-20221020125208-34d970b699f8.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.0.0-20221020125208-34d970b699f8.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3343,7 +3348,7 @@ packages:
     dev: false
 
   /@buf/cosmos_gogo-proto.bufbuild_es@1.0.0-20230509103710-5e5b9fdd0180.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.0.0-20230509103710-5e5b9fdd0180.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.0.0-20230509103710-5e5b9fdd0180.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3351,7 +3356,7 @@ packages:
     dev: false
 
   /@buf/cosmos_gogo-proto.bufbuild_es@1.0.0-20240130113600-88ef6483f90f.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.0.0-20240130113600-88ef6483f90f.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.0.0-20240130113600-88ef6483f90f.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3359,14 +3364,14 @@ packages:
     dev: false
 
   /@buf/cosmos_gogo-proto.bufbuild_es@1.10.0-20221020125208-34d970b699f8.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.10.0-20221020125208-34d970b699f8.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.10.0-20221020125208-34d970b699f8.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
       '@bufbuild/protobuf': 1.10.0
 
   /@buf/cosmos_gogo-proto.bufbuild_es@1.10.0-20230509103710-5e5b9fdd0180.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.10.0-20230509103710-5e5b9fdd0180.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.10.0-20230509103710-5e5b9fdd0180.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3374,7 +3379,7 @@ packages:
     dev: false
 
   /@buf/cosmos_gogo-proto.bufbuild_es@1.10.0-20240130113600-88ef6483f90f.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.10.0-20240130113600-88ef6483f90f.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.10.0-20240130113600-88ef6483f90f.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3382,7 +3387,7 @@ packages:
     dev: false
 
   /@buf/cosmos_gogo-proto.bufbuild_es@1.2.0-20221020125208-34d970b699f8.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.2.0-20221020125208-34d970b699f8.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_gogo-proto.bufbuild_es/-/cosmos_gogo-proto.bufbuild_es-1.2.0-20221020125208-34d970b699f8.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.2.0
     dependencies:
@@ -3390,7 +3395,7 @@ packages:
     dev: false
 
   /@buf/cosmos_ibc.bufbuild_es@1.0.0-20240510123327-370634b60b1d.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_ibc.bufbuild_es/-/cosmos_ibc.bufbuild_es-1.0.0-20240510123327-370634b60b1d.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_ibc.bufbuild_es/-/cosmos_ibc.bufbuild_es-1.0.0-20240510123327-370634b60b1d.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3403,7 +3408,7 @@ packages:
     dev: false
 
   /@buf/cosmos_ibc.bufbuild_es@1.10.0-20240530142100-ad4444393387.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_ibc.bufbuild_es/-/cosmos_ibc.bufbuild_es-1.10.0-20240530142100-ad4444393387.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_ibc.bufbuild_es/-/cosmos_ibc.bufbuild_es-1.10.0-20240530142100-ad4444393387.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3416,7 +3421,7 @@ packages:
     dev: false
 
   /@buf/cosmos_ics23.bufbuild_es@1.0.0-20221207100654-55085f7c710a.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_ics23.bufbuild_es/-/cosmos_ics23.bufbuild_es-1.0.0-20221207100654-55085f7c710a.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_ics23.bufbuild_es/-/cosmos_ics23.bufbuild_es-1.0.0-20221207100654-55085f7c710a.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3424,7 +3429,7 @@ packages:
     dev: false
 
   /@buf/cosmos_ics23.bufbuild_es@1.10.0-20221207100654-55085f7c710a.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/cosmos_ics23.bufbuild_es/-/cosmos_ics23.bufbuild_es-1.10.0-20221207100654-55085f7c710a.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/cosmos_ics23.bufbuild_es/-/cosmos_ics23.bufbuild_es-1.10.0-20221207100654-55085f7c710a.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3432,7 +3437,7 @@ packages:
     dev: false
 
   /@buf/evmos_evmos.bufbuild_es@1.10.0-20240422150009-01e2a00b63f4.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/evmos_evmos.bufbuild_es/-/evmos_evmos.bufbuild_es-1.10.0-20240422150009-01e2a00b63f4.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/evmos_evmos.bufbuild_es/-/evmos_evmos.bufbuild_es-1.10.0-20240422150009-01e2a00b63f4.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3443,7 +3448,7 @@ packages:
       '@bufbuild/protobuf': 1.10.0
 
   /@buf/evmos_evmos.bufbuild_es@1.2.0-20240422150009-01e2a00b63f4.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/evmos_evmos.bufbuild_es/-/evmos_evmos.bufbuild_es-1.2.0-20240422150009-01e2a00b63f4.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/evmos_evmos.bufbuild_es/-/evmos_evmos.bufbuild_es-1.2.0-20240422150009-01e2a00b63f4.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.2.0
     dependencies:
@@ -3455,7 +3460,7 @@ packages:
     dev: false
 
   /@buf/googleapis_googleapis.bufbuild_es@1.0.0-20220908150232-8d7204855ec1.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.0.0-20220908150232-8d7204855ec1.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.0.0-20220908150232-8d7204855ec1.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3463,7 +3468,7 @@ packages:
     dev: false
 
   /@buf/googleapis_googleapis.bufbuild_es@1.0.0-20230502210827-cc916c318597.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.0.0-20230502210827-cc916c318597.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.0.0-20230502210827-cc916c318597.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3471,7 +3476,7 @@ packages:
     dev: false
 
   /@buf/googleapis_googleapis.bufbuild_es@1.0.0-20240207202044-7e6f6e774e29.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.0.0-20240207202044-7e6f6e774e29.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.0.0-20240207202044-7e6f6e774e29.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3479,7 +3484,7 @@ packages:
     dev: false
 
   /@buf/googleapis_googleapis.bufbuild_es@1.10.0-20220908150232-8d7204855ec1.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.10.0-20220908150232-8d7204855ec1.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.10.0-20220908150232-8d7204855ec1.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3487,14 +3492,14 @@ packages:
     dev: false
 
   /@buf/googleapis_googleapis.bufbuild_es@1.10.0-20221025150512-783e4b5374fa.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.10.0-20221025150512-783e4b5374fa.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.10.0-20221025150512-783e4b5374fa.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
       '@bufbuild/protobuf': 1.10.0
 
   /@buf/googleapis_googleapis.bufbuild_es@1.10.0-20230502210827-cc916c318597.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.10.0-20230502210827-cc916c318597.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.10.0-20230502210827-cc916c318597.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3502,7 +3507,7 @@ packages:
     dev: false
 
   /@buf/googleapis_googleapis.bufbuild_es@1.10.0-20240207202044-7e6f6e774e29.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.10.0-20240207202044-7e6f6e774e29.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.10.0-20240207202044-7e6f6e774e29.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3510,7 +3515,7 @@ packages:
     dev: false
 
   /@buf/googleapis_googleapis.bufbuild_es@1.2.0-20221025150512-783e4b5374fa.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.2.0-20221025150512-783e4b5374fa.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/googleapis_googleapis.bufbuild_es/-/googleapis_googleapis.bufbuild_es-1.2.0-20221025150512-783e4b5374fa.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.2.0
     dependencies:
@@ -3518,7 +3523,7 @@ packages:
     dev: false
 
   /@buf/protocolbuffers_wellknowntypes.bufbuild_es@1.0.0-20230509212704-657250e6a396.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/protocolbuffers_wellknowntypes.bufbuild_es/-/protocolbuffers_wellknowntypes.bufbuild_es-1.0.0-20230509212704-657250e6a396.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/protocolbuffers_wellknowntypes.bufbuild_es/-/protocolbuffers_wellknowntypes.bufbuild_es-1.0.0-20230509212704-657250e6a396.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3526,7 +3531,7 @@ packages:
     dev: false
 
   /@buf/protocolbuffers_wellknowntypes.bufbuild_es@1.10.0-20230509212704-657250e6a396.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/protocolbuffers_wellknowntypes.bufbuild_es/-/protocolbuffers_wellknowntypes.bufbuild_es-1.10.0-20230509212704-657250e6a396.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/protocolbuffers_wellknowntypes.bufbuild_es/-/protocolbuffers_wellknowntypes.bufbuild_es-1.10.0-20230509212704-657250e6a396.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3534,7 +3539,7 @@ packages:
     dev: false
 
   /@buf/tendermint_tendermint.bufbuild_es@1.0.0-20231117195010-33ed361a9051.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/tendermint_tendermint.bufbuild_es/-/tendermint_tendermint.bufbuild_es-1.0.0-20231117195010-33ed361a9051.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/tendermint_tendermint.bufbuild_es/-/tendermint_tendermint.bufbuild_es-1.0.0-20231117195010-33ed361a9051.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.0.0
     dependencies:
@@ -3543,7 +3548,7 @@ packages:
     dev: false
 
   /@buf/tendermint_tendermint.bufbuild_es@1.10.0-20231117195010-33ed361a9051.1(@bufbuild/protobuf@1.10.0):
-    resolution: {tarball: https://buf.build/gen/npm/v1/@buf/tendermint_tendermint.bufbuild_es/-/tendermint_tendermint.bufbuild_es-1.10.0-20231117195010-33ed361a9051.1.tgz}
+    resolution: {registry: https://buf.build/gen/npm/v1/, tarball: https://buf.build/gen/npm/v1/@buf/tendermint_tendermint.bufbuild_es/-/tendermint_tendermint.bufbuild_es-1.10.0-20231117195010-33ed361a9051.1.tgz}
     peerDependencies:
       '@bufbuild/protobuf': ^1.10.0
     dependencies:
@@ -3971,6 +3976,15 @@ packages:
       '@cosmjs/utils': 0.29.5
     dev: false
 
+  /@cosmjs/amino@0.30.1:
+    resolution: {integrity: sha512-yNHnzmvAlkETDYIpeCTdVqgvrdt1qgkOXwuRVi8s27UKI5hfqyE9fJ/fuunXE6ZZPnKkjIecDznmuUOMrMvw4w==}
+    dependencies:
+      '@cosmjs/crypto': 0.30.1
+      '@cosmjs/encoding': 0.30.1
+      '@cosmjs/math': 0.30.1
+      '@cosmjs/utils': 0.30.1
+    dev: false
+
   /@cosmjs/amino@0.31.3:
     resolution: {integrity: sha512-36emtUq895sPRX8PTSOnG+lhJDCVyIcE0Tr5ct59sUbgQiI14y43vj/4WAlJ/utSOxy+Zhj9wxcs4AZfu0BHsw==}
     dependencies:
@@ -3987,6 +4001,26 @@ packages:
       '@cosmjs/encoding': 0.32.3
       '@cosmjs/math': 0.32.3
       '@cosmjs/utils': 0.32.3
+    dev: false
+
+  /@cosmjs/cosmwasm-stargate@0.30.0:
+    resolution: {integrity: sha512-nPJWpwSGpc15K88/9uxZmolEbixkeGzmxpTv6IbMAH23LXeJs7P+tXtgPe41ZjUw8Lt9Zc7ZOaOAqVveqqRktQ==}
+    dependencies:
+      '@cosmjs/amino': 0.30.1
+      '@cosmjs/crypto': 0.30.1
+      '@cosmjs/encoding': 0.30.1
+      '@cosmjs/math': 0.30.1
+      '@cosmjs/proto-signing': 0.30.1
+      '@cosmjs/stargate': 0.30.1
+      '@cosmjs/tendermint-rpc': 0.30.1
+      '@cosmjs/utils': 0.30.1
+      cosmjs-types: 0.7.2
+      long: 4.0.0
+      pako: 2.1.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - utf-8-validate
     dev: false
 
   /@cosmjs/cosmwasm-stargate@0.31.0:
@@ -4098,6 +4132,18 @@ packages:
       libsodium-wrappers: 0.7.13
     dev: false
 
+  /@cosmjs/crypto@0.30.1:
+    resolution: {integrity: sha512-rAljUlake3MSXs9xAm87mu34GfBLN0h/1uPPV6jEwClWjNkAMotzjC0ab9MARy5FFAvYHL3lWb57bhkbt2GtzQ==}
+    dependencies:
+      '@cosmjs/encoding': 0.30.1
+      '@cosmjs/math': 0.30.1
+      '@cosmjs/utils': 0.30.1
+      '@noble/hashes': 1.4.0
+      bn.js: 5.2.1
+      elliptic: 6.5.5
+      libsodium-wrappers: 0.7.13
+    dev: false
+
   /@cosmjs/crypto@0.31.3:
     resolution: {integrity: sha512-vRbvM9ZKR2017TO73dtJ50KxoGcFzKtKI7C8iO302BQ5p+DuB+AirUg1952UpSoLfv5ki9O416MFANNg8UN/EQ==}
     dependencies:
@@ -4147,6 +4193,14 @@ packages:
 
   /@cosmjs/encoding@0.29.5:
     resolution: {integrity: sha512-G4rGl/Jg4dMCw5u6PEZHZcoHnUBlukZODHbm/wcL4Uu91fkn5jVo5cXXZcvs4VCkArVGrEj/52eUgTZCmOBGWQ==}
+    dependencies:
+      base64-js: 1.5.1
+      bech32: 1.1.4
+      readonly-date: 1.0.0
+    dev: false
+
+  /@cosmjs/encoding@0.30.1:
+    resolution: {integrity: sha512-rXmrTbgqwihORwJ3xYhIgQFfMSrwLu1s43RIK9I8EBudPx3KmnmyAKzMOVsRDo9edLFNuZ9GIvysUCwQfq3WlQ==}
     dependencies:
       base64-js: 1.5.1
       bech32: 1.1.4
@@ -4242,6 +4296,12 @@ packages:
       bn.js: 5.2.1
     dev: false
 
+  /@cosmjs/math@0.30.1:
+    resolution: {integrity: sha512-yaoeI23pin9ZiPHIisa6qqLngfnBR/25tSaWpkTm8Cy10MX70UF5oN4+/t1heLaM6SSmRrhk3psRkV4+7mH51Q==}
+    dependencies:
+      bn.js: 5.2.1
+    dev: false
+
   /@cosmjs/math@0.31.3:
     resolution: {integrity: sha512-kZ2C6glA5HDb9hLz1WrftAjqdTBb3fWQsRR+Us2HsjAYdeE6M3VdXMsYCP5M3yiihal1WDwAY2U7HmfJw7Uh4A==}
     dependencies:
@@ -4302,6 +4362,18 @@ packages:
       long: 4.0.0
     dev: false
 
+  /@cosmjs/proto-signing@0.30.1:
+    resolution: {integrity: sha512-tXh8pPYXV4aiJVhTKHGyeZekjj+K9s2KKojMB93Gcob2DxUjfKapFYBMJSgfKPuWUPEmyr8Q9km2hplI38ILgQ==}
+    dependencies:
+      '@cosmjs/amino': 0.30.1
+      '@cosmjs/crypto': 0.30.1
+      '@cosmjs/encoding': 0.30.1
+      '@cosmjs/math': 0.30.1
+      '@cosmjs/utils': 0.30.1
+      cosmjs-types: 0.7.2
+      long: 4.0.0
+    dev: false
+
   /@cosmjs/proto-signing@0.31.3:
     resolution: {integrity: sha512-24+10/cGl6lLS4VCrGTCJeDRPQTn1K5JfknzXzDIHOx8THR31JxA7/HV5eWGHqWgAbudA7ccdSvEK08lEHHtLA==}
     dependencies:
@@ -4329,6 +4401,18 @@ packages:
     resolution: {integrity: sha512-5VYDupIWbIXq3ftPV1LkS5Ya/T7Ol/AzWVhNxZ79hPe/mBfv1bGau/LqIYOm2zxGlgm9hBHOTmWGqNYDwr9LNQ==}
     dependencies:
       '@cosmjs/stream': 0.29.5
+      isomorphic-ws: 4.0.1(ws@7.5.9)
+      ws: 7.5.9(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      xstream: 11.14.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+    dev: false
+
+  /@cosmjs/socket@0.30.1:
+    resolution: {integrity: sha512-r6MpDL+9N+qOS/D5VaxnPaMJ3flwQ36G+vPvYJsXArj93BjgyFB7BwWwXCQDzZ+23cfChPUfhbINOenr8N2Kow==}
+    dependencies:
+      '@cosmjs/stream': 0.30.1
       isomorphic-ws: 4.0.1(ws@7.5.9)
       ws: 7.5.9(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       xstream: 11.14.0
@@ -4394,6 +4478,27 @@ packages:
       '@cosmjs/tendermint-rpc': 0.29.5
       '@cosmjs/utils': 0.29.5
       cosmjs-types: 0.5.2
+      long: 4.0.0
+      protobufjs: 6.11.4
+      xstream: 11.14.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - utf-8-validate
+    dev: false
+
+  /@cosmjs/stargate@0.30.1:
+    resolution: {integrity: sha512-RdbYKZCGOH8gWebO7r6WvNnQMxHrNXInY/gPHPzMjbQF6UatA6fNM2G2tdgS5j5u7FTqlCI10stNXrknaNdzog==}
+    dependencies:
+      '@confio/ics23': 0.6.8
+      '@cosmjs/amino': 0.30.1
+      '@cosmjs/encoding': 0.30.1
+      '@cosmjs/math': 0.30.1
+      '@cosmjs/proto-signing': 0.30.1
+      '@cosmjs/stream': 0.30.1
+      '@cosmjs/tendermint-rpc': 0.30.1
+      '@cosmjs/utils': 0.30.1
+      cosmjs-types: 0.7.2
       long: 4.0.0
       protobufjs: 6.11.4
       xstream: 11.14.0
@@ -4528,6 +4633,25 @@ packages:
       - utf-8-validate
     dev: false
 
+  /@cosmjs/tendermint-rpc@0.30.1:
+    resolution: {integrity: sha512-Z3nCwhXSbPZJ++v85zHObeUggrEHVfm1u18ZRwXxFE9ZMl5mXTybnwYhczuYOl7KRskgwlB+rID0WYACxj4wdQ==}
+    dependencies:
+      '@cosmjs/crypto': 0.30.1
+      '@cosmjs/encoding': 0.30.1
+      '@cosmjs/json-rpc': 0.30.1
+      '@cosmjs/math': 0.30.1
+      '@cosmjs/socket': 0.30.1
+      '@cosmjs/stream': 0.30.1
+      '@cosmjs/utils': 0.30.1
+      axios: 0.21.4
+      readonly-date: 1.0.0
+      xstream: 11.14.0
+    transitivePeerDependencies:
+      - bufferutil
+      - debug
+      - utf-8-validate
+    dev: false
+
   /@cosmjs/tendermint-rpc@0.31.3:
     resolution: {integrity: sha512-s3TiWkPCW4QceTQjpYqn4xttUJH36mTPqplMl+qyocdqk5+X5mergzExU/pHZRWQ4pbby8bnR7kMvG4OC1aZ8g==}
     dependencies:
@@ -4579,6 +4703,10 @@ packages:
 
   /@cosmjs/utils@0.29.5:
     resolution: {integrity: sha512-m7h+RXDUxOzEOGt4P+3OVPX7PuakZT3GBmaM/Y2u+abN3xZkziykD/NvedYFvvCCdQo714XcGl33bwifS9FZPQ==}
+    dev: false
+
+  /@cosmjs/utils@0.30.1:
+    resolution: {integrity: sha512-KvvX58MGMWh7xA+N+deCfunkA/ZNDvFLw4YbOmX3f/XBIkqrVY7qlotfy2aNb1kgp6h4B6Yc8YawJPDTfvWX7g==}
     dev: false
 
   /@cosmjs/utils@0.31.3:
@@ -8656,7 +8784,7 @@ packages:
       '@headlessui/react': 1.7.19(react-dom@18.3.1)(react@18.3.1)
       '@leapwallet/elements-core': 0.12.9(bech32@2.0.0)(bignumber.js@9.1.2)(long@5.2.3)
       '@leapwallet/elements-hooks': 0.12.9(@leapwallet/elements-core@0.12.9)(ethers@5.7.2)(react@18.3.1)(swr@2.2.5)(wagmi@1.4.13)
-      '@leapwallet/name-matcha': 1.6.0(@cosmjs/cosmwasm-stargate@0.31.3)
+      '@leapwallet/name-matcha': 1.6.0(@cosmjs/cosmwasm-stargate@0.30.0)
       '@phosphor-icons/react': 2.0.10(react-dom@18.3.1)(react@18.3.1)
       '@rainbow-me/rainbowkit': 1.2.1(@types/react@18.3.3)(react-dom@18.3.1)(react@18.3.1)(viem@1.4.2)(wagmi@1.4.13)
       '@skip-router/core': 1.5.2(@types/react@18.3.3)(chain-registry@1.47.5)(react-dom@18.3.1)(react@18.3.1)(typescript@5.4.5)(zod@3.23.8)
@@ -8691,23 +8819,23 @@ packages:
       - zod
     dev: false
 
+  /@leapwallet/name-matcha@1.6.0(@cosmjs/cosmwasm-stargate@0.30.0):
+    resolution: {integrity: sha512-mQ55L0kJToofkbZAqxSAvos0BNcY1mHKL7iOIOQNS0TQFS002epxNh9mIM6Qb9ODXt20zsK+O+flqGPOntLIZg==}
+    peerDependencies:
+      '@cosmjs/cosmwasm-stargate': 0.30.0
+    dependencies:
+      '@cosmjs/cosmwasm-stargate': 0.30.0
+      bech32: 1.1.4
+      idna-uts46-hx: 5.0.7
+      js-sha3: 0.8.0
+    dev: false
+
   /@leapwallet/name-matcha@1.6.0(@cosmjs/cosmwasm-stargate@0.31.0):
     resolution: {integrity: sha512-mQ55L0kJToofkbZAqxSAvos0BNcY1mHKL7iOIOQNS0TQFS002epxNh9mIM6Qb9ODXt20zsK+O+flqGPOntLIZg==}
     peerDependencies:
       '@cosmjs/cosmwasm-stargate': 0.30.0
     dependencies:
       '@cosmjs/cosmwasm-stargate': 0.31.0
-      bech32: 1.1.4
-      idna-uts46-hx: 5.0.7
-      js-sha3: 0.8.0
-    dev: false
-
-  /@leapwallet/name-matcha@1.6.0(@cosmjs/cosmwasm-stargate@0.31.3):
-    resolution: {integrity: sha512-mQ55L0kJToofkbZAqxSAvos0BNcY1mHKL7iOIOQNS0TQFS002epxNh9mIM6Qb9ODXt20zsK+O+flqGPOntLIZg==}
-    peerDependencies:
-      '@cosmjs/cosmwasm-stargate': 0.30.0
-    dependencies:
-      '@cosmjs/cosmwasm-stargate': 0.31.3
       bech32: 1.1.4
       idna-uts46-hx: 5.0.7
       js-sha3: 0.8.0
@@ -8977,7 +9105,7 @@ packages:
       qr-code-styling: 1.6.0-rc.1
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
-      react-i18next: 13.5.0(i18next@22.5.1)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)
+      react-i18next: 13.5.0(i18next@23.11.5)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1)
       react-native: 0.74.1(@babel/core@7.24.6)(@babel/preset-env@7.24.5)(@types/react@18.3.3)(react@18.3.1)
     dev: true
 
@@ -10152,6 +10280,10 @@ packages:
       - debug
     dev: false
 
+  /@panva/hkdf@1.1.1:
+    resolution: {integrity: sha512-dhPeilub1NuIG0X5Kvhh9lH4iW3ZsHlnzwgwbOlgwQ2wG1IqFzsgHqmKPk3WzsdWAeaxKJxgM0+W433RmN45GA==}
+    dev: false
+
   /@parcel/watcher-android-arm64@2.4.1:
     resolution: {integrity: sha512-LOi/WTbbh3aTn2RYddrO8pnapixAziFl6SMxHM69r3tvdSm94JtCenaKgk1GRg5FJ5wpMCpHeW+7yqPlvZv7kg==}
     engines: {node: '>= 10.0.0'}
@@ -10230,6 +10362,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     bundledDependencies:
       - napi-wasm
 
@@ -12446,6 +12579,15 @@ packages:
   /@socket.io/component-emitter@3.1.2:
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
+  /@spruceid/siwe-parser@2.1.2:
+    resolution: {integrity: sha512-d/r3S1LwJyMaRAKQ0awmo9whfXeE88Qt00vRj91q5uv5ATtWIQEGJ67Yr5eSZw5zp1/fZCXZYuEckt8lSkereQ==}
+    dependencies:
+      '@noble/hashes': 1.4.0
+      apg-js: 4.4.0
+      uri-js: 4.4.1
+      valid-url: 1.0.9
+    dev: false
+
   /@stablelib/aead@1.0.1:
     resolution: {integrity: sha512-q39ik6sxGHewqtO0nP4BuSe3db5G1fEJE8ukvngS2gLkBXyy6E7pLubhbYgnkDFv6V8cWaxcE4Xn0t6LWcJkyg==}
 
@@ -14330,7 +14472,6 @@ packages:
 
   /@types/node@18.15.13:
     resolution: {integrity: sha512-N+0kuo9KgrUQ1Sn/ifDXsvg0TTleP7rIy4zOBGECxAljqvqfqpTfzx0Q1NUedOixRMBfe2Whhb056a42cWs26Q==}
-    dev: true
 
   /@types/node@18.19.33:
     resolution: {integrity: sha512-NR9+KrpSajr2qBVp/Yt5TU/rp+b5Mayi3+OlMlcg2cVCfRmcG5PWZ7S4+MG9PZ5gWBoc9Pd0BKSRViuBCRPu0A==}
@@ -16770,7 +16911,6 @@ packages:
 
   /aes-js@4.0.0-beta.5:
     resolution: {integrity: sha512-G965FqalsNyrPqgEGON7nIx1e/OVENSgiEIzyC63haUMuvNnwIgIjMs52hlTCKhkBny7A2ORNlfY9Zu+jmGk1Q==}
-    dev: true
 
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}
@@ -16940,6 +17080,10 @@ packages:
     dependencies:
       normalize-path: 3.0.0
       picomatch: 2.3.1
+
+  /apg-js@4.4.0:
+    resolution: {integrity: sha512-fefmXFknJmtgtNEXfPwZKYkMFX4Fyeyz+fNF6JWp87biGOPslJbCBVU158zvKRZfHBKnJDy8CMM40oLFGkXT8Q==}
+    dev: false
 
   /app-root-dir@1.0.2:
     resolution: {integrity: sha512-jlpIfsOoNoafl92Sz//64uQHGSyMrD2vYG5d8o2a4qGvyNCvXur7bzIsWtAC/6flI2RYAp3kv8rsfBtaLm7w0g==}
@@ -18504,6 +18648,11 @@ packages:
     engines: {node: '>= 0.6'}
     dev: false
 
+  /cookie@0.5.0:
+    resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
+    engines: {node: '>= 0.6'}
+    dev: false
+
   /cookie@0.6.0:
     resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
     engines: {node: '>= 0.6'}
@@ -18633,6 +18782,13 @@ packages:
     dependencies:
       long: 4.0.0
       protobufjs: 6.11.4
+
+  /cosmjs-types@0.7.2:
+    resolution: {integrity: sha512-vf2uLyktjr/XVAgEq0DjMxeAWh1yYREe7AMHDKd7EiHVqxBPCaBS+qEEQUkXbR9ndnckqr1sUG8BQhazh4X5lA==}
+    dependencies:
+      long: 4.0.0
+      protobufjs: 6.11.4
+    dev: false
 
   /cosmjs-types@0.8.0:
     resolution: {integrity: sha512-Q2Mj95Fl0PYMWEhA2LuGEIhipF7mQwd9gTQ85DdP9jjjopeoGaDxvmPa5nakNzsq7FnO1DMTatXTAx6bxMH7Lg==}
@@ -20929,7 +21085,6 @@ packages:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
-    dev: true
 
   /ethjs-unit@0.1.6:
     resolution: {integrity: sha512-/Sn9Y0oKl0uqQuvgFk/zQgR7aw1g36qX/jzSQ5lSwlO0GigPymk4eGQfeNTD03w1dPOqfz8V77Cy43jH56pagw==}
@@ -20945,7 +21100,6 @@ packages:
     dependencies:
       is-hex-prefixed: 1.0.0
       strip-hex-prefix: 1.0.0
-    bundledDependencies: false
 
   /event-emitter@0.3.5:
     resolution: {integrity: sha512-D9rRn9y7kLPnJ+hMq7S/nhvoKwwvVJahBi2BPmx3bvbsEdK3W9ii8cBSGjP+72/LnM4n6fo3+dkCX5FeTQruXA==}
@@ -23027,6 +23181,7 @@ packages:
 
   /is-arrayish@0.3.2:
     resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
+    requiresBuild: true
 
   /is-async-function@2.0.0:
     resolution: {integrity: sha512-Y1JXKrfykRJGdlDwdKlLpLyMIiWqWvuSd17TvZk68PLAOGOoF4Xyav1z0Xhoi+gCYjZVeC5SI+hYFOfvXmGRCA==}
@@ -23595,6 +23750,10 @@ packages:
       '@sideway/address': 4.1.5
       '@sideway/formula': 3.0.1
       '@sideway/pinpoint': 2.0.0
+
+  /jose@4.15.5:
+    resolution: {integrity: sha512-jc7BFxgKPKi94uOvEmzlSWFFe2+vASyXaKUpdQKatWAESU2MWjDfFf0fdfc83CDKcA5QecabZeNLyfhe3yKNkg==}
+    dev: false
 
   /jotai@1.4.0(@babel/core@7.24.6)(immer@9.0.21)(react@18.3.1):
     resolution: {integrity: sha512-CUB+A3N+WjtimZvtDnMXvVRognzKh86KB3rKnQlbRvpnmGYU+O9aOZMWSgTaxstXc4Y5GYy02LBEjiv4Rs8MAg==}
@@ -24624,7 +24783,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
-    dev: true
 
   /lru-queue@0.1.0:
     resolution: {integrity: sha512-BpdYkt9EvGl8OfWHDQPISVpcl5xZthb+XPsbELj5AQXxIC8IriDZIQYjBJPEm5rS420sjZ0TLEzRcq5KdBhYrQ==}
@@ -25893,6 +26051,9 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
@@ -25921,6 +26082,31 @@ packages:
 
   /neo-async@2.6.2:
     resolution: {integrity: sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==}
+
+  /next-auth@4.24.7(next@14.2.3)(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-iChjE8ov/1K/z98gdKbn2Jw+2vLgJtVV39X+rCP5SGnVQuco7QOr19FRNGMIrD8d3LYhHWV9j9sKLzq1aDWWQQ==}
+    peerDependencies:
+      next: ^12.2.5 || ^13 || ^14
+      nodemailer: ^6.6.5
+      react: ^17.0.2 || ^18
+      react-dom: ^17.0.2 || ^18
+    peerDependenciesMeta:
+      nodemailer:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.24.6
+      '@panva/hkdf': 1.1.1
+      cookie: 0.5.0
+      jose: 4.15.5
+      next: 14.2.3(@babel/core@7.24.6)(@playwright/test@1.44.0)(react-dom@18.3.1)(react@18.3.1)
+      oauth: 0.9.15
+      openid-client: 5.6.5
+      preact: 10.21.0
+      preact-render-to-string: 5.2.6(preact@10.21.0)
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      uuid: 8.3.2
+    dev: false
 
   /next-i18next@15.3.0(i18next@23.11.5)(next@14.2.3)(react-i18next@14.1.2)(react@18.3.1):
     resolution: {integrity: sha512-bq7Cc9XJFcmGOCLnyEtHaeJ3+JJNsI/8Pkj9BaHAnhm4sZ9vNNC4ZsaqYnlRZ7VH5ypSo73fEqLK935jLsmCvQ==}
@@ -26282,6 +26468,10 @@ packages:
     resolution: {integrity: sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==}
     dev: false
 
+  /oauth@0.9.15:
+    resolution: {integrity: sha512-a5ERWK1kh38ExDEfoO6qUHJb32rd7aYmPHuyCu3Fta/cnICvYmgd2uhuKXvPD+PXB+gCEYYEaQdIRAjCOwAKNA==}
+    dev: false
+
   /ob1@0.80.9:
     resolution: {integrity: sha512-v9yOxowkZbxWhKOaaTyLjIm1aLy4ebMNcSn4NYJKOAI/Qv+SkfEfszpLr2GIxsccmb2Y2HA9qtsqiIJ80ucpVA==}
     engines: {node: '>=18'}
@@ -26297,6 +26487,11 @@ packages:
   /object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
+
+  /object-hash@2.2.0:
+    resolution: {integrity: sha512-gScRMn0bS5fH+IuwyIFgnh9zBdo4DV+6GhygmWM9HyNJSgS0hScp1f5vjtm7oIIOiT9trXrShAkLFSc2IqKNgw==}
+    engines: {node: '>= 6'}
+    dev: false
 
   /object-hash@3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
@@ -26412,6 +26607,11 @@ packages:
   /ohash@1.1.3:
     resolution: {integrity: sha512-zuHHiGTYTA1sYJ/wZN+t5HKZaH23i4yI1HMwbuXm24Nid7Dv0KcuRlKoNKS9UNfAVSBlnGLcuQrnOKWOZoEGaw==}
 
+  /oidc-token-hash@5.0.3:
+    resolution: {integrity: sha512-IF4PcGgzAr6XXSff26Sk/+P4KZFJVuHAJZj3wgO3vX2bMdNVp/QXTP3P7CEm9V1IdG8lDLY3HhiqpsE/nOwpPw==}
+    engines: {node: ^10.13.0 || >=12.0.0}
+    dev: false
+
   /omggif@1.0.10:
     resolution: {integrity: sha512-LMJTtvgc/nugXj0Vcrrs68Mn2D1r0zf630VNtqtpI1FEO7e+O9FP4gqs9AcnBaSEeoHIPm28u6qgPR0oyEpGSw==}
     dev: false
@@ -26511,6 +26711,15 @@ packages:
   /opener@1.5.2:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
+    dev: false
+
+  /openid-client@5.6.5:
+    resolution: {integrity: sha512-5P4qO9nGJzB5PI0LFlhj4Dzg3m4odt0qsJTfyEtZyOlkgpILwEioOhVVJOrS1iVH494S4Ee5OCjjg6Bf5WOj3w==}
+    dependencies:
+      jose: 4.15.5
+      lru-cache: 6.0.0
+      object-hash: 2.2.0
+      oidc-token-hash: 5.0.3
     dev: false
 
   /optimism@0.18.0:
@@ -27340,6 +27549,15 @@ packages:
     requiresBuild: true
     dev: false
 
+  /preact-render-to-string@5.2.6(preact@10.21.0):
+    resolution: {integrity: sha512-JyhErpYOvBV1hEPwIxc/fHWXPfnEGdRKxc8gFdAZ7XV4tlzyzG847XAyEZqoDnynP88akM4eaHcSOzNcLWFguw==}
+    peerDependencies:
+      preact: '>=10'
+    dependencies:
+      preact: 10.21.0
+      pretty-format: 3.8.0
+    dev: false
+
   /preact@10.21.0:
     resolution: {integrity: sha512-aQAIxtzWEwH8ou+OovWVSVNlFImL7xUCwJX3YMqA3U8iKCNC34999fFOnWjYNsylgfPgMexpbk7WYOLtKr/mxg==}
 
@@ -27413,6 +27631,10 @@ packages:
       '@jest/schemas': 29.6.3
       ansi-styles: 5.2.0
       react-is: 18.3.1
+
+  /pretty-format@3.8.0:
+    resolution: {integrity: sha512-WuxUnVtlWL1OfZFQFuqvnvs6MiAGk9UNsBostyBOB0Is9wb5uRESevA6rnl/rkksXaGX3GzZhPup5d6Vp1nFew==}
+    dev: false
 
   /pretty-hrtime@1.0.3:
     resolution: {integrity: sha512-66hKPCr+72mlfiSjlEB1+45IjXSqvVAIy6mocupoww4tBFE9R9IhwwUGoI4G++Tc9Aq+2rxOt0RFU6gPcrte0A==}
@@ -27957,7 +28179,6 @@ packages:
       react: 16.14.0
       scheduler: 0.19.1
     dev: false
-    bundledDependencies: false
 
   /react-dom@18.2.0(react@18.2.0):
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
@@ -28026,7 +28247,7 @@ packages:
       react: 18.3.1
     dev: false
 
-  /react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1):
+  /react-i18next@13.5.0(i18next@23.11.5)(react-dom@18.3.1)(react-native@0.74.1)(react@18.3.1):
     resolution: {integrity: sha512-CFJ5NDGJ2MUyBohEHxljOq/39NQ972rh1ajnadG9BjTk+UXbHLq4z5DKEbEQBDoIhUmmbuS/fIMJKo6VOax1HA==}
     peerDependencies:
       i18next: '>= 23.2.3'
@@ -28041,7 +28262,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.24.6
       html-parse-stringify: 3.0.1
-      i18next: 22.5.1
+      i18next: 23.11.5
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       react-native: 0.74.1(@babel/core@7.24.6)(@babel/preset-env@7.24.5)(@types/react@18.3.3)(react@18.3.1)
@@ -28482,7 +28703,6 @@ packages:
       object-assign: 4.1.1
       prop-types: 15.8.1
     dev: false
-    bundledDependencies: false
 
   /react@18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -29587,6 +29807,7 @@ packages:
 
   /simple-swizzle@0.2.2:
     resolution: {integrity: sha512-JA//kQgZtbuY83m+xT+tXJkmJncGMTFT+C+g2h2R9uxkYIrE2yy9sgmcLhCnw57/WSD+Eh3J97FPEDFnbXnDUg==}
+    requiresBuild: true
     dependencies:
       is-arrayish: 0.3.2
 
@@ -29601,6 +29822,18 @@ packages:
 
   /sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
+
+  /siwe@2.3.2(ethers@6.12.1):
+    resolution: {integrity: sha512-aSf+6+Latyttbj5nMu6GF3doMfv2UYj83hhwZgUF20ky6fTS83uVhkQABdIVnEuS8y1bBdk7p6ltb9SmlhTTlA==}
+    peerDependencies:
+      ethers: ^5.6.8 || ^6.0.8
+    dependencies:
+      '@spruceid/siwe-parser': 2.1.2
+      '@stablelib/random': 1.0.2
+      ethers: 6.12.1
+      uri-js: 4.4.1
+      valid-url: 1.0.9
+    dev: false
 
   /slash@2.0.0:
     resolution: {integrity: sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==}
@@ -30908,7 +31141,6 @@ packages:
 
   /tslib@2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-    dev: true
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
@@ -31598,6 +31830,10 @@ packages:
       '@jridgewell/trace-mapping': 0.3.25
       '@types/istanbul-lib-coverage': 2.0.6
       convert-source-map: 2.0.0
+    dev: false
+
+  /valid-url@1.0.9:
+    resolution: {integrity: sha512-QQDsV8OnSf5Uc30CKSwG9lnhMPe6exHtTXLRYX8uMwKENy640pU+2BgBL0LRbDh/eYRahNCS7aewCx0wf3NYVA==}
     dev: false
 
   /validate-npm-package-license@3.0.4:
@@ -32491,7 +32727,6 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
-    dev: true
 
   /xhr2-cookies@1.1.0:
     resolution: {integrity: sha512-hjXUA6q+jl/bd8ADHcVfFsSPIf+tyLIjuO9TwJC9WI6JP2zKcS7C+p56I9kCLLsaCiNT035iYvEUUzdEFj/8+g==}
@@ -32821,9 +33056,9 @@ packages:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true
 
-  github.com/chainapsis/keplr-chain-registry/b018d947300b96c9d774b18e183aebb552001695(@babel/core@7.24.6)(react-is@18.3.1):
-    resolution: {tarball: https://codeload.github.com/chainapsis/keplr-chain-registry/tar.gz/b018d947300b96c9d774b18e183aebb552001695}
-    id: github.com/chainapsis/keplr-chain-registry/b018d947300b96c9d774b18e183aebb552001695
+  github.com/chainapsis/keplr-chain-registry/4184250c8ec87b4d5ce6c2df98e38524f60ad674(@babel/core@7.24.6)(react-is@18.3.1):
+    resolution: {tarball: https://codeload.github.com/chainapsis/keplr-chain-registry/tar.gz/4184250c8ec87b4d5ce6c2df98e38524f60ad674}
+    id: github.com/chainapsis/keplr-chain-registry/4184250c8ec87b4d5ce6c2df98e38524f60ad674
     name: chainapsis-suggest-chain
     version: 0.0.1
     dependencies:

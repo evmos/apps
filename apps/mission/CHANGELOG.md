@@ -1,5 +1,11 @@
 # dappstore
 
+## 2.0.19
+
+### Patch Changes
+
+- [#1042](https://github.com/evmos/apps/pull/1042) [`3f19806`](https://github.com/evmos/apps/commit/3f19806138acfd92485f2588006110b93fcba898) Thanks [@julia-script](https://github.com/julia-script)! - Disable outposts and extensions
+
 ## 2.0.18
 
 ### Patch Changes

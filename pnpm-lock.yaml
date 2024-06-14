@@ -1480,6 +1480,9 @@ importers:
 
   pages/staking:
     dependencies:
+      '@buf/cosmos_cosmos-sdk.bufbuild_es':
+        specifier: 1.10.0-20240220165237-05419252bcc2.1
+        version: 1.10.0-20240220165237-05419252bcc2.1(@bufbuild/protobuf@1.10.0)
       '@evmosapps/constants':
         specifier: workspace:*
         version: link:../../packages/constants

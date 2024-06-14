@@ -14,8 +14,8 @@ import { Address } from "helpers/src/crypto/addresses/types";
 import { normalizeToEth } from "helpers/src/crypto/addresses/normalize-to-eth";
 import { isEvmosAddress } from "helpers/src/crypto/addresses/is-evmos-address";
 
-const DEFAULT_MEMO_IBC = "";
-const DEFAULT_GAS_IBC = 72000n;
+export const DEFAULT_MEMO_IBC = "";
+export const DEFAULT_GAS_IBC = 120000n;
 
 const createIBCArgs = (
   sender: string,

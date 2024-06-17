@@ -55,16 +55,22 @@
     "NEXT_PUBLIC_EVMOS_COSMOS_REST_API",
     "NEXT_PUBLIC_EVMOS_EVM_JSON_RPC",
     "ENABLE_DEV_CACHE",
-    "NEXT_PUBLIC_CLAIM_REWARDS_THRESHOLD"
+    "NEXT_PUBLIC_CLAIM_REWARDS_THRESHOLD",
+    "DAPPSTORE_DATABASE_URL"
   ],
-  "pipeline": {
+  "tasks": {
     "prebuild": {
       "cache": false
     },
     "build": {
-      "dependsOn": ["prebuild"],
+      "dependsOn": [
+        "prebuild"
+      ],
       "cache": true,
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": [
+        "dist/**",
+        ".next/**"
+      ]
     },
     "clean": {
       "cache": false
@@ -74,7 +80,9 @@
       "persistent": true
     },
     "start": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build"
+      ],
       "cache": false,
       "persistent": true
     },
@@ -93,10 +101,14 @@
     "lint": {},
     "test:coverage": {
       "cache": false,
-      "outputs": ["coverage/**"]
+      "outputs": [
+        "coverage/**"
+      ]
     },
     "test:e2e": {
-      "env": ["CI"],
+      "env": [
+        "CI"
+      ],
       "cache": false
     }
   }

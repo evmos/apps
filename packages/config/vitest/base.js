@@ -12,7 +12,7 @@ const config = defineConfig({
     alias: {
       "server-only": "next",
     },
-    environment: "jsdom",
+    environment: "happy-dom",
     exclude: [
       "**/.netlify/**",
       "**/node_modules/**",

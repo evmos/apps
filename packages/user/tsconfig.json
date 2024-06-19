@@ -1,0 +1,14 @@
+{
+  "extends": "@evmosapps/config/ts/react-library.json",
+  "include": [
+    ".",
+    "../config/**/*",
+    "./src/global.d.ts"
+  ],
+  "exclude": [
+    "dist",
+    "build",
+    "node_modules",
+    "../config/node_modules"
+  ]
+}

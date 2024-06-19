@@ -49,7 +49,10 @@ storybook-static/
 .notion-cache
 prefetched-images
 
-autogen
 .vercel
+autogen
 **/autogen/**
+
+generated
+**/generated/**
 .vite-node

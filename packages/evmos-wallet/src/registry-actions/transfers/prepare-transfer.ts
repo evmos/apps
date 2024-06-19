@@ -9,10 +9,6 @@ import {
   writeContractERC20Transfer,
 } from "./prepare-contract-erc20-transfer";
 import {
-  prepareContractIBCTransfer,
-  writeContractIBCTransfer,
-} from "./prepare-contract-ibc-transfer";
-import {
   executeCosmosIBCTransfer,
   prepareCosmosIBCTransfer,
 } from "./prepare-cosmos-ibc-transfer";
@@ -22,6 +18,10 @@ import { Address } from "helpers/src/crypto/addresses/types";
 import { isEvmosAddress } from "helpers/src/crypto/addresses/is-evmos-address";
 import { providers } from "../../api/utils/cosmos-based";
 import { COSMOS_BASED_WALLETS } from "helpers/src/crypto/wallets/is-cosmos-wallet";
+import {
+  prepareTypedDateIBCTransfer,
+  writeTypedDataIBCTransfer,
+} from "./prepared-typed-data-ibc-transfer";
 
 export const simulateTransfer = async ({
   sender,
@@ -73,11 +73,18 @@ export const simulateTransfer = async ({
       sender,
       receiver,
       token,
-      ...(await prepareContractIBCTransfer({
+
+      ...(await prepareTypedDateIBCTransfer({
         sender,
         receiver,
         token,
       })),
+      // TODO: Uncomment this once precompiles are enabled
+      // ...(await prepareContractIBCTransfer({
+      //   sender,
+      //   receiver,
+      //   token,
+      // })),
     } as const;
   }
   /**
@@ -134,11 +141,17 @@ export const transfer = async ({
     });
   }
   if (senderIsEvmos && !receiverIsEvmos) {
-    return await writeContractIBCTransfer({
+    return await writeTypedDataIBCTransfer({
       sender,
       receiver,
       token,
     });
+    // TODO: Uncomment this once precompiles are enabled
+    // return await writeContractIBCTransfer({
+    //   sender,
+    //   receiver,
+    //   token,
+    // });
   }
   if (!senderIsEvmos && receiverIsEvmos) {
     /**

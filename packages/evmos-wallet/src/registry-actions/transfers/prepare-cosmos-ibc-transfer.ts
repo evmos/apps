@@ -15,7 +15,6 @@ import { buffGasEstimate } from "../utils/buff-gas-estimate";
 import { getIBCDenom } from "../utils/get-ibc-denom";
 import { apiCosmosTxBroadcast } from "../../api/cosmos-rest/api-cosmos-tx-broadcast";
 import { getChainAccountInfo } from "../utils/get-chain-account-info";
-import { Hex } from "viem";
 import { getTokenByRef } from "../get-token-by-ref";
 import { Tx } from "@buf/cosmos_cosmos-sdk.bufbuild_es/cosmos/tx/v1beta1/tx_pb";
 import { Keplr } from "@keplr-wallet/types";
@@ -233,7 +232,7 @@ export const executeCosmosIBCTransfer = async (params: {
   }
 
   const response = await apiCosmosTxBroadcast(chain.cosmosRest, tx);
-  const hash: Hex = `0x${response.tx_response.txhash}`;
+  const hash = response.tx_response.txhash;
 
   return {
     hash,

@@ -5,8 +5,16 @@
 import { raise } from "helpers";
 import { unstable_cache } from "next/cache";
 
+const aminoNameMap: Record<string, string> = {
+  "evmos.erc20.v1.MsgConvertERC20": "evmos/MsgConvertERC20",
+  "evmos.erc20.v1.MsgConvertCoin": "evmos/MsgConvertCoin",
+};
 const derive = <T>(fn: () => T) => fn();
 export const getAminoName = unstable_cache(async (msgType: string) => {
+  const fromMap = aminoNameMap[msgType];
+  if (fromMap) {
+    return fromMap;
+  }
   const parts = msgType.split(".");
 
   const messageName = parts.pop() ?? raise("Invalid message type");
@@ -18,6 +26,8 @@ export const getAminoName = unstable_cache(async (msgType: string) => {
         return "evmos/evmos";
       case "cosmos":
         return "cosmos/cosmos-sdk";
+      case "ibc":
+        return "cosmos/ibc";
       default:
         throw new Error(`Unknown buf package: ${parts[0]}`);
     }

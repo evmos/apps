@@ -6,17 +6,18 @@ import { fileURLToPath } from "node:url";
 import path from "path";
 
 const dir = fileURLToPath(import.meta.url);
-const repoRoot = path.join(dir, "../../../../");
+export const REPO_ROOT = path.join(dir, "../../../../");
+
+const envFiles = [
+  path.join(REPO_ROOT, ".vercel/.env.development.local"),
+  path.join(REPO_ROOT, ".env.local"),
+  path.join(REPO_ROOT, ".env"),
+];
 
 config({
-  path: path.join(repoRoot, ".vercel/.env.development.local"),
+  path: envFiles,
   override: true,
 });
-config({
-  path: path.join(repoRoot, ".env"),
-  override: true,
-});
-
 export const ensureKeys = (keys: string[]) => {
   keys.forEach((key) => {
     if (!process.env[key])

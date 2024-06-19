@@ -15,7 +15,6 @@ import { ChainInfo, EthSignType } from "@keplr-wallet/types";
 import { fromHex, isHex, parseAccount, serializeTransaction } from "viem/utils";
 import { get, omit, uniqueId } from "lodash-es";
 import { estimateFeesPerGas, estimateGas } from "viem/actions";
-import { normalizeChainId } from "wagmi";
 import { normalizeToEth } from "helpers/src/crypto/addresses/normalize-to-eth";
 import { normalizeToCosmos } from "helpers/src/crypto/addresses/normalize-to-cosmos";
 import { EventEmitter } from "events";
@@ -32,10 +31,10 @@ type EIP1474Parameters<M extends string> = ByMethod<M>["Parameters"];
 type ChainConfig =
   | ChainInfo
   | {
-      // this means the chain doesn't need to be suggested to keplr
-      isNative: true;
-      chainId: string;
-    };
+    // this means the chain doesn't need to be suggested to keplr
+    isNative: true;
+    chainId: string;
+  };
 
 // This is the interface we expect from cosmos based wallets
 // chain info could be different from wallet to wallet, ideally we'd like
@@ -81,7 +80,7 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
   }
 
   private resolveCosmosConfig = async (evmChainId: string | number) => {
-    const chainConfig = this.chainConfigMap[normalizeChainId(evmChainId)];
+    const chainConfig = this.chainConfigMap[Number(evmChainId)];
     if (!chainConfig) {
       throw new Error("Chain not supported");
     }
@@ -121,6 +120,7 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
     this.ee.removeListener(event, listener);
   }
   request: EIP1193Provider["request"] = async (args) => {
+    console.log(args);
     // proxies all requests to methods declared internally
 
     const fn: unknown = get(this, args.method);
@@ -150,8 +150,12 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
 
   private personal_sign = async (
     parameters: [string],
-    signType: EthSignType,
   ): Promise<EIP1474ReturnType<"personal_sign">> => {
+
+    return this.signEvm(parameters, EthSignType.MESSAGE);
+  };
+
+  private signEvm = async (parameters: [string], signType: EthSignType) => {
     const cosmosId = await this.getCosmosId();
 
     const [account] = await this.eth_requestAccounts();
@@ -166,7 +170,7 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
     return toHex(signature);
   };
   private getPublicClient = async () => {
-    const chainId = normalizeChainId(
+    const chainId = Number(
       await this.request({ method: "eth_chainId" }),
     );
     const chain =
@@ -180,7 +184,7 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
   private prepareTransactionForProvider = async (
     request: EIP1474Parameters<"eth_sendTransaction">[0],
   ) => {
-    const chainId = normalizeChainId(
+    const chainId = Number(
       await this.request({ method: "eth_chainId" }),
     );
 
@@ -253,7 +257,7 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
     EIP1474ReturnType<"eth_sendTransaction">
   > => {
     const transaction = await this.prepareTransactionForProvider(request);
-    const signature = await this.personal_sign(
+    const signature = await this.signEvm(
       [JSON.stringify(transaction)],
       EthSignType.TRANSACTION,
     );
@@ -307,7 +311,7 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
     request: EIP1474Parameters<"wallet_requestPermissions">,
   ): Promise<EIP1474ReturnType<"wallet_requestPermissions">> => {
     const response = await Promise.all(
-      request.map(async ({}) => ({
+      request.map(async ({ }) => ({
         id: uniqueId(this.name),
         parentCapability: "eth_accounts",
 
@@ -335,7 +339,7 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
   };
 
   private setChain(chainId: number | string) {
-    const normalized = normalizeChainId(chainId);
+    const normalized = Number(chainId);
 
     if (this.connectedNetwork === normalized) return;
     this.ee.emit("chainChanged", toHex(normalized));

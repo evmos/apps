@@ -1,14 +1,12 @@
-import { beforeEach, describe, test, expect, expectTypeOf } from "vitest";
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
+import { beforeEach, describe, test, expect, expectTypeOf, vi, Mock } from "vitest";
 import {
   UserWithWalletInputSchema,
   deleteAllUsers,
-  createUser,
-  createUserWalletAccount,
-  deleteUserById,
-  deleteWalletAccount,
-  getUserByAddress,
-  getUserById,
-  verifyWalletAccount,
+  DappStoreAPI,
+  Permission,
 } from "./api";
 import { privateKeyToAccount, generatePrivateKey } from "viem/accounts";
 import { Chance } from "chance";
@@ -30,19 +28,20 @@ const makeRandomUser = (): z.input<typeof UserWithWalletInputSchema> => ({
   },
 });
 
+const client = new DappStoreAPI(() => true);
 describe("user api", () => {
   beforeEach(async () => {
     await deleteAllUsers();
   });
 
   test("createUser", async () => {
-    const user = await createUser(makeRandomUser());
+    const user = await client.createUser(makeRandomUser());
 
     expectTypeOf(user.id).toBeString();
   });
 
   test("deleteUserById", async () => {
-    const user = await createUser({
+    const user = await client.createUser({
       displayName: chance.name(),
       profilePictureUrl: chance.url({ extensions: ["gif", "jpg", "png"] }),
       walletAccount: {
@@ -51,28 +50,30 @@ describe("user api", () => {
       },
     });
 
-    expect(await getUserById(user.id)).toEqual(user);
+    expect(await client.getUserById(user.id)).toEqual(user);
 
-    await deleteUserById(user.id);
+    await client.deleteUserById(user.id);
 
-    expect(await getUserById(user.id)).toBeNull();
+    await expect(client.getUserById(user.id)).rejects.toThrow("No User found");
   });
 
   test("getUserById", async () => {
-    const user = await createUser(makeRandomUser());
-    const foundUser = await getUserById(user.id);
+    const user = await client.createUser(makeRandomUser());
+    const foundUser = await client.getUserById(user.id);
     expect(foundUser).toEqual(user);
   });
 
   test("getUserByAddress", async () => {
-    const user = await createUser(makeRandomUser());
-    const foundUser = await getUserByAddress(user.walletAccount[0]!.address);
+    const user = await client.createUser(makeRandomUser());
+    const foundUser = await client.getUserByAddress(
+      user.walletAccount[0]!.address,
+    );
     expect(foundUser).toEqual(user);
   });
 
   test("createWalletAccount", async () => {
-    let user = await createUser(makeRandomUser());
-    const updatedUser = await createUserWalletAccount(user.id, {
+    const user = await client.createUser(makeRandomUser());
+    const updatedUser = await client.createUserWalletAccount(user.id, {
       address: makeRandomAccount().address,
       authorizationMethod: "ETHEREUM",
     });
@@ -81,59 +82,111 @@ describe("user api", () => {
   });
 
   test("deleteWalletAccount", async () => {
-    let user = await createUser(makeRandomUser());
+    let user = await client.createUser(makeRandomUser());
     const primaryAddress = user.walletAccount[0]!.address;
     const secondaryAddress = makeRandomAccount().address;
-    user = await createUserWalletAccount(user.id, {
+    user = await client.createUserWalletAccount(user.id, {
       address: secondaryAddress,
       authorizationMethod: "ETHEREUM",
     });
-    await verifyWalletAccount(primaryAddress);
+    await client.verifyWalletAccount(primaryAddress);
 
-    await deleteWalletAccount(secondaryAddress);
+    await client.deleteWalletAccount(secondaryAddress);
 
-    user = (await getUserById(user.id))!;
+    user = (await client.getUserById(user.id))!;
     expect(user.walletAccount.length).toBe(1);
   });
 
   test("prevent deleting accounts if user would then have less than 1 verified account", async () => {
-    let user = await createUser(makeRandomUser());
+    let user = await client.createUser(makeRandomUser());
     const primaryAddress = user.walletAccount[0]!.address;
     const secondaryAddress = makeRandomAccount().address;
 
-    user = await createUserWalletAccount(user.id, {
+    user = await client.createUserWalletAccount(user.id, {
       address: secondaryAddress,
       authorizationMethod: "ETHEREUM",
     });
-    await verifyWalletAccount(primaryAddress);
+    await client.verifyWalletAccount(primaryAddress);
 
-    await expect(deleteWalletAccount(primaryAddress)).rejects.toThrow(
+    await expect(client.deleteWalletAccount(primaryAddress)).rejects.toThrow(
       "Cannot delete last verified account",
     );
 
-    await verifyWalletAccount(secondaryAddress);
+    await client.verifyWalletAccount(secondaryAddress);
 
-    await deleteWalletAccount(primaryAddress);
+    await client.deleteWalletAccount(primaryAddress);
 
-    user = (await getUserById(user.id))!;
+    user = (await client.getUserById(user.id))!;
     expect(user.walletAccount.length).toBe(1);
   });
 
   test("throws when user already has 100 wallet accounts", async () => {
-    let user = await createUser(makeRandomUser());
+    const user = await client.createUser(makeRandomUser());
 
     for (let i = 0; i < 99; i++) {
-      await createUserWalletAccount(user.id, {
+      await client.createUserWalletAccount(user.id, {
         address: makeRandomAccount().address,
         authorizationMethod: "ETHEREUM",
       });
     }
 
     await expect(
-      createUserWalletAccount(user.id, {
+      client.createUserWalletAccount(user.id, {
         address: makeRandomAccount().address,
         authorizationMethod: "ETHEREUM",
       }),
     ).rejects.toThrow("User already has too many accounts");
+  });
+
+  test("require proper authorization", async () => {
+    // eslint-disable-next-line 
+    const fn:Mock<[{ permission: string }], boolean> = vi.fn((_: { permission: string }) => false);
+    const client = new DappStoreAPI(fn);
+    const user = makeRandomUser();
+    await client.createUser(user);
+    type TestCase<T extends keyof typeof client> = [
+      T,
+      expectedPermission: Permission,
+      Parameters<(typeof client)[T]>,
+    ];
+    const cases = [
+      [
+        "createUserWalletAccount",
+        "user:write",
+        ["123", user.walletAccount],
+      ] satisfies TestCase<"createUserWalletAccount">,
+      [
+        "deleteUserById",
+        "user:write",
+        ["123"],
+      ] satisfies TestCase<"deleteUserById">,
+      ["getUserById", "user:read", ["123"]] satisfies TestCase<"getUserById">,
+      [
+        "getUserByAddress",
+        "user:read",
+        [user.walletAccount.address],
+      ] satisfies TestCase<"getUserByAddress">,
+      [
+        "createUserWalletAccount",
+        "user:write",
+        ["123", user.walletAccount],
+      ] satisfies TestCase<"createUserWalletAccount">,
+      [
+        "deleteWalletAccount",
+        "user:write",
+        [user.walletAccount.address],
+      ] satisfies TestCase<"deleteWalletAccount">,
+      [
+        "verifyWalletAccount",
+        "user:write",
+        [user.walletAccount.address],
+      ] satisfies TestCase<"verifyWalletAccount">,
+    ];
+
+    for (const [method, permission, args] of cases) {
+      const clientFn = client[method] as (...args: unknown[]) => unknown;
+      await expect(clientFn(...args)).rejects.toThrow("Unauthorized");
+      expect(fn.mock.lastCall?.[0]!.permission).toBe(permission);
+    }
   });
 });

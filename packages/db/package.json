@@ -11,7 +11,8 @@
     "prisma:dappstore:generate": "prisma generate --schema src/dappstore/prisma/schema.prisma",
     "prisma:dappstore:push": "dotenv -e ../../.env -c -- prisma db push --schema ./src/dappstore/prisma/schema.prisma",
     "prisma:dappstore:studio": "dotenv -e ../../.env -c -- prisma studio --schema src/dappstore/prisma/schema.prisma -p 5555",
-    "postinstall": "pnpm run prisma:generate"
+    "postinstall": "pnpm run prisma:generate",
+    "test": "dotenv -e ../../.env -c -- vitest ."
   },
   "keywords": [],
   "author": "",
@@ -30,7 +31,8 @@
     "chance": "^1.1.11",
     "effect": "^3.3.1",
     "lodash-es": "^4.17.21",
-    "viem": "^2.13.10",
+    "react": "^18.3.1",
+    "viem": "^2.15.1",
     "vitest": "^1.6.0"
   }
 }

@@ -1,3 +1,6 @@
+// Copyright Tharsis Labs Ltd.(Evmos)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
 import { dAppStorePrisma as prisma } from "./client";
 import { Hex, isAddress } from "viem";
 import { bech32 } from "bech32";
@@ -64,169 +67,210 @@ export const UserWithWalletInputSchema = UserInputSchema.extend({
   walletAccount: WalletInputSchema.transform((create) => ({ create })),
 }) satisfies z.Schema<Prisma.UserCreateInput, z.ZodTypeDef, unknown>;
 
+
+type AuthorizationUser = { id: string } | { address: string };
+type PermissionMap = {
+  "user:read": AuthorizationUser;
+  "user:write": AuthorizationUser;
+};
+export type Permission = keyof PermissionMap;
+export type AuthorizeFn = <T extends Permission>(payload: {
+  permission: T;
+  details: PermissionMap[T];
+}) => Promise<boolean> | boolean;
+
 // API
-export const createUserWalletAccount = async (
-  userId: string,
-  data: z.input<typeof WalletInputSchema>,
-) => {
-  const user = await prisma.user.findUniqueOrThrow({
-    where: {
-      id: userId,
-    },
-    select: {
-      walletAccount: true,
-    },
-  });
-
-  if (user.walletAccount.length >= 100) {
-    throw new Error("User already has too many accounts");
+export class DappStoreAPI {
+  authorize: AuthorizeFn;
+  constructor(authorize: AuthorizeFn) {
+    this.authorize = authorize.bind(this);
   }
 
-  return prisma.walletAccount
-    .create({
-      data: {
-        ...WalletInputSchema.parse(data),
-        user: {
-          connect: {
-            id: userId,
-          },
-        },
-      },
-      select: {
-        user: {
-          include: {
-            walletAccount: true,
-          },
-        },
-      },
-    })
-    .then((walletAccount) => walletAccount.user ?? null);
-};
+  assertPermission = async (
+    permission: Permission,
+    userQuery: { id: string } | { address: string },
+  ) => {
+    if (await this.authorize({ permission, details: userQuery })) {
+      return
+    }
+    throw new Error("Unauthorized");
+  };
 
-export const verifyWalletAccount = async (address: string) => {
-  return prisma.walletAccount
-    .update({
+  createUserWalletAccount = async (
+    userId: string,
+    data: z.input<typeof WalletInputSchema>,
+  ) => {
+    await this.assertPermission("user:write", { id: userId });
+
+    const user = await prisma.user.findUniqueOrThrow({
       where: {
-        address: AccountAddress.parse(address),
-      },
-      data: {
-        verified: true,
+        id: userId,
       },
       select: {
-        user: {
-          include: {
-            walletAccount: true,
+        walletAccount: true,
+      },
+    });
+
+    if (user.walletAccount.length >= 100) {
+      throw new Error("User already has too many accounts");
+    }
+
+    return prisma.walletAccount
+      .create({
+        data: {
+          ...WalletInputSchema.parse(data),
+          user: {
+            connect: {
+              id: userId,
+            },
           },
         },
+        select: {
+          user: {
+            include: {
+              walletAccount: true,
+            },
+          },
+        },
+      })
+      .then((walletAccount) => walletAccount.user ?? null);
+  };
+
+  verifyWalletAccount = async (address: string) => {
+    await this.assertPermission("user:write", { address });
+    return prisma.walletAccount
+      .update({
+        where: {
+          address: AccountAddress.parse(address),
+        },
+        data: {
+          verified: true,
+        },
+        select: {
+          user: {
+            include: {
+              walletAccount: true,
+            },
+          },
+        },
+      })
+      .then((walletAccount) => walletAccount.user ?? null);
+  };
+
+  deleteWalletAccount = async (address: string) => {
+    await this.assertPermission("user:write", { address });
+    AccountAddress.parse(address);
+
+    const wallets = await prisma.walletAccount
+      .findUniqueOrThrow({
+        where: {
+          address,
+        },
+        select: {
+          user: {
+            include: {
+              walletAccount: true,
+            },
+          },
+        },
+      })
+      .then(({ user }) => user.walletAccount);
+
+    if (
+      !wallets.some(
+        (account) =>
+          account.address !== address && isWalletAccountSignable(account),
+      )
+    ) {
+      throw new Error("Cannot delete last verified account");
+    }
+
+    return prisma.walletAccount
+      .delete({
+        where: {
+          address,
+        },
+
+        select: {
+          user: {
+            include: {
+              walletAccount: true,
+            },
+          },
+        },
+      })
+      .then((walletAccount) => walletAccount.user ?? null);
+  };
+
+  createUser = (data: z.input<typeof UserWithWalletInputSchema>) => {
+    return prisma.user.create({
+      data: UserWithWalletInputSchema.parse(data),
+      include: {
+        walletAccount: true,
       },
-    })
-    .then((walletAccount) => walletAccount.user ?? null);
-};
+    });
+  };
 
-export const deleteWalletAccount = async (address: string) => {
-  AccountAddress.parse(address);
-
-  const wallets = await prisma.walletAccount
-    .findUniqueOrThrow({
+  updateUserById = async (
+    id: string,
+    data: z.input<typeof UserInputSchema>,
+  ) => {
+    await this.assertPermission("user:write", { id });
+    return await prisma.user.update({
       where: {
-        address,
+        id,
       },
-      select: {
-        user: {
-          include: {
-            walletAccount: true,
-          },
-        },
+      data: UserInputSchema.parse(data),
+      include: {
+        walletAccount: true,
       },
-    })
-    .then(({ user }) => user.walletAccount);
+    });
+  };
 
-  if (
-    !wallets.some(
-      (account) =>
-        account.address !== address && isWalletAccountSignable(account),
-    )
-  ) {
-    throw new Error("Cannot delete last verified account");
-  }
-
-  return prisma.walletAccount
-    .delete({
+  getUserById = async (id: string) => {
+    await this.assertPermission("user:read", { id });
+    return await prisma.user.findUniqueOrThrow({
       where: {
-        address,
+        id,
       },
+      include: {
+        walletAccount: true,
+      },
+    });
+  };
 
-      select: {
-        user: {
-          include: {
-            walletAccount: true,
+  getUserByAddress = async (address: string) => {
+    await this.assertPermission("user:read", { address });
+    return await prisma.walletAccount
+      .findUniqueOrThrow({
+        where: {
+          address: AccountAddress.parse(address),
+        },
+        select: {
+          user: {
+            include: {
+              walletAccount: true,
+            },
           },
         },
-      },
-    })
-    .then((walletAccount) => walletAccount.user ?? null);
-};
+      })
+      .then((walletAccount) => walletAccount?.user ?? null);
+  };
 
-export const createUser = (data: z.input<typeof UserWithWalletInputSchema>) =>
-  prisma.user.create({
-    data: UserWithWalletInputSchema.parse(data),
-    include: {
-      walletAccount: true,
-    },
-  });
-
-export const updateUserById = (
-  id: string,
-  data: z.input<typeof UserInputSchema>,
-) =>
-  prisma.user.update({
-    where: {
-      id,
-    },
-    data: UserInputSchema.parse(data),
-    include: {
-      walletAccount: true,
-    },
-  });
-
-export const getUserById = (id: string) => {
-  return prisma.user.findUnique({
-    where: {
-      id,
-    },
-    include: {
-      walletAccount: true,
-    },
-  });
-};
-
-export const getUserByAddress = (address: string) =>
-  prisma.walletAccount
-    .findUnique({
+  deleteUserById = async (id: string) => {
+    await this.assertPermission("user:write", { id });
+    return await prisma.user.delete({
       where: {
-        address: AccountAddress.parse(address),
+        id,
       },
-      select: {
-        user: {
-          include: {
-            walletAccount: true,
-          },
-        },
-      },
-    })
-    .then((walletAccount) => walletAccount?.user ?? null);
-
-export const deleteUserById = (id: string) =>
-  prisma.user.delete({
-    where: {
-      id,
-    },
-  });
+    });
+  };
+}
 
 /**
  * mostly for reseting db for testing purposes
  */
-export const deleteAllUsers = (options?: {
+export const deleteAllUsers = async (options?: {
   __DANGEROUSLY_CLEAR_ALL_USERS__: boolean;
 }) => {
   if (

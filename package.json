@@ -40,7 +40,7 @@
     "knip": "4.0.0-canary.8",
     "prettier": "^3.0.1",
     "react-dom": "^18.3.1",
-    "viem": "^2.13.10",
+    "viem": "^2.15.1",
     "wagmi": "^2.10.2"
   },
   "browserslist": [
@@ -79,10 +79,10 @@
     "react-hook-form": "^7.44.3",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.7.0",
-    "turbo": "^1.13.2",
+    "turbo": "^2.0.4",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0",
     "zod": "^3.22.1"
   },
-  "packageManager": "pnpm@8.14.1+sha512.856c4ecd97c5d3f30354ebc373cd32fb37274295c489db2d0f613a1e60f010cadfbb15036d525f3a06dec1897e4219b3c4f6d3be8f2f62fb0a366bee6aaa7533"
+  "packageManager": "pnpm@8.14.1"
 }

@@ -125,6 +125,14 @@
     "switchWallet": {
       "title": "Wallet"
     },
+    "modal": {
+      "title": "Sign in to access all dApps",
+      "body": "In order to interact with dApps, you need to verify your wallet by signing the off-chain transaction in your wallet.",
+      "button": "Verify",
+      "connectWallet": "Connect wallet",
+      "verify": "Verify ownership",
+      "signature": "Signature verification"
+    },
     "wallet": {
       "recommended": "Recommended",
       "detected": "Detected"

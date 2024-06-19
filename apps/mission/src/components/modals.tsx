@@ -51,6 +51,13 @@ const EditModal = dynamic(
   },
 );
 
+const SignInModal = dynamic(
+  () => import("./header/signin/ModalSignIn").then((mod) => mod.SignInModal),
+  {
+    ssr: false,
+  },
+);
+
 const WalletsModal = dynamic(
   () => import("./header/signin/WalletsModal").then((mod) => mod.WalletsModal),
   {
@@ -65,6 +72,7 @@ export const Modals = () => {
       <TopupModal />
       <TermsOfServiceModal />
       <ConsentModal />
+      <SignInModal />
       <WalletsModal />
       <EditModal />
     </Suspense>

@@ -8,10 +8,11 @@ import { useTranslation } from "@evmosapps/i18n/client";
 import { IconWalletPlus } from "@evmosapps/ui/icons/line/finances/wallet-plus.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
-import { useOtherWalletsModal } from "./WalletsModal";
+//import { useOtherWalletsModal } from "./WalletsModal";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { CLICK_CONNECT_WALLET_BUTTON, sendEvent } from "tracker";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
+import { useSignInModal } from "./ModalSignIn";
 export const SignInButton = () => {
   const { isDropdownOpen } = useWallet();
   const { t } = useTranslation("dappStore");
@@ -42,18 +43,22 @@ export const SignInTitle = () => {
 };
 
 export const SignInOptions = () => {
-  const otherWalletsModal = useOtherWalletsModal();
-  const { setIsDropdownOpen } = useWallet();
+  // const otherWalletsModal = useOtherWalletsModal();
+  // const { setIsDropdownOpen } = useWallet();
   const { t } = useTranslation("dappStore");
+  const signInModal = useSignInModal();
   return (
     <Dropdown.Container>
       <Dropdown.Item
         as="button"
-        onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
-          e.preventDefault();
-          otherWalletsModal.setIsOpen(true, {}, true);
-          setIsDropdownOpen(false);
+        onClick={() => {
+          signInModal.setIsOpen(true, {}, true);
         }}
+        // onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+        //   e.preventDefault();
+        //   otherWalletsModal.setIsOpen(true, {}, true);
+        //   setIsDropdownOpen(false);
+        // }}
       >
         {
           <IconWalletPlus className="w-7 text-paragraph dark:text-paragraph-dark" />

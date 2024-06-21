@@ -134,7 +134,9 @@
       "skip.button": "Skip",
       "connectWallet": "Connect wallet",
       "verify": "Verify ownership",
-      "signature": "Signature verification"
+      "signature": "Signature verification",
+      "connected": "Connected",
+      "verified": "Verified"
     },
     "wallet": {
       "recommended": "Recommended",

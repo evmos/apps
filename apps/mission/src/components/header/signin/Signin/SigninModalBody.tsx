@@ -1,43 +1,27 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
-
-"use client";
-
-import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
-import { Button } from "@evmosapps/ui/button/index.tsx";
-import { useTranslation } from "@evmosapps/i18n/client";
-import { useModal } from "helpers";
-import { useWallet } from "@evmosapps/evmos-wallet";
-import { sendEvent, SAVE_PROFILE_CHANGES } from "tracker";
 import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
+import { Modal, ModalProps } from "@evmosapps/ui/components/dialog/Dialog.tsx";
+import { Button } from "@evmosapps/ui/button/index.tsx";
+import { useWallet } from "@evmosapps/evmos-wallet";
 import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
+import { useTranslation } from "@evmosapps/i18n/client";
+import { useState } from "react";
 
-export const useSignInModal = () => useModal("signIn");
+export const SigninModalBody = ({modalProps, setSignInStep} : {modalProps: any, setSignInStep: React.Dispatch<React.SetStateAction<number>>}) => {
+    const { t } = useTranslation("dappStore");
+    const { address } = useWallet();
+    const [verified, setVerified] = useState(false);
 
-export const SignInModal = () => {
-  const { isOpen, setIsOpen, modalProps } = useSignInModal();
-  const { setIsDropdownOpen, address } = useWallet();
-  const { t } = useTranslation("dappStore");
 
-  const handleOnClick = () => {
-    setIsOpen(false);
-    sendEvent(SAVE_PROFILE_CHANGES);
-  };
+    const handleOnClick = () => {
+        setSignInStep(1)
+    };
 
-  return (
-    <Modal
-      isOpen={isOpen}
-      setIsOpen={setIsOpen}
-      onClose={() => {
-        setIsOpen(false);
-        setIsDropdownOpen(true);
-      }}
-    >
-      <Modal.Body>
+    return (
+      <>
         {modalProps && (
           <div className="space-y-5">
             <Modal.Header>{t("signIn.modal.title")}</Modal.Header>
-            <p className="text-subheading dark:text-subheading-dark">
+            <p className="text-subheading mr-10 dark:text-subheading-dark">
               {t("signIn.modal.body")}
             </p>
             <Modal.Separator />
@@ -83,14 +67,21 @@ export const SignInModal = () => {
                 </div>
               </div>
               <div className="flex justify-end">
-                <Button onClick={handleOnClick}>
-                  {t("signIn.modal.button")}
+                { verified ?
+                   <Chip variant={"success"}>
+                   <IconCheck />
+                   Verified
+                 </Chip>
+                 :
+                 <Button onClick={handleOnClick}>
+                 {t("signIn.modal.button")}
                 </Button>
+                }
+
               </div>
             </div>
           </div>
         )}
-      </Modal.Body>
-    </Modal>
-  );
-};
+      </>
+    )
+}

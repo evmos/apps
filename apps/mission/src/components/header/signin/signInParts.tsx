@@ -12,7 +12,7 @@ import { useOtherWalletsModal } from "./WalletsModal";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { CLICK_CONNECT_WALLET_BUTTON, sendEvent } from "tracker";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
-import { useSignInModal } from "./ModalSignIn";
+import { useSignInModal } from "./Signin/Modal";
 export const SignInButton = () => {
   const { isDropdownOpen } = useWallet();
   const { t } = useTranslation("dappStore");

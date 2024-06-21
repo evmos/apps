@@ -52,7 +52,7 @@ const EditModal = dynamic(
 );
 
 const SignInModal = dynamic(
-  () => import("./header/signin/ModalSignIn").then((mod) => mod.SignInModal),
+  () => import("./header/signin/Signin/Modal").then((mod) => mod.SignInModal),
   {
     ssr: false,
   },

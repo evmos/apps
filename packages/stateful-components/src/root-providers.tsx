@@ -9,7 +9,6 @@ import { PropsWithChildren, useMemo, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import { MavaWidget } from "@evmosapps/ui-helpers";
 import { Snackbars, wagmiConfig } from "@evmosapps/evmos-wallet";
-// import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { WagmiProvider } from "wagmi";

@@ -120,7 +120,6 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
     this.ee.removeListener(event, listener);
   }
   request: EIP1193Provider["request"] = async (args) => {
-    console.log(args);
     // proxies all requests to methods declared internally
 
     const fn: unknown = get(this, args.method);
@@ -151,7 +150,6 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
   private personal_sign = async (
     parameters: [string],
   ): Promise<EIP1474ReturnType<"personal_sign">> => {
-
     return this.signEvm(parameters, EthSignType.MESSAGE);
   };
 
@@ -170,9 +168,7 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
     return toHex(signature);
   };
   private getPublicClient = async () => {
-    const chainId = Number(
-      await this.request({ method: "eth_chainId" }),
-    );
+    const chainId = Number(await this.request({ method: "eth_chainId" }));
     const chain =
       Object.values(EVMOS_CONFIG_MAP).find((chain) => chain.id === chainId) ??
       raise("Chain not found");
@@ -184,9 +180,7 @@ export class CosmosEIP1193Provider implements EIP1193Provider {
   private prepareTransactionForProvider = async (
     request: EIP1474Parameters<"eth_sendTransaction">[0],
   ) => {
-    const chainId = Number(
-      await this.request({ method: "eth_chainId" }),
-    );
+    const chainId = Number(await this.request({ method: "eth_chainId" }));
 
     const client = await this.getPublicClient();
     const account = parseAccount(request.from);

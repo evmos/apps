@@ -3,7 +3,8 @@
   "include": [
     ".",
     "../config/**/*",
-    "./src/global.d.ts"
+    // "./src/global.d.ts",
+    "./src/**/*.d.ts"
   ],
   "exclude": [
     "dist",

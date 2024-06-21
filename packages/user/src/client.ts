@@ -3,16 +3,29 @@
 
 import { PrismaClient } from "./prisma/generated/client";
 
-let prisma: PrismaClient;
+const getClient = () =>
+  new PrismaClient().$extends({
+    result: {
+      walletAccount: {
+        address: {
+          // the dependencies
+          needs: { address: true },
+          compute(user) {
+            return user.address as `0x${string}` | `${string}1${string}`;
+          },
+        },
+      },
+    },
+  });
+let prisma: ReturnType<typeof getClient> 
 
 if (process.env.NODE_ENV === "production") {
-  prisma = new PrismaClient();
+  prisma = getClient();
 } else {
   if (!global.dAppStorePrisma) {
-    global.dAppStorePrisma = new PrismaClient();
+    global.dAppStorePrisma = getClient();
   }
-  prisma = global.dAppStorePrisma;
+  prisma = global.dAppStorePrisma as ReturnType<typeof getClient>;
 }
 
 export const dAppStorePrisma = prisma;
-

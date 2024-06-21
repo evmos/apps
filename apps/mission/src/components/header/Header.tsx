@@ -10,7 +10,7 @@ import useWindowResize from "../useResize";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 import { CLICK_SEARCH, sendEvent } from "tracker";
-import { ExampleForFunctions } from "./ExampleForFunctions";
+
 export const Header = () => {
   const { windowSize, isDesktop } = useWindowResize();
   return (
@@ -32,7 +32,6 @@ export const Header = () => {
       >
         <IconSearch />
       </IconButton>
-      <ExampleForFunctions />
       {isDesktop && windowSize !== 0 && <SignIn />}
     </header>
   );

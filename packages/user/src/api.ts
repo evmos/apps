@@ -21,15 +21,23 @@ const isWalletAccountSignable = (
 };
 
 // Schemas
-export const HexAddress = z.custom<Hex>(
-  (value) => typeof value === "string" && isAddress(value),
-  "Invalid hex address",
-);
+export const HexAddress = z
+  .string()
+  .pipe(
+    z.custom<Hex>(
+      (value) => typeof value === "string" && isAddress(value),
+      "Invalid hex address",
+    ),
+  );
 
-export const Bech32Address = z.custom<`${string}1${string}`>(
-  (value) => typeof value === "string" && bech32.decode(value),
-  "Invalid bech32 address",
-);
+export const Bech32Address = z
+  .string()
+  .pipe(
+    z.custom<`${string}1${string}`>(
+      (value) => typeof value === "string" && bech32.decode(value),
+      "Invalid bech32 address",
+    ),
+  );
 
 export const AccountAddress = z.union([HexAddress, Bech32Address]);
 
@@ -42,10 +50,12 @@ export const WalletInputSchema = z.discriminatedUnion("authorizationMethod", [
   z.object({
     address: HexAddress,
     authorizationMethod: AuthorizationMethod.extract(["ETHEREUM"]),
+    verified: z.boolean().default(false),
   }),
   z.object({
     address: Bech32Address,
     authorizationMethod: AuthorizationMethod.extract(["COSMOS"]),
+    verified: z.boolean().default(false),
   }),
 ]) satisfies z.Schema<
   Prisma.WalletAccountCreateNestedManyWithoutUserInput["create"]
@@ -67,7 +77,6 @@ export const UserWithWalletInputSchema = UserInputSchema.extend({
   walletAccount: WalletInputSchema.transform((create) => ({ create })),
 }) satisfies z.Schema<Prisma.UserCreateInput, z.ZodTypeDef, unknown>;
 
-
 type AuthorizationUser = { id: string } | { address: string };
 type PermissionMap = {
   "user:read": AuthorizationUser;
@@ -79,6 +88,10 @@ export type AuthorizeFn = <T extends Permission>(payload: {
   details: PermissionMap[T];
 }) => Promise<boolean> | boolean;
 
+export type User = Prisma.UserGetPayload<{
+  include: { walletAccount: true };
+}>;
+export type WalletAccount = Prisma.WalletAccountGetPayload<{}>;
 // API
 export class DappStoreAPI {
   authorize: AuthorizeFn;
@@ -91,7 +104,7 @@ export class DappStoreAPI {
     userQuery: { id: string } | { address: string },
   ) => {
     if (await this.authorize({ permission, details: userQuery })) {
-      return
+      return;
     }
     throw new Error("Unauthorized");
   };
@@ -286,3 +299,8 @@ export const deleteAllUsers = async (options?: {
     ].join("\n"),
   );
 };
+
+export const apiClient = new DappStoreAPI(() => {
+  // TODO: Implement proper authorization
+  return true;
+});

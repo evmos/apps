@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "type": "module",
+  "exports": {
+    "./*": "./src/*"
+  },
   "scripts": {
     "prisma:generate": "pnpm run prisma:dappstore:generate",
     "prisma:push": "pnpm run prisma:dappstore:push",
@@ -31,7 +34,9 @@
     "chance": "^1.1.11",
     "effect": "^3.3.1",
     "lodash-es": "^4.17.21",
+    "next": "14.2.4",
     "react": "^18.3.1",
+    "siwe": "^2.3.2",
     "viem": "^2.15.1",
     "vitest": "^1.6.0"
   }

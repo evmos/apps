@@ -64,7 +64,7 @@ export function Modal({
               leaveTo="transform scale-95 opacity-0"
             >
               <div
-                className="fixed inset-0 bg-black bg-opacity-50"
+                className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-md"
                 onClick={onClose}
               />
             </Transition.Child>
@@ -96,7 +96,7 @@ const ModalBody = forwardRef<
     <Dialog.Panel
       ref={ref}
       className={cn(
-        "text-sm flex text-heading dark:text-heading-dark bg-surface-container-low dark:bg-surface-container-low-dark m-auto rounded-2xl flex-col p-6 max-w-md w-full border border-surface-container-highest dark:border-surface-container-highest-dark shadow-elevation z-50",
+        "text-sm flex text-heading dark:text-heading-dark bg-surface-container-low dark:bg-surface-container-low-dark m-auto rounded-2xl flex-col p-8 max-w-lg w-full border border-surface-container-highest dark:border-surface-container-highest-dark shadow-elevation z-50",
         className as string,
       )}
       {...rest}
@@ -148,7 +148,7 @@ Modal.Header = ModalHeader;
 const ModalSeparator = ({ ...rest }: ComponentProps<"hr">) => {
   return (
     <hr
-      className="-mx-6 text-surface-container-highest dark:text-surface-container-highest-dark"
+      className="-mx-8 text-surface-container-highest dark:text-surface-container-highest-dark"
       {...rest}
     />
   );

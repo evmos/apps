@@ -6,9 +6,11 @@ import { useState } from "react";
 import { Button } from "@evmosapps/ui/button/index.tsx";
 import { Alert } from "@evmosapps/ui/components/alert/index.tsx";
 import { IconAlertCircle } from "@evmosapps/ui/icons/line/alerts/alert-circle.tsx";
+import { useTranslation } from "@evmosapps/i18n/client";
 
 export const ReconnectWarning = () => {
   const [isAlertVisible, setAlertVisible] = useState(true);
+  const { t } = useTranslation("dappStore");
 
   const handleDismiss = () => {
     setAlertVisible(false);
@@ -27,15 +29,12 @@ export const ReconnectWarning = () => {
       {isAlertVisible ? (
         <Alert variant="warning" dismiss={handleDismiss}>
           <Alert.Header icon={IconAlertCircle}>
-            Re-connect your wallet.
+            {t("warning.reconnect.title")}
           </Alert.Header>
-          <Alert.Body>
-            It seems like your wallet’s been disconnected - re-connect to
-            continue using the dApp Store.
-          </Alert.Body>
+          <Alert.Body>{t("warning.reconnect.body")}</Alert.Body>
           <Alert.Actions>
             <Button size="sm" variant="warning" onClick={handleReconnect}>
-              <span>Connect</span>
+              <span>{t("warning.reconnect.button")}</span>
             </Button>
           </Alert.Actions>
         </Alert>

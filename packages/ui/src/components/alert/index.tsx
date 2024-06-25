@@ -122,7 +122,7 @@ function AlertBody({ className, children, ...rest }: ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "text-subheading dark:text-subheading-dark text-base",
+        "text-subheading dark:text-subheading-dark text-base font-light",
         className,
       )}
       {...rest}

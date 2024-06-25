@@ -111,6 +111,15 @@
       "placeholder": "user.evmos",
       "button": "Save changes"
     },
+    "deleteModal": {
+      "title": "Are you sure?",
+      "subtitle": "We're sorry to see you go!",
+      "description": "By deleting your profile, all your data, including profile details, progress and activity, will be permanently removed. If you wish to recreate the account, you will have to set up all your information from the beginning.",
+      "acknowledge": "I acknowledge that my progress will be deleted.",
+      "accept": "Delete Profile",
+      "cancel": "Cancel",
+      "alert": "Profile deleted"
+    },
     "options": {
       "portfolio": "Portfolio",
       "topUp": "Top up",
@@ -130,7 +139,7 @@
       "detected": "Detected"
     },
     "settings": {
-      "title": "Settings",
+      "title": "Profile Settings",
       "options": {
         "title": "Account",
         "comingSoon": "Coming soon",
@@ -138,7 +147,8 @@
         "language": "Language",
         "english": "English",
         "notifications": "Notifications",
-        "addressFormat": "Address Format"
+        "addressFormat": "Address Format",
+        "deleteProfile": "Delete Profile"
       }
     },
     "supportedWallets": {

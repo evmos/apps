@@ -4,6 +4,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { Suspense } from "react";
+import { DeleteProfileModal } from "./header/signin/ModalDeleteProfile";
 
 const SetupAccountModal = dynamic(
   () =>
@@ -67,6 +68,7 @@ export const Modals = () => {
       <ConsentModal />
       <WalletsModal />
       <EditModal />
+      <DeleteProfileModal />
     </Suspense>
   );
 };

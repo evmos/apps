@@ -177,8 +177,13 @@
   "warning": {
     "reconnect": {
       "title": "Re-connect your wallet.",
-      "body": "It seems like your wallet’s been disconnected - re-connect to continue using the dApp Store.",
+      "body": "It seems like your wallet's been disconnected - re-connect to continue using the dApp Store.",
       "button": "Connect"
+    },
+    "mismatch": {
+      "title": "There's a mismatch of addresses.",
+      "body": "Manage your profile: Sign in to another profile or connect to your original address in your wallet.",
+      "button": "Manage Profile"
     }
   },
   "share": {
@@ -190,6 +195,16 @@
   },
   "manageProfile": {
     "title": "Manage Profile",
-    "description": "There's currently a mismatch of connected addresses in your profile and your wallet. Either sign in to another profile or connect to your original address."
+    "description": "There's currently a mismatch of connected addresses in your profile and your wallet. Either sign in to another profile or connect to your original address.",
+    "options": {
+      "profile": {
+        "title": "Connected via profile",
+        "button": "Active"
+      },
+      "wallet": {
+        "title": "Connected via wallet",
+        "button": "Sign in"
+      }
+    }
   }
 }

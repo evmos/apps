@@ -126,6 +126,12 @@
       "settings": "Settings",
       "signOut": "Sign out"
     },
+    "reconnect": {
+      "title": "Re-connect your wallet.",
+      "body": "Your wallet seems to have been disconnected - you need proper wallet connection in order to interact with dApps on the dApp Store.",
+      "button": "Connect",
+      "alert": "You’ve been re-connected. Welcome back!"
+    },
     "title": "Wallet"
   },
   "signIn": {

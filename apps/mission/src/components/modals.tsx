@@ -85,6 +85,14 @@ const DeleteProfileModal = dynamic(
   },
 );
 
+const ReConnectModal = dynamic(
+  () =>
+    import("./header/signin/ModalReConnect").then((mod) => mod.ReConnectModal),
+  {
+    ssr: false,
+  },
+);
+
 export const Modals = () => {
   return (
     <Suspense>
@@ -97,6 +105,7 @@ export const Modals = () => {
       <EditModal />
       <ManageProfileModal />
       <DeleteProfileModal />
+      <ReConnectModal />
     </Suspense>
   );
 };

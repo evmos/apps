@@ -7,6 +7,7 @@ import { Button } from "@evmosapps/ui/button/index.tsx";
 import { Alert } from "@evmosapps/ui/components/alert/index.tsx";
 import { IconAlertCircle } from "@evmosapps/ui/icons/line/alerts/alert-circle.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
+import { useReConnectModal } from "../header/signin/ModalReConnect";
 
 export const ReconnectWarning = () => {
   const [isAlertVisible, setAlertVisible] = useState(true);
@@ -16,8 +17,10 @@ export const ReconnectWarning = () => {
     setAlertVisible(false);
   };
 
+  const ReConnectModal = useReConnectModal();
   const handleReconnect = () => {
-    //Sign In
+    ReConnectModal.setIsOpen(true, {}, true);
+    //TODO: A reconnection is needed. Now a modal is executed just to test it.
   };
 
   const handleTestAlert = () => {

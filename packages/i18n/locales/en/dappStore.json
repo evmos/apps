@@ -137,7 +137,7 @@
     "modal": {
       "title": "Sign in to access all dApps",
       "cancel.title": "Are you sure you want to skip this step?",
-      "cancel.body": "Without verification, you won’t be able to interact with any dApps on the Store. We recommend you to verify your address.",
+      "cancel.body": "Without verification, you won't be able to interact with any dApps on the Store. We recommend you to verify your address.",
       "body": "In order to interact with dApps, you need to verify your wallet by signing the off-chain transaction in your wallet.",
       "button": "Verify",
       "skip.button": "Skip",
@@ -187,8 +187,13 @@
   "warning": {
     "reconnect": {
       "title": "Re-connect your wallet.",
-      "body": "It seems like your wallet’s been disconnected - re-connect to continue using the dApp Store.",
+      "body": "It seems like your wallet's been disconnected - re-connect to continue using the dApp Store.",
       "button": "Connect"
+    },
+    "mismatch": {
+      "title": "There's a mismatch of addresses.",
+      "body": "Manage your profile: Sign in to another profile or connect to your original address in your wallet.",
+      "button": "Manage Profile"
     }
   },
   "share": {
@@ -196,6 +201,20 @@
     "options": {
       "twitter": "X",
       "telegram": "Telegram"
+    }
+  },
+  "manageProfile": {
+    "title": "Manage Profile",
+    "description": "There's currently a mismatch of connected addresses in your profile and your wallet. Either sign in to another profile or connect to your original address.",
+    "options": {
+      "profile": {
+        "title": "Connected via profile",
+        "button": "Active"
+      },
+      "wallet": {
+        "title": "Connected via wallet",
+        "button": "Sign in"
+      }
     }
   }
 }

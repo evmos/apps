@@ -3,8 +3,6 @@
 
 import "server-only";
 import NextAuth from "next-auth/next";
-import type { NextApiRequest, NextApiResponse } from "next";
-
 import { AuthOptions } from "next-auth";
 import { apiClient } from "../api";
 import { JWT } from "next-auth/jwt";
@@ -38,6 +36,6 @@ export const authOptions: AuthOptions = {
 };
 
 export const handler = NextAuth(authOptions) as (
-  req: NextApiRequest,
-  res: NextApiResponse,
+  req: Request,
+  res: Response,
 ) => Promise<void>;

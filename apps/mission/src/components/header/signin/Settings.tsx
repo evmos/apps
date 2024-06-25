@@ -19,40 +19,52 @@ import { IconHashtag } from "@evmosapps/ui/icons/line/basic/hashtag.tsx";
 import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
-
-const settingsOptions = [
-  {
-    icon: IconDollarCircle,
-    title: "signIn.settings.options.currency",
-    description: "USD",
-    isComingSoon: false,
-    isDisabled: true,
-  },
-  {
-    icon: IconGlobe,
-    title: "signIn.settings.options.language",
-    description: "signIn.settings.options.english",
-    isComingSoon: false,
-    isDisabled: true,
-  },
-  {
-    icon: IconBell,
-    title: "signIn.settings.options.notifications",
-    description: "",
-    isComingSoon: true,
-    isDisabled: true,
-  },
-  {
-    icon: IconHashtag,
-    title: "signIn.settings.options.addressFormat",
-    description: "",
-    isComingSoon: true,
-    isDisabled: true,
-  },
-];
+import { IconTrash2 } from "@evmosapps/ui/icons/line/basic/trash-2.tsx";
+import { useDeleteProfileModal } from "./ModalDeleteProfile";
 
 const SettingsOptions = () => {
   const { t } = useTranslation("dappStore");
+  const deleteProfileModal = useDeleteProfileModal();
+  const settingsOptions = [
+    {
+      icon: IconDollarCircle,
+      title: "signIn.settings.options.currency",
+      description: "USD",
+      isComingSoon: false,
+      isDisabled: true,
+    },
+    {
+      icon: IconGlobe,
+      title: "signIn.settings.options.language",
+      description: "signIn.settings.options.english",
+      isComingSoon: false,
+      isDisabled: true,
+    },
+    {
+      icon: IconBell,
+      title: "signIn.settings.options.notifications",
+      description: "",
+      isComingSoon: true,
+      isDisabled: true,
+    },
+    {
+      icon: IconHashtag,
+      title: "signIn.settings.options.addressFormat",
+      description: "",
+      isComingSoon: true,
+      isDisabled: true,
+    },
+    {
+      icon: IconTrash2,
+      title: "signIn.settings.options.deleteProfile",
+      description: "",
+      isComingSoon: false,
+      isDisabled: false,
+      onClick: () => {
+        deleteProfileModal.setIsOpen(true, {}, true);
+      },
+    },
+  ];
   return (
     <div>
       <div>
@@ -67,6 +79,10 @@ const SettingsOptions = () => {
               as="div"
               key={option.title}
               disabled={option.isDisabled}
+              onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                e.preventDefault();
+                option.onClick && option.onClick();
+              }}
             >
               {
                 <option.icon className="w-4 text-paragraph dark:text-paragraph-dark" />
@@ -111,6 +127,7 @@ const SettingsAddress = () => {
   const { profile } = useProfileContext();
   const image = profileImages.find((image) => image.src === profile.img?.src);
   const editModal = useEditModal();
+
   const { address } = useAccount();
   const { setIsDropdownOpen } = useWallet();
   return (

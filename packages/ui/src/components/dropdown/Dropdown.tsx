@@ -73,7 +73,7 @@ const MenuItem = forwardRef<
     <Menu.Item
       ref={ref}
       className={cn(
-        "flex items-center justify-between w-full py-3 px-3 [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 hover:rounded-lg focus-visible:rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-tertiary-container focus:dark:ring-tertiary-container-dark ",
+        "cursor-pointer flex items-center justify-between w-full py-3 px-3 [&:not(:last-child)]:border-b border-b-surface-container-high dark:border-b-surface-container-high-dark gap-4 hover:bg-primary/10 hover:dark:bg-primary-dark/10 hover:rounded-lg focus-visible:rounded-lg focus:bg-on-surface/10 focus:dark:bg-on-surface-dark/10 focus:ring-1 focus:ring-secondary-container focus:dark:ring-secondary-container-dark focus:rounded-lg",
         disabled && "disabled",
         className as string,
       )}

@@ -123,9 +123,9 @@ const ModalHeader = ({
       )}
       {...rest}
     >
-      <h5 className="flex items-center text-2xl leading-8 font-medium">
+      <div className="flex items-center text-2xl leading-8 font-medium">
         {children}
-      </h5>
+      </div>
       {showCloseButton && (
         <button
           className="cursor-pointer focus-visible:outline-none"

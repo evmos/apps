@@ -36,7 +36,13 @@ export const DeleteProfileModal = () => {
     },
   });
   return (
-    <Modal isOpen={isOpen} setIsOpen={setIsOpen} onClose={() => {}}>
+    <Modal
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      onClose={() => {
+        setIsOpen(false);
+      }}
+    >
       <Modal.Body>
         {modalProps && (
           <div className="space-y-5">

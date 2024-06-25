@@ -74,6 +74,17 @@ const ManageProfileModal = dynamic(
     ssr: false,
   },
 );
+
+const DeleteProfileModal = dynamic(
+  () =>
+    import("./header/signin/ModalDeleteProfile").then(
+      (mod) => mod.DeleteProfileModal,
+    ),
+  {
+    ssr: false,
+  },
+);
+
 export const Modals = () => {
   return (
     <Suspense>
@@ -85,6 +96,7 @@ export const Modals = () => {
       <WalletsModal />
       <EditModal />
       <ManageProfileModal />
+      <DeleteProfileModal />
     </Suspense>
   );
 };

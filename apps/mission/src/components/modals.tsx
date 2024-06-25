@@ -65,6 +65,15 @@ const WalletsModal = dynamic(
   },
 );
 
+const ManageProfileModal = dynamic(
+  () =>
+    import("./header/signin/ManageProfileModal").then(
+      (mod) => mod.ManageProfileModal,
+    ),
+  {
+    ssr: false,
+  },
+);
 export const Modals = () => {
   return (
     <Suspense>
@@ -75,6 +84,7 @@ export const Modals = () => {
       <SignInModal />
       <WalletsModal />
       <EditModal />
+      <ManageProfileModal />
     </Suspense>
   );
 };

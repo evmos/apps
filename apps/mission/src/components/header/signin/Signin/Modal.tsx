@@ -13,7 +13,7 @@ import { CancelModalBody } from "./CancelModalBody";
 export const useSignInModal = () => useModal("signIn");
 
 export const SignInModal = () => {
-  const { isOpen, setIsOpen, modalProps } = useSignInModal();
+  const { isOpen, setIsOpen } = useSignInModal();
   const [signInStep, setSignInStep] = useState(0);
 
   return (
@@ -25,15 +25,9 @@ export const SignInModal = () => {
       }}
     >
       <Modal.Body>
-        {signInStep === 0 && (
-          <SigninModalBody
-            modalProps={modalProps}
-            setSignInStep={setSignInStep}
-          />
-        )}
+        {signInStep === 0 && <SigninModalBody setSignInStep={setSignInStep} />}
         {signInStep === 1 && (
           <CancelModalBody
-            modalProps={modalProps}
             setSignInStep={setSignInStep}
             setIsOpen={setIsOpen}
           />

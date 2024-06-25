@@ -21,7 +21,7 @@
     "@evmosapps/config": "workspace:*",
     "@evmosapps/registry": "workspace:*",
     "helpers": "workspace:*",
-    "next": "14.2.3",
+    "next": "14.2.4",
     "typescript": "^5.3.3"
   },
   "browserslist": [

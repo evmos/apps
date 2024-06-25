@@ -3,8 +3,8 @@
   "include": [
     ".",
     "../config/**/*",
-    "./src/global.d.ts",
-    "../helpers/src/bigint/safeBigInt.ts"
+    // "./src/global.d.ts",
+    "./src/**/*.d.ts"
   ],
   "exclude": [
     "dist",

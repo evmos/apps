@@ -22,7 +22,7 @@
     "@evmosapps/ui-helpers": "workspace:*",
     "@types/node": "20.12.7",
     "helpers": "workspace:*",
-    "next": "14.2.3",
+    "next": "14.2.4",
     "tracker": "workspace:*",
     "typescript": "^5.3.3",
     "zod": "^3.22.1"

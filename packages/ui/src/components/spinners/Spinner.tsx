@@ -1,10 +1,15 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-export const Spinner = () => {
+import { cn } from "helpers";
+
+export const Spinner = ({ className }: { className?: string }) => {
   return (
     <svg
-      className="text-primary/20 dark:text-primary-dark/20 animate-spin"
+      className={cn(
+        className,
+        "text-primary/20 dark:text-primary-dark/20 animate-spin",
+      )}
       viewBox="0 0 64 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

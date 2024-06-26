@@ -16,6 +16,8 @@ import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
 
 import { Button } from "@evmosapps/ui/button/index.tsx";
 import { useAccount } from "wagmi";
+import { useState } from "react";
+import { Spinner } from "@evmosapps/ui/components/spinners/Spinner.tsx";
 
 export const useManageProfileModal = () => useModal("manage-profile");
 
@@ -27,12 +29,17 @@ export const ManageProfileModal = () => {
   const { t } = useTranslation("dappStore");
   const { profile } = useProfileContext();
   const image = profileImages.find((image) => image.src === profile.img?.src);
+
+  // manage appearence of loader
+  // TODO: check if we have to update it after adding the logic for sign in
+  const [loading, setLoading] = useState(false);
   return (
     <Modal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       onClose={() => {
         setIsOpen(false);
+        setLoading(false);
       }}
     >
       <Modal.Body>
@@ -87,14 +94,19 @@ export const ManageProfileModal = () => {
               </div>
             </div>
             <div className="flex justify-end">
-              <Button
-                size="sm"
-                onClick={() => {
-                  // TODO: add logic for sign in with wallet 1
-                }}
-              >
-                Sign in
-              </Button>
+              {loading ? (
+                <Spinner className="w-8 h-8" />
+              ) : (
+                <Button
+                  size="sm"
+                  onClick={() => {
+                    // TODO: add logic for sign in with wallet 1
+                    setLoading(true);
+                  }}
+                >
+                  Sign in
+                </Button>
+              )}
             </div>
           </div>
         </div>

@@ -93,6 +93,16 @@ const ReConnectModal = dynamic(
   },
 );
 
+const ConfirmEVMTxModal = dynamic(
+  () =>
+    import("stateful-components/src/modals/ConfirmEVMTxModal").then(
+      (mod) => mod.ConfirmEVMTxModal,
+    ),
+  {
+    ssr: false,
+  },
+);
+
 export const Modals = () => {
   return (
     <Suspense>
@@ -106,6 +116,7 @@ export const Modals = () => {
       <ManageProfileModal />
       <DeleteProfileModal />
       <ReConnectModal />
+      <ConfirmEVMTxModal />
     </Suspense>
   );
 };

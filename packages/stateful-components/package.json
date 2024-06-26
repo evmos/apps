@@ -18,6 +18,7 @@
     "@evmosapps/evmos-wallet": "workspace:*",
     "@evmosapps/icons": "workspace:*",
     "@evmosapps/ui-helpers": "workspace:*",
+    "@evmosapps/ui": "workspace:*",
     "tracker": "workspace:*"
   },
   "devDependencies": {

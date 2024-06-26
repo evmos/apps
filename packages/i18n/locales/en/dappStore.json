@@ -105,6 +105,7 @@
   },
 
   "profile": {
+    "title": "Wallet",
     "modal": {
       "title": "Edit Profile",
       "label": "Display Name",
@@ -132,7 +133,13 @@
       "button": "Connect",
       "alert": "You’ve been re-connected. Welcome back!"
     },
-    "title": "Wallet"
+    "evmModal": {
+      "title": "Before you go further,",
+      "subtitle": "You've recently switched addresses in your wallet.",
+      "description": "That doesn't change the address you're signed in with on the dApp Store. This means that all transactions will be submitted with the address linked to your profile, <span>{{address}}</span>, and not necessarily the address that's connected in your wallet.",
+      "acknowledge": "I acknowledge that I'm submitting a transaction with the address linked to my profile, which is <span>{{address}}</span>.",
+      "buttonConfirm": "Submit"
+    }
   },
   "signIn": {
     "button": "Sign in ",

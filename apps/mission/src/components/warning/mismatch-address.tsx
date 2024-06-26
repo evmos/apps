@@ -7,8 +7,8 @@ import { Button } from "@evmosapps/ui/button/index.tsx";
 import { Alert } from "@evmosapps/ui/components/alert/index.tsx";
 import { IconAlertCircle } from "@evmosapps/ui/icons/line/alerts/alert-circle.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
-import { useWallet } from "@evmosapps/evmos-wallet";
 import { useManageProfileModal } from "../header/signin/ManageProfileModal";
+import { useAccount } from "wagmi";
 
 export const MismatchAddress = () => {
   const [isAlertVisible, setAlertVisible] = useState(false);
@@ -19,7 +19,7 @@ export const MismatchAddress = () => {
     setAlertVisible(false);
   };
 
-  const { address } = useWallet();
+  const { address } = useAccount();
 
   useEffect(() => {
     // TODO: compare between the address on the wallet and the one on the profile

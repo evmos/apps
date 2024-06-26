@@ -1,7 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 
 import NextAuth from "next-auth";
 import { JWT, DefaultJWT } from "next-auth/jwt";

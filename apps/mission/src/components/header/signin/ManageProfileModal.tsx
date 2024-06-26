@@ -8,7 +8,6 @@ import { cn, useModal } from "helpers";
 import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
 
 import { useTranslation } from "@evmosapps/i18n/client";
-import { useWallet } from "@evmosapps/evmos-wallet";
 import { useProfileContext } from "../edit/useEdit";
 import { profileImages } from "../edit/ModalEdit";
 import Image from "next/image";
@@ -16,6 +15,7 @@ import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
 
 import { Button } from "@evmosapps/ui/button/index.tsx";
+import { useAccount } from "wagmi";
 
 export const useManageProfileModal = () => useModal("manage-profile");
 
@@ -23,7 +23,7 @@ const dummyAddress = "0xE54Cd6c3022135d09122ee3f5E05b9b66bed9200";
 
 export const ManageProfileModal = () => {
   const { isOpen, setIsOpen } = useManageProfileModal();
-  const { address } = useWallet();
+  const { address } = useAccount();
   const { t } = useTranslation("dappStore");
   const { profile } = useProfileContext();
   const image = profileImages.find((image) => image.src === profile.img?.src);

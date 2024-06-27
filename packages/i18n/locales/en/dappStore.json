@@ -139,6 +139,12 @@
       "description": "That doesn't change the address you're signed in with on the dApp Store. This means that all transactions will be submitted with the address linked to your profile, <span>{{address}}</span>, and not necessarily the address that's connected in your wallet.",
       "acknowledge": "I acknowledge that I'm submitting a transaction with the address linked to my profile, which is <span>{{address}}</span>.",
       "buttonConfirm": "Submit"
+    },
+    "cosmosModal": {
+      "title": "Switch your address in your wallet.",
+      "subtitle": "In order to submit a transaction, you need to be connected to the same address in your wallet as you are in your profile.",
+      "description": " Alternatively, you can sign in to another profile with your connected address in your wallet.",
+      "buttonConfirm": "Ok"
     }
   },
   "signIn": {

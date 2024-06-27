@@ -103,6 +103,16 @@ const ConfirmEVMTxModal = dynamic(
   },
 );
 
+const ConfirmCosmosTxModal = dynamic(
+  () =>
+    import("stateful-components/src/modals/ConfirmCosmosTxModal").then(
+      (mod) => mod.ConfirmCosmosTxModal,
+    ),
+  {
+    ssr: false,
+  },
+);
+
 export const Modals = () => {
   return (
     <Suspense>
@@ -117,6 +127,7 @@ export const Modals = () => {
       <DeleteProfileModal />
       <ReConnectModal />
       <ConfirmEVMTxModal />
+      <ConfirmCosmosTxModal />
     </Suspense>
   );
 };

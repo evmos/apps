@@ -22,6 +22,8 @@ import {
 } from "tracker";
 import { alertsManager } from "@evmosapps/ui/components/alert/alert-manager.tsx";
 import { IconBarchart } from "@evmosapps/ui/icons/line/basic/barchart.tsx";
+import { useProfileContext } from "../edit/useEdit";
+import { isValidHexAddress } from "helpers/src/crypto/addresses/is-valid-hex-address";
 
 export type WALLETS_TYPE =
   | {
@@ -47,6 +49,7 @@ export const useSignIn = () => {
   const defaultWallets = supportedWallets.filter((item) =>
     wallets.includes(item.name),
   );
+  const { profile } = useProfileContext();
 
   const { connectors, connect } = useConnect({
     mutation: {
@@ -77,8 +80,14 @@ export const useSignIn = () => {
         setIsOpen(false);
         setWallets(connector.name);
         setIsDropdownOpen(true);
+      },
+
+      onSettled: () => {
+        const address = isValidHexAddress(profile.name)
+          ? `${profile.name?.slice(0, 6)}...${profile.name?.slice(-3)}`
+          : profile.name;
         alertsManager.success({
-          title: "Welcome to Evmos!",
+          title: `Welcome to the dApp Store,  ${address}`,
           icon: IconBarchart,
         });
       },

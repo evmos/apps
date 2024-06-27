@@ -8,15 +8,14 @@ import Image from "next/image";
 import { profileImages } from "../edit/ModalEdit";
 import { cn } from "helpers";
 import { useProfileContext } from "../edit/useEdit";
-import { useAccount } from "wagmi";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import useWindowResize from "../../useResize";
 import { useWallet } from "@evmosapps/evmos-wallet";
+import { isValidHexAddress } from "helpers/src/crypto/addresses/is-valid-hex-address";
 
 export const ProfileButton = () => {
   const { profile } = useProfileContext();
   const { isDesktop } = useWindowResize();
-  const { address } = useAccount();
   const { isDropdownOpen } = useWallet();
   const getImg = profileImages.find((image) => image.src === profile.img?.src);
   return (
@@ -41,8 +40,8 @@ export const ProfileButton = () => {
           />
         )}
         {isDesktop &&
-          (profile.name === "" ? (
-            <AddressDisplay address={address} />
+          (isValidHexAddress(profile.name) ? (
+            <AddressDisplay address={profile.name} />
           ) : (
             <span>{profile.name}</span>
           ))}

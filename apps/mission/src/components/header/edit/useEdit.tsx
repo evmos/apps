@@ -35,7 +35,7 @@ const readProfile = (address: string) => {
   const values = window.localStorage.getItem(`${PROFILE_KEY}.${address}`);
   return values
     ? (JSON.parse(values) as Profile)
-    : { name: "", img: profileImages[0] };
+    : { name: address, img: profileImages[0] };
 };
 
 const writeProfile = (address: string, profile: Profile) => {

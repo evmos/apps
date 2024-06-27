@@ -10,7 +10,6 @@ import { IconEdit2 } from "@evmosapps/ui/icons/line/editor/edit-2.tsx";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
 import { useProfileContext } from "../edit/useEdit";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
-import { useAccount } from "wagmi";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { IconDollarCircle } from "@evmosapps/ui/icons/line/finances/dollar-circle.tsx";
 import { IconGlobe } from "@evmosapps/ui/icons/line/map/globe.tsx";
@@ -21,6 +20,7 @@ import { useTranslation } from "@evmosapps/i18n/client";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { IconTrash2 } from "@evmosapps/ui/icons/line/basic/trash-2.tsx";
 import { useDeleteProfileModal } from "./ModalDeleteProfile";
+import { isValidHexAddress } from "helpers/src/crypto/addresses/is-valid-hex-address";
 
 const SettingsOptions = () => {
   const { t } = useTranslation("dappStore");
@@ -128,7 +128,6 @@ const SettingsAddress = () => {
   const image = profileImages.find((image) => image.src === profile.img?.src);
   const editModal = useEditModal();
 
-  const { address } = useAccount();
   const { setIsDropdownOpen } = useWallet();
   return (
     <button
@@ -149,8 +148,8 @@ const SettingsAddress = () => {
             className={cn("rounded-full")}
           />
         )}
-        {profile.name === "" ? (
-          <AddressDisplay address={address} />
+        {isValidHexAddress(profile.name) ? (
+          <AddressDisplay address={profile.name} />
         ) : (
           <span className="text-sm leading-5 font-medium text-heading dark:text-heading-dark">
             {profile.name}

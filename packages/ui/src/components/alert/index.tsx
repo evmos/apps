@@ -121,7 +121,10 @@ function AlertHeader({
 function AlertBody({ className, children, ...rest }: ComponentProps<"div">) {
   return (
     <div
-      className={cn("text-on-surface dark:text-on-surface-dark", className)}
+      className={cn(
+        "text-subheading dark:text-subheading-dark text-base font-light",
+        className,
+      )}
       {...rest}
     >
       {children}

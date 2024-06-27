@@ -9,12 +9,46 @@ import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useOtherWalletsModal } from "./WalletsModal";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
+import { useSignInModal } from "./Signin/Modal";
+import { Button } from "@evmosapps/ui/button/index.tsx";
+import { sendEvent } from "tracker/src/useTracker";
+import { CLICK_CONNECT_WALLET_BUTTON } from "tracker/src/events";
+import { Pulse } from "@evmosapps/ui/components/pulse/Pulse.tsx";
+
+export const SignInButton = () => {
+  const { isDropdownOpen } = useWallet();
+  const { t } = useTranslation("dappStore");
+  return (
+    <Button
+      as="div"
+      className="relative"
+      outlined={isDropdownOpen}
+      onClick={() => {
+        if (!isDropdownOpen) {
+          sendEvent(CLICK_CONNECT_WALLET_BUTTON);
+        }
+      }}
+    >
+      {!isDropdownOpen && <Pulse />}
+      {t("signIn.button")}
+    </Button>
+  );
+};
 
 export const SignInTitle = () => {
   const { t } = useTranslation("dappStore");
+  const signInModal = useSignInModal();
   return (
     <Dropdown.Title as="div" align="center">
       {t("signIn.title")}
+      <button
+        className="rounded-full bg-primary-container-dark p-1 text-xs"
+        onClick={() => {
+          signInModal.setIsOpen(true, {}, true);
+        }}
+      >
+        modal
+      </button>
     </Dropdown.Title>
   );
 };
@@ -44,7 +78,6 @@ export const SignInOptions = () => {
     </Dropdown.Container>
   );
 };
-
 
 export const WalletsTitle = () => {
   const { t } = useTranslation("dappStore");

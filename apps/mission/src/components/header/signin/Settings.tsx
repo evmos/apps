@@ -17,43 +17,53 @@ import { IconHashtag } from "@evmosapps/ui/icons/line/basic/hashtag.tsx";
 import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
-import {
-  useUserProfile,
-} from "@evmosapps/user/auth/use-user-session.ts";
-
-const settingsOptions = [
-  {
-    icon: IconDollarCircle,
-    title: "signIn.settings.options.currency",
-    description: "USD",
-    isComingSoon: false,
-    isDisabled: true,
-  },
-  {
-    icon: IconGlobe,
-    title: "signIn.settings.options.language",
-    description: "signIn.settings.options.english",
-    isComingSoon: false,
-    isDisabled: true,
-  },
-  {
-    icon: IconBell,
-    title: "signIn.settings.options.notifications",
-    description: "",
-    isComingSoon: true,
-    isDisabled: true,
-  },
-  {
-    icon: IconHashtag,
-    title: "signIn.settings.options.addressFormat",
-    description: "",
-    isComingSoon: true,
-    isDisabled: true,
-  },
-];
+import { useUserProfile } from "@evmosapps/user/auth/use-user-session.ts";
+import { IconTrash2 } from "@evmosapps/ui/icons/line/basic/trash-2.tsx";
+import { useDeleteProfileModal } from "./ModalDeleteProfile";
 
 const SettingsOptions = () => {
   const { t } = useTranslation("dappStore");
+  const deleteProfileModal = useDeleteProfileModal();
+  const settingsOptions = [
+    {
+      icon: IconDollarCircle,
+      title: "signIn.settings.options.currency",
+      description: "USD",
+      isComingSoon: false,
+      isDisabled: true,
+    },
+    {
+      icon: IconGlobe,
+      title: "signIn.settings.options.language",
+      description: "signIn.settings.options.english",
+      isComingSoon: false,
+      isDisabled: true,
+    },
+    {
+      icon: IconBell,
+      title: "signIn.settings.options.notifications",
+      description: "",
+      isComingSoon: true,
+      isDisabled: true,
+    },
+    {
+      icon: IconHashtag,
+      title: "signIn.settings.options.addressFormat",
+      description: "",
+      isComingSoon: true,
+      isDisabled: true,
+    },
+    {
+      icon: IconTrash2,
+      title: "signIn.settings.options.deleteProfile",
+      description: "",
+      isComingSoon: false,
+      isDisabled: false,
+      onClick: () => {
+        deleteProfileModal.setIsOpen(true, {}, true);
+      },
+    },
+  ];
   return (
     <div>
       <div>
@@ -68,6 +78,10 @@ const SettingsOptions = () => {
               as="div"
               key={option.title}
               disabled={option.isDisabled}
+              onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                e.preventDefault();
+                option.onClick && option.onClick();
+              }}
             >
               {
                 <option.icon className="w-4 text-paragraph dark:text-paragraph-dark" />
@@ -133,7 +147,7 @@ const SettingsAddress = () => {
             className={cn("rounded-full")}
           />
         )}
-        {!user?.displayName ? (
+        {!user.displayName ? (
           <AddressDisplay address={address} />
         ) : (
           <span className="text-sm leading-5 font-medium text-heading dark:text-heading-dark">

@@ -28,11 +28,10 @@ export const ProfileButton = () => {
   return (
     <div
       className={`text-heading dark:text-heading-dark  flex items-center justify-center space-x-3 rounded-full  font-bold 
-      ${
-        isDesktop
+      ${isDesktop
           ? "bg-surface-container-lowest dark:bg-surface-container-lowest-dark px-4 md:px-8 py-2"
           : "border border-surface-container-high dark:border-surface-container-high-dark rounded-full p-[3px]"
-      }`}
+        }`}
       data-testid={`wallet-profile-button wallet-profile-button-${getActiveProviderKey()}`}
     >
       <div className="flex items-center justify-center space-x-3">
@@ -55,9 +54,8 @@ export const ProfileButton = () => {
       </div>
       {isDesktop && (
         <IconChevronDown
-          className={`w-5 text-paragraph dark:text-paragraph-dark transition-all duration-300 ${
-            isDropdownOpen && "rotate-180"
-          }`}
+          className={`w-5 text-paragraph dark:text-paragraph-dark transition-all duration-300 ${isDropdownOpen && "rotate-180"
+            }`}
         />
       )}
     </div>
@@ -65,11 +63,7 @@ export const ProfileButton = () => {
 };
 
 export const ProfileToggleButton = () => {
-  const {
-    setIsDropdownOpen,
-    isDropdownOpen,
-    setDropdownState,
-  } = useWallet();
+  const { setIsDropdownOpen, isDropdownOpen, setDropdownState } = useWallet();
   const { data: user } = useUserProfile();
   const { t } = useTranslation("dappStore");
   return (

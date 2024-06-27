@@ -16,8 +16,8 @@ import { Connector } from "wagmi";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { isKeplrInstalled, isLeapInstalled } from "./helpers";
 
-export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
-  const { connectors, connect, error } = useSignIn();
+export const Wallets = () => {
+  const { connectors, connect, error, defaultWallets: wallets } = useSignIn();
   const { isConnecting, isConnected } = useWallet();
   const [walletSelectedToConnect, setWalletSelectedToConnect] = useState("");
   const [setProviderStatus] = useInstallProvider(walletSelectedToConnect);
@@ -90,7 +90,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
       );
       const listWallets = wallets.slice();
       const selectedWallet = listWallets.splice(indexForWallet, 1)[0];
-      listWallets.unshift(selectedWallet);
+      if (selectedWallet) listWallets.unshift(selectedWallet);
       return listWallets;
     }
     return wallets;

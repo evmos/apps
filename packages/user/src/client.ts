@@ -8,7 +8,6 @@ const getClient = () =>
     result: {
       walletAccount: {
         address: {
-          // the dependencies
           needs: { address: true },
           compute(user) {
             return user.address as `0x${string}` | `${string}1${string}`;
@@ -17,7 +16,7 @@ const getClient = () =>
       },
     },
   });
-let prisma: ReturnType<typeof getClient> 
+let prisma: ReturnType<typeof getClient>;
 
 if (process.env.NODE_ENV === "production") {
   prisma = getClient();

@@ -10,6 +10,7 @@ import useWindowResize from "../useResize";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { IconSearch } from "@evmosapps/ui/icons/line/basic/search.tsx";
 import { CLICK_SEARCH, sendEvent } from "tracker";
+import { SiweExample } from "./SiweExample";
 
 export const Header = () => {
   const { windowSize, isDesktop } = useWindowResize();
@@ -32,6 +33,7 @@ export const Header = () => {
       >
         <IconSearch />
       </IconButton>
+      <SiweExample />
       {isDesktop && windowSize !== 0 && <SignIn />}
     </header>
   );

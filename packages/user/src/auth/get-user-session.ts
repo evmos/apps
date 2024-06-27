@@ -9,6 +9,7 @@ import type {
 } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth-options";
+import { User } from "../api";
 
 /**
  * Get user session in the server
@@ -45,6 +46,7 @@ import { authOptions } from "./auth-options";
  * }
  * ```
  */
+export type UserSession = { user: User };
 export function getUserSession(
   ...args:
     | [GetServerSidePropsContext["req"], GetServerSidePropsContext["res"]]
@@ -53,3 +55,5 @@ export function getUserSession(
 ) {
   return getServerSession(...args, authOptions);
 }
+
+

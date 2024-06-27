@@ -8,15 +8,21 @@ import Image from "next/image";
 import { profileImages } from "../edit/ModalEdit";
 import { cn } from "helpers";
 import { useProfileContext } from "../edit/useEdit";
-import { useAccount } from "wagmi";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import useWindowResize from "../../useResize";
 import { useWallet } from "@evmosapps/evmos-wallet";
+import { useUserProfile } from "@evmosapps/user/auth/use-user-session.ts";
+import { useTranslation } from "@evmosapps/i18n/client/instrumentation";
+import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
+import { Button } from "@evmosapps/ui/button/index.tsx";
+import { sendEvent } from "tracker/src/useTracker";
+import { CLICK_CONNECT_WALLET_BUTTON } from "tracker/src/events";
+import { Pulse } from "@evmosapps/ui/components/pulse/Pulse.tsx";
 
 export const ProfileButton = () => {
   const { profile } = useProfileContext();
+  const { data: user } = useUserProfile();
   const { isDesktop } = useWindowResize();
-  const { address } = useAccount();
   const { isDropdownOpen } = useWallet();
   const getImg = profileImages.find((image) => image.src === profile.img?.src);
   return (
@@ -41,10 +47,10 @@ export const ProfileButton = () => {
           />
         )}
         {isDesktop &&
-          (profile.name === "" ? (
-            <AddressDisplay address={address} />
+          (!user?.displayName ? (
+            <AddressDisplay address={user?.defaultWalletAccount.address} />
           ) : (
-            <span>{profile.name}</span>
+            <span>{user.displayName}</span>
           ))}
       </div>
       {isDesktop && (
@@ -55,5 +61,40 @@ export const ProfileButton = () => {
         />
       )}
     </div>
+  );
+};
+
+export const ProfileToggleButton = () => {
+  const {
+    setIsDropdownOpen,
+    isDropdownOpen,
+    setDropdownState,
+  } = useWallet();
+  const { data: user } = useUserProfile();
+  const { t } = useTranslation("dappStore");
+  return (
+    <Dropdown.Button
+      onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        e.preventDefault();
+        setIsDropdownOpen(!isDropdownOpen);
+        if (user) setDropdownState("profile");
+        else setDropdownState("wallets");
+      }}
+    >
+      {user && <ProfileButton />}
+      {!user && (
+        <Button
+          outlined={isDropdownOpen}
+          onClick={() => {
+            if (!isDropdownOpen) {
+              sendEvent(CLICK_CONNECT_WALLET_BUTTON);
+            }
+          }}
+        >
+          {!isDropdownOpen && <Pulse />}
+          {t("signIn.button")}
+        </Button>
+      )}
+    </Dropdown.Button>
   );
 };

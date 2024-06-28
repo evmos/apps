@@ -8,7 +8,7 @@ import { ElementType, ForwardedRef, createElement, forwardRef } from "react";
 const chip = cva({
   base: [
     //default properties
-    "flex tracking-wide items-center w-fit h-[28px] pl-[10px] pr-2 py-2 rounded-2xl text-sm gap-x-2 [&_.icon]:h-3 [&_.icon]:w-3 transition-all duration-300 ease-in-out",
+    "flex tracking-wide items-center w-fit h-[28px] pl-[10px] pr-2 py-2 rounded-2xl text-sm gap-x-2 [&_.icon]:h-5 [&_.icon]:w-5 transition-all duration-300 ease-in-out",
     //opacity
     "bg-opacity-[0.08] dark:bg-opacity-[0.08]",
     //hover

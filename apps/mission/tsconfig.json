@@ -17,7 +17,11 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "../../packages/i18n/utils/getLocaleFromPath.ts",
-    "tailwind.config.mts"
+    "tailwind.config.mts",
+    "../../packages/user/src/global.d.ts",
+    "../../packages/user/src/auth/next-auth.d.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

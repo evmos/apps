@@ -21,7 +21,7 @@
     "chain-token-registry": "github:evmos/chain-token-registry#main",
     "helpers": "workspace:*",
     "lodash-es": "^4.17.21",
-    "next": "14.2.3",
+    "next": "14.2.4",
     "typescript": "^5.3.3"
   },
   "browserslist": [

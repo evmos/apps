@@ -20,6 +20,8 @@ import { ContainerLogo } from "../../components/ContainerLogo";
 import { FavoritesProvider } from "../../components/useFavorite";
 import { AlertStack } from "@evmosapps/ui/components/alert/alert-stack.tsx";
 import { fetchExplorerData } from "@evmosapps/dappstore-page/src/lib/fetch-explorer-data";
+import { ReconnectWarning } from "../../components/warning/reconnect-wallet";
+import { MismatchAddress } from "../../components/warning/mismatch-address";
 
 export function generateStaticParams() {
   return languages.map((locale) => ({ locale }));
@@ -92,6 +94,8 @@ async function RootLayout({
                   <Header />
                   <div className="px-5 md:px-14 max-w-full overflow-x-hidden">
                     <main className="flex flex-col dark:text-white min-h-screen relative 2xl:container 2xl:mx-auto">
+                      <MismatchAddress />
+                      <ReconnectWarning></ReconnectWarning>
                       {children}
                     </main>
                   </div>

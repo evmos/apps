@@ -105,11 +105,21 @@
   },
 
   "profile": {
+    "title": "Wallet",
     "modal": {
       "title": "Edit Profile",
       "label": "Display Name",
       "placeholder": "user.evmos",
       "button": "Save changes"
+    },
+    "deleteModal": {
+      "title": "Are you sure?",
+      "subtitle": "We're sorry to see you go!",
+      "description": "By deleting your profile, all your data, including profile details, progress and activity, will be permanently removed. If you wish to recreate the account, you will have to set up all your information from the beginning.",
+      "acknowledge": "I acknowledge that my progress will be deleted.",
+      "accept": "Delete Profile",
+      "cancel": "Cancel",
+      "alert": "Profile deleted"
     },
     "options": {
       "portfolio": "Portfolio",
@@ -117,7 +127,25 @@
       "settings": "Settings",
       "signOut": "Sign out"
     },
-    "title": "Wallet"
+    "reconnect": {
+      "title": "Re-connect your wallet.",
+      "body": "Your wallet seems to have been disconnected - you need proper wallet connection in order to interact with dApps on the dApp Store.",
+      "button": "Connect",
+      "alert": "You’ve been re-connected. Welcome back!"
+    },
+    "evmModal": {
+      "title": "Before you go further,",
+      "subtitle": "You've recently switched addresses in your wallet.",
+      "description": "That doesn't change the address you're signed in with on the dApp Store. This means that all transactions will be submitted with the address linked to your profile, <span>{{address}}</span>, and not necessarily the address that's connected in your wallet.",
+      "acknowledge": "I acknowledge that I'm submitting a transaction with the address linked to my profile, which is <span>{{address}}</span>.",
+      "buttonConfirm": "Submit"
+    },
+    "cosmosModal": {
+      "title": "Switch your address in your wallet.",
+      "subtitle": "In order to submit a transaction, you need to be connected to the same address in your wallet as you are in your profile.",
+      "description": " Alternatively, you can sign in to another profile with your connected address in your wallet.",
+      "buttonConfirm": "Ok"
+    }
   },
   "signIn": {
     "button": "Sign in ",
@@ -125,12 +153,25 @@
     "switchWallet": {
       "title": "Wallet"
     },
+    "modal": {
+      "title": "Sign in to access all dApps",
+      "cancel.title": "Are you sure you want to skip this step?",
+      "cancel.body": "Without verification, you won't be able to interact with any dApps on the Store. We recommend you to verify your address.",
+      "body": "In order to interact with dApps, you need to verify your wallet by signing the off-chain transaction in your wallet.",
+      "button": "Verify",
+      "skip.button": "Skip",
+      "connectWallet": "Connect wallet",
+      "verify": "Verify ownership",
+      "signature": "Signature verification",
+      "connected": "Connected",
+      "verified": "Verified"
+    },
     "wallet": {
       "recommended": "Recommended",
       "detected": "Detected"
     },
     "settings": {
-      "title": "Settings",
+      "title": "Profile Settings",
       "options": {
         "title": "Account",
         "comingSoon": "Coming soon",
@@ -138,7 +179,8 @@
         "language": "Language",
         "english": "English",
         "notifications": "Notifications",
-        "addressFormat": "Address Format"
+        "addressFormat": "Address Format",
+        "deleteProfile": "Delete Profile"
       }
     },
     "supportedWallets": {
@@ -161,11 +203,37 @@
       "favorites": "Favorites"
     }
   },
+  "warning": {
+    "reconnect": {
+      "title": "Re-connect your wallet.",
+      "body": "It seems like your wallet's been disconnected - re-connect to continue using the dApp Store.",
+      "button": "Connect"
+    },
+    "mismatch": {
+      "title": "There's a mismatch of addresses.",
+      "body": "Manage your profile: Sign in to another profile or connect to your original address in your wallet.",
+      "button": "Manage Profile"
+    }
+  },
   "share": {
     "description": "Hey, check out this cool dApp I discovered on the Evmos dApp Store!",
     "options": {
       "twitter": "X",
       "telegram": "Telegram"
+    }
+  },
+  "manageProfile": {
+    "title": "Manage Profile",
+    "description": "There's currently a mismatch of connected addresses in your profile and your wallet. Either sign in to another profile or connect to your original address.",
+    "options": {
+      "profile": {
+        "title": "Connected via profile",
+        "button": "Active"
+      },
+      "wallet": {
+        "title": "Connected via wallet",
+        "button": "Sign in"
+      }
     }
   }
 }

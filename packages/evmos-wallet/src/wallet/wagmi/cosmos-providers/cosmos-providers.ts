@@ -25,6 +25,7 @@ const cosmosChainConfig = {
       (module) => module.default,
     ),
 } as const;
+
 export const keplrProvider = new CosmosEIP1193Provider(
   "keplr",
   cosmosChainConfig,

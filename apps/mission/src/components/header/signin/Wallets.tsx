@@ -90,7 +90,7 @@ export const Wallets = ({ wallets }: { wallets: WALLETS_TYPE[] }) => {
       );
       const listWallets = wallets.slice();
       const selectedWallet = listWallets.splice(indexForWallet, 1)[0];
-      listWallets.unshift(selectedWallet);
+      if (selectedWallet) listWallets.unshift(selectedWallet);
       return listWallets;
     }
     return wallets;

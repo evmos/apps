@@ -4,13 +4,11 @@
 "use client";
 
 import Image from "next/image";
-import { profileImages, useEditModal } from "../edit/ModalEdit";
+import { useEditModal } from "../edit/ModalEdit";
 import { cn } from "helpers";
 import { IconEdit2 } from "@evmosapps/ui/icons/line/editor/edit-2.tsx";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
-import { useProfileContext } from "../edit/useEdit";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
-import { useAccount } from "wagmi";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { IconDollarCircle } from "@evmosapps/ui/icons/line/finances/dollar-circle.tsx";
 import { IconGlobe } from "@evmosapps/ui/icons/line/map/globe.tsx";
@@ -19,40 +17,53 @@ import { IconHashtag } from "@evmosapps/ui/icons/line/basic/hashtag.tsx";
 import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
-
-const settingsOptions = [
-  {
-    icon: IconDollarCircle,
-    title: "signIn.settings.options.currency",
-    description: "USD",
-    isComingSoon: false,
-    isDisabled: true,
-  },
-  {
-    icon: IconGlobe,
-    title: "signIn.settings.options.language",
-    description: "signIn.settings.options.english",
-    isComingSoon: false,
-    isDisabled: true,
-  },
-  {
-    icon: IconBell,
-    title: "signIn.settings.options.notifications",
-    description: "",
-    isComingSoon: true,
-    isDisabled: true,
-  },
-  {
-    icon: IconHashtag,
-    title: "signIn.settings.options.addressFormat",
-    description: "",
-    isComingSoon: true,
-    isDisabled: true,
-  },
-];
+import { useUserProfile } from "@evmosapps/user/auth/use-user-session.ts";
+import { IconTrash2 } from "@evmosapps/ui/icons/line/basic/trash-2.tsx";
+import { useDeleteProfileModal } from "./ModalDeleteProfile";
 
 const SettingsOptions = () => {
   const { t } = useTranslation("dappStore");
+  const deleteProfileModal = useDeleteProfileModal();
+  const settingsOptions = [
+    {
+      icon: IconDollarCircle,
+      title: "signIn.settings.options.currency",
+      description: "USD",
+      isComingSoon: false,
+      isDisabled: true,
+    },
+    {
+      icon: IconGlobe,
+      title: "signIn.settings.options.language",
+      description: "signIn.settings.options.english",
+      isComingSoon: false,
+      isDisabled: true,
+    },
+    {
+      icon: IconBell,
+      title: "signIn.settings.options.notifications",
+      description: "",
+      isComingSoon: true,
+      isDisabled: true,
+    },
+    {
+      icon: IconHashtag,
+      title: "signIn.settings.options.addressFormat",
+      description: "",
+      isComingSoon: true,
+      isDisabled: true,
+    },
+    {
+      icon: IconTrash2,
+      title: "signIn.settings.options.deleteProfile",
+      description: "",
+      isComingSoon: false,
+      isDisabled: false,
+      onClick: () => {
+        deleteProfileModal.setIsOpen(true, {}, true);
+      },
+    },
+  ];
   return (
     <div>
       <div>
@@ -67,6 +78,10 @@ const SettingsOptions = () => {
               as="div"
               key={option.title}
               disabled={option.isDisabled}
+              onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                e.preventDefault();
+                option.onClick && option.onClick();
+              }}
             >
               {
                 <option.icon className="w-4 text-paragraph dark:text-paragraph-dark" />
@@ -108,11 +123,12 @@ const SettingsTitle = () => {
 };
 
 const SettingsAddress = () => {
-  const { profile } = useProfileContext();
-  const image = profileImages.find((image) => image.src === profile.img?.src);
+  const { data: user } = useUserProfile();
   const editModal = useEditModal();
-  const { address } = useAccount();
   const { setIsDropdownOpen } = useWallet();
+  if (!user) return null;
+  const image = user.profilePictureUrl;
+  const address = user.defaultWalletAccount.address;
   return (
     <button
       onClick={() => {
@@ -124,19 +140,18 @@ const SettingsAddress = () => {
       <div className="flex items-center space-x-3">
         {image && (
           <Image
-            src={image.src}
-            blurDataURL={image.blurDataURL}
+            src={image}
             width={24}
             height={24}
-            alt={image.src}
+            alt={user.displayName || address}
             className={cn("rounded-full")}
           />
         )}
-        {profile.name === "" ? (
+        {!user.displayName ? (
           <AddressDisplay address={address} />
         ) : (
           <span className="text-sm leading-5 font-medium text-heading dark:text-heading-dark">
-            {profile.name}
+            {user.displayName}
           </span>
         )}
       </div>

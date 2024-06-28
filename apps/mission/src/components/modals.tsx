@@ -51,8 +51,63 @@ const EditModal = dynamic(
   },
 );
 
+const SignInModal = dynamic(
+  () => import("./header/signin/Signin/Modal").then((mod) => mod.SignInModal),
+  {
+    ssr: false,
+  },
+);
+
 const WalletsModal = dynamic(
   () => import("./header/signin/WalletsModal").then((mod) => mod.WalletsModal),
+  {
+    ssr: false,
+  },
+);
+
+const ManageProfileModal = dynamic(
+  () =>
+    import("./header/signin/ManageProfileModal").then(
+      (mod) => mod.ManageProfileModal,
+    ),
+  {
+    ssr: false,
+  },
+);
+
+const DeleteProfileModal = dynamic(
+  () =>
+    import("./header/signin/ModalDeleteProfile").then(
+      (mod) => mod.DeleteProfileModal,
+    ),
+  {
+    ssr: false,
+  },
+);
+
+const ReConnectModal = dynamic(
+  () =>
+    import("./header/signin/ModalReConnect").then((mod) => mod.ReConnectModal),
+  {
+    ssr: false,
+  },
+);
+
+const ConfirmEVMTxModal = dynamic(
+  () =>
+    import("stateful-components/src/modals/ConfirmEVMTxModal").then(
+      (mod) => mod.ConfirmEVMTxModal,
+    ),
+  {
+    ssr: false,
+  },
+);
+
+const ConfirmCosmosTxModal = dynamic(
+  () =>
+    import("stateful-components/src/modals/ConfirmCosmosTxModal").then(
+      (mod) => mod.ConfirmCosmosTxModal,
+    ),
   {
     ssr: false,
   },
@@ -65,8 +120,14 @@ export const Modals = () => {
       <TopupModal />
       <TermsOfServiceModal />
       <ConsentModal />
+      <SignInModal />
       <WalletsModal />
       <EditModal />
+      <ManageProfileModal />
+      <DeleteProfileModal />
+      <ReConnectModal />
+      <ConfirmEVMTxModal />
+      <ConfirmCosmosTxModal />
     </Suspense>
   );
 };

@@ -2,7 +2,7 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { Button } from "@evmosapps/ui/button/index.tsx";
 import { Alert } from "@evmosapps/ui/components/alert/index.tsx";
 import { IconAlertCircle } from "@evmosapps/ui/icons/line/alerts/alert-circle.tsx";
@@ -10,7 +10,24 @@ import { useTranslation } from "@evmosapps/i18n/client";
 import { useManageProfileModal } from "../header/signin/ManageProfileModal";
 import { useAccount } from "wagmi";
 
-export const MismatchAddress = () => {
+// Implement withSuspense
+const withSuspense = <P extends JSX.IntrinsicElements["div"]>(
+  Component: React.ComponentType<P>,
+  { fallback }: { fallback: React.ReactNode },
+) => {
+  const Suspended = (props: P) => (
+    <Suspense fallback={fallback}>
+      <Component {...props} />
+    </Suspense>
+  );
+
+  Suspended.displayName = `withSuspense(${Component.displayName || Component.name || "Component"})`;
+
+  return Suspended;
+};
+
+// Define MismatchAddressComponent
+const MismatchAddressComponent: React.FC = () => {
   const [isAlertVisible, setAlertVisible] = useState(false);
 
   const { t } = useTranslation("dappStore");
@@ -37,6 +54,7 @@ export const MismatchAddress = () => {
   if (!isAlertVisible) {
     return null;
   }
+
   return (
     <div className="my-4">
       <Alert variant="warning" dismiss={handleDismiss}>
@@ -53,3 +71,10 @@ export const MismatchAddress = () => {
     </div>
   );
 };
+
+// Export MismatchAddress with Suspense
+export const MismatchAddress = withSuspense(MismatchAddressComponent, {
+  fallback: null,
+});
+
+MismatchAddressComponent.displayName = "MismatchAddressComponent";

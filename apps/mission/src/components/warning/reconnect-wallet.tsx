@@ -2,14 +2,32 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { useState } from "react";
+
+import React, { Suspense, useState } from "react";
 import { Button } from "@evmosapps/ui/button/index.tsx";
 import { Alert } from "@evmosapps/ui/components/alert/index.tsx";
 import { IconAlertCircle } from "@evmosapps/ui/icons/line/alerts/alert-circle.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { useReConnectModal } from "../header/signin/ModalReConnect";
 
-export const ReconnectWarning = () => {
+// Implement withSuspense
+const withSuspense = <P extends JSX.IntrinsicElements["div"]>(
+  Component: React.ComponentType<P>,
+  { fallback }: { fallback: React.ReactNode },
+) => {
+  const Suspended = (props: P) => (
+    <Suspense fallback={fallback}>
+      <Component {...props} />
+    </Suspense>
+  );
+
+  Suspended.displayName = `withSuspense(${Component.displayName || Component.name || "Component"})`;
+
+  return Suspended;
+};
+
+// Define ReconnectWarning component
+const ReconnectWarningComponent: React.FC = () => {
   const [isAlertVisible, setAlertVisible] = useState(true);
   const { t } = useTranslation("dappStore");
 
@@ -49,3 +67,10 @@ export const ReconnectWarning = () => {
     </div>
   );
 };
+
+// Export ReconnectWarning with Suspense
+export const ReconnectWarning = withSuspense(ReconnectWarningComponent, {
+  fallback: null,
+});
+
+ReconnectWarningComponent.displayName = "ReconnectWarningComponent";

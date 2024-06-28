@@ -12,16 +12,19 @@ import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useDropdownState } from "./useDropdownState";
 import { SignInTitle, SignInOptions, WalletsTitle } from "./signInParts";
 import { useUserSession } from "@evmosapps/user/auth/use-user-session.ts";
+import { useSignIn } from "./useSignIn";
 
 const DrawContent = () => {
   const { dropdownState } = useWallet();
+  const { defaultWallets } = useSignIn();
+
   const { data: session } = useUserSession();
   if (dropdownState === "wallets") {
     return (
       <>
         {session ? <WalletsTitle /> : <SignInTitle />}
         <Dropdown.Container>
-          <Wallets />
+          <Wallets wallets={defaultWallets} />
         </Dropdown.Container>
         <SignInOptions />
       </>
@@ -35,12 +38,8 @@ const DrawContent = () => {
 };
 
 export const StepsSignIn = () => {
-  const {
-    isHydrating,
-    isReconnecting,
-    isDropdownOpen,
-    setDropdownState,
-  } = useWallet();
+  const { isHydrating, isReconnecting, isDropdownOpen, setDropdownState } =
+    useWallet();
   const { data: session } = useUserSession();
   useEffect(() => {
     if (session) setDropdownState("profile");

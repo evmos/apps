@@ -2,75 +2,52 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { ProfileButton } from "./ProfileButton";
+import { ProfileToggleButton } from "./ProfileButton";
 import { Wallets } from "./Wallets";
-
-import { useSignIn } from "./useSignIn";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { Profile } from "./Profile";
 import { Settings } from "./Settings";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useDropdownState } from "./useDropdownState";
-import {
-  SignInButton,
-  SignInTitle,
-  SignInOptions,
-  WalletsTitle,
-} from "./signInParts";
-export const StepsSignIn = () => {
+import { SignInTitle, SignInOptions, WalletsTitle } from "./signInParts";
+import { useUserSession } from "@evmosapps/user/auth/use-user-session.ts";
+import { useSignIn } from "./useSignIn";
+
+const DrawContent = () => {
+  const { dropdownState } = useWallet();
   const { defaultWallets } = useSignIn();
 
-  const {
-    connector,
-    address,
-    isHydrating,
-    isReconnecting,
-    isDisconnected,
-    isConnecting,
-    setIsDropdownOpen,
-    isDropdownOpen,
-    setDropdownState,
-    dropdownState,
-  } = useWallet();
+  const { data: session } = useUserSession();
+  if (dropdownState === "wallets") {
+    return (
+      <>
+        {session ? <WalletsTitle /> : <SignInTitle />}
+        <Dropdown.Container>
+          <Wallets wallets={defaultWallets} />
+        </Dropdown.Container>
+        <SignInOptions />
+      </>
+    );
+  }
+  if (dropdownState === "settings") {
+    return <Settings />;
+  }
 
+  return <Profile />;
+};
+
+export const StepsSignIn = () => {
+  const { isHydrating, isReconnecting, isDropdownOpen, setDropdownState } =
+    useWallet();
+  const { data: session } = useUserSession();
+  useEffect(() => {
+    if (session) setDropdownState("profile");
+    else setDropdownState("wallets");
+  }, [session, setDropdownState]);
   const ref = useRef<HTMLDivElement>(null);
 
   useDropdownState(ref);
-
-  const drawButton = () => {
-    if (isDisconnected || isConnecting) {
-      return <SignInButton />;
-    }
-    if (address && connector) {
-      return <ProfileButton />;
-    }
-  };
-
-  const drawContent = () => {
-    if (
-      isDisconnected ||
-      isConnecting ||
-      (address && connector && dropdownState === "wallets")
-    ) {
-      return (
-        <>
-          {dropdownState === "wallets" ? <WalletsTitle /> : <SignInTitle />}
-          <Dropdown.Container>
-            <Wallets wallets={defaultWallets} />
-          </Dropdown.Container>
-          <SignInOptions />
-        </>
-      );
-    }
-    if (address && connector && dropdownState === "settings") {
-      return <Settings />;
-    }
-
-    if (address && connector && dropdownState === "profile") {
-      return <Profile />;
-    }
-  };
 
   if (isHydrating || isReconnecting) {
     return (
@@ -79,23 +56,14 @@ export const StepsSignIn = () => {
       </div>
     );
   }
-
   return (
     <div className="relative text-right">
       <Dropdown.Menu>
         <>
-          <Dropdown.Button
-            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-              e.preventDefault();
-              setIsDropdownOpen(!isDropdownOpen);
-              setDropdownState("profile");
-            }}
-          >
-            {drawButton()}
-          </Dropdown.Button>
+          <ProfileToggleButton />
           {isDropdownOpen && (
             <Dropdown.Items className="w-80" ref={ref} static>
-              {drawContent()}
+              <DrawContent />
             </Dropdown.Items>
           )}
         </>

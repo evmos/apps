@@ -27,6 +27,7 @@
     "@effect/schema": "^0.67.22",
     "@evmosapps/config": "workspace:*",
     "@prisma/client": "5.15.0",
+    "@tanstack/react-query": "^5.35.1",
     "@types/chance": "^1.1.6",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.14.2",

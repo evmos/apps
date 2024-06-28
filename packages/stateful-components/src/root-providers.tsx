@@ -45,7 +45,7 @@ export const RootProviders = ({ children }: PropsWithChildren) => {
     <Provider store={store}>
       <WagmiProvider config={wagmiConfig}>
         <trpc.Provider client={trpcClient} queryClient={queryClient}>
-          <QueryClientProvider client={queryClient}>
+          <QueryClientProvider client={queryClient} >
             {/* <PersistQueryClientProvider
           client={queryClient}
           persistOptions={{ persister }}

@@ -11,7 +11,7 @@ import {
   useContext,
 } from "react";
 import { useAccount, useAccountEffect } from "wagmi";
-import {  wagmiConfig } from "../wagmi";
+import { wagmiConfig } from "../wagmi";
 import { resetWallet, setWallet } from "../redux/WalletSlice";
 import {
   RemoveWalletFromLocalStorage,
@@ -28,16 +28,9 @@ const WalletContext = createContext<{
   config: typeof wagmiConfig;
   isDropdownOpen: boolean;
   setIsDropdownOpen: (val: boolean) => void;
-  dropdownState: string;
+  dropdownState: DropdownState;
   setDropdownState: (val: DropdownState) => void;
-}>({
-  isWalletHydrated: false,
-  config: wagmiConfig,
-  isDropdownOpen: false,
-  setIsDropdownOpen: () => { },
-  dropdownState: "",
-  setDropdownState: () => { },
-});
+} | null>(null);
 
 const useWalletContext = () => {
   const context = useContext(WalletContext);
@@ -72,9 +65,8 @@ export const useWallet = () => {
 function Provider({ children }: WalletProviderProps) {
   const [isWalletHydrated, setIsWalletHydrated] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [dropdownState, setDropdownState] = useState<DropdownState>("profile");
   const { address, connector, isConnected } = useAccount();
-
+  const [dropdownState, setDropdownState] = useState<DropdownState>("wallets");
   /**
    * I would expect that the behavior of reconnect would be to only reconnect if there was a previous connection
    * however, even when you don't have a recent connection, it reconnects to the first in the list

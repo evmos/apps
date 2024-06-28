@@ -4,27 +4,30 @@
 "use client";
 
 import { getWalletByConnector } from "./helpers";
-import { useTranslation } from "@evmosapps/i18n/client";
 import { IconButton } from "@evmosapps/ui/button/icon-button.tsx";
 import { AddressDisplay } from "@evmosapps/ui-helpers";
 import { CopyButton } from "@evmosapps/ui-helpers/src/CopyButton.tsx";
-import { Suspense } from "react";
 import { TotalEvmos, TotalUsd } from "./useEvmosBalance";
-import { useAccount, useDisconnect } from "wagmi";
+import { useDisconnect } from "wagmi";
 import { IconArrowSwap } from "@evmosapps/ui/icons/line/arrows/arrow-swap.tsx";
 import { IconPlus } from "@evmosapps/ui/icons/line/basic/plus.tsx";
 import { IconGear } from "@evmosapps/ui/icons/line/basic/gear.tsx";
 import { IconLogOut2 } from "@evmosapps/ui/icons/line/arrows/log-out-2.tsx";
-import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
-import { Link } from "@evmosapps/i18n/client";
+import { Link, useTranslation } from "@evmosapps/i18n/client";
 import {
   CLICK_DISCONNECT_WALLET_BUTTON,
   sendEvent,
   CLICK_ON_PORTFOLIO,
   CLICK_ON_TOP_UP,
 } from "tracker";
+import { SuspenseBoundary } from "./SuspenseBoundary";
+import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
+import { signOut } from "next-auth/react";
+import { useUserProfile } from "@evmosapps/user/auth/use-user-session.ts";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 const ProfileTitle = () => {
   const { connector, setDropdownState } = useWallet();
   const { t } = useTranslation("dappStore");
@@ -54,10 +57,11 @@ const ProfileTitle = () => {
 };
 
 const ProfileOptions = () => {
-  const { address } = useAccount();
+  const { data: user } = useUserProfile();
   const { setIsDropdownOpen } = useWallet();
   const { t } = useTranslation("dappStore");
-  if (!address) return null;
+  if (!user) return null;
+  const address = user.defaultWalletAccount.address;
 
   return (
     <Dropdown.Container className="space-y-6 pt-8 pb-10 pl-1 pr-2">
@@ -70,23 +74,25 @@ const ProfileOptions = () => {
       <div>
         <h6 className="text-2xl font-medium text-heading dark:text-heading-dark leading-8">
           {!address && "-"}
-          <Suspense
+          <SuspenseBoundary
+            errorFallback={null}
             fallback={
               <span className="animate-pulse w-24 h-7 inline-flex bg-white/20 rounded-full my-1" />
             }
           >
             {address && <TotalEvmos address={address} />} EVMOS
-          </Suspense>
+          </SuspenseBoundary>
         </h6>
         <p className="font-medium text-paragraph dark:text-paragraph-dark leading-5 text-sm">
           {!address && "-"}
-          <Suspense
+          <SuspenseBoundary
+            errorFallback={null}
             fallback={
               <span className="animate-pulse w-24 h-5 inline-flex bg-white/20 rounded-full" />
             }
           >
             {address && <TotalUsd address={address} />} USD
-          </Suspense>
+          </SuspenseBoundary>
         </p>
       </div>
       <div className="flex justify-center gap-4 text-paragraph dark:text-paragraph-dark text-xs">
@@ -128,9 +134,18 @@ const ProfileOptions = () => {
 const ProfileSettings = () => {
   const { setIsDropdownOpen, setDropdownState } = useWallet();
   const { t } = useTranslation("dappStore");
-  const { disconnect } = useDisconnect({
-    mutation: {
-      onSuccess: () => {},
+  const queryClient = useQueryClient();
+  const { disconnectAsync } = useDisconnect({});
+  const { mutate: signOutMutate, isPending } = useMutation({
+    mutationFn: async () => {
+      sendEvent(CLICK_DISCONNECT_WALLET_BUTTON);
+      await signOut({ redirect: false });
+      await disconnectAsync();
+    },
+
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["user"] });
+      setIsDropdownOpen(false);
     },
   });
   return (
@@ -153,10 +168,9 @@ const ProfileSettings = () => {
 
       <Dropdown.Item
         as="button"
+        disabled={isPending}
         onClick={() => {
-          disconnect();
-          setIsDropdownOpen(false);
-          sendEvent(CLICK_DISCONNECT_WALLET_BUTTON);
+          signOutMutate();
         }}
       >
         {

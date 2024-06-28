@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@evmosapps/config": "workspace:*",
+    "@evmosapps/user": "workspace:*",
     "@evmosapps/constants": "workspace:*",
     "@evmosapps/trpc": "workspace:*",
     "@tanstack/query-sync-storage-persister": "^5.35.1",

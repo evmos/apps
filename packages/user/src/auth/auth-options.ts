@@ -4,7 +4,7 @@
 import "server-only";
 import NextAuth from "next-auth/next";
 import { AuthOptions } from "next-auth";
-import { apiClient } from "../api";
+import { getUserById } from "../api";
 import { JWT } from "next-auth/jwt";
 import { SignWithEthereumprovider } from "./sign-with-ethereum-provider";
 
@@ -28,7 +28,7 @@ export const authOptions: AuthOptions = {
     },
     async session({ session, token }) {
       if (!session.user?.id && token?.sub) {
-        session.user = await apiClient.getUserById(token.sub);
+        session.user = await getUserById(token.sub);
       }
       return session;
     },

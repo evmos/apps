@@ -132,6 +132,7 @@ const wordBreak = (str: string, width: number) => {
   }
   return sentence.trim();
 };
+
 const logAccounts = (accounts: ReturnType<typeof makeAccount>[]) => {
   accounts.forEach((account) => {
     const table = new Table({
@@ -147,6 +148,7 @@ const logAccounts = (accounts: ReturnType<typeof makeAccount>[]) => {
     table.length = 0;
   });
 };
+
 accountsProgram.command("list").action(async () => {
   const accounts = await readAccounts();
 

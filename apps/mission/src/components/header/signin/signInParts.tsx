@@ -2,17 +2,19 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-import { Button } from "@evmosapps/ui/button/index.tsx";
-import { Pulse } from "@evmosapps/ui/components/pulse/Pulse.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { IconWalletPlus } from "@evmosapps/ui/icons/line/finances/wallet-plus.tsx";
 import { useWallet } from "@evmosapps/evmos-wallet";
 import { Dropdown } from "@evmosapps/ui/components/dropdown/Dropdown.tsx";
 import { useOtherWalletsModal } from "./WalletsModal";
 import { IconChevronRight } from "@evmosapps/ui/icons/line/arrows/chevron-right.tsx";
-import { CLICK_CONNECT_WALLET_BUTTON, sendEvent } from "tracker";
 import { IconArrowLeft } from "@evmosapps/ui/icons/line/arrows/arrow-left.tsx";
 import { useSignInModal } from "./Signin/Modal";
+import { Button } from "@evmosapps/ui/button/index.tsx";
+import { sendEvent } from "tracker/src/useTracker";
+import { CLICK_CONNECT_WALLET_BUTTON } from "tracker/src/events";
+import { Pulse } from "@evmosapps/ui/components/pulse/Pulse.tsx";
+
 export const SignInButton = () => {
   const { isDropdownOpen } = useWallet();
   const { t } = useTranslation("dappStore");

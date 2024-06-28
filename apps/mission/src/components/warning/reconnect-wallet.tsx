@@ -15,15 +15,15 @@ const withSuspense = <P extends JSX.IntrinsicElements["div"]>(
   Component: React.ComponentType<P>,
   { fallback }: { fallback: React.ReactNode },
 ) => {
-  const WrappedComponent = (props: P) => (
+  const Suspended = (props: P) => (
     <Suspense fallback={fallback}>
       <Component {...props} />
     </Suspense>
   );
 
-  WrappedComponent.displayName = `withSuspense(${Component.displayName || Component.name || "Component"})`;
+  Suspended.displayName = `withSuspense(${Component.displayName || Component.name || "Component"})`;
 
-  return WrappedComponent;
+  return Suspended;
 };
 
 // Define ReconnectWarning component

@@ -4,6 +4,7 @@
 import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
 import { Button } from "@evmosapps/ui/button/index.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
+import { useDisconnect } from "wagmi";
 
 export const CancelModalBody = ({
   setIsOpen,
@@ -13,9 +14,12 @@ export const CancelModalBody = ({
   setSignInStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { t } = useTranslation("dappStore");
+  const { disconnect } = useDisconnect();
 
   const handleOnClick = () => {
+    disconnect();
     setIsOpen(false);
+    setSignInStep(0); //TODO: hacer que cambie a setSignInStep(0) pero que no se vea el cambio por pantalla.
   };
 
   return (

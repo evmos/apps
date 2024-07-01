@@ -4,10 +4,33 @@
 import { Chip } from "@evmosapps/ui/chips/Chip.tsx";
 import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
 import { Button } from "@evmosapps/ui/button/index.tsx";
-import { useWallet } from "@evmosapps/evmos-wallet";
+import { useWallet, wagmiConfig } from "@evmosapps/evmos-wallet";
 import { IconCheck } from "@evmosapps/ui/icons/line/basic/check.tsx";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { useState } from "react";
+import { getAccount, signMessage } from "wagmi/actions";
+import { signIn } from "next-auth/react";
+import { queryClient } from "helpers/src/clients/query";
+import { createSiweMessage } from "@evmosapps/user/auth/create-siwe-message.ts";
+
+const signInWithEthereum = async () => {
+  const account = getAccount(wagmiConfig);
+  if (!account.address) {
+    throw new Error("No account found");
+  }
+  const message = await createSiweMessage(account.address);
+  const signature = await signMessage(wagmiConfig, {
+    message: message.prepareMessage(),
+    account: account.address,
+  });
+
+  await signIn("credentials", {
+    message: JSON.stringify(message),
+    signature,
+    callbackUrl: window.location.pathname,
+    redirect: false,
+  });
+};
 
 export const SigninModalBody = ({
   setSignInStep,
@@ -16,10 +39,15 @@ export const SigninModalBody = ({
 }) => {
   const { t } = useTranslation("dappStore");
   const { address } = useWallet();
-  const [verified] = useState(false);
+  const [verified, setVerified] = useState(false);
 
-  const handleOnClick = () => {
-    setSignInStep(1);
+  const VerifyClick = async () => {
+    //TODO: poner spiner
+    await signInWithEthereum();
+    await queryClient.invalidateQueries({
+      queryKey: ["user"],
+    });
+    setVerified(true); //TODO: que puedo chequear antes de poner el verify
   };
 
   return (
@@ -78,9 +106,7 @@ export const SigninModalBody = ({
                 {t("signIn.modal.verified")}
               </Chip>
             ) : (
-              <Button onClick={handleOnClick}>
-                {t("signIn.modal.button")}
-              </Button>
+              <Button onClick={VerifyClick}>{t("signIn.modal.button")}</Button>
             )}
           </div>
         </div>

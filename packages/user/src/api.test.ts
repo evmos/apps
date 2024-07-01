@@ -1,27 +1,37 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
-import { beforeEach, describe, test, expect, expectTypeOf } from "vitest";
+import { beforeEach, describe, test, expect, expectTypeOf, vi } from "vitest";
 import {
   deleteAllUsers,
-  createUser,
+  unprotected_createUser,
   getUserById,
   createUserWalletAccount,
   verifyWalletAccount,
   deleteWalletAccount,
   getUserByAddress,
+  deleteUserById,
 } from "./api";
 import { privateKeyToAccount, generatePrivateKey } from "viem/accounts";
 import { Chance } from "chance";
-const chance = new Chance();
+import * as mod from "./auth/get-user-session";
 
+const getUserSessionMock = vi.spyOn(mod, "getUserSession");
+const mockSession = (id: string | null) => {
+  // @ts-expect-error just a mock
+  if (id) getUserSessionMock.mockReturnValue(Promise.resolve({ user: { id } }));
+  else getUserSessionMock.mockReturnValue(Promise.resolve(null));
+};
+mockSession(null);
+
+const chance = new Chance();
+const stringify = JSON.stringify;
 const makeRandomAccount = () => {
   const privateKey = generatePrivateKey();
   const account = privateKeyToAccount(privateKey);
   return account;
 };
 
-// const makeRandomUser = (): z.input<typeof UserWithWalletInputSchema> => ({
 const makeRandomUser = () => ({
   displayName: chance.name(),
   profilePictureUrl: chance.url({ extensions: ["gif", "jpg", "png"] }),
@@ -30,20 +40,19 @@ const makeRandomUser = () => ({
     authorizationMethod: "ETHEREUM" as const,
   },
 });
-
 describe("user api", () => {
   beforeEach(async () => {
     await deleteAllUsers();
   });
 
   test("createUser", async () => {
-    const user = await createUser(makeRandomUser());
+    const user = await unprotected_createUser(makeRandomUser());
 
     expectTypeOf(user.id).toBeString();
   });
 
   test("deleteUserById", async () => {
-    const user = await createUser({
+    const user = await unprotected_createUser({
       displayName: chance.name(),
       profilePictureUrl: chance.url({ extensions: ["gif", "jpg", "png"] }),
       walletAccount: {
@@ -51,28 +60,31 @@ describe("user api", () => {
         authorizationMethod: "ETHEREUM",
       },
     });
+    mockSession(user.id);
+    expect(stringify(await getUserById(user.id))).toEqual(stringify(user));
 
-    expect(await getUserById(user.id)).toEqual(user);
-
-    await getUserById(user.id);
+    await deleteUserById(user.id);
 
     await expect(getUserById(user.id)).rejects.toThrow("No User found");
   });
 
   test("getUserById", async () => {
-    const user = await createUser(makeRandomUser());
+    const user = await unprotected_createUser(makeRandomUser());
+    mockSession(user.id);
     const foundUser = await getUserById(user.id);
-    expect(foundUser).toEqual(user);
+    expect(stringify(foundUser)).toEqual(stringify(user));
   });
 
   test("getUserByAddress", async () => {
-    const user = await createUser(makeRandomUser());
+    const user = await unprotected_createUser(makeRandomUser());
+    mockSession(user.id);
     const foundUser = await getUserByAddress(user.walletAccount[0]!.address);
-    expect(foundUser).toEqual(user);
+    expect(stringify(foundUser)).toEqual(stringify(user));
   });
 
   test("createWalletAccount", async () => {
-    const user = await createUser(makeRandomUser());
+    const user = await unprotected_createUser(makeRandomUser());
+    mockSession(user.id);
     const updatedUser = await createUserWalletAccount(user.id, {
       address: makeRandomAccount().address,
       authorizationMethod: "ETHEREUM",
@@ -82,7 +94,8 @@ describe("user api", () => {
   });
 
   test("deleteWalletAccount", async () => {
-    let user = await createUser(makeRandomUser());
+    let user = await unprotected_createUser(makeRandomUser());
+    mockSession(user.id);
     const primaryAddress = user.walletAccount[0]!.address;
     const secondaryAddress = makeRandomAccount().address;
     user = await createUserWalletAccount(user.id, {
@@ -98,7 +111,8 @@ describe("user api", () => {
   });
 
   test("prevent deleting accounts if user would then have less than 1 verified account", async () => {
-    let user = await createUser(makeRandomUser());
+    let user = await unprotected_createUser(makeRandomUser());
+    mockSession(user.id);
     const primaryAddress = user.walletAccount[0]!.address;
     const secondaryAddress = makeRandomAccount().address;
 
@@ -121,7 +135,8 @@ describe("user api", () => {
   });
 
   test("throws when user already has 100 wallet accounts", async () => {
-    const user = await createUser(makeRandomUser());
+    const user = await unprotected_createUser(makeRandomUser());
+    mockSession(user.id);
 
     for (let i = 0; i < 99; i++) {
       await createUserWalletAccount(user.id, {

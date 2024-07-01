@@ -144,7 +144,7 @@ const ProfileSettings = () => {
     },
 
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["user"] });
+      await queryClient.invalidateQueries({ queryKey: ["user", "session"] });
       setIsDropdownOpen(false);
     },
   });

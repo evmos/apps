@@ -9,6 +9,8 @@ import { bech32 } from "bech32";
 import { Prisma } from "./prisma/generated/client";
 import { z } from "zod";
 import { $Enums } from "./prisma/generated/client";
+import { getUserSession } from "./auth/get-user-session";
+import { cache } from "react";
 
 // Validation
 const isWalletAccountSignable = (
@@ -79,53 +81,54 @@ const UserWithWalletInputSchema = UserInputSchema.extend({
   walletAccount: WalletInputSchema.transform((create) => ({ create })),
 }) satisfies z.Schema<Prisma.UserCreateInput, z.ZodTypeDef, unknown>;
 
-type AuthorizationUser = { id: string } | { address: string };
-type PermissionMap = {
-  "user:read": AuthorizationUser;
-  "user:write": AuthorizationUser;
-};
-export type Permission = keyof PermissionMap;
-export type AuthorizeFn = <T extends Permission>(payload: {
-  permission: T;
-  details: PermissionMap[T];
-}) => Promise<boolean> | boolean;
+export type Permission = "user:read" | "user:write";
 
 export type User = Awaited<ReturnType<typeof getUserById>>;
 export type WalletAccount = Prisma.WalletAccountGetPayload<{}>;
-// API
-// constructor(authorize: AuthorizeFn) {
-//   authorize = authorize.bind(this);
-// }
-//
-// assertPermission = async (
-//   permission: Permission,
-//   userQuery: { id: string } | { address: string },
-// ) => {
-//   if (await authorize({ permission, details: userQuery })) {
-//     return;
-//   }
-//   throw new Error("Unauthorized");
-// };
 
-const authorize: AuthorizeFn = () => {
-  return true;
-};
+export const authorize = cache(
+  async (
+    permission: Permission,
+    details: { id: string } | { address: string },
+  ) => {
+    try {
+      switch (permission) {
+        case "user:read":
+        case "user:write": {
+          const session = await getUserSession();
+          if (!session) return false;
+          const id =
+            "id" in details
+              ? details.id
+              : await unprotected_getUserByAddress(details.address).then(
+                (user) => user.id,
+              );
+          return session.user.id === id;
+        }
+        default:
+          return false;
+      }
+    } catch (e) {
+      return false;
+    }
+  },
+);
 
-const assertPermission = async (
+export const assertPermission = async (
   permission: Permission,
-  userQuery: { id: string } | { address: string },
+  details: { id: string } | { address: string },
 ) => {
-  if (await authorize({ permission, details: userQuery })) {
+  if (await authorize(permission, details)) {
     return;
   }
   throw new Error("Unauthorized");
 };
-export const createUserWalletAccount = async (
+
+export async function createUserWalletAccount(
   userId: string,
   data: z.input<typeof WalletInputSchema>,
-) => {
+) {
   await assertPermission("user:write", { id: userId });
-
   const user = await prisma.user.findUniqueOrThrow({
     where: {
       id: userId,
@@ -158,7 +161,7 @@ export const createUserWalletAccount = async (
       },
     })
     .then((walletAccount) => walletAccount.user ?? null);
-};
+}
 
 export const verifyWalletAccount = async (address: string) => {
   await assertPermission("user:write", { address });
@@ -226,7 +229,9 @@ export const deleteWalletAccount = async (address: string) => {
     .then((walletAccount) => walletAccount.user ?? null);
 };
 
-export const createUser = (data: z.input<typeof UserWithWalletInputSchema>) => {
+export const unprotected_createUser = (
+  data: z.input<typeof UserWithWalletInputSchema>,
+) => {
   return prisma.user.create({
     data: UserWithWalletInputSchema.parse(data),
     include: {
@@ -251,8 +256,7 @@ export const updateUserById = async (
   });
 };
 
-export const getUserById = async (id: string) => {
-  await assertPermission("user:read", { id });
+export const unprotected_getUserById = async (id: string) => {
   return await prisma.user.findUniqueOrThrow({
     where: {
       id,
@@ -260,12 +264,15 @@ export const getUserById = async (id: string) => {
     include: {
       walletAccount: true,
     },
-    
   });
 };
 
-export const getUserByAddress = async (address: string) => {
-  await assertPermission("user:read", { address });
+export const getUserById = async (id: string) => {
+  await assertPermission("user:read", { id });
+  return unprotected_getUserById(id);
+};
+
+export const unprotected_getUserByAddress = async (address: string) => {
   return await prisma.walletAccount
     .findUniqueOrThrow({
       where: {
@@ -282,6 +289,11 @@ export const getUserByAddress = async (address: string) => {
     .then((walletAccount) => walletAccount?.user ?? null);
 };
 
+export const getUserByAddress = async (address: string) => {
+  await assertPermission("user:read", { address });
+  return unprotected_getUserByAddress(address);
+};
+
 export const deleteUserById = async (id: string) => {
   await assertPermission("user:write", { id });
   return await prisma.user.delete({
@@ -290,7 +302,6 @@ export const deleteUserById = async (id: string) => {
     },
   });
 };
-// }
 
 /**
  * mostly for reseting db for testing purposes
@@ -311,8 +322,3 @@ export const deleteAllUsers = async (options?: {
     ].join("\n"),
   );
 };
-
-// export const apiClient = new DappStoreAPI(() => {
-//   // TODO: Implement proper authorization
-//   return true;
-// });

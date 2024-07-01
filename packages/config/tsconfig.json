@@ -5,8 +5,15 @@
     "allowJs": true,
     "composite": true,
     "checkJs": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "module": "es2022",
+    "moduleResolution": "bundler"
   },
-  "include": ["./**/*.js"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "./**/*.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

@@ -4,7 +4,7 @@
 import { getCsrfToken } from "next-auth/react";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { SiweMessage } from "siwe";
-import { createUser, getUserByAddress } from "../api";
+import { unprotected_createUser, unprotected_getUserByAddress, } from "../api";
 
 // Example with next-auth, have to check it
 export const SignWithEthereumprovider = CredentialsProvider({
@@ -51,14 +51,13 @@ export const SignWithEthereumprovider = CredentialsProvider({
         authorizationMethod: "ETHEREUM",
       } as const;
       try {
-        const user = await getUserByAddress(siwe.address);
         return {
-          id: user.id,
+          id: await unprotected_getUserByAddress(siwe.address).then((user) => user.id),
           authorization,
           isNewUser: false,
         };
       } catch (e) {}
-      const newUser = await createUser({
+      const newUser = await unprotected_createUser({
         walletAccount: {
           address: siwe.address,
           authorizationMethod: "ETHEREUM",

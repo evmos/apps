@@ -4,15 +4,23 @@
 import react from "@vitejs/plugin-react";
 
 import { defineConfig } from "vitest/config";
+import path from "path";
 
+const __dirname = new URL(".", import.meta.url).pathname;
 const config = defineConfig({
   plugins: [react()],
 
   test: {
     alias: {
       "server-only": "next",
+      react: path.join(
+        __dirname,
+        "../node_modules",
+        'next/dist/compiled/react',
+      ),
     },
     environment: "happy-dom",
+
     exclude: [
       "**/.netlify/**",
       "**/node_modules/**",

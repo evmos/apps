@@ -32,9 +32,7 @@ const signInWithEthereum = async () => {
   });
 };
 
-export const SigninModalBody = ({
-  setSignInStep,
-}: {
+export const SigninModalBody = ({}: {
   setSignInStep: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const { t } = useTranslation("dappStore");

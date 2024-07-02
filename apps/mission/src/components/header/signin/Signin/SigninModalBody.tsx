@@ -42,7 +42,7 @@ export const SigninModalBody = ({}: {
   const [loading, setLoading] = useState(false);
 
   const VerifyClick = async () => {
-    setLoading(true); // Mostrar spinner
+    setLoading(true);
     try {
       await signInWithEthereum();
       await queryClient.invalidateQueries({
@@ -50,9 +50,9 @@ export const SigninModalBody = ({}: {
       });
       setVerified(true);
     } catch (error) {
-      console.error("Verification failed", error);
+      throw Error(`Verification failed ${(error as Error).message}`);
     } finally {
-      setLoading(false); // Ocultar spinner
+      setLoading(false);
     }
   };
 

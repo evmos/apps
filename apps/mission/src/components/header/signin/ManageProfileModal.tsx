@@ -18,7 +18,7 @@ import { Button } from "@evmosapps/ui/button/index.tsx";
 import { useAccount } from "wagmi";
 import { useState } from "react";
 import { Spinner } from "@evmosapps/ui/components/spinners/Spinner.tsx";
-import { useUserProfile } from "@evmosapps/user/auth/use-user-session.ts";
+import { useUserSession } from "@evmosapps/user/auth/use-user-session.ts";
 import { signInWithEthereum } from "../../useSignInWithEthereum";
 import { useWallet } from "@evmosapps/evmos-wallet";
 
@@ -30,7 +30,7 @@ export const ManageProfileModal = () => {
   const { t } = useTranslation("dappStore");
   const { profile } = useProfileContext();
   const image = profileImages.find((image) => image.src === profile.img?.src);
-  const { data: user } = useUserProfile();
+  const { data: session } = useUserSession();
   // manage appearence of loader
   const [loading, setLoading] = useState(false);
   const queryClient = useQueryClient();
@@ -54,6 +54,8 @@ export const ManageProfileModal = () => {
       setLoading(false);
     },
   });
+
+  const profileAddress = session?.user?.walletAccount[0]?.address;
   return (
     <Modal
       isOpen={isOpen}
@@ -85,9 +87,7 @@ export const ManageProfileModal = () => {
               </div>
               <div>
                 <div className="text-base text-heading dark:text-heading-dark">
-                  <AddressDisplay
-                    address={user?.defaultWalletAccount.address}
-                  />
+                  <AddressDisplay address={profileAddress} />
                 </div>
                 <div className="text-base text-subheading dark:text-subheading-dark">
                   {t("manageProfile.options.profile.title")}
@@ -121,9 +121,7 @@ export const ManageProfileModal = () => {
               ) : (
                 <Button
                   size="sm"
-                  disabled={
-                    isPending || address === user?.defaultWalletAccount.address
-                  }
+                  disabled={isPending || address === profileAddress}
                   onClick={() => {
                     changeProfile();
                   }}

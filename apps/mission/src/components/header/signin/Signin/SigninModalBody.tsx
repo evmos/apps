@@ -12,6 +12,7 @@ import { getAccount, signMessage } from "wagmi/actions";
 import { signIn } from "next-auth/react";
 import { queryClient } from "helpers/src/clients/query";
 import { createSiweMessage } from "@evmosapps/user/auth/create-siwe-message.ts";
+import { Spinner } from "@evmosapps/ui/components/spinners/Spinner.tsx";
 
 const signInWithEthereum = async () => {
   const account = getAccount(wagmiConfig);
@@ -38,14 +39,21 @@ export const SigninModalBody = ({}: {
   const { t } = useTranslation("dappStore");
   const { address } = useWallet();
   const [verified, setVerified] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const VerifyClick = async () => {
-    //TODO: poner spiner
-    await signInWithEthereum();
-    await queryClient.invalidateQueries({
-      queryKey: ["user"],
-    });
-    setVerified(true); //TODO: que puedo chequear antes de poner el verify
+    setLoading(true); // Mostrar spinner
+    try {
+      await signInWithEthereum();
+      await queryClient.invalidateQueries({
+        queryKey: ["user"],
+      });
+      setVerified(true);
+    } catch (error) {
+      console.error("Verification failed", error);
+    } finally {
+      setLoading(false); // Ocultar spinner
+    }
   };
 
   return (
@@ -103,6 +111,8 @@ export const SigninModalBody = ({}: {
                 <IconCheck />
                 {t("signIn.modal.verified")}
               </Chip>
+            ) : loading ? (
+              <Spinner /> // Mostrar spinner mientras se verifica
             ) : (
               <Button onClick={VerifyClick}>{t("signIn.modal.button")}</Button>
             )}

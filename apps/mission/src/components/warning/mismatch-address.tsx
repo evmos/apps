@@ -50,7 +50,7 @@ const MismatchAddressComponent: React.FC = () => {
     } else {
       setAlertVisible(false);
     }
-  }, [address, user]);
+  }, [address, user, profileAddress]);
 
   const manageProfileModal = useManageProfileModal();
   const handleClick = () => {

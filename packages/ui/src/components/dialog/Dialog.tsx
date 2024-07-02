@@ -2,7 +2,6 @@
 // SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/apps/blob/main/LICENSE)
 
 "use client";
-
 import {
   ComponentProps,
   ComponentPropsWithoutRef,
@@ -34,6 +33,7 @@ export type ModalProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onClose: () => void;
+  closeOnOutsideClick?: boolean;
 };
 
 export function Modal({
@@ -41,6 +41,7 @@ export function Modal({
   setIsOpen,
   children,
   onClose,
+  closeOnOutsideClick = true,
   ...rest
 }: PropsWithChildren<ModalProps>) {
   return (
@@ -50,7 +51,7 @@ export function Modal({
           as="div"
           className="relative z-50"
           static
-          onClose={onClose}
+          onClose={closeOnOutsideClick ? onClose : () => {}}
           {...rest}
         >
           <div className="fixed inset-0 h-full w-full flex py-4 overflow-y-auto">
@@ -65,7 +66,7 @@ export function Modal({
             >
               <div
                 className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-md"
-                onClick={onClose}
+                onClick={closeOnOutsideClick ? onClose : undefined}
               />
             </Transition.Child>
             <Transition.Child

@@ -6,7 +6,7 @@
 import { cn, useModal } from "helpers";
 
 import { Modal } from "@evmosapps/ui/components/dialog/Dialog.tsx";
-
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "@evmosapps/i18n/client";
 import { useProfileContext } from "../edit/useEdit";
 import { profileImages } from "../edit/ModalEdit";
@@ -18,10 +18,11 @@ import { Button } from "@evmosapps/ui/button/index.tsx";
 import { useAccount } from "wagmi";
 import { useState } from "react";
 import { Spinner } from "@evmosapps/ui/components/spinners/Spinner.tsx";
+import { useUserSession } from "@evmosapps/user/auth/use-user-session.ts";
+import { signInWithEthereum } from "../../useSignInWithEthereum";
+import { useWallet } from "@evmosapps/evmos-wallet";
 
 export const useManageProfileModal = () => useModal("manage-profile");
-
-const dummyAddress = "0xE54Cd6c3022135d09122ee3f5E05b9b66bed9200";
 
 export const ManageProfileModal = () => {
   const { isOpen, setIsOpen } = useManageProfileModal();
@@ -29,17 +30,38 @@ export const ManageProfileModal = () => {
   const { t } = useTranslation("dappStore");
   const { profile } = useProfileContext();
   const image = profileImages.find((image) => image.src === profile.img?.src);
-
+  const { data: session } = useUserSession();
   // manage appearence of loader
-  // TODO: check if we have to update it after adding the logic for sign in
   const [loading, setLoading] = useState(false);
+  const queryClient = useQueryClient();
+  const { setIsDropdownOpen } = useWallet();
+
+  const { mutate: changeProfile, isPending } = useMutation({
+    mutationFn: async () => {
+      // TODO:  add event for creating new profile
+      setLoading(true);
+      await signInWithEthereum();
+    },
+
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["user"] });
+      setIsOpen(false);
+      setIsDropdownOpen(true);
+      setLoading(false);
+    },
+
+    onError: () => {
+      setLoading(false);
+    },
+  });
+
+  const profileAddress = session?.user?.walletAccount[0]?.address;
   return (
     <Modal
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       onClose={() => {
         setIsOpen(false);
-        setLoading(false);
       }}
     >
       <Modal.Body>
@@ -65,7 +87,7 @@ export const ManageProfileModal = () => {
               </div>
               <div>
                 <div className="text-base text-heading dark:text-heading-dark">
-                  <AddressDisplay address={address} />
+                  <AddressDisplay address={profileAddress} />
                 </div>
                 <div className="text-base text-subheading dark:text-subheading-dark">
                   {t("manageProfile.options.profile.title")}
@@ -86,7 +108,7 @@ export const ManageProfileModal = () => {
               </div>
               <div>
                 <div className="text-base text-heading dark:text-heading-dark">
-                  <AddressDisplay address={dummyAddress} />
+                  <AddressDisplay address={address} />
                 </div>
                 <div className="text-base text-subheading dark:text-subheading-dark">
                   {t("manageProfile.options.wallet.title")}
@@ -99,9 +121,9 @@ export const ManageProfileModal = () => {
               ) : (
                 <Button
                   size="sm"
+                  disabled={isPending || address === profileAddress}
                   onClick={() => {
-                    // TODO: add logic for sign in with wallet 1
-                    setLoading(true);
+                    changeProfile();
                   }}
                 >
                   Sign in

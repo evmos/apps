@@ -9,6 +9,7 @@ import { IconAlertCircle } from "@evmosapps/ui/icons/line/alerts/alert-circle.ts
 import { useTranslation } from "@evmosapps/i18n/client";
 import { useManageProfileModal } from "../header/signin/ManageProfileModal";
 import { useAccount } from "wagmi";
+import { useUserSession } from "@evmosapps/user/auth/use-user-session.ts";
 
 // Implement withSuspense
 const withSuspense = <P extends JSX.IntrinsicElements["div"]>(
@@ -38,13 +39,18 @@ const MismatchAddressComponent: React.FC = () => {
 
   const { address } = useAccount();
 
+  const { data: session } = useUserSession();
+
+  const user = session?.user;
+  const profileAddress = user?.walletAccount[0]?.address;
   useEffect(() => {
-    // TODO: compare between the address on the wallet and the one on the profile
-    if (address) {
+    if (user && address !== undefined && address !== profileAddress) {
       // we only dismiss the alert if the user changes addresses or x'out
       setAlertVisible(true);
+    } else {
+      setAlertVisible(false);
     }
-  }, [address]);
+  }, [address, user, profileAddress]);
 
   const manageProfileModal = useManageProfileModal();
   const handleClick = () => {
